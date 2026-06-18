@@ -1,0 +1,223 @@
+/* ══ نظام الألوان الجديد - Azubi-3e ══ */
+:root {
+  --green-dark:    #1a3a2a;   /* header / sidebar خلفية */
+  --green-deep:    #14532d;   /* hover على الheader */
+  --green-accent:  #16a34a;   /* أخضر متوسط للتفاعل */
+  --orange:        #d97706;   /* لون CTA الرئيسي */
+  --orange-hover:  #b45309;   /* hover على الأزرار */
+  --orange-light:  #fbbf24;   /* تفاصيل برتقالية */
+  --green-light:   #4ade80;   /* نص فاتح على خلفية داكنة */
+  --green-pale:    #bbf7d0;   /* badge / border فاتح */
+  --cream:         #f5f0e8;   /* خلفية الصفحات */
+  --cream-light:   #faf7f2;   /* خلفية cards */
+  --text-dark:     #1c1917;   /* نص داكن */
+  --text-muted:    #57534e;   /* نص ثانوي */
+  --border:        #d6d3d1;   /* حدود */
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+   font-family: 'Poppins', sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   scroll-behavior: smooth; 
+}
+
+body {
+   background-color: #faf7f2;
+   padding-top: 80px;
+}
+
+header {
+   background-color: #1a3a2a;
+   width: 100%;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 999;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 20px 80px;
+   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header h1 {
+   color: #ffffff;
+   text-transform: uppercase;
+   font-size: 28px;
+   font-weight: 700;
+}
+
+.navigation a {
+   text-decoration: none;
+   color: #ffffff;
+   font-size: 18px;
+   font-weight: 500;
+   margin-left: 20px;
+   transition: 0.3s ease;
+}
+
+.navigation a:hover {
+   color: #4ade80;
+}
+
+section {
+   padding: 80px 20px;
+}
+
+/* Hero */
+.Hero {
+   width: 100%;
+   min-height: calc(100vh - 80px);
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   padding: 40px 80px;
+   gap: 40px;
+}
+
+.hero-text { flex: 1; max-width: 500px; }
+
+.Hero h2 { font-size: 42px; color: #1a3a2a; line-height: 1.2; margin-bottom: 20px; }
+.Hero .subtitle { color: #475569; font-size: 20px; }
+
+.card {
+   background-color: #ffffff;
+   max-width: 450px; width: 100%;
+   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+   border-radius: 16px; padding: 30px; text-align: center; transition: 0.3s ease;
+}
+.card:hover { transform: translateY(-5px); }
+.hero-img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 25px; }
+.buttons { display: flex; flex-direction: column; gap: 15px; }
+.Hero .btn {
+   background-color: #d97706; color: #ffffff; border-radius: 8px;
+   font-weight: 600; text-decoration: none; padding: 14px 20px;
+   font-size: 18px; display: block; transition: 0.3s ease;
+}
+.Hero .btn:hover { background-color: #16a34a; color: #ffd700; }
+
+/* ── Services ── */
+.Services-Section { background-color: #faf7f2; padding: 100px 80px; }
+.services-container { max-width: 1100px; margin: 0 auto; text-align: center; }
+
+.section-badge {
+   display: inline-block; background-color: #bbf7d0; color: #16a34a;
+   font-size: 13px; font-weight: 600; padding: 6px 18px; border-radius: 20px;
+   margin-bottom: 16px; letter-spacing: .05em; text-transform: uppercase;
+}
+.section-badge.light { background-color: rgba(255,255,255,.15); color: #fff; }
+
+.services-container h2 { font-size: 38px; color: #1a3a2a; margin-bottom: 14px; }
+.services-lead {
+   font-size: 18px; color: #475569; max-width: 600px;
+   margin: 0 auto 50px; line-height: 1.6;
+}
+
+.services-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   gap: 24px;
+}
+
+.service-card {
+   background: #ffffff; border-radius: 14px; padding: 32px 28px;
+   box-shadow: 0 4px 20px rgba(0,0,0,.06); text-align: left;
+   border-top: 4px solid #d97706; transition: transform .25s ease, box-shadow .25s ease;
+}
+.service-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(26,58,42,.1); }
+.service-icon { font-size: 36px; margin-bottom: 16px; }
+.service-card h3 { font-size: 20px; color: #1a3a2a; margin-bottom: 12px; }
+.service-card p { font-size: 15px; color: #64748b; line-height: 1.7; }
+
+/* ── Steps ── */
+.Steps-Section {
+   background: linear-gradient(135deg, #1a3a2a 0%, #16a34a 100%);
+   padding: 100px 80px; text-align: center;
+}
+.steps-container { max-width: 1100px; margin: 0 auto; }
+.Steps-Section h2 { font-size: 38px; color: #ffffff; margin-bottom: 50px; }
+
+.steps-grid {
+   display: flex; align-items: flex-start; justify-content: center;
+   gap: 0; flex-wrap: wrap;
+}
+.step-item { flex: 1; min-width: 180px; max-width: 220px; text-align: center; padding: 0 10px; }
+.step-number {
+   width: 60px; height: 60px; border-radius: 50%;
+   background: rgba(255,255,255,.15); border: 2px solid rgba(255,255,255,.4);
+   color: #fff; font-size: 22px; font-weight: 700;
+   display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
+}
+.step-item h3 { font-size: 17px; color: #ffffff; margin-bottom: 10px; }
+.step-item p { font-size: 14px; color: rgba(255,255,255,.75); line-height: 1.6; }
+.step-arrow { font-size: 28px; color: rgba(255,255,255,.4); padding: 0 4px; margin-top: 18px; flex-shrink: 0; }
+
+/* ── About ── */
+.About-Section { background-color: #ffffff; width: 100%; padding: 100px 80px; }
+.about-container { max-width: 1100px; margin: 0 auto; text-align: center; }
+.about-container h2 { font-size: 42px; color: #1a3a2a; margin-bottom: 20px; }
+.about-lead { font-size: 22px; color: #475569; max-width: 800px; margin: 0 auto 50px; line-height: 1.6; }
+.about-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+.about-card {
+   background-color: #faf7f2; flex: 1; min-width: 300px; max-width: 350px;
+   padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+   text-align: left; border-top: 4px solid #d97706;
+}
+.about-card h3 { font-size: 22px; color: #1a3a2a; margin-bottom: 15px; }
+.about-card p { font-size: 16px; color: #64748b; line-height: 1.6; }
+
+/* ── Kontakt ── */
+.Contact-Section { width: 100%; background-color: #faf7f2; padding: 100px 20px; }
+.contact-container {
+   max-width: 600px; margin: 0 auto; background-color: #ffffff;
+   padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.contact-container h2 { font-size: 36px; color: #1a3a2a; text-align: center; margin-bottom: 10px; }
+.contact-subtitle { font-size: 16px; color: #64748b; text-align: center; margin-bottom: 30px; }
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group label { font-size: 16px; font-weight: 500; color: #1a3a2a; }
+.form-group input, .form-group textarea {
+   width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1;
+   border-radius: 8px; font-size: 16px; background-color: #faf7f2; transition: 0.3s ease;
+}
+.form-group input:focus, .form-group textarea:focus {
+   outline: none; border-color: #d97706; background-color: #ffffff;
+   box-shadow: 0 0 0 4px rgba(217,119,6,0.1);
+}
+.submit-btn {
+   background-color: #d97706; color: #ffffff; padding: 14px; font-size: 18px;
+   font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s ease; margin-top: 10px;
+}
+.submit-btn:hover { background-color: #16a34a; }
+
+/* ── Responsive ── */
+@media (max-width: 992px) {
+   .Hero { flex-direction: column; text-align: center; padding: 40px 20px; }
+   header { padding: 15px 35px; }
+   .Hero h2 { font-size: 32px; }
+   .About-Section, .Services-Section, .Steps-Section { padding: 60px 20px; }
+   .services-container h2, .Steps-Section h2 { font-size: 28px; }
+}
+
+@media (max-width: 600px) {
+   body { padding-top: 140px; }
+   header { flex-direction: column; justify-content: center; align-items: center; padding: 8px; gap: 4px; }
+   header h1 { font-size: 29px; text-align: center; }
+   .navigation { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+   .navigation a { font-size: 13px; margin: 0; }
+   .Hero h2 { font-size: 23px; }
+   .card { padding: 20px; }
+   .Hero .btn { font-size: 16px; padding: 12px 15px; }
+   .about-container h2 { font-size: 32px; }
+   .about-lead { font-size: 18px; }
+   .contact-container { padding: 25px; }
+   .contact-container h2 { font-size: 28px; }
+   .step-arrow { display: none; }
+   .steps-grid { flex-direction: column; align-items: center; gap: 30px; }
+   .step-item { max-width: 100%; }
+   .services-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3E Consulting — Engage · Expand · Excel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f2017;
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --bright: #4ade80;
+      --white: #fff;
+      --muted: #86a38e;
+      --border: rgba(74, 222, 128, .18);
+      --glass: rgba(255, 255, 255, .04);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--white);
+      padding-top: 72px;
+    }
+
+    /* ─── HEADER NAV (nur .site-nav!) ─── */
+    nav.site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5vw;
+      background: rgba(15, 32, 23, .92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: .05em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .875rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ─── MENÜ ─── */
+    .nav-menu { position: relative; }
+
+    .nav-menu-btn {
+      background: var(--accent);
+      color: var(--white);
+      padding: .55rem 1.3rem;
+      border-radius: 8px;
+      font-size: .85rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      transition: background .2s, transform .15s;
+    }
+    .nav-menu-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + .6rem);
+      right: 0;
+      min-width: 300px;
+      max-height: 75vh;
+      overflow-y: auto;
+      background: rgba(15, 32, 23, .97);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
+      z-index: 200;
+      animation: menuIn .2s ease;
+    }
+    @keyframes menuIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .menu-level-1,
+    .menu-level-2,
+    .menu-level-3 {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .65rem .75rem;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      color: var(--white);
+      font-size: .88rem;
+      font-weight: 500;
+      font-family: var(--font-body);
+      cursor: pointer;
+      text-align: left;
+      transition: background .15s, color .15s;
+    }
+    .menu-toggle:hover,
+    .menu-toggle.open {
+      background: var(--glass);
+      color: var(--bright);
+    }
+    .menu-toggle:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(217, 119, 6, .4);
+    }
+    .menu-toggle::after {
+      content: '›';
+      font-size: 1.1rem;
+      color: var(--muted);
+      transition: transform .2s;
+    }
+    .menu-toggle.open::after {
+      transform: rotate(90deg);
+      color: var(--accent);
+    }
+
+    .menu-level-1 > li > a {
+      display: flex;
+      align-items: center;
+      padding: .65rem .75rem;
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background .15s;
+    }
+    .menu-level-1 > li > a:hover {
+      background: var(--glass);
+      color: var(--bright);
+    }
+
+    .menu-level-2 {
+      padding-left: .5rem;
+      margin-top: .25rem;
+      border-left: 2px solid var(--border);
+    }
+    .menu-level-3 {
+      padding-left: .75rem;
+      margin: .25rem 0 .5rem;
+      border-left: 2px solid rgba(217, 119, 6, .3);
+    }
+    .menu-level-2 .menu-toggle,
+    .menu-level-3 a {
+      font-size: .82rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: block;
+      padding: .45rem .6rem;
+      border-radius: 6px;
+    }
+    .menu-level-3 a:hover {
+      color: var(--white);
+      background: var(--glass);
+    }
+    .menu-level-1 > li {
+      border-bottom: 1px solid var(--border);
+    }
+    .menu-level-1 > li:last-child { border-bottom: none; }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      padding: 3rem 5vw 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 em { font-style: normal; color: var(--accent); }
+    .page-hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    /* ─── LAYOUT ─── */
+    .content-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 5vw 5rem;
+      align-items: start;
+    }
+
+    /* ─── SIDEBAR TOC (aside, nicht nav!) ─── */
+    aside.toc {
+      position: sticky;
+      top: 90px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      height: fit-content;
+    }
+    .toc-title {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    aside.toc a {
+      display: block;
+      padding: .55rem .75rem;
+      font-size: .85rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 8px;
+      border-left: 2px solid transparent;
+      transition: all .15s;
+    }
+    aside.toc a:hover,
+    aside.toc a.active {
+      color: var(--white);
+      background: var(--glass);
+      border-left-color: var(--accent);
+    }
+
+    /* ─── PRICING CARDS ─── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.75rem 0 1.25rem;
+}
+
+.pricing-card {
+  background: rgba(255, 255, 255, .03);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .2s, transform .2s;
+}
+
+.pricing-card:hover {
+  border-color: rgba(217, 119, 6, .4);
+  transform: translateY(-3px);
+}
+
+.pricing-card.featured {
+  border-color: rgba(217, 119, 6, .5);
+  background: rgba(217, 119, 6, .06);
+}
+
+.pricing-icon {
+  font-size: 1.5rem;
+  margin-bottom: .75rem;
+}
+
+.pricing-card h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: .4rem;
+  color: var(--white);
+}
+
+.pricing-card p {
+  font-size: .82rem;
+  color: var(--muted);
+  line-height: 1.55;
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.pricing-price {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.pricing-price span {
+  font-size: .9rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.btn-book {
+  display: block;
+  text-align: center;
+  padding: .65rem 1rem;
+  background: var(--accent);
+  color: var(--white);
+  border-radius: 8px;
+  font-size: .85rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+
+.btn-book:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.pricing-note {
+  font-size: .78rem;
+  color: var(--muted);
+  margin-top: .75rem;
+  padding-top: .75rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 900px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+
+    /* ─── CONTENT CARDS ─── */
+    .bewerber-section {
+      scroll-margin-top: 100px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.5rem;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .bewerber-section:target {
+      border-color: rgba(217, 119, 6, .5);
+      box-shadow: 0 0 0 1px rgba(217, 119, 6, .2), 0 8px 32px rgba(0, 0, 0, .3);
+    }
+    .section-num {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: .1em;
+      margin-bottom: .5rem;
+    }
+    .bewerber-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .bewerber-section .subtitle {
+      color: var(--bright);
+      font-size: .9rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+    .bewerber-section p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .bewerber-section ul {
+      padding-left: 1.25rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+    .bewerber-section li { margin-bottom: .35rem; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .5rem;
+      background: var(--accent);
+      color: var(--white);
+      padding: .75rem 1.5rem;
+      border-radius: 10px;
+      font-size: .9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .content-layout { grid-template-columns: 1fr; }
+      aside.toc {
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+        padding: 1rem;
+      }
+      .toc-title { width: 100%; margin-bottom: .5rem; }
+      aside.toc a {
+        font-size: .78rem;
+        padding: .4rem .65rem;
+        border: 1px solid var(--border);
+        border-left: 1px solid var(--border);
+      }
+    }
+
+
+    /* ─── VIDEO GUIDE ─── */
+.video-block {
+  background: rgba(255, 255, 255, .03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem 0;
+}
+.video-block h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: .75rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.video-block ul { list-style: none; padding: 0; }
+.video-block ul li {
+  padding: .35rem 0 .35rem 1.5rem;
+  position: relative;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.55;
+}
+.video-block ul.check li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--bright);
+  font-weight: 700;
+}
+.video-block ul.cross li::before {
+  content: '✗';
+  position: absolute;
+  left: 0;
+  color: #f87171;
+  font-weight: 700;
+}
+
+.script-box {
+  background: rgba(217, 119, 6, .06);
+  border: 1px solid rgba(217, 119, 6, .25);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0;
+}
+.script-line {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: .75rem;
+  padding: .45rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: .88rem;
+}
+.script-line:last-child { border-bottom: none; }
+.script-label {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.script-text { color: var(--muted); }
+
+.duration-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: rgba(74, 222, 128, .1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .5rem 1rem;
+  font-size: .85rem;
+  color: var(--bright);
+  margin: .5rem 0 1rem;
+}
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, .3);
+  margin-top: 1rem;
+}
+.video-embed iframe,
+.video-embed video {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.video-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--muted);
+  font-size: .88rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.pricing-card.single {
+  max-width: 320px;
+  margin-top: 1.5rem;
+}
+  
+/* ══════════════════════════════════════════════════════════
+   📱 MOBILE RESPONSIVE FIX — 3E Consulting Reports
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Tablet (≤900px) ── */
+@media (max-width: 900px) {
+  .kpi-row { grid-template-columns: repeat(2,1fr) !important; }
+  .visa-grid, .charts-2col, .stats-grid, .grid-2, .two-col { grid-template-columns: 1fr !important; }
+}
+
+/* ── Mobile (≤768px) ── */
+@media (max-width: 768px) {
+  body { padding-top: 64px !important; }
+
+  /* Nav */
+  nav.site-nav, nav { padding: .7rem 1rem !important; }
+  .nav-links { display: none !important; }
+  .nav-brand-text { font-size: .92rem !important; }
+  .nav-brand img, .nav-brand-text + img, a.nav-brand img { height: 30px !important; width: 30px !important; }
+  .nav-menu-btn { padding: .45rem .9rem !important; font-size: .78rem !important; }
+  .nav-dropdown { min-width: 280px !important; max-width: 92vw !important; right: -1rem !important; }
+
+  /* Hero / page header */
+  .page-hero { padding: 2.2rem 5vw 1.5rem !important; }
+  .page-hero h1 { font-size: clamp(1.6rem,7vw,2.2rem) !important; word-break: break-word; }
+  .page-hero p { font-size: .92rem !important; }
+
+  /* KPI cards */
+  .kpi-row { grid-template-columns: 1fr 1fr !important; gap: .6rem !important; padding: 0 4vw !important; }
+  .kpi-card { padding: .9rem 1rem !important; }
+  .kpi-card .kpi-num { font-size: 1.35rem !important; }
+  .kpi-card .kpi-label { font-size: .7rem !important; }
+
+  /* Layout: sidebar becomes horizontal scroll chips */
+  .content-layout { grid-template-columns: 1fr !important; padding: 0 4vw 3rem !important; gap: 1.25rem !important; }
+  aside.toc {
+    position: static !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: .4rem !important;
+    padding: 1rem !important;
+  }
+  .toc-title { width: 100% !important; margin-bottom: .5rem !important; }
+  aside.toc a {
+    font-size: .75rem !important;
+    padding: .4rem .65rem !important;
+    border: 1px solid var(--border) !important;
+    border-left: 1px solid var(--border) !important;
+  }
+
+  /* Report sections */
+  .report-section { padding: 1.25rem 1.1rem !important; border-radius: 12px !important; }
+  .report-section h2 { font-size: 1.2rem !important; }
+  .report-section .subtitle { font-size: .82rem !important; }
+  .report-section p, .report-section ul, .report-section li { font-size: .9rem !important; }
+
+  /* Visa / info cards */
+  .visa-grid { grid-template-columns: 1fr !important; gap: .75rem !important; }
+  .visa-card { padding: 1rem !important; }
+  .visa-card h3 { font-size: .92rem !important; }
+  .visa-card p { font-size: .82rem !important; }
+
+  /* Tables: horizontal scroll wrapper */
+  .rights-table, table { font-size: .78rem !important; }
+  .rights-table th, .rights-table td,
+  table th, table td { padding: .55rem .6rem !important; white-space: nowrap; }
+
+  /* Steps */
+  .step-item { padding: .85rem 1rem !important; gap: .75rem !important; }
+  .step-num { font-size: 1.15rem !important; min-width: 1.6rem !important; }
+  .step-item h4 { font-size: .88rem !important; }
+  .step-item p { font-size: .8rem !important; }
+
+  /* Charts */
+  .charts-2col { grid-template-columns: 1fr !important; gap: .75rem !important; }
+  .chart-box { padding: 1rem !important; }
+  .chart-box h3 { font-size: .85rem !important; }
+  .chart-box .chart-desc { font-size: .75rem !important; }
+  .chart-wrap, .chart-wrap.tall { max-height: 240px !important; }
+
+  /* Tip / source */
+  .tip-box { padding: .85rem 1rem !important; font-size: .82rem !important; }
+  .source-note { font-size: .7rem !important; }
+}
+
+/* ── Small mobile (≤480px) ── */
+@media (max-width: 480px) {
+  nav.site-nav, nav { padding: .6rem .85rem !important; }
+  .nav-brand-text { font-size: .8rem !important; }
+  .nav-brand img, a.nav-brand img { height: 26px !important; width: 26px !important; border-radius: 6px !important; }
+  .nav-menu-btn { padding: .4rem .8rem !important; font-size: .72rem !important; }
+
+  .page-hero h1 { font-size: 1.5rem !important; line-height: 1.25 !important; }
+  .page-hero p { font-size: .85rem !important; }
+
+  .kpi-row { grid-template-columns: 1fr 1fr !important; }
+  .kpi-card .kpi-num { font-size: 1.15rem !important; }
+  .kpi-card .kpi-label { font-size: .65rem !important; }
+
+  .report-section { padding: 1rem .85rem !important; }
+  .report-section h2 { font-size: 1.05rem !important; }
+
+  .visa-card h3, .step-item h4 { font-size: .85rem !important; }
+
+  /* Wrap tables with horizontal scroll */
+  .table-wrap, .rights-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+}
+
+/* Generic table scroll fallback if no wrapper exists */
+.report-section table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand" style="display:flex;align-items:center;gap:9px;text-decoration:none;">
+  <img src="logo_3e.jpg" alt="3E Consulting" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0;">
+  <span class="nav-brand-text" style="font-family:\'Syne\',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3E Consulting</span>
+</a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Leistungen</a></li>
+    <li><a href="index.html#process">Ablauf</a></li>
+    <li><a href="index.html#about">Über uns</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+  <div class="nav-menu">
+    <button type="button" class="nav-menu-btn" id="menuToggle" aria-expanded="false">MENÜ ▾</button>
+    <div class="nav-dropdown" id="menuDropdown" hidden>
+      <ul class="menu-level-1">
+        <li class="has-sub">
+          <button type="button" class="menu-toggle">Service</button>
+          <ul class="menu-level-2" hidden>
+            <li class="has-sub">
+              <button type="button" class="menu-toggle">Bewerber</button>
+              <ul class="menu-level-3" hidden>
+                <li><a href="service-bewerber.html#dokumentenorganisation">Dokumentenorganisation</a></li>
+                <li><a href="service-bewerber.html#bewerbungsprozess">Bewerbungsprozess</a></li>
+                <li><a href="service-bewerber.html#profil-video">Profil-Video Anleitung</a></li>
+                <li><a href="service-bewerber.html#erste-schritte">Erste Schritte in Deutschland</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <button type="button" class="menu-toggle">Unternehmen</button>
+              <ul class="menu-level-3" hidden>
+                <li><a href="service-unternehmen.html#vermittlung">Vermittlung von Fachkräften</a></li>
+                <li><a href="service-unternehmen.html#beschwerdeverfahren">Beschwerdeverfahren</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="Bewerbung.html">Bewerbung</a></li>
+        <li><a href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
+        <li><a href="arbeitundsozialrecht.html">Arbeits- und Sozialrecht</a></li>
+        <li><a href="#">Aufenthaltsrecht</a></li>
+        <li><a href="#">Alltag in Deutschland</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="section-tag">Service · Bewerber</div>
+  <h1>Leistungen für <em>Bewerber</em></h1>
+  <p>Von der Dokumentenvorbereitung bis zur erfolgreichen Ankunft in Deutschland — wir begleiten Sie auf jedem Schritt Ihres Weges.</p>
+</header>
+
+<!-- CONTENT -->
+<div class="content-layout">
+
+  <!-- SIDEBAR — aside statt nav! -->
+  <aside class="toc">
+    <div class="toc-title">Inhaltsverzeichnis</div>
+    <a href="#dokumentenorganisation">Dokumentenorganisation</a>
+    <a href="#bewerbungsprozess">Bewerbungsprozess</a>
+    <a href="#profil-video">Profil-Video</a>
+    <a href="#erste-schritte">Erste Schritte</a>
+  </aside>
+
+  <main>
+    <section id="dokumentenorganisation" class="bewerber-section">
+      <div class="section-num">01</div>
+      <h2>Dokumentenorganisation</h2>
+      <p class="subtitle">Beglaubigte Dokumente, Visum und Behörden</p>
+      <p>Wir unterstützen Sie bei der vollständigen Organisation Ihrer Bewerbungsunterlagen — von der Sammlung bis zur Einreichung bei den zuständigen Behörden.</p>
+      <ul>
+        <li>Sammeln aller erforderlichen Unterlagen</li>
+        <li>Beglaubigte Übersetzungen durch anerkannte Übersetzer</li>
+        <li>Visumantrag und Begleitung bei Behördengängen</li>
+        <li>Prüfung der Vollständigkeit Ihrer Bewerbungsmappe</li>
+      </ul>
+    </section>
+
+   <section id="bewerbungsprozess" class="bewerber-section">
+  <div class="section-num">02</div>
+  <h2>Bewerbungsprozess</h2>
+  <p class="subtitle">Ihr persönlicher Begleiter — von der ersten Datei bis zum Vorstellungsgespräch</p>
+
+  <!-- Einleitung -->
+  <p>
+    Wir begleiten Sie <strong>ab dem allerersten Schritt</strong> Ihrer Bewerbung.
+    Laden Sie Ihre Unterlagen hoch — wir prüfen sie sorgfältig, geben Ihnen Feedback
+    und unterstützen Sie bei jedem weiteren Schritt, bis Sie erfolgreich bei einem
+    deutschen Unternehmen eingestellt sind.
+  </p>
+
+  <!-- Was wir für Sie tun -->
+  <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;
+             color:var(--white);margin:1.75rem 0 .75rem;">
+    Unsere Leistungen im Überblick
+  </h3>
+  <ul>
+    <li><strong>Upload &amp; Prüfung Ihrer Unterlagen</strong> — Wir kontrollieren Vollständigkeit und Qualität Ihrer Dokumente</li>
+    <li><strong>Bewerbungsunterlagen erstellen</strong> — Professioneller Lebenslauf und Motivationsschreiben, individuell auf Ihre Zielstelle zugeschnitten</li>
+    <li><strong>Bewerbung einreichen</strong> — Wir helfen Ihnen bei der korrekten Einreichung bei deutschen Unternehmen</li>
+    <li><strong>Vorstellungsgespräch-Vorbereitung</strong> — Training für typische Fragen, Körpersprache und Auftreten</li>
+    <li><strong>Deutschkurse</strong> — Zugang zu Sprachkursen, um Ihr Deutschniveau gezielt zu verbessern und Ihre Chancen zu erhöhen</li>
+  </ul>
+
+  <!-- Deutschkurse -->
+  <div style="background:rgba(74,222,128,.06);border:1px solid var(--border);
+              border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;">
+    <p style="margin:0;color:var(--bright);font-weight:500;font-size:.9rem;margin-bottom:.4rem;">
+      🗣️ Deutschkurse &amp; Sprachförderung
+    </p>
+    <p style="margin:0;font-size:.88rem;color:var(--muted);line-height:1.65;">
+      Gute Deutschkenntnisse sind der Schlüssel zu einer erfolgreichen Bewerbung in Deutschland.
+      Über unsere Partnerschaft mit der <strong>3E Academy</strong> bieten wir Ihnen Zugang zu
+      strukturierten Deutschkursen — von A1 bis B2 — damit Sie Ihr Sprachniveau gezielt
+      verbessern und sich sicher im Vorstellungsgespräch präsentieren können.
+    </p>
+    <a href="https://3e-academy-url.de" target="_blank" rel="noopener"
+       class="btn-primary" style="margin-top:1rem;font-size:.85rem;padding:.6rem 1.2rem;">
+      Zur 3E Academy →
+    </a>
+  </div>
+
+  <!-- Preise -->
+  <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;
+             color:var(--white);margin:1.75rem 0 .5rem;">
+    Einzelleistungen buchen
+  </h3>
+  <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;">
+    Sie können jede Leistung einzeln buchen — oder alle drei im Kombi-Paket zum Vorteilspreis.
+  </p>
+
+  <div class="pricing-grid">
+
+    <div class="pricing-card">
+      <div class="pricing-icon">✉️</div>
+      <h3>Motivationsschreiben</h3>
+      <p>Individuelles Anschreiben, professionell formuliert und auf Ihre Zielstelle abgestimmt.</p>
+      <div class="pricing-price">19 <span>€</span></div>
+      <a href="checkout.php?service=motivationsschreiben&price=19" class="btn-book">
+        Jetzt buchen
+      </a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-icon">📋</div>
+      <h3>Lebenslauf</h3>
+      <p>Strukturierter deutscher Lebenslauf nach den Standards deutscher Arbeitgeber und Ausbildungsbetriebe.</p>
+      <div class="pricing-price">15 <span>€</span></div>
+      <a href="checkout.php?service=lebenslauf&price=15" class="btn-book">
+        Jetzt buchen
+      </a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-icon">🎯</div>
+      <h3>Vorstellungsgespräch</h3>
+      <p>Gezielte Vorbereitung — typische Fragen, Antwortstrategien und professionelles Auftreten.</p>
+      <div class="pricing-price">20 <span>€</span></div>
+      <a href="checkout.php?service=vorstellungsgespraech&price=20" class="btn-book">
+        Jetzt buchen
+      </a>
+    </div>
+
+  </div>
+
+  <p class="pricing-note">
+    Alle Preise inkl. MwSt. · Bearbeitungszeit: 2–3 Werktage ·
+    <strong style="color:var(--accent)">Kombi-Paket (alle 3 Leistungen): 45 €</strong> statt 54 €
+  </p>
+
+</section>
+
+   <section id="profil-video" class="bewerber-section">
+  <div class="section-num">03</div>
+  <h2>Profil-Video Anleitung</h2>
+  <p class="subtitle">Ihr persönlicher Eindruck für deutsche Arbeitgeber</p>
+  <p>
+    Ein professionelles Profil-Video erhöht Ihre Chancen bei deutschen Unternehmen erheblich.
+    Folgen Sie dieser Anleitung Schritt für Schritt — von der Kameraeinstellung bis zum perfekten Text.
+  </p>
+
+  <!-- 1. Kamera & Umgebung -->
+  <div class="video-block">
+    <h3>📷 Kamera &amp; Umgebung</h3>
+    <ul class="check">
+      <li>Stellen Sie die Kamera auf Augenhöhe — nicht von oben oder unten.</li>
+      <li>Sitzen oder stehen Sie vor einem aufgeräumten, neutralen Hintergrund.</li>
+      <li>Nutzen Sie gute Beleuchtung von vorne — kein Licht von hinten.</li>
+      <li>Vermeiden Sie Hintergrundgeräusche — wählen Sie einen ruhigen Ort.</li>
+      <li>Schauen Sie während des Sprechens direkt in die Kamera.</li>
+    </ul>
+  </div>
+
+  <!-- 2. Videolänge -->
+  <div class="video-block">
+    <h3>⏱️ Videolänge</h3>
+    <p style="color:var(--muted);font-size:.88rem;line-height:1.65;margin-bottom:.75rem;">
+      Ihr Profilvideo sollte <strong style="color:var(--white)">zwischen 60 und 90 Sekunden</strong> dauern —
+      nicht zu kurz und nicht zu lang, damit Unternehmen das gesamte Video ansehen.
+    </p>
+    <div class="duration-badge">
+      ⏱ Minimum: 1 Minute &nbsp;·&nbsp; Maximum: 1,5 Minuten
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);margin:0;">
+      Videos über 2 Minuten werden von den meisten Personalverantwortlichen nicht vollständig angesehen.
+    </p>
+  </div>
+
+  <!-- 3. Was soll ich sagen? -->
+ <div class="video-block">
+    <h3>🗣️ Mein Vorstellungsvideo</h3>
+    <p style="color:var(--muted);font-size:.88rem;margin-bottom:1rem;">
+        Wählen Sie den für Sie passenden Bereich aus:
+    </p>
+    <div class="script-box">
+        <div class="script-line">
+            <span class="script-label">Begrüßung</span>
+            <span class="script-text">„Hallo, mein Name ist Souheil Merabti und ich komme aus Algerien.“</span>
+        </div>
+        <div class="script-line">
+            <span class="script-label">Ziel</span>
+            <span class="script-text">„Ich suche eine Ausbildung im Handwerk oder im medizinischen Bereich in Deutschland.“</span>
+        </div>
+        <div class="script-line">
+            <span class="script-label">Erfahrung</span>
+            <span class="script-text">„Durch meine dreijährige Tätigkeit im Kundenkontakt bin ich sehr kommunikationsstark, belastbar und besitze handwerkliches Geschick sowie eine schnelle Auffassungsgabe.“</span>
+        </div>
+        <div class="script-line">
+            <span class="script-label">Motivation</span>
+            <span class="script-text">„Ich bin motiviert, zuverlässig und möchte mich in einem professionellen Team durch Tatkraft und Lernbereitschaft beweisen.“</span>
+        </div>
+        <div class="script-line">
+            <span class="script-label">Abschluss</span>
+            <span class="script-text">„Vielen Dank für Ihre Zeit. Ich freue mich sehr auf Ihre Rückmeldung.“</span>
+        </div>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);margin:1rem 0 0 0;">
+        Tipp: Betonen Sie im Video Ihr Interesse an praktischer Arbeit oder patientennaher Betreuung[cite: 1].
+    </p>
+</div>
+
+  <!-- 4. Häufige Fehler -->
+  <div class="video-block">
+    <h3>🚫 Häufige Fehler — bitte vermeiden</h3>
+    <ul class="cross">
+      <li>Nach unten schauen statt in die Kamera.</li>
+      <li>Zu schnell sprechen — der Zuschauer versteht Sie nicht.</li>
+      <li>Video länger als 2 Minuten.</li>
+      <li>Schlechte Beleuchtung — Gesicht zu dunkel oder überbelichtet.</li>
+      <li>Laute Geräusche im Hintergrund (Verkehr, Fernseher, andere Personen).</li>
+    </ul>
+  </div>
+
+  <!-- 5. Beispielvideo -->
+  <div class="video-block">
+    <h3>⭐ Beispielvideo</h3>
+    <p style="color:var(--muted);font-size:.88rem;margin-bottom:.5rem;">
+      Sehen Sie sich dieses Mustervideo an — so sollte ein professionelles Profilvideo aussehen:
+    </p>
+    <div class="video-embed">
+      <!-- Option A: YouTube einbetten -->
+      <!-- <iframe src="https://www.youtube.com/embed/DEINE_VIDEO_ID"
+              allowfullscreen title="Beispiel Profil-Video"></iframe> -->
+
+      <!-- Option B: Lokales Video -->
+      <!-- <video controls src="videos/beispiel-profilvideo.mp4"></video> -->
+
+      <!-- Platzhalter bis Video hochgeladen -->
+      <div class="video-placeholder">
+        Beispielvideo wird in Kürze verfügbar sein.<br>
+        <small style="margin-top:.5rem;display:block;">
+          Ersetzen Sie diesen Platzhalter durch Ihr YouTube- oder lokales Video.
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bezahlte Analyse -->
+  <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;
+             color:var(--white);margin:1.75rem 0 .5rem;">
+    Profil-Video Analyse buchen
+  </h3>
+  <p style="font-size:.88rem;color:var(--muted);margin-bottom:1rem;">
+    Laden Sie Ihr Video hoch — unser Team schaut es an und gibt Ihnen ein detailliertes Feedback:
+  </p>
+
+  <div class="pricing-card single">
+    <div class="pricing-icon">🎬</div>
+    <h3>Profil-Video Analyse</h3>
+    <p>
+      Persönliche Bewertung Ihres Videos mit konkreten Verbesserungsvorschlägen:
+    </p>
+    <ul style="font-size:.82rem;color:var(--muted);padding-left:1rem;margin:.75rem 0 1rem;line-height:1.8;">
+      <li>Bewertung von 1 bis 10</li>
+      <li>Stärken Ihres Auftritts</li>
+      <li>Konkrete Verbesserungspunkte</li>
+      <li>Feedback innerhalb von 2 Werktagen</li>
+    </ul>
+    <div class="pricing-price">15 <span>€</span></div>
+    <a href="checkout.php?service=profil-video-analyse&price=15" class="btn-book">
+      Video unterschtützung
+    </a>
+  </div>
+
+</section>
+
+    <section id="erste-schritte" class="bewerber-section">
+      <div class="section-num">04</div>
+      <h2>Erste Schritte in Deutschland</h2>
+      <p class="subtitle">Unterstützung nach Ihrer Ankunft</p>
+      <p>Nach Ihrer Ankunft in Deutschland begleiten wir Sie durch alle wichtigen bürokratischen und praktischen Schritte.</p>
+      <ul>
+        <li>Wohnungssuche — Unterstützung bei der Suche nach einer Unterkunft</li>
+        <li>Anmeldung — Registrierung beim Einwohnermeldeamt</li>
+        <li>Krankenversicherung — Auswahl und Abschluss der gesetzlichen Krankenversicherung</li>
+        <li>Haftpflichtversicherung — Abschluss der privaten Haftpflichtversicherung</li>
+        <li>Behördengänge — Begleitung bei allen notwendigen Behördenterminen</li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<script>
+// MENÜ öffnen/schließen
+const menuToggle = document.getElementById('menuToggle');
+const menuDropdown = document.getElementById('menuDropdown');
+
+menuToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = !menuDropdown.hidden;
+  menuDropdown.hidden = open;
+  menuToggle.setAttribute('aria-expanded', String(!open));
+});
+
+document.querySelectorAll('.menu-toggle').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const sub = btn.nextElementSibling;
+    sub.hidden = !sub.hidden;
+    btn.classList.toggle('open', !sub.hidden);
+  });
+});
+
+document.addEventListener('click', () => {
+  menuDropdown.hidden = true;
+  menuToggle.setAttribute('aria-expanded', 'false');
+  document.querySelectorAll('.menu-level-2, .menu-level-3').forEach(u => u.hidden = true);
+  document.querySelectorAll('.menu-toggle').forEach(b => b.classList.remove('open'));
+});
+
+menuDropdown.addEventListener('click', (e) => e.stopPropagation());
+
+// Aktiven TOC-Link hervorheben
+const tocLinks = document.querySelectorAll('aside.toc a');
+const sections = document.querySelectorAll('.bewerber-section');
+
+function setActiveToc(id) {
+  tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+}
+
+// Beim Laden mit Hash
+if (location.hash) {
+  setActiveToc(location.hash.slice(1));
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) setActiveToc(entry.target.id);
+  });
+}, { rootMargin: '-40% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

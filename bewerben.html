@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3E Consulting — Engage · Expand · Excel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: #f5f0e8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+                header {
+            background: #1a3a2a;
+            padding: 0 28px;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            flex-wrap: nowrap;
+            gap: 12px;
+        }
+        header h1 { margin:0; padding:0; display:flex; align-items:center; }
+        .nav-links { display:flex; align-items:center; flex-wrap:nowrap; gap:2px; }
+        .nav-links a {
+            color: rgba(255,255,255,.85); text-decoration: none;
+            font-size: .78rem; font-weight:500; padding: 5px 10px;
+            border-radius: 7px; transition: color .2s; white-space:nowrap;
+        }
+        .nav-links a:hover { color: #fff; background:rgba(255,255,255,.1); }
+        .nav-links a { color:rgba(255,255,255,.85); text-decoration:none; font-size:.78rem; font-weight:500; padding:5px 10px; border-radius:7px; transition:color .2s; white-space:nowrap; }
+        .nav-links a:hover { color: #fff; }
+
+        /* PAGE */
+        .page {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 520px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        }
+
+        /* HEADER INSIDE CARD */
+        .card-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .card-header .brand {
+            font-size: 12px; font-weight: 600; color: #d97706;
+            text-transform: uppercase; letter-spacing: .12em; margin-bottom: 6px;
+        }
+        .card-header h2 { font-size: 24px; font-weight: 700; color: #1e293b; margin-bottom: 5px; }
+        .card-header p  { font-size: 13px; color: #94a3b8; }
+
+        /* TABS */
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #f5f0e8;
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 28px;
+            gap: 4px;
+        }
+        .tab {
+            padding: 11px;
+            text-align: center;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all .2s;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+        }
+        .tab.active {
+            background: #fff;
+            color: #1a3a2a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* FORMS */
+        .form-section { display: none; }
+        .form-section.active { display: block; }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+        .field { margin-bottom: 16px; }
+        .field label {
+            display: block;
+            font-size: 11px; font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-bottom: 6px;
+        }
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #1e293b;
+            background: #faf7f2;
+            font-family: inherit;
+            transition: border-color .2s, background .2s;
+        }
+        .field input:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #d97706;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(217,119,6,0.08);
+        }
+
+        /* FILE ZONE */
+        .file-zone {
+            border: 2px dashed #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            background: #faf7f2;
+            font-size: 13px;
+            color: #94a3b8;
+            transition: all .2s;
+            position: relative;
+        }
+        .file-zone:hover { border-color: #d97706; background: #f0fdf4; color: #d97706; }
+        .file-zone.done  { border-color: #22c55e; background: #f0fdf4; color: #16a34a; border-style: solid; }
+        .file-zone input { display: none; }
+
+        /* SUBMIT */
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            background: #d97706;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            font-family: inherit;
+            transition: background .2s, transform .1s;
+        }
+        .submit-btn:hover  { background: #b45309; }
+        .submit-btn:active { transform: scale(.99); }
+
+        /* DIVIDER */
+        .divider {
+            display: flex; align-items: center; gap: 12px;
+            margin: 18px 0; color: #cbd5e1; font-size: 13px;
+        }
+        .divider::before, .divider::after {
+            content: ''; flex: 1; height: 1px; background: #e2e8f0;
+        }
+
+        /* LOGIN LINK */
+        .login-link {
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 14px;
+        }
+        .login-link a {
+            color: #d97706; font-weight: 600; text-decoration: none;
+        }
+        .login-link a:hover { text-decoration: underline; }
+
+        /* PASSWORD STRENGTH */
+        .strength-bar {
+            height: 4px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+        .strength-fill {
+            height: 100%;
+            border-radius: 4px;
+            width: 0%;
+            transition: width .3s, background .3s;
+        }
+        .strength-text {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 560px) {
+            header { padding: 12px 16px; flex-direction: column; gap: 8px; }
+            .card  { padding: 28px 18px; }
+            .two-col { grid-template-columns: 1fr; }
+            .nav-links a { margin-left: 12px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="margin:0;padding:0;"><a href="index.html" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0;">
+  <img src="logo_3e.jpg" alt="3E" style="height:32px;width:32px;border-radius:7px;object-fit:cover;flex-shrink:0;display:block;">
+  <span style="font-family:'Poppins','Syne',sans-serif;font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.04em;white-space:nowrap;line-height:1;">3E Consulting</span>
+</a></h1>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="registraion.html">Registrierung</a>
+        <a href="index.html#about">Über uns</a>
+        <a href="index.html#kontakt">Kontakt</a>
+    </nav>
+</header>
+
+<div class="page">
+<div class="card">
+
+    <div class="card-header">
+        <div class="brand"><img src="logo_3e.jpg" style="height:16px;width:16px;border-radius:3px;object-fit:cover;vertical-align:middle;margin-right:4px;display:inline-block;">3E Consulting</div>
+        <h2>Konto erstellen</h2>
+        <p>Wählen Sie Ihren Kontotyp und starten Sie durch.</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" id="tab-bew" onclick="gotoType('bewerber')">👤 Ich bin Bewerber</button>
+        <button class="tab" id="tab-firm" onclick="gotoType('firma')">🏢 Ich bin Unternehmen</button>
+    </div>
+
+    <!-- ══ BEWERBER FORM ══ -->
+    <div class="form-section active" id="form-bewerber">
+        <form action="register.php" method="POST">
+            <div class="two-col">
+                <div class="field">
+                    <label>Vorname</label>
+                    <input type="text" name="vorname" placeholder="Max" required>
+                </div>
+                <div class="field">
+                    <label>Nachname</label>
+                    <input type="text" name="nachname" placeholder="Mustermann" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>E-Mail-Adresse</label>
+                <input type="email" name="email" placeholder="max@beispiel.de" required>
+            </div>
+
+            <div class="field">
+                <label>Passwort</label>
+                <input type="password" name="password" id="pw-bewerber"
+                       placeholder="Mindestens 8 Zeichen" required
+                       oninput="checkStrength(this, 'sb', 'st')">
+                <div class="strength-bar"><div class="strength-fill" id="sb"></div></div>
+                <div class="strength-text" id="st"></div>
+            </div>
+
+            <button type="submit" class="submit-btn">Als Bewerber registrieren →</button>
+        </form>
+
+        <div class="divider">oder</div>
+        <div class="login-link">
+            Bereits registriert?
+            <a href="login_bewerber.php">Jetzt einloggen →</a>
+        </div>
+    </div>
+
+    <!-- ══ UNTERNEHMEN FORM ══ -->
+    <div class="form-section" id="form-firma">
+        <form action="register_company.php" method="POST" enctype="multipart/form-data">
+            <div class="two-col">
+                <div class="field">
+                    <label>Firmenname</label>
+                    <input type="text" name="firmenname" placeholder="Muster GmbH" required>
+                </div>
+                <div class="field">
+                    <label>Ansprechpartner</label>
+                    <input type="text" name="ansprechpartner" placeholder="Max Müller" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>E-Mail-Adresse</label>
+                <input type="email" name="email" placeholder="hr@firma.de" required>
+            </div>
+
+            <div class="field">
+                <label>Passwort</label>
+                <input type="password" name="password" id="pw-firma"
+                       placeholder="Mindestens 8 Zeichen" required
+                       oninput="checkStrength(this, 'sf', 'tf')">
+                <div class="strength-bar"><div class="strength-fill" id="sf"></div></div>
+                <div class="strength-text" id="tf"></div>
+            </div>
+
+            <div class="field">
+                <label>Branche</label>
+                <select name="firmen_bereich">
+                    <option value="IT">IT & Informatik</option>
+                    <option value="Medizin">Medizin & Pflege</option>
+                    <option value="Bank">Banken & Finanzen</option>
+                    <option value="Handwerk">Handwerk</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Handelsregister (PDF)</label>
+                <label class="file-zone" id="hr-zone">
+                    📎 Datei hier ablegen oder klicken
+                    <input type="file" name="hr_file" accept=".pdf" required
+                           onchange="markFile(this, 'hr-zone')">
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">Als Unternehmen registrieren →</button>
+        </form>
+
+        <div class="divider">oder</div>
+        <div class="login-link">
+            Bereits registriert?
+            <a href="login_company.php">Jetzt einloggen →</a>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<script>
+    function gotoType(type) {
+        // أخفِ كل الفورمات
+        document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        // أظهر الفورم المطلوب
+        document.getElementById('form-' + type).classList.add('active');
+        document.getElementById('tab-' + (type === 'bewerber' ? 'bew' : 'firm')).classList.add('active');
+    }
+
+    // تفعيل التاب الصحيح من URL
+    function initTabs() {
+        const params = new URLSearchParams(window.location.search);
+        const type   = params.get('type') || 'bewerber';
+        gotoType(type === 'firma' ? 'firma' : 'bewerber');
+    }
+    initTabs();
+
+    function switchTab(id, btn) { gotoType(id); }
+
+    function checkStrength(input, barId, textId) {
+        const val = input.value;
+        const bar  = document.getElementById(barId);
+        const text = document.getElementById(textId);
+        let score = 0;
+        if (val.length >= 8)              score++;
+        if (/[A-Z]/.test(val))            score++;
+        if (/[0-9]/.test(val))            score++;
+        if (/[^A-Za-z0-9]/.test(val))     score++;
+
+        const levels = [
+            { w: '0%',   bg: '#e2e8f0', label: '' },
+            { w: '25%',  bg: '#ef4444', label: 'Schwach' },
+            { w: '50%',  bg: '#f97316', label: 'Mittel' },
+            { w: '75%',  bg: '#eab308', label: 'Gut' },
+            { w: '100%', bg: '#22c55e', label: 'Stark ✓' },
+        ];
+        const lvl = val.length === 0 ? levels[0] : levels[score];
+        bar.style.width      = lvl.w;
+        bar.style.background = lvl.bg;
+        text.textContent     = lvl.label;
+        text.style.color     = lvl.bg;
+    }
+
+    function markFile(input, zoneId) {
+        if (!input.files[0]) return;
+        const zone = document.getElementById(zoneId);
+        zone.classList.add('done');
+        zone.childNodes[0].textContent = '✅ ' + input.files[0].name;
+    }
+</script>
+
+</body>
+</html>

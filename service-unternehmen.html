@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3E Consulting — Engage · Expand · Excel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f2017;
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --bright: #4ade80;
+      --white: #fff;
+      --muted: #86a38e;
+      --border: rgba(74, 222, 128, .18);
+      --glass: rgba(255, 255, 255, .04);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--white);
+      padding-top: 72px;
+    }
+
+    /* ─── HEADER NAV ─── */
+    nav.site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5vw;
+      background: rgba(15, 32, 23, .92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: .05em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .875rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ─── MENÜ ─── */
+    .nav-menu { position: relative; }
+
+    .nav-menu-btn {
+      background: var(--accent);
+      color: var(--white);
+      padding: .55rem 1.3rem;
+      border-radius: 8px;
+      font-size: .85rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      transition: background .2s, transform .15s;
+    }
+    .nav-menu-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + .6rem);
+      right: 0;
+      min-width: 300px;
+      max-height: 75vh;
+      overflow-y: auto;
+      background: rgba(15, 32, 23, .97);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
+      z-index: 200;
+      animation: menuIn .2s ease;
+    }
+    @keyframes menuIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .menu-level-1,
+    .menu-level-2,
+    .menu-level-3 {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .65rem .75rem;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      color: var(--white);
+      font-size: .88rem;
+      font-weight: 500;
+      font-family: var(--font-body);
+      cursor: pointer;
+      text-align: left;
+      transition: background .15s, color .15s;
+    }
+    .menu-toggle:hover,
+    .menu-toggle.open {
+      background: var(--glass);
+      color: var(--bright);
+    }
+    .menu-toggle:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(217, 119, 6, .4);
+    }
+    .menu-toggle::after {
+      content: '›';
+      font-size: 1.1rem;
+      color: var(--muted);
+      transition: transform .2s;
+    }
+    .menu-toggle.open::after {
+      transform: rotate(90deg);
+      color: var(--accent);
+    }
+
+    .menu-level-1 > li > a {
+      display: flex;
+      align-items: center;
+      padding: .65rem .75rem;
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background .15s;
+    }
+    .menu-level-1 > li > a:hover {
+      background: var(--glass);
+      color: var(--bright);
+    }
+
+    .menu-level-2 {
+      padding-left: .5rem;
+      margin-top: .25rem;
+      border-left: 2px solid var(--border);
+    }
+    .menu-level-3 {
+      padding-left: .75rem;
+      margin: .25rem 0 .5rem;
+      border-left: 2px solid rgba(217, 119, 6, .3);
+    }
+    .menu-level-2 .menu-toggle,
+    .menu-level-3 a {
+      font-size: .82rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: block;
+      padding: .45rem .6rem;
+      border-radius: 6px;
+    }
+    .menu-level-3 a:hover {
+      color: var(--white);
+      background: var(--glass);
+    }
+    .menu-level-1 > li {
+      border-bottom: 1px solid var(--border);
+    }
+    .menu-level-1 > li:last-child { border-bottom: none; }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      padding: 3rem 5vw 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 em { font-style: normal; color: var(--accent); }
+    .page-hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* ─── LAYOUT ─── */
+    .content-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 5vw 5rem;
+      align-items: start;
+    }
+
+    /* ─── SIDEBAR TOC ─── */
+    aside.toc {
+      position: sticky;
+      top: 90px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      height: fit-content;
+    }
+    .toc-title {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    aside.toc a {
+      display: block;
+      padding: .55rem .75rem;
+      font-size: .85rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 8px;
+      border-left: 2px solid transparent;
+      transition: all .15s;
+    }
+    aside.toc a:hover,
+    aside.toc a.active {
+      color: var(--white);
+      background: var(--glass);
+      border-left-color: var(--accent);
+    }
+
+    /* ─── CONTENT SECTIONS ─── */
+    .content-section {
+      scroll-margin-top: 100px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.5rem;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .content-section:target {
+      border-color: rgba(217, 119, 6, .5);
+      box-shadow: 0 0 0 1px rgba(217, 119, 6, .2), 0 8px 32px rgba(0, 0, 0, .3);
+    }
+    .section-num {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: .1em;
+      margin-bottom: .5rem;
+    }
+    .content-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .content-section h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 1.5rem 0 .75rem;
+    }
+    .content-section .subtitle {
+      color: var(--bright);
+      font-size: .9rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+    .content-section p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .content-section ul {
+      padding-left: 1.25rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+    .content-section li { margin-bottom: .35rem; }
+
+    .info-box {
+      background: rgba(74, 222, 128, .06);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .info-box-title {
+      color: var(--bright);
+      font-weight: 500;
+      font-size: .9rem;
+      margin-bottom: .5rem;
+    }
+    .info-box ul {
+      margin: 0;
+      font-size: .88rem;
+      line-height: 1.85;
+    }
+
+    .steps-block {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.25rem 0;
+    }
+    .step-line {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: .75rem;
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step-line:last-child { border-bottom: none; }
+    .step-label {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .step-text {
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: .5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent);
+      color: var(--white);
+      padding: .75rem 1.5rem;
+      border-radius: 10px;
+      font-size: .9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border: 1px solid var(--border);
+      color: var(--white);
+      background: var(--glass);
+      padding: .75rem 1.5rem;
+      border-radius: 10px;
+      font-size: .9rem;
+      font-weight: 400;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: rgba(217, 119, 6, .08);
+    }
+
+    .email-note {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: .75rem;
+    }
+    .email-note strong { color: var(--bright); }
+
+    /* ─── HERO CHECKS & STATS ─── */
+.hero-checks {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .5rem .75rem;
+}
+.hero-checks li {
+  font-size: .88rem;
+  color: var(--muted);
+  padding-left: 1.4rem;
+  position: relative;
+  line-height: 1.5;
+}
+.hero-checks li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--bright);
+  font-weight: 700;
+}
+
+.stats-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-top: 1.5rem;
+  margin-top: .5rem;
+  border-top: 1px solid var(--border);
+}
+.stat-item .stat-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+.stat-item .stat-num span { color: var(--accent); }
+.stat-item .stat-label {
+  font-size: .75rem;
+  color: var(--muted);
+  margin-top: .3rem;
+}
+
+/* ─── CHECK LIST (in sections) ─── */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: .75rem 0 1rem;
+}
+.check-list li {
+  padding: .4rem 0 .4rem 1.5rem;
+  position: relative;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.55;
+}
+.check-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--bright);
+  font-weight: 700;
+}
+
+/* ─── KOSTEN BOX ─── */
+.kosten-box {
+  background: rgba(217, 119, 6, .08);
+  border: 1px solid rgba(217, 119, 6, .35);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  margin: 1rem 0;
+}
+.kosten-box h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: .75rem;
+}
+.kosten-box p {
+  margin-bottom: .5rem;
+  font-size: .9rem;
+}
+
+/* ─── FAQ ─── */
+.faq-list { margin-top: .5rem; }
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: .6rem;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: .85rem 1.1rem;
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--white);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background .15s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+.faq-item[open] summary::after { content: '−'; }
+.faq-item summary:hover { background: var(--glass); }
+.faq-item p {
+  padding: 0 1.1rem 1rem;
+  font-size: .85rem;
+  margin: 0;
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .hero-checks { grid-template-columns: 1fr; }
+  .stats-row { gap: 1.25rem; }
+}
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .content-layout { grid-template-columns: 1fr; }
+      aside.toc {
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+        padding: 1rem;
+      }
+      .toc-title { width: 100%; margin-bottom: .5rem; }
+      aside.toc a {
+        font-size: .78rem;
+        padding: .4rem .65rem;
+        border: 1px solid var(--border);
+        border-left: 1px solid var(--border);
+      }
+      .step-line { grid-template-columns: 1fr; gap: .25rem; }
+    }
+  
+/* ══════════════════════════════════════════════════════════
+   📱 MOBILE RESPONSIVE FIX — 3E Consulting Reports
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Tablet (≤900px) ── */
+@media (max-width: 900px) {
+  .kpi-row { grid-template-columns: repeat(2,1fr) !important; }
+  .visa-grid, .charts-2col, .stats-grid, .grid-2, .two-col { grid-template-columns: 1fr !important; }
+}
+
+/* ── Mobile (≤768px) ── */
+@media (max-width: 768px) {
+  body { padding-top: 64px !important; }
+
+  /* Nav */
+  nav.site-nav, nav { padding: .7rem 1rem !important; }
+  .nav-links { display: none !important; }
+  .nav-brand-text { font-size: .92rem !important; }
+  .nav-brand img, .nav-brand-text + img, a.nav-brand img { height: 30px !important; width: 30px !important; }
+  .nav-menu-btn { padding: .45rem .9rem !important; font-size: .78rem !important; }
+  .nav-dropdown { min-width: 280px !important; max-width: 92vw !important; right: -1rem !important; }
+
+  /* Hero / page header */
+  .page-hero { padding: 2.2rem 5vw 1.5rem !important; }
+  .page-hero h1 { font-size: clamp(1.6rem,7vw,2.2rem) !important; word-break: break-word; }
+  .page-hero p { font-size: .92rem !important; }
+
+  /* KPI cards */
+  .kpi-row { grid-template-columns: 1fr 1fr !important; gap: .6rem !important; padding: 0 4vw !important; }
+  .kpi-card { padding: .9rem 1rem !important; }
+  .kpi-card .kpi-num { font-size: 1.35rem !important; }
+  .kpi-card .kpi-label { font-size: .7rem !important; }
+
+  /* Layout: sidebar becomes horizontal scroll chips */
+  .content-layout { grid-template-columns: 1fr !important; padding: 0 4vw 3rem !important; gap: 1.25rem !important; }
+  aside.toc {
+    position: static !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: .4rem !important;
+    padding: 1rem !important;
+  }
+  .toc-title { width: 100% !important; margin-bottom: .5rem !important; }
+  aside.toc a {
+    font-size: .75rem !important;
+    padding: .4rem .65rem !important;
+    border: 1px solid var(--border) !important;
+    border-left: 1px solid var(--border) !important;
+  }
+
+  /* Report sections */
+  .report-section { padding: 1.25rem 1.1rem !important; border-radius: 12px !important; }
+  .report-section h2 { font-size: 1.2rem !important; }
+  .report-section .subtitle { font-size: .82rem !important; }
+  .report-section p, .report-section ul, .report-section li { font-size: .9rem !important; }
+
+  /* Visa / info cards */
+  .visa-grid { grid-template-columns: 1fr !important; gap: .75rem !important; }
+  .visa-card { padding: 1rem !important; }
+  .visa-card h3 { font-size: .92rem !important; }
+  .visa-card p { font-size: .82rem !important; }
+
+  /* Tables: horizontal scroll wrapper */
+  .rights-table, table { font-size: .78rem !important; }
+  .rights-table th, .rights-table td,
+  table th, table td { padding: .55rem .6rem !important; white-space: nowrap; }
+
+  /* Steps */
+  .step-item { padding: .85rem 1rem !important; gap: .75rem !important; }
+  .step-num { font-size: 1.15rem !important; min-width: 1.6rem !important; }
+  .step-item h4 { font-size: .88rem !important; }
+  .step-item p { font-size: .8rem !important; }
+
+  /* Charts */
+  .charts-2col { grid-template-columns: 1fr !important; gap: .75rem !important; }
+  .chart-box { padding: 1rem !important; }
+  .chart-box h3 { font-size: .85rem !important; }
+  .chart-box .chart-desc { font-size: .75rem !important; }
+  .chart-wrap, .chart-wrap.tall { max-height: 240px !important; }
+
+  /* Tip / source */
+  .tip-box { padding: .85rem 1rem !important; font-size: .82rem !important; }
+  .source-note { font-size: .7rem !important; }
+}
+
+/* ── Small mobile (≤480px) ── */
+@media (max-width: 480px) {
+  nav.site-nav, nav { padding: .6rem .85rem !important; }
+  .nav-brand-text { font-size: .8rem !important; }
+  .nav-brand img, a.nav-brand img { height: 26px !important; width: 26px !important; border-radius: 6px !important; }
+  .nav-menu-btn { padding: .4rem .8rem !important; font-size: .72rem !important; }
+
+  .page-hero h1 { font-size: 1.5rem !important; line-height: 1.25 !important; }
+  .page-hero p { font-size: .85rem !important; }
+
+  .kpi-row { grid-template-columns: 1fr 1fr !important; }
+  .kpi-card .kpi-num { font-size: 1.15rem !important; }
+  .kpi-card .kpi-label { font-size: .65rem !important; }
+
+  .report-section { padding: 1rem .85rem !important; }
+  .report-section h2 { font-size: 1.05rem !important; }
+
+  .visa-card h3, .step-item h4 { font-size: .85rem !important; }
+
+  /* Wrap tables with horizontal scroll */
+  .table-wrap, .rights-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+}
+
+/* Generic table scroll fallback if no wrapper exists */
+.report-section table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand" style="display:flex;align-items:center;gap:9px;text-decoration:none;">
+  <img src="logo_3e.jpg" alt="3E Consulting" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0;">
+  <span class="nav-brand-text" style="font-family:\'Syne\',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3E Consulting</span>
+</a>
+  <ul class="nav-links">
+    
+    <li><a href="index.html#services">Leistungen</a></li>
+    <li><a href="index.html#process">Ablauf</a></li>
+    <li><a href="index.html#about">Über uns</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+  <div class="nav-menu">
+    <button type="button" class="nav-menu-btn" id="menuToggle" aria-expanded="false">MENÜ ▾</button>
+    <div class="nav-dropdown" id="menuDropdown" hidden>
+      <ul class="menu-level-1">
+        <li class="has-sub">
+          <button type="button" class="menu-toggle">Service</button>
+          <ul class="menu-level-2" hidden>
+            <li class="has-sub">
+              <button type="button" class="menu-toggle">Bewerber</button>
+              <ul class="menu-level-3" hidden>
+                <li><a href="service-bewerber.html#dokumentenorganisation">Dokumentenorganisation</a></li>
+                <li><a href="service-bewerber.html#bewerbungsprozess">Bewerbungsprozess</a></li>
+                <li><a href="service-bewerber.html#profil-video">Profil-Video Anleitung</a></li>
+                <li><a href="service-bewerber.html#erste-schritte">Erste Schritte in Deutschland</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <button type="button" class="menu-toggle">Unternehmen</button>
+              <ul class="menu-level-3" hidden>
+                <li><a href="service-unternehmen.html#vermittlung">Vermittlung von Fachkräften</a></li>
+                <li><a href="service-unternehmen.html#beschwerdeverfahren">Beschwerdeverfahren</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="Bewerbung.html">Bewerbung</a></li>
+        <li><a href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
+        <li><a href="arbeitundsozialrecht.html">Arbeits- und Sozialrecht</a></li>
+        <li><a href="#">Aufenthaltsrecht</a></li>
+        <li><a href="#">Alltag in Deutschland</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="section-tag">Service · Unternehmen</div>
+  <h1>Leistungen für <em>Unternehmen</em></h1>
+  <p>
+    Finden Sie qualifizierte Fachkräfte und Auszubildende aus dem Ausland —
+    verifiziert, dokumentiert und direkt über unsere Plattform erreichbar.
+  </p>
+
+  <ul class="hero-checks">
+    <li>Verifizierte Bewerberprofile</li>
+    <li>Bewerber aus verschiedenen Fachbereichen</li>
+    <li>Persönliche Betreuung für Unternehmen</li>
+    <li>Sichere und transparente Vermittlung</li>
+  </ul>
+
+
+</header>
+
+<!-- CONTENT -->
+<div class="content-layout">
+
+ <aside class="toc">
+  <div class="toc-title">Inhaltsverzeichnis</div>
+  <a href="#vermittlung">Vermittlung</a>
+  <a href="#warum-3e">Warum 3E Consulting?</a>
+  <a href="#verifizierte-bewerber">Verifizierte Bewerber</a>
+  <a href="#kosten">Kosten</a>
+  <a href="#faq">FAQ</a>
+  <a href="#beschwerdeverfahren">Beschwerdeverfahren</a>
+</aside>
+
+ <main>
+
+  <!-- 01 Vermittlung -->
+  <section id="vermittlung" class="content-section">
+    <div class="section-num">01</div>
+    <h2>Vermittlung von Fachkräften und Auszubildenden</h2>
+    <p class="subtitle">Qualifizierte Kandidaten — direkt für Ihr Unternehmen</p>
+
+    <p>
+      3E Consulting verbindet deutsche Unternehmen mit motivierten Bewerbern aus dem Ausland.
+      Alle Kandidaten auf unserer Plattform werden von uns geprüft und verifiziert,
+      bevor sie für Unternehmen sichtbar werden.
+    </p>
+
+    <h3>So funktioniert es</h3>
+    <ul>
+      <li><strong>Registrierung</strong> — Ihr Unternehmen erstellt ein Konto auf unserer Plattform</li>
+      <li><strong>Freischaltung</strong> — Nach Prüfung Ihrer Unterlagen wird Ihr Zugang freigeschaltet</li>
+      <li><strong>Kandidaten durchsuchen</strong> — Sehen Sie verifizierte Bewerber in Ihrem Fachbereich (z. B. IT, Medizin)</li>
+      <li><strong>Profile einsehen</strong> — Lebenslauf, Zertifikate, Profil-Video und weitere Dokumente auf einen Blick</li>
+      <li><strong>Direkter Kontakt</strong> — Nehmen Sie Kontakt mit passenden Kandidaten auf</li>
+    </ul>
+
+    <div class="cta-row">
+      <a href="register_company.php" class="btn-primary">Unternehmen registrieren →</a>
+      <a href="login_company.php" class="btn-secondary">Bereits registriert? Einloggen</a>
+    </div>
+  </section>
+
+  <!-- 02 Warum 3E Consulting -->
+  <section id="warum-3e" class="content-section">
+    <div class="section-num">02</div>
+    <h2>Warum Unternehmen 3E Consulting wählen</h2>
+    <p class="subtitle">Ihr verlässlicher Partner für internationale Fachkräfte</p>
+
+    <p>
+      Wir verstehen die Herausforderungen deutscher Unternehmen bei der Suche nach
+      qualifizierten Auszubildenden und Fachkräften. Deshalb bieten wir eine Plattform,
+      die Qualität, Transparenz und persönliche Betreuung vereint.
+    </p>
+
+    <ul class="check-list">
+      <li><strong>Geprüfte Bewerber</strong> — Jeder Kandidat wird vor der Freischaltung von uns verifiziert</li>
+      <li><strong>Direkter Kontakt</strong> — Keine Vermittlungsagentur dazwischen, Sie kommunizieren direkt</li>
+      <li><strong>Profil-Videos verfügbar</strong> — Lernen Sie Bewerber persönlich kennen, bevor Sie Kontakt aufnehmen</li>
+      <li><strong>Dokumente vorab kontrolliert</strong> — Lebenslauf, Zertifikate und Zeugnisse sind geprüft</li>
+      <li><strong>Persönlicher Ansprechpartner</strong> — Unser Team steht Ihnen bei Fragen jederzeit zur Verfügung</li>
+    </ul>
+  </section>
+
+  <!-- 03 Verifizierte Bewerber -->
+  <section id="verifizierte-bewerber" class="content-section">
+    <div class="section-num">03</div>
+    <h2>Verifizierte Bewerber</h2>
+    <p class="subtitle">Qualität und Vertrauen — garantiert</p>
+
+    <p>
+      <strong>Alle Bewerber werden vor der Freischaltung überprüft.</strong>
+      Erst wenn unsere Prüfung abgeschlossen ist, wird ein Profil für Unternehmen sichtbar.
+      So stellen wir sicher, dass Sie nur mit seriösen und vorbereiteten Kandidaten in Kontakt treten.
+    </p>
+
+    <h3>Wir kontrollieren:</h3>
+    <ul class="check-list">
+      <li><strong>Identität</strong> — Persönliche Daten und Ausweisdokumente</li>
+      <li><strong>Lebenslauf</strong> — Vollständigkeit, Struktur und Plausibilität</li>
+      <li><strong>Zertifikate</strong> — Sprachzertifikate, Diplome und Berufsabschlüsse</li>
+      <li><strong>Sprachkenntnisse</strong> — Nachweis des erforderlichen Deutschniveaus</li>
+      <li><strong>Profil-Video</strong> — Professioneller Auftritt und Kommunikationsfähigkeit</li>
+    </ul>
+
+    <div class="info-box">
+      <p class="info-box-title">Ihr Vorteil als Unternehmen</p>
+      <ul>
+        <li>Keine Zeitverschwendung mit unvollständigen oder unseriösen Bewerbungen</li>
+        <li>Alle relevanten Dokumente liegen vor — auf einen Blick im Dashboard</li>
+        <li>Nur Kandidaten, die aktiv eine Ausbildung oder Stelle in Deutschland suchen</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 04 Kosten -->
+  <section id="kosten" class="content-section">
+    <div class="section-num">04</div>
+    <h2>Kosten</h2>
+    <p class="subtitle">Transparent und fair — Sie zahlen nur bei Erfolg</p>
+
+    <div class="kosten-box">
+      <h4>Die Registrierung ist kostenlos.</h4>
+      <p>
+        Sie können sich unverbindlich registrieren, Ihr Unternehmensprofil anlegen und
+        verifizierte Bewerber in Ihrem Fachbereich einsehen — ohne Vorabkosten.
+      </p>
+      <p>
+        Eine <strong>Vermittlungsgebühr</strong> fällt erst an, wenn ein Bewerber
+        <strong>erfolgreich eingestellt</strong> wird und den Arbeits- bzw. Ausbildungsvertrag unterschreibt.
+      </p>
+      <p style="margin-bottom:0;">
+        So sehen Sie zuerst den Wert unserer Plattform — und zahlen nur bei einem erfolgreichen Ergebnis.
+      </p>
+    </div>
+
+    <h3>Was ist in der kostenlosen Registrierung enthalten?</h3>
+    <ul class="check-list">
+      <li>Zugang zum Unternehmens-Dashboard</li>
+      <li>Durchsuchen aller verifizierten Bewerber in Ihrem Fachbereich</li>
+      <li>Einsicht in Lebenslauf, Zertifikate und Profil-Video</li>
+      <li>Persönliche Betreuung durch unser Team</li>
+    </ul>
+
+    <p>
+      Für Details zur Vermittlungsgebühr kontaktieren Sie uns gerne direkt —
+      wir erstellen Ihnen ein individuelles Angebot.
+    </p>
+    <a href="index.html#kontakt" class="btn-primary">Angebot anfragen →</a>
+  </section>
+
+  <!-- 05 FAQ -->
+  <section id="faq" class="content-section">
+    <div class="section-num">05</div>
+    <h2>Häufig gestellte Fragen</h2>
+    <p class="subtitle">Antworten auf die wichtigsten Fragen von Unternehmen</p>
+
+    <div class="faq-list">
+
+      
+
+      <details class="faq-item">
+        <summary>Sind die Bewerber verifiziert?</summary>
+        <p>
+          Ja. Jeder Bewerber durchläuft unseren Prüfprozess, bevor sein Profil freigeschaltet wird.
+          Wir kontrollieren Identität, Lebenslauf, Zertifikate und Sprachkenntnisse.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Wie kann ich Kontakt aufnehmen?</summary>
+        <p>
+          Nach der Registrierung und Freischaltung Ihres Unternehmenskontos können Sie Bewerberprofile
+          im Dashboard einsehen und direkt Kontakt aufnehmen. Unser Team unterstützt Sie bei Bedarf.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Was kostet die Nutzung?</summary>
+        <p>
+          Die Registrierung und das Durchsuchen von Bewerberprofilen ist kostenlos.
+          Eine Vermittlungsgebühr fällt erst an, wenn ein Bewerber erfolgreich eingestellt wird.
+          Kontaktieren Sie uns für ein individuelles Angebot.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Wie lange dauert die Freischaltung meines Kontos?</summary>
+        <p>
+          Nach Einreichung Ihrer Unternehmensunterlagen prüfen wir Ihre Angaben innerhalb von
+          2–3 Werktagen und schalten Ihr Konto frei.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>In welchen Fachbereichen gibt es Bewerber?</summary>
+        <p>
+          Aktuell vermitteln wir Bewerber in den Bereichen IT, Medizin, Handwerk und weiteren Branchen.
+          Die Auswahl wird laufend erweitert.
+        </p>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- 06 Beschwerdeverfahren -->
+  <section id="beschwerdeverfahren" class="content-section">
+    <div class="section-num">06</div>
+    <h2>Beschwerdeverfahren</h2>
+    <p class="subtitle">Transparenz und faire Behandlung für alle Partner</p>
+
+    <p>
+      Wir legen großen Wert auf eine faire und transparente Zusammenarbeit mit unseren
+      Partnerunternehmen. Sollten Sie Unstimmigkeiten oder Probleme feststellen,
+      steht Ihnen unser Beschwerdeverfahren offen.
+    </p>
+
+    <h3>Wann können Sie eine Beschwerde einreichen?</h3>
+    <ul>
+      <li>Probleme bei der Vermittlung oder Kommunikation mit einem Kandidaten</li>
+      <li>Unvollständige oder fehlerhafte Bewerberunterlagen trotz Verifizierung</li>
+      <li>Verstöße gegen unsere Nutzungsbedingungen durch Bewerber</li>
+      <li>Technische Probleme mit der Plattform, die Ihre Arbeit beeinträchtigen</li>
+      <li>Allgemeine Unzufriedenheit mit unserem Service</li>
+    </ul>
+
+    <h3>Ablauf des Beschwerdeverfahrens</h3>
+    <div class="steps-block">
+      <div class="step-line">
+        <span class="step-label">Schritt 1</span>
+        <span class="step-text">Beschwerde einreichen — per E-Mail oder über das Kontaktformular mit Firmenname und Beschreibung des Problems.</span>
+      </div>
+      <div class="step-line">
+        <span class="step-label">Schritt 2</span>
+        <span class="step-text">Bestätigung — Eingangsbestätigung mit Referenznummer innerhalb von <strong style="color:var(--white)">2 Werktagen</strong>.</span>
+      </div>
+      <div class="step-line">
+        <span class="step-label">Schritt 3</span>
+        <span class="step-text">Prüfung — Unser Team untersucht den Fall und kontaktiert alle beteiligten Parteien.</span>
+      </div>
+      <div class="step-line">
+        <span class="step-label">Schritt 4</span>
+        <span class="step-text">Lösung — Schriftliche Antwort innerhalb von <strong style="color:var(--white)">10 Werktagen</strong>.</span>
+      </div>
+    </div>
+
+    <h3>Beschwerde einreichen</h3>
+    <ul>
+      <li>Firmenname und Ansprechpartner</li>
+      <li>Referenznummer des Bewerbers (falls vorhanden)</li>
+      <li>Detaillierte Beschreibung des Problems</li>
+      <li>Gewünschte Lösung</li>
+    </ul>
+
+    <a href="index.html#kontakt" class="btn-primary">Beschwerde einreichen →</a>
+    <p class="email-note">
+      Oder direkt per E-Mail: <strong>kontakt@azubi-3e.de</strong>
+    </p>
+  </section>
+
+</main>
+</div>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const menuDropdown = document.getElementById('menuDropdown');
+
+menuToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = !menuDropdown.hidden;
+  menuDropdown.hidden = open;
+  menuToggle.setAttribute('aria-expanded', String(!open));
+});
+
+document.querySelectorAll('.menu-toggle').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const sub = btn.nextElementSibling;
+    sub.hidden = !sub.hidden;
+    btn.classList.toggle('open', !sub.hidden);
+  });
+});
+
+document.addEventListener('click', () => {
+  menuDropdown.hidden = true;
+  menuToggle.setAttribute('aria-expanded', 'false');
+  document.querySelectorAll('.menu-level-2, .menu-level-3').forEach(u => u.hidden = true);
+  document.querySelectorAll('.menu-toggle').forEach(b => b.classList.remove('open'));
+});
+
+menuDropdown.addEventListener('click', (e) => e.stopPropagation());
+
+const tocLinks = document.querySelectorAll('aside.toc a');
+const sections = document.querySelectorAll('.content-section');
+
+function setActiveToc(id) {
+  tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+}
+
+if (location.hash) {
+  setActiveToc(location.hash.slice(1));
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) setActiveToc(entry.target.id);
+  });
+}, { rootMargin: '-40% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

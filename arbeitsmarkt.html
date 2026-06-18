@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbeitsmarkt in Deutschland 2024/2025 | 3E Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --navy:   #0f2017;
+      --accent: #d97706;
+      --bright: #4ade80;
+      --gold:   #fbbf24;
+      --muted:  #86a38e;
+      --border: rgba(74,222,128,.18);
+      --glass:  rgba(255,255,255,.04);
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--font-body);
+      background:var(--navy);
+      color:#fff;
+      padding-top:70px;
+    }
+
+    /* ── NAV ── */
+    .site-nav{
+      background:rgba(15,32,23,.94);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-brand-img{height:36px;width:36px;border-radius:8px;object-fit:cover}
+    .nav-brand-text{font-family:var(--font-display);font-size:1rem;font-weight:800;color:#fff;letter-spacing:.06em}
+    .nav-link-item{font-size:.875rem;color:var(--muted)!important;transition:color .2s}
+    .nav-link-item:hover{color:#fff!important}
+    .btn-menu{
+      background:var(--accent);color:#fff;border:none;
+      font-size:.82rem;font-weight:500;border-radius:8px;
+      padding:.45rem 1.1rem;
+    }
+    .btn-menu:hover{background:#b45309;color:#fff}
+
+    /* Dropdown menu */
+    .custom-dropdown{
+      background:rgba(15,32,23,.97);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:.75rem;
+      min-width:300px;
+      box-shadow:0 20px 50px rgba(0,0,0,.4);
+    }
+    .custom-dropdown .dropdown-item{
+      color:rgba(255,255,255,.7);font-size:.85rem;border-radius:6px;
+      padding:.5rem .7rem;
+    }
+    .custom-dropdown .dropdown-item:hover{background:var(--glass);color:#fff}
+    .custom-dropdown .dropdown-divider{border-color:var(--border)}
+    .sub-label{
+      font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--accent);padding:.4rem .7rem .1rem;
+    }
+
+    /* ── HERO ── */
+    .section-tag{
+      font-size:.72rem;font-weight:500;color:var(--accent);
+      letter-spacing:.15em;text-transform:uppercase;
+    }
+    .page-hero h1{
+      font-family:var(--font-display);
+      font-size:clamp(2rem,5vw,3rem);
+      font-weight:800;line-height:1.1;
+    }
+    .page-hero h1 em{font-style:normal;color:var(--accent)}
+    .page-hero p{color:var(--muted);font-size:1rem;line-height:1.75}
+
+    /* ── KPI ── */
+    .kpi-card{
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:1.25rem 1rem;
+      text-align:center;
+      height:100%;
+    }
+    .kpi-num{
+      font-family:var(--font-display);
+      font-size:1.7rem;font-weight:800;
+      color:var(--accent);line-height:1.1;
+    }
+    .kpi-label{font-size:.76rem;color:var(--muted);margin-top:.35rem;line-height:1.4}
+
+    /* ── TOC SIDEBAR ── */
+    .toc-card{
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:1.25rem;
+      position:sticky;top:88px;
+    }
+    .toc-title{
+      font-size:.68rem;font-weight:600;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--muted);margin-bottom:.85rem;
+    }
+    .toc-card a{
+      display:block;padding:.5rem .7rem;font-size:.84rem;
+      color:var(--muted);text-decoration:none;border-radius:8px;
+      border-left:2px solid transparent;transition:all .15s;
+    }
+    .toc-card a:hover,.toc-card a.active{
+      color:#fff;background:var(--glass);border-left-color:var(--accent);
+    }
+
+    /* ── REPORT SECTION ── */
+    .report-section{
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:2rem;
+      margin-bottom:1.25rem;
+      scroll-margin-top:100px;
+    }
+    .report-section:target{
+      border-color:rgba(217,119,6,.5);
+      box-shadow:0 0 0 1px rgba(217,119,6,.2),0 8px 32px rgba(0,0,0,.3);
+    }
+    .section-num{font-size:.7rem;font-weight:600;color:var(--accent);letter-spacing:.1em;margin-bottom:.4rem}
+    .report-section h2{
+      font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:.4rem;
+    }
+    .report-section .subtitle{color:var(--bright);font-size:.88rem;font-weight:500;margin-bottom:1.1rem}
+    .report-section p{color:var(--muted);line-height:1.75;margin-bottom:.9rem}
+    .report-section ul{padding-left:1.2rem;color:var(--muted);line-height:1.9;margin-bottom:.9rem}
+    .report-section li{margin-bottom:.3rem}
+
+    /* ── SECTOR CARDS ── */
+    .sector-card{
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--border);
+      border-top:3px solid var(--accent);
+      border-radius:12px;
+      padding:1.1rem;
+      height:100%;
+    }
+    .sector-card h3{font-family:var(--font-display);font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+    .sector-card p{font-size:.85rem;color:var(--muted);margin:0}
+    .severity-badge{
+      display:inline-block;font-size:.65rem;font-weight:600;
+      padding:.2rem .5rem;border-radius:20px;letter-spacing:.04em;
+    }
+    .severity-high{background:rgba(239,68,68,.2);color:#fca5a5}
+    .severity-med {background:rgba(217,119,6,.2);color:#fdba74}
+
+    /* ── CHARTS ── */
+    .chart-box{
+      background:rgba(255,255,255,.02);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:1.25rem;
+    }
+    .chart-box h3{font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-bottom:.2rem;color:#fff}
+    .chart-desc{font-size:.76rem;color:var(--muted);margin-bottom:.85rem}
+    .chart-wrap{position:relative;width:100%;height:260px}
+    .chart-wrap.tall{height:220px}
+
+    /* ── STRATEGY ── */
+    .strategy-item{
+      display:flex;gap:1rem;align-items:flex-start;
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:.9rem 1.1rem;
+    }
+    .strategy-num{
+      font-family:var(--font-display);font-size:1.3rem;font-weight:800;
+      color:var(--accent);min-width:1.8rem;line-height:1;
+    }
+    .strategy-item h4{font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-bottom:.25rem;color:#fff}
+    .strategy-item p{font-size:.83rem;color:var(--muted);margin:0}
+
+    /* ── REGION CARDS ── */
+    .region-card{border-radius:12px;padding:1.1rem;border:1px solid var(--border);height:100%}
+    .region-card.hot{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.25)}
+    .region-card.cool{background:rgba(74,222,128,.06);border-color:rgba(74,222,128,.25)}
+    .region-card h4{font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-bottom:.4rem}
+    .region-card p{font-size:.83rem;color:var(--muted);margin:0}
+
+    .source-note{
+      font-size:.73rem;color:rgba(134,163,142,.6);
+      margin-top:1.25rem;padding-top:.9rem;
+      border-top:1px solid var(--border);font-style:italic;
+    }
+
+    /* ── MOBILE TWEAKS ── */
+    @media(max-width:768px){
+      body{padding-top:64px}
+      .page-hero h1{font-size:clamp(1.65rem,7vw,2.2rem)}
+      .kpi-num{font-size:1.3rem}
+      .kpi-label{font-size:.68rem}
+      .report-section{padding:1.1rem}
+      .report-section h2{font-size:1.15rem}
+      .chart-wrap{height:210px}
+      .chart-wrap.tall{height:190px}
+    }
+    @media(max-width:480px){
+      .kpi-num{font-size:1.15rem}
+      .report-section{padding:.9rem .8rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══════════════════════════════════════════ -->
+<nav class="navbar navbar-expand-lg site-nav fixed-top py-2 px-3 px-md-4">
+  <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="index.html">
+    <img src="logo_3e.jpg" alt="3E" class="nav-brand-img">
+    <span class="nav-brand-text">3E Consulting</span>
+  </a>
+
+  <!-- Desktop links -->
+  <ul class="navbar-nav ms-auto d-none d-lg-flex gap-3 me-4">
+    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#services">Leistungen</a></li>
+    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#process">Ablauf</a></li>
+    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#about">Über uns</a></li>
+    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+
+  <!-- MENÜ Dropdown -->
+  <div class="dropdown">
+    <button class="btn-menu btn" type="button" id="menuBtn" data-bs-toggle="dropdown" aria-expanded="false">
+      MENÜ ▾
+    </button>
+    <ul class="dropdown-menu custom-dropdown" aria-labelledby="menuBtn">
+      <li><div class="sub-label">Service</div></li>
+      <li><a class="dropdown-item ps-3" href="service-bewerber.html#dokumentenorganisation">↳ Dokumentenorganisation</a></li>
+      <li><a class="dropdown-item ps-3" href="service-bewerber.html#bewerbungsprozess">↳ Bewerbungsprozess</a></li>
+      <li><a class="dropdown-item ps-3" href="service-bewerber.html#profil-video">↳ Profil-Video Anleitung</a></li>
+      <li><a class="dropdown-item ps-3" href="service-bewerber.html#erste-schritte">↳ Erste Schritte in DE</a></li>
+      <li><div class="sub-label mt-1">Unternehmen</div></li>
+      <li><a class="dropdown-item ps-3" href="service-unternehmen.html#vermittlung">↳ Vermittlung von Fachkräften</a></li>
+      <li><a class="dropdown-item ps-3" href="service-unternehmen.html#beschwerdeverfahren">↳ Beschwerdeverfahren</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="Bewerbung.html">Bewerbung</a></li>
+      <li><a class="dropdown-item active-page" href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
+      <li><a class="dropdown-item" href="arbeitundsozialrecht.html">Arbeits- und Sozialrecht</a></li>
+      <li><a class="dropdown-item" href="aufenthaltsrecht.html">Aufenthaltsrecht</a></li>
+      <li><a class="dropdown-item" href="alltag-deutschland.html">Alltag in Deutschland</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<header class="page-hero container-lg px-3 px-md-4 py-4 py-md-5 mt-2">
+  <div class="section-tag mb-2">Marktanalyse · 2024/2025</div>
+  <h1 class="mb-3">Der deutsche <em>Arbeitsmarkt</em></h1>
+  <p style="max-width:680px">
+    Deutschland kämpft mit einem massiven Fachkräftemangel. Dieser Bericht zeigt,
+    wo die größten Engpässe liegen, warum der Ausbildungsmarkt nicht funktioniert
+    und welche Lösungen die Politik verfolgt.
+  </p>
+</header>
+
+<!-- ═══ KPI ROW ═══════════════════════════════════════════ -->
+<div class="container-lg px-3 px-md-4 mb-4">
+  <div class="row g-3">
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">46.000+</div>
+        <div class="kpi-label">Unbesetzte Stellen<br>im Gesundheitswesen</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">1,2 Mio.</div>
+        <div class="kpi-label">Auszubildende im<br>Dualen System</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">2,9 Mio.</div>
+        <div class="kpi-label">Junge Erwachsene (20–34)<br>ohne Berufsabschluss</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">2×</div>
+        <div class="kpi-label">Anstieg ausländischer<br>Azubis in 10 Jahren</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTENT LAYOUT ════════════════════════════════════ -->
+<div class="container-lg px-3 px-md-4 pb-5">
+  <div class="row g-4 align-items-start">
+
+    <!-- SIDEBAR TOC -->
+    <div class="col-12 col-lg-3 d-none d-lg-block">
+      <div class="toc-card">
+        <div class="toc-title">Inhaltsverzeichnis</div>
+        <a href="#engpassberufe">Engpassberufe</a>
+        <a href="#ausbildungsmarkt">Ausbildungsmarkt</a>
+        <a href="#regionen">Regionale Unterschiede</a>
+        <a href="#loesungen">Lösungsstrategien</a>
+      </div>
+    </div>
+
+    <!-- TOC chips on mobile -->
+    <div class="col-12 d-flex d-lg-none flex-wrap gap-2 mb-1">
+      <a href="#engpassberufe" class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.75rem">Engpassberufe</a>
+      <a href="#ausbildungsmarkt" class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.75rem">Ausbildungsmarkt</a>
+      <a href="#regionen" class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.75rem">Regionen</a>
+      <a href="#loesungen" class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.75rem">Lösungen</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="col-12 col-lg-9">
+
+      <!-- 1. ENGPASSBERUFE -->
+      <section id="engpassberufe" class="report-section">
+        <div class="section-num">01</div>
+        <h2>Engpassberufe — Wo liegt der Mangel?</h2>
+        <p class="subtitle">Die am stärksten betroffenen Branchen im Überblick</p>
+        <p>
+          Der Arbeitsmarktbericht identifiziert mehrere Bereiche mit schweren
+          „Engpässen" — Berufe, für die Unternehmen monatelang nach Bewerbern suchen,
+          ohne eine Stelle besetzen zu können.
+        </p>
+
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-sm-6">
+            <div class="sector-card">
+              <h3>🏥 Gesundheit &amp; Pflege <span class="severity-badge severity-high">KRITISCH</span></h3>
+              <p>Pflege, Altenpflege und Physiotherapie sind am stärksten betroffen. Wartezeiten von mehreren Monaten sind keine Seltenheit.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="sector-card">
+              <h3>🔧 Handwerk &amp; Bau <span class="severity-badge severity-high">KRITISCH</span></h3>
+              <p>SHK-Techniker, Dachdecker und Installateure fehlen massiv — und bremsen damit direkt die deutsche Energiewende.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="sector-card">
+              <h3>📚 Bildung <span class="severity-badge severity-high">KRITISCH</span></h3>
+              <p>Lehrkräfte und Erzieher in Kindertagesstätten werden dringend gesucht. Viele Kitas und Schulen können Stellen nicht besetzen.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="sector-card">
+              <h3>💻 IT &amp; Technologie <span class="severity-badge severity-med">HOCH</span></h3>
+              <p>Trotz leicht rückläufiger Nachfrage 2025 suchen Unternehmen verzweifelt nach Cybersecurity- und KI-Spezialisten.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <h3>Engpass-Index nach Branche</h3>
+          <p class="chart-desc">Relative Schwere des Fachkräftemangels (Index 0–100, Schätzung 2024/2025)</p>
+          <div class="chart-wrap">
+            <canvas id="chartEngpass"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. AUSBILDUNGSMARKT -->
+      <section id="ausbildungsmarkt" class="report-section">
+        <div class="section-num">02</div>
+        <h2>Der Ausbildungsmarkt — Das Passungsproblem</h2>
+        <p class="subtitle">Viele Azubi-Plätze bleiben frei — gleichzeitig finden Tausende keinen Einstieg</p>
+        <p>
+          Das zentrale Problem: Es gibt ein
+          <strong style="color:#fff">Passungsproblem</strong>. Unternehmen finden
+          keine Auszubildenden, während Hunderttausende junge Menschen keinen Zugang
+          zur dualen Ausbildung haben.
+        </p>
+        <ul>
+          <li><strong style="color:#fff">1,2 Millionen</strong> Auszubildende im dualen System</li>
+          <li><strong style="color:#fff">2,9 Millionen</strong> junge Erwachsene (20–34 Jahre) ohne Berufsabschluss</li>
+          <li>Unternehmen melden unbesetzte Ausbildungsplätze — Bewerber scheitern an Hürden und fehlender Orientierung</li>
+        </ul>
+
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-md-6">
+            <div class="chart-box h-100">
+              <h3>Azubis vs. Ohne Abschluss</h3>
+              <p class="chart-desc">Millionen junge Erwachsene (20–34 J.) in Deutschland</p>
+              <div class="chart-wrap tall">
+                <canvas id="chartPassung"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="chart-box h-100">
+              <h3>Ausländische Azubis — Trend</h3>
+              <p class="chart-desc">Anteil ausländischer Auszubildender am Gesamtbestand (%)</p>
+              <div class="chart-wrap tall">
+                <canvas id="chartAuslaender"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          Die Abhängigkeit von ausländischen Auszubildenden hat sich in zehn Jahren
+          <strong style="color:var(--accent)">verdoppelt</strong>.
+        </p>
+      </section>
+
+      <!-- 3. REGIONEN -->
+      <section id="regionen" class="report-section">
+        <div class="section-num">03</div>
+        <h2>Regionale Unterschiede</h2>
+        <p class="subtitle">Nicht alle Regionen sind gleich betroffen</p>
+        <p>
+          Der Fachkräftemangel trifft Deutschland ungleich. Während einige Regionen
+          noch relativ gut aufgestellt sind, kämpfen andere mit extremer Personalnot.
+        </p>
+
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-sm-6">
+            <div class="region-card hot">
+              <h4>🔥 Hotspots: Süddeutschland</h4>
+              <p><strong style="color:#fff">Bayern &amp; Baden-Württemberg</strong> — starke Wirtschaft, aber härtester Wettbewerb um Fachkräfte.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="region-card cool">
+              <h4>🏙️ Großstädte: Relativ besser</h4>
+              <p><strong style="color:#fff">Berlin &amp; Hamburg</strong> — dank urbaner Anziehungskraft etwas besser versorgt als ländliche Regionen.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="region-card hot">
+              <h4>🌾 Ländliche Regionen: Doppelte Belastung</h4>
+              <p>Abwanderung junger Menschen und eine alternde Bevölkerung verschärfen den Mangel zusätzlich.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="region-card hot">
+              <h4>⚡ Folge: Energiewende unter Druck</h4>
+              <p>Fehlende Handwerker verzögern Wärmepumpen-Installationen und Solarprojekte — direkter Wirtschaftsschaden.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <h3>Fachkräfteengpass nach Region</h3>
+          <p class="chart-desc">Index der offenen Stellen pro 1.000 Beschäftigte (Schätzung 2024)</p>
+          <div class="chart-wrap">
+            <canvas id="chartRegion"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. LÖSUNGEN -->
+      <section id="loesungen" class="report-section">
+        <div class="section-num">04</div>
+        <h2>Wie plant Deutschland die Lösung?</h2>
+        <p class="subtitle">Fünf zentrale Strategien gegen den Fachkräftemangel</p>
+        <p>
+          Die Politik und Wirtschaft setzen auf ein breites Bündel von Maßnahmen,
+          um den Arbeitsmarkt langfristig zu stabilisieren.
+        </p>
+
+        <div class="d-flex flex-column gap-2 mb-4">
+          <div class="strategy-item">
+            <div class="strategy-num">1</div>
+            <div>
+              <h4>Fachkräftezuwanderung</h4>
+              <p>Neue Gesetze wie die <strong style="color:#fff">Chancenkarte</strong> sollen qualifizierte Arbeitskräfte aus Nicht-EU-Ländern gezielt nach Deutschland holen.</p>
+            </div>
+          </div>
+          <div class="strategy-item">
+            <div class="strategy-num">2</div>
+            <div>
+              <h4>Interne Potenziale aktivieren</h4>
+              <p>Qualifizierung von <strong style="color:#fff">An- und Ungelernten</strong> durch Nachqualifizierung in den Arbeitsmarkt integrieren.</p>
+            </div>
+          </div>
+          <div class="strategy-item">
+            <div class="strategy-num">3</div>
+            <div>
+              <h4>Arbeitsbedingungen verbessern</h4>
+              <p>Mehr Flexibilität und gezielte Ansprache von <strong style="color:#fff">Frauen und älteren Arbeitnehmern</strong>.</p>
+            </div>
+          </div>
+          <div class="strategy-item">
+            <div class="strategy-num">4</div>
+            <div>
+              <h4>Technologie &amp; KI</h4>
+              <p>Automatisierung routinemäßiger Tätigkeiten soll den Personalmangel teilweise ausgleichen.</p>
+            </div>
+          </div>
+          <div class="strategy-item">
+            <div class="strategy-num">5</div>
+            <div>
+              <h4>Unterstützung für KMU</h4>
+              <p>Kleine und mittlere Unternehmen erhalten Hilfe beim <strong style="color:#fff">Employer Branding</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <h3>Investitionsschwerpunkte der Fachkräftestrategie</h3>
+          <p class="chart-desc">Geplante Mittelverteilung auf die fünf Strategiebereiche (%)</p>
+          <div class="chart-wrap tall">
+            <canvas id="chartStrategie"></canvas>
+          </div>
+        </div>
+
+        <p class="source-note">
+          Quelle: Zusammenfassung auf Basis des deutschen Arbeitsmarktberichts 2024/2025
+          (BA, IW Köln, Destatis). Zahlen sind Schätzwerte zur Veranschaulichung.
+        </p>
+      </section>
+
+    </div><!-- /col main -->
+  </div><!-- /row -->
+</div><!-- /container -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ─── TOC active on scroll ───
+const tocLinks  = document.querySelectorAll('.toc-card a');
+const sections  = document.querySelectorAll('.report-section');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+}, { rootMargin: '-40% 0px' });
+sections.forEach(s => io.observe(s));
+
+// ─── Chart defaults ───
+Chart.defaults.color        = '#86a38e';
+Chart.defaults.borderColor  = 'rgba(74,222,128,.12)';
+Chart.defaults.font.family  = "'DM Sans', sans-serif";
+
+const accent  = '#d97706';
+const bright  = '#4ade80';
+const gold    = '#fbbf24';
+const red     = '#ef4444';
+const palette = [red, accent, gold, bright, '#60a5fa', '#a78bfa'];
+
+// 1. Engpass horizontal bar
+new Chart(document.getElementById('chartEngpass'),{
+  type:'bar',
+  data:{
+    labels:['Gesundheit & Pflege','Handwerk & Bau','Bildung','IT & KI','Logistik','Gastronomie'],
+    datasets:[{
+      label:'Engpass-Index',
+      data:[95,88,82,74,65,58],
+      backgroundColor:[red,accent,gold,bright,'#60a5fa','#a78bfa'],
+      borderRadius:6,borderSkipped:false
+    }]
+  },
+  options:{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` Index: ${c.raw}/100`}}},
+    scales:{
+      x:{max:100,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+'%'}},
+      y:{grid:{display:false}}
+    }
+  }
+});
+
+// 2. Passungsproblem bar
+new Chart(document.getElementById('chartPassung'),{
+  type:'bar',
+  data:{
+    labels:['Azubis (Dual)','Ohne Abschluss\n(20–34 J.)'],
+    datasets:[{label:'Millionen',data:[1.2,2.9],backgroundColor:[bright,red],borderRadius:8,borderSkipped:false}]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Mio.`}}},
+    scales:{
+      y:{beginAtZero:true,max:3.5,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+' Mio.'}},
+      x:{grid:{display:false}}
+    }
+  }
+});
+
+// 3. Ausländische Azubis line
+new Chart(document.getElementById('chartAuslaender'),{
+  type:'line',
+  data:{
+    labels:['2014','2016','2018','2020','2022','2024'],
+    datasets:[{
+      label:'Anteil ausländischer Azubis (%)',
+      data:[7.5,9.2,11.0,12.8,14.5,15.8],
+      borderColor:accent,backgroundColor:'rgba(217,119,6,.15)',fill:true,
+      tension:0.4,pointBackgroundColor:accent,pointRadius:5,pointHoverRadius:7
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw}%`}}},
+    scales:{
+      y:{beginAtZero:false,min:5,max:20,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+'%'}},
+      x:{grid:{display:false}}
+    }
+  }
+});
+
+// 4. Region bar
+new Chart(document.getElementById('chartRegion'),{
+  type:'bar',
+  data:{
+    labels:['Bayern','Baden-Württemberg','NRW','Berlin','Hamburg','Ländliche Ost'],
+    datasets:[{
+      label:'Offene Stellen / 1.000',
+      data:[42,39,35,28,26,38],
+      backgroundColor:palette,borderRadius:6,borderSkipped:false
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Stellen/1.000`}}},
+    scales:{
+      y:{beginAtZero:true,grid:{color:'rgba(74,222,128,.08)'}},
+      x:{grid:{display:false}}
+    }
+  }
+});
+
+// 5. Strategie doughnut
+new Chart(document.getElementById('chartStrategie'),{
+  type:'doughnut',
+  data:{
+    labels:['Zuwanderung','Qualifizierung','Arbeitsbedingungen','KI & Automatisierung','KMU-Support'],
+    datasets:[{
+      data:[30,25,20,15,10],
+      backgroundColor:palette,borderColor:'#0f2017',borderWidth:3,hoverOffset:8
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,cutout:'60%',
+    plugins:{
+      legend:{position:'right',labels:{padding:10,usePointStyle:true,pointStyle:'circle',font:{size:11}}},
+      tooltip:{callbacks:{label:c=>` ${c.label}: ${c.raw}%`}}
+    }
+  }
+});
+</script>
+</body>
+</html>

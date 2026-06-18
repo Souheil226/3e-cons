@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aufenthaltsrecht in Deutschland | 3E Consulting</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --navy: #0f2017;
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --bright: #4ade80;
+      --gold: #fbbf24;
+      --muted: #86a38e;
+      --border: rgba(74,222,128,.18);
+      --glass: rgba(255,255,255,.04);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: #fff;
+      padding-top: 70px;
+      overflow-x: hidden;
+    }
+
+    /* ── Navbar ── */
+    .site-nav {
+      background: rgba(15,32,23,.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar-brand-text {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      color: #fff !important;
+    }
+    .nav-link-custom {
+      color: var(--muted) !important;
+      font-size: .875rem;
+      transition: color .2s;
+    }
+    .nav-link-custom:hover { color: #fff !important; }
+    .btn-menu {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      font-size: .85rem;
+      font-weight: 500;
+      padding: .5rem 1.2rem;
+      border-radius: 8px;
+    }
+    .btn-menu:hover { background: var(--accent-hover); color: #fff; }
+    .navbar-toggler { border: 1px solid var(--border); color: #fff; }
+    .navbar-toggler-icon { filter: invert(1); }
+
+    /* ── Dropdown Mega Menu ── */
+    .mega-menu {
+      background: rgba(15,32,23,.97);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      min-width: 320px;
+      padding: 1rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    }
+    .mega-menu .dropdown-item {
+      color: var(--muted);
+      font-size: .85rem;
+      border-radius: 6px;
+      padding: .5rem .75rem;
+    }
+    .mega-menu .dropdown-item:hover { background: var(--glass); color: #fff; }
+    .mega-menu .dropdown-header {
+      color: var(--bright);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .5rem .75rem .25rem;
+    }
+    .mega-menu .dropdown-divider { border-color: var(--border); }
+
+    /* ── Hero ── */
+    .page-hero { padding: 3rem 0 2rem; }
+    .section-tag {
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+    .page-hero h1 em { font-style: normal; color: var(--accent); }
+    .lead-text { color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+
+    /* ── KPI Cards ── */
+    .kpi-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+      height: 100%;
+    }
+    .kpi-num {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 4vw, 1.75rem);
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    .kpi-label {
+      font-size: .72rem;
+      color: var(--muted);
+      margin-top: .4rem;
+      line-height: 1.35;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    /* ── TOC Sidebar ── */
+    .toc-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      position: sticky;
+      top: 85px;
+    }
+    .toc-title {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .toc-card a {
+      display: block;
+      padding: .5rem .75rem;
+      font-size: .85rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 8px;
+      border-left: 2px solid transparent;
+      transition: all .15s;
+    }
+    .toc-card a:hover, .toc-card a.active {
+      color: #fff;
+      background: var(--glass);
+      border-left-color: var(--accent);
+    }
+
+    /* ── Report Sections ── */
+    .report-section {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.5rem;
+      scroll-margin-top: 100px;
+    }
+    .report-section:target {
+      border-color: rgba(217,119,6,.5);
+      box-shadow: 0 0 0 1px rgba(217,119,6,.2), 0 8px 32px rgba(0,0,0,.3);
+    }
+    .section-num {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: .1em;
+      margin-bottom: .5rem;
+    }
+    .report-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+      word-break: break-word;
+      hyphens: auto;
+    }
+    .subtitle { color: var(--bright); font-size: .9rem; font-weight: 500; margin-bottom: 1.25rem; }
+    .report-section p { color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
+    .report-section ul { padding-left: 1.25rem; color: var(--muted); line-height: 1.9; margin-bottom: 1rem; }
+    .report-section li { margin-bottom: .35rem; }
+
+    /* ── Visa Cards ── */
+    .visa-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.25rem;
+      height: 100%;
+    }
+    .visa-card h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .visa-card p { font-size: .88rem; margin-bottom: .5rem; color: var(--muted); }
+    .visa-tag {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 600;
+      padding: .2rem .55rem;
+      border-radius: 20px;
+      background: rgba(74,222,128,.15);
+      color: var(--bright);
+    }
+
+    /* ── Table ── */
+    .rights-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+    }
+    .rights-table th {
+      text-align: left;
+      padding: .75rem 1rem;
+      background: rgba(217,119,6,.12);
+      color: #fff;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .rights-table td {
+      padding: .7rem 1rem;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(74,222,128,.08);
+    }
+    .rights-table tr:hover td { background: rgba(255,255,255,.02); color: #fff; }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px; }
+
+    /* ── Steps ── */
+    .step-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+    }
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent);
+      min-width: 2rem;
+      line-height: 1.2;
+    }
+    .step-item h4 { font-family: var(--font-display); font-size: .95rem; font-weight: 700; margin-bottom: .3rem; }
+    .step-item p { font-size: .85rem; margin-bottom: 0; }
+
+    /* ── Chart ── */
+    .chart-box {
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .chart-box h3 { font-family: var(--font-display); font-size: .95rem; font-weight: 700; margin-bottom: .25rem; }
+    .chart-desc { font-size: .8rem; color: var(--muted); margin-bottom: 1rem; }
+    .chart-wrap { position: relative; width: 100%; max-height: 280px; }
+
+    /* ── Tip ── */
+    .tip-box {
+      background: rgba(217,119,6,.08);
+      border: 1px solid rgba(217,119,6,.3);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .tip-box strong { color: var(--accent); }
+
+    .source-note {
+      font-size: .75rem;
+      color: rgba(134,163,142,.6);
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .page-hero { padding: 2rem 0 1.5rem; }
+      .report-section { padding: 1.25rem 1rem; border-radius: 12px; }
+      .report-section h2 { font-size: 1.15rem; }
+      .report-section p, .report-section li { font-size: .88rem; }
+      .subtitle { font-size: .82rem; }
+      .toc-card { position: static; display: flex; flex-wrap: wrap; gap: .4rem; }
+      .toc-title { width: 100%; }
+      .toc-card a {
+        font-size: .75rem;
+        padding: .35rem .6rem;
+        border: 1px solid var(--border);
+        border-left: 1px solid var(--border);
+      }
+      .step-num { font-size: 1.1rem; }
+      .kpi-num { font-size: 1.2rem !important; }
+      .kpi-label { font-size: .65rem !important; line-height: 1.3 !important; }
+      .kpi-card { padding: .75rem .5rem !important; }
+      .visa-card { padding: 1rem; }
+      .visa-card h3 { font-size: .9rem; }
+      .chart-box { padding: 1rem; }
+      .chart-wrap { max-height: 220px !important; }
+      .section-tag { font-size: .68rem; }
+    }
+    @media (max-width: 480px) {
+      .page-hero h1 { font-size: 1.2rem !important; hyphens: auto; }
+      .lead-text { font-size: .85rem !important; }
+      .container-fluid { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+      .kpi-num { font-size: 1.1rem !important; }
+      .kpi-label { font-size: .6rem !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav class="navbar navbar-expand-lg site-nav fixed-top">
+  <div class="container-fluid px-4 px-md-5">
+    <a href="index.html" class="navbar-brand d-flex align-items-center gap-2">
+      <img src="logo_3e.jpg" alt="3E" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0">
+      <span class="navbar-brand-text">3E Consulting</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 gap-1 mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#services">Leistungen</a></li>
+        <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#process">Ablauf</a></li>
+        <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#about">Über uns</a></li>
+        <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#kontakt">Kontakt</a></li>
+        <li class="nav-item dropdown">
+          <button class="btn btn-menu dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">MENÜ</button>
+          <ul class="dropdown-menu mega-menu">
+            <li><h6 class="dropdown-header">Service</h6></li>
+            <li><a class="dropdown-item" href="service-bewerber.html"><i class="bi bi-person-check me-2"></i>Bewerber</a></li>
+            <li class="ps-3">
+              <a class="dropdown-item" href="service-bewerber.html#dokumentenorganisation" style="font-size:.78rem">— Dokumentenorganisation</a>
+              <a class="dropdown-item" href="service-bewerber.html#bewerbungsprozess" style="font-size:.78rem">— Bewerbungsprozess</a>
+              <a class="dropdown-item" href="service-bewerber.html#profil-video" style="font-size:.78rem">— Profil-Video Anleitung</a>
+              <a class="dropdown-item" href="service-bewerber.html#erste-schritte" style="font-size:.78rem">— Erste Schritte in Deutschland</a>
+            </li>
+            <li><a class="dropdown-item" href="service-unternehmen.html"><i class="bi bi-building me-2"></i>Unternehmen</a></li>
+            <li class="ps-3">
+              <a class="dropdown-item" href="service-unternehmen.html#vermittlung" style="font-size:.78rem">— Vermittlung von Fachkräften</a>
+              <a class="dropdown-item" href="service-unternehmen.html#beschwerdeverfahren" style="font-size:.78rem">— Beschwerdeverfahren</a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="Bewerbung.html"><i class="bi bi-file-earmark-text me-2"></i>Bewerbung</a></li>
+            <li><a class="dropdown-item" href="arbeitsmarkt.html"><i class="bi bi-briefcase me-2"></i>Arbeitsmarkt</a></li>
+            <li><a class="dropdown-item" href="arbeitundsozialrecht.html"><i class="bi bi-shield-check me-2"></i>Arbeits- und Sozialrecht</a></li>
+            <li><a class="dropdown-item active" href="aufenthaltsrecht.html"><i class="bi bi-passport me-2"></i>Aufenthaltsrecht</a></li>
+            <li><a class="dropdown-item" href="alltag-deutschland.html"><i class="bi bi-house me-2"></i>Alltag in Deutschland</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<div class="container-xl page-hero">
+  <div class="section-tag">Rechtswissen · Einreise &amp; Aufenthalt</div>
+  <h1 class="mb-3">Das deutsche <em>Aufenthalts­recht</em></h1>
+  <p class="lead-text" style="max-width:680px">
+    Welches Visum brauchen Sie? Wie erhalten Sie eine Aufenthaltserlaubnis?
+    Dieser Leitfaden erklärt die wichtigsten Aufenthaltstitel — besonders für
+    Auszubildende, Fachkräfte und Zuwanderer aus Algerien und Nordafrika.
+  </p>
+</div>
+
+<!-- ═══════════ KPI ROW ═══════════ -->
+<div class="container-xl mb-4">
+  <div class="row g-2 g-md-3">
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">5 Jahre</div>
+        <div class="kpi-label">Regelaufenthalt für Niederlassungs­erlaubnis</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">90 Tage</div>
+        <div class="kpi-label">Visumfrei (Tourismus) für algerische Staatsbürger</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">14 Tage</div>
+        <div class="kpi-label">Anmeldefrist nach Einzug (Anmeldung)</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">8 Jahre</div>
+        <div class="kpi-label">Regelaufenthalt für Einbürgerung (früher)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ CONTENT LAYOUT ═══════════ -->
+<div class="container-xl pb-5">
+  <div class="row g-4 align-items-start">
+
+    <!-- TOC Sidebar -->
+    <div class="col-lg-3 d-none d-lg-block">
+      <div class="toc-card">
+        <div class="toc-title">Inhaltsverzeichnis</div>
+        <a href="#visaarten">Visum &amp; Einreise</a>
+        <a href="#aufenthaltstitel">Aufenthaltstitel</a>
+        <a href="#ausbildung">Ausbildung &amp; Arbeit</a>
+        <a href="#anmeldung">Anmeldung &amp; Behörden</a>
+        <a href="#daueraufenthalt">Daueraufenthalt</a>
+        <a href="#familie">Familiennachzug</a>
+      </div>
+    </div>
+
+    <!-- Mobile TOC -->
+    <div class="col-12 d-lg-none">
+      <div class="toc-card">
+        <div class="toc-title">Inhaltsverzeichnis</div>
+        <a href="#visaarten">Visum</a>
+        <a href="#aufenthaltstitel">Aufenthaltstitel</a>
+        <a href="#ausbildung">Ausbildung</a>
+        <a href="#anmeldung">Anmeldung</a>
+        <a href="#daueraufenthalt">Daueraufenthalt</a>
+        <a href="#familie">Familie</a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-lg-9">
+
+      <!-- 01 Visum -->
+      <section id="visaarten" class="report-section">
+        <div class="section-num">01</div>
+        <h2>Visum &amp; Einreise</h2>
+        <p class="subtitle">Der erste Schritt nach Deutschland</p>
+        <p>
+          Algerische Staatsbürger benötigen für <strong style="color:#fff">Erwerbstätigkeit,
+          Ausbildung oder einen längeren Aufenthalt</strong> ein nationales Visum (D-Visum),
+          das vor der Einreise bei der deutschen Botschaft in Algier beantragt wird.
+          Für touristische Kurzaufenthalte bis 90 Tage gilt visumfreie Einreise.
+        </p>
+        <div class="row g-3 my-3">
+          <div class="col-sm-6">
+            <div class="visa-card">
+              <h3>🛂 Nationales Visum (Typ D)</h3>
+              <p>Für Aufenthalte über 90 Tage: Ausbildung, Arbeit, Studium, Familiennachzug.</p>
+              <span class="visa-tag">Vor Einreise beantragen</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="visa-card">
+              <h3>✈️ Kurzaufenthalt (Schengen)</h3>
+              <p>Bis 90 Tage innerhalb von 180 Tagen — Tourismus, Besuch, kurze Geschäftsreisen.</p>
+              <span class="visa-tag">Visumfrei für Algerien</span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="visa-card">
+              <h3>📋 Erforderliche Dokumente</h3>
+              <p>Reisepass, Vertrag/Ausbildungsplatz, Krankenversicherung, Finanzierungsnachweis, Sprachzertifikat.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="visa-card">
+              <h3>🏛️ Zuständige Stelle</h3>
+              <p>Deutsche Botschaft Algier — Termin online buchen, Unterlagen vollständig einreichen.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tip-box">
+          <strong>Tipp für Azubis:</strong> Beantragen Sie das Visum erst, wenn Sie einen unterschriebenen Ausbildungsvertrag haben.
+        </div>
+      </section>
+
+      <!-- 02 Aufenthaltstitel -->
+      <section id="aufenthaltstitel" class="report-section">
+        <div class="section-num">02</div>
+        <h2>Aufenthaltstitel — Die wichtigsten Arten</h2>
+        <p class="subtitle">Was auf Ihrem Ausweis steht, bestimmt Ihre Rechte</p>
+        <div class="table-scroll">
+          <table class="rights-table">
+            <thead>
+              <tr><th>Aufenthaltstitel</th><th>Zweck</th><th>Dauer</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Aufenthaltserlaubnis</td><td>Befristeter Aufenthalt (Ausbildung, Arbeit, Studium)</td><td>1–3 Jahre, verlängerbar</td></tr>
+              <tr><td>Blaue Karte EU</td><td>Hochqualifizierte Fachkräfte</td><td>Bis 4 Jahre</td></tr>
+              <tr><td>Chancenkarte</td><td>Jobsuche ohne festen Arbeitsvertrag</td><td>Max. 1 Jahr</td></tr>
+              <tr><td>Niederlassungserlaubnis</td><td>Unbefristeter Aufenthalt</td><td>Unbefristet</td></tr>
+              <tr><td>Duldung</td><td>Aussetzung der Abschiebung</td><td>Kurzfristig</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="chart-box">
+          <h3>Aufenthaltstitel im Überblick</h3>
+          <p class="chart-desc">Schritte bis zum unbefristeten Aufenthalt</p>
+          <div class="chart-wrap"><canvas id="chartAufenthalt"></canvas></div>
+        </div>
+      </section>
+
+      <!-- 03 Ausbildung -->
+      <section id="ausbildung" class="report-section">
+        <div class="section-num">03</div>
+        <h2>Ausbildung &amp; Arbeit</h2>
+        <p class="subtitle">Der häufigste Weg für junge Zuwanderer</p>
+        <p>
+          Wer eine duale Ausbildung absolvieren möchte, erhält eine
+          <strong style="color:#fff">Aufenthaltserlaubnis zum Zweck der Ausbildung</strong>.
+          Nach dem Abschluss kann sie in eine Arbeitserlaubnis umgewandelt werden.
+        </p>
+        <div class="d-flex flex-column gap-3 my-3">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div>
+              <h4>Ausbildungsplatz finden</h4>
+              <p>Voraussetzung für das Visum. Mindestalter meist 18 Jahre.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div>
+              <h4>Visum bei der Botschaft</h4>
+              <p>Vertrag, Sprachkenntnisse (B1 empfohlen), Krankenversicherung, Finanzierung.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div>
+              <h4>Ausländerbehörde</h4>
+              <p>Innerhalb von 2 Wochen Aufenthaltserlaubnis beantragen.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div>
+              <h4>Nach der Ausbildung</h4>
+              <p>18 Monate Jobsuche — dann unbefristeter Arbeitsvertrag möglich.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="chart-box">
+              <h3>Typischer Ausbildungsweg</h3>
+              <p class="chart-desc">Integrationsfortschritt über die Jahre</p>
+              <div class="chart-wrap"><canvas id="chartTimeline"></canvas></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="chart-box">
+              <h3>Visum-Anforderungen</h3>
+              <p class="chart-desc">Wichtigkeit der Kriterien (%)</p>
+              <div class="chart-wrap"><canvas id="chartVisum"></canvas></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 Anmeldung -->
+      <section id="anmeldung" class="report-section">
+        <div class="section-num">04</div>
+        <h2>Anmeldung &amp; Behörden</h2>
+        <p class="subtitle">Pflichttermine nach der Ankunft</p>
+        <div class="table-scroll">
+          <table class="rights-table">
+            <thead><tr><th>Schritt</th><th>Behörde</th><th>Frist</th></tr></thead>
+            <tbody>
+              <tr><td>Wohnungsanmeldung</td><td>Bürgeramt</td><td>14 Tage nach Einzug</td></tr>
+              <tr><td>Aufenthaltserlaubnis</td><td>Ausländerbehörde</td><td>Vor Ablauf des Visums</td></tr>
+              <tr><td>Krankenversicherung</td><td>Krankenkasse</td><td>Vor Arbeitsbeginn</td></tr>
+              <tr><td>Steuer-ID</td><td>Finanzamt (per Post)</td><td>Nach Anmeldung</td></tr>
+              <tr><td>Bankkonto</td><td>Bank</td><td>So früh wie möglich</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tip-box mt-3">
+          <strong>Wichtig:</strong> Ohne Anmeldung (Meldebescheinigung) kein Bankkonto, kein Vertrag, keine Aufenthaltserlaubnis.
+        </div>
+      </section>
+
+      <!-- 05 Daueraufenthalt -->
+      <section id="daueraufenthalt" class="report-section">
+        <div class="section-num">05</div>
+        <h2>Daueraufenthalt &amp; Einbürgerung</h2>
+        <p class="subtitle">Vom befristeten Visum zur deutschen Staatsbürgerschaft</p>
+        <div class="row g-3 my-3">
+          <div class="col-sm-6">
+            <div class="visa-card">
+              <h3>🏠 Niederlassungserlaubnis</h3>
+              <p>Nach 5 Jahren legalen Aufenthalt, Einkommen, Deutsch B1, Wohnraum.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="visa-card">
+              <h3>⚡ Schnellerer Weg</h3>
+              <p>Nach 3 Jahren bei besonderer Integration (C1-Deutsch, Engagement).</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="visa-card">
+              <h3>🇩🇪 Einbürgerung</h3>
+              <p>Frühestens nach 5 Jahren (neue Regelung 2024). Deutsch B1, Einbürgerungstest.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="visa-card">
+              <h3>📜 Doppelte Staatsbürgerschaft</h3>
+              <p>Seit Juni 2024 in der Regel erlaubt — algerische Staatsbürgerschaft behalten.</p>
+            </div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <h3>Wege zum dauerhaften Aufenthalt</h3>
+          <p class="chart-desc">Mindestaufenthaltsdauer in Jahren</p>
+          <div class="chart-wrap"><canvas id="chartDauer"></canvas></div>
+        </div>
+      </section>
+
+      <!-- 06 Familie -->
+      <section id="familie" class="report-section">
+        <div class="section-num">06</div>
+        <h2>Familiennachzug</h2>
+        <p class="subtitle">Ehepartner und Kinder nachholen</p>
+        <ul>
+          <li><strong style="color:#fff">Ehegattennachzug:</strong> Deutsch A1 erforderlich</li>
+          <li><strong style="color:#fff">Kindernachzug:</strong> Unter 16 ohne Sprachnachweis</li>
+          <li><strong style="color:#fff">Elternnachzug:</strong> Nur in Härtefällen</li>
+          <li>Bearbeitungszeit: mehrere Monate — frühzeitig planen</li>
+        </ul>
+        <p class="source-note">
+          Hinweis: Keine Rechtsberatung. Gesetzliche Grundlage: Aufenthaltsgesetz (AufenthG). Stand: 2025.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ── TOC active ──
+const tocLinks = document.querySelectorAll('.toc-card a');
+const sections = document.querySelectorAll('.report-section');
+function setActiveToc(id) {
+  tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+}
+if (location.hash) setActiveToc(location.hash.slice(1));
+sections.forEach(s => new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) setActiveToc(e.target.id); });
+}, { rootMargin: '-40% 0px' }).observe(s));
+
+// ── Charts ──
+Chart.defaults.color = '#86a38e';
+Chart.defaults.borderColor = 'rgba(74,222,128,.12)';
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+const accent = '#d97706', bright = '#4ade80', gold = '#fbbf24';
+const palette = [accent, bright, gold, '#60a5fa', '#a78bfa', '#ef4444'];
+
+new Chart(document.getElementById('chartAufenthalt'), {
+  type: 'bar',
+  data: {
+    labels: ['Visum (D)', 'Aufenthalts-erlaubnis', 'Verlängerung', 'Niederlassung', 'Einbürgerung'],
+    datasets: [{ data: [1,2,3,4,5], backgroundColor: palette, borderRadius: 6 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, max: 6, ticks: { stepSize: 1 } }, x: { grid: { display: false } } } }
+});
+
+new Chart(document.getElementById('chartTimeline'), {
+  type: 'line',
+  data: {
+    labels: ['Jahr 0','Jahr 1','Jahr 2','Jahr 3','Jahr 4','Jahr 5+'],
+    datasets: [{ data: [10,30,55,75,90,100], borderColor: accent,
+      backgroundColor: 'rgba(217,119,6,.15)', fill: true, tension: 0.4, pointRadius: 5 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { max: 100, ticks: { callback: v => v + '%' } }, x: { grid: { display: false } } } }
+});
+
+new Chart(document.getElementById('chartVisum'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Ausbildungsvertrag','Sprache','Finanzierung','Krankenvers.','Pass'],
+    datasets: [{ data: [35,25,20,12,8], backgroundColor: palette,
+      borderColor: '#0f2017', borderWidth: 3 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, cutout: '55%',
+    plugins: { legend: { position: 'bottom',
+      labels: { padding: 8, usePointStyle: true, font: { size: 10 } } } } }
+});
+
+new Chart(document.getElementById('chartDauer'), {
+  type: 'bar',
+  data: {
+    labels: ['Niederlassung (Regel)','Niederlassung (schnell)','Einbürgerung (neu)','Einbürgerung (früher)'],
+    datasets: [{ data: [5,3,5,8], backgroundColor: [accent,bright,gold,'#60a5fa'], borderRadius: 6 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: c => ` ${c.raw} Jahre` } } },
+    scales: { y: { beginAtZero: true, max: 10, ticks: { callback: v => v + ' J.' } },
+      x: { grid: { display: false } } } }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbeits- und Sozialrecht in Deutschland | 3E Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --navy:   #0f2017;
+      --accent: #d97706;
+      --bright: #4ade80;
+      --gold:   #fbbf24;
+      --muted:  #86a38e;
+      --border: rgba(74,222,128,.18);
+      --glass:  rgba(255,255,255,.04);
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-body);background:var(--navy);color:#fff;padding-top:70px}
+
+    /* ── NAV ── */
+    .site-nav{background:rgba(15,32,23,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .nav-brand-img{height:36px;width:36px;border-radius:8px;object-fit:cover}
+    .nav-brand-text{font-family:var(--font-display);font-size:1rem;font-weight:800;color:#fff;letter-spacing:.06em}
+    .nav-link-item{font-size:.875rem;color:var(--muted)!important;transition:color .2s}
+    .nav-link-item:hover{color:#fff!important}
+    .btn-menu{background:var(--accent);color:#fff;border:none;font-size:.82rem;font-weight:500;border-radius:8px;padding:.45rem 1.1rem}
+    .btn-menu:hover{background:#b45309;color:#fff}
+    .custom-dropdown{background:rgba(15,32,23,.97);border:1px solid var(--border);border-radius:12px;padding:.75rem;min-width:300px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+    .custom-dropdown .dropdown-item{color:rgba(255,255,255,.7);font-size:.85rem;border-radius:6px;padding:.5rem .7rem}
+    .custom-dropdown .dropdown-item:hover{background:var(--glass);color:#fff}
+    .custom-dropdown .dropdown-divider{border-color:var(--border)}
+    .sub-label{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:.4rem .7rem .1rem}
+
+    /* ── HERO ── */
+    .section-tag{font-size:.72rem;font-weight:500;color:var(--accent);letter-spacing:.15em;text-transform:uppercase}
+    .page-hero h1{font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.1}
+    .page-hero h1 em{font-style:normal;color:var(--accent)}
+    .page-hero p{color:var(--muted);font-size:1rem;line-height:1.75}
+
+    /* ── KPI ── */
+    .kpi-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1rem;text-align:center;height:100%}
+    .kpi-num{font-family:var(--font-display);font-size:1.65rem;font-weight:800;color:var(--accent);line-height:1.1}
+    .kpi-label{font-size:.74rem;color:var(--muted);margin-top:.35rem;line-height:1.4}
+
+    /* ── TOC ── */
+    .toc-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:1.25rem;position:sticky;top:88px}
+    .toc-title{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem}
+    .toc-card a{display:block;padding:.5rem .7rem;font-size:.82rem;color:var(--muted);text-decoration:none;border-radius:8px;border-left:2px solid transparent;transition:all .15s}
+    .toc-card a:hover,.toc-card a.active{color:#fff;background:var(--glass);border-left-color:var(--accent)}
+
+    /* ── REPORT SECTION ── */
+    .report-section{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:1.25rem;scroll-margin-top:100px;transition:border-color .3s,box-shadow .3s}
+    .report-section:target{border-color:rgba(217,119,6,.5);box-shadow:0 0 0 1px rgba(217,119,6,.2),0 8px 32px rgba(0,0,0,.3)}
+    .section-num{font-size:.7rem;font-weight:600;color:var(--accent);letter-spacing:.1em;margin-bottom:.4rem}
+    .report-section h2{font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:.4rem}
+    .report-section .subtitle{color:var(--bright);font-size:.88rem;font-weight:500;margin-bottom:1.1rem}
+    .report-section p{color:var(--muted);line-height:1.75;margin-bottom:.9rem}
+    .report-section ul{padding-left:1.2rem;color:var(--muted);line-height:1.9;margin-bottom:.9rem}
+    .report-section li{margin-bottom:.3rem}
+
+    /* ── INFO CARDS ── */
+    .info-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:12px;padding:1.1rem;height:100%}
+    .info-card h3{font-family:var(--font-display);font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+    .info-card p{font-size:.85rem;color:var(--muted);margin:0}
+    .law-badge{display:inline-block;font-size:.65rem;font-weight:600;padding:.2rem .5rem;border-radius:20px;background:rgba(74,222,128,.15);color:var(--bright);letter-spacing:.04em;margin-left:.25rem}
+
+    /* ── CHARTS ── */
+    .chart-box{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
+    .chart-box h3{font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-bottom:.2rem;color:#fff}
+    .chart-desc{font-size:.76rem;color:var(--muted);margin-bottom:.85rem}
+    .chart-wrap{position:relative;width:100%;height:260px}
+    .chart-wrap.tall{height:220px}
+
+    /* ── TABLE ── */
+    .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .rights-table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:500px}
+    .rights-table th{text-align:left;padding:.7rem .9rem;background:rgba(217,119,6,.12);color:#fff;font-weight:600;border-bottom:1px solid var(--border)}
+    .rights-table td{padding:.65rem .9rem;color:var(--muted);border-bottom:1px solid rgba(74,222,128,.08)}
+    .rights-table tr:hover td{background:rgba(255,255,255,.02);color:#fff}
+
+    /* ── INSURANCE LIST ── */
+    .insurance-item{display:flex;gap:1rem;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.1rem}
+    .insurance-icon{font-size:1.4rem;line-height:1;flex-shrink:0}
+    .insurance-item h4{font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-bottom:.25rem;color:#fff}
+    .insurance-item p{font-size:.83rem;color:var(--muted);margin:0}
+
+    /* ── TIP BOX ── */
+    .tip-box{background:rgba(217,119,6,.08);border:1px solid rgba(217,119,6,.3);border-radius:12px;padding:.9rem 1.1rem;font-size:.86rem;color:var(--muted);line-height:1.65}
+    .tip-box strong{color:var(--accent)}
+
+    .source-note{font-size:.73rem;color:rgba(134,163,142,.6);margin-top:1.25rem;padding-top:.9rem;border-top:1px solid var(--border);font-style:italic}
+
+    /* ── MOBILE ── */
+    @media(max-width:768px){
+      body{padding-top:64px}
+      .page-hero h1{font-size:clamp(1.65rem,7vw,2.2rem)}
+      .kpi-num{font-size:1.25rem}
+      .kpi-label{font-size:.68rem}
+      .report-section{padding:1.1rem}
+      .report-section h2{font-size:1.15rem}
+      .chart-wrap{height:210px}
+      .chart-wrap.tall{height:185px}
+    }
+    @media(max-width:480px){
+      .kpi-num{font-size:1.1rem}
+      .report-section{padding:.9rem .8rem}
+      .rights-table{font-size:.78rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ════════════════════════════════════════════ -->
+<nav class="navbar navbar-expand-lg site-nav fixed-top py-2 px-3 px-md-4">
+  <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="index.html">
+    <img src="logo_3e.jpg" alt="3E" class="nav-brand-img">
+    <span class="nav-brand-text">3E Consulting</span>
+  </a>
+  <ul class="navbar-nav ms-auto d-none d-lg-flex gap-3 me-4">
+    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#services">Leistungen</a></li>
+    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#process">Ablauf</a></li>
+    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#about">Über uns</a></li>
+    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+  <div class="dropdown">
+    <button class="btn-menu btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">MENÜ ▾</button>
+    <ul class="dropdown-menu custom-dropdown">
+      <li><div class="sub-label">Service — Bewerber</div></li>
+      <li><a class="dropdown-item ps-3" href="service-bewerber.html#dokumentenorganisation">↳ Dokumentenorganisation</a></li>
+      <li><a class="dropdown-item ps-3" href="service-bewerber.html#bewerbungsprozess">↳ Bewerbungsprozess</a></li>
+      <li><a class="dropdown-item ps-3" href="service-bewerber.html#profil-video">↳ Profil-Video Anleitung</a></li>
+      <li><a class="dropdown-item ps-3" href="service-bewerber.html#erste-schritte">↳ Erste Schritte in DE</a></li>
+      <li><div class="sub-label mt-1">Service — Unternehmen</div></li>
+      <li><a class="dropdown-item ps-3" href="service-unternehmen.html#vermittlung">↳ Vermittlung von Fachkräften</a></li>
+      <li><a class="dropdown-item ps-3" href="service-unternehmen.html#beschwerdeverfahren">↳ Beschwerdeverfahren</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="Bewerbung.html">Bewerbung</a></li>
+      <li><a class="dropdown-item" href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
+      <li><a class="dropdown-item" href="arbeitundsozialrecht.html" style="color:var(--accent)">Arbeits- und Sozialrecht ✓</a></li>
+      <li><a class="dropdown-item" href="aufenthaltsrecht.html">Aufenthaltsrecht</a></li>
+      <li><a class="dropdown-item" href="alltag-deutschland.html">Alltag in Deutschland</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<header class="page-hero container-lg px-3 px-md-4 py-4 py-md-5 mt-2">
+  <div class="section-tag mb-2">Rechtswissen · Deutschland</div>
+  <h1 class="mb-3">Arbeits- und <em>Sozialrecht</em></h1>
+  <p style="max-width:680px">
+    Ihre Rechte und Pflichten als Arbeitnehmer oder Auszubildender in Deutschland —
+    verständlich erklärt: vom Arbeitsvertrag über Sozialversicherung bis zu Urlaub und Kündigung.
+  </p>
+</header>
+
+<!-- ═══ KPI ROW ═══════════════════════════════════════════ -->
+<div class="container-lg px-3 px-md-4 mb-4">
+  <div class="row g-3">
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">12,82 €</div>
+        <div class="kpi-label">Mindestlohn<br>ab 2025</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">20 Tage</div>
+        <div class="kpi-label">Mindesturlaub<br>bei 5-Tage-Woche</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">8 Std.</div>
+        <div class="kpi-label">Max. Arbeitszeit<br>pro Tag</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi-card">
+        <div class="kpi-num">6 Wochen</div>
+        <div class="kpi-label">Probezeit<br>(üblich)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTENT ════════════════════════════════════════════ -->
+<div class="container-lg px-3 px-md-4 pb-5">
+  <div class="row g-4 align-items-start">
+
+    <!-- TOC Desktop -->
+    <div class="col-12 col-lg-3 d-none d-lg-block">
+      <div class="toc-card">
+        <div class="toc-title">Inhaltsverzeichnis</div>
+        <a href="#arbeitsvertrag">Arbeitsvertrag</a>
+        <a href="#arbeitszeit">Arbeitszeit &amp; Lohn</a>
+        <a href="#sozialversicherung">Sozialversicherung</a>
+        <a href="#urlaub-krankheit">Urlaub &amp; Krankheit</a>
+        <a href="#kuendigung">Kündigung &amp; Schutz</a>
+        <a href="#familie">Familie &amp; Elternzeit</a>
+      </div>
+    </div>
+
+    <!-- TOC Mobile chips -->
+    <div class="col-12 d-flex d-lg-none flex-wrap gap-2 mb-1">
+      <a href="#arbeitsvertrag"   class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Arbeitsvertrag</a>
+      <a href="#arbeitszeit"      class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Arbeitszeit</a>
+      <a href="#sozialversicherung" class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Sozialvers.</a>
+      <a href="#urlaub-krankheit" class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Urlaub</a>
+      <a href="#kuendigung"       class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Kündigung</a>
+      <a href="#familie"          class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Familie</a>
+    </div>
+
+    <!-- MAIN -->
+    <div class="col-12 col-lg-9">
+
+      <!-- 1. ARBEITSVERTRAG -->
+      <section id="arbeitsvertrag" class="report-section">
+        <div class="section-num">01</div>
+        <h2>Der Arbeitsvertrag</h2>
+        <p class="subtitle">Grundlage jeder Beschäftigung in Deutschland</p>
+        <p>Jede Beschäftigung basiert auf einem <strong style="color:#fff">Arbeitsvertrag</strong> — er regelt die wichtigsten Bedingungen Ihrer Tätigkeit und muss schriftlich bestätigt werden.</p>
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>📄 Pflichtangaben <span class="law-badge">Nachweisgesetz</span></h3>
+              <p>Name, Arbeitsbeginn, Vergütung, Arbeitszeit, Urlaubstage, Kündigungsfristen — der Arbeitgeber muss diese schriftlich mitteilen.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>⏳ Probezeit</h3>
+              <p>Maximal 6 Monate. Verkürzte Kündigungsfrist von 2 Wochen. Für Auszubildende meist 1–3 Monate.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>🎓 Ausbildungsvertrag</h3>
+              <p>Auszubildende haben einen speziellen Vertrag nach dem Berufsbildungsgesetz (BBiG) — regelt Ausbildungsdauer, Vergütung und Prüfungen.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>🤝 Tarifvertrag</h3>
+              <p>In vielen Branchen gelten Tarifverträge — sie können bessere Löhne und Bedingungen als das Gesetz vorschreiben.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tip-box">
+          <strong>Tipp:</strong> Lesen Sie Ihren Vertrag sorgfältig, bevor Sie unterschreiben. Achten Sie auf Arbeitszeit, Vergütung, Probezeit und Kündigungsfristen.
+        </div>
+      </section>
+
+      <!-- 2. ARBEITSZEIT & LOHN -->
+      <section id="arbeitszeit" class="report-section">
+        <div class="section-num">02</div>
+        <h2>Arbeitszeit &amp; Vergütung</h2>
+        <p class="subtitle">Was Ihnen gesetzlich zusteht</p>
+        <div class="table-scroll mb-3">
+          <table class="rights-table">
+            <thead>
+              <tr><th>Thema</th><th>Gesetzliche Regelung</th><th>Gesetz</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Mindestlohn</td><td>12,82 € brutto/Stunde (ab 01.01.2025)</td><td>MiLoG</td></tr>
+              <tr><td>Tägliche Arbeitszeit</td><td>Max. 8 Stunden, ausnahmsweise 10 Std.</td><td>ArbZG</td></tr>
+              <tr><td>Wochenarbeitszeit</td><td>Max. 48 Stunden/Woche im Durchschnitt</td><td>ArbZG</td></tr>
+              <tr><td>Pausen</td><td>Ab 6 Std.: 30 Min. · Ab 9 Std.: 45 Min.</td><td>ArbZG</td></tr>
+              <tr><td>Ruhezeit</td><td>Mindestens 11 Stunden zwischen Arbeitstagen</td><td>ArbZG</td></tr>
+              <tr><td>Überstunden</td><td>Müssen vergütet oder durch Freizeit ausgeglichen werden</td><td>ArbZG</td></tr>
+              <tr><td>Ausbildungsvergütung</td><td>2025: ca. 620–1.100 € je nach Ausbildungsjahr</td><td>BBiG</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <div class="chart-box h-100">
+              <h3>Mindestlohn-Entwicklung</h3>
+              <p class="chart-desc">Bruttostundenlohn in Euro (2015–2025)</p>
+              <div class="chart-wrap tall"><canvas id="chartLohn"></canvas></div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="chart-box h-100">
+              <h3>Typischer Arbeitstag (8 Std.)</h3>
+              <p class="chart-desc">Zeitaufteilung laut Arbeitszeitgesetz</p>
+              <div class="chart-wrap tall"><canvas id="chartArbeitszeit"></canvas></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. SOZIALVERSICHERUNG -->
+      <section id="sozialversicherung" class="report-section">
+        <div class="section-num">03</div>
+        <h2>Die Sozialversicherung</h2>
+        <p class="subtitle">Fünf Säulen des deutschen Sozialsystems</p>
+        <p>Arbeitnehmer und Arbeitgeber zahlen gemeinsam in die <strong style="color:#fff">Sozialversicherung</strong> ein — automatisch vom Bruttogehalt.</p>
+        <div class="d-flex flex-column gap-2 mb-3">
+          <div class="insurance-item">
+            <div class="insurance-icon">🏥</div>
+            <div>
+              <h4>Krankenversicherung (KV)</h4>
+              <p>Pflichtversicherung. Deckt Arztbesuche, Krankenhaus, Medikamente. Arbeitnehmeranteil ca. 7,3 % + Zusatzbeitrag.</p>
+            </div>
+          </div>
+          <div class="insurance-item">
+            <div class="insurance-icon">👴</div>
+            <div>
+              <h4>Rentenversicherung (RV)</h4>
+              <p>Sichert das Einkommen im Alter. Arbeitnehmeranteil ca. 9,3 %. Mindestens 5 Jahre Beitragszeit für Anspruch.</p>
+            </div>
+          </div>
+          <div class="insurance-item">
+            <div class="insurance-icon">📉</div>
+            <div>
+              <h4>Arbeitslosenversicherung (AV)</h4>
+              <p>Absicherung bei Jobverlust. Arbeitnehmeranteil ca. 1,3 %. Anspruch nach mindestens 12 Monaten Beitragszeit.</p>
+            </div>
+          </div>
+          <div class="insurance-item">
+            <div class="insurance-icon">🤝</div>
+            <div>
+              <h4>Pflegeversicherung (PV)</h4>
+              <p>Finanziert Pflege im Alter oder bei Krankheit. Arbeitnehmeranteil ca. 1,7 %.</p>
+            </div>
+          </div>
+          <div class="insurance-item">
+            <div class="insurance-icon">⚠️</div>
+            <div>
+              <h4>Unfallversicherung (UV)</h4>
+              <p>Wird allein vom Arbeitgeber bezahlt. Deckt Arbeits- und Wegeunfälle — kostenlos für den Arbeitnehmer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="chart-box mb-3">
+          <h3>Sozialabgaben — Arbeitnehmeranteil</h3>
+          <p class="chart-desc">Ungefähre Verteilung der Abzüge vom Bruttogehalt (%)</p>
+          <div class="chart-wrap"><canvas id="chartSozial"></canvas></div>
+        </div>
+        <div class="tip-box">
+          <strong>Wichtig für Zuwanderer:</strong> Ohne Krankenversicherung dürfen Sie in Deutschland nicht arbeiten. Wählen Sie eine gesetzliche (GKV) oder private Krankenkasse (PKV).
+        </div>
+      </section>
+
+      <!-- 4. URLAUB & KRANKHEIT -->
+      <section id="urlaub-krankheit" class="report-section">
+        <div class="section-num">04</div>
+        <h2>Urlaub &amp; Krankheit</h2>
+        <p class="subtitle">Erholung und Absicherung im Krankheitsfall</p>
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>🏖️ Urlaubsanspruch</h3>
+              <p>Mindestens <strong style="color:#fff">20 Werktage</strong> bei 5-Tage-Woche. Viele Tarifverträge gewähren 28–30 Tage.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>🤒 Krankmeldung</h3>
+              <p>Ab dem 1. Krankheitstag Arbeitgeber informieren. Ab dem 3. Tag ist eine <strong style="color:#fff">ärztliche AU-Bescheinigung</strong> erforderlich.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>💶 Entgeltfortzahlung</h3>
+              <p>6 Wochen volles Gehalt. Danach zahlt die Krankenkasse <strong style="color:#fff">Krankengeld</strong> (ca. 70 % brutto, max. 90 % netto).</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>🎓 Krankheit in der Ausbildung</h3>
+              <p>Auszubildende haben denselben Anspruch. Längere Krankheit kann die Ausbildungszeit verlängern.</p>
+            </div>
+          </div>
+        </div>
+        <div class="chart-box">
+          <h3>Urlaubstage nach Betriebszugehörigkeit</h3>
+          <p class="chart-desc">Typische Urlaubstage in Deutschland (Gesetz + Tarif)</p>
+          <div class="chart-wrap"><canvas id="chartUrlaub"></canvas></div>
+        </div>
+      </section>
+
+      <!-- 5. KÜNDIGUNG -->
+      <section id="kuendigung" class="report-section">
+        <div class="section-num">05</div>
+        <h2>Kündigung &amp; Kündigungsschutz</h2>
+        <p class="subtitle">Wann und wie ein Arbeitsverhältnis enden kann</p>
+        <p>In Deutschland ist eine Kündigung nur unter bestimmten Voraussetzungen wirksam. Arbeitnehmer genießen nach der Probezeit einen starken <strong style="color:#fff">Kündigungsschutz</strong>.</p>
+        <div class="table-scroll mb-3">
+          <table class="rights-table">
+            <thead>
+              <tr><th>Situation</th><th>Frist (Arbeitnehmer)</th><th>Frist (Arbeitgeber)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>In der Probezeit</td><td>2 Wochen</td><td>2 Wochen</td></tr>
+              <tr><td>Bis 2 Jahre</td><td>4 Wochen zum 15. oder Monatsende</td><td>4 Wochen</td></tr>
+              <tr><td>2–5 Jahre</td><td>4 Wochen</td><td>1 Monat zum Monatsende</td></tr>
+              <tr><td>5–8 Jahre</td><td>4 Wochen</td><td>2 Monate zum Monatsende</td></tr>
+              <tr><td>Ab 8 Jahren</td><td>4 Wochen</td><td>3 Monate zum Monatsende</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li>Kündigungen müssen <strong style="color:#fff">schriftlich</strong> erfolgen (E-Mail reicht nicht)</li>
+          <li><strong style="color:#fff">Kündigungsschutz</strong> gilt ab 6 Monaten in Betrieben mit mehr als 10 Mitarbeitern</li>
+          <li>Sonderkündigungsschutz für Schwangere, Schwerbehinderte und Betriebsratsmitglieder</li>
+          <li>Bei <strong style="color:#fff">Aufhebungsvertrag</strong> — beiderseitige Einigung, oft mit Abfindung</li>
+          <li>Streitigkeiten vor dem <strong style="color:#fff">Arbeitsgericht</strong> (Klagefrist: 3 Wochen)</li>
+        </ul>
+        <div class="tip-box">
+          <strong>Achtung:</strong> Unterschreiben Sie keinen Aufhebungsvertrag unter Druck. Holen Sie sich Beratung bei der Gewerkschaft oder einer Rechtsberatung.
+        </div>
+      </section>
+
+      <!-- 6. FAMILIE -->
+      <section id="familie" class="report-section">
+        <div class="section-num">06</div>
+        <h2>Familie, Mutterschutz &amp; Elternzeit</h2>
+        <p class="subtitle">Rechte für werdende Eltern</p>
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>🤰 Mutterschutz <span class="law-badge">MuSchG</span></h3>
+              <p>6 Wochen vor und 8 Wochen nach der Entbindung: Beschäftigungsverbot mit vollem Lohn. Kündigungsschutz ab Beginn der Schwangerschaft.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>👶 Elternzeit <span class="law-badge">BEEG</span></h3>
+              <p>Bis zu 3 Jahre pro Kind. Kündigungsschutz während der gesamten Elternzeit.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>💰 Elterngeld</h3>
+              <p>65–67 % des Nettoeinkommens (min. 300 €, max. 1.800 €/Monat) für bis zu 14 Monate.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="info-card">
+              <h3>🏫 Kinderbetreuung</h3>
+              <p>Ab dem 1. Lebensjahr hat jedes Kind einen Rechtsanspruch auf einen Kita-Platz.</p>
+            </div>
+          </div>
+        </div>
+        <div class="chart-box mb-3">
+          <h3>Elterngeld — Bezugsdauer (Monate)</h3>
+          <p class="chart-desc">Maximale Bezugsdauer bei Aufteilung zwischen beiden Elternteilen</p>
+          <div class="chart-wrap tall"><canvas id="chartEltern"></canvas></div>
+        </div>
+        <p class="source-note">
+          Hinweis: Diese Seite bietet eine vereinfachte Übersicht und ersetzt keine Rechtsberatung.
+          Gesetze: ArbZG, MiLoG, SGB, KSchG, MuSchG, BEEG. Stand: 2025.
+        </p>
+      </section>
+
+    </div><!-- /col main -->
+  </div><!-- /row -->
+</div><!-- /container -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// TOC active
+const tocLinks = document.querySelectorAll('.toc-card a');
+const sections = document.querySelectorAll('.report-section');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href')==='#'+e.target.id));
+  });
+},{rootMargin:'-40% 0px'});
+sections.forEach(s=>io.observe(s));
+
+// Chart defaults
+Chart.defaults.color       = '#86a38e';
+Chart.defaults.borderColor = 'rgba(74,222,128,.12)';
+Chart.defaults.font.family = "'DM Sans',sans-serif";
+const accent='#d97706',bright='#4ade80',gold='#fbbf24',red='#ef4444';
+const palette=[accent,bright,gold,'#60a5fa','#a78bfa',red];
+
+// 1. Mindestlohn line
+new Chart(document.getElementById('chartLohn'),{
+  type:'line',
+  data:{
+    labels:['2015','2017','2019','2021','2022','2024','2025'],
+    datasets:[{label:'Mindestlohn (€/Std.)',data:[8.50,8.84,9.19,9.60,10.45,12.41,12.82],
+      borderColor:accent,backgroundColor:'rgba(217,119,6,.15)',fill:true,tension:0.35,
+      pointBackgroundColor:accent,pointRadius:5}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} €/Std.`}}},
+    scales:{y:{beginAtZero:false,min:7,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+' €'}},x:{grid:{display:false}}}}
+});
+
+// 2. Arbeitszeit doughnut
+new Chart(document.getElementById('chartArbeitszeit'),{
+  type:'doughnut',
+  data:{
+    labels:['Arbeitszeit','Pausen','Ruhezeit'],
+    datasets:[{data:[8,0.75,11],backgroundColor:[accent,bright,'#60a5fa'],borderColor:'#0f2017',borderWidth:3}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
+    plugins:{legend:{position:'bottom',labels:{padding:10,usePointStyle:true,font:{size:11}}}}}
+});
+
+// 3. Sozial bar
+new Chart(document.getElementById('chartSozial'),{
+  type:'bar',
+  data:{
+    labels:['Krankenvers.','Rentenvers.','Arbeitslosenvers.','Pflegevers.','Lohnsteuer*'],
+    datasets:[{label:'Anteil (%)',data:[8.5,9.3,1.3,1.7,15],
+      backgroundColor:palette,borderRadius:6,borderSkipped:false}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ca. ${c.raw}%`}}},
+    scales:{y:{beginAtZero:true,max:20,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}}}
+});
+
+// 4. Urlaub bar
+new Chart(document.getElementById('chartUrlaub'),{
+  type:'bar',
+  data:{
+    labels:['Gesetzl. Minimum','Durchschnitt DE','Tarifvertrag','Öffentl. Dienst'],
+    datasets:[{label:'Urlaubstage',data:[20,28,30,30],
+      backgroundColor:[red,accent,bright,gold],borderRadius:6,borderSkipped:false}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Tage`}}},
+    scales:{y:{beginAtZero:true,max:35,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+' Tage'}},x:{grid:{display:false}}}}
+});
+
+// 5. Eltern bar
+new Chart(document.getElementById('chartEltern'),{
+  type:'bar',
+  data:{
+    labels:['Mutter allein','Vater allein','Beide (Basis)','Beide (+Partner)','Max. gesamt'],
+    datasets:[{label:'Monate',data:[12,2,12,14,14],
+      backgroundColor:palette,borderRadius:6,borderSkipped:false}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Monate`}}},
+    scales:{y:{beginAtZero:true,max:16,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+' Mon.'}},
+      x:{grid:{display:false},ticks:{font:{size:10}}}}}
+});
+</script>
+</body>
+</html>

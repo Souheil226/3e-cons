@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Richtlinien für Bewerber — 3E Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f2017;
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --bright: #4ade80;
+      --white: #fff;
+      --muted: #86a38e;
+      --border: rgba(74, 222, 128, .18);
+      --glass: rgba(255, 255, 255, .04);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--white);
+      padding-top: 72px;
+    }
+
+    nav.site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5vw;
+      background: rgba(15, 32, 23, .92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: .05em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: .875rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-menu { position: relative; }
+
+    .nav-menu-btn {
+      background: var(--accent);
+      color: var(--white);
+      padding: .55rem 1.3rem;
+      border-radius: 8px;
+      font-size: .85rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      transition: background .2s, transform .15s;
+    }
+    .nav-menu-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + .6rem);
+      right: 0;
+      min-width: 300px;
+      max-height: 75vh;
+      overflow-y: auto;
+      background: rgba(15, 32, 23, .97);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+      z-index: 200;
+    }
+
+    .menu-level-1, .menu-level-2, .menu-level-3 {
+      list-style: none; margin: 0; padding: 0;
+    }
+
+    .menu-toggle {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: .88rem;
+      font-weight: 500;
+      padding: .65rem .75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background .15s;
+    }
+    .menu-toggle:hover, .menu-toggle.open { background: var(--glass); }
+    .menu-toggle::after { content: '▾'; font-size: .7rem; color: var(--muted); transition: transform .2s; }
+    .menu-toggle.open::after { transform: rotate(180deg); }
+
+    .menu-level-1 > li > a {
+      display: block;
+      padding: .65rem .75rem;
+      font-size: .88rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all .15s;
+    }
+    .menu-level-1 > li > a:hover { color: var(--white); background: var(--glass); }
+    .menu-level-1 > li > a.active { color: var(--bright); background: rgba(74,222,128,.08); }
+
+    .menu-level-2 { padding-left: .5rem; }
+    .menu-level-3 { padding-left: 1rem; }
+    .menu-level-2 .menu-toggle, .menu-level-3 a {
+      font-size: .82rem;
+      color: var(--muted);
+      padding: .5rem .75rem;
+    }
+    .menu-level-3 a {
+      display: block;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all .15s;
+    }
+    .menu-level-3 a:hover { color: var(--white); background: var(--glass); }
+    .menu-level-1 > li { border-bottom: 1px solid var(--border); }
+    .menu-level-1 > li:last-child { border-bottom: none; }
+
+    .page-hero {
+      padding: 3rem 5vw 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 em { font-style: normal; color: var(--accent); }
+    .page-hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 700px;
+    }
+
+    .content-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 5vw 5rem;
+      align-items: start;
+    }
+
+    aside.toc {
+      position: sticky;
+      top: 90px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      height: fit-content;
+    }
+    .toc-title {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    aside.toc a {
+      display: block;
+      padding: .55rem .75rem;
+      font-size: .82rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 8px;
+      border-left: 2px solid transparent;
+      transition: all .15s;
+    }
+    aside.toc a:hover, aside.toc a.active {
+      color: var(--white);
+      background: var(--glass);
+      border-left-color: var(--accent);
+    }
+
+    .guideline-section {
+      scroll-margin-top: 100px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.5rem;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .guideline-section:target {
+      border-color: rgba(217, 119, 6, .5);
+      box-shadow: 0 0 0 1px rgba(217, 119, 6, .2), 0 8px 32px rgba(0, 0, 0, .3);
+    }
+    .section-num {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: .1em;
+      margin-bottom: .5rem;
+    }
+    .guideline-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .guideline-section p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .guideline-section ul {
+      padding-left: 1.25rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+    .guideline-section li { margin-bottom: .35rem; }
+
+    .intro-box {
+      background: rgba(74, 222, 128, .06);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .intro-box p { margin: 0; color: var(--muted); line-height: 1.7; }
+
+    .video-section {
+      background: rgba(217, 119, 6, .06);
+      border: 1px solid rgba(217, 119, 6, .25);
+    }
+    .video-embed {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, .3);
+      margin: 1rem 0;
+    }
+    .video-embed iframe, .video-embed video {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--muted);
+      font-size: .88rem;
+      text-align: center;
+      padding: 2rem;
+      gap: .5rem;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+    .step-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .step-card .num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: .4rem;
+    }
+    .step-card p {
+      font-size: .82rem;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .5rem;
+      background: var(--accent);
+      color: var(--white);
+      padding: .75rem 1.5rem;
+      border-radius: 10px;
+      font-size: .9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all .2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .content-layout { grid-template-columns: 1fr; }
+      aside.toc {
+        position: static;
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+        padding: 1rem;
+      }
+      .toc-title { width: 100%; margin-bottom: .5rem; }
+      aside.toc a {
+        font-size: .75rem;
+        padding: .4rem .65rem;
+        border: 1px solid var(--border);
+        border-left: 1px solid var(--border);
+      }
+    }
+  
+/* ══════════════════════════════════════════════════════════
+   📱 MOBILE RESPONSIVE FIX — 3E Consulting Reports
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Tablet (≤900px) ── */
+@media (max-width: 900px) {
+  .kpi-row { grid-template-columns: repeat(2,1fr) !important; }
+  .visa-grid, .charts-2col, .stats-grid, .grid-2, .two-col { grid-template-columns: 1fr !important; }
+}
+
+/* ── Mobile (≤768px) ── */
+@media (max-width: 768px) {
+  body { padding-top: 64px !important; }
+
+  /* Nav */
+  nav.site-nav, nav { padding: .7rem 1rem !important; }
+  .nav-links { display: none !important; }
+  .nav-brand-text { font-size: .92rem !important; }
+  .nav-brand img, .nav-brand-text + img, a.nav-brand img { height: 30px !important; width: 30px !important; }
+  .nav-menu-btn { padding: .45rem .9rem !important; font-size: .78rem !important; }
+  .nav-dropdown { min-width: 280px !important; max-width: 92vw !important; right: -1rem !important; }
+
+  /* Hero / page header */
+  .page-hero { padding: 2.2rem 5vw 1.5rem !important; }
+  .page-hero h1 { font-size: clamp(1.6rem,7vw,2.2rem) !important; word-break: break-word; }
+  .page-hero p { font-size: .92rem !important; }
+
+  /* KPI cards */
+  .kpi-row { grid-template-columns: 1fr 1fr !important; gap: .6rem !important; padding: 0 4vw !important; }
+  .kpi-card { padding: .9rem 1rem !important; }
+  .kpi-card .kpi-num { font-size: 1.35rem !important; }
+  .kpi-card .kpi-label { font-size: .7rem !important; }
+
+  /* Layout: sidebar becomes horizontal scroll chips */
+  .content-layout { grid-template-columns: 1fr !important; padding: 0 4vw 3rem !important; gap: 1.25rem !important; }
+  aside.toc {
+    position: static !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: .4rem !important;
+    padding: 1rem !important;
+  }
+  .toc-title { width: 100% !important; margin-bottom: .5rem !important; }
+  aside.toc a {
+    font-size: .75rem !important;
+    padding: .4rem .65rem !important;
+    border: 1px solid var(--border) !important;
+    border-left: 1px solid var(--border) !important;
+  }
+
+  /* Report sections */
+  .report-section { padding: 1.25rem 1.1rem !important; border-radius: 12px !important; }
+  .report-section h2 { font-size: 1.2rem !important; }
+  .report-section .subtitle { font-size: .82rem !important; }
+  .report-section p, .report-section ul, .report-section li { font-size: .9rem !important; }
+
+  /* Visa / info cards */
+  .visa-grid { grid-template-columns: 1fr !important; gap: .75rem !important; }
+  .visa-card { padding: 1rem !important; }
+  .visa-card h3 { font-size: .92rem !important; }
+  .visa-card p { font-size: .82rem !important; }
+
+  /* Tables: horizontal scroll wrapper */
+  .rights-table, table { font-size: .78rem !important; }
+  .rights-table th, .rights-table td,
+  table th, table td { padding: .55rem .6rem !important; white-space: nowrap; }
+
+  /* Steps */
+  .step-item { padding: .85rem 1rem !important; gap: .75rem !important; }
+  .step-num { font-size: 1.15rem !important; min-width: 1.6rem !important; }
+  .step-item h4 { font-size: .88rem !important; }
+  .step-item p { font-size: .8rem !important; }
+
+  /* Charts */
+  .charts-2col { grid-template-columns: 1fr !important; gap: .75rem !important; }
+  .chart-box { padding: 1rem !important; }
+  .chart-box h3 { font-size: .85rem !important; }
+  .chart-box .chart-desc { font-size: .75rem !important; }
+  .chart-wrap, .chart-wrap.tall { max-height: 240px !important; }
+
+  /* Tip / source */
+  .tip-box { padding: .85rem 1rem !important; font-size: .82rem !important; }
+  .source-note { font-size: .7rem !important; }
+}
+
+/* ── Small mobile (≤480px) ── */
+@media (max-width: 480px) {
+  nav.site-nav, nav { padding: .6rem .85rem !important; }
+  .nav-brand-text { font-size: .8rem !important; }
+  .nav-brand img, a.nav-brand img { height: 26px !important; width: 26px !important; border-radius: 6px !important; }
+  .nav-menu-btn { padding: .4rem .8rem !important; font-size: .72rem !important; }
+
+  .page-hero h1 { font-size: 1.5rem !important; line-height: 1.25 !important; }
+  .page-hero p { font-size: .85rem !important; }
+
+  .kpi-row { grid-template-columns: 1fr 1fr !important; }
+  .kpi-card .kpi-num { font-size: 1.15rem !important; }
+  .kpi-card .kpi-label { font-size: .65rem !important; }
+
+  .report-section { padding: 1rem .85rem !important; }
+  .report-section h2 { font-size: 1.05rem !important; }
+
+  .visa-card h3, .step-item h4 { font-size: .85rem !important; }
+
+  /* Wrap tables with horizontal scroll */
+  .table-wrap, .rights-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+}
+
+/* Generic table scroll fallback if no wrapper exists */
+.report-section table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand" style="display:flex;align-items:center;gap:9px;text-decoration:none;">
+    <span class="nav-brand-text" style="font-family:\'Syne\',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3<span style="color:#4ade80">E</span><span style="color:#fb923c"> Consulting</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Leistungen</a></li>
+    <li><a href="index.html#process">Ablauf</a></li>
+    <li><a href="index.html#about">Über uns</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+  <div class="nav-menu">
+    <button type="button" class="nav-menu-btn" id="menuToggle" aria-expanded="false">MENÜ ▾</button>
+    <div class="nav-dropdown" id="menuDropdown" hidden>
+      <ul class="menu-level-1">
+        <li class="has-sub">
+          <button type="button" class="menu-toggle">Service</button>
+          <ul class="menu-level-2" hidden>
+            <li class="has-sub">
+              <button type="button" class="menu-toggle">Bewerber</button>
+              <ul class="menu-level-3" hidden>
+                <li><a href="service-bewerber.html#dokumentenorganisation">Dokumentenorganisation</a></li>
+                <li><a href="service-bewerber.html#bewerbungsprozess">Bewerbungsprozess</a></li>
+                <li><a href="service-bewerber.html#profil-video">Profil-Video Anleitung</a></li>
+                <li><a href="service-bewerber.html#erste-schritte">Erste Schritte in Deutschland</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <button type="button" class="menu-toggle">Unternehmen</button>
+              <ul class="menu-level-3" hidden>
+                <li><a href="service-unternehmen.html#vermittlung">Vermittlung von Fachkräften</a></li>
+                <li><a href="service-unternehmen.html#beschwerdeverfahren">Beschwerdeverfahren</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+         <li><a href="Bewerbung.html">Bewerbung</a></li>
+        <li><a href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
+        <li><a href="arbeitundsozialrecht.html">Arbeits- und Sozialrecht</a></li>
+        <li><a href="aufenthaltsrecht.html">Aufenthaltsrecht</a></li>
+        <li><a href="alltag-deutschland.html">Alltag in Deutschland</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="section-tag">Bewerbung · Richtlinien</div>
+  <h1>Richtlinien für <em>Bewerber</em></h1>
+  <p>Willkommen bei 3E Consulting. Um die Qualität unserer Plattform sicherzustellen und die Chancen aller Bewerber zu erhöhen, bitten wir Sie, die folgenden Richtlinien zu beachten.</p>
+</header>
+
+<div class="content-layout">
+
+  <aside class="toc">
+    <div class="toc-title">Inhaltsverzeichnis</div>
+    <a href="#persoenliche-angaben">1. Persönliche Angaben</a>
+    <a href="#dokumente">2. Dokumente</a>
+    <a href="#lebenslauf">3. Lebenslauf</a>
+    <a href="#motivationsschreiben">4. Motivationsschreiben</a>
+    <a href="#profil-video">5. Profil-Video</a>
+    <a href="#verhalten">6. Verhalten</a>
+    <a href="#ueberpruefung">7. Überprüfung</a>
+    <a href="#zustimmung">8. Zustimmung</a>
+    <a href="#video-anleitung">🎬 Videoanleitung</a>
+  </aside>
+
+  <main>
+
+    <section id="persoenliche-angaben" class="guideline-section">
+      <div class="section-num">01</div>
+      <h2>Persönliche Angaben</h2>
+      <p>Alle Bewerber müssen vollständige und korrekte persönliche Daten angeben:</p>
+      <ul>
+        <li>Vorname</li>
+        <li>Nachname</li>
+        <li>Geburtsdatum</li>
+        <li>Staatsangehörigkeit</li>
+        <li>Wohnort</li>
+        <li>E-Mail-Adresse</li>
+        <li>Telefonnummer</li>
+      </ul>
+      <p>Falsche oder unvollständige Angaben können zur Sperrung des Profils führen.</p>
+    </section>
+
+    <section id="dokumente" class="guideline-section">
+      <div class="section-num">02</div>
+      <h2>Dokumente</h2>
+      <p>Alle hochgeladenen Dokumente müssen:</p>
+      <ul>
+        <li>echt und gültig sein</li>
+        <li>vollständig lesbar sein</li>
+        <li>den tatsächlichen Qualifikationen entsprechen</li>
+      </ul>
+      <p>Gefälschte Dokumente, manipulierte Zertifikate oder falsche Angaben führen zur sofortigen Entfernung des Profils von der Plattform.</p>
+      <p>Falls erforderlich, müssen Dokumente ins Deutsche oder Englische übersetzt werden.</p>
+    </section>
+
+    <section id="lebenslauf" class="guideline-section">
+      <div class="section-num">03</div>
+      <h2>Lebenslauf</h2>
+      <p>Der Lebenslauf sollte:</p>
+      <ul>
+        <li>aktuell sein</li>
+        <li>alle wichtigen Informationen enthalten</li>
+        <li>in deutscher oder englischer Sprache vorliegen</li>
+        <li>übersichtlich und professionell gestaltet sein</li>
+      </ul>
+    </section>
+
+    <section id="motivationsschreiben" class="guideline-section">
+      <div class="section-num">04</div>
+      <h2>Motivationsschreiben</h2>
+      <p>Das Motivationsschreiben sollte:</p>
+      <ul>
+        <li>individuell erstellt werden</li>
+        <li>die Motivation für die Ausbildung oder Stelle erklären</li>
+        <li>respektvoll und professionell formuliert sein</li>
+      </ul>
+    </section>
+
+    <section id="profil-video" class="guideline-section">
+      <div class="section-num">05</div>
+      <h2>Profil-Video</h2>
+      <p>Das Profil-Video sollte:</p>
+      <ul>
+        <li>zwischen 60 und 90 Sekunden dauern</li>
+        <li>eine gute Bild- und Tonqualität haben</li>
+        <li>in ruhiger Umgebung aufgenommen werden</li>
+        <li>den Bewerber deutlich zeigen</li>
+      </ul>
+      <p><strong style="color:var(--white)">Empfohlene Inhalte:</strong></p>
+      <ul>
+        <li>kurze Vorstellung</li>
+        <li>Herkunft</li>
+        <li>gewünschter Ausbildungsberuf</li>
+        <li>Motivation</li>
+        <li>Zukunftsziele</li>
+      </ul>
+      <p>Unangemessene oder beleidigende Inhalte sind nicht erlaubt.</p>
+    </section>
+
+    <section id="verhalten" class="guideline-section">
+      <div class="section-num">06</div>
+      <h2>Verhalten auf der Plattform</h2>
+      <p>Alle Bewerber verpflichten sich zu:</p>
+      <ul>
+        <li>respektvollem Umgang</li>
+        <li>ehrlicher Kommunikation</li>
+        <li>professionellem Verhalten gegenüber Unternehmen</li>
+      </ul>
+      <p>Beleidigungen, Diskriminierung oder missbräuchliche Nutzung führen zur Sperrung des Kontos.</p>
+    </section>
+
+    <section id="ueberpruefung" class="guideline-section">
+      <div class="section-num">07</div>
+      <h2>Überprüfung der Daten</h2>
+      <p>3E Consulting behält sich das Recht vor, hochgeladene Dokumente und Angaben zu überprüfen.</p>
+      <p>Bei Verdacht auf Fälschung oder Missbrauch kann das Profil jederzeit deaktiviert werden.</p>
+    </section>
+
+    <section id="zustimmung" class="guideline-section">
+      <div class="section-num">08</div>
+      <h2>Zustimmung</h2>
+      <p>Mit der Registrierung auf 3E Consulting bestätigen Sie, dass alle Angaben wahrheitsgemäß sind und Sie diese Richtlinien akzeptieren.</p>
+      <a href="../bewerben.html" class="btn-primary">Jetzt registrieren →</a>
+    </section>
+
+    <!-- Videoanleitung -->
+    <section id="video-anleitung" class="guideline-section video-section">
+      <div class="section-num">09</div>
+      <h2>🎬 Videoanleitung — So bewerben Sie sich</h2>
+      <p>In diesem Video erfahren Sie Schritt für Schritt, wie Sie sich auf unserer Plattform bewerben und Ihr Profil vollständig einreichen.</p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="num">1</div>
+          <p>Konto erstellen &amp; anmelden</p>
+        </div>
+        <div class="step-card">
+          <div class="num">2</div>
+          <p>Persönliche Daten ausfüllen</p>
+        </div>
+        <div class="step-card">
+          <div class="num">3</div>
+          <p>Dokumente hochladen</p>
+        </div>
+        <div class="step-card">
+          <div class="num">4</div>
+          <p>Profil-Video aufnehmen</p>
+        </div>
+        <div class="step-card">
+          <div class="num">5</div>
+          <p>Profil absenden &amp; warten</p>
+        </div>
+      </div>
+
+      <div class="video-embed" id="videoContainer">
+        <!-- Option A: YouTube einbetten (iframe auskommentieren entfernen) -->
+        <!-- <iframe src="https://www.youtube.com/embed/IHRE_VIDEO_ID" allowfullscreen title="So bewerben Sie sich"></iframe> -->
+
+        <!-- Option B: Lokales Video — Datei unter videos/bewerbung-anleitung.mp4 ablegen -->
+        <video id="anleitungVideo" controls style="display:none">
+          <source src="../videos/bewerbung-anleitung.mp4" type="video/mp4">
+          <source src="../videos/bewerbung-anleitung.webm" type="video/webm">
+        </video>
+
+        <div class="video-placeholder" id="videoFallback">
+          <span style="font-size:2rem">🎥</span>
+          <strong style="color:var(--white)">Videoanleitung: So bewerben Sie sich</strong>
+          Video wird in Kürze verfügbar sein.<br>
+          <small>Legen Sie Ihr Video unter <code>videos/bewerbung-anleitung.mp4</code> ab<br>
+          oder betten Sie ein YouTube-Video im Quellcode ein.</small>
+        </div>
+      </div>
+
+      <p style="margin-top:1.25rem">Bereit? Starten Sie jetzt Ihre Bewerbung:</p>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem">
+        <a href="../bewerben.html" class="btn-primary">Registrieren →</a>
+        <a href="../login_bewerber.php" class="btn-primary" style="background:transparent;border:1px solid var(--border)">Bereits registriert? Einloggen</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const menuDropdown = document.getElementById('menuDropdown');
+
+menuToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = !menuDropdown.hidden;
+  menuDropdown.hidden = open;
+  menuToggle.setAttribute('aria-expanded', String(!open));
+});
+
+document.querySelectorAll('.menu-toggle').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const sub = btn.nextElementSibling;
+    sub.hidden = !sub.hidden;
+    btn.classList.toggle('open', !sub.hidden);
+  });
+});
+
+document.addEventListener('click', () => {
+  menuDropdown.hidden = true;
+  menuToggle.setAttribute('aria-expanded', 'false');
+  document.querySelectorAll('.menu-level-2, .menu-level-3').forEach(u => u.hidden = true);
+  document.querySelectorAll('.menu-toggle').forEach(b => b.classList.remove('open'));
+});
+
+menuDropdown.addEventListener('click', (e) => e.stopPropagation());
+
+const tocLinks = document.querySelectorAll('aside.toc a');
+const sections = document.querySelectorAll('.guideline-section');
+
+function setActiveToc(id) {
+  tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+}
+
+if (location.hash) setActiveToc(location.hash.slice(1));
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) setActiveToc(entry.target.id);
+  });
+}, { rootMargin: '-40% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// Video anzeigen wenn Datei vorhanden, sonst Platzhalter
+const video = document.getElementById('anleitungVideo');
+const fallback = document.getElementById('videoFallback');
+if (video && fallback) {
+  video.addEventListener('loadeddata', () => {
+    video.style.display = 'block';
+    fallback.style.display = 'none';
+  });
+  video.addEventListener('error', () => {
+    video.style.display = 'none';
+    fallback.style.display = 'flex';
+  });
+  video.load();
+}
+</script>
+
+</body>
+</html>
