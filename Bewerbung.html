@@ -6,6 +6,7 @@
   <title>Richtlinien für Bewerber — 3E Consulting</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -43,16 +44,6 @@
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
-
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--white);
-      text-decoration: none;
-      letter-spacing: .05em;
-    }
-    .nav-logo span { color: var(--accent); }
 
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
@@ -260,15 +251,6 @@
     }
     .guideline-section li { margin-bottom: .35rem; }
 
-    .intro-box {
-      background: rgba(74, 222, 128, .06);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .intro-box p { margin: 0; color: var(--muted); line-height: 1.7; }
-
     .video-section {
       background: rgba(217, 119, 6, .06);
       border: 1px solid rgba(217, 119, 6, .25);
@@ -348,143 +330,79 @@
       transform: translateY(-2px);
     }
 
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .content-layout { grid-template-columns: 1fr; }
-      aside.toc {
-        position: static;
-        display: flex;
-        flex-wrap: wrap;
-        gap: .4rem;
-        padding: 1rem;
-      }
-      .toc-title { width: 100%; margin-bottom: .5rem; }
-      aside.toc a {
-        font-size: .75rem;
-        padding: .4rem .65rem;
-        border: 1px solid var(--border);
-        border-left: 1px solid var(--border);
-      }
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .kpi-row { grid-template-columns: repeat(2,1fr) !important; }
+      .visa-grid, .charts-2col, .stats-grid, .grid-2, .two-col { grid-template-columns: 1fr !important; }
     }
-  
-/* ══════════════════════════════════════════════════════════
-   📱 MOBILE RESPONSIVE FIX — 3E Consulting Reports
-   ══════════════════════════════════════════════════════════ */
 
-/* ── Tablet (≤900px) ── */
-@media (max-width: 900px) {
-  .kpi-row { grid-template-columns: repeat(2,1fr) !important; }
-  .visa-grid, .charts-2col, .stats-grid, .grid-2, .two-col { grid-template-columns: 1fr !important; }
-}
+    @media (max-width: 768px) {
+      body { padding-top: 64px !important; }
+      nav.site-nav { padding: .7rem 1rem !important; }
+      .nav-links { display: none !important; }
+      .nav-menu-btn { padding: .45rem .9rem !important; font-size: .78rem !important; }
+      .nav-dropdown {
+        right: 0 !important;
+        left: auto !important;
+        min-width: 0 !important;
+        width: calc(100vw - 2rem) !important;
+        max-width: 320px !important;
+      }
+      .page-hero { padding: 2.2rem 5vw 1.5rem !important; }
+      .page-hero h1 { font-size: clamp(1.6rem,7vw,2.2rem) !important; word-break: break-word; }
+      .page-hero p { font-size: .92rem !important; }
+      .kpi-row { grid-template-columns: 1fr 1fr !important; gap: .6rem !important; padding: 0 4vw !important; }
+      .kpi-card { padding: .9rem 1rem !important; }
+      .kpi-card .kpi-num { font-size: 1.35rem !important; }
+      .kpi-card .kpi-label { font-size: .7rem !important; }
+      .content-layout { grid-template-columns: 1fr !important; padding: 0 4vw 3rem !important; gap: 1.25rem !important; }
+      aside.toc {
+        position: static !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: .4rem !important;
+        padding: 1rem !important;
+      }
+      .toc-title { width: 100% !important; margin-bottom: .5rem !important; }
+      aside.toc a {
+        font-size: .75rem !important;
+        padding: .4rem .65rem !important;
+        border: 1px solid var(--border) !important;
+        border-left: 1px solid var(--border) !important;
+      }
+      .guideline-section { padding: 1.25rem 1.1rem !important; border-radius: 12px !important; }
+      .guideline-section h2 { font-size: 1.2rem !important; }
+      .guideline-section p, .guideline-section ul, .guideline-section li { font-size: .9rem !important; }
+      .steps-grid { grid-template-columns: 1fr 1fr !important; gap: .6rem !important; }
+      .step-card { padding: .85rem !important; }
+      .step-card .num { font-size: 1.2rem !important; }
+      .video-embed { border-radius: 8px !important; }
+      .guideline-section table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    }
 
-/* ── Mobile (≤768px) ── */
-@media (max-width: 768px) {
-  body { padding-top: 64px !important; }
-
-  /* Nav */
-  nav.site-nav, nav { padding: .7rem 1rem !important; }
-  .nav-links { display: none !important; }
-  .nav-brand-text { font-size: .92rem !important; }
-  .nav-brand img, .nav-brand-text + img, a.nav-brand img { height: 30px !important; width: 30px !important; }
-  .nav-menu-btn { padding: .45rem .9rem !important; font-size: .78rem !important; }
-  .nav-dropdown { min-width: 280px !important; max-width: 92vw !important; right: -1rem !important; }
-
-  /* Hero / page header */
-  .page-hero { padding: 2.2rem 5vw 1.5rem !important; }
-  .page-hero h1 { font-size: clamp(1.6rem,7vw,2.2rem) !important; word-break: break-word; }
-  .page-hero p { font-size: .92rem !important; }
-
-  /* KPI cards */
-  .kpi-row { grid-template-columns: 1fr 1fr !important; gap: .6rem !important; padding: 0 4vw !important; }
-  .kpi-card { padding: .9rem 1rem !important; }
-  .kpi-card .kpi-num { font-size: 1.35rem !important; }
-  .kpi-card .kpi-label { font-size: .7rem !important; }
-
-  /* Layout: sidebar becomes horizontal scroll chips */
-  .content-layout { grid-template-columns: 1fr !important; padding: 0 4vw 3rem !important; gap: 1.25rem !important; }
-  aside.toc {
-    position: static !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: .4rem !important;
-    padding: 1rem !important;
-  }
-  .toc-title { width: 100% !important; margin-bottom: .5rem !important; }
-  aside.toc a {
-    font-size: .75rem !important;
-    padding: .4rem .65rem !important;
-    border: 1px solid var(--border) !important;
-    border-left: 1px solid var(--border) !important;
-  }
-
-  /* Report sections */
-  .report-section { padding: 1.25rem 1.1rem !important; border-radius: 12px !important; }
-  .report-section h2 { font-size: 1.2rem !important; }
-  .report-section .subtitle { font-size: .82rem !important; }
-  .report-section p, .report-section ul, .report-section li { font-size: .9rem !important; }
-
-  /* Visa / info cards */
-  .visa-grid { grid-template-columns: 1fr !important; gap: .75rem !important; }
-  .visa-card { padding: 1rem !important; }
-  .visa-card h3 { font-size: .92rem !important; }
-  .visa-card p { font-size: .82rem !important; }
-
-  /* Tables: horizontal scroll wrapper */
-  .rights-table, table { font-size: .78rem !important; }
-  .rights-table th, .rights-table td,
-  table th, table td { padding: .55rem .6rem !important; white-space: nowrap; }
-
-  /* Steps */
-  .step-item { padding: .85rem 1rem !important; gap: .75rem !important; }
-  .step-num { font-size: 1.15rem !important; min-width: 1.6rem !important; }
-  .step-item h4 { font-size: .88rem !important; }
-  .step-item p { font-size: .8rem !important; }
-
-  /* Charts */
-  .charts-2col { grid-template-columns: 1fr !important; gap: .75rem !important; }
-  .chart-box { padding: 1rem !important; }
-  .chart-box h3 { font-size: .85rem !important; }
-  .chart-box .chart-desc { font-size: .75rem !important; }
-  .chart-wrap, .chart-wrap.tall { max-height: 240px !important; }
-
-  /* Tip / source */
-  .tip-box { padding: .85rem 1rem !important; font-size: .82rem !important; }
-  .source-note { font-size: .7rem !important; }
-}
-
-/* ── Small mobile (≤480px) ── */
-@media (max-width: 480px) {
-  nav.site-nav, nav { padding: .6rem .85rem !important; }
-  .nav-brand-text { font-size: .8rem !important; }
-  .nav-brand img, a.nav-brand img { height: 26px !important; width: 26px !important; border-radius: 6px !important; }
-  .nav-menu-btn { padding: .4rem .8rem !important; font-size: .72rem !important; }
-
-  .page-hero h1 { font-size: 1.5rem !important; line-height: 1.25 !important; }
-  .page-hero p { font-size: .85rem !important; }
-
-  .kpi-row { grid-template-columns: 1fr 1fr !important; }
-  .kpi-card .kpi-num { font-size: 1.15rem !important; }
-  .kpi-card .kpi-label { font-size: .65rem !important; }
-
-  .report-section { padding: 1rem .85rem !important; }
-  .report-section h2 { font-size: 1.05rem !important; }
-
-  .visa-card h3, .step-item h4 { font-size: .85rem !important; }
-
-  /* Wrap tables with horizontal scroll */
-  .table-wrap, .rights-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
-}
-
-/* Generic table scroll fallback if no wrapper exists */
-.report-section table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
+    @media (max-width: 480px) {
+      nav.site-nav { padding: .6rem .85rem !important; }
+      .nav-menu-btn { padding: .4rem .8rem !important; font-size: .72rem !important; }
+      .nav-dropdown {
+        width: calc(100vw - 1.5rem) !important;
+        max-width: 100% !important;
+        right: -.5rem !important;
+      }
+      .page-hero h1 { font-size: 1.5rem !important; line-height: 1.25 !important; }
+      .page-hero p { font-size: .85rem !important; }
+      .guideline-section { padding: 1rem .85rem !important; }
+      .guideline-section h2 { font-size: 1.05rem !important; }
+      .steps-grid { grid-template-columns: 1fr !important; }
+    }
   </style>
 </head>
 <body>
 
+<!-- ═══ NAV ═══ -->
 <nav class="site-nav">
   <a href="index.html" class="nav-brand" style="display:flex;align-items:center;gap:9px;text-decoration:none;">
-    <span class="nav-brand-text" style="font-family:\'Syne\',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3<span style="color:#4ade80">E</span><span style="color:#fb923c"> Consulting</span></span>
+    <img src="logo_3e.jpg" alt="3E" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0">
+    <span class="nav-brand-text" style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3<span style="color:#4ade80">E</span><span style="color:#fb923c"> Consulting</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html#services">Leistungen</a></li>
@@ -517,7 +435,7 @@
             </li>
           </ul>
         </li>
-         <li><a href="Bewerbung.html">Bewerbung</a></li>
+        <li><a href="Bewerbung.html" class="active">Bewerbung</a></li>
         <li><a href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
         <li><a href="arbeitundsozialrecht.html">Arbeits- und Sozialrecht</a></li>
         <li><a href="aufenthaltsrecht.html">Aufenthaltsrecht</a></li>
@@ -545,7 +463,7 @@
     <a href="#verhalten">6. Verhalten</a>
     <a href="#ueberpruefung">7. Überprüfung</a>
     <a href="#zustimmung">8. Zustimmung</a>
-    <a href="#video-anleitung">🎬 Videoanleitung</a>
+    <a href="#video-anleitung"><i class="bi bi-camera-video" style="color:var(--accent)"></i> Videoanleitung</a>
   </aside>
 
   <main>
@@ -652,7 +570,7 @@
     <!-- Videoanleitung -->
     <section id="video-anleitung" class="guideline-section video-section">
       <div class="section-num">09</div>
-      <h2>🎬 Videoanleitung — So bewerben Sie sich</h2>
+      <h2><i class="bi bi-camera-video-fill" style="color:var(--accent);margin-right:.4rem"></i>Videoanleitung — So bewerben Sie sich</h2>
       <p>In diesem Video erfahren Sie Schritt für Schritt, wie Sie sich auf unserer Plattform bewerben und Ihr Profil vollständig einreichen.</p>
 
       <div class="steps-grid">
@@ -679,17 +597,13 @@
       </div>
 
       <div class="video-embed" id="videoContainer">
-        <!-- Option A: YouTube einbetten (iframe auskommentieren entfernen) -->
-        <!-- <iframe src="https://www.youtube.com/embed/IHRE_VIDEO_ID" allowfullscreen title="So bewerben Sie sich"></iframe> -->
-
-        <!-- Option B: Lokales Video — Datei unter videos/bewerbung-anleitung.mp4 ablegen -->
         <video id="anleitungVideo" controls style="display:none">
           <source src="../videos/bewerbung-anleitung.mp4" type="video/mp4">
           <source src="../videos/bewerbung-anleitung.webm" type="video/webm">
         </video>
 
         <div class="video-placeholder" id="videoFallback">
-          <span style="font-size:2rem">🎥</span>
+          <i class="bi bi-camera-video" style="font-size:2rem;color:var(--accent)"></i>
           <strong style="color:var(--white)">Videoanleitung: So bewerben Sie sich</strong>
           Video wird in Kürze verfügbar sein.<br>
           <small>Legen Sie Ihr Video unter <code>videos/bewerbung-anleitung.mp4</code> ab<br>
@@ -711,11 +625,35 @@
 const menuToggle = document.getElementById('menuToggle');
 const menuDropdown = document.getElementById('menuDropdown');
 
+function positionDropdown() {
+  if (window.innerWidth <= 768) {
+    // على الموبايل: fixed بعرض كامل تقريباً، مثبت من اليمين
+    const rect = menuToggle.getBoundingClientRect();
+    menuDropdown.style.position = 'fixed';
+    menuDropdown.style.top = (rect.bottom + 8) + 'px';
+    menuDropdown.style.right = '1rem';
+    menuDropdown.style.left = '1rem';
+    menuDropdown.style.width = 'auto';
+    menuDropdown.style.maxWidth = '100%';
+    menuDropdown.style.minWidth = '0';
+  } else {
+    // الديسكتوب: الوضع الأصلي
+    menuDropdown.style.position = '';
+    menuDropdown.style.top = '';
+    menuDropdown.style.right = '0';
+    menuDropdown.style.left = '';
+    menuDropdown.style.width = '';
+    menuDropdown.style.maxWidth = '';
+    menuDropdown.style.minWidth = '';
+  }
+}
+
 menuToggle.addEventListener('click', (e) => {
   e.stopPropagation();
   const open = !menuDropdown.hidden;
   menuDropdown.hidden = open;
   menuToggle.setAttribute('aria-expanded', String(!open));
+  if (!open) positionDropdown();
 });
 
 document.querySelectorAll('.menu-toggle').forEach(btn => {
@@ -753,7 +691,6 @@ const observer = new IntersectionObserver(entries => {
 
 sections.forEach(s => observer.observe(s));
 
-// Video anzeigen wenn Datei vorhanden, sonst Platzhalter
 const video = document.getElementById('anleitungVideo');
 const fallback = document.getElementById('videoFallback');
 if (video && fallback) {
