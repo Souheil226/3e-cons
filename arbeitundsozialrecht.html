@@ -32,8 +32,21 @@
     .nav-link-item:hover{color:#fff!important}
     .btn-menu{background:var(--accent);color:#fff;border:none;font-size:.82rem;font-weight:500;border-radius:8px;padding:.45rem 1.1rem}
     .btn-menu:hover{background:#b45309;color:#fff}
-    .custom-dropdown{background:rgba(15,32,23,.97);border:1px solid var(--border);border-radius:12px;padding:.75rem;min-width:300px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
-    .custom-dropdown .dropdown-item{color:rgba(255,255,255,.7);font-size:.85rem;border-radius:6px;padding:.5rem .7rem}
+
+    /* ── DROPDOWN ── */
+    .custom-dropdown{
+      background:rgba(15,32,23,.97);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:.75rem;
+      min-width:260px;
+      max-width:calc(100vw - 1.5rem);
+      box-shadow:0 20px 50px rgba(0,0,0,.4);
+    }
+    .custom-dropdown .dropdown-item{
+      color:rgba(255,255,255,.7);font-size:.85rem;border-radius:6px;
+      padding:.5rem .7rem;white-space:normal;
+    }
     .custom-dropdown .dropdown-item:hover{background:var(--glass);color:#fff}
     .custom-dropdown .dropdown-divider{border-color:var(--border)}
     .sub-label{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:.4rem .7rem .1rem}
@@ -67,9 +80,13 @@
 
     /* ── INFO CARDS ── */
     .info-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:12px;padding:1.1rem;height:100%}
-    .info-card h3{font-family:var(--font-display);font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+    .info-card h3{
+      font-family:var(--font-display);font-size:.95rem;font-weight:700;
+      margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+    }
+    .info-card h3 .bi{font-size:1.05rem;color:var(--accent);flex-shrink:0}
     .info-card p{font-size:.85rem;color:var(--muted);margin:0}
-    .law-badge{display:inline-block;font-size:.65rem;font-weight:600;padding:.2rem .5rem;border-radius:20px;background:rgba(74,222,128,.15);color:var(--bright);letter-spacing:.04em;margin-left:.25rem}
+    .law-badge{display:inline-block;font-size:.65rem;font-weight:600;padding:.2rem .5rem;border-radius:20px;background:rgba(74,222,128,.15);color:var(--bright);letter-spacing:.04em;margin-left:.1rem}
 
     /* ── CHARTS ── */
     .chart-box{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
@@ -87,7 +104,13 @@
 
     /* ── INSURANCE LIST ── */
     .insurance-item{display:flex;gap:1rem;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.1rem}
-    .insurance-icon{font-size:1.4rem;line-height:1;flex-shrink:0}
+    .insurance-icon{
+      width:2.2rem;height:2.2rem;border-radius:8px;
+      background:rgba(217,119,6,.15);
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;
+    }
+    .insurance-icon .bi{font-size:1.1rem;color:var(--accent)}
     .insurance-item h4{font-family:var(--font-display);font-size:.9rem;font-weight:700;margin-bottom:.25rem;color:#fff}
     .insurance-item p{font-size:.83rem;color:var(--muted);margin:0}
 
@@ -97,21 +120,47 @@
 
     .source-note{font-size:.73rem;color:rgba(134,163,142,.6);margin-top:1.25rem;padding-top:.9rem;border-top:1px solid var(--border);font-style:italic}
 
-    /* ── MOBILE ── */
+    /* ══ MOBILE ══════════════════════════════════════════════════ */
+    @media(max-width:991px){
+      .dropdown-menu.custom-dropdown{
+        right:0 !important;
+        left:auto !important;
+      }
+    }
+
     @media(max-width:768px){
       body{padding-top:64px}
       .page-hero h1{font-size:clamp(1.65rem,7vw,2.2rem)}
+      .page-hero p{font-size:.9rem}
+
       .kpi-num{font-size:1.25rem}
       .kpi-label{font-size:.68rem}
+
       .report-section{padding:1.1rem}
       .report-section h2{font-size:1.15rem}
+      .report-section .subtitle{font-size:.82rem}
+
       .chart-wrap{height:210px}
       .chart-wrap.tall{height:185px}
+
+      .insurance-item{padding:.75rem .85rem;gap:.75rem}
+      .insurance-icon{width:1.9rem;height:1.9rem}
+      .insurance-icon .bi{font-size:.95rem}
+      .insurance-item h4{font-size:.85rem}
+      .insurance-item p{font-size:.8rem}
     }
+
     @media(max-width:480px){
       .kpi-num{font-size:1.1rem}
+      .kpi-label{font-size:.65rem}
       .report-section{padding:.9rem .8rem}
+      .report-section h2{font-size:1.05rem}
       .rights-table{font-size:.78rem}
+
+      .custom-dropdown{
+        min-width:0 !important;
+        width:calc(100vw - 1.5rem) !important;
+      }
     }
   </style>
 </head>
@@ -130,8 +179,10 @@
     <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#kontakt">Kontakt</a></li>
   </ul>
   <div class="dropdown">
-    <button class="btn-menu btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">MENÜ ▾</button>
-    <ul class="dropdown-menu custom-dropdown">
+    <button class="btn-menu btn" type="button"
+            data-bs-toggle="dropdown" data-bs-offset="0,8"
+            aria-expanded="false">MENÜ ▾</button>
+    <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
       <li><div class="sub-label">Service — Bewerber</div></li>
       <li><a class="dropdown-item ps-3" href="service-bewerber.html#dokumentenorganisation">↳ Dokumentenorganisation</a></li>
       <li><a class="dropdown-item ps-3" href="service-bewerber.html#bewerbungsprozess">↳ Bewerbungsprozess</a></li>
@@ -209,12 +260,12 @@
 
     <!-- TOC Mobile chips -->
     <div class="col-12 d-flex d-lg-none flex-wrap gap-2 mb-1">
-      <a href="#arbeitsvertrag"   class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Arbeitsvertrag</a>
-      <a href="#arbeitszeit"      class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Arbeitszeit</a>
+      <a href="#arbeitsvertrag"    class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Arbeitsvertrag</a>
+      <a href="#arbeitszeit"       class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Arbeitszeit</a>
       <a href="#sozialversicherung" class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Sozialvers.</a>
-      <a href="#urlaub-krankheit" class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Urlaub</a>
-      <a href="#kuendigung"       class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Kündigung</a>
-      <a href="#familie"          class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Familie</a>
+      <a href="#urlaub-krankheit"  class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Urlaub</a>
+      <a href="#kuendigung"        class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Kündigung</a>
+      <a href="#familie"           class="btn btn-sm" style="background:var(--glass);color:var(--muted);border:1px solid var(--border);font-size:.73rem">Familie</a>
     </div>
 
     <!-- MAIN -->
@@ -229,25 +280,37 @@
         <div class="row g-3 mb-3">
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>📄 Pflichtangaben <span class="law-badge">Nachweisgesetz</span></h3>
+              <h3>
+                <i class="bi bi-file-text-fill"></i>
+                Pflichtangaben <span class="law-badge">Nachweisgesetz</span>
+              </h3>
               <p>Name, Arbeitsbeginn, Vergütung, Arbeitszeit, Urlaubstage, Kündigungsfristen — der Arbeitgeber muss diese schriftlich mitteilen.</p>
             </div>
           </div>
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>⏳ Probezeit</h3>
+              <h3>
+                <i class="bi bi-hourglass-split"></i>
+                Probezeit
+              </h3>
               <p>Maximal 6 Monate. Verkürzte Kündigungsfrist von 2 Wochen. Für Auszubildende meist 1–3 Monate.</p>
             </div>
           </div>
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>🎓 Ausbildungsvertrag</h3>
+              <h3>
+                <i class="bi bi-mortarboard-fill"></i>
+                Ausbildungsvertrag
+              </h3>
               <p>Auszubildende haben einen speziellen Vertrag nach dem Berufsbildungsgesetz (BBiG) — regelt Ausbildungsdauer, Vergütung und Prüfungen.</p>
             </div>
           </div>
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>🤝 Tarifvertrag</h3>
+              <h3>
+                <i class="bi bi-handshake-fill"></i>
+                Tarifvertrag
+              </h3>
               <p>In vielen Branchen gelten Tarifverträge — sie können bessere Löhne und Bedingungen als das Gesetz vorschreiben.</p>
             </div>
           </div>
@@ -304,35 +367,35 @@
         <p>Arbeitnehmer und Arbeitgeber zahlen gemeinsam in die <strong style="color:#fff">Sozialversicherung</strong> ein — automatisch vom Bruttogehalt.</p>
         <div class="d-flex flex-column gap-2 mb-3">
           <div class="insurance-item">
-            <div class="insurance-icon">🏥</div>
+            <div class="insurance-icon"><i class="bi bi-heart-pulse-fill"></i></div>
             <div>
               <h4>Krankenversicherung (KV)</h4>
               <p>Pflichtversicherung. Deckt Arztbesuche, Krankenhaus, Medikamente. Arbeitnehmeranteil ca. 7,3 % + Zusatzbeitrag.</p>
             </div>
           </div>
           <div class="insurance-item">
-            <div class="insurance-icon">👴</div>
+            <div class="insurance-icon"><i class="bi bi-person-fill-up"></i></div>
             <div>
               <h4>Rentenversicherung (RV)</h4>
               <p>Sichert das Einkommen im Alter. Arbeitnehmeranteil ca. 9,3 %. Mindestens 5 Jahre Beitragszeit für Anspruch.</p>
             </div>
           </div>
           <div class="insurance-item">
-            <div class="insurance-icon">📉</div>
+            <div class="insurance-icon"><i class="bi bi-graph-down-arrow"></i></div>
             <div>
               <h4>Arbeitslosenversicherung (AV)</h4>
               <p>Absicherung bei Jobverlust. Arbeitnehmeranteil ca. 1,3 %. Anspruch nach mindestens 12 Monaten Beitragszeit.</p>
             </div>
           </div>
           <div class="insurance-item">
-            <div class="insurance-icon">🤝</div>
+            <div class="insurance-icon"><i class="bi bi-hand-heart-fill"></i></div>
             <div>
               <h4>Pflegeversicherung (PV)</h4>
               <p>Finanziert Pflege im Alter oder bei Krankheit. Arbeitnehmeranteil ca. 1,7 %.</p>
             </div>
           </div>
           <div class="insurance-item">
-            <div class="insurance-icon">⚠️</div>
+            <div class="insurance-icon"><i class="bi bi-shield-fill-exclamation"></i></div>
             <div>
               <h4>Unfallversicherung (UV)</h4>
               <p>Wird allein vom Arbeitgeber bezahlt. Deckt Arbeits- und Wegeunfälle — kostenlos für den Arbeitnehmer.</p>
@@ -357,25 +420,37 @@
         <div class="row g-3 mb-3">
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>🏖️ Urlaubsanspruch</h3>
+              <h3>
+                <i class="bi bi-umbrella-fill"></i>
+                Urlaubsanspruch
+              </h3>
               <p>Mindestens <strong style="color:#fff">20 Werktage</strong> bei 5-Tage-Woche. Viele Tarifverträge gewähren 28–30 Tage.</p>
             </div>
           </div>
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>🤒 Krankmeldung</h3>
+              <h3>
+                <i class="bi bi-thermometer-half"></i>
+                Krankmeldung
+              </h3>
               <p>Ab dem 1. Krankheitstag Arbeitgeber informieren. Ab dem 3. Tag ist eine <strong style="color:#fff">ärztliche AU-Bescheinigung</strong> erforderlich.</p>
             </div>
           </div>
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>💶 Entgeltfortzahlung</h3>
+              <h3>
+                <i class="bi bi-cash-stack"></i>
+                Entgeltfortzahlung
+              </h3>
               <p>6 Wochen volles Gehalt. Danach zahlt die Krankenkasse <strong style="color:#fff">Krankengeld</strong> (ca. 70 % brutto, max. 90 % netto).</p>
             </div>
           </div>
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>🎓 Krankheit in der Ausbildung</h3>
+              <h3>
+                <i class="bi bi-mortarboard-fill"></i>
+                Krankheit in der Ausbildung
+              </h3>
               <p>Auszubildende haben denselben Anspruch. Längere Krankheit kann die Ausbildungszeit verlängern.</p>
             </div>
           </div>
@@ -427,25 +502,37 @@
         <div class="row g-3 mb-3">
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>🤰 Mutterschutz <span class="law-badge">MuSchG</span></h3>
+              <h3>
+                <i class="bi bi-person-heart"></i>
+                Mutterschutz <span class="law-badge">MuSchG</span>
+              </h3>
               <p>6 Wochen vor und 8 Wochen nach der Entbindung: Beschäftigungsverbot mit vollem Lohn. Kündigungsschutz ab Beginn der Schwangerschaft.</p>
             </div>
           </div>
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>👶 Elternzeit <span class="law-badge">BEEG</span></h3>
+              <h3>
+                <i class="bi bi-people-fill"></i>
+                Elternzeit <span class="law-badge">BEEG</span>
+              </h3>
               <p>Bis zu 3 Jahre pro Kind. Kündigungsschutz während der gesamten Elternzeit.</p>
             </div>
           </div>
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>💰 Elterngeld</h3>
+              <h3>
+                <i class="bi bi-piggy-bank-fill"></i>
+                Elterngeld
+              </h3>
               <p>65–67 % des Nettoeinkommens (min. 300 €, max. 1.800 €/Monat) für bis zu 14 Monate.</p>
             </div>
           </div>
           <div class="col-12 col-sm-6">
             <div class="info-card">
-              <h3>🏫 Kinderbetreuung</h3>
+              <h3>
+                <i class="bi bi-building-fill"></i>
+                Kinderbetreuung
+              </h3>
               <p>Ab dem 1. Lebensjahr hat jedes Kind einen Rechtsanspruch auf einen Kita-Platz.</p>
             </div>
           </div>
@@ -495,7 +582,8 @@ new Chart(document.getElementById('chartLohn'),{
   },
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} €/Std.`}}},
-    scales:{y:{beginAtZero:false,min:7,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+' €'}},x:{grid:{display:false}}}}
+    scales:{y:{beginAtZero:false,min:7,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+' €'}},
+      x:{grid:{display:false}}}}
 });
 
 // 2. Arbeitszeit doughnut
@@ -519,7 +607,8 @@ new Chart(document.getElementById('chartSozial'),{
   },
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ca. ${c.raw}%`}}},
-    scales:{y:{beginAtZero:true,max:20,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}}}
+    scales:{y:{beginAtZero:true,max:20,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+'%'}},
+      x:{grid:{display:false},ticks:{font:{size:10}}}}}
 });
 
 // 4. Urlaub bar
@@ -532,7 +621,8 @@ new Chart(document.getElementById('chartUrlaub'),{
   },
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Tage`}}},
-    scales:{y:{beginAtZero:true,max:35,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+' Tage'}},x:{grid:{display:false}}}}
+    scales:{y:{beginAtZero:true,max:35,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+' Tage'}},
+      x:{grid:{display:false}}}}
 });
 
 // 5. Eltern bar
