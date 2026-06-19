@@ -88,11 +88,30 @@ nav{
   max-width:1200px;margin:0 auto;width:100%;
 }
 .hero-eyebrow{
-  display:inline-flex;align-items:center;gap:.5rem;
+  display:inline-flex;align-items:center;gap:.6rem;
   font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
   color:var(--accent);margin-bottom:1.5rem;
 }
 .hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent)}
+
+@media(max-width:768px){
+  .hero-eyebrow{
+    display:block;
+    font-size:.62rem;
+    letter-spacing:.07em;
+    line-height:1.7;
+    text-align:center;
+    padding:.45rem .9rem;
+    background:rgba(217,119,6,.1);
+    border:1px solid rgba(217,119,6,.3);
+    border-radius:999px;
+    max-width:fit-content;
+    margin:0 auto 1.5rem;
+  }
+  .hero-eyebrow::before{
+    display:none;
+  }
+}
 .hero h1{
   font-family:var(--font-display);font-size:clamp(2.8rem,5vw,4.2rem);
   font-weight:800;line-height:1.05;letter-spacing:-.02em;
@@ -552,7 +571,7 @@ footer{
     font-size:clamp(1.8rem,7vw,2.8rem);
     word-break:break-word;
   }
-  .hero-eyebrow{justify-content:center}
+
   .hero-sub{margin:0 auto 2rem;font-size:.95rem}
   .hero-actions{justify-content:center;flex-wrap:wrap}
   .hero-stats{
@@ -731,7 +750,7 @@ footer{
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="hero-eyebrow">Ihr Partner für Deutschland</div>
+      <div class="hero-eyebrow">IHR FULL-SERVICE-INTEGRATIONSPARTNER FÜR DEUTSCHLAND anstatt „IHR PARTNER FÜR DEUTSCHLAND“</div>
       <h1>Von <em>Algerien</em> bis<br>zum deutschen<br>Arbeitgeber</h1>
       <p class="hero-sub">Wir begleiten Sie auf jedem Schritt — von der Dokumentenvorbereitung über die Unterkunftssuche bis zu Ihrer erfolgreichen Ankunft in Deutschland.</p>
       <div class="hero-actions">
@@ -775,25 +794,25 @@ footer{
   <!-- 01 -->
   <div class="svc">
     <div class="svc-num">01</div>
-    <span class="svc-icon"><i class="fa-solid fa-file-lines"></i></span>
-    <h3>Dokumentenorganisation</h3>
-    <p>Wir helfen Ihnen, alle erforderlichen Dokumente zu sammeln, übersetzen und korrekt zu ordnen — vollständige und professionelle Bewerbungsmappe.</p>
+    <span class="svc-icon"><i class="fa-solid fa-plane"></i></span>
+    <h3>Erster Schritt bis Ankunft</h3>
+    <p>Von der Vorbereitung bis zur Ankunft — wir begleiten Sie durch jeden bürokratischen und praktischen Schritt.</p>
   </div>
   
   <!-- 02 -->
   <div class="svc">
     <div class="svc-num">02</div>
-    <span class="svc-icon"><i class="fa-solid fa-house"></i></span>
-    <h3>Unterkunft finden</h3>
-    <p>Wir unterstützen Sie aktiv bei der Suche nach einer geeigneten und erschwinglichen Unterkunft in Deutschland.</p>
+    <span class="svc-icon"><i class="fa-solid fa-comments"></i></span>
+    <h3>Sprachvorbereitung</h3>
+    <p>Beratung zu den erforderlichen Sprachzertifikaten und optimale Vorbereitung auf den deutschen Arbeitsalltag.</p>
   </div>
   
   <!-- 03 -->
   <div class="svc">
     <div class="svc-num">03</div>
-    <span class="svc-icon"><i class="fa-solid fa-plane"></i></span>
-    <h3>Erster Schritt bis Ankunft</h3>
-    <p>Von der Vorbereitung bis zur Ankunft — wir begleiten Sie durch jeden bürokratischen und praktischen Schritt.</p>
+    <span class="svc-icon"><i class="fa-solid fa-file-lines"></i></span>
+    <h3>Dokumentenorganisation</h3>
+    <p>Wir helfen Ihnen, alle erforderlichen Dokumente zu sammeln, übersetzen und korrekt zu ordnen — vollständige und professionelle Bewerbungsmappe.</p>
   </div>
   
   <!-- 04 -->
@@ -806,18 +825,18 @@ footer{
   
   <!-- 05 -->
   <div class="svc">
-    <div class="svc-num">05</div>
-    <span class="svc-icon"><i class="fa-solid fa-comments"></i></span>
-    <h3>Sprachvorbereitung</h3>
-    <p>Beratung zu den erforderlichen Sprachzertifikaten und optimale Vorbereitung auf den deutschen Arbeitsalltag.</p>
-  </div>
-  
-  <!-- 06 -->
-  <div class="svc">
     <div class="svc-num">06</div>
     <span class="svc-icon"><i class="fa-solid fa-passport"></i></span>
     <h3>Visum &amp; Behörden</h3>
     <p>Schritt-für-Schritt-Begleitung durch den Visa-Prozess und alle notwendigen Behördenangelegenheiten.</p>
+  </div>
+  
+  <!-- 06 -->
+  <div class="svc">
+    <div class="svc-num">02</div>
+    <span class="svc-icon"><i class="fa-solid fa-house"></i></span>
+    <h3>Unterkunft finden</h3>
+    <p>Wir unterstützen Sie aktiv bei der Suche nach einer geeigneten und erschwinglichen Unterkunft in Deutschland.</p>
   </div>
 </div>
 </section>
@@ -864,7 +883,7 @@ footer{
     <div>
       <div class="about-label">Über 3E Consulting</div>
       <h2>Die Brücke zwischen<br>Talent und Chance</h2>
-      <p class="about-desc">Wir sind mehr als eine Vermittlungsplattform. Wir sind Ihr persönlicher Begleiter auf dem Weg nach Deutschland — von der ersten Idee bis zum ersten Arbeitstag.</p>
+      <p class="about-desc">Wir sind mehr als nur eine Vermittlungsplattform. Wir sind Ihr persönlicher Begleiter auf dem Weg nach Deutschland — von der ersten Idee bis zum ersten Arbeitstag.</p>
       <div class="about-cards">
         <div class="about-item">
           <div class="about-item-icon"><i class="fa-solid fa-bullseye"></i></div>
@@ -877,7 +896,7 @@ footer{
           <div class="about-item-icon"><i class="fa-solid fa-user"></i></div>
           <div class="about-item-text">
             <h4>Für Bewerber</h4>
-            <p>Profil erstellen, Dokumente hochladen, von Unternehmen entdeckt werden — so einfach war Jobsuche noch nie.</p>
+            <p>Profil erstellen, Dokumente hochladen, von Unternehmen entdeckt werden — so effizient war Jobsuche noch nie.</p>
           </div>
         </div>
         <div class="about-item">
@@ -895,7 +914,7 @@ footer{
         <img src="journey.jpeg" alt="Erfolgreicher Karriereweg: Amina's medizinische Integration — Engage, Expand, Excel">
         <div class="av-caption">
           <span class="av-caption-dot"></span>
-          <p><strong>Erfolgreicher Karriereweg</strong> </p>
+          <p><strong>Erfolgreicher Karriereweg mit 3E Consulting: Engage – Expand – Excel </strong> </p>
         </div>
       </div>
     </div>
