@@ -49,25 +49,33 @@
       transition: color .2s;
     }
     .nav-link-custom:hover { color: #fff !important; }
+
+    /* ── زر MENÜ — يظهر دائماً ── */
     .btn-menu {
       background: var(--accent);
-      color: #fff;
+      color: #fff !important;
       border: none;
       font-size: .85rem;
-      font-weight: 500;
+      font-weight: 600;
       padding: .5rem 1.2rem;
       border-radius: 8px;
+      white-space: nowrap;
+      display: inline-flex !important;
+      align-items: center;
+      gap: .35rem;
     }
-    .btn-menu:hover { background: var(--accent-hover); color: #fff; }
-    .navbar-toggler { border: 1px solid var(--border); color: #fff; }
-    .navbar-toggler-icon { filter: invert(1); }
+    .btn-menu:hover { background: var(--accent-hover); color: #fff !important; }
+    .btn-menu::after { display: none !important; } /* إزالة سهم bootstrap */
 
-    /* ── Dropdown Mega Menu ── */
+    /* إخفاء الـ toggler تماماً */
+    .navbar-toggler { display: none !important; }
+
+    /* ── Dropdown ── */
     .mega-menu {
       background: rgba(15,32,23,.97);
       border: 1px solid var(--border);
       border-radius: 12px;
-      min-width: 320px;
+      min-width: 300px;
       padding: 1rem;
       box-shadow: 0 20px 50px rgba(0,0,0,.4);
     }
@@ -77,7 +85,9 @@
       border-radius: 6px;
       padding: .5rem .75rem;
     }
-    .mega-menu .dropdown-item:hover { background: var(--glass); color: #fff; }
+    .mega-menu .dropdown-item:hover,
+    .mega-menu .dropdown-item:focus { background: var(--glass); color: #fff; }
+    .mega-menu .dropdown-item.active { color: var(--bright); background: rgba(74,222,128,.08); }
     .mega-menu .dropdown-header {
       color: var(--bright);
       font-size: .7rem;
@@ -87,6 +97,22 @@
       padding: .5rem .75rem .25rem;
     }
     .mega-menu .dropdown-divider { border-color: var(--border); }
+
+    /* على الموبايل: الـ dropdown يفتح للأسفل بشكل صحيح */
+    @media (max-width: 991px) {
+      .mega-menu {
+        right: 0 !important;
+        left: auto !important;
+        width: calc(100vw - 2rem);
+        max-width: 320px;
+        max-height: 75vh;
+        overflow-y: auto;
+      }
+      /* إخفاء روابط الـ nav على الموبايل */
+      .navbar-collapse { display: none !important; }
+      /* إظهار زر MENÜ فقط */
+      .nav-menu-wrapper { display: flex !important; }
+    }
 
     /* ── Hero ── */
     .page-hero { padding: 3rem 0 2rem; }
@@ -100,9 +126,9 @@
     }
     .page-hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(1.3rem, 4.5vw, 3rem);
+      font-size: clamp(1.6rem, 4.5vw, 3rem);
       font-weight: 800;
-      line-height: 1.2;
+      line-height: 1.15;
       word-break: break-word;
       overflow-wrap: break-word;
       hyphens: auto;
@@ -135,7 +161,7 @@
       hyphens: auto;
     }
 
-    /* ── TOC Sidebar ── */
+    /* ── TOC ── */
     .toc-card {
       background: var(--glass);
       border: 1px solid var(--border);
@@ -168,7 +194,7 @@
       border-left-color: var(--accent);
     }
 
-    /* ── Report Sections ── */
+    /* ── Sections ── */
     .report-section {
       background: var(--glass);
       border: 1px solid var(--border);
@@ -181,20 +207,11 @@
       border-color: rgba(217,119,6,.5);
       box-shadow: 0 0 0 1px rgba(217,119,6,.2), 0 8px 32px rgba(0,0,0,.3);
     }
-    .section-num {
-      font-size: .72rem;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: .1em;
-      margin-bottom: .5rem;
-    }
+    .section-num { font-size: .72rem; font-weight: 600; color: var(--accent); letter-spacing: .1em; margin-bottom: .5rem; }
     .report-section h2 {
       font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: .5rem;
-      word-break: break-word;
-      hyphens: auto;
+      font-size: 1.5rem; font-weight: 700; margin-bottom: .5rem;
+      word-break: break-word; hyphens: auto;
     }
     .subtitle { color: var(--bright); font-size: .9rem; font-weight: 500; margin-bottom: 1.25rem; }
     .report-section p { color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
@@ -210,40 +227,23 @@
       padding: 1.25rem;
       height: 100%;
     }
-    .visa-card h3 {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: .5rem;
-    }
+    .visa-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
     .visa-card p { font-size: .88rem; margin-bottom: .5rem; color: var(--muted); }
     .visa-tag {
-      display: inline-block;
-      font-size: .68rem;
-      font-weight: 600;
-      padding: .2rem .55rem;
-      border-radius: 20px;
-      background: rgba(74,222,128,.15);
-      color: var(--bright);
+      display: inline-block; font-size: .68rem; font-weight: 600;
+      padding: .2rem .55rem; border-radius: 20px;
+      background: rgba(74,222,128,.15); color: var(--bright);
     }
 
     /* ── Table ── */
-    .rights-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .88rem;
-    }
+    .rights-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
     .rights-table th {
-      text-align: left;
-      padding: .75rem 1rem;
-      background: rgba(217,119,6,.12);
-      color: #fff;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
+      text-align: left; padding: .75rem 1rem;
+      background: rgba(217,119,6,.12); color: #fff;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
     }
     .rights-table td {
-      padding: .7rem 1rem;
-      color: var(--muted);
+      padding: .7rem 1rem; color: var(--muted);
       border-bottom: 1px solid rgba(74,222,128,.08);
     }
     .rights-table tr:hover td { background: rgba(255,255,255,.02); color: #fff; }
@@ -251,21 +251,15 @@
 
     /* ── Steps ── */
     .step-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
+      display: flex; gap: 1rem; align-items: flex-start;
       background: rgba(255,255,255,.03);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
+      border-radius: 12px; padding: 1rem 1.25rem;
     }
     .step-num {
       font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--accent);
-      min-width: 2rem;
-      line-height: 1.2;
+      font-size: 1.4rem; font-weight: 800;
+      color: var(--accent); min-width: 2rem; line-height: 1.2;
     }
     .step-item h4 { font-family: var(--font-display); font-size: .95rem; font-weight: 700; margin-bottom: .3rem; }
     .step-item p { font-size: .85rem; margin-bottom: 0; }
@@ -274,9 +268,7 @@
     .chart-box {
       background: rgba(255,255,255,.02);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
+      border-radius: 14px; padding: 1.5rem; margin: 1.5rem 0;
     }
     .chart-box h3 { font-family: var(--font-display); font-size: .95rem; font-weight: 700; margin-bottom: .25rem; }
     .chart-desc { font-size: .8rem; color: var(--muted); margin-bottom: 1rem; }
@@ -286,21 +278,16 @@
     .tip-box {
       background: rgba(217,119,6,.08);
       border: 1px solid rgba(217,119,6,.3);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      font-size: .88rem;
-      color: var(--muted);
-      line-height: 1.65;
+      border-radius: 12px; padding: 1rem 1.25rem;
+      font-size: .88rem; color: var(--muted); line-height: 1.65;
+      word-break: break-word;
     }
     .tip-box strong { color: var(--accent); }
 
     .source-note {
-      font-size: .75rem;
-      color: rgba(134,163,142,.6);
-      margin-top: 1.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-      font-style: italic;
+      font-size: .75rem; color: rgba(134,163,142,.6);
+      margin-top: 1.5rem; padding-top: 1rem;
+      border-top: 1px solid var(--border); font-style: italic;
     }
 
     /* ── Mobile ── */
@@ -313,10 +300,10 @@
       .toc-card { position: static; display: flex; flex-wrap: wrap; gap: .4rem; }
       .toc-title { width: 100%; }
       .toc-card a {
-        font-size: .75rem;
-        padding: .35rem .6rem;
+        font-size: .75rem; padding: .35rem .6rem;
         border: 1px solid var(--border);
         border-left: 1px solid var(--border);
+        border-radius: 20px;
       }
       .step-num { font-size: 1.1rem; }
       .kpi-num { font-size: 1.2rem !important; }
@@ -327,64 +314,67 @@
       .chart-box { padding: 1rem; }
       .chart-wrap { max-height: 220px !important; }
       .section-tag { font-size: .68rem; }
+      .btn-menu { font-size: .78rem; padding: .42rem .95rem; }
     }
     @media (max-width: 480px) {
-      .page-hero h1 { font-size: 1.2rem !important; hyphens: auto; }
-      .lead-text { font-size: .85rem !important; }
-      .container-fluid { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
-      .kpi-num { font-size: 1.1rem !important; }
-      .kpi-label { font-size: .6rem !important; }
+      .page-hero h1 { font-size: 1.4rem !important; }
+      .lead-text { font-size: .88rem !important; }
+      .btn-menu { font-size: .72rem; padding: .38rem .8rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════ NAVBAR ═══════════ -->
-<nav class="navbar navbar-expand-lg site-nav fixed-top">
-  <div class="container-fluid px-4 px-md-5">
-    <a href="index.html" class="navbar-brand d-flex align-items-center gap-2">
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar site-nav fixed-top">
+  <div class="container-fluid px-3 px-md-5 d-flex align-items-center justify-content-between">
+
+    <!-- Logo -->
+    <a href="index.html" class="navbar-brand d-flex align-items-center gap-2 p-0">
       <img src="logo_3e.jpg" alt="3E" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0">
       <span class="navbar-brand-text">3E Consulting</span>
     </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 gap-1 mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#services">Leistungen</a></li>
-        <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#process">Ablauf</a></li>
-        <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#about">Über uns</a></li>
-        <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#kontakt">Kontakt</a></li>
-        <li class="nav-item dropdown">
-          <button class="btn btn-menu dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">MENÜ</button>
-          <ul class="dropdown-menu mega-menu">
-            <li><h6 class="dropdown-header">Service</h6></li>
-            <li><a class="dropdown-item" href="service-bewerber.html"><i class="bi bi-person-check me-2"></i>Bewerber</a></li>
-            <li class="ps-3">
-              <a class="dropdown-item" href="service-bewerber.html#dokumentenorganisation" style="font-size:.78rem">— Dokumentenorganisation</a>
-              <a class="dropdown-item" href="service-bewerber.html#bewerbungsprozess" style="font-size:.78rem">— Bewerbungsprozess</a>
-              <a class="dropdown-item" href="service-bewerber.html#profil-video" style="font-size:.78rem">— Profil-Video Anleitung</a>
-              <a class="dropdown-item" href="service-bewerber.html#erste-schritte" style="font-size:.78rem">— Erste Schritte in Deutschland</a>
-            </li>
-            <li><a class="dropdown-item" href="service-unternehmen.html"><i class="bi bi-building me-2"></i>Unternehmen</a></li>
-            <li class="ps-3">
-              <a class="dropdown-item" href="service-unternehmen.html#vermittlung" style="font-size:.78rem">— Vermittlung von Fachkräften</a>
-              <a class="dropdown-item" href="service-unternehmen.html#beschwerdeverfahren" style="font-size:.78rem">— Beschwerdeverfahren</a>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="Bewerbung.html"><i class="bi bi-file-earmark-text me-2"></i>Bewerbung</a></li>
-            <li><a class="dropdown-item" href="arbeitsmarkt.html"><i class="bi bi-briefcase me-2"></i>Arbeitsmarkt</a></li>
-            <li><a class="dropdown-item" href="arbeitundsozialrecht.html"><i class="bi bi-shield-check me-2"></i>Arbeits- und Sozialrecht</a></li>
-            <li><a class="dropdown-item active" href="aufenthaltsrecht.html"><i class="bi bi-passport me-2"></i>Aufenthaltsrecht</a></li>
-            <li><a class="dropdown-item" href="alltag-deutschland.html"><i class="bi bi-house me-2"></i>Alltag in Deutschland</a></li>
-          </ul>
+
+    <!-- روابط الديسكتوب -->
+    <ul class="navbar-nav d-none d-lg-flex flex-row gap-3 mb-0">
+      <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#services">Leistungen</a></li>
+      <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#process">Ablauf</a></li>
+      <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#about">Über uns</a></li>
+      <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html#kontakt">Kontakt</a></li>
+    </ul>
+
+    <!-- زر MENÜ — يظهر دائماً على كل الأجهزة -->
+    <div class="dropdown">
+      <button class="btn-menu dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        MENÜ ▾
+      </button>
+      <ul class="dropdown-menu mega-menu dropdown-menu-end">
+        <li><h6 class="dropdown-header">Service</h6></li>
+        <li><a class="dropdown-item" href="service-bewerber.html"><i class="bi bi-person-check me-2"></i>Bewerber</a></li>
+        <li class="ps-3">
+          <a class="dropdown-item" href="service-bewerber.html#dokumentenorganisation" style="font-size:.78rem">— Dokumentenorganisation</a>
+          <a class="dropdown-item" href="service-bewerber.html#bewerbungsprozess" style="font-size:.78rem">— Bewerbungsprozess</a>
+          <a class="dropdown-item" href="service-bewerber.html#profil-video" style="font-size:.78rem">— Profil-Video Anleitung</a>
+          <a class="dropdown-item" href="service-bewerber.html#erste-schritte" style="font-size:.78rem">— Erste Schritte in Deutschland</a>
         </li>
+        <li><a class="dropdown-item" href="service-unternehmen.html"><i class="bi bi-building me-2"></i>Unternehmen</a></li>
+        <li class="ps-3">
+          <a class="dropdown-item" href="service-unternehmen.html#vermittlung" style="font-size:.78rem">— Vermittlung von Fachkräften</a>
+          <a class="dropdown-item" href="service-unternehmen.html#beschwerdeverfahren" style="font-size:.78rem">— Beschwerdeverfahren</a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="Bewerbung.html"><i class="bi bi-file-earmark-text me-2"></i>Bewerbung</a></li>
+        <li><a class="dropdown-item" href="arbeitsmarkt.html"><i class="bi bi-briefcase me-2"></i>Arbeitsmarkt</a></li>
+        <li><a class="dropdown-item" href="arbeitundsozialrecht.html"><i class="bi bi-shield-check me-2"></i>Arbeits- und Sozialrecht</a></li>
+        <li><a class="dropdown-item active" href="aufenthaltsrecht.html"><i class="bi bi-passport me-2"></i>Aufenthaltsrecht</a></li>
+        <li><a class="dropdown-item" href="alltag-deutschland.html"><i class="bi bi-house me-2"></i>Alltag in Deutschland</a></li>
       </ul>
     </div>
+
   </div>
 </nav>
 
-<!-- ═══════════ HERO ═══════════ -->
+<!-- ═══ HERO ═══ -->
 <div class="container-xl page-hero">
   <div class="section-tag">Rechtswissen · Einreise &amp; Aufenthalt</div>
   <h1 class="mb-3">Das deutsche <em>Aufenthalts­recht</em></h1>
@@ -395,13 +385,13 @@
   </p>
 </div>
 
-<!-- ═══════════ KPI ROW ═══════════ -->
+<!-- ═══ KPI ═══ -->
 <div class="container-xl mb-4">
   <div class="row g-2 g-md-3">
     <div class="col-6 col-md-3">
       <div class="kpi-card">
         <div class="kpi-num">5 Jahre</div>
-        <div class="kpi-label">Regelaufenthalt für Niederlassungs­erlaubnis</div>
+        <div class="kpi-label">Regelaufenthalt für Niederlassungserlaubnis</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
@@ -425,11 +415,11 @@
   </div>
 </div>
 
-<!-- ═══════════ CONTENT LAYOUT ═══════════ -->
+<!-- ═══ CONTENT ═══ -->
 <div class="container-xl pb-5">
   <div class="row g-4 align-items-start">
 
-    <!-- TOC Sidebar -->
+    <!-- TOC Desktop -->
     <div class="col-lg-3 d-none d-lg-block">
       <div class="toc-card">
         <div class="toc-title">Inhaltsverzeichnis</div>
@@ -442,7 +432,7 @@
       </div>
     </div>
 
-    <!-- Mobile TOC -->
+    <!-- TOC Mobile -->
     <div class="col-12 d-lg-none">
       <div class="toc-card">
         <div class="toc-title">Inhaltsverzeichnis</div>
@@ -455,63 +445,46 @@
       </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main -->
     <div class="col-lg-9">
 
-      <!-- 01 Visum -->
       <section id="visaarten" class="report-section">
         <div class="section-num">01</div>
         <h2>Visum &amp; Einreise</h2>
         <p class="subtitle">Der erste Schritt nach Deutschland</p>
-        <p>
-          Algerische Staatsbürger benötigen für <strong style="color:#fff">Erwerbstätigkeit,
-          Ausbildung oder einen längeren Aufenthalt</strong> ein nationales Visum (D-Visum),
-          das vor der Einreise bei der deutschen Botschaft in Algier beantragt wird.
-          Für touristische Kurzaufenthalte bis 90 Tage gilt visumfreie Einreise.
-        </p>
+        <p>Algerische Staatsbürger benötigen für <strong style="color:#fff">Erwerbstätigkeit, Ausbildung oder einen längeren Aufenthalt</strong> ein nationales Visum (D-Visum), das vor der Einreise bei der deutschen Botschaft in Algier beantragt wird.</p>
         <div class="row g-3 my-3">
-          <div class="col-sm-6">
-            <div class="visa-card">
-              <h3>🛂 Nationales Visum (Typ D)</h3>
-              <p>Für Aufenthalte über 90 Tage: Ausbildung, Arbeit, Studium, Familiennachzug.</p>
-              <span class="visa-tag">Vor Einreise beantragen</span>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="visa-card">
-              <h3>✈️ Kurzaufenthalt (Schengen)</h3>
-              <p>Bis 90 Tage innerhalb von 180 Tagen — Tourismus, Besuch, kurze Geschäftsreisen.</p>
-              <span class="visa-tag">Visumfrei für Algerien</span>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="visa-card">
-              <h3>📋 Erforderliche Dokumente</h3>
-              <p>Reisepass, Vertrag/Ausbildungsplatz, Krankenversicherung, Finanzierungsnachweis, Sprachzertifikat.</p>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="visa-card">
-              <h3>🏛️ Zuständige Stelle</h3>
-              <p>Deutsche Botschaft Algier — Termin online buchen, Unterlagen vollständig einreichen.</p>
-            </div>
-          </div>
+          <div class="col-sm-6"><div class="visa-card">
+            <h3>🛂 Nationales Visum (Typ D)</h3>
+            <p>Für Aufenthalte über 90 Tage: Ausbildung, Arbeit, Studium, Familiennachzug.</p>
+            <span class="visa-tag">Vor Einreise beantragen</span>
+          </div></div>
+          <div class="col-sm-6"><div class="visa-card">
+            <h3>✈️ Kurzaufenthalt (Schengen)</h3>
+            <p>Bis 90 Tage innerhalb von 180 Tagen — Tourismus, Besuch, kurze Geschäftsreisen.</p>
+            <span class="visa-tag">Visumfrei für Algerien</span>
+          </div></div>
+          <div class="col-sm-6"><div class="visa-card">
+            <h3>📋 Erforderliche Dokumente</h3>
+            <p>Reisepass, Vertrag/Ausbildungsplatz, Krankenversicherung, Finanzierungsnachweis, Sprachzertifikat.</p>
+          </div></div>
+          <div class="col-sm-6"><div class="visa-card">
+            <h3>🏛️ Zuständige Stelle</h3>
+            <p>Deutsche Botschaft Algier — Termin online buchen, Unterlagen vollständig einreichen.</p>
+          </div></div>
         </div>
         <div class="tip-box">
           <strong>Tipp für Azubis:</strong> Beantragen Sie das Visum erst, wenn Sie einen unterschriebenen Ausbildungsvertrag haben.
         </div>
       </section>
 
-      <!-- 02 Aufenthaltstitel -->
       <section id="aufenthaltstitel" class="report-section">
         <div class="section-num">02</div>
         <h2>Aufenthaltstitel — Die wichtigsten Arten</h2>
         <p class="subtitle">Was auf Ihrem Ausweis steht, bestimmt Ihre Rechte</p>
         <div class="table-scroll">
           <table class="rights-table">
-            <thead>
-              <tr><th>Aufenthaltstitel</th><th>Zweck</th><th>Dauer</th></tr>
-            </thead>
+            <thead><tr><th>Aufenthaltstitel</th><th>Zweck</th><th>Dauer</th></tr></thead>
             <tbody>
               <tr><td>Aufenthaltserlaubnis</td><td>Befristeter Aufenthalt (Ausbildung, Arbeit, Studium)</td><td>1–3 Jahre, verlängerbar</td></tr>
               <tr><td>Blaue Karte EU</td><td>Hochqualifizierte Fachkräfte</td><td>Bis 4 Jahre</td></tr>
@@ -528,65 +501,31 @@
         </div>
       </section>
 
-      <!-- 03 Ausbildung -->
       <section id="ausbildung" class="report-section">
         <div class="section-num">03</div>
         <h2>Ausbildung &amp; Arbeit</h2>
         <p class="subtitle">Der häufigste Weg für junge Zuwanderer</p>
-        <p>
-          Wer eine duale Ausbildung absolvieren möchte, erhält eine
-          <strong style="color:#fff">Aufenthaltserlaubnis zum Zweck der Ausbildung</strong>.
-          Nach dem Abschluss kann sie in eine Arbeitserlaubnis umgewandelt werden.
-        </p>
+        <p>Wer eine duale Ausbildung absolvieren möchte, erhält eine <strong style="color:#fff">Aufenthaltserlaubnis zum Zweck der Ausbildung</strong>.</p>
         <div class="d-flex flex-column gap-3 my-3">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <div>
-              <h4>Ausbildungsplatz finden</h4>
-              <p>Voraussetzung für das Visum. Mindestalter meist 18 Jahre.</p>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <div>
-              <h4>Visum bei der Botschaft</h4>
-              <p>Vertrag, Sprachkenntnisse (B1 empfohlen), Krankenversicherung, Finanzierung.</p>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <div>
-              <h4>Ausländerbehörde</h4>
-              <p>Innerhalb von 2 Wochen Aufenthaltserlaubnis beantragen.</p>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">4</div>
-            <div>
-              <h4>Nach der Ausbildung</h4>
-              <p>18 Monate Jobsuche — dann unbefristeter Arbeitsvertrag möglich.</p>
-            </div>
-          </div>
+          <div class="step-item"><div class="step-num">1</div><div><h4>Ausbildungsplatz finden</h4><p>Voraussetzung für das Visum. Mindestalter meist 18 Jahre.</p></div></div>
+          <div class="step-item"><div class="step-num">2</div><div><h4>Visum bei der Botschaft</h4><p>Vertrag, Sprachkenntnisse (B1 empfohlen), Krankenversicherung, Finanzierung.</p></div></div>
+          <div class="step-item"><div class="step-num">3</div><div><h4>Ausländerbehörde</h4><p>Innerhalb von 2 Wochen Aufenthaltserlaubnis beantragen.</p></div></div>
+          <div class="step-item"><div class="step-num">4</div><div><h4>Nach der Ausbildung</h4><p>18 Monate Jobsuche — dann unbefristeter Arbeitsvertrag möglich.</p></div></div>
         </div>
         <div class="row g-3">
-          <div class="col-md-6">
-            <div class="chart-box">
-              <h3>Typischer Ausbildungsweg</h3>
-              <p class="chart-desc">Integrationsfortschritt über die Jahre</p>
-              <div class="chart-wrap"><canvas id="chartTimeline"></canvas></div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="chart-box">
-              <h3>Visum-Anforderungen</h3>
-              <p class="chart-desc">Wichtigkeit der Kriterien (%)</p>
-              <div class="chart-wrap"><canvas id="chartVisum"></canvas></div>
-            </div>
-          </div>
+          <div class="col-md-6"><div class="chart-box">
+            <h3>Typischer Ausbildungsweg</h3>
+            <p class="chart-desc">Integrationsfortschritt über die Jahre</p>
+            <div class="chart-wrap"><canvas id="chartTimeline"></canvas></div>
+          </div></div>
+          <div class="col-md-6"><div class="chart-box">
+            <h3>Visum-Anforderungen</h3>
+            <p class="chart-desc">Wichtigkeit der Kriterien (%)</p>
+            <div class="chart-wrap"><canvas id="chartVisum"></canvas></div>
+          </div></div>
         </div>
       </section>
 
-      <!-- 04 Anmeldung -->
       <section id="anmeldung" class="report-section">
         <div class="section-num">04</div>
         <h2>Anmeldung &amp; Behörden</h2>
@@ -608,36 +547,15 @@
         </div>
       </section>
 
-      <!-- 05 Daueraufenthalt -->
       <section id="daueraufenthalt" class="report-section">
         <div class="section-num">05</div>
         <h2>Daueraufenthalt &amp; Einbürgerung</h2>
         <p class="subtitle">Vom befristeten Visum zur deutschen Staatsbürgerschaft</p>
         <div class="row g-3 my-3">
-          <div class="col-sm-6">
-            <div class="visa-card">
-              <h3>🏠 Niederlassungserlaubnis</h3>
-              <p>Nach 5 Jahren legalen Aufenthalt, Einkommen, Deutsch B1, Wohnraum.</p>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="visa-card">
-              <h3>⚡ Schnellerer Weg</h3>
-              <p>Nach 3 Jahren bei besonderer Integration (C1-Deutsch, Engagement).</p>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="visa-card">
-              <h3>🇩🇪 Einbürgerung</h3>
-              <p>Frühestens nach 5 Jahren (neue Regelung 2024). Deutsch B1, Einbürgerungstest.</p>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="visa-card">
-              <h3>📜 Doppelte Staatsbürgerschaft</h3>
-              <p>Seit Juni 2024 in der Regel erlaubt — algerische Staatsbürgerschaft behalten.</p>
-            </div>
-          </div>
+          <div class="col-sm-6"><div class="visa-card"><h3>🏠 Niederlassungserlaubnis</h3><p>Nach 5 Jahren legalen Aufenthalt, Einkommen, Deutsch B1, Wohnraum.</p></div></div>
+          <div class="col-sm-6"><div class="visa-card"><h3>⚡ Schnellerer Weg</h3><p>Nach 3 Jahren bei besonderer Integration (C1-Deutsch, Engagement).</p></div></div>
+          <div class="col-sm-6"><div class="visa-card"><h3>🇩🇪 Einbürgerung</h3><p>Frühestens nach 5 Jahren (neue Regelung 2024). Deutsch B1, Einbürgerungstest.</p></div></div>
+          <div class="col-sm-6"><div class="visa-card"><h3>📜 Doppelte Staatsbürgerschaft</h3><p>Seit Juni 2024 in der Regel erlaubt — algerische Staatsbürgerschaft behalten.</p></div></div>
         </div>
         <div class="chart-box">
           <h3>Wege zum dauerhaften Aufenthalt</h3>
@@ -646,7 +564,6 @@
         </div>
       </section>
 
-      <!-- 06 Familie -->
       <section id="familie" class="report-section">
         <div class="section-num">06</div>
         <h2>Familiennachzug</h2>
@@ -657,9 +574,7 @@
           <li><strong style="color:#fff">Elternnachzug:</strong> Nur in Härtefällen</li>
           <li>Bearbeitungszeit: mehrere Monate — frühzeitig planen</li>
         </ul>
-        <p class="source-note">
-          Hinweis: Keine Rechtsberatung. Gesetzliche Grundlage: Aufenthaltsgesetz (AufenthG). Stand: 2025.
-        </p>
+        <p class="source-note">Hinweis: Keine Rechtsberatung. Gesetzliche Grundlage: Aufenthaltsgesetz (AufenthG). Stand: 2025.</p>
       </section>
 
     </div>
@@ -668,7 +583,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// ── TOC active ──
+// TOC active
 const tocLinks = document.querySelectorAll('.toc-card a');
 const sections = document.querySelectorAll('.report-section');
 function setActiveToc(id) {
@@ -679,7 +594,7 @@ sections.forEach(s => new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) setActiveToc(e.target.id); });
 }, { rootMargin: '-40% 0px' }).observe(s));
 
-// ── Charts ──
+// Charts
 Chart.defaults.color = '#86a38e';
 Chart.defaults.borderColor = 'rgba(74,222,128,.12)';
 Chart.defaults.font.family = "'DM Sans', sans-serif";
@@ -713,12 +628,10 @@ new Chart(document.getElementById('chartVisum'), {
   type: 'doughnut',
   data: {
     labels: ['Ausbildungsvertrag','Sprache','Finanzierung','Krankenvers.','Pass'],
-    datasets: [{ data: [35,25,20,12,8], backgroundColor: palette,
-      borderColor: '#0f2017', borderWidth: 3 }]
+    datasets: [{ data: [35,25,20,12,8], backgroundColor: palette, borderColor: '#0f2017', borderWidth: 3 }]
   },
   options: { responsive: true, maintainAspectRatio: false, cutout: '55%',
-    plugins: { legend: { position: 'bottom',
-      labels: { padding: 8, usePointStyle: true, font: { size: 10 } } } } }
+    plugins: { legend: { position: 'bottom', labels: { padding: 8, usePointStyle: true, font: { size: 10 } } } } }
 });
 
 new Chart(document.getElementById('chartDauer'), {
@@ -728,10 +641,8 @@ new Chart(document.getElementById('chartDauer'), {
     datasets: [{ data: [5,3,5,8], backgroundColor: [accent,bright,gold,'#60a5fa'], borderRadius: 6 }]
   },
   options: { responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false },
-      tooltip: { callbacks: { label: c => ` ${c.raw} Jahre` } } },
-    scales: { y: { beginAtZero: true, max: 10, ticks: { callback: v => v + ' J.' } },
-      x: { grid: { display: false } } } }
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.raw} Jahre` } } },
+    scales: { y: { beginAtZero: true, max: 10, ticks: { callback: v => v + ' J.' } }, x: { grid: { display: false } } } }
 });
 </script>
 </body>
