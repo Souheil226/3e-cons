@@ -9,390 +9,248 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --navy: #0f2017;
-      --accent: #d97706;
-      --accent-hover: #b45309;
-      --bright: #4ade80;
-      --white: #fff;
-      --muted: #86a38e;
-      --border: rgba(74, 222, 128, .18);
-      --glass: rgba(255, 255, 255, .04);
-      --font-display: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
+      --navy: #0f2017; --accent: #d97706; --accent-hover: #b45309;
+      --bright: #4ade80; --white: #fff; --muted: #86a38e;
+      --border: rgba(74,222,128,.18); --glass: rgba(255,255,255,.04);
+      --font-display: 'Syne', sans-serif; --font-body: 'DM Sans', sans-serif;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--navy); color: var(--white); padding-top: 72px; }
 
-    body {
-      font-family: var(--font-body);
-      background: var(--navy);
-      color: var(--white);
-      padding-top: 72px;
-    }
-
+    /* ── NAV ── */
     nav.site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 1.2rem 5vw;
-      background: rgba(15, 32, 23, .92);
-      backdrop-filter: blur(20px);
+      background: rgba(15,32,23,.92); backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
-
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-size: .875rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color .2s;
-    }
+    .nav-links a { font-size: .875rem; color: var(--muted); text-decoration: none; transition: color .2s; }
     .nav-links a:hover { color: var(--white); }
-
     .nav-menu { position: relative; }
-
     .nav-menu-btn {
-      background: var(--accent);
-      color: var(--white);
-      padding: .55rem 1.3rem;
-      border-radius: 8px;
-      font-size: .85rem;
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
+      background: var(--accent); color: var(--white);
+      padding: .55rem 1.3rem; border-radius: 8px; font-size: .85rem; font-weight: 500;
+      border: none; cursor: pointer; display: inline-flex; align-items: center; gap: .4rem;
       transition: background .2s, transform .15s;
     }
     .nav-menu-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
-
     .nav-dropdown {
-      position: absolute;
-      top: calc(100% + .6rem);
-      right: 0;
-      min-width: 300px;
-      max-height: 75vh;
-      overflow-y: auto;
-      background: rgba(15, 32, 23, .97);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 20px 50px rgba(0,0,0,.4);
-      z-index: 200;
+      position: absolute; top: calc(100% + .6rem); right: 0;
+      min-width: 300px; max-height: 75vh; overflow-y: auto;
+      background: rgba(15,32,23,.97); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem; backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.4); z-index: 200;
     }
-
-    .menu-level-1, .menu-level-2, .menu-level-3 {
-      list-style: none; margin: 0; padding: 0;
-    }
-
+    .menu-level-1,.menu-level-2,.menu-level-3 { list-style: none; margin: 0; padding: 0; }
     .menu-toggle {
-      width: 100%;
-      text-align: left;
-      background: none;
-      border: none;
-      color: var(--white);
-      font-family: var(--font-body);
-      font-size: .88rem;
-      font-weight: 500;
-      padding: .65rem .75rem;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background .15s;
+      width: 100%; text-align: left; background: none; border: none;
+      color: var(--white); font-family: var(--font-body); font-size: .88rem; font-weight: 500;
+      padding: .65rem .75rem; border-radius: 8px; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; transition: background .15s;
     }
-    .menu-toggle:hover, .menu-toggle.open { background: var(--glass); }
+    .menu-toggle:hover,.menu-toggle.open { background: var(--glass); }
     .menu-toggle::after { content: '▾'; font-size: .7rem; color: var(--muted); transition: transform .2s; }
     .menu-toggle.open::after { transform: rotate(180deg); }
-
     .menu-level-1 > li > a {
-      display: block;
-      padding: .65rem .75rem;
-      font-size: .88rem;
-      color: var(--muted);
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all .15s;
+      display: block; padding: .65rem .75rem; font-size: .88rem; color: var(--muted);
+      text-decoration: none; border-radius: 8px; transition: all .15s;
     }
     .menu-level-1 > li > a:hover { color: var(--white); background: var(--glass); }
     .menu-level-1 > li > a.active { color: var(--bright); background: rgba(74,222,128,.08); }
-
     .menu-level-2 { padding-left: .5rem; }
     .menu-level-3 { padding-left: 1rem; }
-    .menu-level-2 .menu-toggle, .menu-level-3 a {
-      font-size: .82rem;
-      color: var(--muted);
-      padding: .5rem .75rem;
-    }
-    .menu-level-3 a {
-      display: block;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: all .15s;
-    }
+    .menu-level-2 .menu-toggle,.menu-level-3 a { font-size: .82rem; color: var(--muted); padding: .5rem .75rem; }
+    .menu-level-3 a { display: block; text-decoration: none; border-radius: 6px; transition: all .15s; }
     .menu-level-3 a:hover { color: var(--white); background: var(--glass); }
     .menu-level-1 > li { border-bottom: 1px solid var(--border); }
     .menu-level-1 > li:last-child { border-bottom: none; }
 
-    .page-hero {
-      padding: 3rem 5vw 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .section-tag {
-      font-size: .75rem;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      margin-bottom: .75rem;
-    }
-    .page-hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
+    /* ── PAGE ── */
+    .page-hero { padding: 3rem 5vw 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-tag { font-size: .75rem; font-weight: 500; color: var(--accent); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem; }
+    .page-hero h1 { font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
     .page-hero h1 em { font-style: normal; color: var(--accent); }
-    .page-hero p {
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      max-width: 700px;
-    }
-
+    .page-hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 700px; }
     .content-layout {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 2.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 5vw 5rem;
-      align-items: start;
+      display: grid; grid-template-columns: 240px 1fr; gap: 2.5rem;
+      max-width: 1100px; margin: 0 auto; padding: 0 5vw 5rem; align-items: start;
     }
-
     aside.toc {
-      position: sticky;
-      top: 90px;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.25rem;
-      height: fit-content;
+      position: sticky; top: 90px; background: var(--glass);
+      border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; height: fit-content;
     }
-    .toc-title {
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
+    .toc-title { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
     aside.toc a {
-      display: block;
-      padding: .55rem .75rem;
-      font-size: .82rem;
-      color: var(--muted);
-      text-decoration: none;
-      border-radius: 8px;
-      border-left: 2px solid transparent;
-      transition: all .15s;
+      display: block; padding: .55rem .75rem; font-size: .82rem; color: var(--muted);
+      text-decoration: none; border-radius: 8px; border-left: 2px solid transparent; transition: all .15s;
     }
-    aside.toc a:hover, aside.toc a.active {
-      color: var(--white);
-      background: var(--glass);
-      border-left-color: var(--accent);
-    }
-
+    aside.toc a:hover,aside.toc a.active { color: var(--white); background: var(--glass); border-left-color: var(--accent); }
     .guideline-section {
-      scroll-margin-top: 100px;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem 2.25rem;
-      margin-bottom: 1.5rem;
+      scroll-margin-top: 100px; background: var(--glass);
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 2rem 2.25rem; margin-bottom: 1.5rem;
       transition: border-color .3s, box-shadow .3s;
     }
     .guideline-section:target {
-      border-color: rgba(217, 119, 6, .5);
-      box-shadow: 0 0 0 1px rgba(217, 119, 6, .2), 0 8px 32px rgba(0, 0, 0, .3);
+      border-color: rgba(217,119,6,.5);
+      box-shadow: 0 0 0 1px rgba(217,119,6,.2), 0 8px 32px rgba(0,0,0,.3);
     }
-    .section-num {
-      font-size: .72rem;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: .1em;
-      margin-bottom: .5rem;
-    }
-    .guideline-section h2 {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .guideline-section p {
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 1rem;
-    }
-    .guideline-section ul {
-      padding-left: 1.25rem;
-      color: var(--muted);
-      line-height: 1.9;
-    }
+    .section-num { font-size: .72rem; font-weight: 600; color: var(--accent); letter-spacing: .1em; margin-bottom: .5rem; }
+    .guideline-section h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
+    .guideline-section p { color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
+    .guideline-section ul { padding-left: 1.25rem; color: var(--muted); line-height: 1.9; }
     .guideline-section li { margin-bottom: .35rem; }
 
-    .video-section {
-      background: rgba(217, 119, 6, .06);
-      border: 1px solid rgba(217, 119, 6, .25);
+    /* ── SCREENING CARDS ── */
+    .screening-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1rem; margin: 1.25rem 0; }
+    .screening-card { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1rem; }
+    .screening-card .sc-icon { font-size: 1.4rem; color: var(--accent); margin-bottom: .6rem; }
+    .screening-card strong { display: block; font-family: var(--font-display); font-size: .92rem; font-weight: 700; color: var(--white); margin-bottom: .4rem; }
+    .screening-card p { font-size: .82rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    /* ── EXAMPLE TOGGLE BUTTON ── */
+    .example-toggle-btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      margin-top: 1.1rem; padding: .55rem 1.2rem;
+      background: rgba(217,119,6,.1); border: 1px solid rgba(217,119,6,.35);
+      color: var(--accent); border-radius: 8px; font-size: .84rem; font-weight: 500;
+      font-family: var(--font-body); cursor: pointer; transition: all .2s;
     }
+    .example-toggle-btn:hover { background: rgba(217,119,6,.2); border-color: var(--accent); }
+    .example-toggle-btn.open { background: rgba(217,119,6,.18); }
+    .example-box {
+      margin-top: 1.25rem; border: 1px solid rgba(217,119,6,.25);
+      border-radius: 14px; overflow: hidden;
+      animation: fadeDown .25s ease;
+    }
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+    .example-label {
+      background: rgba(217,119,6,.12); border-bottom: 1px solid rgba(217,119,6,.2);
+      padding: .65rem 1.2rem; font-size: .78rem; font-weight: 600;
+      color: var(--accent); letter-spacing: .06em; text-transform: uppercase;
+      display: flex; align-items: center; gap: .5rem;
+    }
+
+    /* ══════════════════════════════════════════
+       ── CV STYLES ──
+    ══════════════════════════════════════════ */
+    .cv-wrapper { background: #0e1f15; padding: 1.75rem; }
+    .cv-header {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding-bottom: 1.25rem; border-bottom: 1px solid rgba(74,222,128,.15); margin-bottom: 1.5rem;
+    }
+    .cv-avatar {
+      width: 70px; height: 70px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(217,119,6,.12); border: 2px solid rgba(217,119,6,.35);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cv-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: var(--white); margin-bottom: .2rem; }
+    .cv-title { font-size: .82rem; color: var(--accent); margin-bottom: .6rem; }
+    .cv-contacts { display: flex; flex-wrap: wrap; gap: .5rem .9rem; }
+    .cv-contacts span { font-size: .76rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; }
+    .cv-contacts i { color: var(--accent); font-size: .8rem; }
+    .cv-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .cv-section { margin-bottom: 1.25rem; }
+    .cv-section-title {
+      font-family: var(--font-display); font-size: .8rem; font-weight: 700;
+      color: var(--accent); text-transform: uppercase; letter-spacing: .08em;
+      display: flex; align-items: center; gap: .4rem;
+      border-bottom: 1px solid rgba(217,119,6,.2); padding-bottom: .4rem; margin-bottom: .85rem;
+    }
+    .cv-entry { display: flex; gap: .75rem; margin-bottom: .75rem; }
+    .cv-entry-year { font-size: .72rem; color: var(--accent); white-space: nowrap; min-width: 75px; padding-top: .15rem; font-weight: 600; }
+    .cv-entry-content strong { display: block; font-size: .85rem; color: var(--white); font-weight: 600; }
+    .cv-entry-content span { font-size: .78rem; color: var(--muted); }
+    .cv-task-list { padding-left: 1rem; margin-top: .3rem; }
+    .cv-task-list li { font-size: .76rem; color: var(--muted); margin-bottom: .2rem; }
+    .cv-skill-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .55rem; }
+    .cv-skill-name { font-size: .78rem; color: var(--muted); width: 58px; flex-shrink: 0; }
+    .cv-skill-bar { flex: 1; height: 4px; background: rgba(255,255,255,.06); border-radius: 2px; overflow: hidden; }
+    .cv-skill-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--bright)); border-radius: 2px; }
+    .cv-skill-level { font-size: .72rem; color: var(--accent); width: 72px; text-align: right; white-space: nowrap; }
+    .cv-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .cv-tag { padding: .25rem .7rem; border-radius: 20px; font-size: .72rem; background: rgba(74,222,128,.08); border: 1px solid rgba(74,222,128,.2); color: var(--bright); }
+    .cv-footer { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid rgba(74,222,128,.1); }
+    .cv-placeholder-note { font-size: .76rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; }
+    .cv-placeholder-note i { color: var(--accent); }
+
+    /* ══════════════════════════════════════════
+       ── LETTER STYLES ──
+    ══════════════════════════════════════════ */
+    .letter-wrapper {
+      background: #0e1f15; padding: 2rem 2.5rem;
+      font-size: .88rem; color: #c8d8cc; line-height: 1.75;
+    }
+    .letter-sender { margin-bottom: 1.5rem; font-size: .82rem; color: var(--muted); border-left: 3px solid var(--accent); padding-left: .85rem; }
+    .letter-sender strong { color: var(--white); font-size: .9rem; }
+    .letter-recipient { margin-bottom: 1.5rem; font-size: .85rem; color: #c8d8cc; }
+    .letter-recipient strong { color: var(--white); }
+    .letter-date { font-size: .82rem; color: var(--muted); text-align: right; margin-bottom: 1.5rem; }
+    .letter-subject {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 1.25rem;
+      padding-bottom: .6rem; border-bottom: 1px solid rgba(74,222,128,.15);
+    }
+    .letter-salutation { margin-bottom: 1rem; color: var(--white); font-weight: 500; }
+    .letter-body p { margin-bottom: 1rem; color: #b8ccbe; line-height: 1.85; }
+  
+    .letter-closing { margin-top: 1.25rem; margin-bottom: .5rem; color: var(--white); font-weight: 500; }
+    .letter-signature { display: flex; flex-direction: column; gap: .3rem; }
+    .signature-line { width: 140px; height: 1px; background: rgba(74,222,128,.3); margin-bottom: .2rem; }
+    .letter-signature span { font-size: .88rem; color: var(--white); font-weight: 600; }
+    .letter-note {
+      margin-top: 1.75rem; padding: .75rem 1rem;
+      background: rgba(217,119,6,.08); border: 1px solid rgba(217,119,6,.2);
+      border-radius: 8px; font-size: .76rem; color: var(--muted);
+      display: flex; align-items: flex-start; gap: .5rem;
+    }
+    .letter-note i { color: var(--accent); flex-shrink: 0; margin-top: .1rem; }
+
+    /* ── VIDEO & STEPS ── */
+    .video-section { background: rgba(217,119,6,.06); border: 1px solid rgba(217,119,6,.25); }
     .video-embed {
-      position: relative;
-      width: 100%;
-      max-width: 720px;
-      aspect-ratio: 16 / 9;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: rgba(0, 0, 0, .3);
-      margin: 1rem 0;
+      position: relative; width: 100%; max-width: 720px;
+      aspect-ratio: 16/9; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border); background: rgba(0,0,0,.3); margin: 1rem 0;
     }
-    .video-embed iframe, .video-embed video {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+    .video-embed iframe,.video-embed video { width: 100%; height: 100%; border: none; }
     .video-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      color: var(--muted);
-      font-size: .88rem;
-      text-align: center;
-      padding: 2rem;
-      gap: .5rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      height: 100%; color: var(--muted); font-size: .88rem; text-align: center; padding: 2rem; gap: .5rem;
     }
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin: 1.25rem 0;
-    }
-    .step-card {
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      text-align: center;
-    }
-    .step-card .num {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: .4rem;
-    }
-    .step-card p {
-      font-size: .82rem;
-      margin: 0;
-      color: var(--muted);
-    }
-
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 1rem; margin: 1.25rem 0; }
+    .step-card { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
+    .step-card .num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: .4rem; }
+    .step-card p { font-size: .82rem; margin: 0; color: var(--muted); }
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      margin-top: .5rem;
-      background: var(--accent);
-      color: var(--white);
-      padding: .75rem 1.5rem;
-      border-radius: 10px;
-      font-size: .9rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all .2s;
-      border: none;
-      cursor: pointer;
+      display: inline-flex; align-items: center; gap: .5rem; margin-top: .5rem;
+      background: var(--accent); color: var(--white); padding: .75rem 1.5rem;
+      border-radius: 10px; font-size: .9rem; font-weight: 500;
+      text-decoration: none; transition: all .2s; border: none; cursor: pointer;
     }
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
-    /* ── Mobile ── */
-    @media (max-width: 900px) {
-      .kpi-row { grid-template-columns: repeat(2,1fr) !important; }
-      .visa-grid, .charts-2col, .stats-grid, .grid-2, .two-col { grid-template-columns: 1fr !important; }
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px){
+      body{padding-top:64px!important}
+      nav.site-nav{padding:.7rem 1rem!important}
+      .nav-links{display:none!important}
+      .content-layout{grid-template-columns:1fr!important;padding:0 4vw 3rem!important;gap:1.25rem!important}
+      aside.toc{position:static!important;display:flex!important;flex-wrap:wrap!important;gap:.4rem!important;padding:1rem!important}
+      .toc-title{width:100%!important;margin-bottom:.5rem!important}
+      aside.toc a{font-size:.75rem!important;padding:.4rem .65rem!important;border:1px solid var(--border)!important;border-left:1px solid var(--border)!important}
+      .guideline-section{padding:1.25rem 1.1rem!important}
+      .screening-grid{grid-template-columns:1fr 1fr!important}
+      .cv-body{grid-template-columns:1fr!important}
+      .letter-wrapper{padding:1.25rem 1rem!important}
     }
-
-    @media (max-width: 768px) {
-      body { padding-top: 64px !important; }
-      nav.site-nav { padding: .7rem 1rem !important; }
-      .nav-links { display: none !important; }
-      .nav-menu-btn { padding: .45rem .9rem !important; font-size: .78rem !important; }
-      .nav-dropdown {
-        right: 0 !important;
-        left: auto !important;
-        min-width: 0 !important;
-        width: calc(100vw - 2rem) !important;
-        max-width: 320px !important;
-      }
-      .page-hero { padding: 2.2rem 5vw 1.5rem !important; }
-      .page-hero h1 { font-size: clamp(1.6rem,7vw,2.2rem) !important; word-break: break-word; }
-      .page-hero p { font-size: .92rem !important; }
-      .kpi-row { grid-template-columns: 1fr 1fr !important; gap: .6rem !important; padding: 0 4vw !important; }
-      .kpi-card { padding: .9rem 1rem !important; }
-      .kpi-card .kpi-num { font-size: 1.35rem !important; }
-      .kpi-card .kpi-label { font-size: .7rem !important; }
-      .content-layout { grid-template-columns: 1fr !important; padding: 0 4vw 3rem !important; gap: 1.25rem !important; }
-      aside.toc {
-        position: static !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: .4rem !important;
-        padding: 1rem !important;
-      }
-      .toc-title { width: 100% !important; margin-bottom: .5rem !important; }
-      aside.toc a {
-        font-size: .75rem !important;
-        padding: .4rem .65rem !important;
-        border: 1px solid var(--border) !important;
-        border-left: 1px solid var(--border) !important;
-      }
-      .guideline-section { padding: 1.25rem 1.1rem !important; border-radius: 12px !important; }
-      .guideline-section h2 { font-size: 1.2rem !important; }
-      .guideline-section p, .guideline-section ul, .guideline-section li { font-size: .9rem !important; }
-      .steps-grid { grid-template-columns: 1fr 1fr !important; gap: .6rem !important; }
-      .step-card { padding: .85rem !important; }
-      .step-card .num { font-size: 1.2rem !important; }
-      .video-embed { border-radius: 8px !important; }
-      .guideline-section table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    }
-
-    @media (max-width: 480px) {
-      nav.site-nav { padding: .6rem .85rem !important; }
-      .nav-menu-btn { padding: .4rem .8rem !important; font-size: .72rem !important; }
-      .nav-dropdown {
-        width: calc(100vw - 1.5rem) !important;
-        max-width: 100% !important;
-        right: -.5rem !important;
-      }
-      .page-hero h1 { font-size: 1.5rem !important; line-height: 1.25 !important; }
-      .page-hero p { font-size: .85rem !important; }
-      .guideline-section { padding: 1rem .85rem !important; }
-      .guideline-section h2 { font-size: 1.05rem !important; }
-      .steps-grid { grid-template-columns: 1fr !important; }
+    @media(max-width:480px){
+      .screening-grid{grid-template-columns:1fr!important}
+      .steps-grid{grid-template-columns:1fr!important}
+      .cv-body{grid-template-columns:1fr!important}
     }
   </style>
 </head>
@@ -402,7 +260,7 @@
 <nav class="site-nav">
   <a href="index.html" class="nav-brand" style="display:flex;align-items:center;gap:9px;text-decoration:none;">
     <img src="logo_3e.jpg" alt="3E" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0">
-    <span class="nav-brand-text" style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3<span style="color:#4ade80">E</span><span style="color:#fb923c"> Consulting</span></span>
+    <span style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3<span style="color:#4ade80">E</span><span style="color:#fb923c"> Consulting</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html#services">Leistungen</a></li>
@@ -455,37 +313,65 @@
 
   <aside class="toc">
     <div class="toc-title">Inhaltsverzeichnis</div>
-    <a href="#persoenliche-angaben">1. Persönliche Angaben</a>
-    <a href="#dokumente">2. Dokumente</a>
-    <a href="#lebenslauf">3. Lebenslauf</a>
-    <a href="#motivationsschreiben">4. Motivationsschreiben</a>
-    <a href="#profil-video">5. Profil-Video</a>
-    <a href="#verhalten">6. Verhalten</a>
-    <a href="#ueberpruefung">7. Überprüfung</a>
-    <a href="#zustimmung">8. Zustimmung</a>
+    <a href="#vorqualifizierung">1. Vorqualifizierungsprozess</a>
+    <a href="#persoenliche-angaben">2. Persönliche Angaben</a>
+    <a href="#dokumente">3. Dokumente</a>
+    <a href="#lebenslauf">4. Lebenslauf</a>
+    <a href="#motivationsschreiben">5. Motivationsschreiben</a>
+    <a href="#profil-video">6. Profil-Video</a>
+    <a href="#verhalten">7. Verhalten</a>
+    <a href="#ueberpruefung">8. Überprüfung</a>
+    <a href="#zustimmung">9. Zustimmung</a>
     <a href="#video-anleitung"><i class="bi bi-camera-video" style="color:var(--accent)"></i> Videoanleitung</a>
   </aside>
 
   <main>
 
-    <section id="persoenliche-angaben" class="guideline-section">
+    <!-- 01 -->
+    <section id="vorqualifizierung" class="guideline-section">
       <div class="section-num">01</div>
+      <h2>Vorqualifizierungsprozess</h2>
+      <p>Bewerber durchlaufen einen mehrstufigen Screening-Prozess, um sich auf unserer Plattform zu registrieren:</p>
+      <div class="screening-grid">
+        <div class="screening-card">
+          <div class="sc-icon"><i class="bi bi-chat-text-fill"></i></div>
+          <strong>Sprachprüfung</strong>
+          <p>Nachweis von Deutschkenntnissen auf mindestens B1-, idealerweise B2-Niveau durch anerkannte Zertifikate (Goethe-Institut, telc, TestDaF, …).</p>
+        </div>
+        <div class="screening-card">
+          <div class="sc-icon"><i class="bi bi-patch-check-fill"></i></div>
+          <strong>Dokumentenvalidierung</strong>
+          <p>Sämtliche Berufsqualifikationen, Zeugnisse und Nachweise werden beglaubigt und vorab auf ihre Anerkennungsfähigkeit in Deutschland geprüft.</p>
+        </div>
+        <div class="screening-card">
+          <div class="sc-icon"><i class="bi bi-camera-video-fill"></i></div>
+          <strong>Video-Profiling</strong>
+          <p>Erstellung eines standardisierten Vorstellungsvideos, das Sprachkompetenz, Persönlichkeit und Motivation sichtbar macht.</p>
+        </div>
+        <div class="screening-card">
+          <div class="sc-icon"><i class="bi bi-person-check-fill"></i></div>
+          <strong>Motivations- und Eignungsprüfung</strong>
+          <p>Strukturierte Interviews zur Bewertung der Migrationsbereitschaft, realistischer Erwartungshaltung und kultureller Anpassungsfähigkeit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section id="persoenliche-angaben" class="guideline-section">
+      <div class="section-num">02</div>
       <h2>Persönliche Angaben</h2>
       <p>Alle Bewerber müssen vollständige und korrekte persönliche Daten angeben:</p>
       <ul>
-        <li>Vorname</li>
-        <li>Nachname</li>
-        <li>Geburtsdatum</li>
-        <li>Staatsangehörigkeit</li>
-        <li>Wohnort</li>
-        <li>E-Mail-Adresse</li>
-        <li>Telefonnummer</li>
+        <li>Vorname</li><li>Nachname</li><li>Geburtsdatum</li>
+        <li>Staatsangehörigkeit</li><li>Wohnort</li>
+        <li>E-Mail-Adresse</li><li>Telefonnummer</li>
       </ul>
       <p>Falsche oder unvollständige Angaben können zur Sperrung des Profils führen.</p>
     </section>
 
+    <!-- 03 -->
     <section id="dokumente" class="guideline-section">
-      <div class="section-num">02</div>
+      <div class="section-num">03</div>
       <h2>Dokumente</h2>
       <p>Alle hochgeladenen Dokumente müssen:</p>
       <ul>
@@ -497,8 +383,9 @@
       <p>Falls erforderlich, müssen Dokumente ins Deutsche oder Englische übersetzt werden.</p>
     </section>
 
+    <!-- 04 LEBENSLAUF -->
     <section id="lebenslauf" class="guideline-section">
-      <div class="section-num">03</div>
+      <div class="section-num">04</div>
       <h2>Lebenslauf</h2>
       <p>Der Lebenslauf sollte:</p>
       <ul>
@@ -507,10 +394,129 @@
         <li>in deutscher oder englischer Sprache vorliegen</li>
         <li>übersichtlich und professionell gestaltet sein</li>
       </ul>
+
+      <button type="button" class="example-toggle-btn" id="cvToggleBtn" onclick="toggleExample('cvExample','cvToggleBtn')">
+        <i class="bi bi-eye"></i> Beispiel anzeigen
+      </button>
+
+      <div id="cvExample" class="example-box" hidden>
+        <div class="example-label"><i class="bi bi-file-earmark-person"></i> Muster-Lebenslauf</div>
+        <div class="cv-wrapper">
+
+          <div class="cv-header">
+            <div class="cv-avatar">
+              <i class="bi bi-person-fill" style="font-size:2.2rem;color:var(--accent)"></i>
+            </div>
+            <div>
+              <div class="cv-name">Max Mustermann</div>
+              <div class="cv-title">Bewerber für Ausbildung / Arbeitsplatz</div>
+              <div class="cv-contacts">
+                <span><i class="bi bi-geo-alt-fill"></i> Musterstraße 1, 12345 Berlin</span>
+                <span><i class="bi bi-telephone-fill"></i> +49 123 456 7890</span>
+                <span><i class="bi bi-envelope-fill"></i> max@muster.de</span>
+                <span><i class="bi bi-calendar3"></i> Geb.: 01.01.2000</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-body">
+            <div class="cv-col-left">
+              <div class="cv-section">
+                <div class="cv-section-title"><i class="bi bi-mortarboard-fill"></i> Ausbildung</div>
+                <div class="cv-entry">
+                  <div class="cv-entry-year">2015 – 2019</div>
+                  <div class="cv-entry-content">
+                    <strong>Allgemeine Hochschulreife</strong>
+                    <span>Gymnasium Musterstadt</span>
+                  </div>
+                </div>
+                <div class="cv-entry">
+                  <div class="cv-entry-year">2006 – 2015</div>
+                  <div class="cv-entry-content">
+                    <strong>Grundschule &amp; Mittelschule</strong>
+                    <span>Musterschule, Musterstadt</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cv-section">
+                <div class="cv-section-title"><i class="bi bi-briefcase-fill"></i> Berufserfahrung</div>
+                <div class="cv-entry">
+                  <div class="cv-entry-year">2020 – 2023</div>
+                  <div class="cv-entry-content">
+                    <strong>Pflegehelfer</strong>
+                    <span>Klinik Musterstadt</span>
+                    <ul class="cv-task-list">
+                      <li>Unterstützung bei der täglichen Pflege</li>
+                      <li>Betreuung von Patienten</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cv-col-right">
+              <div class="cv-section">
+                <div class="cv-section-title"><i class="bi bi-translate"></i> Sprachkenntnisse</div>
+                <div class="cv-skill-row">
+                  <span class="cv-skill-name">Arabisch</span>
+                  <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:100%"></div></div>
+                  <span class="cv-skill-level">Muttersprache</span>
+                </div>
+                <div class="cv-skill-row">
+                  <span class="cv-skill-name">Deutsch</span>
+                  <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:70%"></div></div>
+                  <span class="cv-skill-level">B2</span>
+                </div>
+                <div class="cv-skill-row">
+                  <span class="cv-skill-name">Englisch</span>
+                  <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:55%"></div></div>
+                  <span class="cv-skill-level">B1</span>
+                </div>
+              </div>
+              <div class="cv-section">
+                <div class="cv-section-title"><i class="bi bi-star-fill"></i> Fähigkeiten</div>
+                <div class="cv-tags">
+                  <span class="cv-tag">Teamarbeit</span>
+                  <span class="cv-tag">Kommunikation</span>
+                  <span class="cv-tag">MS Office</span>
+                  <span class="cv-tag">Zuverlässigkeit</span>
+                  <span class="cv-tag">Belastbarkeit</span>
+                </div>
+              </div>
+              <div class="cv-section">
+                <div class="cv-section-title"><i class="bi bi-award-fill"></i> Zertifikate</div>
+                <div class="cv-entry">
+                  <div class="cv-entry-year">2022</div>
+                  <div class="cv-entry-content">
+                    <strong>Goethe-Zertifikat B2</strong>
+                    <span>Goethe-Institut</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cv-section">
+                <div class="cv-section-title"><i class="bi bi-heart-fill"></i> Interessen</div>
+                <div class="cv-tags">
+                  <span class="cv-tag">Sport</span>
+                  <span class="cv-tag">Lesen</span>
+                  <span class="cv-tag">Reisen</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-footer">
+            <span class="cv-placeholder-note">
+              <i class="bi bi-info-circle"></i>
+              Dies ist ein Muster. Ersetzen Sie alle Angaben durch Ihre eigenen Daten.
+            </span>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!-- 05 MOTIVATIONSSCHREIBEN -->
     <section id="motivationsschreiben" class="guideline-section">
-      <div class="section-num">04</div>
+      <div class="section-num">05</div>
       <h2>Motivationsschreiben</h2>
       <p>Das Motivationsschreiben sollte:</p>
       <ul>
@@ -518,10 +524,58 @@
         <li>die Motivation für die Ausbildung oder Stelle erklären</li>
         <li>respektvoll und professionell formuliert sein</li>
       </ul>
+
+      <button type="button" class="example-toggle-btn" id="msToggleBtn" onclick="toggleExample('msExample','msToggleBtn')">
+        <i class="bi bi-eye"></i> Beispiel anzeigen
+      </button>
+
+      <div id="msExample" class="example-box" hidden>
+        <div class="example-label"><i class="bi bi-envelope-paper-fill"></i> Muster-Motivationsschreiben</div>
+        <div class="letter-wrapper">
+
+          <div class="letter-sender">
+            <strong>Mart Muster</strong><br>
+            Beispielweg 1, 23456 Hauptstadt<br>
+            Fon: 012x3 4567890 &nbsp;|&nbsp; E-Mail: Example@muster.de
+          </div>
+
+          <div class="letter-recipient">
+            <strong>Kita GmbH</strong><br>
+            Frau Beate Beispiel<br>
+            kfxxxxxxx<br>
+            23456 Hauptstadt
+          </div>
+
+          <div class="letter-date">Hauptstadt, TT.MM.JJJJ</div>
+
+          <div class="letter-subject">Motivationsschreiben für ein Praktikum</div>
+
+          <div class="letter-salutation">Sehr geehrte Frau Beispiel,</div>
+
+          <div class="letter-body">
+            <p>schon seit Jahren begeistert mich die Arbeit mit Kindern. Ich arbeite als Babysitterin, helfe regelmäßig freiwillig bei Veranstaltungen mit Kinderprogramm und übernehme ab dem nächsten Monat die Leitung einer Kindergruppe im Sportverein. Nun möchte ich herausfinden, ob ich diese Leidenschaft zum Beruf machen möchte. Das ausgeschriebene Schülerpraktikum in Ihrer Einrichtung ist die perfekte Gelegenheit dazu.</p>
+            <p>Ich kann mir keine bessere Kindertagesstätte vorstellen, um meinen Berufswunsch besser kennenzulernen. Meine beiden kleineren Geschwister und ich selbst haben Ihre Kita besucht. Zusätzlich fasziniert mich der moderne Ansatz als Kombination eines Bewegungskindergartens, der gleichzeitig die Integration sowie Gleichberechtigung von Kindern mit Einschränkungen fördert und aktiv unterstützt.</p>
+            <p>Jede meiner bisherigen Erfahrungen im Umgang mit Kindern und deren Betreuung bestärkt mich in meinem Wunsch, den Beruf der Erzieherin zu erlernen. Meine Empathie, Zuverlässigkeit, Organisationsstärke, Belastbarkeit, Kreativität und ein starkes Verantwortungsbewusstsein unterstützen mich dabei – gepaart mit einer ruhigen Art und gelassenen Ausstrahlung auch in stressigen Situationen.</p>
+            <p>Schon jetzt freue ich mich darauf, die Kinder in den Gruppen kennenzulernen und Ihr Team bei der täglichen Arbeit zu unterstützen. Gerne überzeuge ich Sie in einem persönlichen Gespräch von meiner Motivation und Eignung für das Praktikum als Erzieherin.</p>
+          </div>
+
+          <div class="letter-closing">Mit freundlichen Grüßen</div>
+          <div class="letter-signature">
+            <div class="signature-line"></div>
+            <span>Mart Muster</span>
+          </div>
+
+          <div class="letter-note">
+            <i class="bi bi-info-circle"></i>
+            Dies ist ein Musterbrief. Passen Sie alle Angaben, Namen und Inhalte an Ihre persönliche Situation an.
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!-- 06 -->
     <section id="profil-video" class="guideline-section">
-      <div class="section-num">05</div>
+      <div class="section-num">06</div>
       <h2>Profil-Video</h2>
       <p>Das Profil-Video sollte:</p>
       <ul>
@@ -532,17 +586,16 @@
       </ul>
       <p><strong style="color:var(--white)">Empfohlene Inhalte:</strong></p>
       <ul>
-        <li>kurze Vorstellung</li>
-        <li>Herkunft</li>
+        <li>kurze Vorstellung</li><li>Herkunft</li>
         <li>gewünschter Ausbildungsberuf</li>
-        <li>Motivation</li>
-        <li>Zukunftsziele</li>
+        <li>Motivation</li><li>Zukunftsziele</li>
       </ul>
       <p>Unangemessene oder beleidigende Inhalte sind nicht erlaubt.</p>
     </section>
 
+    <!-- 07 -->
     <section id="verhalten" class="guideline-section">
-      <div class="section-num">06</div>
+      <div class="section-num">07</div>
       <h2>Verhalten auf der Plattform</h2>
       <p>Alle Bewerber verpflichten sich zu:</p>
       <ul>
@@ -553,64 +606,44 @@
       <p>Beleidigungen, Diskriminierung oder missbräuchliche Nutzung führen zur Sperrung des Kontos.</p>
     </section>
 
+    <!-- 08 -->
     <section id="ueberpruefung" class="guideline-section">
-      <div class="section-num">07</div>
+      <div class="section-num">08</div>
       <h2>Überprüfung der Daten</h2>
       <p>3E Consulting behält sich das Recht vor, hochgeladene Dokumente und Angaben zu überprüfen.</p>
       <p>Bei Verdacht auf Fälschung oder Missbrauch kann das Profil jederzeit deaktiviert werden.</p>
     </section>
 
+    <!-- 09 -->
     <section id="zustimmung" class="guideline-section">
-      <div class="section-num">08</div>
+      <div class="section-num">09</div>
       <h2>Zustimmung</h2>
       <p>Mit der Registrierung auf 3E Consulting bestätigen Sie, dass alle Angaben wahrheitsgemäß sind und Sie diese Richtlinien akzeptieren.</p>
       <a href="../bewerben.html" class="btn-primary">Jetzt registrieren →</a>
     </section>
 
-    <!-- Videoanleitung -->
+    <!-- 10 VIDEO -->
     <section id="video-anleitung" class="guideline-section video-section">
-      <div class="section-num">09</div>
+      <div class="section-num">10</div>
       <h2><i class="bi bi-camera-video-fill" style="color:var(--accent);margin-right:.4rem"></i>Videoanleitung — So bewerben Sie sich</h2>
       <p>In diesem Video erfahren Sie Schritt für Schritt, wie Sie sich auf unserer Plattform bewerben und Ihr Profil vollständig einreichen.</p>
-
       <div class="steps-grid">
-        <div class="step-card">
-          <div class="num">1</div>
-          <p>Konto erstellen &amp; anmelden</p>
-        </div>
-        <div class="step-card">
-          <div class="num">2</div>
-          <p>Persönliche Daten ausfüllen</p>
-        </div>
-        <div class="step-card">
-          <div class="num">3</div>
-          <p>Dokumente hochladen</p>
-        </div>
-        <div class="step-card">
-          <div class="num">4</div>
-          <p>Profil-Video aufnehmen</p>
-        </div>
-        <div class="step-card">
-          <div class="num">5</div>
-          <p>Profil absenden &amp; warten</p>
-        </div>
+        <div class="step-card"><div class="num">1</div><p>Konto erstellen &amp; anmelden</p></div>
+        <div class="step-card"><div class="num">2</div><p>Persönliche Daten ausfüllen</p></div>
+        <div class="step-card"><div class="num">3</div><p>Dokumente hochladen</p></div>
+        <div class="step-card"><div class="num">4</div><p>Profil-Video aufnehmen</p></div>
+        <div class="step-card"><div class="num">5</div><p>Profil absenden &amp; warten</p></div>
       </div>
-
       <div class="video-embed" id="videoContainer">
         <video id="anleitungVideo" controls style="display:none">
           <source src="../videos/bewerbung-anleitung.mp4" type="video/mp4">
-          <source src="../videos/bewerbung-anleitung.webm" type="video/webm">
         </video>
-
         <div class="video-placeholder" id="videoFallback">
           <i class="bi bi-camera-video" style="font-size:2rem;color:var(--accent)"></i>
           <strong style="color:var(--white)">Videoanleitung: So bewerben Sie sich</strong>
-          Video wird in Kürze verfügbar sein.<br>
-          <small>Legen Sie Ihr Video unter <code>videos/bewerbung-anleitung.mp4</code> ab<br>
-          oder betten Sie ein YouTube-Video im Quellcode ein.</small>
+          Video wird in Kürze verfügbar sein.
         </div>
       </div>
-
       <p style="margin-top:1.25rem">Bereit? Starten Sie jetzt Ihre Bewerbung:</p>
       <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem">
         <a href="../bewerben.html" class="btn-primary">Registrieren →</a>
@@ -622,89 +655,58 @@
 </div>
 
 <script>
-const menuToggle = document.getElementById('menuToggle');
-const menuDropdown = document.getElementById('menuDropdown');
-
-function positionDropdown() {
-  if (window.innerWidth <= 768) {
-    // على الموبايل: fixed بعرض كامل تقريباً، مثبت من اليمين
-    const rect = menuToggle.getBoundingClientRect();
-    menuDropdown.style.position = 'fixed';
-    menuDropdown.style.top = (rect.bottom + 8) + 'px';
-    menuDropdown.style.right = '1rem';
-    menuDropdown.style.left = '1rem';
-    menuDropdown.style.width = 'auto';
-    menuDropdown.style.maxWidth = '100%';
-    menuDropdown.style.minWidth = '0';
-  } else {
-    // الديسكتوب: الوضع الأصلي
-    menuDropdown.style.position = '';
-    menuDropdown.style.top = '';
-    menuDropdown.style.right = '0';
-    menuDropdown.style.left = '';
-    menuDropdown.style.width = '';
-    menuDropdown.style.maxWidth = '';
-    menuDropdown.style.minWidth = '';
-  }
+/* ── Toggle Example ── */
+function toggleExample(boxId, btnId) {
+  const box = document.getElementById(boxId);
+  const btn = document.getElementById(btnId);
+  const isHidden = box.hidden;
+  box.hidden = !isHidden;
+  btn.classList.toggle('open', isHidden);
+  btn.innerHTML = isHidden
+    ? '<i class="bi bi-eye-slash"></i> Beispiel ausblenden'
+    : '<i class="bi bi-eye"></i> Beispiel anzeigen';
 }
 
-menuToggle.addEventListener('click', (e) => {
+/* ── Nav ── */
+const menuToggle   = document.getElementById('menuToggle');
+const menuDropdown = document.getElementById('menuDropdown');
+menuToggle.addEventListener('click', e => {
   e.stopPropagation();
   const open = !menuDropdown.hidden;
   menuDropdown.hidden = open;
   menuToggle.setAttribute('aria-expanded', String(!open));
-  if (!open) positionDropdown();
 });
-
 document.querySelectorAll('.menu-toggle').forEach(btn => {
-  btn.addEventListener('click', (e) => {
+  btn.addEventListener('click', e => {
     e.stopPropagation();
     const sub = btn.nextElementSibling;
     sub.hidden = !sub.hidden;
     btn.classList.toggle('open', !sub.hidden);
   });
 });
-
 document.addEventListener('click', () => {
   menuDropdown.hidden = true;
-  menuToggle.setAttribute('aria-expanded', 'false');
-  document.querySelectorAll('.menu-level-2, .menu-level-3').forEach(u => u.hidden = true);
+  document.querySelectorAll('.menu-level-2,.menu-level-3').forEach(u => u.hidden = true);
   document.querySelectorAll('.menu-toggle').forEach(b => b.classList.remove('open'));
 });
+menuDropdown.addEventListener('click', e => e.stopPropagation());
 
-menuDropdown.addEventListener('click', (e) => e.stopPropagation());
-
+/* ── TOC active ── */
 const tocLinks = document.querySelectorAll('aside.toc a');
 const sections = document.querySelectorAll('.guideline-section');
+function setActiveToc(id){tocLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));}
+if(location.hash) setActiveToc(location.hash.slice(1));
+const observer = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)setActiveToc(e.target.id);});},{rootMargin:'-40% 0px'});
+sections.forEach(s=>observer.observe(s));
 
-function setActiveToc(id) {
-  tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
-}
-
-if (location.hash) setActiveToc(location.hash.slice(1));
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) setActiveToc(entry.target.id);
-  });
-}, { rootMargin: '-40% 0px' });
-
-sections.forEach(s => observer.observe(s));
-
-const video = document.getElementById('anleitungVideo');
-const fallback = document.getElementById('videoFallback');
-if (video && fallback) {
-  video.addEventListener('loadeddata', () => {
-    video.style.display = 'block';
-    fallback.style.display = 'none';
-  });
-  video.addEventListener('error', () => {
-    video.style.display = 'none';
-    fallback.style.display = 'flex';
-  });
+/* ── Video ── */
+const video   = document.getElementById('anleitungVideo');
+const fallback= document.getElementById('videoFallback');
+if(video&&fallback){
+  video.addEventListener('loadeddata',()=>{video.style.display='block';fallback.style.display='none';});
+  video.addEventListener('error',()=>{video.style.display='none';fallback.style.display='flex';});
   video.load();
 }
 </script>
-
 </body>
 </html>
