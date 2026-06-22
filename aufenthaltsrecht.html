@@ -462,21 +462,21 @@
         <p>Algerische Staatsbürger benötigen für <strong style="color:#fff">Erwerbstätigkeit, Ausbildung oder einen längeren Aufenthalt</strong> ein nationales Visum (D-Visum), das vor der Einreise bei der deutschen Botschaft in Algier beantragt wird.</p>
         <div class="row g-3 my-3">
           <div class="col-sm-6"><div class="visa-card">
-            <h3><i class="bi bi-passport" style="color:var(--accent)"></i>Nationales Visum (Typ D)</h3>
+            <h3>Nationales Visum (Typ D)</h3>
             <p>Für Aufenthalte über 90 Tage: Ausbildung, Arbeit, Studium, Familiennachzug.</p>
             <span class="visa-tag">Vor Einreise beantragen</span>
           </div></div>
           <div class="col-sm-6"><div class="visa-card">
-            <h3><i class="bi bi-airplane" style="color:var(--accent)"></i>Kurzaufenthalt (Schengen)</h3>
+            <h3>Kurzaufenthalt (Schengen)</h3>
             <p>Bis 90 Tage innerhalb von 180 Tagen — Tourismus, Besuch, kurze Geschäftsreisen.</p>
             <span class="visa-tag">Visumfrei für Algerien</span>
           </div></div>
           <div class="col-sm-6"><div class="visa-card">
-            <h3><i class="bi bi-file-earmark-text" style="color:var(--accent)"></i>Erforderliche Dokumente</h3>
+            <h3>Erforderliche Dokumente</h3>
             <p>Reisepass, Vertrag/Ausbildungsplatz, Krankenversicherung, Finanzierungsnachweis, Sprachzertifikat.</p>
           </div></div>
           <div class="col-sm-6"><div class="visa-card">
-            <h3><i class="bi bi-building-fill" style="color:var(--accent)"></i>Zuständige Stelle</h3>
+            <h3>Zuständige Stelle</h3>
             <p>Deutsche Botschaft Algier — Termin online buchen, Unterlagen vollständig einreichen.</p>
           </div></div>
         </div>
@@ -617,14 +617,20 @@ sections.forEach(s => new IntersectionObserver(entries => {
 Chart.defaults.color = '#86a38e';
 Chart.defaults.borderColor = 'rgba(74,222,128,.12)';
 Chart.defaults.font.family = "'DM Sans', sans-serif";
-const accent = '#d97706', bright = '#4ade80', gold = '#fbbf24';
-const palette = [accent, bright, gold, '#60a5fa', '#a78bfa', '#ef4444'];
+
+/* ── لوحة الألوان: درجات خضراء فقط ── */
+const green1 = '#4ade80';   // أخضر أساسي (bright)
+const green2 = '#16a34a';   // أخضر داكن
+const green3 = '#86efac';   // أخضر فاتح
+const green4 = '#15803d';   // أخضر داكن جداً
+const green5 = '#22c55e';   // أخضر متوسط
+const greenPalette = [green1, green2, green3, green4, green5];
 
 new Chart(document.getElementById('chartAufenthalt'), {
   type: 'bar',
   data: {
     labels: ['Visum (D)', 'Aufenthalts-erlaubnis', 'Verlängerung', 'Niederlassung', 'Einbürgerung'],
-    datasets: [{ data: [1,2,3,4,5], backgroundColor: palette, borderRadius: 6 }]
+    datasets: [{ data: [1,2,3,4,5], backgroundColor: greenPalette, borderRadius: 6 }]
   },
   options: { responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false } },
@@ -635,8 +641,8 @@ new Chart(document.getElementById('chartTimeline'), {
   type: 'line',
   data: {
     labels: ['Jahr 0','Jahr 1','Jahr 2','Jahr 3','Jahr 4','Jahr 5+'],
-    datasets: [{ data: [10,30,55,75,90,100], borderColor: accent,
-      backgroundColor: 'rgba(217,119,6,.15)', fill: true, tension: 0.4, pointRadius: 5 }]
+    datasets: [{ data: [10,30,55,75,90,100], borderColor: green1,
+      backgroundColor: 'rgba(74,222,128,.15)', fill: true, tension: 0.4, pointRadius: 5, pointBackgroundColor: green1 }]
   },
   options: { responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false } },
@@ -647,7 +653,7 @@ new Chart(document.getElementById('chartVisum'), {
   type: 'doughnut',
   data: {
     labels: ['Ausbildungsvertrag','Sprache','Finanzierung','Krankenvers.','Pass'],
-    datasets: [{ data: [35,25,20,12,8], backgroundColor: palette, borderColor: '#0f2017', borderWidth: 3 }]
+    datasets: [{ data: [35,25,20,12,8], backgroundColor: ['#d97706','#4ade80','#fbbf24','#60a5fa','#a78bfa'], borderColor: '#0f2017', borderWidth: 3 }]
   },
   options: { responsive: true, maintainAspectRatio: false, cutout: '55%',
     plugins: { legend: { position: 'bottom', labels: { padding: 8, usePointStyle: true, font: { size: 10 } } } } }
@@ -657,7 +663,7 @@ new Chart(document.getElementById('chartDauer'), {
   type: 'bar',
   data: {
     labels: ['Niederlassung (Regel)','Niederlassung (schnell)','Einbürgerung (neu)','Einbürgerung (früher)'],
-    datasets: [{ data: [5,3,5,8], backgroundColor: [accent,bright,gold,'#60a5fa'], borderRadius: 6 }]
+    datasets: [{ data: [5,3,5,8], backgroundColor: [green1,green2,green3,green4], borderRadius: 6 }]
   },
   options: { responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.raw} Jahre` } } },
