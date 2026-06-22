@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -22,20 +23,16 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5vw;background:rgba(15,32,23,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-.nav-logo{font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--white);letter-spacing:.05em;text-decoration:none;}
-.nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-size:.875rem;font-weight:400;color:var(--muted);text-decoration:none;letter-spacing:.03em;transition:color .2s;}
+.nav-links a{font-size:.875rem;color:var(--muted);text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:var(--white)}
 .nav-menu{position:relative;}
 .nav-menu-btn{background:var(--accent);color:var(--white);padding:.55rem 1.3rem;border-radius:8px;font-size:.85rem;font-weight:500;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:background .2s,transform .15s;}
 .nav-menu-btn:hover{background:var(--accent-hover);transform:translateY(-1px);}
-.nav-dropdown{position:absolute;top:calc(100% + .6rem);right:0;min-width:340px;max-width:420px;max-height:75vh;overflow-y:auto;background:rgba(15,32,23,.97);border:1px solid var(--border);border-radius:12px;padding:1rem;backdrop-filter:blur(20px);box-shadow:0 20px 50px rgba(0,0,0,.4);z-index:200;animation:menuIn .2s ease;}
-@keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.nav-dropdown{position:absolute;top:calc(100% + .6rem);right:0;min-width:340px;max-width:420px;max-height:75vh;overflow-y:auto;background:rgba(15,32,23,.97);border:1px solid var(--border);border-radius:12px;padding:1rem;backdrop-filter:blur(20px);box-shadow:0 20px 50px rgba(0,0,0,.4);z-index:200;}
 .menu-level-1,.menu-level-2,.menu-level-3{list-style:none;margin:0;padding:0;}
 .menu-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;padding:.65rem .75rem;background:transparent;border:none;border-radius:8px;color:var(--white);font-size:.88rem;font-weight:500;font-family:var(--font-body);cursor:pointer;text-align:left;transition:background .15s,color .15s;}
 .menu-toggle:hover,.menu-toggle.open{background:var(--glass);color:var(--bright);}
-.menu-toggle:focus{outline:none;box-shadow:0 0 0 2px rgba(217,119,6,.4);}
 .menu-toggle::after{content:'›';font-size:1.1rem;color:var(--muted);transition:transform .2s;}
 .menu-toggle.open::after{transform:rotate(90deg);color:var(--accent);}
 .menu-level-1>li>a{display:flex;align-items:center;padding:.65rem .75rem;font-size:.88rem;font-weight:500;color:var(--white);text-decoration:none;border-radius:8px;transition:background .15s;}
@@ -74,65 +71,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .card-btn-company:hover{background:rgba(255,255,255,.1);transform:translateX(3px)}
 .card-btn svg{width:16px;height:16px;opacity:.7}
 
-/* BRIDGE VORTEILE */
-.bridge-section{padding:7rem 5vw;background:linear-gradient(180deg,var(--navy) 0%,#091a0f 100%);position:relative;overflow:hidden;}
-.bridge-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(217,119,6,.5),transparent);}
-.bridge-section::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:600px;background:radial-gradient(ellipse,rgba(217,119,6,.07) 0%,transparent 70%);pointer-events:none;}
-.bridge-header{text-align:center;margin-bottom:4rem;position:relative;z-index:1;}
-.bridge-tag{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.7rem;}
-.bridge-title{font-family:var(--font-display);font-size:clamp(1.9rem,3.5vw,2.7rem);font-weight:700;color:var(--white);line-height:1.15;}
-.bridge-title em{font-style:normal;color:var(--accent);}
-.bridge-layout{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 110px 1fr;gap:0;align-items:start;position:relative;z-index:1;}
-.col-header{display:flex;align-items:center;gap:.85rem;margin-bottom:1.6rem;}
-.col-bewerber .col-header{justify-content:flex-end;flex-direction:row-reverse;}
-.col-company  .col-header{justify-content:flex-start;}
-.col-header-pill{display:inline-flex;align-items:center;gap:.55rem;padding:.55rem 1.1rem;border-radius:999px;border:1px solid;font-size:.78rem;font-weight:600;font-family:var(--font-display);letter-spacing:.04em;}
-.col-bewerber .col-header-pill{background:rgba(74,222,128,.07);border-color:rgba(74,222,128,.25);color:var(--bright);}
-.col-company  .col-header-pill{background:rgba(217,119,6,.08);border-color:rgba(217,119,6,.3);color:var(--accent);}
-.col-header-pill i{font-size:.9rem;}
-.col-bewerber,.col-company{display:flex;flex-direction:column;gap:.8rem;}
-.b-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:13px;padding:1.1rem 1.25rem;display:flex;align-items:flex-start;gap:.9rem;transition:background .22s,border-color .22s,transform .2s;}
-.b-card:hover{background:rgba(217,119,6,.055);border-color:rgba(217,119,6,.32);transform:translateY(-2px);}
-.col-bewerber .b-card{border-right:2px solid rgba(217,119,6,.12);}
-.col-bewerber .b-card:hover{border-right-color:rgba(217,119,6,.55);}
-.col-company .b-card{border-left:2px solid rgba(217,119,6,.12);}
-.col-company .b-card:hover{border-left-color:rgba(217,119,6,.55);}
-.b-icon{width:36px;height:36px;min-width:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0;}
-.col-bewerber .b-icon{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.18);}
-.col-company  .b-icon{background:rgba(217,119,6,.09);border:1px solid rgba(217,119,6,.2);}
-.col-bewerber .b-card:hover .b-icon{background:rgba(74,222,128,.15);}
-.col-company  .b-card:hover .b-icon{background:rgba(217,119,6,.16);}
-.col-bewerber .b-icon i{color:var(--bright);font-size:.95rem;}
-.col-company  .b-icon i{color:var(--accent);font-size:.95rem;}
-.b-text h4{font-family:var(--font-display);font-size:.87rem;font-weight:600;color:var(--white);margin-bottom:.2rem;line-height:1.3;}
-.b-text p{font-size:.76rem;color:var(--muted);line-height:1.6;font-weight:300;}
-.bridge-center{display:flex;flex-direction:column;align-items:center;padding-top:52px;position:relative;}
-.bridge-center::before{content:'';position:absolute;top:52px;bottom:0;left:50%;transform:translateX(-50%);width:1px;background:repeating-linear-gradient(to bottom,rgba(217,119,6,.45) 0px,rgba(217,119,6,.45) 6px,transparent 6px,transparent 14px);z-index:0;}
-.bridge-icon-wrap{width:64px;height:64px;border-radius:50%;background:rgba(217,119,6,.1);border:2px solid rgba(217,119,6,.45);display:flex;align-items:center;justify-content:center;position:relative;z-index:2;box-shadow:0 0 0 8px rgba(217,119,6,.05),0 0 28px rgba(217,119,6,.12);margin-bottom:0;}
-.bridge-icon-wrap i{color:var(--accent);font-size:1.45rem;}
-.bridge-dots{display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:1;width:100%;margin-top:0;}
-.b-dot{width:8px;height:8px;border-radius:50%;background:rgba(217,119,6,.2);border:1px solid rgba(217,119,6,.4);margin:18px 0;flex-shrink:0;transition:background .3s;}
-.b-dot.mid{width:12px;height:12px;background:rgba(217,119,6,.35);border-color:rgba(217,119,6,.7);}
-.bridge-label{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(217,119,6,.1);border:1px solid rgba(217,119,6,.28);border-radius:999px;padding:.35rem .8rem;position:relative;z-index:2;margin-bottom:1rem;white-space:nowrap;}
-.bridge-bottom{max-width:1200px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:1rem;position:relative;z-index:1;}
-.bb-card{border-radius:14px;padding:1.35rem 1.75rem;display:flex;align-items:center;gap:1.1rem;border:1px solid;transition:border-color .2s,background .2s;}
-.bb-bewerber{background:rgba(74,222,128,.04);border-color:rgba(74,222,128,.18);}
-.bb-bewerber:hover{border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.07);}
-.bb-company{background:rgba(217,119,6,.05);border-color:rgba(217,119,6,.2);}
-.bb-company:hover{border-color:rgba(217,119,6,.4);background:rgba(217,119,6,.08);}
-.bb-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.bb-bewerber .bb-icon{background:rgba(74,222,128,.1);}
-.bb-bewerber .bb-icon i{color:var(--bright);font-size:1.1rem;}
-.bb-company .bb-icon{background:rgba(217,119,6,.12);}
-.bb-company .bb-icon i{color:var(--accent);font-size:1.1rem;}
-.bb-text h4{font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.18rem;font-family:var(--font-display);}
-.bb-text p{font-size:.76rem;color:var(--muted);line-height:1.5;font-weight:300;}
-.bb-btn{margin-left:auto;flex-shrink:0;padding:.5rem 1.1rem;border-radius:8px;font-size:.76rem;font-weight:500;text-decoration:none;transition:all .2s;white-space:nowrap;border:1px solid;}
-.bb-bewerber .bb-btn{color:var(--bright);border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.07);}
-.bb-bewerber .bb-btn:hover{background:rgba(74,222,128,.15);}
-.bb-company .bb-btn{color:var(--accent);border-color:rgba(217,119,6,.3);background:rgba(217,119,6,.08);}
-.bb-company .bb-btn:hover{background:rgba(217,119,6,.18);}
-
 /* SERVICES */
 .services{padding:8rem 5vw;background:linear-gradient(180deg,#091a0f 0%,#0a1e12 100%);position:relative;}
 .section-header{max-width:1200px;margin:0 auto 4rem;display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
@@ -145,7 +83,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .svc:nth-child(3n){border-right:none}
 .svc:nth-last-child(-n+3){border-bottom:none}
 .svc-num{font-family:var(--font-display);font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:1.2rem;opacity:.6;}
-.svc-icon{font-size:1.8rem;margin-bottom:1rem;display:block}
 .svc-icon i{color:var(--accent);font-size:1.8rem;display:block;margin-bottom:1rem;}
 .svc h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;color:var(--white);margin-bottom:.75rem}
 .svc p{font-size:.875rem;color:var(--muted);line-height:1.7;font-weight:300}
@@ -173,7 +110,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .fb-sub-item{display:flex;align-items:center;gap:.65rem;background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;transition:border-color .15s,background .15s;}
 .fb-sub-item:hover{border-color:rgba(217,119,6,.3);background:rgba(217,119,6,.05);}
 .fb-sub-item i{color:var(--accent);font-size:.95rem;flex-shrink:0;}
-.fb-sub-item span{font-size:.82rem;color:var(--muted);line-height:1.35;}
+.fb-sub-item span{font-size:.82rem;color:var(--muted);}
 .fb-standalone{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1rem;text-align:center;transition:all .25s;cursor:default;}
 .fb-standalone:hover{background:rgba(217,119,6,.05);border-color:rgba(217,119,6,.35);transform:translateY(-2px);}
 .fb-standalone .fb-icon{width:48px;height:48px;border-radius:12px;background:rgba(217,119,6,.12);display:flex;align-items:center;justify-content:center;margin:0 auto .85rem;}
@@ -205,12 +142,179 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .about-item-text p{font-size:.82rem;color:var(--muted);line-height:1.5;font-weight:300}
 .about-visual{position:relative;display:flex;align-items:stretch;}
 .about-visual-card{width:100%;border-radius:20px;overflow:hidden;border:1px solid rgba(74,222,128,.2);background:rgba(255,255,255,.04);box-shadow:0 25px 60px rgba(0,0,0,.5);cursor:default;transition:transform .3s ease,box-shadow .3s ease;transform-style:preserve-3d;}
-.about-visual-card:hover{box-shadow:0 35px 70px rgba(0,0,0,.6);}
 .about-visual-card img{width:100%;height:auto;display:block;aspect-ratio:4/3;object-fit:cover;}
 .av-caption{display:flex;align-items:center;gap:10px;padding:14px 18px;border-top:1px solid rgba(74,222,128,.12);background:rgba(255,255,255,.03);}
 .av-caption-dot{width:8px;height:8px;border-radius:50%;background:var(--bright);box-shadow:0 0 8px var(--bright);flex-shrink:0;}
 .av-caption p{font-size:.8rem;color:var(--muted);line-height:1.5;margin:0;}
 .av-caption p strong{color:var(--white);font-weight:500}
+
+/* ══════════════════════════════════════════
+   BRIDGE SECTION — BRIDGE CENTERED VERTICALLY
+══════════════════════════════════════════ */
+.bridge-section{
+  padding:6rem 5vw 5rem;
+  background:linear-gradient(180deg,var(--navy) 0%,#091a0f 100%);
+  position:relative;overflow:hidden;
+}
+.bridge-section::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(217,119,6,.5),transparent);
+}
+.bridge-section::after{
+  content:'';position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,119,6,.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+.bridge-header{text-align:center;margin-bottom:3rem;position:relative;z-index:1;}
+.bridge-tag{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.7rem;}
+.bridge-title{font-family:var(--font-display);font-size:clamp(1.9rem,3.5vw,2.7rem);font-weight:700;color:var(--white);line-height:1.15;}
+.bridge-title em{font-style:normal;color:var(--accent);}
+
+/* 3-column layout */
+.bridge-layout{
+  max-width:1300px;margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 180px 1fr;
+  gap:1rem;
+  align-items:stretch; /* key: all columns same height */
+  position:relative;z-index:1;
+}
+
+/* COLUMN HEADERS */
+.col-header{display:flex;align-items:center;gap:.85rem;margin-bottom:1.2rem;}
+.col-bewerber .col-header{justify-content:flex-end;}
+.col-company  .col-header{justify-content:flex-start;}
+.col-header-pill{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.5rem 1rem;border-radius:999px;border:1px solid;
+  font-size:.76rem;font-weight:600;font-family:var(--font-display);letter-spacing:.04em;
+}
+.col-bewerber .col-header-pill{background:rgba(74,222,128,.07);border-color:rgba(74,222,128,.25);color:var(--bright);}
+.col-company  .col-header-pill{background:rgba(217,119,6,.08);border-color:rgba(217,119,6,.3);color:var(--accent);}
+
+/* COLUMNS */
+.col-bewerber,.col-company{display:flex;flex-direction:column;gap:.5rem;}
+
+/* CARDS */
+.b-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:.65rem .85rem;
+  display:flex;align-items:center;gap:.7rem;
+  transition:background .2s,border-color .2s,transform .18s;
+  cursor:default;
+}
+.b-card:hover{background:rgba(217,119,6,.055);border-color:rgba(217,119,6,.32);transform:translateY(-1px);}
+.col-bewerber .b-card{border-right:2px solid rgba(74,222,128,.12);}
+.col-bewerber .b-card:hover{border-right-color:rgba(74,222,128,.5);}
+.col-company .b-card{border-left:2px solid rgba(217,119,6,.12);}
+.col-company .b-card:hover{border-left-color:rgba(217,119,6,.5);}
+.b-icon{
+  width:30px;height:30px;min-width:30px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;
+}
+.col-bewerber .b-icon{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.18);}
+.col-company  .b-icon{background:rgba(217,119,6,.09);border:1px solid rgba(217,119,6,.2);}
+.col-bewerber .b-card:hover .b-icon{background:rgba(74,222,128,.16);}
+.col-company  .b-card:hover .b-icon{background:rgba(217,119,6,.18);}
+.col-bewerber .b-icon i{color:var(--bright);font-size:.82rem;}
+.col-company  .b-icon i{color:var(--accent);font-size:.82rem;}
+.b-text h4{font-family:var(--font-display);font-size:.78rem;font-weight:600;color:var(--white);margin-bottom:.1rem;line-height:1.25;}
+.b-text p{font-size:.68rem;color:var(--muted);line-height:1.45;font-weight:300;margin:0;}
+
+/* ══ BRIDGE CENTER — PERFECTLY CENTERED ══ */
+.bridge-center{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center; /* vertically center everything */
+  position:relative;
+  z-index:2;
+  gap:0;
+}
+
+/* top dashed line — from top of column to bridge image */
+.bridge-line-top,
+.bridge-line-bottom{
+  width:2px;
+  flex:1; /* take equal space above and below */
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(217,119,6,.45) 0px, rgba(217,119,6,.45) 6px,
+    transparent 6px, transparent 14px
+  );
+  position:relative;
+  z-index:0;
+}
+
+/* dots on the lines */
+.bridge-line-top::after,
+.bridge-line-bottom::before{
+  content:'';
+  position:absolute;
+  left:50%;transform:translateX(-50%);
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(217,119,6,.25);
+  border:1px solid rgba(217,119,6,.5);
+}
+.bridge-line-top::after{bottom:0;}
+.bridge-line-bottom::before{top:0;}
+
+/* badge */
+.bridge-badge{
+  font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);background:rgba(217,119,6,.12);
+  border:1px solid rgba(217,119,6,.3);border-radius:999px;
+  padding:.28rem .7rem;position:relative;z-index:2;
+  white-space:nowrap;margin:1rem 0 .6rem;
+}
+
+/* bridge image container */
+.bridge-img-wrap{
+  width:150px;
+  position:relative;z-index:2;
+  flex-shrink:0;
+}
+.bridge-img{
+  width:100%;
+  display:block;
+  filter: invert(1) sepia(1) saturate(3) hue-rotate(15deg) brightness(1.1);
+  opacity:.8;
+  transition:opacity .3s,filter .3s,transform .3s;
+}
+.bridge-img-wrap:hover .bridge-img{
+  opacity:1;
+  filter: invert(1) sepia(1) saturate(5) hue-rotate(15deg) brightness(1.35);
+  transform:scale(1.04);
+}
+
+/* BOTTOM CTAs */
+.bridge-bottom{
+  max-width:1200px;margin:2.5rem auto 0;
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+  position:relative;z-index:1;
+}
+.bb-card{border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;border:1px solid;transition:border-color .2s,background .2s;}
+.bb-bewerber{background:rgba(74,222,128,.04);border-color:rgba(74,222,128,.18);}
+.bb-bewerber:hover{border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.07);}
+.bb-company{background:rgba(217,119,6,.05);border-color:rgba(217,119,6,.2);}
+.bb-company:hover{border-color:rgba(217,119,6,.4);background:rgba(217,119,6,.08);}
+.bb-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.bb-bewerber .bb-icon{background:rgba(74,222,128,.1);}
+.bb-bewerber .bb-icon i{color:var(--bright);font-size:1rem;}
+.bb-company .bb-icon{background:rgba(217,119,6,.12);}
+.bb-company .bb-icon i{color:var(--accent);font-size:1rem;}
+.bb-text h4{font-size:.85rem;font-weight:600;color:var(--white);margin-bottom:.15rem;font-family:var(--font-display);}
+.bb-text p{font-size:.74rem;color:var(--muted);line-height:1.5;font-weight:300;}
+.bb-btn{margin-left:auto;flex-shrink:0;padding:.45rem 1rem;border-radius:8px;font-size:.74rem;font-weight:500;text-decoration:none;transition:all .2s;white-space:nowrap;border:1px solid;}
+.bb-bewerber .bb-btn{color:var(--bright);border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.07);}
+.bb-bewerber .bb-btn:hover{background:rgba(74,222,128,.15);}
+.bb-company .bb-btn{color:var(--accent);border-color:rgba(217,119,6,.3);background:rgba(217,119,6,.08);}
+.bb-company .bb-btn:hover{background:rgba(217,119,6,.18);}
 
 /* CONTACT */
 .contact{padding:8rem 5vw;background:var(--navy)}
@@ -223,10 +327,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .field{display:flex;flex-direction:column;gap:.4rem}
 .field label{font-size:.78rem;color:var(--muted);letter-spacing:.04em}
 .field input,.field textarea{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:.8rem 1rem;font-size:.9rem;color:var(--white);font-family:var(--font-body);outline:none;transition:border-color .2s;resize:none;}
-.field input::placeholder,.field textarea::placeholder{color:rgba(136,153,181,.5)}
 .field input:focus,.field textarea:focus{border-color:var(--accent);background:rgba(217,119,6,.05)}
 .form-submit{background:var(--accent);color:var(--white);padding:.9rem;border-radius:10px;font-size:.95rem;font-weight:500;border:none;cursor:pointer;transition:all .2s;font-family:var(--font-body);margin-top:.5rem;}
-.form-submit:hover{background:#b45309;transform:translateY(-2px);box-shadow:0 12px 30px rgba(217,119,6,.3)}
+.form-submit:hover{background:#b45309;transform:translateY(-2px)}
 
 /* FOOTER */
 footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;background:rgba(15,32,23,.92);}
@@ -256,7 +359,8 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
   .about-inner{grid-template-columns:1fr}
   .about-visual{order:-1}
   .fb-main-grid{grid-template-columns:repeat(3,1fr)}
-  .bridge-layout{grid-template-columns:1fr 80px 1fr;}
+  .bridge-layout{grid-template-columns:1fr 140px 1fr;}
+  .bridge-img-wrap{width:130px;}
 }
 @media(max-width:768px){
   nav{padding:.7rem 1rem}
@@ -283,12 +387,28 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
   .footer-links{justify-content:center}
   .fb-main-grid{grid-template-columns:repeat(2,1fr)}
   .fb-sub-grid{grid-template-columns:1fr}
-  .bridge-layout{grid-template-columns:1fr;gap:0;}
-  .bridge-center{flex-direction:row;padding:1.5rem 0;height:auto;justify-content:center;gap:1rem;}
-  .bridge-center::before{display:none;}
-  .bridge-dots{flex-direction:row;gap:0;}
-  .b-dot{margin:0 8px;}
-  .col-bewerber .col-header{flex-direction:row;justify-content:flex-start;}
+  /* Bridge mobile: stack */
+  .bridge-layout{grid-template-columns:1fr;gap:1rem;}
+  .bridge-center{
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    order:-1;
+    padding:1rem 0;
+    gap:1rem;
+  }
+  .bridge-line-top,.bridge-line-bottom{
+    width:40px;height:2px;flex:unset;
+    background:repeating-linear-gradient(
+      to right,
+      rgba(217,119,6,.45) 0px,rgba(217,119,6,.45) 6px,
+      transparent 6px,transparent 14px
+    );
+  }
+  .bridge-line-top::after,.bridge-line-bottom::before{display:none;}
+  .bridge-img-wrap{width:130px;}
+  .bridge-badge{margin:.3rem .5rem;}
+  .col-bewerber .col-header{justify-content:flex-start;}
   .col-bewerber .b-card{border-right:none;border-left:2px solid rgba(74,222,128,.12);}
   .col-bewerber .b-card:hover{border-left-color:rgba(74,222,128,.5);}
   .bridge-bottom{grid-template-columns:1fr;}
@@ -303,6 +423,9 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
   .process-steps{grid-template-columns:1fr}
   .svc{padding:1.5rem 1.2rem}
   .fb-main-grid{grid-template-columns:1fr 1fr}
+  .b-text p{display:none}
+  .b-card{padding:.55rem .7rem;}
+  .bridge-img-wrap{width:110px;}
 }
 </style>
 </head>
@@ -310,7 +433,7 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="brand-logo" style="display:flex;align-items:center;gap:9px;text-decoration:none;">
+  <a href="index.html" style="display:flex;align-items:center;gap:9px;text-decoration:none;">
     <img src="logo_3e.jpg" alt="3E Consulting" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0;">
     <span style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3E Consulting</span>
   </a>
@@ -374,14 +497,8 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
     <div class="hero-card">
       <img src="karriere-berufe-industriemechaniker-hero-baeumer.jpg" alt="Azubi in Deutschland">
       <div class="card-btns">
-        <a href="Registraion.Html" class="card-btn card-btn-bewerber">
-          Ich bin Bewerber
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="login_company.php" class="card-btn card-btn-company">
-          Ich bin Unternehmen
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <a href="Registraion.Html" class="card-btn card-btn-bewerber">Ich bin Bewerber <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="login_company.php" class="card-btn card-btn-company">Ich bin Unternehmen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
@@ -394,12 +511,12 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
     <p class="section-sub">Von der ersten Anfrage bis zur erfolgreichen Integration — wir sind Ihr verlässlicher Partner.</p>
   </div>
   <div class="services-grid">
-    <div class="svc"><div class="svc-num">01</div><span class="svc-icon"><i class="fa-solid fa-plane"></i></span><h3>Erster Schritt bis Ankunft</h3><p>Von der Vorbereitung bis zur Ankunft — wir begleiten Sie durch jeden bürokratischen und praktischen Schritt.</p></div>
-    <div class="svc"><div class="svc-num">02</div><span class="svc-icon"><i class="fa-solid fa-comments"></i></span><h3>Sprachvorbereitung</h3><p>Beratung zu den erforderlichen Sprachzertifikaten und optimale Vorbereitung auf den deutschen Arbeitsalltag.</p></div>
-    <div class="svc"><div class="svc-num">03</div><span class="svc-icon"><i class="fa-solid fa-file-lines"></i></span><h3>Dokumentenorganisation</h3><p>Wir helfen Ihnen, alle erforderlichen Dokumente zu sammeln, übersetzen und korrekt zu ordnen.</p></div>
-    <div class="svc"><div class="svc-num">04</div><span class="svc-icon"><i class="fa-solid fa-handshake"></i></span><h3>Firmenvermittlung</h3><p>Direkte Verbindung zu deutschen Unternehmen, die qualifizierte Fachkräfte und Auszubildende aktiv suchen.</p></div>
-    <div class="svc"><div class="svc-num">05</div><span class="svc-icon"><i class="fa-solid fa-passport"></i></span><h3>Visum &amp; Behörden</h3><p>Schritt-für-Schritt-Begleitung durch den Visa-Prozess und alle notwendigen Behördenangelegenheiten.</p></div>
-    <div class="svc"><div class="svc-num">06</div><span class="svc-icon"><i class="fa-solid fa-house"></i></span><h3>Unterkunft finden</h3><p>Wir unterstützen Sie aktiv bei der Suche nach einer geeigneten und erschwinglichen Unterkunft in Deutschland.</p></div>
+    <div class="svc"><div class="svc-num">01</div><span class="svc-icon"><i class="fa-solid fa-plane"></i></span><h3>Erster Schritt bis Ankunft</h3><p>Von der Vorbereitung bis zur Ankunft — wir begleiten Sie durch jeden Schritt.</p></div>
+    <div class="svc"><div class="svc-num">02</div><span class="svc-icon"><i class="fa-solid fa-comments"></i></span><h3>Sprachvorbereitung</h3><p>Beratung zu Sprachzertifikaten und Vorbereitung auf den deutschen Arbeitsalltag.</p></div>
+    <div class="svc"><div class="svc-num">03</div><span class="svc-icon"><i class="fa-solid fa-file-lines"></i></span><h3>Dokumentenorganisation</h3><p>Alle Dokumente sammeln, übersetzen und korrekt ordnen — professionell.</p></div>
+    <div class="svc"><div class="svc-num">04</div><span class="svc-icon"><i class="fa-solid fa-handshake"></i></span><h3>Firmenvermittlung</h3><p>Direkte Verbindung zu deutschen Unternehmen, die Fachkräfte suchen.</p></div>
+    <div class="svc"><div class="svc-num">05</div><span class="svc-icon"><i class="fa-solid fa-passport"></i></span><h3>Visum &amp; Behörden</h3><p>Schritt-für-Schritt-Begleitung durch den Visa-Prozess.</p></div>
+    <div class="svc"><div class="svc-num">06</div><span class="svc-icon"><i class="fa-solid fa-house"></i></span><h3>Unterkunft finden</h3><p>Aktive Unterstützung bei der Suche nach geeigneter Unterkunft.</p></div>
   </div>
 </section>
 
@@ -408,7 +525,7 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
   <div class="fb-inner">
     <div class="section-header" style="margin-bottom:2.5rem;">
       <div><div class="section-tag">Unsere Spezialisierung</div><h2 class="section-title">Branchen, in denen<br>wir vermitteln</h2></div>
-      <p class="section-sub">Wir konzentrieren uns auf ausgewählte Fachbereiche, in denen der Bedarf in Deutschland besonders hoch ist.</p>
+      <p class="section-sub">Ausgewählte Fachbereiche, in denen der Bedarf in Deutschland besonders hoch ist.</p>
     </div>
     <div class="fb-main-grid">
       <div class="fb-main-card featured" data-target="sub-medizin"><span class="fb-badge">Hohe Nachfrage</span><div class="fb-icon"><i class="fa-solid fa-heart-pulse"></i></div><h3>Medizin &amp; Pflege</h3><span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span></div>
@@ -450,8 +567,8 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
     <div class="process-steps">
       <div class="pstep"><div class="pstep-dot">01</div><h3>Profil erstellen</h3><p>Kostenlos registrieren, Profil ausfüllen und Dokumente hochladen.</p></div>
       <div class="pstep"><div class="pstep-dot">02</div><h3>Prüfung &amp; Freigabe</h3><p>Unser Team prüft Ihre Unterlagen und gibt Ihr Profil für Firmen frei.</p></div>
-      <div class="pstep"><div class="pstep-dot">03</div><h3>Firmenkontakt</h3><p>Passende Unternehmen sehen Ihr Profil und nehmen direkt Kontakt auf.</p></div>
-      <div class="pstep"><div class="pstep-dot">04</div><h3>Start in Deutschland</h3><p>Wir begleiten Sie bis zur Ankunft — Unterkunft, Visum und Eingewöhnung.</p></div>
+      <div class="pstep"><div class="pstep-dot">03</div><h3>Firmenkontakt</h3><p>Passende Unternehmen sehen Ihr Profil und nehmen Kontakt auf.</p></div>
+      <div class="pstep"><div class="pstep-dot">04</div><h3>Start in Deutschland</h3><p>Wir begleiten Sie bis zur Ankunft — Unterkunft, Visum, Integration.</p></div>
     </div>
   </div>
 </section>
@@ -465,20 +582,20 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
       <p class="about-desc">Wir sind mehr als nur eine Vermittlungsplattform. Wir sind Ihr persönlicher Begleiter auf dem Weg nach Deutschland — von der ersten Idee bis zum ersten Arbeitstag.</p>
       <div class="about-cards">
         <div class="about-item"><div class="about-item-icon"><i class="fa-solid fa-bullseye"></i></div><div class="about-item-text"><h4>Unsere Mission</h4><p>Qualifizierte Bewerber aus dem Ausland mit deutschen Unternehmen verbinden — seriös, transparent und persönlich.</p></div></div>
-        <div class="about-item"><div class="about-item-icon"><i class="fa-solid fa-user"></i></div><div class="about-item-text"><h4>Für Bewerber</h4><p>Profil erstellen, Dokumente hochladen, von Unternehmen entdeckt werden — so effizient war Jobsuche noch nie.</p></div></div>
-        <div class="about-item"><div class="about-item-icon"><i class="fa-solid fa-people-roof"></i></div><div class="about-item-text"><h4>Für Unternehmen</h4><p>Zugang zu geprüften, motivierten Fachkräften aus dem Ausland — genau für Ihren Bedarf gefiltert.</p></div></div>
+        <div class="about-item"><div class="about-item-icon"><i class="fa-solid fa-user"></i></div><div class="about-item-text"><h4>Für Bewerber</h4><p>Profil erstellen, Dokumente hochladen, von Unternehmen entdeckt werden.</p></div></div>
+        <div class="about-item"><div class="about-item-icon"><i class="fa-solid fa-people-roof"></i></div><div class="about-item-text"><h4>Für Unternehmen</h4><p>Zugang zu geprüften, motivierten Fachkräften — genau für Ihren Bedarf gefiltert.</p></div></div>
       </div>
     </div>
     <div class="about-visual">
       <div class="about-visual-card">
-        <img src="journey.jpeg" alt="Erfolgreicher Karriereweg — Engage, Expand, Excel">
+        <img src="journey.jpeg" alt="Erfolgreicher Karriereweg">
         <div class="av-caption"><span class="av-caption-dot"></span><p><strong>Erfolgreicher Karriereweg mit 3E Consulting: Engage – Expand – Excel</strong></p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ BRIDGE VORTEILE ══ -->
+<!-- ══ BRIDGE VORTEILE — BRIDGE CENTERED ══ -->
 <section id="vorteile" class="bridge-section">
 
   <div class="bridge-header">
@@ -488,176 +605,48 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
 
   <div class="bridge-layout">
 
-    <!-- ── LINKS: BEWERBER ── -->
+    <!-- LINKS: BEWERBER -->
     <div class="col-bewerber">
       <div class="col-header">
-        <div class="col-header-pill">
-          <i class="fa-solid fa-user-tie"></i> Für Bewerber
-        </div>
+        <div class="col-header-pill"><i class="fa-solid fa-user-tie"></i> Für Bewerber</div>
       </div>
-
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-circle-check"></i></div>
-        <div class="b-text">
-          <h4>100% kostenlose Registrierung</h4>
-          <p>Keine versteckten Gebühren — gratis starten, ohne jedes finanzielle Risiko.</p>
-        </div>
-      </div>
-
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-coins"></i></div>
-        <div class="b-text">
-          <h4>Zahlung nur bei Vertragsabschluss</h4>
-          <p>Zero-Risk-Modell: Sie zahlen erst nach Unterzeichnung Ihres Arbeitsvertrags.</p>
-        </div>
-      </div>
-
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-video"></i></div>
-        <div class="b-text">
-          <h4>Video-Profil statt Papierstapel</h4>
-          <p>30–90 Sekunden Video — zeigen Sie Persönlichkeit und Kompetenz direkt.</p>
-        </div>
-      </div>
-
-      <!-- NEU aus Bild: Transparenter und direkter Zugang -->
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <div class="b-text">
-          <h4>Transparenter und direkter Zugang</h4>
-          <p>Ein vertrauenswürdiger und klarer Weg in den deutschen Arbeitsmarkt, der unlautere Vermittler umgeht.</p>
-        </div>
-      </div>
-
-      <!-- NEU aus Bild: Umfassende Begleitung -->
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-        <div class="b-text">
-          <h4>Umfassende Begleitung</h4>
-          <p>Schritt-für-Schritt-Anleitung durch die komplexen Prozesse der Qualifikationsanerkennung und Visabeantragung.</p>
-        </div>
-      </div>
-
-      <!-- NEU aus Bild: Vorbereitung und Empowerment -->
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div class="b-text">
-          <h4>Vorbereitung &amp; Empowerment</h4>
-          <p>Vermittlung von zertifizierten Sprachkursen und interkulturellen Trainings über Partner.</p>
-        </div>
-      </div>
-
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-passport"></i></div>
-        <div class="b-text">
-          <h4>Visum &amp; Behörden — wir regeln das</h4>
-          <p>Vollständige Begleitung durch alle Visaprozesse und Behördenanforderungen.</p>
-        </div>
-      </div>
-
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-comments"></i></div>
-        <div class="b-text">
-          <h4>Dreisprachiger Support</h4>
-          <p>Deutsch, Französisch und Arabisch — wir sind immer für Sie erreichbar.</p>
-        </div>
-      </div>
-
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-circle-check"></i></div><div class="b-text"><h4>Kostenlose Registrierung</h4><p>Gratis starten, ohne jedes finanzielle Risiko.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-coins"></i></div><div class="b-text"><h4>Zahlung nur bei Vertragsabschluss</h4><p>Zero-Risk-Modell — erst nach Unterzeichnung zahlen.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-video"></i></div><div class="b-text"><h4>Video-Profil statt Papierstapel</h4><p>30–90 Sek. — Persönlichkeit und Kompetenz direkt.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="b-text"><h4>Transparenter Zugang</h4><p>Klarer Weg ohne unlautere Vermittler.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-map-location-dot"></i></div><div class="b-text"><h4>Umfassende Begleitung</h4><p>Qualifikationsanerkennung und Visa — Schritt für Schritt.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-graduation-cap"></i></div><div class="b-text"><h4>Sprachkurse &amp; Training</h4><p>Zertifizierte Kurse und interkulturelle Trainings.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-passport"></i></div><div class="b-text"><h4>Visum &amp; Behörden</h4><p>Vollständige Begleitung durch alle Visaprozesse.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-comments"></i></div><div class="b-text"><h4>Dreisprachiger Support</h4><p>Deutsch, Französisch und Arabisch — immer erreichbar.</p></div></div>
     </div>
 
-    <!-- ── MITTE: BRÜCKE ── -->
+    <!-- MITTE: BRÜCKE — VERTIKAL ZENTRIERT -->
     <div class="bridge-center">
-      <div class="bridge-label">3E</div>
-      <div class="bridge-icon-wrap">
-        <i class="fa-solid fa-bridge"></i>
+      <!-- Linie oben -->
+      <div class="bridge-line-top"></div>
+      <!-- Badge -->
+      <div class="bridge-badge">3E</div>
+      <!-- Brückenbild in der Mitte -->
+      <div class="bridge-img-wrap">
+        <img src="Brucken.png" alt="3E Consulting — Die Brücke" class="bridge-img">
       </div>
-      <div class="bridge-dots">
-        <div class="b-dot"></div>
-        <div class="b-dot mid"></div>
-        <div class="b-dot"></div>
-        <div class="b-dot mid"></div>
-        <div class="b-dot"></div>
-        <div class="b-dot mid"></div>
-        <div class="b-dot"></div>
-        <div class="b-dot mid"></div>
-      </div>
+      <!-- Linie unten -->
+      <div class="bridge-line-bottom"></div>
     </div>
 
-    <!-- ── RECHTS: UNTERNEHMEN ── -->
+    <!-- RECHTS: UNTERNEHMEN -->
     <div class="col-company">
       <div class="col-header">
-        <div class="col-header-pill">
-          <i class="fa-solid fa-building"></i> Für Unternehmen
-        </div>
+        <div class="col-header-pill"><i class="fa-solid fa-building"></i> Für Unternehmen</div>
       </div>
-
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-award"></i></div>
-        <div class="b-text">
-          <h4>Geprüfte B1/B2-Fachkräfte</h4>
-          <p>Alle Kandidaten tragen ein anerkanntes Deutschzertifikat — sofort einsatzbereit.</p>
-        </div>
-      </div>
-
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-file-video"></i></div>
-        <div class="b-text">
-          <h4>Kandidaten per Video kennenlernen</h4>
-          <p>Bewerber vorab per 30–90 Sekunden Video sichten — bevor Sie Kontakt aufnehmen.</p>
-        </div>
-      </div>
-
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-        <div class="b-text">
-          <h4>Zahlung nur bei Einstellung</h4>
-          <p>Kein Kostenrisiko — Sie zahlen ausschließlich bei erfolgreichem Vertragsabschluss.</p>
-        </div>
-      </div>
-
-      <!-- NEU aus Bild: Exklusiver Talentpool -->
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
-        <div class="b-text">
-          <h4>Zugang zu einem exklusiven Talentpool</h4>
-          <p>Sorgfältig vorqualifizierte und vorausgewählte algerische Fachkräfte — exklusiv für unsere Partnerunternehmen.</p>
-        </div>
-      </div>
-
-      <!-- NEU aus Bild: Prozess-Effizienz §81a -->
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-bolt"></i></div>
-        <div class="b-text">
-          <h4>Prozess-Effizienz &amp; Rechtssicherheit</h4>
-          <p>Management des gesamten Rekrutierungs- und Einwanderungsprozesses inkl. des beschleunigten Fachkräfteverfahrens (§ 81a AufenthG).</p>
-        </div>
-      </div>
-
-      <!-- NEU aus Bild: Reduzierung Integrationsrisiko -->
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-shield-check"></i></div>
-        <div class="b-text">
-          <h4>Reduzierung des Integrationsrisikos</h4>
-          <p>Onboarding- und Integrationspakete, die die nachhaltige Eingliederung der Fachkraft sichern und die Abbrecherquote minimieren.</p>
-        </div>
-      </div>
-
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-filter"></i></div>
-        <div class="b-text">
-          <h4>Vorgefiltertes Bewerber-Pool</h4>
-          <p>Unser Team prüft jede Bewerbung persönlich — Sie sehen nur passende Profile.</p>
-        </div>
-      </div>
-
-      <div class="b-card">
-        <div class="b-icon"><i class="fa-solid fa-headset"></i></div>
-        <div class="b-text">
-          <h4>Betreuung nach der Einstellung</h4>
-          <p>Wir bleiben ansprechbar — für Integration und bei Fragen nach dem Start.</p>
-        </div>
-      </div>
-
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-award"></i></div><div class="b-text"><h4>Geprüfte B1/B2-Fachkräfte</h4><p>Anerkanntes Deutschzertifikat — sofort einsatzbereit.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-file-video"></i></div><div class="b-text"><h4>Kandidaten per Video kennenlernen</h4><p>30–90 Sek. sichten — vor dem ersten Kontakt.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div><div class="b-text"><h4>Zahlung nur bei Einstellung</h4><p>Kein Kostenrisiko — nur bei erfolgreichem Abschluss.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-users-viewfinder"></i></div><div class="b-text"><h4>Exklusiver Talentpool</h4><p>Vorqualifizierte algerische Fachkräfte — exklusiv.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-bolt"></i></div><div class="b-text"><h4>Prozess-Effizienz §81a</h4><p>Beschleunigtes Fachkräfteverfahren inklusive.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-shield-check"></i></div><div class="b-text"><h4>Integrationsrisiko minimiert</h4><p>Onboarding-Pakete für nachhaltige Eingliederung.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-filter"></i></div><div class="b-text"><h4>Vorgefilterter Bewerberpool</h4><p>Jede Bewerbung persönlich geprüft — nur Passende.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-headset"></i></div><div class="b-text"><h4>Betreuung nach Einstellung</h4><p>Wir bleiben ansprechbar — für Integration und Fragen.</p></div></div>
     </div>
 
   </div>
@@ -666,18 +655,12 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
   <div class="bridge-bottom">
     <div class="bb-card bb-bewerber">
       <div class="bb-icon"><i class="fa-solid fa-rocket"></i></div>
-      <div class="bb-text">
-        <h4>Bereit für Ihren Weg nach Deutschland?</h4>
-        <p>Kostenlos registrieren und Video-Profil erstellen — in wenigen Minuten.</p>
-      </div>
+      <div class="bb-text"><h4>Bereit für Ihren Weg nach Deutschland?</h4><p>Kostenlos registrieren und Video-Profil erstellen — in Minuten.</p></div>
       <a href="registraion.html" class="bb-btn">Jetzt starten →</a>
     </div>
     <div class="bb-card bb-company">
       <div class="bb-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-      <div class="bb-text">
-        <h4>Fachkräftemangel lösen?</h4>
-        <p>Zugang zu geprüften, motivierten Kandidaten — ohne Vorabkosten.</p>
-      </div>
+      <div class="bb-text"><h4>Fachkräftemangel lösen?</h4><p>Zugang zu geprüften, motivierten Kandidaten — ohne Vorabkosten.</p></div>
       <a href="login_company.php" class="bb-btn">Kandidaten sehen →</a>
     </div>
   </div>
@@ -704,7 +687,7 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
+  <div>
     <a href="index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
       <img src="logo_3e.jpg" alt="3E" style="height:28px;width:28px;border-radius:6px;object-fit:cover;">
       <span style="font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;color:#fff;">3E Consulting</span>
@@ -718,8 +701,8 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
 </footer>
 
 <script>
-const menuToggle = document.getElementById('menuToggle');
-const menuDropdown = document.getElementById('menuDropdown');
+const menuToggle=document.getElementById('menuToggle');
+const menuDropdown=document.getElementById('menuDropdown');
 menuToggle.addEventListener('click',(e)=>{e.stopPropagation();menuDropdown.hidden=!menuDropdown.hidden;});
 document.querySelectorAll('.menu-toggle').forEach(btn=>{
   btn.addEventListener('click',(e)=>{e.stopPropagation();const sub=btn.nextElementSibling;sub.hidden=!sub.hidden;btn.classList.toggle('open',!sub.hidden);});
@@ -740,15 +723,15 @@ document.querySelectorAll('.fb-main-card[data-target]').forEach(card=>{
     if(!isOpen){card.classList.add('active');panel.classList.add('visible');setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),50);}
   });
 });
-const card=document.querySelector('.about-visual-card');
-if(card){
-  card.addEventListener('mousemove',(e)=>{
-    const rect=card.getBoundingClientRect();
+const aboutCard=document.querySelector('.about-visual-card');
+if(aboutCard){
+  aboutCard.addEventListener('mousemove',(e)=>{
+    const rect=aboutCard.getBoundingClientRect();
     const rotateY=((e.clientX-rect.left)/rect.width-0.5)*12;
     const rotateX=((rect.height/2-(e.clientY-rect.top))/rect.height)*12;
-    card.style.transform=`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    aboutCard.style.transform=`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
   });
-  card.addEventListener('mouseleave',()=>{card.style.transform='perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';});
+  aboutCard.addEventListener('mouseleave',()=>{aboutCard.style.transform='perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';});
 }
 </script>
 </body>
