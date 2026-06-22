@@ -44,6 +44,15 @@
       border-radius: 12px; padding: 1rem; backdrop-filter: blur(20px);
       box-shadow: 0 20px 50px rgba(0,0,0,.4); z-index: 200;
     }
+    @media(max-width: 991px) {
+      .nav-dropdown {
+        position: fixed !important; top: 60px !important;
+        left: 8px !important; right: 8px !important;
+        width: calc(100vw - 16px) !important;
+        max-width: none !important; min-width: 0 !important;
+        max-height: 78vh; overflow-y: auto; border-radius: 14px;
+      }
+    }
     .menu-level-1,.menu-level-2,.menu-level-3 { list-style: none; margin: 0; padding: 0; }
     .menu-toggle {
       width: 100%; text-align: left; background: none; border: none;
@@ -135,47 +144,58 @@
     }
 
     /* ══════════════════════════════════════════
-       ── CV STYLES ──
+       ── CV STYLES (klassisches Word-Layout) ──
     ══════════════════════════════════════════ */
-    .cv-wrapper { background: #0e1f15; padding: 1.75rem; }
-    .cv-header {
-      display: flex; align-items: center; gap: 1.25rem;
-      padding-bottom: 1.25rem; border-bottom: 1px solid rgba(74,222,128,.15); margin-bottom: 1.5rem;
+    .cv-wrapper {
+      background: #ffffff; color: #1e1e1e;
+      padding: 2.5rem 3rem; font-family: Arial, 'DM Sans', sans-serif;
     }
-    .cv-avatar {
-      width: 70px; height: 70px; border-radius: 50%; flex-shrink: 0;
-      background: rgba(217,119,6,.12); border: 2px solid rgba(217,119,6,.35);
-      display: flex; align-items: center; justify-content: center;
+    .cv-doc-title {
+      font-family: Arial, sans-serif; font-size: 1.9rem; font-weight: 700;
+      color: #c0392b; margin-bottom: 1.75rem;
     }
-    .cv-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: var(--white); margin-bottom: .2rem; }
-    .cv-title { font-size: .82rem; color: var(--accent); margin-bottom: .6rem; }
-    .cv-contacts { display: flex; flex-wrap: wrap; gap: .5rem .9rem; }
-    .cv-contacts span { font-size: .76rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; }
-    .cv-contacts i { color: var(--accent); font-size: .8rem; }
-    .cv-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .cv-section { margin-bottom: 1.25rem; }
-    .cv-section-title {
-      font-family: var(--font-display); font-size: .8rem; font-weight: 700;
-      color: var(--accent); text-transform: uppercase; letter-spacing: .08em;
-      display: flex; align-items: center; gap: .4rem;
-      border-bottom: 1px solid rgba(217,119,6,.2); padding-bottom: .4rem; margin-bottom: .85rem;
+    .cv-block { margin-bottom: 1.75rem; }
+    .cv-block-title {
+      font-family: Arial, sans-serif; font-size: 1.05rem; font-weight: 700;
+      color: #c0392b; border-bottom: 1px solid #1e1e1e;
+      padding-bottom: .3rem; margin-bottom: .9rem;
     }
-    .cv-entry { display: flex; gap: .75rem; margin-bottom: .75rem; }
-    .cv-entry-year { font-size: .72rem; color: var(--accent); white-space: nowrap; min-width: 75px; padding-top: .15rem; font-weight: 600; }
-    .cv-entry-content strong { display: block; font-size: .85rem; color: var(--white); font-weight: 600; }
-    .cv-entry-content span { font-size: .78rem; color: var(--muted); }
-    .cv-task-list { padding-left: 1rem; margin-top: .3rem; }
-    .cv-task-list li { font-size: .76rem; color: var(--muted); margin-bottom: .2rem; }
-    .cv-skill-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .55rem; }
-    .cv-skill-name { font-size: .78rem; color: var(--muted); width: 58px; flex-shrink: 0; }
-    .cv-skill-bar { flex: 1; height: 4px; background: rgba(255,255,255,.06); border-radius: 2px; overflow: hidden; }
-    .cv-skill-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--bright)); border-radius: 2px; }
-    .cv-skill-level { font-size: .72rem; color: var(--accent); width: 72px; text-align: right; white-space: nowrap; }
-    .cv-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
-    .cv-tag { padding: .25rem .7rem; border-radius: 20px; font-size: .72rem; background: rgba(74,222,128,.08); border: 1px solid rgba(74,222,128,.2); color: var(--bright); }
-    .cv-footer { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid rgba(74,222,128,.1); }
-    .cv-placeholder-note { font-size: .76rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; }
+    .cv-row {
+      display: grid; grid-template-columns: 190px 1fr; gap: .5rem 1.5rem;
+      margin-bottom: .55rem; font-size: .92rem; line-height: 1.5;
+    }
+    .cv-row .cv-label { color: #1e1e1e; }
+    .cv-row .cv-value { color: #1e1e1e; }
+    .cv-photo-wrap {
+      display: flex; justify-content: flex-end; margin-top: -3.2rem; margin-bottom: 1rem;
+    }
+    .cv-photo {
+      width: 110px; height: 130px; background: #d0d0d0;
+      border: 1px solid #aaa; display: flex; align-items: center; justify-content: center;
+    }
+    .cv-photo i { font-size: 2.6rem; color: #8a8a8a; }
+    .cv-entry-row {
+      display: grid; grid-template-columns: 190px 1fr; gap: .5rem 1.5rem;
+      margin-bottom: 1.1rem; font-size: .92rem; line-height: 1.55;
+    }
+    .cv-entry-row .cv-period { color: #1e1e1e; white-space: nowrap; }
+    .cv-entry-row .cv-detail strong { display: block; font-weight: 400; color: #1e1e1e; margin-bottom: .25rem; }
+    .cv-entry-row .cv-detail .cv-task-intro { color: #1e1e1e; margin-bottom: .2rem; }
+    .cv-entry-row .cv-task-list { list-style: disc; padding-left: 1.2rem; margin: 0; }
+    .cv-entry-row .cv-task-list li { color: #1e1e1e; margin-bottom: .15rem; }
+    .cv-footer {
+      margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed #bbb;
+    }
+    .cv-placeholder-note {
+      font-size: .8rem; color: #6b6b6b; display: flex; align-items: center; gap: .4rem;
+      font-family: 'DM Sans', sans-serif;
+    }
     .cv-placeholder-note i { color: var(--accent); }
+    @media(max-width:600px){
+      .cv-wrapper{padding:1.5rem 1.25rem}
+      .cv-row,.cv-entry-row{grid-template-columns:1fr}
+      .cv-photo-wrap{margin-top:0;justify-content:center}
+    }
 
     /* ══════════════════════════════════════════
        ── LETTER STYLES ──
@@ -233,7 +253,7 @@
     }
     .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
-    /* ── DOWNLOAD BAR ── */
+    /* ── DOWNLOAD BAR (single, used for Anschreiben) ── */
     .download-bar {
       display: flex; align-items: center; gap: .75rem;
       margin-top: 1rem; padding: .9rem 1.15rem;
@@ -261,6 +281,65 @@
     }
     .download-bar-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
+    /* ══════════════════════════════════════════
+       ── MULTI-TEMPLATE DOWNLOAD GRID (NEU) ──
+       für die 3 Lebenslauf-Word-Vorlagen
+    ══════════════════════════════════════════ */
+    .templates-intro {
+      display: flex; align-items: center; gap: .6rem;
+      margin-top: 1.4rem; margin-bottom: .9rem;
+      font-size: .85rem; color: var(--white); font-weight: 600;
+    }
+    .templates-intro i { color: #2b579a; font-size: 1.05rem; }
+    .templates-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: .9rem; margin-bottom: .5rem;
+    }
+    .template-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(43,87,154,.35);
+      border-radius: 12px; padding: 1.1rem 1.1rem 1rem;
+      display: flex; flex-direction: column;
+      transition: border-color .2s, transform .2s, background .2s;
+    }
+    .template-card:hover {
+      border-color: rgba(43,87,154,.7);
+      background: rgba(43,87,154,.07);
+      transform: translateY(-2px);
+    }
+    .template-card-icon {
+      width: 38px; height: 38px; border-radius: 9px;
+      background: rgba(43,87,154,.18);
+      border: 1px solid rgba(43,87,154,.4);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: .75rem;
+    }
+    .template-card-icon i { font-size: 1.1rem; color: #5b8fd9; }
+    .template-card-title {
+      font-family: var(--font-display); font-size: .9rem; font-weight: 700;
+      color: var(--white); margin-bottom: .3rem; line-height: 1.3;
+    }
+    .template-card-desc {
+      font-size: .76rem; color: var(--muted); line-height: 1.55;
+      flex: 1; margin-bottom: .9rem;
+    }
+    .template-card-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+      padding: .55rem .9rem; border-radius: 7px;
+      background: #2b579a; color: #fff; text-decoration: none;
+      font-size: .78rem; font-weight: 600; font-family: var(--font-body);
+      transition: background .2s, transform .15s;
+    }
+    .template-card-btn:hover { background: #1f4275; transform: translateY(-1px); }
+    .templates-hint {
+      font-size: .76rem; color: var(--muted); display: flex; align-items: flex-start; gap: .4rem;
+      margin-top: .4rem;
+    }
+    .templates-hint i { color: var(--accent); margin-top: .15rem; flex-shrink: 0; }
+    @media(max-width:700px){
+      .templates-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── RESPONSIVE ── */
     @media(max-width:768px){
       body{padding-top:64px!important}
@@ -272,13 +351,11 @@
       aside.toc a{font-size:.75rem!important;padding:.4rem .65rem!important;border:1px solid var(--border)!important;border-left:1px solid var(--border)!important}
       .guideline-section{padding:1.25rem 1.1rem!important}
       .screening-grid{grid-template-columns:1fr 1fr!important}
-      .cv-body{grid-template-columns:1fr!important}
       .letter-wrapper{padding:1.25rem 1rem!important}
     }
     @media(max-width:480px){
       .screening-grid{grid-template-columns:1fr!important}
       .steps-grid{grid-template-columns:1fr!important}
-      .cv-body{grid-template-columns:1fr!important}
     }
   </style>
 </head>
@@ -344,12 +421,12 @@
     <a href="#vorqualifizierung">1. Vorqualifizierungsprozess</a>
     <a href="#persoenliche-angaben">2. Persönliche Angaben</a>
     <a href="#dokumente">3. Dokumente</a>
-    <a href="#lebenslauf">4. Lebenslauf</a>
-    <a href="#motivationsschreiben">5. Motivationsschreiben</a>
-    <a href="#profil-video">6. Profil-Video</a>
-    <a href="#verhalten">7. Verhalten</a>
-    <a href="#ueberpruefung">8. Überprüfung</a>
-    <a href="#zustimmung">9. Zustimmung</a>
+    <a href="#deckblatt">4. Bewerbungsmappe</a>
+    <a href="#motivationsschreiben">6. Motivationsschreiben</a>
+    <a href="#profil-video">7. Profil-Video</a>
+    <a href="#verhalten">8. Verhalten</a>
+    <a href="#ueberpruefung">9. Überprüfung</a>
+    <a href="#zustimmung">10. Zustimmung</a>
     <a href="#video-anleitung"><i class="bi bi-camera-video" style="color:var(--accent)"></i> Videoanleitung</a>
   </aside>
 
@@ -411,9 +488,187 @@
       <p>Falls erforderlich, müssen Dokumente ins Deutsche oder Englische übersetzt werden.</p>
     </section>
 
+       <!-- 05 DECKBLATT (NEU) -->
+    <section id="deckblatt" class="guideline-section">
+      <div class="section-num">01</div>
+      <h2>Deckblatt</h2>
+      <p>Ein Deckblatt ist optional, aber empfehlenswert — es verschafft Ihrer Bewerbung einen professionellen ersten Eindruck. Das Deckblatt sollte:</p>
+      <ul>
+        <li>als erste Seite der Bewerbungsmappe stehen</li>
+        <li>Ihren Namen, ein Bewerbungsfoto und die Zielposition enthalten</li>
+        <li>eine Übersicht der beigefügten Anlagen auflisten</li>
+        <li>übersichtlich und nicht überladen gestaltet sein</li>
+      </ul>
+
+      <button type="button" class="example-toggle-btn" id="dbToggleBtn" onclick="toggleExample('dbExample','dbToggleBtn')">
+        <i class="bi bi-eye"></i> Beispiele anzeigen
+      </button>
+
+      <!-- ── 2 WORD-VORLAGEN ── -->
+      <div class="templates-intro">
+        <i class="bi bi-file-earmark-word-fill"></i>
+        Deckblatt-Vorlagen als Word-Dokument — wählen Sie ein Format
+      </div>
+      <div class="templates-grid" style="grid-template-columns:repeat(2,1fr)">
+
+        <div class="template-card">
+          <div class="template-card-icon"><i class="bi bi-file-earmark-word-fill"></i></div>
+          <div class="template-card-title">Vorlage 1 — Klassisch zentriert</div>
+          <div class="template-card-desc">Mittig ausgerichtetes Layout mit großem Foto, klar abgegrenzten Blöcken für Kontaktdaten und Anlagen.</div>
+          <a href="Deckblatt_Vorlage_1.docx" download="Deckblatt_Vorlage_1.docx" class="template-card-btn">
+            <i class="bi bi-download"></i> Herunterladen
+          </a>
+        </div>
+
+        <div class="template-card">
+          <div class="template-card-icon"><i class="bi bi-file-earmark-word-fill"></i></div>
+          <div class="template-card-title">Vorlage 2 — Modern linksbündig</div>
+          <div class="template-card-desc">Modernes, linksbündiges Layout mit Foto am rechten Rand und klarer Trennlinie für die Anlagen.</div>
+          <a href="Deckblatt_Vorlage_2.docx" download="Deckblatt_Vorlage_2.docx" class="template-card-btn">
+            <i class="bi bi-download"></i> Herunterladen
+          </a>
+        </div>
+               <div class="template-card">
+          <div class="template-card-icon"><i class="bi bi-file-earmark-word-fill"></i></div>
+          <div class="template-card-title">Vorlage 3— normales Modell</div>
+          <div class="template-card-desc">Mittig ausgerichtetes Layout mit großem Foto, klar abgegrenzten Blöcken für Kontaktdaten und Anlagen.</div>
+          <a href="Dec03.docx" download="Deckblatt_Vorlage_1.docx" class="template-card-btn">
+            <i class="bi bi-download"></i> Herunterladen
+          </a>
+        </div>
+
+      </div>
+      <p class="templates-hint">
+        <i class="bi bi-info-circle"></i>
+        Ersetzen Sie das Platzhalterfoto durch ein professionelles Bewerbungsfoto und passen Sie alle Angaben an Ihre Situation an.
+      </p>
+
+      <div id="dbExample" class="example-box" hidden>
+        <div class="example-label"><i class="bi bi-file-earmark-person"></i> Muster-Deckblätter</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;background:#e5e5e5">
+
+          <div class="cv-wrapper" style="padding:2rem 1.75rem;border-right:1px solid #ccc">
+            <div style="text-align:center;border-top:2px solid #1e1e1e;border-bottom:1px solid #1e1e1e;padding:.5rem 0;margin-bottom:1.5rem;">
+              <strong style="font-size:1.3rem;letter-spacing:.04em;color:#1e1e1e">BEWERBUNG</strong>
+            </div>
+            <p style="text-align:center;color:#1e1e1e;font-size:1.02rem;margin-bottom:1.5rem">als Pflegefachkraft</p>
+            <div style="display:flex;justify-content:center;margin-bottom:1.25rem">
+              <div class="cv-photo" style="width:120px;height:140px"><i class="bi bi-person-fill"></i></div>
+            </div>
+            <p style="text-align:center;color:#1e1e1e;font-size:1.05rem;font-weight:600;margin-bottom:1.25rem">Youcef Benali</p>
+            <div style="border-top:1px solid #1e1e1e;padding-top:.4rem;margin-bottom:.4rem">
+              <strong style="font-size:.82rem;color:#1e1e1e">Kontaktdaten</strong>
+            </div>
+            <p style="color:#1e1e1e;font-size:.84rem;line-height:1.7;margin-bottom:.9rem">
+              Alger<br>16000 Rue Didouche Mourad 12<br><br>
+              +213 770 123 456<br><br>
+              youcef.benali@email.com
+            </p>
+            <div style="border-top:1px solid #1e1e1e;padding-top:.4rem;margin-bottom:.4rem">
+              <strong style="font-size:.82rem;color:#1e1e1e">Anlagen</strong>
+            </div>
+            <p style="color:#1e1e1e;font-size:.84rem;line-height:1.7">
+              Anschreiben<br>Lebenslauf<br>Zeugnisse<br>Zertifikate
+            </p>
+          </div>
+
+          <div class="cv-wrapper" style="padding:2rem 1.75rem">
+            <strong style="font-size:1.6rem;color:#1e1e1e;display:block;margin-bottom:.6rem">Bewerbung</strong>
+            <div style="border-top:1px solid #1e1e1e;margin-bottom:1rem"></div>
+            <p style="color:#1e1e1e;font-size:.95rem;margin-bottom:1.5rem">Für Position als Pflegefachkraft</p>
+            <div style="display:flex;gap:1rem;align-items:flex-start">
+              <div style="flex:1">
+                <p style="color:#1e1e1e;font-size:.88rem;margin-bottom:.6rem">Youcef Benali</p>
+                <p style="color:#1e1e1e;font-size:.84rem;line-height:1.7;margin-bottom:.6rem">Alger<br>16000 Rue Didouche Mourad 12</p>
+                <p style="color:#1e1e1e;font-size:.84rem;margin-bottom:.4rem">+213 770 123 456</p>
+                <p style="color:#1e1e1e;font-size:.84rem">youcef.benali@email.com</p>
+              </div>
+              <div class="cv-photo" style="width:100px;height:120px;flex-shrink:0"><i class="bi bi-person-fill"></i></div>
+            </div>
+            <div style="margin-top:3rem">
+              <p style="color:#1e1e1e;font-size:.84rem;margin-bottom:.4rem">Anlagen:</p>
+              <div style="border-top:1px solid #1e1e1e;margin-bottom:.5rem"></div>
+              <p style="color:#1e1e1e;font-size:.84rem">Anschreiben, Lebenslauf, Zeugnisse, Zertifikate</p>
+            </div>
+          </div>
+
+        </div>
+        <div style="background:#fff;padding:.85rem 1.5rem;border-top:1px solid #ddd">
+          <span class="cv-placeholder-note">
+            <i class="bi bi-info-circle"></i>
+            Dies sind Muster. Ersetzen Sie Foto, Name, Kontaktdaten und Zielposition durch Ihre eigenen Angaben.
+          </span>
+        </div>
+      </div>
+    </section>
+
+
+<!-- Anschreiben -->
+
+
+<section id="anschreiben" class="guideline-section">
+  <div class="section-num">02</div>
+  <h2>Anschreiben</h2>
+  <p>Das Anschreiben ist das Herzstück Ihrer Bewerbung. Es ist Ihre Chance, die Personaler von Ihrer Motivation und Eignung zu überzeugen. Ein überzeugendes Anschreiben sollte:</p>
+  <ul>
+    <li>maximal eine DIN-A4-Seite lang sein</li>
+    <li>einen klaren Bezug zur Stelle und zum Unternehmen herstellen</li>
+    <li>Ihre Motivation und Qualifikationen prägnant darstellen</li>
+    <li>fehlerfrei formatiert und grammatikalisch korrekt sein</li>
+  </ul>
+
+  <button type="button" class="example-toggle-btn" id="asToggleBtn" onclick="toggleExample('asExample','asToggleBtn')">
+    <i class="bi bi-eye"></i> Muster-Anschreiben anzeigen
+  </button>
+
+  <!-- ── 3 WORD-VORLAGEN FÜR ANSCHREIBEN ── -->
+  <div class="templates-intro">
+    <i class="bi bi-file-earmark-word-fill"></i>
+    Vorlagen für das Anschreiben als Word-Dokument
+  </div>
+  <div class="templates-grid" style="grid-template-columns:repeat(3,1fr)">
+
+    <div class="template-card">
+      <div class="template-card-icon"><i class="bi bi-file-earmark-word-fill"></i></div>
+      <div class="template-card-title">Vorlage 1 — Klassisch</div>
+      <div class="template-card-desc">Traditionelles Layout nach DIN 5008 mit allen formellen Anforderungen.</div>
+      <a href="Anschreiben01.docx" download="Anschreiben_Klassisch.docx" class="template-card-btn">
+        <i class="bi bi-download"></i> Herunterladen
+      </a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-card-icon"><i class="bi bi-file-earmark-word-fill"></i></div>
+      <div class="template-card-title">Vorlage 2 — Modern</div>
+      <div class="template-card-desc">Frisches, zeitgemäßes Design für kreative oder moderne Branchen.</div>
+      <a href="Anschreiben02.docx" download="Anschreiben_Modern.docx" class="template-card-btn">
+        <i class="bi bi-download"></i> Herunterladen
+      </a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-card-icon"><i class="bi bi-file-earmark-word-fill"></i></div>
+      <div class="template-card-title">Vorlage 3 — Motiviert</div>
+      <div class="template-card-desc">Layout mit Fokus auf eine starke Einleitung und Argumentation.</div>
+      <a href="Anschreiben03.docx" download="Anschreiben_Motiviert.docx" class="template-card-btn">
+        <i class="bi bi-download"></i> Herunterladen
+      </a>
+    </div>
+  </div>
+
+  <p class="templates-hint">
+    <i class="bi bi-info-circle"></i>
+    Passen Sie die Platzhalter (in Klammern) individuell an das jeweilige Unternehmen und die Stellenanzeige an.
+  </p>
+
+  <div id="asExample" class="example-box" hidden>
+    <!-- Hier kann ein kurzes Text-Beispiel für ein Anschreiben eingefügt werden -->
+  </div>
+</section>
+
     <!-- 04 LEBENSLAUF -->
     <section id="lebenslauf" class="guideline-section">
-      <div class="section-num">04</div>
+      <div class="section-num">03</div>
       <h2>Lebenslauf</h2>
       <p>Der Lebenslauf sollte:</p>
       <ul>
@@ -427,108 +682,161 @@
         <i class="bi bi-eye"></i> Beispiel anzeigen
       </button>
 
+      <!-- ── 3 WORD-VORLAGEN (NEU) ── -->
+      <div class="templates-intro">
+        <i class="bi bi-file-earmark-word-fill"></i>
+        Lebenslauf-Vorlagen als Word-Dokument — wählen Sie ein Format
+      </div>
+      <div class="templates-grid">
+
+        <div class="template-card">
+          <div class="template-card-icon"><i class="bi bi-file-earmark-word-fill"></i></div>
+          <div class="template-card-title">Vorlage 1 — Klassisch</div>
+          <div class="template-card-desc">Klares Tabulator-Layout, ideal für kaufmännische und Büroberufe. Bereits mit Beispieldaten ausgefüllt.</div>
+          <a href="Lebenslauf_Vorlage_1.docx" download="Lebenslauf_Vorlage_1.docx" class="template-card-btn">
+            <i class="bi bi-download"></i> Herunterladen
+          </a>
+        </div>
+
+        <div class="template-card">
+          <div class="template-card-icon"><i class="bi bi-file-earmark-word-fill"></i></div>
+          <div class="template-card-title">Vorlage 2 — Tabellenform</div>
+          <div class="template-card-desc">Übersichtliches Tabellen-Layout mit klaren Abschnitten für Erfahrung, Ausbildung und Kenntnisse.</div>
+          <a href="Lebenslauf_Vorlage_2.docx" download="Lebenslauf_Vorlage_2.docx" class="template-card-btn">
+            <i class="bi bi-download"></i> Herunterladen
+          </a>
+        </div>
+
+        <div class="template-card">
+          <div class="template-card-icon"><i class="bi bi-file-earmark-word-fill"></i></div>
+          <div class="template-card-title">Vorlage 3 — Leer zum Ausfüllen</div>
+          <div class="template-card-desc">Komplett leere Vorlage mit Platzhaltern in eckigen Klammern — einfach Ihre eigenen Daten eintragen.</div>
+          <a href="Lebenslauf_Vorlage_3.docx" download="Lebenslauf_Vorlage_3.docx" class="template-card-btn">
+            <i class="bi bi-download"></i> Herunterladen
+          </a>
+        </div>
+
+      </div>
+      <p class="templates-hint">
+        <i class="bi bi-info-circle"></i>
+        Alle Vorlagen sind direkt in Microsoft Word bearbeitbar (.docx). Wählen Sie das Format, das am besten zu Ihrem Werdegang passt.
+      </p>
+
       <div id="cvExample" class="example-box" hidden>
         <div class="example-label"><i class="bi bi-file-earmark-person"></i> Muster-Lebenslauf</div>
         <div class="cv-wrapper">
 
-          <div class="cv-header">
-            <div class="cv-avatar">
-              <i class="bi bi-person-fill" style="font-size:2.2rem;color:var(--accent)"></i>
+          <div class="cv-doc-title">Lebenslauf</div>
+
+          <div class="cv-photo-wrap">
+            <div class="cv-photo"><i class="bi bi-person-fill"></i></div>
+          </div>
+
+          <div class="cv-block">
+            <div class="cv-block-title">Persönliche Daten</div>
+            <div class="cv-row"><div class="cv-label">Name:</div><div class="cv-value">Youcef Benali</div></div>
+            <div class="cv-row"><div class="cv-label">Geburtsdatum:</div><div class="cv-value">15. März 2000</div></div>
+            <div class="cv-row"><div class="cv-label">Geburtsort:</div><div class="cv-value">Alger</div></div>
+            <div class="cv-row"><div class="cv-label">Adresse:</div><div class="cv-value">Rue Didouche Mourad 12<br>16000 Alger</div></div>
+            <div class="cv-row"><div class="cv-label">Telefon:</div><div class="cv-value">+213 770 123 456</div></div>
+            <div class="cv-row"><div class="cv-label">E-Mail:</div><div class="cv-value">youcef.benali@email.com</div></div>
+            <div class="cv-row"><div class="cv-label">Staatsangehörigkeit:</div><div class="cv-value">Algerisch</div></div>
+          </div>
+
+          <div class="cv-block">
+            <div class="cv-block-title">Beruflicher Werdegang</div>
+
+            <div class="cv-entry-row">
+              <div class="cv-period">2022 – 2024</div>
+              <div class="cv-detail">
+                <strong>Pflegeassistent bei Hôpital Mustapha Pacha, Alger</strong>
+                <div class="cv-task-intro">Meine Aufgaben waren:</div>
+                <ul class="cv-task-list">
+                  <li>Unterstützung bei der täglichen Grundpflege</li>
+                  <li>Betreuung und Begleitung von Patienten</li>
+                  <li>Vitalzeichenkontrolle und Dokumentation</li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <div class="cv-name">Max Mustermann</div>
-              <div class="cv-title">Bewerber für Ausbildung / Arbeitsplatz</div>
-              <div class="cv-contacts">
-                <span><i class="bi bi-geo-alt-fill"></i> Musterstraße 1, 12345 Berlin</span>
-                <span><i class="bi bi-telephone-fill"></i> ++213 7XXXXXXX</span>
-                <span><i class="bi bi-envelope-fill"></i> max@muster.de</span>
-                <span><i class="bi bi-calendar3"></i> Geb.: 01.07.2000</span>
+
+            <div class="cv-entry-row">
+              <div class="cv-period">2021</div>
+              <div class="cv-detail">
+                <strong>Praktikum — Pflegehilfe bei Clinique El Azhar, Alger</strong>
+                <div class="cv-task-intro">Meine Aufgaben waren:</div>
+                <ul class="cv-task-list">
+                  <li>Assistenz bei medizinischen Maßnahmen</li>
+                  <li>Patientenbetreuung im Stationsalltag</li>
+                </ul>
               </div>
             </div>
           </div>
 
-          <div class="cv-body">
-            <div class="cv-col-left">
-              <div class="cv-section">
-                <div class="cv-section-title"><i class="bi bi-mortarboard-fill"></i> Ausbildung</div>
-                <div class="cv-entry">
-                  <div class="cv-entry-year">2015 – 2019</div>
-                  <div class="cv-entry-content">
-                    <strong>Abitur</strong>
-                    <span>Gymnasium Musterstadt</span>
-                  </div>
-                </div>
-                <div class="cv-entry">
-                  <div class="cv-entry-year">2006 – 2015</div>
-                  <div class="cv-entry-content">
-                    <strong>Grundschule &amp; Mittelschule</strong>
-                    <span>Musterschule, Musterstadt</span>
-                  </div>
-                </div>
-              </div>
-              <div class="cv-section">
-                <div class="cv-section-title"><i class="bi bi-briefcase-fill"></i> Berufserfahrung</div>
-                <div class="cv-entry">
-                  <div class="cv-entry-year">2020 – 2023</div>
-                  <div class="cv-entry-content">
-                    <strong>Pflegehelfer</strong>
-                    <span>Klinik Musterstadt</span>
-                    <ul class="cv-task-list">
-                      <li>Unterstützung bei der täglichen Pflege</li>
-                      <li>Betreuung von Patienten</li>
-                    </ul>
-                  </div>
-                </div>
+          <div class="cv-block">
+            <div class="cv-block-title">Ausbildung</div>
+
+            <div class="cv-entry-row">
+              <div class="cv-period">2022 – 2023</div>
+              <div class="cv-detail">
+                <strong>Krankenpflegeassistent (Zertifikat)</strong>
+                Institut de Formation Paramédicale, Alger
               </div>
             </div>
 
-            <div class="cv-col-right">
-              <div class="cv-section">
-                <div class="cv-section-title"><i class="bi bi-translate"></i> Sprachkenntnisse</div>
-                <div class="cv-skill-row">
-                  <span class="cv-skill-name">Arabisch</span>
-                  <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:100%"></div></div>
-                  <span class="cv-skill-level">Muttersprache</span>
-                </div>
-                <div class="cv-skill-row">
-                  <span class="cv-skill-name">Deutsch</span>
-                  <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:70%"></div></div>
-                  <span class="cv-skill-level">B2</span>
-                </div>
-                <div class="cv-skill-row">
-                  <span class="cv-skill-name">Englisch</span>
-                  <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:55%"></div></div>
-                  <span class="cv-skill-level">B1</span>
-                </div>
+            <div class="cv-entry-row">
+              <div class="cv-period">2019 – 2022</div>
+              <div class="cv-detail">
+                <strong>Licence Biologie (B.Sc.)</strong>
+                Université des Sciences, Alger
               </div>
-              <div class="cv-section">
-                <div class="cv-section-title"><i class="bi bi-star-fill"></i> Fähigkeiten</div>
-                <div class="cv-tags">
-                  <span class="cv-tag">Teamarbeit</span>
-                  <span class="cv-tag">Kommunikation</span>
-                  <span class="cv-tag">MS Office</span>
-                  <span class="cv-tag">Zuverlässigkeit</span>
-                  <span class="cv-tag">Belastbarkeit</span>
-                </div>
+            </div>
+
+            <div class="cv-entry-row">
+              <div class="cv-period">2016 – 2019</div>
+              <div class="cv-detail">
+                <strong>Baccalauréat (Naturwissenschaften)</strong>
+                Lycée Emir Abdelkader, Alger
               </div>
-              <div class="cv-section">
-                <div class="cv-section-title"><i class="bi bi-award-fill"></i> Zertifikate</div>
-                <div class="cv-entry">
-                  <div class="cv-entry-year">2022</div>
-                  <div class="cv-entry-content">
-                    <strong>Goethe-Zertifikat B2</strong>
-                    <span>Goethe-Institut</span>
-                  </div>
-                </div>
+            </div>
+          </div>
+
+          <div class="cv-block">
+            <div class="cv-block-title">Weiterbildung</div>
+
+            <div class="cv-entry-row">
+              <div class="cv-period">2023</div>
+              <div class="cv-detail">
+                <strong>Goethe-Zertifikat B1</strong>
+                Goethe-Institut Alger
               </div>
-              <div class="cv-section">
-                <div class="cv-section-title"><i class="bi bi-heart-fill"></i> Interessen</div>
-                <div class="cv-tags">
-                  <span class="cv-tag">Sport</span>
-                  <span class="cv-tag">Lesen</span>
-                  <span class="cv-tag">Reisen</span>
-                </div>
+            </div>
+
+            <div class="cv-entry-row">
+              <div class="cv-period">2022</div>
+              <div class="cv-detail">
+                <strong>Erste-Hilfe-Kurs (Zertifikat)</strong>
+                Croissant-Rouge Algérien
               </div>
+            </div>
+          </div>
+
+          <div class="cv-block">
+            <div class="cv-block-title">Kenntnisse</div>
+            <div class="cv-row"><div class="cv-label">Sprachkenntnisse</div>
+              <div class="cv-value">
+                Arabisch (Muttersprache)<br>
+                Französisch (C1)<br>
+                Deutsch (B1)<br>
+                Englisch (A2)
+              </div>
+            </div>
+            <div class="cv-row"><div class="cv-label">Fähigkeiten</div>
+              <div class="cv-value">
+                Einfühlungsvermögen, Teamarbeit, Belastbarkeit, Zuverlässigkeit, Kommunikation, Erste Hilfe
+              </div>
+            </div>
+            <div class="cv-row"><div class="cv-label">Interessen</div>
+              <div class="cv-value">Medizin, Sport, Deutsche Kultur, Lesen</div>
             </div>
           </div>
 
@@ -542,7 +850,8 @@
       </div>
     </section>
 
-    <!-- 05 MOTIVATIONSSCHREIBEN -->
+   
+    <!-- 06 MOTIVATIONSSCHREIBEN -->
     <section id="motivationsschreiben" class="guideline-section">
       <div class="section-num">05</div>
       <h2>Motivationsschreiben</h2>
@@ -621,7 +930,7 @@
       </div>
     </section>
 
-    <!-- 06 -->
+    <!-- 07 -->
     <section id="profil-video" class="guideline-section">
       <div class="section-num">06</div>
       <h2>Profil-Video</h2>
@@ -641,7 +950,7 @@
       <p>Unangemessene oder beleidigende Inhalte sind nicht erlaubt.</p>
     </section>
 
-    <!-- 07 -->
+    <!-- 08 -->
     <section id="verhalten" class="guideline-section">
       <div class="section-num">07</div>
       <h2>Verhalten auf der Plattform</h2>
@@ -654,25 +963,25 @@
       <p>Beleidigungen, Diskriminierung oder missbräuchliche Nutzung führen zur Sperrung des Kontos.</p>
     </section>
 
-    <!-- 08 -->
+    <!-- 09 -->
     <section id="ueberpruefung" class="guideline-section">
-      <div class="section-num">08</div>
+      <div class="section-num">09</div>
       <h2>Überprüfung der Daten</h2>
       <p>3E Consulting behält sich das Recht vor, hochgeladene Dokumente und Angaben zu überprüfen.</p>
       <p>Bei Verdacht auf Fälschung oder Missbrauch kann das Profil jederzeit deaktiviert werden.</p>
     </section>
 
-    <!-- 09 -->
+    <!-- 10 -->
     <section id="zustimmung" class="guideline-section">
-      <div class="section-num">09</div>
+      <div class="section-num">10</div>
       <h2>Zustimmung</h2>
       <p>Mit der Registrierung auf 3E Consulting bestätigen Sie, dass alle Angaben wahrheitsgemäß sind und Sie diese Richtlinien akzeptieren.</p>
       <a href="bewerben.html" class="btn-primary">Jetzt registrieren →</a>
     </section>
 
-    <!-- 10 VIDEO -->
+    <!-- 11 VIDEO -->
     <section id="video-anleitung" class="guideline-section video-section">
-      <div class="section-num">10</div>
+      <div class="section-num">11</div>
       <h2><i class="bi bi-camera-video-fill" style="color:var(--accent);margin-right:.4rem"></i>Videoanleitung — So bewerben Sie sich</h2>
       <p>In diesem Video erfahren Sie Schritt für Schritt, wie Sie sich auf unserer Plattform bewerben und Ihr Profil vollständig einreichen.</p>
       <div class="steps-grid">
