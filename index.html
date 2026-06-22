@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -149,7 +148,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .av-caption p strong{color:var(--white);font-weight:500}
 
 /* ══════════════════════════════════════════
-   BRIDGE SECTION — BRIDGE CENTERED VERTICALLY
+   BRIDGE SECTION — FULLY CENTERED + RESPONSIVE
 ══════════════════════════════════════════ */
 .bridge-section{
   padding:6rem 5vw 5rem;
@@ -173,13 +172,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .bridge-title{font-family:var(--font-display);font-size:clamp(1.9rem,3.5vw,2.7rem);font-weight:700;color:var(--white);line-height:1.15;}
 .bridge-title em{font-style:normal;color:var(--accent);}
 
-/* 3-column layout */
+/* ── DESKTOP: 3-column grid, SVG perfectly centered ── */
 .bridge-layout{
   max-width:1300px;margin:0 auto;
   display:grid;
-  grid-template-columns:1fr 180px 1fr;
-  gap:1rem;
-  align-items:stretch; /* key: all columns same height */
+  grid-template-columns:1fr 200px 1fr;
+  gap:1.5rem;
+  align-items:center;
   position:relative;z-index:1;
 }
 
@@ -226,75 +225,31 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .b-text h4{font-family:var(--font-display);font-size:.78rem;font-weight:600;color:var(--white);margin-bottom:.1rem;line-height:1.25;}
 .b-text p{font-size:.68rem;color:var(--muted);line-height:1.45;font-weight:300;margin:0;}
 
-/* ══ BRIDGE CENTER — PERFECTLY CENTERED ══ */
-.bridge-center{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center; /* vertically center everything */
-  position:relative;
-  z-index:2;
-  gap:0;
-}
-
-/* top dashed line — from top of column to bridge image */
-.bridge-line-top,
-.bridge-line-bottom{
-  width:2px;
-  flex:1; /* take equal space above and below */
-  background:repeating-linear-gradient(
-    to bottom,
-    rgba(217,119,6,.45) 0px, rgba(217,119,6,.45) 6px,
-    transparent 6px, transparent 14px
-  );
-  position:relative;
-  z-index:0;
-}
-
-/* dots on the lines */
-.bridge-line-top::after,
-.bridge-line-bottom::before{
-  content:'';
-  position:absolute;
-  left:50%;transform:translateX(-50%);
-  width:8px;height:8px;border-radius:50%;
-  background:rgba(217,119,6,.25);
-  border:1px solid rgba(217,119,6,.5);
-}
-.bridge-line-top::after{bottom:0;}
-.bridge-line-bottom::before{top:0;}
-
-/* badge */
-.bridge-badge{
-  font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--accent);background:rgba(217,119,6,.12);
-  border:1px solid rgba(217,119,6,.3);border-radius:999px;
-  padding:.28rem .7rem;position:relative;z-index:2;
-  white-space:nowrap;margin:1rem 0 .6rem;
-}
-
-/* bridge image container */
+/* ── SVG CENTER ── */
 .bridge-img-wrap{
-  width:150px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
   position:relative;z-index:2;
-  flex-shrink:0;
 }
 .bridge-img{
   width:100%;
+  max-width:200px;
   display:block;
-  filter: invert(1) sepia(1) saturate(3) hue-rotate(15deg) brightness(1.1);
+  filter:invert(1) sepia(1) saturate(3) hue-rotate(15deg) brightness(1.1);
   opacity:.8;
   transition:opacity .3s,filter .3s,transform .3s;
 }
 .bridge-img-wrap:hover .bridge-img{
   opacity:1;
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(15deg) brightness(1.35);
+  filter:invert(1) sepia(1) saturate(5) hue-rotate(15deg) brightness(1.35);
   transform:scale(1.04);
 }
 
 /* BOTTOM CTAs */
 .bridge-bottom{
-  max-width:1200px;margin:2.5rem auto 0;
+  max-width:1300px;margin:2.5rem auto 0;
   display:grid;grid-template-columns:1fr 1fr;gap:1rem;
   position:relative;z-index:1;
 }
@@ -315,6 +270,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .bb-bewerber .bb-btn:hover{background:rgba(74,222,128,.15);}
 .bb-company .bb-btn{color:var(--accent);border-color:rgba(217,119,6,.3);background:rgba(217,119,6,.08);}
 .bb-company .bb-btn:hover{background:rgba(217,119,6,.18);}
+
 
 /* CONTACT */
 .contact{padding:8rem 5vw;background:var(--navy)}
@@ -338,6 +294,7 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
 .footer-links a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
 .footer-links a:hover{color:var(--white)}
 
+
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -359,8 +316,7 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
   .about-inner{grid-template-columns:1fr}
   .about-visual{order:-1}
   .fb-main-grid{grid-template-columns:repeat(3,1fr)}
-  .bridge-layout{grid-template-columns:1fr 140px 1fr;}
-  .bridge-img-wrap{width:130px;}
+  .bridge-layout{grid-template-columns:1fr 160px 1fr;}
 }
 @media(max-width:768px){
   nav{padding:.7rem 1rem}
@@ -387,32 +343,29 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
   .footer-links{justify-content:center}
   .fb-main-grid{grid-template-columns:repeat(2,1fr)}
   .fb-sub-grid{grid-template-columns:1fr}
-  /* Bridge mobile: stack */
-  .bridge-layout{grid-template-columns:1fr;gap:1rem;}
-  .bridge-center{
-    flex-direction:row;
-    justify-content:center;
-    align-items:center;
-    order:-1;
-    padding:1rem 0;
-    gap:1rem;
+  /* Bridge: tablet stack */
+  .bridge-layout{
+    grid-template-columns:1fr 1fr;
+    gap:.75rem;
   }
-  .bridge-line-top,.bridge-line-bottom{
-    width:40px;height:2px;flex:unset;
-    background:repeating-linear-gradient(
-      to right,
-      rgba(217,119,6,.45) 0px,rgba(217,119,6,.45) 6px,
-      transparent 6px,transparent 14px
-    );
+  .bridge-img-wrap{
+    display:none; /* شجرة SVG مخفية على الموبايل */
   }
-  .bridge-line-top::after,.bridge-line-bottom::before{display:none;}
-  .bridge-img-wrap{width:130px;}
-  .bridge-badge{margin:.3rem .5rem;}
   .col-bewerber .col-header{justify-content:flex-start;}
   .col-bewerber .b-card{border-right:none;border-left:2px solid rgba(74,222,128,.12);}
   .col-bewerber .b-card:hover{border-left-color:rgba(74,222,128,.5);}
   .bridge-bottom{grid-template-columns:1fr;}
   .bb-btn{display:none;}
+}
+.bridge-img {
+  width: 100%;
+  display: block;
+  opacity: .85;
+  transition: opacity .3s, transform .3s;
+}
+.bridge-img-wrap:hover .bridge-img {
+  opacity: 1;
+  transform: scale(1.06);
 }
 @media(max-width:480px){
   nav{padding:.6rem .85rem}
@@ -423,9 +376,9 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
   .process-steps{grid-template-columns:1fr}
   .svc{padding:1.5rem 1.2rem}
   .fb-main-grid{grid-template-columns:1fr 1fr}
+  .bridge-layout{grid-template-columns:1fr;}
   .b-text p{display:none}
   .b-card{padding:.55rem .7rem;}
-  .bridge-img-wrap{width:110px;}
 }
 </style>
 </head>
@@ -621,18 +574,66 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
     </div>
 
     <!-- MITTE: BRÜCKE — VERTIKAL ZENTRIERT -->
-    <div class="bridge-center">
-      <!-- Linie oben -->
-      <div class="bridge-line-top"></div>
-      <!-- Badge -->
-      <div class="bridge-badge">3E</div>
-      <!-- Brückenbild in der Mitte -->
-      <div class="bridge-img-wrap">
-        <img src="Brucken.png" alt="3E Consulting — Die Brücke" class="bridge-img">
-      </div>
-      <!-- Linie unten -->
-      <div class="bridge-line-bottom"></div>
-    </div>
+  <div class="bridge-img-wrap">
+  <svg viewBox="0 0 480 560" xmlns="http://www.w3.org/2000/svg" class="bridge-img" style="width:100%;display:block;">
+
+    <!-- TRUNK -->
+    <line x1="240" y1="530" x2="240" y2="390" stroke="#f97316" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="240" cy="542" r="10" fill="none" stroke="#f97316" stroke-width="4"/>
+
+    <!-- Low stubs -->
+    <line x1="240" y1="430" x2="185" y2="430" stroke="#f97316" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="174" cy="430" r="8" fill="none" stroke="#f97316" stroke-width="3.5"/>
+    <line x1="240" y1="430" x2="295" y2="430" stroke="#f97316" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="306" cy="430" r="8" fill="none" stroke="#f97316" stroke-width="3.5"/>
+
+    <!-- Low circles on trunk -->
+    <line x1="175" y1="478" x2="210" y2="478" stroke="#166534" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="165" cy="478" r="8" fill="none" stroke="#166534" stroke-width="3"/>
+    <circle cx="210" cy="478" r="6" fill="none" stroke="#166534" stroke-width="2.5"/>
+    <line x1="305" y1="478" x2="270" y2="478" stroke="#166534" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="315" cy="478" r="8" fill="none" stroke="#166534" stroke-width="3"/>
+    <circle cx="270" cy="478" r="6" fill="none" stroke="#166534" stroke-width="2.5"/>
+
+    <!-- FORK -->
+    <circle cx="240" cy="390" r="7" fill="#f97316"/>
+    <line x1="240" y1="390" x2="100" y2="280" stroke="#166534" stroke-width="7" stroke-linecap="round"/>
+    <line x1="240" y1="390" x2="240" y2="270" stroke="#f97316" stroke-width="7" stroke-linecap="round"/>
+    <line x1="240" y1="390" x2="380" y2="280" stroke="#16a34a" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- LEFT ARM -->
+    <circle cx="100" cy="280" r="6" fill="#166534"/>
+    <line x1="100" y1="280" x2="40"  y2="280" stroke="#f97316" stroke-width="5.5" stroke-linecap="round"/>
+    <circle cx="29" cy="280" r="10" fill="none" stroke="#f97316" stroke-width="3.5"/>
+    <line x1="100" y1="280" x2="60"  y2="205" stroke="#166534" stroke-width="6" stroke-linecap="round"/>
+    <line x1="100" y1="280" x2="100" y2="193" stroke="#166534" stroke-width="6" stroke-linecap="round"/>
+    <line x1="100" y1="280" x2="150" y2="205" stroke="#166534" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="60"  cy="194" r="10" fill="none" stroke="#166534" stroke-width="3.5"/>
+    <circle cx="100" cy="182" r="10" fill="none" stroke="#166534" stroke-width="3.5"/>
+    <circle cx="150" cy="194" r="9"  fill="none" stroke="#166534" stroke-width="3"/>
+
+    <!-- CENTER ARM -->
+    <circle cx="240" cy="270" r="6" fill="#f97316"/>
+    <line x1="240" y1="270" x2="190" y2="198" stroke="#f97316" stroke-width="6" stroke-linecap="round"/>
+    <line x1="240" y1="270" x2="240" y2="180" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
+    <line x1="240" y1="270" x2="290" y2="198" stroke="#166534" stroke-width="5.5" stroke-linecap="round"/>
+    <circle cx="190" cy="187" r="10" fill="none" stroke="#f97316" stroke-width="3.5"/>
+    <circle cx="240" cy="168" r="10" fill="none" stroke="#16a34a" stroke-width="3.5"/>
+    <circle cx="290" cy="187" r="9"  fill="none" stroke="#166534" stroke-width="3"/>
+
+    <!-- RIGHT ARM -->
+    <circle cx="380" cy="280" r="6" fill="#16a34a"/>
+    <line x1="380" y1="280" x2="440" y2="280" stroke="#f97316" stroke-width="5.5" stroke-linecap="round"/>
+    <circle cx="451" cy="280" r="10" fill="none" stroke="#f97316" stroke-width="3.5"/>
+    <line x1="380" y1="280" x2="420" y2="205" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
+    <line x1="380" y1="280" x2="380" y2="193" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
+    <line x1="380" y1="280" x2="330" y2="205" stroke="#16a34a" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="420" cy="194" r="10" fill="none" stroke="#16a34a" stroke-width="3.5"/>
+    <circle cx="380" cy="182" r="10" fill="none" stroke="#16a34a" stroke-width="3.5"/>
+    <circle cx="330" cy="194" r="9"  fill="none" stroke="#16a34a" stroke-width="3"/>
+
+  </svg>
+</div>
 
     <!-- RECHTS: UNTERNEHMEN -->
     <div class="col-company">
@@ -644,7 +645,7 @@ footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justif
       <div class="b-card"><div class="b-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div><div class="b-text"><h4>Zahlung nur bei Einstellung</h4><p>Kein Kostenrisiko — nur bei erfolgreichem Abschluss.</p></div></div>
       <div class="b-card"><div class="b-icon"><i class="fa-solid fa-users-viewfinder"></i></div><div class="b-text"><h4>Exklusiver Talentpool</h4><p>Vorqualifizierte algerische Fachkräfte — exklusiv.</p></div></div>
       <div class="b-card"><div class="b-icon"><i class="fa-solid fa-bolt"></i></div><div class="b-text"><h4>Prozess-Effizienz §81a</h4><p>Beschleunigtes Fachkräfteverfahren inklusive.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-shield-check"></i></div><div class="b-text"><h4>Integrationsrisiko minimiert</h4><p>Onboarding-Pakete für nachhaltige Eingliederung.</p></div></div>
+      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="b-text"><h4>Integrationsrisiko minimiert</h4><p>Onboarding-Pakete für nachhaltige Eingliederung.</p></div></div>
       <div class="b-card"><div class="b-icon"><i class="fa-solid fa-filter"></i></div><div class="b-text"><h4>Vorgefilterter Bewerberpool</h4><p>Jede Bewerbung persönlich geprüft — nur Passende.</p></div></div>
       <div class="b-card"><div class="b-icon"><i class="fa-solid fa-headset"></i></div><div class="b-text"><h4>Betreuung nach Einstellung</h4><p>Wir bleiben ansprechbar — für Integration und Fragen.</p></div></div>
     </div>
