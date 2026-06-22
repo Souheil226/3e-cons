@@ -433,15 +433,15 @@ Chart.defaults.borderColor='rgba(74,222,128,.12)';
 Chart.defaults.font.family="'DM Sans',sans-serif";
 
 /* ── لوحة الألوان: درجات خضراء فقط ── */
-const green1='#4ade80';   // أخضر أساسي (bright)
+const green1='#16a34a';   // أخضر أساسي (bright)
 const green2='#16a34a';   // أخضر داكن
-const green3='#86efac';   // أخضر فاتح
-const green4='#15803d';   // أخضر داكن جداً
-const green5='#22c55e';   // أخضر متوسط
-const green6='#bbf7d0';   // أخضر فاتح جداً
+const green3='#16a34a';   // أخضر فاتح
+const green4='#16a34a';   // أخضر داكن جداً
+const green5='#16a34a';   // أخضر متوسط
+const green6='#16a34a';   // أخضر فاتح جداً
 const greenPalette=[green1,green2,green3,green4,green5,green6];
 
-new Chart(document.getElementById('chartEngpass'),{type:'bar',data:{labels:['Gesundheit & Pflege','Handwerk & Bau','Bildung','Logistik','Gastronomie'],datasets:[{label:'Engpass-Index',data:[95,88,82,74,65,58],backgroundColor:greenPalette,borderRadius:6,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` Index: ${c.raw}/100`}}},scales:{x:{max:100,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
+new Chart(document.getElementById('chartEngpass'),{type:'bar',data:{labels:['Gesundheit & Pflege','Handwerk & Bau','Bildung','Logistik','Gastronomie'],datasets:[{label:'Engpass-Index',data:[95,88,82,74,65,58],backgroundColor:[green1,green4],borderRadius:8,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` Index: ${c.raw}/100`}}},scales:{x:{max:100,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
 
 new Chart(document.getElementById('chartPassung'),{type:'bar',data:{labels:['Azubis (Dual)','Ohne Abschluss'],datasets:[{label:'Millionen',data:[1.2,2.9],backgroundColor:[green1,green4],borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Mio.`}}},scales:{y:{beginAtZero:true,max:3.5,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+' Mio.'}},x:{grid:{display:false}}}}});
 
