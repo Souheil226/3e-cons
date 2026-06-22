@@ -281,7 +281,7 @@
           <div class="col-12 col-sm-6">
             <div class="info-card">
               <h3>
-                <i class="bi bi-file-text-fill"></i>
+             
                 Pflichtangaben <span class="law-badge">Nachweisgesetz</span>
               </h3>
               <p>Name, Arbeitsbeginn, Vergütung, Arbeitszeit, Urlaubstage, Kündigungsfristen — der Arbeitgeber muss diese schriftlich mitteilen.</p>
@@ -290,7 +290,7 @@
           <div class="col-12 col-sm-6">
             <div class="info-card">
               <h3>
-                <i class="bi bi-hourglass-split"></i>
+              
                 Probezeit
               </h3>
               <p>Maximal 6 Monate. Verkürzte Kündigungsfrist von 2 Wochen. Für Auszubildende meist 1–3 Monate.</p>
@@ -299,7 +299,7 @@
           <div class="col-12 col-sm-6">
             <div class="info-card">
               <h3>
-                <i class="bi bi-mortarboard-fill"></i>
+                
                 Ausbildungsvertrag
               </h3>
               <p>Auszubildende haben einen speziellen Vertrag nach dem Berufsbildungsgesetz (BBiG) — regelt Ausbildungsdauer, Vergütung und Prüfungen.</p>
@@ -308,7 +308,7 @@
           <div class="col-12 col-sm-6">
             <div class="info-card">
               <h3>
-                <i class="bi bi-handshake-fill"></i>
+               
                 Tarifvertrag
               </h3>
               <p>In vielen Branchen gelten Tarifverträge — sie können bessere Löhne und Bedingungen als das Gesetz vorschreiben.</p>
@@ -388,7 +388,7 @@
             </div>
           </div>
           <div class="insurance-item">
-            <div class="insurance-icon"><i class="bi bi-hand-heart-fill"></i></div>
+            <div class="insurance-icon"><i class="bi bi-bandaid-fill"></i></div>
             <div>
               <h4>Pflegeversicherung (PV)</h4>
               <p>Finanziert Pflege im Alter oder bei Krankheit. Arbeitnehmeranteil ca. 1,7 %.</p>
@@ -503,7 +503,7 @@
           <div class="col-12 col-sm-6">
             <div class="info-card">
               <h3>
-                <i class="bi bi-person-heart"></i>
+                
                 Mutterschutz <span class="law-badge">MuSchG</span>
               </h3>
               <p>6 Wochen vor und 8 Wochen nach der Entbindung: Beschäftigungsverbot mit vollem Lohn. Kündigungsschutz ab Beginn der Schwangerschaft.</p>
@@ -512,7 +512,7 @@
           <div class="col-12 col-sm-6">
             <div class="info-card">
               <h3>
-                <i class="bi bi-people-fill"></i>
+               
                 Elternzeit <span class="law-badge">BEEG</span>
               </h3>
               <p>Bis zu 3 Jahre pro Kind. Kündigungsschutz während der gesamten Elternzeit.</p>
@@ -521,7 +521,7 @@
           <div class="col-12 col-sm-6">
             <div class="info-card">
               <h3>
-                <i class="bi bi-piggy-bank-fill"></i>
+                
                 Elterngeld
               </h3>
               <p>65–67 % des Nettoeinkommens (min. 300 €, max. 1.800 €/Monat) für bis zu 14 Monate.</p>
@@ -530,7 +530,7 @@
           <div class="col-12 col-sm-6">
             <div class="info-card">
               <h3>
-                <i class="bi bi-building-fill"></i>
+               
                 Kinderbetreuung
               </h3>
               <p>Ab dem 1. Lebensjahr hat jedes Kind einen Rechtsanspruch auf einen Kita-Platz.</p>
@@ -568,8 +568,14 @@ sections.forEach(s=>io.observe(s));
 Chart.defaults.color       = '#86a38e';
 Chart.defaults.borderColor = 'rgba(74,222,128,.12)';
 Chart.defaults.font.family = "'DM Sans',sans-serif";
-const accent='#d97706',bright='#4ade80',gold='#fbbf24',red='#ef4444';
-const palette=[accent,bright,gold,'#60a5fa','#a78bfa',red];
+
+/* ── لوحة الألوان: درجات خضراء فقط ── */
+const green1='#4ade80';   // أخضر أساسي (bright)
+const green2='#16a34a';   // أخضر داكن
+const green3='#86efac';   // أخضر فاتح
+const green4='#15803d';   // أخضر داكن جداً
+const green5='#22c55e';   // أخضر متوسط
+const greenPalette=[green1,green2,green3,green4,green5];
 
 // 1. Mindestlohn line
 new Chart(document.getElementById('chartLohn'),{
@@ -577,8 +583,8 @@ new Chart(document.getElementById('chartLohn'),{
   data:{
     labels:['2015','2017','2019','2021','2022','2024','2025'],
     datasets:[{label:'Mindestlohn (€/Std.)',data:[8.50,8.84,9.19,9.60,10.45,12.41,12.82],
-      borderColor:accent,backgroundColor:'rgba(217,119,6,.15)',fill:true,tension:0.35,
-      pointBackgroundColor:accent,pointRadius:5}]
+      borderColor:green1,backgroundColor:'rgba(74,222,128,.15)',fill:true,tension:0.35,
+      pointBackgroundColor:green1,pointRadius:5}]
   },
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} €/Std.`}}},
@@ -591,7 +597,7 @@ new Chart(document.getElementById('chartArbeitszeit'),{
   type:'doughnut',
   data:{
     labels:['Arbeitszeit','Pausen','Ruhezeit'],
-    datasets:[{data:[8,0.75,11],backgroundColor:[accent,bright,'#60a5fa'],borderColor:'#0f2017',borderWidth:3}]
+   datasets:[{data:[8,0.75,11],backgroundColor:['#d97706','#3b82f6','#ec4899'],borderColor:'#0f2017',borderWidth:3}]
   },
   options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
     plugins:{legend:{position:'bottom',labels:{padding:10,usePointStyle:true,font:{size:11}}}}}
@@ -603,7 +609,7 @@ new Chart(document.getElementById('chartSozial'),{
   data:{
     labels:['Krankenvers.','Rentenvers.','Arbeitslosenvers.','Pflegevers.','Lohnsteuer*'],
     datasets:[{label:'Anteil (%)',data:[8.5,9.3,1.3,1.7,15],
-      backgroundColor:palette,borderRadius:6,borderSkipped:false}]
+      backgroundColor:greenPalette,borderRadius:6,borderSkipped:false}]
   },
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ca. ${c.raw}%`}}},
@@ -617,7 +623,7 @@ new Chart(document.getElementById('chartUrlaub'),{
   data:{
     labels:['Gesetzl. Minimum','Durchschnitt DE','Tarifvertrag','Öffentl. Dienst'],
     datasets:[{label:'Urlaubstage',data:[20,28,30,30],
-      backgroundColor:[red,accent,bright,gold],borderRadius:6,borderSkipped:false}]
+      backgroundColor:[green4,green1,green2,green3],borderRadius:6,borderSkipped:false}]
   },
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Tage`}}},
@@ -631,7 +637,7 @@ new Chart(document.getElementById('chartEltern'),{
   data:{
     labels:['Mutter allein','Vater allein','Beide (Basis)','Beide (+Partner)','Max. gesamt'],
     datasets:[{label:'Monate',data:[12,2,12,14,14],
-      backgroundColor:palette,borderRadius:6,borderSkipped:false}]
+      backgroundColor:greenPalette,borderRadius:6,borderSkipped:false}]
   },
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Monate`}}},
