@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vermittlung & Ausbildung — 3E Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f2017;
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --bright: #4ade80;
+      --white: #fff;
+      --muted: #86a38e;
+      --border: rgba(74, 222, 128, .18);
+      --glass: rgba(255, 255, 255, .04);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--navy);
+      color: var(--white);
+      padding-top: 72px;
+    }
+
+    /* ── NAV ── */
+    nav.site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 5vw;
+      background: rgba(15, 32, 23, .92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: .875rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-menu { position: relative; }
+    .nav-menu-btn {
+      background: var(--accent); color: var(--white);
+      padding: .55rem 1.3rem; border-radius: 8px;
+      font-size: .85rem; font-weight: 500; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: .4rem;
+      transition: background .2s, transform .15s;
+    }
+    .nav-menu-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .nav-dropdown {
+      position: absolute; top: calc(100% + .6rem); right: 0;
+      min-width: 300px; max-height: 75vh; overflow-y: auto;
+      background: rgba(15, 32, 23, .97);
+      border: 1px solid var(--border); border-radius: 12px; padding: 1rem;
+      backdrop-filter: blur(20px); box-shadow: 0 20px 50px rgba(0,0,0,.4); z-index: 200;
+    }
+    .menu-level-1, .menu-level-2, .menu-level-3 { list-style: none; margin: 0; padding: 0; }
+    .menu-toggle {
+      width: 100%; text-align: left; background: none; border: none;
+      color: var(--white); font-family: var(--font-body);
+      font-size: .88rem; font-weight: 500; padding: .65rem .75rem; border-radius: 8px;
+      cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+      transition: background .15s;
+    }
+    .menu-toggle:hover, .menu-toggle.open { background: var(--glass); }
+    .menu-toggle::after { content: '▾'; font-size: .7rem; color: var(--muted); transition: transform .2s; }
+    .menu-toggle.open::after { transform: rotate(180deg); }
+    .menu-level-1 > li > a {
+      display: block; padding: .65rem .75rem; font-size: .88rem;
+      color: var(--muted); text-decoration: none; border-radius: 8px; transition: all .15s;
+    }
+    .menu-level-1 > li > a:hover { color: var(--white); background: var(--glass); }
+    .menu-level-1 > li > a.active { color: var(--bright); background: rgba(74,222,128,.08); }
+    .menu-level-2 { padding-left: .5rem; }
+    .menu-level-3 { padding-left: 1rem; }
+    .menu-level-2 .menu-toggle, .menu-level-3 a { font-size: .82rem; color: var(--muted); padding: .5rem .75rem; }
+    .menu-level-3 a { display: block; text-decoration: none; border-radius: 6px; transition: all .15s; }
+    .menu-level-3 a:hover { color: var(--white); background: var(--glass); }
+    .menu-level-1 > li { border-bottom: 1px solid var(--border); }
+    .menu-level-1 > li:last-child { border-bottom: none; }
+
+    /* ── HERO ── */
+    .page-hero {
+      padding: 3.5rem 5vw 2.5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-tag {
+      font-size: .75rem; font-weight: 500; color: var(--accent);
+      letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem;
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
+    }
+    .page-hero h1 em { font-style: normal; color: var(--accent); }
+    .page-hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 680px; }
+
+    /* ── TRACK TABS ── */
+    .tracks-nav {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 5vw 2rem;
+      display: flex; gap: .75rem; flex-wrap: wrap;
+    }
+    .track-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .65rem 1.25rem; border-radius: 50px;
+      font-size: .875rem; font-weight: 500; cursor: pointer;
+      border: 1px solid var(--border); background: var(--glass);
+      color: var(--muted); transition: all .2s; text-decoration: none;
+    }
+    .track-btn:hover { color: var(--white); border-color: rgba(74,222,128,.4); }
+    .track-btn.active {
+      background: var(--accent); border-color: var(--accent);
+      color: var(--white);
+    }
+
+    /* ── CONTENT ── */
+    .content-wrap {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 5vw 6rem;
+      display: flex; flex-direction: column; gap: 2.5rem;
+    }
+
+    /* ── TRACK BLOCK ── */
+    .track-block {
+      border: 1px solid var(--border); border-radius: 20px;
+      overflow: hidden;
+    }
+    .track-header {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, rgba(217,119,6,.08) 0%, rgba(255,255,255,.02) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .track-icon-wrap {
+      width: 56px; height: 56px; border-radius: 14px; flex-shrink: 0;
+      background: rgba(217,119,6,.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; color: var(--accent);
+    }
+    .track-header-text h2 {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; margin-bottom: .25rem;
+    }
+    .track-header-text p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+
+    .track-body { padding: 2rem 2.5rem; }
+
+    .track-intro {
+      color: var(--muted); line-height: 1.75; margin-bottom: 1.75rem;
+      font-size: .97rem;
+    }
+
+    /* Doc list */
+    .doc-list {
+      list-style: none; padding: 0;
+      display: flex; flex-direction: column; gap: .6rem;
+      margin-bottom: 1.75rem;
+    }
+    .doc-list li {
+      display: flex; align-items: flex-start; gap: .85rem;
+      background: rgba(255,255,255,.03); border: 1px solid var(--border);
+      border-radius: 10px; padding: .85rem 1rem;
+    }
+    .doc-num {
+      font-family: var(--font-display); font-size: .78rem; font-weight: 800;
+      color: var(--accent); min-width: 26px; padding-top: .05rem;
+    }
+    .doc-text { flex: 1; }
+    .doc-text strong { display: block; color: rgb(219, 134, 7); font-size: .9rem; margin-bottom: .2rem; }
+    .doc-text span { color: var(--muted); font-size: .83rem; line-height: 1.5; }
+
+    /* Sub-items inside doc (like Leumundszeugnisse) */
+    .doc-sub {
+      list-style: none; padding: 0;
+      margin-top: .5rem;
+      display: flex; flex-direction: column; gap: .35rem;
+    }
+    .doc-sub li {
+      display: flex; align-items: flex-start; gap: .5rem;
+      color: var(--muted); font-size: .82rem; line-height: 1.5;
+    }
+    .doc-sub li::before { content: '›'; color: var(--accent); flex-shrink: 0; margin-top: .05rem; }
+
+    /* Steps / process */
+    .process-title {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .process-title i { color: var(--accent); }
+
+    .process-steps {
+      display: flex; flex-direction: column; gap: 0;
+      margin-bottom: 1.5rem;
+    }
+    .process-step {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: .85rem 0;
+      border-bottom: 1px solid rgba(74,222,128,.08);
+    }
+    .process-step:last-child { border-bottom: none; }
+    .step-dot {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(217,119,6,.12); border: 1px solid rgba(217,119,6,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 800; color: var(--accent);
+      margin-top: .1rem;
+    }
+    .process-step p { color: var(--muted); font-size: .88rem; line-height: 1.6; }
+    .process-step p strong { color: var(--white); font-weight: 500; }
+
+    /* Note box */
+    .note-box {
+      background: rgba(74,222,128,.04); border: 1px solid rgba(74,222,128,.15);
+      border-radius: 10px; padding: 1rem 1.25rem;
+      color: var(--muted); font-size: .87rem; line-height: 1.65;
+      display: flex; gap: .75rem; align-items: flex-start;
+      margin-top: 1.25rem;
+    }
+    .note-box i { color: var(--bright); font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
+
+    /* CTA */
+    .track-cta {
+      display: flex; gap: .75rem; flex-wrap: wrap;
+      padding: 1.5rem 2.5rem 2rem;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--accent); color: var(--white);
+      padding: .7rem 1.4rem; border-radius: 10px;
+      font-size: .88rem; font-weight: 500; text-decoration: none;
+      transition: all .2s; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent; color: var(--muted);
+      padding: .7rem 1.4rem; border-radius: 10px;
+      font-size: .88rem; font-weight: 500; text-decoration: none;
+      transition: all .2s; border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { color: var(--white); border-color: rgba(74,222,128,.35); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      body { padding-top: 64px !important; }
+      nav.site-nav { padding: .7rem 1rem !important; }
+      .nav-links { display: none !important; }
+      .nav-menu-btn { padding: .45rem .9rem !important; font-size: .78rem !important; }
+      .nav-dropdown { right: 0 !important; left: auto !important; width: calc(100vw - 2rem) !important; max-width: 320px !important; }
+      .page-hero { padding: 2rem 4vw 1.5rem !important; }
+      .page-hero h1 { font-size: clamp(1.6rem,7vw,2.2rem) !important; }
+      .page-hero p { font-size: .92rem !important; }
+      .tracks-nav { padding: 0 4vw 1.5rem !important; }
+      .content-wrap { padding: 0 4vw 4rem !important; gap: 2rem !important; }
+      .track-header { padding: 1.25rem 1.25rem !important; gap: 1rem !important; }
+      .track-header-text h2 { font-size: 1.25rem !important; }
+      .track-body { padding: 1.25rem 1.25rem !important; }
+      .track-cta { padding: 1.25rem 1.25rem 1.5rem !important; }
+    }
+    @media (max-width: 480px) {
+      .track-icon-wrap { width: 44px !important; height: 44px !important; font-size: 1.25rem !important; }
+      .track-header-text h2 { font-size: 1.1rem !important; }
+      .doc-list li { padding: .75rem .85rem !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand" style="display:flex;align-items:center;gap:9px;text-decoration:none;">
+    <img src="logo_3e.jpg" alt="3E" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0">
+    <span style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3<span style="color:#4ade80">E</span><span style="color:#fb923c"> Consulting</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Leistungen</a></li>
+    <li><a href="index.html#process">Ablauf</a></li>
+    <li><a href="index.html#about">Über uns</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+  </ul>
+  <div class="nav-menu">
+    <button type="button" class="nav-menu-btn" id="menuToggle" aria-expanded="false">MENÜ ▾</button>
+    <div class="nav-dropdown" id="menuDropdown" hidden>
+      <ul class="menu-level-1">
+        <li class="has-sub">
+          <button type="button" class="menu-toggle">Service</button>
+          <ul class="menu-level-2" hidden>
+            <li class="has-sub">
+              <button type="button" class="menu-toggle">Bewerber</button>
+              <ul class="menu-level-3" hidden>
+                <li><a href="service-bewerber.html#dokumentenorganisation">Dokumentenorganisation</a></li>
+                <li><a href="service-bewerber.html#bewerbungsprozess">Bewerbungsprozess</a></li>
+                <li><a href="service-bewerber.html#profil-video">Profil-Video Anleitung</a></li>
+                <li><a href="service-bewerber.html#erste-schritte">Erste Schritte in Deutschland</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <button type="button" class="menu-toggle">Unternehmen</button>
+              <ul class="menu-level-3" hidden>
+                <li><a href="service-unternehmen.html#vermittlung">Vermittlung von Fachkräften</a></li>
+                <li><a href="service-unternehmen.html#beschwerdeverfahren">Beschwerdeverfahren</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="Bewerbung.html">Bewerbung</a></li>
+        <li><a href="vermittlung.html" class="active">Vermittlung &amp; Ausbildung</a></li>
+        <li><a href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
+        <li><a href="arbeitundsozialrecht.html">Arbeits- und Sozialrecht</a></li>
+        <li><a href="aufenthaltsrecht.html">Aufenthaltsrecht</a></li>
+        <li><a href="alltag-deutschland.html">Alltag in Deutschland</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="page-hero">
+  <div class="section-tag">3E Consulting · Berufsfelder</div>
+  <h1>Vermittlung &amp; <em>Ausbildung</em></h1>
+  <p>Von der Medizin bis zum Handwerk — wir begleiten Bewerberinnen und Bewerber aus Algerien auf ihrem beruflichen Weg nach Deutschland. Wählen Sie Ihr Berufsfeld und erfahren Sie, welche Unterlagen Sie benötigen.</p>
+</header>
+
+<!-- ═══ TRACK TABS ═══ -->
+<nav class="tracks-nav" aria-label="Berufsfelder">
+  <a href="#aerzte" class="track-btn active"><i class="bi bi-heart-pulse-fill"></i> Ärzte / Ärztinnen</a>
+  <a href="#pflege" class="track-btn"><i class="bi bi-bandaid-fill"></i> Pflegeausbildung</a>
+  <a href="#ausbildung" class="track-btn"><i class="bi bi-tools"></i> Ausbildung (Handwerk &amp; mehr)</a>
+</nav>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="content-wrap">
+
+  <!-- ── ÄRZTE ── -->
+  <article class="track-block" id="aerzte">
+    <div class="track-header">
+      <div class="track-icon-wrap"><i class="bi bi-heart-pulse-fill"></i></div>
+      <div class="track-header-text">
+        <h2>Vermittlung Ärzte / Ärztinnen</h2>
+        <p>Strukturierte Unterstützung für algerische Ärztinnen und Ärzte auf dem Weg in den deutschen Klinikbetrieb.</p>
+      </div>
+    </div>
+
+    <div class="track-body">
+      <p class="track-intro">
+        Falls Sie Interesse haben, in Deutschland als Arzt oder Ärztin zu arbeiten, stehen wir Ihnen mit strukturierter, seriöser und zuverlässiger Unterstützung zur Seite. Wir kooperieren deutschlandweit mit Krankenhäusern und Kliniken und begleiten Ärztinnen und Ärzte aus Algerien bei ihrem beruflichen Weg.
+      </p>
+
+      <div class="process-title"><i class="bi bi-file-earmark-text-fill"></i> Benötigte Dokumente</div>
+      <ul class="doc-list">
+        <li>
+          <span class="doc-num">01</span>
+          <div class="doc-text">
+            <strong>Gültiger Reisepass</strong>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">02</span>
+          <div class="doc-text">
+            <strong>Akademischer Abschluss</strong>
+            <span>Diplôme de Docteur en Médecine</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">03</span>
+          <div class="doc-text">
+            <strong>Fächer- und Notenübersicht (Transcript)</strong>
+            <span>Detaillierte Übersicht des gesamten Studiums</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">04</span>
+          <div class="doc-text">
+            <strong>Sprachnachweis</strong>
+            <span>Mindestens B2-Zertifikat — Goethe-Institut, ÖSD oder telc</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">05</span>
+          <div class="doc-text">
+            <strong>Nachweise über Berufserfahrung</strong>
+            <span>Belege über das Internat / Praxisjahr</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">06</span>
+          <div class="doc-text">
+            <strong>Aktueller Lebenslauf auf Deutsch</strong>
+            <span>Vollständig und lückenlos</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">07</span>
+          <div class="doc-text">
+            <strong>Leumundszeugnisse</strong>
+            <ul class="doc-sub">
+              <li>Certificate of Good Standing von der algerischen Ärztekammer — bei Einreichung in Deutschland meist nicht älter als 3 Monate</li>
+              <li>Strafregisterauszug aus Algerien — nicht älter als 3 Monate</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+
+      <div class="process-title" style="margin-top:1.5rem"><i class="bi bi-arrow-right-circle-fill"></i> Wichtige Schritte im Prozess</div>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-dot">1</div>
+          <p><strong>Beglaubigung durch das algerische Hochschulministerium</strong> — für akademische Unterlagen wie Diplom und Notenübersicht.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-dot">2</div>
+          <p><strong>Vorbeglaubigung durch das algerische Außenministerium</strong> — für behördliche Unterlagen wie Geburtsurkunde und Führungszeugnis.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-dot">3</div>
+          <p><strong>Legalisierung bei der deutschen Botschaft</strong> — alle vollständigen Unterlagen werden dort eingereicht.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-dot">4</div>
+          <p><strong>Fachgerechte Übersetzung in Deutschland</strong> — nach der Legalisierung werden die Dokumente professionell übersetzt.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-dot">5</div>
+          <p><strong>Einreichung beim Landesprüfungsamt / der Ärztekammer</strong> — die Unterlagen werden zur Prüfung der Anerkennungsfähigkeit vorgelegt. Im Regelfall erhalten Sie anschließend einen <em style="color:var(--white)">Defizitbescheid</em>.</p>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <i class="bi bi-info-circle-fill"></i>
+        <span>Sobald diese Voraussetzungen erfüllt sind, begleiten wir Sie kompetent, transparent und verlässlich durch den gesamten Vermittlungsprozess im medizinischen Bereich.</span>
+      </div>
+    </div>
+
+    <div class="track-cta">
+      <a href="index.html#kontakt" class="btn-primary"><i class="bi bi-envelope-fill"></i> Jetzt Kontakt aufnehmen</a>
+      <a href="Bewerbung.html" class="btn-secondary"><i class="bi bi-arrow-right"></i> Zur Bewerbungsseite</a>
+    </div>
+  </article>
+
+  <!-- ── PFLEGE ── -->
+  <article class="track-block" id="pflege">
+    <div class="track-header">
+      <div class="track-icon-wrap"><i class="bi bi-bandaid-fill"></i></div>
+      <div class="track-header-text">
+        <h2>Pflegeausbildung</h2>
+        <p>Ihr Einstieg in die Pflegeberufe in Deutschland — mit allen notwendigen Unterlagen auf einen Blick.</p>
+      </div>
+    </div>
+
+    <div class="track-body">
+      <p class="track-intro">
+        Die Pflegeausbildung in Deutschland bietet hervorragende Karriereperspektiven. Um Ihre Bewerbung erfolgreich einzureichen, benötigen wir folgende Dokumente von Ihnen:
+      </p>
+
+      <div class="process-title"><i class="bi bi-file-earmark-text-fill"></i> Benötigte Dokumente</div>
+      <ul class="doc-list">
+        <li>
+          <span class="doc-num">01</span>
+          <div class="doc-text">
+            <strong>Gültiger Reisepass</strong>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">02</span>
+          <div class="doc-text">
+            <strong>Schulzeugnisse</strong>
+            <span>Abschlusszeugnisse offiziell übersetzt und beglaubigt, damit sie in Deutschland anerkannt werden.</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">03</span>
+          <div class="doc-text">
+            <strong>Sprachzertifikat</strong>
+            <span>Nachweise über Deutschkenntnisse auf B1/B2-Niveau — z. B. telc oder Goethe-Zertifikat.</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">04</span>
+          <div class="doc-text">
+            <strong>Ärztliches Attest</strong>
+            <span>Bescheinigung, dass Sie körperlich und geistig für den Pflegeberuf geeignet sind.</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">05</span>
+          <div class="doc-text">
+            <strong>Polizeiliches Führungszeugnis</strong>
+            <span>Offizielles Dokument, das Ihre persönliche Zuverlässigkeit und Straffreiheit belegt.</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">06</span>
+          <div class="doc-text">
+            <strong>Impfnachweise</strong>
+            <span>Dokumentation Ihres Impfstatus — insbesondere Nachweis über die Hepatitis-B-Impfung.</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="note-box">
+        <i class="bi bi-info-circle-fill"></i>
+        <span>Alle Dokumente müssen offiziell ins Deutsche übersetzt und beglaubigt sein. Wir unterstützen Sie gerne bei der Vorbereitung und Koordination Ihrer Unterlagen.</span>
+      </div>
+    </div>
+
+    <div class="track-cta">
+      <a href="index.html#kontakt" class="btn-primary"><i class="bi bi-envelope-fill"></i> Jetzt Kontakt aufnehmen</a>
+      <a href="Bewerbung.html" class="btn-secondary"><i class="bi bi-arrow-right"></i> Zur Bewerbungsseite</a>
+    </div>
+  </article>
+
+  <!-- ── AUSBILDUNG ── -->
+  <article class="track-block" id="ausbildung">
+    <div class="track-header">
+      <div class="track-icon-wrap"><i class="bi bi-tools"></i></div>
+      <div class="track-header-text">
+        <h2>Ausbildung — Handwerk, Gastronomie &amp; Lager</h2>
+        <p>Praktische Berufsausbildungen in Deutschland — Schritt für Schritt zum Ausbildungsplatz.</p>
+      </div>
+    </div>
+
+    <div class="track-body">
+      <p class="track-intro">
+        Deutschland bietet vielfältige Ausbildungsmöglichkeiten im Handwerk, in der Gastronomie und im Lager- und Logistikbereich. Für eine erfolgreiche Bewerbung benötigen Sie folgende Unterlagen:
+      </p>
+
+      <div class="process-title"><i class="bi bi-file-earmark-text-fill"></i> Benötigte Dokumente</div>
+      <ul class="doc-list">
+        <li>
+          <span class="doc-num">01</span>
+          <div class="doc-text">
+            <strong>Schulzeugnisse</strong>
+            <span>Kopien der letzten Schulabschlusszeugnisse — idealerweise ins Deutsche übersetzt und beglaubigt.</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">02</span>
+          <div class="doc-text">
+            <strong>Sprachzertifikat</strong>
+            <span>Nachweis über das aktuelle Sprachniveau (B1 oder B2), um die Kommunikationsfähigkeit im Arbeitsalltag zu belegen.</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">03</span>
+          <div class="doc-text">
+            <strong>Arbeitszeugnisse / Praktikumsbescheinigungen</strong>
+            <span>Nachweise über vorherige berufliche Tätigkeiten oder absolvierte Praktika — zeigen, dass bereits erste Erfahrungen gesammelt wurden.</span>
+          </div>
+        </li>
+        <li>
+          <span class="doc-num">04</span>
+          <div class="doc-text">
+            <strong>Gesundheitszeugnis <span style="color:var(--accent);font-weight:400;font-size:.8rem">(nur Gastronomie)</span></strong>
+            <span>Für den Bereich Gastronomie ist eine Belehrung nach dem Infektionsschutzgesetz zwingend erforderlich — häufig als „Gesundheitszeugnis" oder „Rote Karte" bezeichnet.</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="note-box">
+        <i class="bi bi-info-circle-fill"></i>
+        <span>Je nach Betrieb und Bundesland können weitere Dokumente erforderlich sein. Wir klären dies individuell für Sie und begleiten Sie durch den gesamten Bewerbungsprozess.</span>
+      </div>
+    </div>
+
+    <div class="track-cta">
+      <a href="index.html#kontakt" class="btn-primary"><i class="bi bi-envelope-fill"></i> Jetzt Kontakt aufnehmen</a>
+      <a href="Bewerbung.html" class="btn-secondary"><i class="bi bi-arrow-right"></i> Zur Bewerbungsseite</a>
+    </div>
+  </article>
+
+</div>
+
+<script>
+/* NAV */
+const menuToggle = document.getElementById('menuToggle');
+const menuDropdown = document.getElementById('menuDropdown');
+
+function positionDropdown() {
+  if (window.innerWidth <= 768) {
+    const rect = menuToggle.getBoundingClientRect();
+    menuDropdown.style.cssText = `position:fixed;top:${rect.bottom+8}px;right:1rem;left:1rem;width:auto;max-width:100%;min-width:0`;
+  } else {
+    menuDropdown.style.cssText = 'position:;top:;right:0;left:;width:;max-width:;min-width:';
+  }
+}
+
+menuToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = !menuDropdown.hidden;
+  menuDropdown.hidden = open;
+  menuToggle.setAttribute('aria-expanded', String(!open));
+  if (!open) positionDropdown();
+});
+
+document.querySelectorAll('.menu-toggle').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const sub = btn.nextElementSibling;
+    sub.hidden = !sub.hidden;
+    btn.classList.toggle('open', !sub.hidden);
+  });
+});
+
+document.addEventListener('click', () => {
+  menuDropdown.hidden = true;
+  menuToggle.setAttribute('aria-expanded', 'false');
+  document.querySelectorAll('.menu-level-2, .menu-level-3').forEach(u => u.hidden = true);
+  document.querySelectorAll('.menu-toggle').forEach(b => b.classList.remove('open'));
+});
+
+menuDropdown.addEventListener('click', e => e.stopPropagation());
+
+/* TRACK TABS highlight on scroll */
+const trackBtns = document.querySelectorAll('.track-btn');
+const trackBlocks = document.querySelectorAll('.track-block');
+
+function setActiveTab(id) {
+  trackBtns.forEach(b => {
+    b.classList.toggle('active', b.getAttribute('href') === '#' + id);
+  });
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) setActiveTab(e.target.id); });
+}, { rootMargin: '-35% 0px' });
+
+trackBlocks.forEach(b => obs.observe(b));
+</script>
+
+</body>
+</html>
