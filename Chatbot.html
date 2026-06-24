@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3E Consulting — Bewerber Assistent</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f2017;
+  --navy2:#0a1a0f;
+  --accent:#d97706;
+  --accent-h:#b45309;
+  --bright:#4ade80;
+  --white:#fff;
+  --muted:#86a38e;
+  --border:rgba(74,222,128,.15);
+  --glass:rgba(255,255,255,.04);
+  --chat-bg:#0d1f13;
+  --user-bubble:#d97706;
+  --bot-bubble:rgba(255,255,255,.06);
+  --input-bg:rgba(255,255,255,.05);
+  --font-d:'Syne',sans-serif;
+  --font-b:'DM Sans',sans-serif;
+}
+html,body{height:100%;font-family:var(--font-b);background:var(--navy);color:var(--white);overflow:hidden}
+
+/* ── NAV ── */
+.top-bar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:60px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.25rem;
+  background:rgba(15,32,23,.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.top-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;}
+.top-brand img{height:32px;width:32px;border-radius:7px;object-fit:cover;}
+.top-brand span{font-family:var(--font-d);font-size:.95rem;font-weight:800;color:#fff;letter-spacing:.04em;}
+.top-back{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.8rem;color:var(--muted);text-decoration:none;
+  padding:.4rem .85rem;border-radius:8px;border:1px solid var(--border);
+  transition:all .2s;
+}
+.top-back:hover{color:var(--white);border-color:rgba(74,222,128,.3);}
+
+/* lang selector */
+.lang-sel{display:flex;gap:.3rem;}
+.lang-btn{
+  font-size:.72rem;font-weight:600;padding:.3rem .6rem;
+  border-radius:6px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);cursor:pointer;
+  transition:all .15s;font-family:var(--font-b);
+}
+.lang-btn:hover,.lang-btn.active{background:rgba(217,119,6,.15);color:var(--accent);border-color:rgba(217,119,6,.35);}
+
+/* ── LAYOUT ── */
+.app{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  height:100vh;
+  padding-top:60px;
+}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  background:var(--navy2);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.sidebar-header{
+  padding:1.25rem 1rem .75rem;
+  border-bottom:1px solid var(--border);
+}
+.sidebar-title{font-family:var(--font-d);font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.85rem;}
+.new-chat-btn{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.65rem;border-radius:10px;
+  background:var(--accent);color:var(--white);
+  border:none;cursor:pointer;font-size:.85rem;font-weight:600;font-family:var(--font-b);
+  transition:background .2s,transform .15s;
+}
+.new-chat-btn:hover{background:var(--accent-h);transform:translateY(-1px);}
+
+.sidebar-section{padding:.75rem 1rem .25rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+
+.topic-list{padding:0 .5rem;flex:1;overflow-y:auto;}
+.topic-item{
+  display:flex;align-items:center;gap:.65rem;
+  padding:.6rem .75rem;border-radius:9px;
+  cursor:pointer;transition:background .15s;
+  margin-bottom:.2rem;
+}
+.topic-item:hover,.topic-item.active{background:var(--glass);}
+.topic-item.active{border-left:2px solid var(--accent);}
+.topic-icon{
+  width:28px;height:28px;border-radius:7px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(217,119,6,.12);
+}
+.topic-icon i{color:var(--accent);font-size:.8rem;}
+.topic-label{font-size:.82rem;color:var(--muted);line-height:1.3;}
+.topic-item.active .topic-label,.topic-item:hover .topic-label{color:var(--white);}
+
+/* ── CHAT AREA ── */
+.chat-area{
+  display:flex;flex-direction:column;
+  background:var(--chat-bg);
+  overflow:hidden;position:relative;
+}
+
+/* Welcome screen */
+.welcome-screen{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:2rem 1.5rem;
+  text-align:center;
+  overflow-y:auto;
+}
+.welcome-icon{
+  width:64px;height:64px;border-radius:18px;
+  background:rgba(217,119,6,.15);border:1px solid rgba(217,119,6,.3);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.25rem;
+}
+.welcome-icon i{color:var(--accent);font-size:1.6rem;}
+.welcome-title{font-family:var(--font-d);font-size:1.5rem;font-weight:800;margin-bottom:.5rem;}
+.welcome-title em{font-style:normal;color:var(--accent);}
+.welcome-sub{font-size:.9rem;color:var(--muted);line-height:1.6;max-width:400px;margin:0 auto 2rem;}
+
+/* Suggested questions */
+.suggest-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:.65rem;width:100%;max-width:560px;margin:0 auto;
+}
+.suggest-btn{
+  display:flex;align-items:flex-start;gap:.6rem;
+  padding:.8rem .9rem;border-radius:12px;
+  border:1px solid var(--border);background:var(--glass);
+  cursor:pointer;text-align:left;
+  transition:border-color .2s,background .2s,transform .15s;
+  font-family:var(--font-b);
+}
+.suggest-btn:hover{border-color:rgba(217,119,6,.4);background:rgba(217,119,6,.07);transform:translateY(-1px);}
+.suggest-btn i{color:var(--accent);font-size:.85rem;margin-top:.1rem;flex-shrink:0;}
+.suggest-btn span{font-size:.79rem;color:var(--muted);line-height:1.45;}
+.suggest-btn:hover span{color:var(--white);}
+
+/* Chat messages */
+.messages{
+  flex:1;overflow-y:auto;
+  padding:1.5rem 1.25rem;
+  display:flex;flex-direction:column;
+  gap:1.25rem;
+  scroll-behavior:smooth;
+}
+.messages::-webkit-scrollbar{width:4px;}
+.messages::-webkit-scrollbar-track{background:transparent;}
+.messages::-webkit-scrollbar-thumb{background:rgba(74,222,128,.15);border-radius:2px;}
+
+.msg-row{display:flex;align-items:flex-start;gap:.75rem;}
+.msg-row.user{flex-direction:row-reverse;}
+
+.avatar{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;
+}
+.avatar.bot{background:rgba(217,119,6,.2);border:1px solid rgba(217,119,6,.3);color:var(--accent);}
+.avatar.user{background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.25);color:var(--bright);}
+
+.bubble{
+  max-width:72%;padding:.85rem 1.1rem;border-radius:14px;
+  font-size:.875rem;line-height:1.65;
+}
+.bubble.bot{
+  background:var(--bot-bubble);border:1px solid var(--border);
+  border-top-left-radius:4px;color:var(--white);
+}
+.bubble.user{
+  background:var(--user-bubble);color:var(--white);
+  border-top-right-radius:4px;
+}
+.bubble p{margin-bottom:.55rem;}
+.bubble p:last-child{margin-bottom:0;}
+.bubble strong{color:var(--bright);font-weight:600;}
+
+/* Link buttons in bot messages */
+.link-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem;}
+.link-btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.45rem .9rem;border-radius:8px;
+  background:rgba(217,119,6,.15);border:1px solid rgba(217,119,6,.35);
+  color:var(--accent);font-size:.77rem;font-weight:600;
+  text-decoration:none;cursor:pointer;
+  transition:background .2s,transform .15s;font-family:var(--font-b);
+}
+.link-btn:hover{background:rgba(217,119,6,.28);transform:translateY(-1px);}
+
+/* Typing indicator */
+.typing-dots{display:flex;gap:4px;align-items:center;padding:.2rem 0;}
+.typing-dots span{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--muted);
+  animation:bounce 1.2s infinite;
+}
+.typing-dots span:nth-child(2){animation-delay:.2s;}
+.typing-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+/* ── INPUT BAR ── */
+.input-bar{
+  padding:.85rem 1.25rem 1rem;
+  border-top:1px solid var(--border);
+  background:rgba(13,31,19,.95);
+}
+.input-wrap{
+  display:flex;align-items:flex-end;gap:.65rem;
+  background:var(--input-bg);border:1px solid var(--border);
+  border-radius:14px;padding:.65rem .75rem;
+  transition:border-color .2s;
+}
+.input-wrap:focus-within{border-color:rgba(217,119,6,.45);}
+#userInput{
+  flex:1;background:transparent;border:none;outline:none;
+  color:var(--white);font-size:.9rem;font-family:var(--font-b);
+  resize:none;line-height:1.5;max-height:120px;
+  scrollbar-width:none;
+}
+#userInput::placeholder{color:var(--muted);}
+#userInput::-webkit-scrollbar{display:none;}
+.send-btn{
+  width:36px;height:36px;border-radius:9px;flex-shrink:0;
+  background:var(--accent);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,transform .15s;
+}
+.send-btn:hover{background:var(--accent-h);transform:scale(1.05);}
+.send-btn i{color:#fff;font-size:.9rem;}
+.send-btn:disabled{background:rgba(217,119,6,.25);cursor:not-allowed;transform:none;}
+
+.input-hint{text-align:center;font-size:.72rem;color:rgba(134,163,142,.5);margin-top:.5rem;}
+
+/* Quick suggestions under input */
+.quick-chips{
+  display:flex;gap:.45rem;flex-wrap:wrap;
+  padding:.6rem 1.25rem .2rem;
+}
+.chip{
+  display:inline-flex;align-items:center;gap:.35rem;
+  padding:.3rem .75rem;border-radius:999px;
+  border:1px solid var(--border);background:transparent;
+  font-size:.72rem;color:var(--muted);cursor:pointer;
+  font-family:var(--font-b);transition:all .15s;
+}
+.chip:hover{border-color:rgba(217,119,6,.35);color:var(--accent);background:rgba(217,119,6,.07);}
+
+/* ── MOBILE ── */
+.mob-header{display:none;}
+@media(max-width:768px){
+  html,body{overflow:auto;}
+  .app{grid-template-columns:1fr;height:auto;min-height:100vh;}
+  .sidebar{display:none;}
+  .mob-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:.6rem 1rem;border-bottom:1px solid var(--border);
+    background:rgba(13,31,19,.95);
+  }
+  .mob-title{font-family:var(--font-d);font-size:.85rem;font-weight:700;}
+  .mob-sidebar-btn{
+    width:34px;height:34px;border-radius:8px;border:1px solid var(--border);
+    background:transparent;color:var(--muted);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .chat-area{height:calc(100vh - 60px);}
+  .suggest-grid{grid-template-columns:1fr;}
+  .bubble{max-width:88%;}
+
+  /* Mobile sidebar overlay */
+  .sidebar.mob-open{
+    display:flex;position:fixed;left:0;top:60px;bottom:0;
+    width:280px;z-index:200;
+  }
+  .mob-overlay{
+    display:none;position:fixed;inset:0;top:60px;
+    background:rgba(0,0,0,.5);z-index:199;
+  }
+  .mob-overlay.show{display:block;}
+}
+@media(max-width:480px){
+  .welcome-title{font-size:1.2rem;}
+  .suggest-grid{gap:.5rem;}
+  .top-bar{padding:0 .85rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a class="top-brand" href="index.html">
+    <img src="logo_3e.jpg" alt="3E">
+    <span>3E Consulting</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:.75rem;">
+    <div class="lang-sel">
+      <button class="lang-btn active" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ar')">AR</button>
+    </div>
+    <a class="top-back" href="index.html"><i class="fa-solid fa-arrow-left" style="font-size:.7rem"></i> <span id="backLabel">Zurück</span></a>
+  </div>
+</div>
+
+<div class="mob-overlay" id="mobOverlay" onclick="closeSidebar()"></div>
+
+<!-- APP LAYOUT -->
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title" id="sideTitle">Themen</div>
+      <button class="new-chat-btn" onclick="resetChat()">
+        <i class="fa-solid fa-plus"></i>
+        <span id="newChatLabel">Neues Gespräch</span>
+      </button>
+    </div>
+
+    <div class="sidebar-section" id="sideQuickLabel">Schnellzugriff</div>
+    <div class="topic-list" id="topicList">
+      <!-- filled by JS -->
+    </div>
+  </aside>
+
+  <!-- CHAT AREA -->
+  <div class="chat-area">
+
+    <!-- Mobile header -->
+    <div class="mob-header">
+      <button class="mob-sidebar-btn" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+      <span class="mob-title" id="mobTitle">Bewerber Assistent</span>
+      <button class="mob-sidebar-btn" onclick="resetChat()"><i class="fa-solid fa-rotate-left"></i></button>
+    </div>
+
+    <!-- Welcome / Messages -->
+    <div id="welcomeScreen" class="welcome-screen">
+      <div class="welcome-icon"><i class="fa-solid fa-robot"></i></div>
+      <h1 class="welcome-title" id="welcomeTitle">Hallo! Ich bin Ihr <em>Assistent</em></h1>
+      <p class="welcome-sub" id="welcomeSub">Ich helfe Ihnen durch den gesamten Bewerbungsprozess bei 3E Consulting — stellen Sie mir eine Frage oder wählen Sie ein Thema.</p>
+      <div class="suggest-grid" id="suggestGrid"><!-- filled by JS --></div>
+    </div>
+
+    <div id="messages" class="messages" style="display:none;"></div>
+
+    <!-- Quick chips -->
+    <div class="quick-chips" id="quickChips"></div>
+
+    <!-- Input bar -->
+    <div class="input-bar">
+      <div class="input-wrap">
+        <textarea id="userInput" rows="1" placeholder="Stellen Sie mir eine Frage..." onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+      <div class="input-hint" id="inputHint">Drücken Sie Enter zum Senden · Shift+Enter für neue Zeile</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   LANGUAGE & CONTENT
+═══════════════════════════════════════════ */
+let currentLang = 'de';
+
+const LANGS = {
+  de: {
+    back:'Zurück', newChat:'Neues Gespräch', sideTitle:'Themen', sideQuickLabel:'Schnellzugriff',
+    mobTitle:'Bewerber Assistent',
+    welcomeTitle:'Hallo! Ich bin Ihr <em>Assistent</em>',
+    welcomeSub:'Ich helfe Ihnen durch den gesamten Bewerbungsprozess bei 3E Consulting — stellen Sie mir eine Frage oder wählen Sie ein Thema.',
+    placeholder:'Stellen Sie mir eine Frage...',
+    inputHint:'Drücken Sie Enter zum Senden · Shift+Enter für neue Zeile',
+    botName:'3E Assistent',
+    typing:'Schreibt...',
+  },
+  en: {
+    back:'Back', newChat:'New Chat', sideTitle:'Topics', sideQuickLabel:'Quick Access',
+    mobTitle:'Applicant Assistant',
+    welcomeTitle:'Hello! I\'m your <em>Assistant</em>',
+    welcomeSub:'I\'ll guide you through the entire application process at 3E Consulting — ask me a question or choose a topic.',
+    placeholder:'Ask me anything...',
+    inputHint:'Press Enter to send · Shift+Enter for new line',
+    botName:'3E Assistant',
+    typing:'Typing...',
+  },
+  ar: {
+    back:'رجوع', newChat:'محادثة جديدة', sideTitle:'المواضيع', sideQuickLabel:'وصول سريع',
+    mobTitle:'مساعد المتقدمين',
+    welcomeTitle:'مرحباً! أنا <em>مساعدك</em>',
+    welcomeSub:'سأرشدك خلال كامل عملية التقديم في 3E Consulting — اطرح سؤالاً أو اختر موضوعاً.',
+    placeholder:'اسألني أي سؤال...',
+    inputHint:'اضغط Enter للإرسال · Shift+Enter لسطر جديد',
+    botName:'مساعد 3E',
+    typing:'يكتب...',
+  }
+};
+
+/* Topics / sidebar */
+
+
+
+
+/* Quick chips (under input) */
+const CHIPS = {
+  de:['Lebenslauf','Dokumente','Ausbildung','Visum','Profil-Video'],
+  en:['CV','Documents','Ausbildung','Visa','Profile Video'],
+  ar:['السيرة الذاتية','المستندات','التدريب','التأشيرة','فيديو الملف']
+};
+
+/* ═══════════════════════════════════════════
+   AI RESPONSES
+═══════════════════════════════════════════ */
+const RESPONSES = {
+  cv:{
+    de:{
+      text:`<p>Der <strong>Lebenslauf</strong> ist das wichtigste Dokument Ihrer Bewerbung. Bei 3E Consulting sollte Ihr Lebenslauf:</p>
+<p>✔ Aktuell und vollständig sein<br>✔ In <strong>Deutsch</strong> vorliegen<br>✔ Professionell gestaltet sein<br>✔ Ihre Qualifikationen und Berufserfahrung klar zeigen</p>
+<p>Sie können eine unserer <strong>kostenlosen Word-Vorlagen</strong> herunterladen oder sich unser Musterdokument ansehen.</p>
+<p>wenn Sie beschäftigt sind, Können wir einen Lebenslauf für Sie zu einem Preis von 4500Da erstellen.Buchen Sie einfach hier <a href="service-bewerber.html#Bewerbungsprozess">Hier</a></p>`,
+      links:[
+        {label:'📄 Zu den Vorlagen',url:'Bewerbung.html#lebenslauf'},
+        {label:'📖 Richtlinien lesen',url:'Bewerbung.html#lebenslauf'},
+      ]
+    },
+    en:{
+      text:`<p>Your <strong>CV</strong> is the most important document in your application. At 3E Consulting, your CV should:</p>
+<p>✔ Be current and complete<br>✔ Be in <strong>German or English</strong><br>✔ Look professional and well-structured<br>✔ Clearly show your qualifications and experience</p>
+<p>Download one of our <strong>free Word templates</strong> or view the sample document.</p>`,
+      links:[
+        {label:'📄 CV Templates',url:'Bewerbung.html#lebenslauf'},
+        {label:'📖 Read Guidelines',url:'Bewerbung.html#lebenslauf'},
+      ]
+    },
+    ar:{
+      text:`<p><strong> </strong> هي الوثيقة الأكثر أهمية في ملف تقديمك. يجب أن تكون سيرتك الذاتية في 3E Consulting:</p>
+<p>✔ محدّثة وكاملة<br>✔  <strong>الألمانية أو الإنجليزية</strong><br>✔ ذات مظهر احترافي ومنظّم<br>✔ تُظهر مؤهلاتك وخبرتك المهنية بوضوح</p>
+<p><strong> Word </strong> </p>`,
+      links:[
+        {label:'📄 ',url:'Bewerbung.html#lebenslauf'},
+        {label:'📖 ',url:'Bewerbung.html#lebenslauf'},
+      ]
+    }
+  },
+  motivation:{
+    de:{
+      text:`<p>Das <strong>Motivationsschreiben</strong> erklärt, warum Sie genau diese Stelle oder Ausbildung möchten. Es sollte:</p>
+<p>✔ Individuell und persönlich sein<br>✔ Max. <strong>eine DIN-A4-Seite</strong> lang sein<br>✔ Ihre Motivation klar und überzeugend erklären<br>✔ Fehlerfrei und professionell formuliert sein</p>
+<p>Schauen Sie sich unser Muster-Motivationsschreiben an und laden Sie das PDF herunter.</p>
+wenn Sie beschäftigt sind, Können wir einen Motivationschreiben für Sie zu einem Preis von 8000DA erstellen.Buchen Sie einfach hier <a href="service-bewerber.html#Bewerbungsprozess">Hier</a></p>`,
+      links:[
+        {label:'✉️ Zum Motivationsschreiben',url:'Bewerbung.html#motivationsschreiben'},
+        {label:'📥 PDF herunterladen',url:'Motivationsschreiben_Anleitung_3E.pdf'},
+      ]
+    },
+    en:{
+      text:`<p>The <strong>motivation letter</strong> explains why you want this specific position or Ausbildung. It should:</p>
+<p>✔ Be individual and personal<br>✔ Be max. <strong>one A4 page</strong><br>✔ Clearly and convincingly explain your motivation<br>✔ Be error-free and professional</p>
+<p>View our sample motivation letter and download the PDF guide.</p>`,
+      links:[
+        {label:'✉️ Motivation Letter',url:'Bewerbung.html#motivationsschreiben'},
+        {label:'📥 Download PDF',url:'Motivationsschreiben_Anleitung_3E.pdf'},
+      ]
+    },
+    ar:{
+      text:`<p><strong>رسالة التحفيز</strong> تشرح سبب رغبتك في هذا المنصب أو التدريب تحديداً. يجب أن تكون:</p>
+<p>✔ فردية وشخصية<br>✔ بحد أقصى <strong>صفحة A4 واحدة</strong><br>✔ تشرح دوافعك بوضوح وإقناع<br>✔ خالية من الأخطاء واحترافية</p>
+<p>اطّلع على نموذج رسالة التحفيز وحمّل دليل PDF.</p>`,
+      links:[
+        {label:'✉️ رسالة التحفيز',url:'Bewerbung.html#motivationsschreiben'},
+        {label:'📥 تحميل PDF',url:'Motivationsschreiben_Anleitung_3E.pdf'},
+      ]
+    }
+  },
+  deckblatt:{
+    de:{
+      text:`<p>Das <strong>Deckblatt</strong> ist die erste Seite Ihrer Bewerbungsmappe und macht den ersten Eindruck. Es sollte enthalten:</p>
+<p>✔ Ihren vollständigen Namen<br>✔ Ein professionelles <strong>Bewerbungsfoto</strong><br>✔ Die angestrebte Position<br>✔ Ihre Kontaktdaten</p>
+<p>Wir bieten <strong>3 kostenlose Word-Vorlagen</strong> an — klassisch, modern und neutral.</p>`,
+      links:[
+        {label:'📋 Deckblatt-Vorlagen',url:'Bewerbung.html#deckblatt'},
+      ]
+    },
+    en:{
+      text:`<p>The <strong>cover page</strong> (Deckblatt) is the first page of your application and makes the first impression. It should include:</p>
+<p>✔ Your full name<br>✔ A professional <strong>application photo</strong><br>✔ The target position<br>✔ Your contact details</p>
+<p>We offer <strong>3 free Word templates</strong> — classic, modern, and neutral.</p>`,
+      links:[{label:'📋 Cover Page Templates',url:'Bewerbung.html#deckblatt'}]
+    },
+    ar:{
+      text:`<p><strong>صفحة الغلاف</strong> هي الصفحة الأولى من ملف تقديمك وتصنع الانطباع الأول. يجب أن تتضمن:</p>
+<p>✔ اسمك الكامل<br>✔ <strong>صورة احترافية</strong> للتقديم<br>✔ المنصب المراد<br>✔ بيانات الاتصال الخاصة بك</p>
+<p>نقدّم <strong>3 قوالب Word مجانية</strong> — كلاسيكي، عصري، ومحايد.</p>`,
+      links:[{label:'📋 قوالب صفحة الغلاف',url:'Bewerbung.html#deckblatt'}]
+    }
+  },
+  docs:{
+    de:{
+      text:`<p>Für Ihre Bewerbung bei 3E Consulting benötigen Sie folgende <strong>Dokumente</strong>:</p>
+<p>📌 <strong>Pflichtdokumente:</strong><br>✔ Gültiger Reisepass oder Personalausweis<br>✔ Berufsqualifikationen und Zeugnisse<br>✔ Sprachzertifikat (min. <strong>B1 Deutsch</strong>)<br>✔ Lebenslauf auf Deutsch <br>✔ Motivationsschreiben</p>
+<p>📌 Alle Dokumente müssen <strong>echt, lesbar und gültig</strong> sein. Übersetzungen ins Deutsche können erforderlich sein.</p>`,
+      links:[
+        {label:'Voraussetzungen',url:'vermitlung.html#Voraussetyungen'},
+        {label:' Vorqualifizierung',url:'Bewerbung.html#vorqualifizierung'},
+      ]
+    },
+    en:{
+      text:`<p>For your application at 3E Consulting you need the following <strong>documents</strong>:</p>
+<p>📌 <strong>Required Documents:</strong><br>✔ Valid passport or ID<br>✔ Professional qualifications and certificates<br>✔ Language certificate (min. <strong>B1 German</strong>)<br>✔ CV in German or English<br>✔ Motivation letter</p>
+<p>📌 All documents must be <strong>genuine, readable, and valid</strong>. Translation into German or English may be required.</p>`,
+      links:[
+        {label:' Voraussetzungen',url:'vermitlung.html'},
+        {label:'Pre-qualification',url:'Bewerbung.html#vorqualifizierung'},
+      ]
+    },
+    ar:{
+      text:`<p>للتقديم في 3E Consulting تحتاج إلى <strong>الوثائق</strong> التالية:</p>
+<p>📌 <strong>الوثائق الإلزامية:</strong><br>✔ جواز سفر أو بطاقة هوية سارية<br>✔ المؤهلات المهنية والشهادات<br>✔ شهادة لغة (الحد الأدنى <strong>B1 ألماني</strong>)<br>✔ السيرة الذاتية بالألمانية أو الإنجليزية<br>✔ رسالة تحفيز</p>
+<p>📌 يجب أن تكون جميع الوثائق <strong>أصلية وقابلة للقراءة وصالحة</strong>. قد يكون مطلوباً الترجمة.</p>`,
+      links:[
+        {label:' Voraussetzungen',url:'vermitlung.html#Voraussetyungen'},
+        {label:' التأهيل المسبق',url:'Bewerbung.html#vorqualifizierung'},
+      ]
+    }
+  },
+  ausbildung:{
+    de:{
+      text:`<p>Für eine <strong>Ausbildung in Deutschland</strong> durch 3E Consulting müssen Sie folgende Voraussetzungen erfüllen:</p>
+<p>✔ <strong>Deutschkenntnisse B1</strong> (besser B2) — Zertifikat erforderlich<br>✔ Anerkannte Schulabschlüsse oder Qualifikationen<br>✔ Gesundheitliche Eignung für den Beruf<br>✔ Motivation und realistische Erwartungen<br>✔ Bereitschaft zur Migration nach Deutschland</p>
+<p>Wir prüfen alle Unterlagen vorab auf <strong>Anerkennungsfähigkeit</strong> in Deutschland.</p>`,
+      links:[
+        {label:'📋 Vorqualifizierung',url:'Bewerbung.html#vorqualifizierung'},
+        {label:'🏢 Branchen ansehen',url:'index.html#fachbereiche'},
+      ]
+    },
+    en:{
+      text:`<p>For an <strong>Ausbildung in Germany</strong> through 3E Consulting, you must meet these requirements:</p>
+<p>✔ <strong>German level B1</strong> (B2 preferred) — certificate required<br>✔ Recognized school certificates or qualifications<br>✔ Medical fitness for the profession<br>✔ Motivation and realistic expectations<br>✔ Willingness to relocate to Germany</p>
+<p>We pre-check all documents for <strong>recognition eligibility</strong> in Germany.</p>`,
+      links:[
+        {label:'📋 Pre-qualification',url:'Bewerbung.html#vorqualifizierung'},
+        {label:'🏢 View Sectors',url:'index.html#fachbereiche'},
+      ]
+    },
+    ar:{
+      text:`<p>للحصول على <strong>تدريب مهني في ألمانيا</strong> عبر 3E Consulting، يجب أن تستوفي المتطلبات التالية:</p>
+<p>✔ <strong>مستوى B1 ألماني</strong> (B2 أفضل) — شهادة مطلوبة<br>✔ شهادات مدرسية أو مؤهلات معترف بها<br>✔ اللياقة الصحية للمهنة<br>✔ الدافعية وتوقعات واقعية<br>✔ الاستعداد للانتقال إلى ألمانيا</p>
+<p>نتحقق مسبقاً من جميع الوثائق لمعرفة <strong>إمكانية الاعتراف بها</strong> في ألمانيا.</p>`,
+      links:[
+        {label:'📋 التأهيل المسبق',url:'Bewerbung.html#vorqualifizierung'},
+        {label:'🏢 عرض القطاعات',url:'index.html#fachbereiche'},
+      ]
+    }
+  },
+  interview:{
+    de:{
+      text:`<p>Das <strong>Vorstellungsgespräch</strong> ist Ihre Chance, den Arbeitgeber persönlich zu überzeugen. So bereiten Sie sich vor:</p>
+<p>✔ Informieren Sie sich über das <strong>Unternehmen</strong><br>✔ Üben Sie häufige Fragen: „Warum Deutschland?", „Warum dieser Beruf?"<br>✔ Bereiten Sie Beispiele aus Ihrer Berufserfahrung vor<br>✔ Kleiden Sie sich <strong>professionell</strong><br>✔ Seien Sie <strong>pünktlich</strong> — 10 Minuten vorher</p>
+<p>Unser strukturiertes Interview im <strong>Vorqualifizierungsprozess</strong> bereitet Sie optimal vor.</p>
+<p>wir bereiten auch Bewerber darauf vor , ein Vorstellungsgespräch in drei Sitzungen zu einem Preis von 12000DA zu bestehen </p>`,
+      links:[
+        {label:' Vorqualifizierung',url:'service-bewerber.html#profil-video'},
+        {label:' Arbeitsmarkt DE',url:'arbeitsmarkt.html'},
+      ]
+    },
+    en:{
+      text:`<p>The <strong>job interview</strong> is your chance to personally convince the employer. Prepare by:</p>
+<p>✔ Researching the <strong>company</strong> thoroughly<br>✔ Practicing common questions: "Why Germany?", "Why this profession?"<br>✔ Preparing examples from your work experience<br>✔ Dressing <strong>professionally</strong><br>✔ Being <strong>punctual</strong> — arrive 10 minutes early</p>
+<p>Our structured interview in the <strong>pre-qualification process</strong> prepares you optimally.</p>`,
+      links:[
+        {label:' Vorqualifizierung',url:'service-bewerber.html#profil-video'},
+        {label:'📖 German Labor Market',url:'arbeitsmarkt.html'},
+      ]
+    },
+    ar:{
+      text:`<p><strong>مقابلة العمل</strong> هي فرصتك لإقناع صاحب العمل شخصياً. استعد بـ:</p>
+<p>✔ البحث عن <strong>الشركة</strong> بعمق<br>✔ التدرب على الأسئلة الشائعة: "لماذا ألمانيا؟"، "لماذا هذه المهنة؟"<br>✔ تحضير أمثلة من خبرتك المهنية<br>✔ الارتداء <strong>باحترافية</strong><br>✔ الالتزام بـ<strong>الدقة في المواعيد</strong> — الحضور قبل 10 دقائق</p>
+<p>مقابلتنا المنظمة في <strong>عملية التأهيل المسبق</strong> تُعدّك بشكل مثالي.</p>`,
+      links:[
+        {label:' Vorqualifizierung',url:'service-bewerber.html#profil-video'},
+        {label:'📖 سوق العمل الألماني',url:'arbeitsmarkt.html'},
+      ]
+    }
+  },
+  video:{
+    de:{
+      text:`<p>Das <strong>Profil-Video</strong> ist ein wichtiger Teil des Bewerbungsprozesses bei 3E Consulting. Es ermöglicht Unternehmen, Sie persönlich kennenzulernen.</p>
+<p>✔ Dauer: <strong>60–90 Sekunden</strong><br>✔ Gute Bild- und <strong>Tonqualität</strong><br>✔ Ruhige, helle Umgebung<br>✔ Professionelle Kleidung<br>✔ Auf <strong>Deutsch</strong> sprechen</p>
+<p>Inhalte: Kurze Vorstellung, Herkunft, Berufswunsch, Motivation und Ziele.</p>`,
+      links:[
+        {label:' Video-Richtlinien',url:'Bewerbung.html#profil-video'},
+        {label:' Videoanleitung',url:'Bewerbung.html#video-anleitung'},
+      ]
+    },
+    en:{
+      text:`<p>The <strong>profile video</strong> is an important part of the application process at 3E Consulting. It lets companies get to know you personally.</p>
+<p>✔ Duration: <strong>60–90 seconds</strong><br>✔ Good video and <strong>audio quality</strong><br>✔ Quiet, bright environment<br>✔ Professional clothing<br>✔ Speak in <strong>German</strong></p>
+<p>Content: Brief introduction, origin, desired profession, motivation, and goals.</p>`,
+      links:[
+        {label:'Video Guidelines',url:'Bewerbung.html#profil-video'},
+        {label:'Video Tutorial',url:'Bewerbung.html#video-anleitung'},
+      ]
+    },
+    ar:{
+      text:`<p><strong>فيديو الملف الشخصي</strong> جزء مهم من عملية التقديم في 3E Consulting. يتيح للشركات التعرف عليك شخصياً.</p>
+<p>✔ المدة: <strong>60–90 ثانية</strong><br>✔ جودة صورة و<strong>صوت</strong> جيدة<br>✔ بيئة هادئة ومضاءة جيداً<br>✔ ملابس احترافية<br>✔ التحدث <strong>بالألمانية</strong></p>
+<p>المحتوى: تعريف موجز، الأصل، المهنة المرغوبة، الدافعية والأهداف.</p>`,
+      links:[
+        {label:' إرشادات الفيديو',url:'Bewerbung.html#profil-video'},
+        {label:'▶ شرح الفيديو',url:'Bewerbung.html#video-anleitung'},
+      ]
+    }
+  },
+  visum:{
+    de:{
+      text:`<p>Für die Einreise nach Deutschland zur Arbeit oder Ausbildung benötigen Sie das richtige <strong>Visum</strong>.</p>
+<p>✔ <strong>Berufsausbildungsvisum</strong> (§17 AufenthG) — für Ausbildung<br>✔ <strong>Fachkräftevisum</strong> (§18 AufenthG) — für qualifizierte Arbeit<br>✔ <strong>Chancenkarte</strong> — für Jobsuche in DE<br>✔ Anerkennungsberatung bei 3E inklusive</p>
+<p>Wir begleiten Sie durch den gesamten <strong>Visa-Prozess</strong> Schritt für Schritt.</p>`,
+      links:[
+        {label:' Aufenthaltsrecht',url:'aufenthaltsrecht.html'},
+        {label:' Ablauf ansehen',url:'index.html#process'},
+      ]
+    },
+    en:{
+      text:`<p>To enter Germany for work or Ausbildung, you need the right <strong>visa</strong>.</p>
+<p>✔ <strong>Vocational Training Visa</strong> (§17 AufenthG) — for Ausbildung<br>✔ <strong>Skilled Worker Visa</strong> (§18 AufenthG) — for qualified work<br>✔ <strong>Opportunity Card</strong> — for job search in Germany<br>✔ Recognition consultation at 3E included</p>
+<p>We accompany you through the entire <strong>visa process</strong> step by step.</p>`,
+      links:[
+        {label:' Residence Law',url:'aufenthaltsrecht.html'},
+        {label:' View Process',url:'index.html#process'},
+      ]
+    },
+    ar:{
+      text:`<p>للدخول إلى ألمانيا للعمل أو التدريب، تحتاج إلى <strong>تأشيرة</strong> مناسبة.</p>
+<p>✔ <strong>تأشيرة التدريب المهني</strong> (§17 AufenthG) — للتدريب<br>✔ <strong>تأشيرة العمال المهرة</strong> (§18 AufenthG) — للعمل المؤهل<br>✔ <strong>بطاقة الفرص</strong> — للبحث عن عمل في ألمانيا<br>✔ استشارة الاعتراف في 3E مشمولة</p>
+<p>نرافقك خلال <strong>عملية التأشيرة</strong> بالكامل خطوة بخطوة.</p>`,
+      links:[
+        {label:' قانون الإقامة',url:'aufenthaltsrecht.html'},
+        {label:' عرض العملية',url:'index.html#process'},
+      ]
+    }
+  },
+  schritte:{
+    de:{
+      text:`<p>Nach Ihrer Ankunft in Deutschland sind diese <strong>ersten Schritte</strong> wichtig:</p>
+<p>✔ <strong>Anmeldung</strong> beim Einwohnermeldeamt (innerhalb 14 Tage)<br>✔ <strong>Krankenversicherung</strong> abschließen<br>✔ <strong>Bankkonto</strong> eröffnen (N26, DKB, Sparkasse)<br>✔ <strong>SIM-Karte</strong> kaufen<br>✔ <strong>Haftpflichtversicherung</strong> abschließen</p>
+<p>3E Consulting begleitet Sie durch alle bürokratischen Schritte nach Ihrer Ankunft.</p>`,
+      links:[
+        {label:'🇩🇪 Erste Schritte',url:'alltag-deutschland.html#erste-schritte'},
+        {label:'📖 Alltag in DE',url:'alltag-deutschland.html'},
+      ]
+    },      
+    en:{
+      text:`<p>After arriving in Germany, these <strong>first steps</strong> are important:</p>
+<p>✔ <strong>Registration</strong> at the residents' registration office (within 14 days)<br>✔ Get <strong>health insurance</strong><br>✔ Open a <strong>bank account</strong> (N26, DKB, Sparkasse)<br>✔ Buy a <strong>SIM card</strong><br>✔ Get <strong>liability insurance</strong></p>
+<p>3E Consulting accompanies you through all administrative steps after your arrival.</p>`,
+      links:[
+        {label:'🇩🇪 First Steps',url:'alltag-deutschland.html#erste-schritte'},
+        {label:'📖 Everyday Life in Germany',url:'alltag-deutschland.html'},
+      ]
+    },
+    ar:{
+      text:`<p>بعد وصولك إلى ألمانيا، هذه <strong>الخطوات الأولى</strong> مهمة:</p>
+<p>✔ <strong>التسجيل</strong> في مكتب تسجيل السكان (خلال 14 يوماً)<br>✔ الحصول على <strong>تأمين صحي</strong><br>✔ فتح <strong>حساب بنكي</strong> (N26، DKB، Sparkasse)<br>✔ شراء <strong>شريحة SIM</strong><br>✔ الحصول على <strong>تأمين مسؤولية مدنية</strong></p>
+<p>ترافقك 3E Consulting خلال جميع الخطوات الإدارية بعد وصولك.</p>`,
+      links:[
+        {label:'🇩🇪 الخطوات الأولى',url:'alltag-deutschland.html#erste-schritte'},
+        {label:'📖 الحياة اليومية في ألمانيا',url:'alltag-deutschland.html'},
+      ]
+    }
+  },
+  register:{
+    de:{
+      text:`<p>So erstellen Sie Ihr <strong>Bewerberkonto</strong> bei 3E Consulting:</p>
+<p>1️⃣ Klicken Sie auf <strong>„<a href="registraion.html">Registrieren</a> "</strong><br>2️⃣ Füllen Sie Ihre persönlichen Daten aus<br>3️⃣ Laden Sie Ihre Dokumente hoch<br>4️⃣ Nehmen Sie Ihr <strong>Profil-Video</strong> auf<br>5️⃣ Reichen Sie Ihr Profil ein und warten Sie auf Rückmeldung</p>
+<p>Die Registrierung ist <strong>kostenlos</strong>. Zahlung erfolgt nur bei erfolgreichem Vertragsabschluss.</p>`,
+      links:[
+        {label:' Jetzt registrieren',url:'registraion.html'},
+        {label:' Einloggen',url:'login_bewerber.php'},
+      ]
+    },
+    en:{
+      text:`<p>Here's how to create your <strong>applicant account</strong> at 3E Consulting:</p>
+<p>1️⃣ Click <strong>"Register"</strong><br>2️⃣ Fill in your personal details<br>3️⃣ Upload your documents<br>4️⃣ Record your <strong>profile video</strong><br>5️⃣ Submit your profile and wait for feedback</p>
+<p>Registration is <strong>free</strong>. Payment only upon successful contract.</p>`,
+      links:[
+        {label:' Register Now',url:'registraion.html'},
+        {label:' Login',url:'login_bewerber.php'},
+      ]
+    },
+    ar:{
+      text:`<p>إليك كيفية إنشاء <strong>حساب المتقدم</strong> في 3E Consulting:</p>
+<p>1️⃣ انقر على <strong>"التسجيل"</strong><br>2️⃣ أدخل بياناتك الشخصية<br>3️⃣ ارفع وثائقك<br>4️⃣ سجّل <strong>فيديو ملفك الشخصي</strong><br>5️⃣ أرسل ملفك وانتظر الرد</p>
+<p>التسجيل <strong>مجاني</strong>. الدفع فقط عند إبرام عقد ناجح.</p>`,
+      links:[
+        {label:' سجّل الآن',url:'registraion.html'},
+        {label:' تسجيل الدخول',url:'login_bewerber.php'},
+      ]
+    }
+  }
+};
+
+/* Fallback */
+const FALLBACK = {
+  de:`<p>Es tut mir leid  , ich konnte Ihre Frage nicht verstehen.<br> vielleicht kann ich Ihnen bei einem dieser Themen helfen:</p>
+  <p>Ausbildung in Deutschland </p>
+  <p>Jobs in Deutschland </p>
+  <p>  Registrierung bei 3E-Consulting</p>
+  <p></p>
+<p>📄 Lebenslauf · ✉️ Motivationsschreiben · 📂 Dokumente · 🎥 Profil-Video · 🛂 Visum</p>
+<p>Erste Schritte in Deutschland </p>
+<p>Wählen Sie ein Thema oben oder fragen Sie konkret nach einem dieser Bereiche.</p>`,
+  en:`<p>Great question! I'm specifically trained for the application process at 3E Consulting. I can best help you with:</p>
+<p>📄 CV · ✉️ Motivation Letter · 📂 Documents · 🎓 Ausbildung · 🎥 Profile Video · 🛂 Visa</p>
+<p>Choose a topic above or ask specifically about one of these areas.</p>`,
+  ar:`<p>سؤال رائع! أنا مدرّب خصيصاً لعملية التقديم في 3E Consulting. يمكنني مساعدتك بشكل أفضل في:</p>
+<p>📄 السيرة الذاتية · ✉️ رسالة التحفيز · 📂 الوثائق · 🎓 التدريب · 🎥 فيديو الملف · 🛂 التأشيرة</p>
+<p>اختر موضوعاً أعلاه أو اسأل تحديداً عن أحد هذه المجالات.</p>`
+};
+
+/* ═══════════════════════════════════════════
+   KEYWORD MATCHING
+═══════════════════════════════════════════ */
+const KEYWORDS = {
+  cv:['lebenslauf','cv','resume','سيرة','sira','lebenslaufs','erstell','life','curriculum'],
+  motivation:['motivat','anschreiben','letter','رسالة','risala','schreib','motivationsschreiben'],
+  deckblatt:['deckblatt','cover','deckblatt','غلاف','ghlaf','bewerbungsmappe'],
+  docs:['dokument','unterlag','datei','paper','وثيق','wathaiq','برايب','files','zeugnis','zertifikat'],
+  ausbildung:['ausbildung','ausbildung','apprenti','تدريب','tadrib','voraussetz','berufsausb','requirement'],
+  interview:['interview','gespräch','vorstellungsgespräch','مقابلة','muqabala','vorbereit','prepare'],
+  video:['video','profil-video','profilvideo','فيديو','fidyo','aufnahm','record','kamera','film'],
+  visum:['visum','visa','aufenthalt','residence','تأشيرة','tashira','einreise','permit','aufenthaltsrecht'],
+  schritte:['erste','ankunft','arrive','خطوات','khutuat','anmeld','registrier','bank','sim','krank'],
+  register:['registrierung','register','konto','account','حساب','hisab','anmeld','login','einloggen','neu']
+};
+
+function detectTopic(text) {
+  const t = text.toLowerCase();
+  for(const [key, words] of Object.entries(KEYWORDS)){
+    if(words.some(w => t.includes(w))) return key;
+  }
+  return null;
+}
+
+/* ═══════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════ */
+let chatStarted = false;
+let isTyping = false;
+
+/* ═══════════════════════════════════════════
+   RENDER
+═══════════════════════════════════════════ */
+function renderSidebar(){
+  const list = document.getElementById('topicList');
+  list.innerHTML = TOPICS[currentLang].map((t,i) => `
+    <div class="topic-item" onclick="askTopic('${t.key}')">
+      <div class="topic-icon"><i class="fa-solid ${t.icon}"></i></div>
+      <span class="topic-label">${t.label}</span>
+    </div>
+  `).join('');
+}
+
+function renderSuggests(){
+  const grid = document.getElementById('suggestGrid');
+  grid.innerHTML = SUGGESTS[currentLang].map(s => `
+    <button class="suggest-btn" onclick="askTopic('${s.key}')">
+      <i class="fa-solid ${s.icon}"></i>
+      <span>${s.text}</span>
+    </button>
+  `).join('');
+}
+
+function renderChips(){
+  const bar = document.getElementById('quickChips');
+  bar.innerHTML = CHIPS[currentLang].map(c => `<button class="chip" onclick="sendChip('${c}')">${c}</button>`).join('');
+}
+
+function applyLangUI(){
+  const L = LANGS[currentLang];
+  document.getElementById('backLabel').textContent = L.back;
+  document.getElementById('newChatLabel').textContent = L.newChat;
+  document.getElementById('sideTitle').textContent = L.sideTitle;
+  document.getElementById('sideQuickLabel').textContent = L.sideQuickLabel;
+  document.getElementById('mobTitle').textContent = L.mobTitle;
+  document.getElementById('welcomeTitle').innerHTML = L.welcomeTitle;
+  document.getElementById('welcomeSub').textContent = L.welcomeSub;
+  document.getElementById('userInput').placeholder = L.placeholder;
+  document.getElementById('inputHint').textContent = L.inputHint;
+  // RTL for Arabic
+  document.body.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr';
+}
+
+/* ═══════════════════════════════════════════
+   CHAT LOGIC
+═══════════════════════════════════════════ */
+function startChat(){
+  if(!chatStarted){
+    chatStarted = true;
+    document.getElementById('welcomeScreen').style.display = 'none';
+    document.getElementById('messages').style.display = 'flex';
+  }
+}
+
+function addMessage(role, html, links){
+  startChat();
+  const msgs = document.getElementById('messages');
+  const isBot = role === 'bot';
+  const row = document.createElement('div');
+  row.className = `msg-row ${role}`;
+
+  const av = `<div class="avatar ${role}">${isBot ? '<i class="fa-solid fa-robot" style="font-size:.75rem"></i>' : '<i class="fa-solid fa-user" style="font-size:.75rem"></i>'}</div>`;
+
+  let linksHtml = '';
+  if(links && links.length){
+    linksHtml = `<div class="link-btns">${links.map(l =>
+      `<a class="link-btn" href="${l.url}"><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.65rem"></i>${l.label}</a>`
+    ).join('')}</div>`;
+  }
+
+  const bubble = `<div class="bubble ${role}">${html}${linksHtml}</div>`;
+  row.innerHTML = isBot ? av + bubble : bubble + av;
+  msgs.appendChild(row);
+  msgs.scrollTop = msgs.scrollHeight;
+  return row;
+}
+
+function showTyping(){
+  startChat();
+  const msgs = document.getElementById('messages');
+  const row = document.createElement('div');
+  row.className = 'msg-row bot';
+  row.id = 'typingRow';
+  row.innerHTML = `
+    <div class="avatar bot"><i class="fa-solid fa-robot" style="font-size:.75rem"></i></div>
+    <div class="bubble bot"><div class="typing-dots"><span></span><span></span><span></span></div></div>
+  `;
+  msgs.appendChild(row);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping(){
+  const el = document.getElementById('typingRow');
+  if(el) el.remove();
+}
+
+function askTopic(key){
+  const q = SUGGESTS[currentLang].find(s => s.key === key);
+  const label = q ? q.text : (TOPICS[currentLang].find(t => t.key === key)?.label || key);
+  addMessage('user', `<p>${label}</p>`);
+  respond(key);
+  closeSidebar();
+}
+
+function sendChip(text){
+  document.getElementById('userInput').value = text;
+  sendMessage();
+}
+
+function sendMessage(){
+  const input = document.getElementById('userInput');
+  const text = input.value.trim();
+  if(!text || isTyping) return;
+  input.value = '';
+  input.style.height = 'auto';
+  addMessage('user', `<p>${escapeHtml(text)}</p>`);
+  const topic = detectTopic(text);
+  respond(topic);
+}
+
+/* ═══════════════════════════════════════════
+   CONVERSATION HISTORY (for multi-turn context)
+═══════════════════════════════════════════ */
+let conversationHistory = [];
+
+/* ═══════════════════════════════════════════
+   SYSTEM PROMPT (3E Consulting knowledge base)
+═══════════════════════════════════════════ */
+const SYSTEM_PROMPT = `
+Du bist der offizielle KI-Assistent von 3E-Consulting.
+
+ÜBER 3E-CONSULTING:
+3E-Consulting ist eine Plattform, die den Bewerbungsprozess für algerische Bewerber erleichtert.
+
+PREISE:
+- Registrierung: kostenlos
+- Lebenslauf: 4.500 DA
+- Motivationsschreiben: 7.500 DA
+- Interview-Vorbereitung: 12.000 DA
+
+ERSTE SCHRITTE IN DEUTSCHLAND:
+- Anmeldung beim Einwohnermeldeamt
+- Krankenversicherung
+- Bankkonto eröffnen
+- SIM-Karte kaufen
+- Haftpflichtversicherung
+
+REGISTRIERUNG:
+1. Registrieren
+2. Daten eingeben
+3. Dokumente hochladen
+4. Profilvideo aufnehmen
+5. Profil absenden
+
+FAQ:
+
+Frage: Was ist 3E-Consulting?
+Antwort:
+3E-Consulting ist eine Plattform, die den Bewerbungsprozess für algerische Bewerber erleichtert.
+
+Frage: Wie kann ich mich registrieren?
+Antwort:
+Klicken Sie auf „Registrieren“, füllen Sie das Formular aus und laden Sie Ihre Dokumente hoch.
+
+Frage: Muss ich bezahlen?
+Antwort:
+Nein. Die Registrierung ist kostenlos.
+
+Frage: Wie viel kostet ein Lebenslauf?
+Antwort:
+4.500 DA.
+
+Frage: Wie viel kostet ein Motivationsschreiben?
+Antwort:
+7.500 DA.
+
+Frage: Wie viel kostet die Vorbereitung auf ein Vorstellungsgespräch?
+Antwort:
+12.000 DA.
+
+Antwortstil:
+- Freundlich
+- Professionell
+- HTML verwenden (<p>, <strong>, <br>)
+`;
+
+async function respond(key){
+  if(isTyping) return;
+  isTyping = true;
+  document.getElementById('sendBtn').disabled = true;
+  showTyping();
+
+  // Get the last user message from the DOM to send to AI
+  const msgs = document.getElementById('messages');
+  const userBubbles = msgs.querySelectorAll('.bubble.user p');
+  const lastUserMsg = userBubbles.length > 0 ? userBubbles[userBubbles.length - 1].textContent : key;
+
+  // If it's a topic click (key without free text), use a descriptive question
+  const userText = lastUserMsg || key;
+
+  // Add to conversation history
+  conversationHistory.push({ role: 'user', content: userText });
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: conversationHistory
+      })
+    });
+
+    const data = await response.json();
+    removeTyping();
+
+    if(data.content && data.content[0] && data.content[0].text){
+      const aiText = data.content[0].text;
+      conversationHistory.push({ role: 'assistant', content: aiText });
+
+      // Check if the static response has links to append
+      const staticResp = key && RESPONSES[key] ? RESPONSES[key][currentLang] : null;
+      const links = staticResp ? staticResp.links : null;
+
+      addMessage('bot', aiText, links);
+    } else {
+      addMessage('bot', FALLBACK[currentLang]);
+    }
+  } catch(err) {
+    removeTyping();
+    // Fallback to static responses if API fails
+    const resp = key && RESPONSES[key] ? RESPONSES[key][currentLang] : null;
+    if(resp){
+      addMessage('bot', resp.text, resp.links);
+    } else {
+      addMessage('bot', FALLBACK[currentLang]);
+    }
+  }
+
+  isTyping = false;
+  document.getElementById('sendBtn').disabled = false;
+}
+
+function resetChat(){
+  chatStarted = false;
+  conversationHistory = [];
+  document.getElementById('welcomeScreen').style.display = 'flex';
+  document.getElementById('messages').style.display = 'none';
+  document.getElementById('messages').innerHTML = '';
+  document.getElementById('userInput').value = '';
+  closeSidebar();
+}
+
+function handleKey(e){
+  if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendMessage(); }
+}
+
+function autoResize(el){
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
+
+function escapeHtml(t){
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ═══════════════════════════════════════════
+   LANG
+═══════════════════════════════════════════ */
+function setLang(lang){
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+  applyLangUI();
+  renderSidebar();
+  renderSuggests();
+  renderChips();
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE SIDEBAR
+═══════════════════════════════════════════ */
+function toggleSidebar(){
+  const s = document.getElementById('sidebar');
+  const o = document.getElementById('mobOverlay');
+  const open = s.classList.toggle('mob-open');
+  o.classList.toggle('show', open);
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('mob-open');
+  document.getElementById('mobOverlay').classList.remove('show');
+}
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+setLang('de');
+</script>
+</body>
+</html>
