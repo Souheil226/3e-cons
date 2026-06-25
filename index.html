@@ -1,986 +1,1265 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3E Consulting — Engage · Expand · Excel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#0f2017;--blue:#14532d;--accent:#d97706;--accent-hover:#b45309;
-  --bright:#4ade80;--gold:#fbbf24;--white:#ffffff;--light:#f5f0e8;
-  --muted:#86a38e;--border:rgba(74,222,128,.18);--glass:rgba(255,255,255,.04);
-  --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--font-body);background:var(--navy);color:var(--white);overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4;}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5vw;background:rgba(15,32,23,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-size:.875rem;color:var(--muted);text-decoration:none;transition:color .2s;}
-.nav-links a:hover{color:var(--white)}
-.nav-menu{position:relative;}
-.nav-menu-btn{background:var(--accent);color:var(--white);padding:.55rem 1.3rem;border-radius:8px;font-size:.85rem;font-weight:500;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:background .2s,transform .15s;}
-.nav-menu-btn:hover{background:var(--accent-hover);transform:translateY(-1px);}
-.nav-dropdown{position:absolute;top:calc(100% + .6rem);right:0;min-width:340px;max-width:420px;max-height:75vh;overflow-y:auto;background:rgba(15,32,23,.97);border:1px solid var(--border);border-radius:12px;padding:1rem;backdrop-filter:blur(20px);box-shadow:0 20px 50px rgba(0,0,0,.4);z-index:200;}
-.menu-level-1,.menu-level-2,.menu-level-3{list-style:none;margin:0;padding:0;}
-.menu-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;padding:.65rem .75rem;background:transparent;border:none;border-radius:8px;color:var(--white);font-size:.88rem;font-weight:500;font-family:var(--font-body);cursor:pointer;text-align:left;transition:background .15s,color .15s;}
-.menu-toggle:hover,.menu-toggle.open{background:var(--glass);color:var(--bright);}
-.menu-toggle::after{content:'›';font-size:1.1rem;color:var(--muted);transition:transform .2s;}
-.menu-toggle.open::after{transform:rotate(90deg);color:var(--accent);}
-.menu-level-1>li>a{display:flex;align-items:center;padding:.65rem .75rem;font-size:.88rem;font-weight:500;color:var(--white);text-decoration:none;border-radius:8px;transition:background .15s;}
-.menu-level-1>li>a:hover{background:var(--glass);color:var(--bright);}
-.menu-level-2{padding-left:.5rem;margin-top:.25rem;border-left:2px solid var(--border);}
-.menu-level-3{padding-left:.75rem;margin:.25rem 0 .5rem;border-left:2px solid rgba(217,119,6,.3);}
-.menu-level-2 .menu-toggle,.menu-level-3 a{font-size:.82rem;color:var(--muted);}
-.menu-level-3 a{display:block;text-decoration:none;padding:.45rem .6rem;border-radius:6px;transition:all .15s;}
-.menu-level-3 a:hover{color:var(--white);}
-.menu-level-1>li{border-bottom:1px solid var(--border);}
-.menu-level-1>li:last-child{border-bottom:none;}
-
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 5vw 5rem;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;top:-200px;right:-100px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(74,222,128,.15) 0%,transparent 70%);pointer-events:none;}
-.hero::after{content:'';position:absolute;bottom:-150px;left:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(74,222,128,.08) 0%,transparent 70%);pointer-events:none;}
-.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
-.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent)}
-.hero h1{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;color:var(--white);margin-bottom:1.5rem;}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.7;max-width:480px;margin-bottom:2.5rem;font-weight:300;}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
-.btn-primary{background:var(--accent);color:var(--white);padding:.85rem 2rem;border-radius:10px;font-size:.95rem;font-weight:500;text-decoration:none;transition:all .2s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;}
-.btn-primary:hover{background:#b45309;transform:translateY(-2px);box-shadow:0 12px 30px rgba(217,119,6,.3)}
-.btn-secondary{border:1px solid var(--border);color:var(--white);background:var(--glass);padding:.85rem 2rem;border-radius:10px;font-size:.95rem;font-weight:400;text-decoration:none;transition:all .2s;backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:.5rem;}
-.btn-secondary:hover{border-color:var(--accent);background:rgba(217,119,6,.08)}
-.hero-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:20px;padding:2rem;backdrop-filter:blur(16px);position:relative;overflow:hidden;}
-.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
-.hero-card img{width:100%;border-radius:12px;margin-bottom:1.5rem;aspect-ratio:16/10;object-fit:cover;}
-.card-btns{display:flex;flex-direction:column;gap:.75rem}
-.card-btn{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;border-radius:10px;text-decoration:none;font-size:.9rem;font-weight:500;transition:all .2s;}
-.card-btn-bewerber{background:var(--accent);color:var(--white);}
-.card-btn-bewerber:hover{background:#b45309;transform:translateX(3px)}
-.card-btn-company{background:rgba(255,255,255,.06);color:var(--white);border:1px solid var(--border);}
-.card-btn-company:hover{background:rgba(255,255,255,.1);transform:translateX(3px)}
-.card-btn svg{width:16px;height:16px;opacity:.7}
-
-/* SERVICES */
-.services{padding:8rem 5vw;background:linear-gradient(180deg,#091a0f 0%,#0a1e12 100%);position:relative;}
-.section-header{max-width:1200px;margin:0 auto 4rem;display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
-.section-tag{font-size:.75rem;font-weight:500;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem}
-.section-title{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:700;color:var(--white);line-height:1.15}
-.section-sub{font-size:1rem;color:var(--muted);max-width:380px;line-height:1.6;font-weight:300}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;max-width:1200px;margin:0 auto;border:1px solid var(--border);border-radius:16px;overflow:hidden;}
-.svc{background:rgba(255,255,255,.03);padding:2.5rem 2rem;transition:background .25s;cursor:default;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
-.svc:hover{background:rgba(217,119,6,.07)}
-.svc:nth-child(3n){border-right:none}
-.svc:nth-last-child(-n+3){border-bottom:none}
-.svc-num{font-family:var(--font-display);font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:.1em;margin-bottom:1.2rem;opacity:.6;}
-.svc-icon i{color:var(--accent);font-size:1.8rem;display:block;margin-bottom:1rem;}
-.svc h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;color:var(--white);margin-bottom:.75rem}
-.svc p{font-size:.875rem;color:var(--muted);line-height:1.7;font-weight:300}
-
-/* FACHBEREICHE */
-.fachbereiche{padding:8rem 5vw;background:linear-gradient(180deg,#0a1e12 0%,var(--navy) 100%);}
-.fb-inner{max-width:1200px;margin:0 auto;}
-.fb-main-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;margin-bottom:1.5rem;}
-.fb-main-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1rem;cursor:pointer;transition:all .25s;text-align:center;position:relative;}
-.fb-main-card:hover{background:rgba(217,119,6,.07);border-color:rgba(217,119,6,.4);transform:translateY(-2px);}
-.fb-main-card.active{background:rgba(217,119,6,.1);border-color:var(--accent);box-shadow:0 0 0 1px rgba(217,119,6,.2);}
-.fb-main-card.featured{background:rgba(217,119,6,.08);border-color:rgba(217,119,6,.45);}
-.fb-main-card .fb-icon{width:48px;height:48px;border-radius:12px;background:rgba(217,119,6,.12);display:flex;align-items:center;justify-content:center;margin:0 auto .85rem;transition:background .2s;}
-.fb-main-card.active .fb-icon,.fb-main-card:hover .fb-icon{background:rgba(217,119,6,.2);}
-.fb-main-card .fb-icon i{color:var(--accent);font-size:1.2rem;}
-.fb-main-card h3{font-family:var(--font-display);font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.3rem;line-height:1.3;}
-.fb-main-card .fb-arrow{font-size:.7rem;color:var(--muted);margin-top:.5rem;transition:color .2s,transform .2s;display:block;}
-.fb-main-card.active .fb-arrow{color:var(--accent);transform:rotate(180deg);}
-.fb-badge{display:inline-block;font-size:.65rem;padding:.2rem .55rem;border-radius:999px;background:rgba(217,119,6,.2);color:var(--accent);font-weight:600;margin-bottom:.4rem;}
-.fb-sub-panel{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:1.5rem;display:none;animation:panelIn .2s ease;}
-.fb-sub-panel.visible{display:block;}
-@keyframes panelIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-.fb-sub-title{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
-.fb-sub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.65rem;}
-.fb-sub-item{display:flex;align-items:center;gap:.65rem;background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;transition:border-color .15s,background .15s;}
-.fb-sub-item:hover{border-color:rgba(217,119,6,.3);background:rgba(217,119,6,.05);}
-.fb-sub-item i{color:var(--accent);font-size:.95rem;flex-shrink:0;}
-.fb-sub-item span{font-size:.82rem;color:var(--muted);}
-.fb-standalone{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1rem;text-align:center;transition:all .25s;cursor:default;}
-.fb-standalone:hover{background:rgba(217,119,6,.05);border-color:rgba(217,119,6,.35);transform:translateY(-2px);}
-.fb-standalone .fb-icon{width:48px;height:48px;border-radius:12px;background:rgba(217,119,6,.12);display:flex;align-items:center;justify-content:center;margin:0 auto .85rem;}
-.fb-standalone .fb-icon i{color:var(--accent);font-size:1.2rem;}
-.fb-standalone h3{font-family:var(--font-display);font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.25rem;}
-.fb-standalone p{font-size:.75rem;color:var(--muted);}
-
-/* PROCESS */
-.process{padding:8rem 5vw;background:var(--navy);position:relative;}
-.process-inner{max-width:1200px;margin:0 auto}
-.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4rem;position:relative;}
-.process-steps::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,var(--accent),transparent 40%,transparent 60%,var(--accent));opacity:.3;}
-.pstep{padding:0 1rem;text-align:center}
-.pstep-dot{width:56px;height:56px;border-radius:50%;background:rgba(217,119,6,.12);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--accent);position:relative;z-index:1;}
-.pstep h3{font-family:var(--font-display);font-size:.95rem;font-weight:600;color:var(--white);margin-bottom:.6rem}
-.pstep p{font-size:.82rem;color:var(--muted);line-height:1.6;font-weight:300}
-
-/* ABOUT */
-.about{padding:8rem 5vw;background:linear-gradient(180deg,#0a1e12 0%,var(--navy) 100%);}
-.about-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-.about-label{font-size:.75rem;font-weight:500;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;}
-.about h2{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:1.5rem;}
-.about-desc{font-size:1rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:2rem}
-.about-cards{display:flex;flex-direction:column;gap:1rem}
-.about-item{display:flex;gap:1rem;align-items:flex-start;background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:1.2rem;transition:border-color .2s;}
-.about-item:hover{border-color:rgba(217,119,6,.4)}
-.about-item-icon{width:36px;height:36px;border-radius:8px;background:rgba(217,119,6,.12);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--accent);}
-.about-item-text h4{font-size:.9rem;font-weight:500;color:var(--white);margin-bottom:.25rem}
-.about-item-text p{font-size:.82rem;color:var(--muted);line-height:1.5;font-weight:300}
-.about-visual{position:relative;display:flex;align-items:stretch;}
-.about-visual-card{width:100%;border-radius:20px;overflow:hidden;border:1px solid rgba(74,222,128,.2);background:rgba(255,255,255,.04);box-shadow:0 25px 60px rgba(0,0,0,.5);cursor:default;transition:transform .3s ease,box-shadow .3s ease;transform-style:preserve-3d;}
-.about-visual-card img{width:100%;height:auto;display:block;aspect-ratio:4/3;object-fit:cover;}
-.av-caption{display:flex;align-items:center;gap:10px;padding:14px 18px;border-top:1px solid rgba(74,222,128,.12);background:rgba(255,255,255,.03);}
-.av-caption-dot{width:8px;height:8px;border-radius:50%;background:var(--bright);box-shadow:0 0 8px var(--bright);flex-shrink:0;}
-.av-caption p{font-size:.8rem;color:var(--muted);line-height:1.5;margin:0;}
-.av-caption p strong{color:var(--white);font-weight:500}
-
-/* BRIDGE SECTION */
-.bridge-section{padding:6rem 5vw 5rem;background:linear-gradient(180deg,var(--navy) 0%,#091a0f 100%);position:relative;overflow:hidden;}
-.bridge-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(217,119,6,.5),transparent);}
-.bridge-section::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(217,119,6,.05) 0%,transparent 70%);pointer-events:none;}
-.bridge-header{text-align:center;margin-bottom:3rem;position:relative;z-index:1;}
-.bridge-tag{font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.7rem;}
-.bridge-title{font-family:var(--font-display);font-size:clamp(1.9rem,3.5vw,2.7rem);font-weight:700;color:var(--white);line-height:1.15;}
-.bridge-title em{font-style:normal;color:var(--accent);}
-.bridge-layout{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 200px 1fr;gap:1.5rem;align-items:center;position:relative;z-index:1;}
-.col-header{display:flex;align-items:center;gap:.85rem;margin-bottom:1.2rem;}
-.col-bewerber .col-header{justify-content:flex-end;}
-.col-company  .col-header{justify-content:flex-start;}
-.col-header-pill{display:inline-flex;align-items:center;gap:.55rem;padding:.5rem 1rem;border-radius:999px;border:1px solid;font-size:.76rem;font-weight:600;font-family:var(--font-display);letter-spacing:.04em;}
-.col-bewerber .col-header-pill{background:rgba(74,222,128,.07);border-color:rgba(74,222,128,.25);color:var(--bright);}
-.col-company  .col-header-pill{background:rgba(217,119,6,.08);border-color:rgba(217,119,6,.3);color:var(--accent);}
-.col-bewerber,.col-company{display:flex;flex-direction:column;gap:.5rem;}
-.b-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;display:flex;align-items:center;gap:.7rem;transition:background .2s,border-color .2s,transform .18s;cursor:default;}
-.b-card:hover{background:rgba(217,119,6,.055);border-color:rgba(217,119,6,.32);transform:translateY(-1px);}
-.col-bewerber .b-card{border-right:2px solid rgba(74,222,128,.12);}
-.col-bewerber .b-card:hover{border-right-color:rgba(74,222,128,.5);}
-.col-company .b-card{border-left:2px solid rgba(217,119,6,.12);}
-.col-company .b-card:hover{border-left-color:rgba(217,119,6,.5);}
-.b-icon{width:30px;height:30px;min-width:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;}
-.col-bewerber .b-icon{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.18);}
-.col-company  .b-icon{background:rgba(217,119,6,.09);border:1px solid rgba(217,119,6,.2);}
-.col-bewerber .b-card:hover .b-icon{background:rgba(74,222,128,.16);}
-.col-company  .b-card:hover .b-icon{background:rgba(217,119,6,.18);}
-.col-bewerber .b-icon i{color:var(--bright);font-size:.82rem;}
-.col-company  .b-icon i{color:var(--accent);font-size:.82rem;}
-.b-text h4{font-family:var(--font-display);font-size:.78rem;font-weight:600;color:var(--white);margin-bottom:.1rem;line-height:1.25;}
-.b-text p{font-size:.68rem;color:var(--muted);line-height:1.45;font-weight:300;margin:0;}
-.bridge-img-wrap{display:flex;align-items:center;justify-content:center;width:100%;position:relative;z-index:2;}
-.bridge-img{width:100%;max-width:200px;display:block;opacity:.85;transition:opacity .3s,transform .3s;}
-.bridge-img-wrap:hover .bridge-img{opacity:1;transform:scale(1.06);}
-.bridge-bottom{max-width:1300px;margin:2.5rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:1rem;position:relative;z-index:1;}
-.bb-card{border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;border:1px solid;transition:border-color .2s,background .2s;}
-.bb-bewerber{background:rgba(74,222,128,.04);border-color:rgba(74,222,128,.18);}
-.bb-bewerber:hover{border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.07);}
-.bb-company{background:rgba(217,119,6,.05);border-color:rgba(217,119,6,.2);}
-.bb-company:hover{border-color:rgba(217,119,6,.4);background:rgba(217,119,6,.08);}
-.bb-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.bb-bewerber .bb-icon{background:rgba(74,222,128,.1);}
-.bb-bewerber .bb-icon i{color:var(--bright);font-size:1rem;}
-.bb-company .bb-icon{background:rgba(217,119,6,.12);}
-.bb-company .bb-icon i{color:var(--accent);font-size:1rem;}
-.bb-text h4{font-size:.85rem;font-weight:600;color:var(--white);margin-bottom:.15rem;font-family:var(--font-display);}
-.bb-text p{font-size:.74rem;color:var(--muted);line-height:1.5;font-weight:300;}
-.bb-btn{margin-left:auto;flex-shrink:0;padding:.45rem 1rem;border-radius:8px;font-size:.74rem;font-weight:500;text-decoration:none;transition:all .2s;white-space:nowrap;border:1px solid;}
-.bb-bewerber .bb-btn{color:var(--bright);border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.07);}
-.bb-bewerber .bb-btn:hover{background:rgba(74,222,128,.15);}
-.bb-company .bb-btn{color:var(--accent);border-color:rgba(217,119,6,.3);background:rgba(217,119,6,.08);}
-.bb-company .bb-btn:hover{background:rgba(217,119,6,.18);}
-
-/* CONTACT */
-.contact{padding:8rem 5vw;background:var(--navy)}
-.contact-inner{max-width:640px;margin:0 auto;text-align:center}
-.contact-inner .section-tag{display:block;margin-bottom:.75rem}
-.contact-inner h2{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--white);margin-bottom:1rem;}
-.contact-inner p{font-size:.95rem;color:var(--muted);margin-bottom:2.5rem;line-height:1.7;font-weight:300}
-.contact-form{text-align:left;display:flex;flex-direction:column;gap:1rem}
-.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.field{display:flex;flex-direction:column;gap:.4rem}
-.field label{font-size:.78rem;color:var(--muted);letter-spacing:.04em}
-.field input,.field textarea{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:.8rem 1rem;font-size:.9rem;color:var(--white);font-family:var(--font-body);outline:none;transition:border-color .2s;resize:none;}
-.field input:focus,.field textarea:focus{border-color:var(--accent);background:rgba(217,119,6,.05)}
-.form-submit{background:var(--accent);color:var(--white);padding:.9rem;border-radius:10px;font-size:.95rem;font-weight:500;border:none;cursor:pointer;transition:all .2s;font-family:var(--font-body);margin-top:.5rem;}
-.form-submit:hover{background:#b45309;transform:translateY(-2px)}
-
-/* FOOTER */
-footer{padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;background:rgba(15,32,23,.92);}
-.footer-copy{font-size:.78rem;color:var(--muted)}
-.footer-links{display:flex;gap:1.5rem}
-.footer-links a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:var(--white)}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.hero-eyebrow{animation:fadeUp .6s ease both}
-.hero h1{animation:fadeUp .7s .1s ease both}
-.hero-sub{animation:fadeUp .7s .2s ease both}
-.hero-actions{animation:fadeUp .7s .3s ease both}
-.hero-card{animation:fadeIn .9s .2s ease both}
-
-/* RESPONSIVE */
-@media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr;gap:2.5rem}
-  .hero-card{max-width:100%;width:100%}
-  .services-grid{grid-template-columns:repeat(2,1fr)}
-  .svc:nth-child(3n){border-right:1px solid var(--border)}
-  .svc:nth-child(2n){border-right:none}
-  .process-steps{grid-template-columns:repeat(2,1fr);gap:2rem}
-  .process-steps::before{display:none}
-  .about-inner{grid-template-columns:1fr}
-  .about-visual{order:-1}
-  .fb-main-grid{grid-template-columns:repeat(3,1fr)}
-  .bridge-layout{grid-template-columns:1fr 160px 1fr;}
-}
-@media(max-width:768px){
-  nav{padding:.7rem 1rem}
-  .nav-links{display:none}
-  .nav-menu-btn{padding:.45rem 1rem;font-size:.78rem}
-  .hero{padding:5.5rem 1rem 3rem;min-height:auto;}
-  .hero-inner{grid-template-columns:1fr;gap:2rem;text-align:center;}
-  .hero h1{font-size:clamp(1.8rem,7vw,2.8rem);word-break:break-word;}
-  .hero-eyebrow{display:block;font-size:.62rem;text-align:center;padding:.45rem .9rem;background:rgba(217,119,6,.1);border:1px solid rgba(217,119,6,.3);border-radius:999px;max-width:fit-content;margin:0 auto 1.5rem;}
-  .hero-eyebrow::before{display:none}
-  .hero-sub{margin:0 auto 2rem;font-size:.95rem}
-  .hero-actions{justify-content:center;flex-wrap:wrap}
-  .hero-card{max-width:100%;width:100%;padding:1.2rem;}
-  .hero-card img{aspect-ratio:16/9;margin-bottom:1rem;}
-  .services,.process,.about,.contact,.fachbereiche,.bridge-section{padding:4rem 1rem}
-  .section-header{flex-direction:column;gap:1rem}
-  .section-title{font-size:1.7rem}
-  .services-grid{grid-template-columns:1fr}
-  .svc{border-right:none!important}
-  .process-steps{grid-template-columns:1fr 1fr}
-  .form-row-2{grid-template-columns:1fr}
-  .about-inner{gap:2.5rem}
-  footer{flex-direction:column;text-align:center;gap:.75rem}
-  .footer-links{justify-content:center}
-  .fb-main-grid{grid-template-columns:repeat(2,1fr)}
-  .fb-sub-grid{grid-template-columns:1fr}
-  .bridge-layout{grid-template-columns:1fr 1fr;gap:.75rem;}
-  .bridge-img-wrap{display:none;}
-  .col-bewerber .col-header{justify-content:flex-start;}
-  .col-bewerber .b-card{border-right:none;border-left:2px solid rgba(74,222,128,.12);}
-  .col-bewerber .b-card:hover{border-left-color:rgba(74,222,128,.5);}
-  .bridge-bottom{grid-template-columns:1fr;}
-  .bb-btn{display:none;}
-}
-@media(max-width:480px){
-  nav{padding:.6rem .85rem}
-  .nav-menu-btn{padding:.4rem .85rem;font-size:.72rem;}
-  .hero{padding:5rem .9rem 2.5rem}
-  .hero h1{font-size:1.75rem;line-height:1.15}
-  .btn-primary,.btn-secondary{width:100%;justify-content:center;font-size:.875rem;padding:.75rem 1rem;}
-  .process-steps{grid-template-columns:1fr}
-  .svc{padding:1.5rem 1.2rem}
-  .fb-main-grid{grid-template-columns:1fr 1fr}
-  .bridge-layout{grid-template-columns:1fr;}
-  .b-text p{display:none}
-  .b-card{padding:.55rem .7rem;}
+/* ═══════════════ CSS VARIABLES ═══════════════ */
+:root {
+  --navy: #0f2017;
+  --navy-dark: #091a0f;
+  --blue: #14532d;
+  --accent: #d97706;
+  --accent-hover: #b45309;
+  --bright: #4ade80;
+  --gold: #fbbf24;
+  --white: #ffffff;
+  --light: #f5f0e8;
+  --muted: #86a38e;
+  --border: rgba(74,222,128,.18);
+  --glass: rgba(255,255,255,.04);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
 }
 
-/* ── VORAUSSETZUNGEN BUTTON ── */
-.fb-req-btn{
-  display:inline-flex;align-items:center;gap:.4rem;
-  margin-top:.85rem;
-  padding:.42rem .95rem;
-  border-radius:7px;
-  font-size:.72rem;font-weight:600;
-  color:var(--accent);
-  border:1px solid rgba(217,119,6,.35);
-  background:rgba(217,119,6,.08);
-  text-decoration:none;
-  transition:all .2s;
-  cursor:pointer;
-  font-family:var(--font-body);
-  white-space:nowrap;
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
 }
-.fb-req-btn i{font-size:.72rem}
-.fb-req-btn:hover{background:rgba(217,119,6,.18);border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
-.fb-standalone .fb-req-btn{margin-top:.75rem}
-@media(max-width:768px){
-  .fb-main-grid{grid-template-columns:1fr 1fr!important;gap:.6rem}
-  .fb-main-card,.fb-standalone{padding:1rem .75rem}
-  .fb-main-card h3,.fb-standalone h3{font-size:.8rem}
-  .fb-req-btn{font-size:.68rem;padding:.38rem .8rem}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: .4;
 }
-@media(max-width:400px){
-  .fb-main-grid{grid-template-columns:1fr!important}
+
+.font-display { font-family: var(--font-display); }
+.text-accent   { color: var(--accent) !important; }
+.text-bright   { color: var(--bright) !important; }
+.text-muted-3e { color: var(--muted) !important; }
+.text-gold     { color: var(--gold) !important; }
+.fw-300 { font-weight: 300; }
+.fw-500 { font-weight: 500; }
+
+/* ═══════════════ NAV ═══════════════ */
+.navbar-3e {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1050;
+  padding: 1rem 5vw;
+  background: rgba(15,32,23,.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.navbar-brand-3e {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+}
+.navbar-brand-3e img {
+  height: 36px; width: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.navbar-brand-3e span {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+.nav-link-3e {
+  font-size: .875rem;
+  color: var(--muted) !important;
+  text-decoration: none;
+  transition: color .2s;
+  padding: .3rem .6rem;
+}
+.nav-link-3e:hover { color: var(--white) !important; }
+
+.btn-menu {
+  background: var(--accent);
+  color: var(--white) !important;
+  padding: .55rem 1.3rem;
+  border-radius: 8px;
+  font-size: .85rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  transition: background .2s, transform .15s;
+}
+.btn-menu:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+.nav-dropdown-panel {
+  position: absolute;
+  top: calc(100% + .6rem);
+  right: 0;
+  min-width: 340px;
+  max-width: 420px;
+  max-height: 75vh;
+  overflow-y: auto;
+  background: rgba(15,32,23,.97);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+  z-index: 200;
+  display: none;
+}
+.nav-dropdown-panel.open { display: block; }
+
+.menu-list { list-style: none; margin: 0; padding: 0; }
+.menu-toggle-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .65rem .75rem;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--white);
+  font-size: .88rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  cursor: pointer;
+  text-align: left;
+  transition: background .15s, color .15s;
+}
+.menu-toggle-btn:hover, .menu-toggle-btn.open { background: var(--glass); color: var(--bright); }
+.menu-toggle-btn::after {
+  content: '›';
+  font-size: 1.1rem;
+  color: var(--muted);
+  transition: transform .2s;
+}
+.menu-toggle-btn.open::after { transform: rotate(90deg); color: var(--accent); }
+
+.menu-l1 > li { border-bottom: 1px solid var(--border); }
+.menu-l1 > li:last-child { border-bottom: none; }
+.menu-l1 > li > a {
+  display: flex;
+  align-items: center;
+  padding: .65rem .75rem;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background .15s;
+}
+.menu-l1 > li > a:hover { background: var(--glass); color: var(--bright); }
+.menu-l2 { padding-left: .5rem; margin-top: .25rem; border-left: 2px solid var(--border); display: none; }
+.menu-l2.open { display: block; }
+.menu-l3 { padding-left: .75rem; margin: .25rem 0 .5rem; border-left: 2px solid rgba(217,119,6,.3); display: none; }
+.menu-l3.open { display: block; }
+.menu-l3 a {
+  display: block;
+  text-decoration: none;
+  padding: .45rem .6rem;
+  border-radius: 6px;
+  font-size: .82rem;
+  color: var(--muted);
+  transition: all .15s;
+}
+.menu-l3 a:hover { color: var(--white); }
+.menu-l2 .menu-toggle-btn { font-size: .82rem; color: var(--muted); }
+
+/* Hamburger */
+.hamburger-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--white);
+  padding: .45rem .75rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  transition: background .2s, border-color .2s;
+}
+.hamburger-btn:hover {
+  background: rgba(217,119,6,.1);
+  border-color: rgba(217,119,6,.4);
+}
+
+/* ═══════════════ MOBILE NAV V2 ═══════════════ */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 1055;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  backdrop-filter: blur(4px);
+}
+.mobile-nav-overlay.open { opacity: 1; pointer-events: all; }
+
+.mobile-nav {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: min(320px, 88vw);
+  background: linear-gradient(160deg, #0d2619 0%, #091a0f 100%);
+  border-right: 1px solid rgba(74,222,128,.14);
+  z-index: 1060;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform .32s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+}
+.mobile-nav.open { transform: translateX(0); }
+
+.mn-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.1rem .85rem;
+  border-bottom: 1px solid rgba(74,222,128,.1);
+  flex-shrink: 0;
+}
+.mn-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.mn-brand img { height: 30px; width: 30px; border-radius: 7px; object-fit: cover; }
+.mn-brand span {
+  font-family: var(--font-display);
+  font-size: .9rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: .06em;
+}
+.mn-close {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px;
+  color: var(--muted);
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  flex-shrink: 0;
+}
+.mn-close:hover { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
+
+.mn-body {
+  flex: 1;
+  padding: .6rem 0 .5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.mn-body::-webkit-scrollbar { width: 3px; }
+.mn-body::-webkit-scrollbar-track { background: transparent; }
+.mn-body::-webkit-scrollbar-thumb { background: rgba(74,222,128,.2); border-radius: 2px; }
+
+.mn-section-label {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: .9rem 1.2rem .35rem;
+  opacity: .7;
+}
+
+.mn-link {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .68rem 1.2rem;
+  font-size: .88rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+  transition: background .15s, color .15s;
+}
+.mn-link .mn-icon {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .75rem;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.mn-link:hover { background: rgba(217,119,6,.07); color: #fff; }
+.mn-link:hover .mn-icon { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
+.mn-link-arrow { margin-left: auto; font-size: .65rem; color: var(--muted); opacity: .5; }
+
+.mn-accordion-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .68rem 1.2rem;
+  background: transparent;
+  border: none;
+  font-size: .88rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.85);
+  font-family: var(--font-body);
+  cursor: pointer;
+  text-align: left;
+  transition: background .15s, color .15s;
+}
+.mn-accordion-btn .mn-icon {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .75rem;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.mn-chevron { margin-left: auto; font-size: .65rem; color: var(--muted); transition: transform .25s ease, color .15s; }
+.mn-accordion-btn.open { background: rgba(217,119,6,.07); color: #fff; }
+.mn-accordion-btn.open .mn-icon { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
+.mn-accordion-btn.open .mn-chevron { transform: rotate(90deg); color: var(--accent); }
+
+.mn-accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .28s cubic-bezier(.4,0,.2,1);
+  background: rgba(0,0,0,.18);
+}
+.mn-accordion-body.open { max-height: 500px; }
+
+.mn-sub-label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .55rem 1.2rem .55rem 2.6rem;
+  background: transparent;
+  border: none;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--muted);
+  font-family: var(--font-body);
+  cursor: pointer;
+  text-align: left;
+  letter-spacing: .04em;
+  transition: color .15s;
+}
+.mn-sub-label .mn-chevron { font-size: .6rem; }
+.mn-sub-label.open { color: rgba(255,255,255,.7); }
+.mn-sub-label.open .mn-chevron { transform: rotate(90deg); color: var(--accent); }
+
+.mn-sub-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .22s ease;
+  background: rgba(0,0,0,.12);
+}
+.mn-sub-body.open { max-height: 300px; }
+
+.mn-sub2-link {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .52rem 1.2rem .52rem 3.2rem;
+  font-size: .79rem;
+  color: rgba(134,163,142,.75);
+  text-decoration: none;
+  transition: background .15s, color .15s;
+}
+.mn-sub2-link::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(217,119,6,.45);
+  flex-shrink: 0;
+}
+.mn-sub2-link:hover { background: rgba(217,119,6,.05); color: #fff; }
+
+.mn-divider { height: 1px; background: rgba(74,222,128,.08); margin: .55rem 1.2rem; }
+
+.mn-footer {
+  padding: .85rem 1rem 1.1rem;
+  border-top: 1px solid rgba(74,222,128,.1);
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  flex-shrink: 0;
+}
+.mn-cta-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .82rem 1rem;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff !important;
+  font-size: .88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+  font-family: var(--font-display);
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+.mn-cta-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.mn-cta-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .78rem 1rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.8) !important;
+  font-size: .88rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+  white-space: nowrap;
+}
+.mn-cta-secondary:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
+
+/* ═══════════════ HERO ═══════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 7rem 5vw 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -100px;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,222,128,.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -80px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,222,128,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+.btn-primary-3e {
+  background: var(--accent);
+  color: var(--white);
+  padding: .85rem 2rem;
+  border-radius: 10px;
+  font-size: .95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all .2s;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+.btn-primary-3e:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(217,119,6,.3); color: var(--white); }
+.btn-secondary-3e {
+  border: 1px solid var(--border);
+  color: var(--white);
+  background: var(--glass);
+  padding: .85rem 2rem;
+  border-radius: 10px;
+  font-size: .95rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all .2s;
+  backdrop-filter: blur(8px);
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+.btn-secondary-3e:hover { border-color: var(--accent); background: rgba(217,119,6,.08); color: var(--white); }
+
+.hero-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.hero-card img { width: 100%; border-radius: 12px; margin-bottom: 1.5rem; aspect-ratio: 16/10; object-fit: cover; }
+.card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: .9rem;
+  font-weight: 500;
+  transition: all .2s;
+  margin-bottom: .75rem;
+}
+.card-btn:last-child { margin-bottom: 0; }
+.card-btn-bewerber { background: var(--accent); color: var(--white); }
+.card-btn-bewerber:hover { background: var(--accent-hover); transform: translateX(3px); color: var(--white); }
+.card-btn-company { background: rgba(255,255,255,.06); color: var(--white); border: 1px solid var(--border); }
+.card-btn-company:hover { background: rgba(255,255,255,.1); transform: translateX(3px); color: var(--white); }
+
+/* ═══════════════ SECTION UTILS ═══════════════ */
+.section-tag {
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: .75rem;
+  display: block;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+}
+.section-sub { font-size: 1rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+.divider { border-top: 1px solid var(--border); }
+
+/* ═══════════════ SERVICES ═══════════════ */
+.services-section { padding: 8rem 5vw; background: linear-gradient(180deg, #091a0f 0%, #0a1e12 100%); }
+.svc-card { background: rgba(255,255,255,.03); padding: 2.5rem 2rem; transition: background .25s; border: 1px solid var(--border); height: 100%; }
+.svc-card:hover { background: rgba(217,119,6,.07); }
+.svc-num { font-family: var(--font-display); font-size: .75rem; font-weight: 700; color: var(--accent); letter-spacing: .1em; margin-bottom: 1.2rem; opacity: .6; }
+.svc-card .svc-icon i { color: var(--accent); font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+.svc-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: .75rem; }
+.svc-card p { font-size: .875rem; color: var(--muted); line-height: 1.7; font-weight: 300; margin: 0; }
+
+/* ═══════════════ FACHBEREICHE ═══════════════ */
+.fachbereiche-section { padding: 8rem 5vw; background: linear-gradient(180deg, #0a1e12 0%, var(--navy) 100%); }
+.fb-main-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.4rem 1rem;
+  cursor: pointer;
+  transition: all .25s;
+  text-align: center;
+  height: 100%;
+}
+.fb-main-card:hover { background: rgba(217,119,6,.07); border-color: rgba(217,119,6,.4); transform: translateY(-2px); }
+.fb-main-card.active { background: rgba(217,119,6,.1); border-color: var(--accent); box-shadow: 0 0 0 1px rgba(217,119,6,.2); }
+.fb-main-card.featured { background: rgba(217,119,6,.08); border-color: rgba(217,119,6,.45); }
+.fb-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(217,119,6,.12); display: flex; align-items: center; justify-content: center; margin: 0 auto .85rem; transition: background .2s; }
+.fb-main-card.active .fb-icon, .fb-main-card:hover .fb-icon { background: rgba(217,119,6,.2); }
+.fb-icon i { color: var(--accent); font-size: 1.2rem; }
+.fb-main-card h3 { font-family: var(--font-display); font-size: .88rem; font-weight: 600; color: var(--white); margin-bottom: .3rem; line-height: 1.3; }
+.fb-arrow { font-size: .7rem; color: var(--muted); margin-top: .5rem; transition: color .2s, transform .2s; display: block; }
+.fb-main-card.active .fb-arrow { color: var(--accent); transform: rotate(180deg); }
+.fb-badge { display: inline-block; font-size: .65rem; padding: .2rem .55rem; border-radius: 999px; background: rgba(217,119,6,.2); color: var(--accent); font-weight: 600; margin-bottom: .4rem; }
+.fb-req-btn {
+  display: inline-flex; align-items: center; gap: .4rem; margin-top: .85rem; padding: .42rem .95rem;
+  border-radius: 7px; font-size: .72rem; font-weight: 600; color: var(--accent); border: 1px solid rgba(217,119,6,.35);
+  background: rgba(217,119,6,.08); text-decoration: none; transition: all .2s; cursor: pointer; font-family: var(--font-body); white-space: nowrap;
+}
+.fb-req-btn:hover { background: rgba(217,119,6,.18); border-color: var(--accent); transform: translateY(-1px); color: var(--accent); }
+.fb-standalone { background: var(--glass); border: 1px solid var(--border); border-radius: 14px; padding: 1.4rem 1rem; text-align: center; transition: all .25s; height: 100%; }
+.fb-standalone:hover { background: rgba(217,119,6,.05); border-color: rgba(217,119,6,.35); transform: translateY(-2px); }
+.fb-standalone h3 { font-family: var(--font-display); font-size: .88rem; font-weight: 600; color: var(--white); margin-bottom: .25rem; }
+.fb-standalone p { font-size: .75rem; color: var(--muted); margin: 0; }
+.fb-sub-panel { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; display: none; animation: panelIn .2s ease; }
+.fb-sub-panel.visible { display: block; }
+@keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+.fb-sub-title { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.fb-sub-item { display: flex; align-items: center; gap: .65rem; background: var(--glass); border: 1px solid var(--border); border-radius: 10px; padding: .75rem 1rem; transition: border-color .15s, background .15s; margin-bottom: .65rem; }
+.fb-sub-item:hover { border-color: rgba(217,119,6,.3); background: rgba(217,119,6,.05); }
+.fb-sub-item i { color: var(--accent); font-size: .95rem; flex-shrink: 0; }
+.fb-sub-item span { font-size: .82rem; color: var(--muted); }
+
+/* ═══════════════ PROCESS ═══════════════ */
+.process-section { padding: 8rem 5vw; background: var(--navy); }
+.pstep { padding: 0 1rem; text-align: center; }
+.pstep-dot { width: 56px; height: 56px; border-radius: 50%; background: rgba(217,119,6,.12); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--accent); position: relative; z-index: 1; }
+.pstep h3 { font-family: var(--font-display); font-size: .95rem; font-weight: 600; color: var(--white); margin-bottom: .6rem; }
+.pstep p { font-size: .82rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+.process-connector { position: absolute; top: 28px; left: 12.5%; right: 12.5%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent 40%, transparent 60%, var(--accent)); opacity: .3; pointer-events: none; }
+
+/* ═══════════════ ABOUT ═══════════════ */
+.about-section { padding: 8rem 5vw; background: linear-gradient(180deg, #0a1e12 0%, var(--navy) 100%); }
+.about-label { font-size: .75rem; font-weight: 500; color: var(--gold); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem; }
+.about-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1.5rem; }
+.about-desc { font-size: 1rem; color: var(--muted); line-height: 1.8; font-weight: 300; margin-bottom: 2rem; }
+.about-item { display: flex; gap: 1rem; align-items: flex-start; background: var(--glass); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: border-color .2s; margin-bottom: 1rem; }
+.about-item:hover { border-color: rgba(217,119,6,.4); }
+.about-item-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(217,119,6,.12); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; color: var(--accent); }
+.about-item-text h4 { font-size: .9rem; font-weight: 500; color: var(--white); margin-bottom: .25rem; }
+.about-item-text p { font-size: .82rem; color: var(--muted); line-height: 1.5; font-weight: 300; margin: 0; }
+.about-visual-card { border-radius: 20px; overflow: hidden; border: 1px solid rgba(74,222,128,.2); background: rgba(255,255,255,.04); box-shadow: 0 25px 60px rgba(0,0,0,.5); transition: transform .3s ease, box-shadow .3s ease; }
+.about-visual-card img { width: 100%; height: auto; display: block; aspect-ratio: 4/3; object-fit: cover; }
+.av-caption { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-top: 1px solid rgba(74,222,128,.12); background: rgba(255,255,255,.03); }
+.av-caption-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bright); box-shadow: 0 0 8px var(--bright); flex-shrink: 0; }
+.av-caption p { font-size: .8rem; color: var(--muted); line-height: 1.5; margin: 0; }
+.av-caption p strong { color: var(--white); font-weight: 500; }
+
+/* ═══════════════ BRIDGE ═══════════════ */
+.bridge-section { padding: 7rem 5vw 6rem; background: linear-gradient(180deg, var(--navy) 0%, #091a0f 100%); position: relative; overflow: hidden; }
+.bridge-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(217,119,6,.4), transparent); }
+.bridge-title { font-family: var(--font-display); font-size: clamp(1.9rem, 3.5vw, 2.7rem); font-weight: 700; color: var(--white); line-height: 1.15; }
+.bridge-title em { font-style: normal; color: var(--accent); }
+.bridge-desc { font-size: .95rem; color: var(--muted); max-width: 480px; line-height: 1.6; font-weight: 300; }
+.col-label { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1rem; border-radius: 999px; font-size: .75rem; font-weight: 600; font-family: var(--font-display); letter-spacing: .04em; margin-bottom: 1.2rem; }
+.col-label-green { background: rgba(74,222,128,.07); border: 1px solid rgba(74,222,128,.22); color: var(--bright); }
+.col-label-amber { background: rgba(217,119,6,.08); border: 1px solid rgba(217,119,6,.28); color: var(--accent); }
+.b-row { display: flex; align-items: center; gap: .85rem; padding: .75rem 1rem; background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 10px; transition: background .2s, border-color .2s; margin-bottom: .6rem; }
+.b-row:hover { background: rgba(217,119,6,.05); border-color: rgba(217,119,6,.25); }
+.b-row-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.b-row-icon-green { background: rgba(74,222,128,.08); border: 1px solid rgba(74,222,128,.15); }
+.b-row-icon-green i { color: var(--bright); font-size: .9rem; }
+.b-row-icon-amber { background: rgba(217,119,6,.09); border: 1px solid rgba(217,119,6,.18); }
+.b-row-icon-amber i { color: var(--accent); font-size: .9rem; }
+.b-row-text h4 { font-size: .82rem; font-weight: 500; color: var(--white); margin: 0 0 2px; }
+.b-row-text p { font-size: .73rem; color: var(--muted); margin: 0; line-height: 1.4; font-weight: 300; }
+.bridge-logo-img { width: 100%; max-width: 300px; display: block; opacity: .95; transition: transform .3s, opacity .3s; margin: 0 auto; }
+.bridge-logo-img:hover { transform: scale(1.06); opacity: 1; }
+.bb-card { border-radius: 14px; padding: 1.3rem 1.5rem; display: flex; align-items: center; gap: 1rem; border: 1px solid; transition: border-color .2s, background .2s; height: 100%; }
+.bb-green { background: rgba(74,222,128,.04); border-color: rgba(74,222,128,.16); }
+.bb-green:hover { border-color: rgba(74,222,128,.32); background: rgba(74,222,128,.07); }
+.bb-amber { background: rgba(217,119,6,.05); border-color: rgba(217,119,6,.18); }
+.bb-amber:hover { border-color: rgba(217,119,6,.38); background: rgba(217,119,6,.08); }
+.bb-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.bb-icon-green { background: rgba(74,222,128,.1); }
+.bb-icon-green i { color: var(--bright); font-size: 1rem; }
+.bb-icon-amber { background: rgba(217,119,6,.12); }
+.bb-icon-amber i { color: var(--accent); font-size: 1rem; }
+.bb-text h4 { font-size: .85rem; font-weight: 600; color: var(--white); margin-bottom: .15rem; font-family: var(--font-display); }
+.bb-text p { font-size: .74rem; color: var(--muted); line-height: 1.5; font-weight: 300; margin: 0; }
+.bb-btn { margin-left: auto; flex-shrink: 0; padding: .45rem 1.1rem; border-radius: 8px; font-size: .75rem; font-weight: 500; text-decoration: none; transition: all .2s; white-space: nowrap; border: 1px solid; }
+.bb-btn-green { color: var(--bright); border-color: rgba(74,222,128,.28); background: rgba(74,222,128,.07); }
+.bb-btn-green:hover { background: rgba(74,222,128,.15); color: var(--bright); }
+.bb-btn-amber { color: var(--accent); border-color: rgba(217,119,6,.28); background: rgba(217,119,6,.08); }
+.bb-btn-amber:hover { background: rgba(217,119,6,.18); color: var(--accent); }
+
+/* ═══════════════ CONTACT ═══════════════ */
+.contact-section { padding: 8rem 5vw; background: var(--navy); }
+.contact-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+.field label { font-size: .78rem; color: var(--muted); letter-spacing: .04em; margin-bottom: .4rem; display: block; }
+.field input, .field textarea { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 8px; padding: .8rem 1rem; font-size: .9rem; color: var(--white); font-family: var(--font-body); outline: none; transition: border-color .2s; resize: none; width: 100%; }
+.field input:focus, .field textarea:focus { border-color: var(--accent); background: rgba(217,119,6,.05); outline: none; box-shadow: none; }
+.btn-submit { background: var(--accent); color: var(--white); padding: .9rem; border-radius: 10px; font-size: .95rem; font-weight: 500; border: none; cursor: pointer; transition: all .2s; font-family: var(--font-body); width: 100%; }
+.btn-submit:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+/* ═══════════════ FOOTER ═══════════════ */
+footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: rgba(15,32,23,.92); }
+.footer-copy { font-size: .78rem; color: var(--muted); }
+.footer-links a { font-size: .78rem; color: var(--muted); text-decoration: none; transition: color .2s; margin-left: 1.5rem; }
+.footer-links a:hover { color: var(--white); }
+
+/* ═══════════════ ANIMATIONS ═══════════════ */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.animate-up { animation: fadeUp .7s ease both; }
+.animate-delay-1 { animation-delay: .1s; }
+.animate-delay-2 { animation-delay: .2s; }
+.animate-delay-3 { animation-delay: .3s; }
+.animate-fade { animation: fadeIn .9s .2s ease both; }
+
+/* ═══════════════ RESPONSIVE ═══════════════ */
+@media (max-width: 1199px) { .bridge-center-col { display: none !important; } }
+@media (max-width: 991px) {
+  .hamburger-btn { display: inline-flex !important; }
+  .nav-desktop-links { display: none !important; }
+  .hero { min-height: auto; padding: 6rem 1.5rem 3rem; }
+  .hero h1 { font-size: clamp(1.9rem, 7vw, 2.8rem); }
+  .hero-eyebrow { display: block; font-size: .62rem; text-align: center; padding: .45rem .9rem; background: rgba(217,119,6,.1); border: 1px solid rgba(217,119,6,.3); border-radius: 999px; max-width: fit-content; margin: 0 auto 1.5rem; }
+  .hero-eyebrow::before { display: none; }
+  .hero-sub { margin: 0 auto 2rem; }
+  .hero-actions { justify-content: center; }
+  .services-section, .process-section, .about-section, .contact-section, .fachbereiche-section, .bridge-section { padding: 4rem 1.5rem; }
+  .about-visual { order: -1; }
+  .process-connector { display: none; }
+}
+@media (max-width: 767px) {
+  .btn-primary-3e, .btn-secondary-3e { width: 100%; justify-content: center; }
+  .bb-btn { display: none; }
+  footer { flex-direction: column; text-align: center; gap: .75rem; }
+  .footer-links a { margin-left: .75rem; margin-right: .75rem; }
+}
+@media (max-width: 575px) {
+  .hero { padding: 5rem 1rem 2.5rem; }
+  .hero h1 { font-size: 1.75rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html" style="display:flex;align-items:center;gap:9px;text-decoration:none;">
-    <img src="logo_3e.jpg" alt="3E Consulting" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0;">
-    <span style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3E Consulting</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#services">Leistungen</a></li>
-    <li><a href="#process">Ablauf</a></li>
-    <li><a href="#about">Über uns</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-  </ul>
-  <div class="nav-menu">
-    <button type="button" class="nav-menu-btn" id="menuToggle">MENÜ ▾</button>
-    <div class="nav-dropdown" id="menuDropdown" hidden>
-      <ul class="menu-level-1">
-        <li class="has-sub">
-          <button type="button" class="menu-toggle">Service</button>
-          <ul class="menu-level-2" hidden>
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<header class="navbar-3e">
+  <div class="d-flex align-items-center justify-content-between w-100">
+    <a href="index.html" class="navbar-brand-3e">
+      <img src="logo_3e.jpg" alt="3E Consulting">
+      <span>3E Consulting</span>
+    </a>
+    <ul class="nav-desktop-links d-flex list-unstyled mb-0 gap-3 mx-auto">
+      <li><a href="#services"  class="nav-link-3e">Leistungen</a></li>
+      <li><a href="#process"   class="nav-link-3e">Ablauf</a></li>
+      <li><a href="#about"     class="nav-link-3e">Über uns</a></li>
+      <li><a href="#kontakt"   class="nav-link-3e">Kontakt</a></li>
+    </ul>
+    <div class="d-flex align-items-center gap-3">
+      <div class="position-relative d-none d-lg-block">
+        <button class="btn-menu" id="menuToggle">MENÜ ▾</button>
+        <div class="nav-dropdown-panel" id="menuDropdown">
+          <ul class="menu-l1 menu-list">
             <li class="has-sub">
-              <button type="button" class="menu-toggle">Bewerber</button>
-              <ul class="menu-level-3" hidden>
-                <li><a href="service-bewerber.html#dokumentenorganisation">Dokumentenorganisation</a></li>
-                <li><a href="service-bewerber.html#bewerbungsprozess">Bewerbungsprozess</a></li>
-                <li><a href="service-bewerber.html#profil-video">Profil-Video Anleitung</a></li>
-              
+              <button class="menu-toggle-btn" data-target="sub-service">Service</button>
+              <ul class="menu-l2 menu-list" id="sub-service">
+                <li class="has-sub">
+                  <button class="menu-toggle-btn" data-target="sub-bewerber">Bewerber</button>
+                  <ul class="menu-l3 menu-list" id="sub-bewerber">
+                    <li><a href="service-bewerber.html#dokumentenorganisation">Dokumentenorganisation</a></li>
+                    <li><a href="service-bewerber.html#bewerbungsprozess">Bewerbungsprozess</a></li>
+                    <li><a href="service-bewerber.html#profil-video">Profil-Video Anleitung</a></li>
+                  </ul>
+                </li>
+                <li class="has-sub">
+                  <button class="menu-toggle-btn" data-target="sub-unternehmen">Unternehmen</button>
+                  <ul class="menu-l3 menu-list" id="sub-unternehmen">
+                    <li><a href="service-unternehmen.html#vermittlung">Vermittlung von Fachkräften</a></li>
+                    <li><a href="service-unternehmen.html#beschwerdeverfahren">Beschwerdeverfahren</a></li>
+                  </ul>
+                </li>
               </ul>
             </li>
-            <li class="has-sub">
-              <button type="button" class="menu-toggle">Unternehmen</button>
-              <ul class="menu-level-3" hidden>
-                <li><a href="service-unternehmen.html#vermittlung">Vermittlung von Fachkräften</a></li>
-                <li><a href="service-unternehmen.html#beschwerdeverfahren">Beschwerdeverfahren</a></li>
-              </ul>
-            </li>
+            <li><a href="Bewerbung.html">Bewerbung</a></li>
+            <li><a href="vermitlung.html">Voraussetzungen</a></li>
+            <li><a href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
+            <li><a href="arbeitundsozialrecht.html">Arbeits- und Sozialrecht</a></li>
+            <li><a href="aufenthaltsrecht.html">Aufenthaltsrecht</a></li>
+            <li><a href="alltag-deutschland.html">Alltag in Deutschland</a></li>
+            <li><a href="Chatbot.html">Chatbot-3e</a></li>
           </ul>
-        </li>
-        <li><a href="Bewerbung.html">Bewerbung</a></li>
-        <li><a href="vermitlung.html">Voraussetzungen</a></li>
-        <li><a href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
-        <li><a href="arbeitundsozialrecht.html">Arbeits- und Sozialrecht</a></li>
-        <li><a href="aufenthaltsrecht.html">Aufenthaltsrecht</a></li>
-        <li><a href="alltag-deutschland.html">Alltag in Deutschland</a></li>
-        <li><a href="Chatbot.html">Chatbot-3e</a></li>
-      </ul>
+        </div>
+      </div>
+      <button class="hamburger-btn d-lg-none" id="hamburgerBtn" aria-label="Menü öffnen">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
   </div>
+</header>
+
+<!-- ═══════════════ MOBILE NAV ═══════════════ -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+<nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
+
+  <!-- Header -->
+  <div class="mn-header">
+    <a href="index.html" class="mn-brand">
+      <img src="logo_3e.jpg" alt="3E">
+      <span>3E Consulting</span>
+    </a>
+    <button class="mn-close" id="mobileNavClose" aria-label="Menü schließen">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <!-- Body -->
+  <div class="mn-body">
+
+    <div class="mn-section-label">Navigation</div>
+
+    <a href="#home"         class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-house"></i></span>
+      Startseite
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="#services"     class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span>
+      Leistungen
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="#fachbereiche" class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-briefcase"></i></span>
+      Branchen
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="#process"      class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-timeline"></i></span>
+      Ablauf
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="#about"        class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-users"></i></span>
+      Über uns
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="#kontakt"      class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-envelope"></i></span>
+      Kontakt
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+
+    <div class="mn-divider"></div>
+    <div class="mn-section-label">Mehr Seiten</div>
+
+    <!-- Service accordion -->
+    <button class="mn-accordion-btn" data-mn-target="mn-acc-service">
+      <span class="mn-icon"><i class="fa-solid fa-gear"></i></span>
+      Service
+      <i class="fa-solid fa-chevron-right mn-chevron"></i>
+    </button>
+    <div class="mn-accordion-body" id="mn-acc-service">
+      <!-- Bewerber sub -->
+      <button class="mn-sub-label" data-mn-sub="mn-sub-bewerber">
+        Bewerber
+        <i class="fa-solid fa-chevron-right mn-chevron"></i>
+      </button>
+      <div class="mn-sub-body" id="mn-sub-bewerber">
+        <a href="service-bewerber.html#dokumentenorganisation" class="mn-sub2-link" onclick="closeMobileNav()">Dokumentenorganisation</a>
+        <a href="service-bewerber.html#bewerbungsprozess"      class="mn-sub2-link" onclick="closeMobileNav()">Bewerbungsprozess</a>
+        <a href="service-bewerber.html#profil-video"           class="mn-sub2-link" onclick="closeMobileNav()">Profil-Video Anleitung</a>
+      </div>
+      <!-- Unternehmen sub -->
+      <button class="mn-sub-label" data-mn-sub="mn-sub-unternehmen">
+        Unternehmen
+        <i class="fa-solid fa-chevron-right mn-chevron"></i>
+      </button>
+      <div class="mn-sub-body" id="mn-sub-unternehmen">
+        <a href="service-unternehmen.html#vermittlung"         class="mn-sub2-link" onclick="closeMobileNav()">Vermittlung von Fachkräften</a>
+        <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-sub2-link" onclick="closeMobileNav()">Beschwerdeverfahren</a>
+      </div>
+    </div>
+
+    <a href="Bewerbung.html"            class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span>
+      Bewerbung
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="vermitlung.html"           class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-list-check"></i></span>
+      Voraussetzungen
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="arbeitsmarkt.html"         class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span>
+      Arbeitsmarkt
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="arbeitundsozialrecht.html" class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span>
+      Arbeits- und Sozialrecht
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="aufenthaltsrecht.html"     class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-passport"></i></span>
+      Aufenthaltsrecht
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="alltag-deutschland.html"   class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-sun"></i></span>
+      Alltag in Deutschland
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+    <a href="Chatbot.html"              class="mn-link" onclick="closeMobileNav()">
+      <span class="mn-icon"><i class="fa-solid fa-robot"></i></span>
+      Chatbot-3e
+      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+    </a>
+
+  </div><!-- /mn-body -->
+
+  <!-- Footer CTAs -->
+  <div class="mn-footer">
+    <a href="registraion.html" class="mn-cta-primary" onclick="closeMobileNav()">
+      <i class="fa-solid fa-arrow-right"></i> Als Bewerber starten
+    </a>
+    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()">
+      <i class="fa-solid fa-building"></i> Für Unternehmen
+    </a>
+  </div>
+
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-eyebrow">IHR FULL-SERVICE-INTEGRATIONSPARTNER FÜR DEUTSCHLAND</div>
-      <h1>Von <em>Algerien</em> bis<br>zum deutschen<br>Arbeitgeber</h1>
-      <p class="hero-sub">Wir begleiten Sie auf jedem Schritt — von der Dokumentenvorbereitung über die Unterkunftssuche bis zu Ihrer erfolgreichen Ankunft in Deutschland.</p>
-      <div class="hero-actions">
-        <a href="registraion.html" class="btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          Als Bewerber starten
-        </a>
-        <a href="login_company.php" class="btn-secondary">Für Unternehmen</a>
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="home">
+  <div class="container-fluid px-0 position-relative" style="z-index:1; max-width:1200px; margin:0 auto; width:100%">
+    <div class="row align-items-center g-4 g-xl-5">
+      <div class="col-12 col-lg-7">
+        <div class="hero-eyebrow animate-up">IHR FULL-SERVICE-INTEGRATIONSPARTNER FÜR DEUTSCHLAND</div>
+        <h1 class="animate-up animate-delay-1">Von <em>Algerien</em> bis<br>zum deutschen<br>Arbeitgeber</h1>
+        <p class="hero-sub animate-up animate-delay-2">Wir begleiten Sie auf jedem Schritt — von der Dokumentenvorbereitung über die Unterkunftssuche bis zu Ihrer erfolgreichen Ankunft in Deutschland.</p>
+        <div class="hero-actions d-flex flex-wrap gap-3 animate-up animate-delay-3">
+          <a href="registraion.html" class="btn-primary-3e"><i class="fa-solid fa-arrow-right"></i> Als Bewerber starten</a>
+          <a href="login_company.php" class="btn-secondary-3e">Für Unternehmen</a>
+        </div>
       </div>
-    </div>
-    <div class="hero-card">
-      <img src="karriere-berufe-industriemechaniker-hero-baeumer.jpg" alt="Azubi in Deutschland">
-      <div class="card-btns">
-        <a href="Registraion.Html" class="card-btn card-btn-bewerber">Ich bin Bewerber <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="login_company.php" class="card-btn card-btn-company">Ich bin Unternehmen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <div class="col-12 col-lg-5 animate-fade">
+        <div class="hero-card">
+          <img src="karriere-berufe-industriemechaniker-hero-baeumer.jpg" alt="Azubi in Deutschland">
+          <a href="Registraion.Html" class="card-btn card-btn-bewerber">
+            Ich bin Bewerber
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="login_company.php" class="card-btn card-btn-company">
+            Ich bin Unternehmen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="services">
-  <div class="section-header">
-    <div><div class="section-tag">Was wir bieten</div><h2 class="section-title">Vollständige Begleitung<br>auf Ihrem Weg</h2></div>
-    <p class="section-sub">Von der ersten Anfrage bis zur erfolgreichen Integration — wir sind Ihr verlässlicher Partner.</p>
-  </div>
-  <div class="services-grid">
-    <div class="svc"><div class="svc-num">01</div><span class="svc-icon"><i class="fa-solid fa-plane"></i></span><h3>Erster Schritt bis Ankunft</h3><p>Von der Vorbereitung bis zur Ankunft — wir begleiten Sie durch jeden Schritt.</p></div>
-    <div class="svc"><div class="svc-num">02</div><span class="svc-icon"><i class="fa-solid fa-comments"></i></span><h3>Sprachvorbereitung</h3><p>Beratung zu Sprachzertifikaten und Vorbereitung auf den deutschen Arbeitsalltag.</p></div>
-    <div class="svc"><div class="svc-num">03</div><span class="svc-icon"><i class="fa-solid fa-file-lines"></i></span><h3>Dokumentenorganisation</h3><p>Alle Dokumente sammeln, übersetzen und korrekt ordnen — professionell.</p></div>
-    <div class="svc"><div class="svc-num">04</div><span class="svc-icon"><i class="fa-solid fa-handshake"></i></span><h3>Firmenvermittlung</h3><p>Direkte Verbindung zu deutschen Unternehmen, die Fachkräfte suchen.</p></div>
-    <div class="svc"><div class="svc-num">05</div><span class="svc-icon"><i class="fa-solid fa-passport"></i></span><h3>Visum &amp; Behörden</h3><p>Schritt-für-Schritt-Begleitung durch den Visa-Prozess.</p></div>
-    <div class="svc"><div class="svc-num">06</div><span class="svc-icon"><i class="fa-solid fa-house"></i></span><h3>Unterkunft finden</h3><p>Aktive Unterstützung bei der Suche nach geeigneter Unterkunft.</p></div>
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<section id="services" class="services-section">
+  <div style="max-width:1200px; margin:0 auto">
+    <div class="row align-items-end mb-5 g-3">
+      <div class="col-12 col-md-6"><div class="section-tag">Was wir bieten</div><h2 class="section-title">Vollständige Begleitung<br>auf Ihrem Weg</h2></div>
+      <div class="col-12 col-md-6"><p class="section-sub mb-0">Von der ersten Anfrage bis zur erfolgreichen Integration — wir sind Ihr verlässlicher Partner.</p></div>
+    </div>
+    <div class="row g-0" style="border:1px solid var(--border); border-radius:16px; overflow:hidden;">
+      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border); border-bottom:1px solid var(--border);"><div class="svc-card h-100"><div class="svc-num">01</div><span class="svc-icon"><i class="fa-solid fa-plane"></i></span><h3>Erster Schritt bis Ankunft</h3><p>Von der Vorbereitung bis zur Ankunft — wir begleiten Sie durch jeden Schritt.</p></div></div>
+      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border); border-bottom:1px solid var(--border);"><div class="svc-card h-100"><div class="svc-num">02</div><span class="svc-icon"><i class="fa-solid fa-comments"></i></span><h3>Sprachvorbereitung</h3><p>Beratung zu Sprachzertifikaten und Vorbereitung auf den deutschen Arbeitsalltag.</p></div></div>
+      <div class="col-12 col-sm-6 col-lg-4" style="border-bottom:1px solid var(--border);"><div class="svc-card h-100"><div class="svc-num">03</div><span class="svc-icon"><i class="fa-solid fa-file-lines"></i></span><h3>Dokumentenorganisation</h3><p>Alle Dokumente sammeln, übersetzen und korrekt ordnen — professionell.</p></div></div>
+      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border);"><div class="svc-card h-100"><div class="svc-num">04</div><span class="svc-icon"><i class="fa-solid fa-handshake"></i></span><h3>Firmenvermittlung</h3><p>Direkte Verbindung zu deutschen Unternehmen, die Fachkräfte suchen.</p></div></div>
+      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border);"><div class="svc-card h-100"><div class="svc-num">05</div><span class="svc-icon"><i class="fa-solid fa-passport"></i></span><h3>Visum &amp; Behörden</h3><p>Schritt-für-Schritt-Begleitung durch den Visa-Prozess.</p></div></div>
+      <div class="col-12 col-sm-6 col-lg-4"><div class="svc-card h-100"><div class="svc-num">06</div><span class="svc-icon"><i class="fa-solid fa-house"></i></span><h3>Unterkunft finden</h3><p>Aktive Unterstützung bei der Suche nach geeigneter Unterkunft.</p></div></div>
+    </div>
   </div>
 </section>
 
-<!-- FACHBEREICHE -->
-<section id="fachbereiche" class="fachbereiche">
-  <div class="fb-inner">
-    <div class="section-header" style="margin-bottom:2.5rem;">
-      <div><div class="section-tag">Unsere Spezialisierung</div><h2 class="section-title">Branchen, in denen<br>wir vermitteln</h2></div>
-      <p class="section-sub">Ausgewählte Fachbereiche, in denen der Bedarf in Deutschland besonders hoch ist.</p>
+<!-- ═══════════════ FACHBEREICHE ═══════════════ -->
+<section id="fachbereiche" class="fachbereiche-section">
+  <div style="max-width:1200px; margin:0 auto">
+    <div class="row align-items-end mb-4 g-3">
+      <div class="col-12 col-md-6"><div class="section-tag">Unsere Spezialisierung</div><h2 class="section-title">Branchen, in denen<br>wir vermitteln</h2></div>
+      <div class="col-12 col-md-6"><p class="section-sub mb-0">Ausgewählte Fachbereiche, in denen der Bedarf in Deutschland besonders hoch ist.</p></div>
     </div>
-    <div class="fb-main-grid">
-      <div class="fb-main-card featured" data-target="sub-medizin">
-        <span class="fb-badge">Hohe Nachfrage</span>
-        <div class="fb-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-        <h3>Medizin &amp; Pflege</h3>
-        <span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-        <a href="vermitlung.html#aerzte" class="fb-req-btn" onclick="event.stopPropagation()">
-          <i class="fa-solid fa-list-check"></i> Voraussetzungen
-        </a>
-      </div>
-      <div class="fb-main-card" data-target="sub-handwerk">
-        <div class="fb-icon"><i class="fa-solid fa-helmet-safety"></i></div>
-        <h3>Handwerk</h3>
-        <span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-        <a href="vermitlung.html#ausbildung" class="fb-req-btn" onclick="event.stopPropagation()">
-          <i class="fa-solid fa-list-check"></i> Voraussetzungen
-        </a>
-      </div>
-      <div class="fb-standalone">
-        <div class="fb-icon"><i class="fa-solid fa-utensils"></i></div>
-        <h3>Gastronomie</h3>
-        <p>Küche, Service &amp; Restaurantbetrieb</p>
-        <a href="vermitlung.html#ausbildung" class="fb-req-btn">
-          <i class="fa-solid fa-list-check"></i> Voraussetzungen
-        </a>
-      </div>
-      <div class="fb-standalone">
-        <div class="fb-icon"><i class="fa-solid fa-bell-concierge"></i></div>
-        <h3>Hotel</h3>
-        <p>Empfang, Housekeeping &amp; Management</p>
-        <a href="vermitlung.html#ausbildung" class="fb-req-btn">
-          <i class="fa-solid fa-list-check"></i> Voraussetzungen
-        </a>
-      </div>
-      <div class="fb-standalone">
-        <div class="fb-icon"><i class="fa-solid fa-truck-fast"></i></div>
-        <h3>Logistik</h3>
-        <p>Lager, Transport &amp; Lieferkette</p>
-        <a href="vermitlung.html#ausbildung" class="fb-req-btn">
-          <i class="fa-solid fa-list-check"></i> Voraussetzungen
-        </a>
-      </div>
+    <div class="row g-3 mb-3">
+      <div class="col-6 col-sm-4 col-lg"><div class="fb-main-card featured" data-target="sub-medizin"><span class="fb-badge">Hohe Nachfrage</span><div class="fb-icon mx-auto"><i class="fa-solid fa-heart-pulse"></i></div><h3>Medizin &amp; Pflege</h3><span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span><a href="vermitlung.html#aerzte" class="fb-req-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a></div></div>
+      <div class="col-6 col-sm-4 col-lg"><div class="fb-main-card" data-target="sub-handwerk"><div class="fb-icon mx-auto"><i class="fa-solid fa-helmet-safety"></i></div><h3>Handwerk</h3><span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span><a href="vermitlung.html#ausbildung" class="fb-req-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a></div></div>
+      <div class="col-6 col-sm-4 col-lg"><div class="fb-standalone"><div class="fb-icon mx-auto"><i class="fa-solid fa-utensils"></i></div><h3>Gastronomie</h3><p>Küche, Service &amp; Restaurantbetrieb</p><a href="vermitlung.html#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a></div></div>
+      <div class="col-6 col-sm-4 col-lg"><div class="fb-standalone"><div class="fb-icon mx-auto"><i class="fa-solid fa-bell-concierge"></i></div><h3>Hotel</h3><p>Empfang, Housekeeping &amp; Management</p><a href="vermitlung.html#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a></div></div>
+      <div class="col-6 col-sm-4 col-lg"><div class="fb-standalone"><div class="fb-icon mx-auto"><i class="fa-solid fa-truck-fast"></i></div><h3>Logistik</h3><p>Lager, Transport &amp; Lieferkette</p><a href="vermitlung.html#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a></div></div>
     </div>
     <div class="fb-sub-panel" id="sub-medizin">
-      <div class="fb-sub-title"><i class="fa-solid fa-heart-pulse" style="margin-right:.4rem"></i>Medizin &amp; Pflege — Spezialisierungen</div>
-      <div class="fb-sub-grid">
-        <div class="fb-sub-item"><i class="fa-solid fa-bed-pulse"></i><span>Krankenpfleger/in</span></div>
-        <div class="fb-sub-item"><i class="fa-solid fa-person-cane"></i><span>Altenpfleger/in</span></div>
-        <div class="fb-sub-item"><i class="fa-solid fa-user-nurse"></i><span>Pflegefachkraft</span></div>
-        <div class="fb-sub-item"><i class="fa-solid fa-person-walking"></i><span>Physiotherapeut/in</span></div>
-        <div class="fb-sub-item"><i class="fa-solid fa-stethoscope"></i><span>Hausarzt / Facharzt</span></div>
+      <div class="fb-sub-title"><i class="fa-solid fa-heart-pulse me-1"></i>Medizin &amp; Pflege — Spezialisierungen</div>
+      <div class="row g-2">
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-bed-pulse"></i><span>Krankenpfleger/in</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-person-cane"></i><span>Altenpfleger/in</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-user-nurse"></i><span>Pflegefachkraft</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-person-walking"></i><span>Physiotherapeut/in</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-stethoscope"></i><span>Hausarzt / Facharzt</span></div></div>
       </div>
     </div>
     <div class="fb-sub-panel" id="sub-handwerk">
-      <div class="fb-sub-title"><i class="fa-solid fa-helmet-safety" style="margin-right:.4rem"></i>Handwerk — Spezialisierungen</div>
-      <div class="fb-sub-grid">
-        <div class="fb-sub-item"><i class="fa-solid fa-building-columns"></i><span>Baugewerbe</span></div>
-        <div class="fb-sub-item"><i class="fa-solid fa-bolt"></i><span>Elektrik</span></div>
-        <div class="fb-sub-item"><i class="fa-solid fa-faucet-drip"></i><span>Sanitär, Heizung &amp; Klima</span></div>
-        <div class="fb-sub-item"><i class="fa-solid fa-paint-roller"></i><span>Maler / Lackierer</span></div>
-        <div class="fb-sub-item"><i class="fa-solid fa-gear"></i><span>Metallbau</span></div>
+      <div class="fb-sub-title"><i class="fa-solid fa-helmet-safety me-1"></i>Handwerk — Spezialisierungen</div>
+      <div class="row g-2">
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-building-columns"></i><span>Baugewerbe</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-bolt"></i><span>Elektrik</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-faucet-drip"></i><span>Sanitär, Heizung &amp; Klima</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-paint-roller"></i><span>Maler / Lackierer</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-gear"></i><span>Metallbau</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section id="process" class="process">
-  <div class="process-inner">
-    <div class="section-header">
-      <div><div class="section-tag">Wie es funktioniert</div><h2 class="section-title">In 4 Schritten<br>zum Ziel</h2></div>
-      <p class="section-sub">Ein klarer, transparenter Prozess — damit Sie wissen, was Sie erwartet.</p>
+<!-- ═══════════════ PROCESS ═══════════════ -->
+<section id="process" class="process-section">
+  <div style="max-width:1200px; margin:0 auto">
+    <div class="row align-items-end mb-5 g-3">
+      <div class="col-12 col-md-6"><div class="section-tag">Wie es funktioniert</div><h2 class="section-title">In 4 Schritten<br>zum Ziel</h2></div>
+      <div class="col-12 col-md-6"><p class="section-sub mb-0">Ein klarer, transparenter Prozess — damit Sie wissen, was Sie erwartet.</p></div>
     </div>
-    <div class="process-steps">
-      <div class="pstep"><div class="pstep-dot">01</div><h3>Profil erstellen</h3><p>Kostenlos registrieren, Profil ausfüllen und Dokumente hochladen.</p></div>
-      <div class="pstep"><div class="pstep-dot">02</div><h3>Prüfung &amp; Freigabe</h3><p>Unser Team prüft Ihre Unterlagen und gibt Ihr Profil für Firmen frei.</p></div>
-      <div class="pstep"><div class="pstep-dot">03</div><h3>Firmenkontakt</h3><p>Passende Unternehmen sehen Ihr Profil und nehmen Kontakt auf.</p></div>
-      <div class="pstep"><div class="pstep-dot">04</div><h3>Start in Deutschland</h3><p>Wir begleiten Sie bis zur Ankunft — Unterkunft, Visum, Integration.</p></div>
+    <div class="row g-4 position-relative" id="processSteps">
+      <div class="process-connector d-none d-lg-block"></div>
+      <div class="col-12 col-sm-6 col-lg-3"><div class="pstep"><div class="pstep-dot">01</div><h3>Profil erstellen</h3><p>Kostenlos registrieren, Profil ausfüllen und Dokumente hochladen.</p></div></div>
+      <div class="col-12 col-sm-6 col-lg-3"><div class="pstep"><div class="pstep-dot">02</div><h3>Prüfung &amp; Freigabe</h3><p>Unser Team prüft Ihre Unterlagen und gibt Ihr Profil für Firmen frei.</p></div></div>
+      <div class="col-12 col-sm-6 col-lg-3"><div class="pstep"><div class="pstep-dot">03</div><h3>Firmenkontakt</h3><p>Passende Unternehmen sehen Ihr Profil und nehmen Kontakt auf.</p></div></div>
+      <div class="col-12 col-sm-6 col-lg-3"><div class="pstep"><div class="pstep-dot">04</div><h3>Start in Deutschland</h3><p>Wir begleiten Sie bis zur Ankunft — Unterkunft, Visum, Integration.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="about">
-  <div class="about-inner">
-    <div>
-      <div class="about-label">Über 3E Consulting</div>
-      <h2>Die Brücke zwischen<br>Talent und Chance</h2>
-      <p class="about-desc">Wir sind mehr als nur eine Vermittlungsplattform. Wir sind Ihr persönlicher Begleiter auf dem Weg nach Deutschland — von der ersten Idee bis zum ersten Arbeitstag.</p>
-      <div class="about-cards">
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about" class="about-section">
+  <div style="max-width:1200px; margin:0 auto">
+    <div class="row align-items-center g-4 g-xl-5">
+      <div class="col-12 col-lg-5 order-lg-2">
+        <div class="about-visual-card" id="aboutCard">
+          <img src="journey.jpeg" alt="Erfolgreicher Karriereweg">
+          <div class="av-caption"><span class="av-caption-dot"></span><p><strong>Erfolgreicher Karriereweg mit 3E Consulting: Engage – Expand – Excel</strong></p></div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-7 order-lg-1">
+        <div class="about-label">Über 3E Consulting</div>
+        <h2>Die Brücke zwischen<br>Talent und Chance</h2>
+        <p class="about-desc">Wir sind mehr als nur eine Vermittlungsplattform. Wir sind Ihr persönlicher Begleiter auf dem Weg nach Deutschland — von der ersten Idee bis zum ersten Arbeitstag.</p>
         <div class="about-item"><div class="about-item-icon"><i class="fa-solid fa-bullseye"></i></div><div class="about-item-text"><h4>Unsere Mission</h4><p>Qualifizierte Bewerber aus dem Ausland mit deutschen Unternehmen verbinden — seriös, transparent und persönlich.</p></div></div>
         <div class="about-item"><div class="about-item-icon"><i class="fa-solid fa-user"></i></div><div class="about-item-text"><h4>Für Bewerber</h4><p>Profil erstellen, Dokumente hochladen, von Unternehmen entdeckt werden.</p></div></div>
         <div class="about-item"><div class="about-item-icon"><i class="fa-solid fa-people-roof"></i></div><div class="about-item-text"><h4>Für Unternehmen</h4><p>Zugang zu geprüften, motivierten Fachkräften — genau für Ihren Bedarf gefiltert.</p></div></div>
       </div>
     </div>
-    <div class="about-visual">
-      <div class="about-visual-card">
-        <img src="journey.jpeg" alt="Erfolgreicher Karriereweg">
-        <div class="av-caption"><span class="av-caption-dot"></span><p><strong>Erfolgreicher Karriereweg mit 3E Consulting: Engage – Expand – Excel</strong></p></div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- BRIDGE SECTION -->
+<!-- ═══════════════ BRIDGE ═══════════════ -->
 <section id="vorteile" class="bridge-section">
-  <div class="bridge-header">
-    <span class="bridge-tag">Unsere Plattform verbindet</span>
+  <div class="text-center mb-5">
+    <span class="section-tag">Unsere Plattform verbindet</span>
     <h2 class="bridge-title">Ihre Vorteile — <em>auf beiden Seiten der Brücke</em></h2>
+    <p class="bridge-desc mx-auto mt-2">Klare Mehrwerte für Bewerber und Unternehmen — transparent und ohne versteckte Kosten.</p>
   </div>
-
-  <div class="bridge-layout">
-
-    <!-- BEWERBER -->
-    <div class="col-bewerber">
-      <div class="col-header">
-        <div class="col-header-pill"><i class="fa-solid fa-user-tie"></i> Für Bewerber</div>
+  <div style="max-width:1200px; margin:0 auto">
+    <div class="row g-4 align-items-start">
+      <div class="col-12 col-xl-5">
+        <div class="col-label col-label-green"><i class="fa-solid fa-user-tie"></i> Für Bewerber</div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-circle-check"></i></div><div class="b-row-text"><h4>Kostenlose Registrierung</h4><p>Gratis starten, ohne jedes finanzielle Risiko.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-coins"></i></div><div class="b-row-text"><h4>Zahlung nur bei Vertragsabschluss</h4><p>Zero-Risk-Modell — erst nach Unterzeichnung zahlen.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-video"></i></div><div class="b-row-text"><h4>Video-Profil statt Papierstapel</h4><p>30–90 Sek. — Persönlichkeit und Kompetenz direkt zeigen.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-shield-halved"></i></div><div class="b-row-text"><h4>Transparenter Zugang</h4><p>Klarer Weg ohne unlautere Vermittler.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-map-location-dot"></i></div><div class="b-row-text"><h4>Umfassende Begleitung</h4><p>Qualifikationsanerkennung und Visa — Schritt für Schritt.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-graduation-cap"></i></div><div class="b-row-text"><h4>Sprachkurse &amp; Training</h4><p>Zertifizierte Kurse und interkulturelle Trainings.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-passport"></i></div><div class="b-row-text"><h4>Visum &amp; Behörden</h4><p>Vollständige Begleitung durch alle Visaprozesse.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-comments"></i></div><div class="b-row-text"><h4>Dreisprachiger Support</h4><p>Deutsch, Französisch und Arabisch — immer erreichbar.</p></div></div>
       </div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-circle-check"></i></div><div class="b-text"><h4>Kostenlose Registrierung</h4><p>Gratis starten, ohne jedes finanzielle Risiko.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-coins"></i></div><div class="b-text"><h4>Zahlung nur bei Vertragsabschluss</h4><p>Zero-Risk-Modell — erst nach Unterzeichnung zahlen.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-video"></i></div><div class="b-text"><h4>Video-Profil statt Papierstapel</h4><p>30–90 Sek. — Persönlichkeit und Kompetenz direkt.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="b-text"><h4>Transparenter Zugang</h4><p>Klarer Weg ohne unlautere Vermittler.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-map-location-dot"></i></div><div class="b-text"><h4>Umfassende Begleitung</h4><p>Qualifikationsanerkennung und Visa — Schritt für Schritt.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-graduation-cap"></i></div><div class="b-text"><h4>Sprachkurse &amp; Training</h4><p>Zertifizierte Kurse und interkulturelle Trainings.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-passport"></i></div><div class="b-text"><h4>Visum &amp; Behörden</h4><p>Vollständige Begleitung durch alle Visaprozesse.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-comments"></i></div><div class="b-text"><h4>Dreisprachiger Support</h4><p>Deutsch, Französisch und Arabisch — immer erreichbar.</p></div></div>
-    </div>
-
-    <!-- ══ SVG TREE — FLIPPED (Wurzel oben, Äste nach unten) ══ -->
-    <div class="bridge-img-wrap">
-      <svg viewBox="0 0 480 600" xmlns="http://www.w3.org/2000/svg"
-           class="bridge-img" style="width:100%;display:block;">
-
-        <!-- TRUNK: von oben (y=20) nach unten (y=210) -->
-        <line x1="240" y1="20"  x2="240" y2="210"
-              stroke="#d97706" stroke-width="10" stroke-linecap="round"/>
-        <!-- Wurzel-Kreis oben -->
-        <circle cx="240" cy="20" r="10" fill="none" stroke="#d97706" stroke-width="4"/>
-
-        <!-- STUBS OBEN LINKS/RECHTS (niveau 80) -->
-        <line x1="240" y1="80" x2="168" y2="80"
-              stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="155" cy="80" r="9" fill="none" stroke="#d97706" stroke-width="3.5"/>
-
-        <line x1="240" y1="80" x2="312" y2="80"
-              stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="325" cy="80" r="9" fill="none" stroke="#d97706" stroke-width="3.5"/>
-
-        <!-- STUBS MITTE LINKS/RECHTS (niveau 150) -->
-        <line x1="240" y1="150" x2="185" y2="150"
-              stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="172" cy="150" r="9" fill="none" stroke="#d97706" stroke-width="3.5"/>
-
-        <line x1="240" y1="150" x2="295" y2="150"
-              stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="308" cy="150" r="9" fill="none" stroke="#d97706" stroke-width="3.5"/>
-
-        <!-- FORK NODE -->
-        <circle cx="240" cy="210" r="8" fill="#d97706"/>
-
-        <!-- ══ LINKER HAUPTAST ══ -->
-        <line x1="240" y1="210" x2="90"  y2="330"
-              stroke="#d97706" stroke-width="8" stroke-linecap="round"/>
-        <circle cx="90" cy="330" r="6" fill="#16a34a"/>
-
-        <!-- L horizontal -->
-        <line x1="90" y1="330" x2="30" y2="330"
-              stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="18" cy="330" r="10" fill="none" stroke="#d97706" stroke-width="3.5"/>
-        <line x1="18" y1="330" x2="18" y2="356"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="18" cy="366" r="7" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="18" y1="330" x2="44" y2="352"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="50" cy="358" r="6" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-
-        <!-- L Ast oben-links (geht nach unten-links) -->
-        <line x1="90" y1="330" x2="46" y2="400"
-              stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="46" cy="400" r="5" fill="#d97706"/>
-        <line x1="46" y1="400" x2="18"  y2="424"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="10"  cy="432" r="9" fill="none" stroke="#16a34a" stroke-width="3.5"/>
-        <line x1="10"  y1="432" x2="10"  y2="458"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="10"  cy="467" r="7" fill="none" stroke="#d97706" stroke-width="3"/>
-        <line x1="10"  y1="432" x2="32"  y2="454"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="38"  cy="460" r="6" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="46" y1="400" x2="46"  y2="430"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="46"  cy="440" r="9" fill="none" stroke="#d97706" stroke-width="3.5"/>
-        <line x1="46"  y1="440" x2="26"  y2="464"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="20"  cy="470" r="6" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="46"  y1="440" x2="56"  y2="466"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="59"  cy="474" r="6" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="46" y1="400" x2="78"  y2="424"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="84"  cy="430" r="8" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="84"  y1="430" x2="66"  y2="454"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="62"  cy="462" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="84"  y1="430" x2="94"  y2="456"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="97"  cy="464" r="5.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-
-        <!-- L Ast mitte -->
-        <line x1="90" y1="330" x2="90"  y2="414"
-              stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="90" cy="414" r="5" fill="#d97706"/>
-        <line x1="90" y1="414" x2="60"  y2="450"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="52"  cy="458" r="8" fill="none" stroke="#16a34a" stroke-width="3.5"/>
-        <line x1="52"  y1="458" x2="38"  y2="482"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="34"  cy="490" r="6.5" fill="none" stroke="#d97706" stroke-width="3"/>
-        <line x1="52"  y1="458" x2="60"  y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="62"  cy="492" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="90" y1="414" x2="90"  y2="454"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="90"  cy="464" r="9" fill="none" stroke="#d97706" stroke-width="3.5"/>
-        <line x1="90"  y1="464" x2="68"  y2="490"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="63"  cy="498" r="6" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="90"  y1="464" x2="90"  y2="492"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="90"  cy="500" r="6" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="90"  y1="464" x2="112" y2="490"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="117" cy="498" r="6" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="90" y1="414" x2="122" y2="450"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="130" cy="458" r="7" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="130" y1="458" x2="116" y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="112" cy="492" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="130" y1="458" x2="138" y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="140" cy="492" r="5.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-
-        <!-- L Ast rechts -->
-        <line x1="90" y1="330" x2="142" y2="400"
-              stroke="#16a34a" stroke-width="5.5" stroke-linecap="round"/>
-        <circle cx="142" cy="400" r="5" fill="#d97706"/>
-        <line x1="142" y1="400" x2="118" y2="434"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="111" cy="442" r="7.5" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="111" y1="442" x2="96"  y2="466"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="92"  cy="474" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="111" y1="442" x2="118" y2="468"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="120" cy="476" r="5.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="142" y1="400" x2="162" y2="434"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="169" cy="442" r="7" fill="none" stroke="#d97706" stroke-width="3"/>
-        <line x1="169" y1="442" x2="156" y2="468"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="152" cy="476" r="5.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="169" y1="442" x2="176" y2="468"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="178" cy="476" r="5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-
-        <!-- ══ MITTLERER HAUPTAST ══ -->
-        <line x1="240" y1="210" x2="240" y2="355"
-              stroke="#d97706" stroke-width="8" stroke-linecap="round"/>
-        <circle cx="240" cy="355" r="7" fill="#d97706"/>
-
-        <!-- C links -->
-        <line x1="240" y1="355" x2="186" y2="415"
-              stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="186" cy="415" r="5" fill="#16a34a"/>
-        <line x1="186" y1="415" x2="162" y2="450"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="155" cy="458" r="8" fill="none" stroke="#d97706" stroke-width="3.5"/>
-        <line x1="155" y1="458" x2="138" y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="134" cy="492" r="6.5" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="155" y1="458" x2="162" y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="164" cy="492" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="186" y1="415" x2="186" y2="456"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="186" cy="466" r="8" fill="none" stroke="#16a34a" stroke-width="3.5"/>
-        <line x1="186" y1="466" x2="168" y2="492"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="164" cy="500" r="6" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="186" y1="466" x2="192" y2="492"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="194" cy="500" r="5.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-
-        <!-- C mitte (längster) -->
-        <line x1="240" y1="355" x2="240" y2="430"
-              stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="240" cy="430" r="6" fill="#d97706"/>
-        <line x1="240" y1="430" x2="208" y2="470"
-              stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
-        <circle cx="200" cy="480" r="9" fill="none" stroke="#d97706" stroke-width="4"/>
-        <line x1="200" y1="480" x2="182" y2="508"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="178" cy="516" r="7" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="200" y1="480" x2="204" y2="510"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="205" cy="518" r="6.5" fill="none" stroke="#d97706" stroke-width="3"/>
-        <line x1="200" y1="480" x2="220" y2="506"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="224" cy="513" r="6" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="240" y1="430" x2="240" y2="474"
-              stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
-        <circle cx="240" cy="484" r="10" fill="none" stroke="#16a34a" stroke-width="4"/>
-        <line x1="240" y1="484" x2="214" y2="514"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="208" cy="522" r="7" fill="none" stroke="#d97706" stroke-width="3"/>
-        <line x1="240" y1="484" x2="240" y2="518"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="240" cy="527" r="7" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="240" y1="484" x2="266" y2="514"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="272" cy="522" r="7" fill="none" stroke="#d97706" stroke-width="3"/>
-        <line x1="240" y1="430" x2="272" y2="470"
-              stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
-        <circle cx="280" cy="480" r="9" fill="none" stroke="#d97706" stroke-width="4"/>
-        <line x1="280" y1="480" x2="260" y2="508"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="256" cy="516" r="7" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="280" y1="480" x2="284" y2="510"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="285" cy="518" r="6" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="280" y1="480" x2="298" y2="506"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="302" cy="513" r="6" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-
-        <!-- C rechts -->
-        <line x1="240" y1="355" x2="294" y2="415"
-              stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="294" cy="415" r="5" fill="#16a34a"/>
-        <line x1="294" y1="415" x2="294" y2="456"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="294" cy="466" r="8" fill="none" stroke="#d97706" stroke-width="3.5"/>
-        <line x1="294" y1="466" x2="276" y2="492"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="272" cy="500" r="6" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="294" y1="466" x2="300" y2="492"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="302" cy="500" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="294" y1="415" x2="318" y2="450"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="325" cy="458" r="7" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="325" y1="458" x2="312" y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="308" cy="492" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="325" y1="458" x2="332" y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="334" cy="492" r="5.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-
-        <!-- ══ RECHTER HAUPTAST ══ -->
-        <line x1="240" y1="210" x2="390" y2="330"
-              stroke="#d97706" stroke-width="8" stroke-linecap="round"/>
-        <circle cx="390" cy="330" r="6" fill="#16a34a"/>
-
-        <!-- R horizontal -->
-        <line x1="390" y1="330" x2="450" y2="330"
-              stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="462" cy="330" r="10" fill="none" stroke="#d97706" stroke-width="3.5"/>
-        <line x1="462" y1="330" x2="462" y2="356"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="462" cy="366" r="7" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="462" y1="330" x2="436" y2="352"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="430" cy="358" r="6" fill="none" stroke="#d97706" stroke-width="2.5"/>
-
-        <!-- R Ast links -->
-        <line x1="390" y1="330" x2="338" y2="400"
-              stroke="#16a34a" stroke-width="5.5" stroke-linecap="round"/>
-        <circle cx="338" cy="400" r="5" fill="#d97706"/>
-        <line x1="338" y1="400" x2="318" y2="434"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="311" cy="442" r="7.5" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="311" y1="442" x2="298" y2="466"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="294" cy="474" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="311" y1="442" x2="318" y2="468"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="320" cy="476" r="5.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="338" y1="400" x2="358" y2="434"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="365" cy="442" r="7" fill="none" stroke="#d97706" stroke-width="3"/>
-        <line x1="365" y1="442" x2="352" y2="468"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="348" cy="476" r="5.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="365" y1="442" x2="372" y2="468"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="374" cy="476" r="5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-
-        <!-- R Ast mitte -->
-        <line x1="390" y1="330" x2="390" y2="414"
-              stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="390" cy="414" r="5" fill="#d97706"/>
-        <line x1="390" y1="414" x2="360" y2="450"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="352" cy="458" r="8" fill="none" stroke="#16a34a" stroke-width="3.5"/>
-        <line x1="352" y1="458" x2="338" y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="334" cy="492" r="6" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="352" y1="458" x2="358" y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="360" cy="492" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="390" y1="414" x2="390" y2="454"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="390" cy="464" r="9" fill="none" stroke="#d97706" stroke-width="3.5"/>
-        <line x1="390" y1="464" x2="368" y2="490"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="363" cy="498" r="6" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="390" y1="464" x2="390" y2="492"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="390" cy="500" r="6" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="390" y1="464" x2="412" y2="490"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="417" cy="498" r="6" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="390" y1="414" x2="422" y2="450"
-              stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="430" cy="458" r="7" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="430" y1="458" x2="416" y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="412" cy="492" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="430" y1="458" x2="438" y2="484"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="440" cy="492" r="5.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-
-        <!-- R Ast rechts -->
-        <line x1="390" y1="330" x2="434" y2="400"
-              stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="434" cy="400" r="5" fill="#16a34a"/>
-        <line x1="434" y1="400" x2="404" y2="436"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="396" cy="444" r="8.5" fill="none" stroke="#d97706" stroke-width="3.5"/>
-        <line x1="396" y1="444" x2="380" y2="470"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="376" cy="478" r="6.5" fill="none" stroke="#16a34a" stroke-width="3"/>
-        <line x1="396" y1="444" x2="396" y2="472"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="396" cy="480" r="6" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="434" y1="400" x2="462" y2="436"
-              stroke="#16a34a" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="470" cy="444" r="8" fill="none" stroke="#16a34a" stroke-width="3.5"/>
-        <line x1="470" y1="444" x2="454" y2="470"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="450" cy="478" r="6" fill="none" stroke="#d97706" stroke-width="2.5"/>
-        <line x1="470" y1="444" x2="472" y2="471"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="473" cy="479" r="5.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
-        <line x1="470" y1="444" x2="488" y2="468"
-              stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="492" cy="474" r="5.5" fill="none" stroke="#d97706" stroke-width="2.5"/>
-
-      </svg>
-    </div>
-
-    <!-- UNTERNEHMEN -->
-    <div class="col-company">
-      <div class="col-header">
-        <div class="col-header-pill"><i class="fa-solid fa-building"></i> Für Unternehmen</div>
+      <div class="col-2 d-none d-xl-flex align-items-center justify-content-center bridge-center-col">
+        <img src="dj.png" alt="3E Consulting" class="bridge-logo-img">
       </div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-award"></i></div><div class="b-text"><h4>Geprüfte B1/B2-Fachkräfte</h4><p>Anerkanntes Deutschzertifikat — sofort einsatzbereit.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-file-video"></i></div><div class="b-text"><h4>Kandidaten per Video kennenlernen</h4><p>30–90 Sek. sichten — vor dem ersten Kontakt.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div><div class="b-text"><h4>Zahlung nur bei Einstellung</h4><p>Kein Kostenrisiko — nur bei erfolgreichem Abschluss.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-users-viewfinder"></i></div><div class="b-text"><h4>Exklusiver Talentpool</h4><p>Vorqualifizierte algerische Fachkräfte — exklusiv.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-bolt"></i></div><div class="b-text"><h4>Prozess-Effizienz §81a</h4><p>Beschleunigtes Fachkräfteverfahren inklusive.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="b-text"><h4>Integrationsrisiko minimiert</h4><p>Onboarding-Pakete für nachhaltige Eingliederung.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-filter"></i></div><div class="b-text"><h4>Vorgefilterter Bewerberpool</h4><p>Jede Bewerbung persönlich geprüft — nur Passende.</p></div></div>
-      <div class="b-card"><div class="b-icon"><i class="fa-solid fa-headset"></i></div><div class="b-text"><h4>Betreuung nach Einstellung</h4><p>Wir bleiben ansprechbar — für Integration und Fragen.</p></div></div>
+      <div class="col-12 col-xl-5">
+        <div class="col-label col-label-amber"><i class="fa-solid fa-building"></i> Für Unternehmen</div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-award"></i></div><div class="b-row-text"><h4>Geprüfte B1/B2-Fachkräfte</h4><p>Anerkanntes Deutschzertifikat — sofort einsatzbereit.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-file-video"></i></div><div class="b-row-text"><h4>Kandidaten per Video kennenlernen</h4><p>30–90 Sek. sichten — vor dem ersten Kontakt.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-hand-holding-dollar"></i></div><div class="b-row-text"><h4>Zahlung nur bei Einstellung</h4><p>Kein Kostenrisiko — nur bei erfolgreichem Abschluss.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-users-viewfinder"></i></div><div class="b-row-text"><h4>Exklusiver Talentpool</h4><p>Vorqualifizierte algerische Fachkräfte — exklusiv.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-bolt"></i></div><div class="b-row-text"><h4>Prozess-Effizienz §81a</h4><p>Beschleunigtes Fachkräfteverfahren inklusive.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-shield-halved"></i></div><div class="b-row-text"><h4>Integrationsrisiko minimiert</h4><p>Onboarding-Pakete für nachhaltige Eingliederung.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-filter"></i></div><div class="b-row-text"><h4>Vorgefilterter Bewerberpool</h4><p>Jede Bewerbung persönlich geprüft — nur Passende.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-headset"></i></div><div class="b-row-text"><h4>Betreuung nach Einstellung</h4><p>Wir bleiben ansprechbar — für Integration und Fragen.</p></div></div>
+      </div>
     </div>
-
-  </div>
-
-  <!-- Bottom CTAs -->
-  <div class="bridge-bottom">
-    <div class="bb-card bb-bewerber">
-      <div class="bb-icon"><i class="fa-solid fa-rocket"></i></div>
-      <div class="bb-text"><h4>Bereit für Ihren Weg nach Deutschland?</h4><p>Kostenlos registrieren und Video-Profil erstellen — in Minuten.</p></div>
-      <a href="registraion.html" class="bb-btn">Jetzt starten →</a>
-    </div>
-    <div class="bb-card bb-company">
-      <div class="bb-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-      <div class="bb-text"><h4>Fachkräftemangel lösen?</h4><p>Zugang zu geprüften, motivierten Kandidaten — ohne Vorabkosten.</p></div>
-      <a href="login_company.php" class="bb-btn">Kandidaten sehen →</a>
+    <div class="row g-3 mt-4">
+      <div class="col-12 col-md-6"><div class="bb-card bb-green"><div class="bb-icon bb-icon-green"><i class="fa-solid fa-rocket"></i></div><div class="bb-text"><h4>Bereit für Ihren Weg nach Deutschland?</h4><p>Kostenlos registrieren und Video-Profil erstellen — in Minuten.</p></div><a href="registraion.html" class="bb-btn bb-btn-green">Jetzt starten →</a></div></div>
+      <div class="col-12 col-md-6"><div class="bb-card bb-amber"><div class="bb-icon bb-icon-amber"><i class="fa-solid fa-magnifying-glass"></i></div><div class="bb-text"><h4>Fachkräftemangel lösen?</h4><p>Zugang zu geprüften, motivierten Kandidaten — ohne Vorabkosten.</p></div><a href="login_company.php" class="bb-btn bb-btn-amber">Kandidaten sehen →</a></div></div>
     </div>
   </div>
-
 </section>
 
-<!-- CONTACT -->
-<section id="kontakt" class="contact">
-  <div class="contact-inner">
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="kontakt" class="contact-section">
+  <div style="max-width:640px; margin:0 auto; text-align:center">
     <span class="section-tag">Kontakt</span>
     <h2>Haben Sie Fragen?</h2>
-    <p>Schreiben Sie uns — wir antworten innerhalb von 24 Stunden und helfen Ihnen bei jedem Schritt.</p>
-    <form class="contact-form">
-      <div class="form-row-2">
-        <div class="field"><label>Ihr Name</label><input type="text" placeholder="Max Mustermann"></div>
-        <div class="field"><label>E-Mail</label><input type="email" placeholder="max@beispiel.de"></div>
+    <p style="font-size:.95rem; color:var(--muted); margin-bottom:2.5rem; line-height:1.7; font-weight:300">Schreiben Sie uns — wir antworten innerhalb von 24 Stunden und helfen Ihnen bei jedem Schritt.</p>
+    <form class="text-start">
+      <div class="row g-3 mb-3">
+        <div class="col-12 col-sm-6"><div class="field"><label>Ihr Name</label><input type="text" placeholder="Max Mustermann"></div></div>
+        <div class="col-12 col-sm-6"><div class="field"><label>E-Mail</label><input type="email" placeholder="max@beispiel.de"></div></div>
       </div>
-      <div class="field"><label>Betreff</label><input type="text" placeholder="Worum geht es?"></div>
-      <div class="field"><label>Nachricht</label><textarea rows="5" placeholder="Ihre Nachricht..."></textarea></div>
-      <button type="submit" class="form-submit">Nachricht senden →</button>
+      <div class="field mb-3"><label>Betreff</label><input type="text" placeholder="Worum geht es?"></div>
+      <div class="field mb-3"><label>Nachricht</label><textarea rows="5" placeholder="Ihre Nachricht..."></textarea></div>
+      <button type="submit" class="btn-submit">Nachricht senden →</button>
     </form>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
-  <div>
-    <a href="index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
-      <img src="logo_3e.jpg" alt="3E" style="height:28px;width:28px;border-radius:6px;object-fit:cover;">
-      <span style="font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;color:#fff;">3E Consulting</span>
+  <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 w-100">
+    <a href="index.html" style="display:flex; align-items:center; gap:8px; text-decoration:none;">
+      <img src="logo_3e.jpg" alt="3E" style="height:28px; width:28px; border-radius:6px; object-fit:cover;">
+      <span style="font-family:'Syne',sans-serif; font-size:.9rem; font-weight:800; color:#fff;">3E Consulting</span>
     </a>
-  </div>
-  <div class="footer-copy">© 2026 3E Consulting. Alle Rechte vorbehalten.</div>
-  <div class="footer-links">
-    <a href="impressum.php">Impressum</a>
-    <a href="impressum.php#tab-datenschutz">Datenschutz</a>
+    <div class="footer-copy">© 2026 3E Consulting. Alle Rechte vorbehalten.</div>
+    <div class="footer-links">
+      <a href="impressum.php">Impressum</a>
+      <a href="impressum.php#tab-datenschutz">Datenschutz</a>
+    </div>
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script>
-const menuToggle=document.getElementById('menuToggle');
-const menuDropdown=document.getElementById('menuDropdown');
-menuToggle.addEventListener('click',(e)=>{e.stopPropagation();menuDropdown.hidden=!menuDropdown.hidden;});
-document.querySelectorAll('.menu-toggle').forEach(btn=>{
-  btn.addEventListener('click',(e)=>{e.stopPropagation();const sub=btn.nextElementSibling;sub.hidden=!sub.hidden;btn.classList.toggle('open',!sub.hidden);});
+/* ─── Desktop dropdown menu ─── */
+const menuToggleBtn = document.getElementById('menuToggle');
+const menuDropdown  = document.getElementById('menuDropdown');
+menuToggleBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('open'); });
+document.addEventListener('click', () => {
+  menuDropdown.classList.remove('open');
+  document.querySelectorAll('.menu-l2, .menu-l3').forEach(u => u.classList.remove('open'));
+  document.querySelectorAll('.menu-toggle-btn').forEach(b => b.classList.remove('open'));
 });
-document.addEventListener('click',()=>{
-  menuDropdown.hidden=true;
-  document.querySelectorAll('.menu-level-2,.menu-level-3').forEach(u=>u.hidden=true);
-  document.querySelectorAll('.menu-toggle').forEach(b=>b.classList.remove('open'));
-});
-menuDropdown.addEventListener('click',e=>e.stopPropagation());
-document.querySelectorAll('.fb-main-card[data-target]').forEach(card=>{
-  card.addEventListener('click',()=>{
-    const targetId=card.dataset.target;
-    const panel=document.getElementById(targetId);
-    const isOpen=card.classList.contains('active');
-    document.querySelectorAll('.fb-main-card').forEach(c=>c.classList.remove('active'));
-    document.querySelectorAll('.fb-sub-panel').forEach(p=>p.classList.remove('visible'));
-    if(!isOpen){card.classList.add('active');panel.classList.add('visible');setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),50);}
+menuDropdown.addEventListener('click', e => e.stopPropagation());
+document.querySelectorAll('.menu-toggle-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const targetId = btn.dataset.target;
+    const sub = document.getElementById(targetId);
+    if (!sub) return;
+    const isOpen = sub.classList.contains('open');
+    sub.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
   });
 });
-const aboutCard=document.querySelector('.about-visual-card');
-if(aboutCard){
-  aboutCard.addEventListener('mousemove',(e)=>{
-    const rect=aboutCard.getBoundingClientRect();
-    const rotateY=((e.clientX-rect.left)/rect.width-0.5)*12;
-    const rotateX=((rect.height/2-(e.clientY-rect.top))/rect.height)*12;
-    aboutCard.style.transform=`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+
+/* ─── Mobile Nav V2 ─── */
+(function () {
+  const hamburgerBtn    = document.getElementById('hamburgerBtn');
+  const mobileNav       = document.getElementById('mobileNav');
+  const mobileNavClose  = document.getElementById('mobileNavClose');
+  const overlay         = document.getElementById('mobileNavOverlay');
+
+  function openMobileNav()  {
+    mobileNav.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileNavFn() {
+    mobileNav.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  window.closeMobileNav = closeMobileNavFn;
+
+  hamburgerBtn   .addEventListener('click', openMobileNav);
+  mobileNavClose .addEventListener('click', closeMobileNavFn);
+  overlay        .addEventListener('click', closeMobileNavFn);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNavFn(); });
+
+  /* Level-1 accordion */
+  document.querySelectorAll('.mn-accordion-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.mnTarget;
+      const body     = document.getElementById(targetId);
+      if (!body) return;
+      const isOpen = btn.classList.contains('open');
+      btn .classList.toggle('open', !isOpen);
+      body.classList.toggle('open', !isOpen);
+    });
   });
-  aboutCard.addEventListener('mouseleave',()=>{aboutCard.style.transform='perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';});
+
+  /* Level-2 sub-accordion */
+  document.querySelectorAll('.mn-sub-label').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.mnSub;
+      const body     = document.getElementById(targetId);
+      if (!body) return;
+      const isOpen = btn.classList.contains('open');
+      btn .classList.toggle('open', !isOpen);
+      body.classList.toggle('open', !isOpen);
+    });
+  });
+})();
+
+/* ─── Fachbereiche accordion ─── */
+document.querySelectorAll('.fb-main-card[data-target]').forEach(card => {
+  card.addEventListener('click', () => {
+    const targetId = card.dataset.target;
+    const panel    = document.getElementById(targetId);
+    const isOpen   = card.classList.contains('active');
+    document.querySelectorAll('.fb-main-card').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.fb-sub-panel').forEach(p => p.classList.remove('visible'));
+    if (!isOpen) {
+      card.classList.add('active');
+      panel.classList.add('visible');
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  });
+});
+
+/* ─── About card 3D tilt ─── */
+const aboutCard = document.getElementById('aboutCard');
+if (aboutCard) {
+  aboutCard.addEventListener('mousemove', (e) => {
+    const rect    = aboutCard.getBoundingClientRect();
+    const rotateY = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+    const rotateX = ((rect.height / 2 - (e.clientY - rect.top)) / rect.height) * 12;
+    aboutCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+  });
+  aboutCard.addEventListener('mouseleave', () => {
+    aboutCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+  });
 }
+
+/* ─── Scroll reveal ─── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.svc-card, .pstep, .about-item, .b-row, .fb-main-card, .fb-standalone').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  observer.observe(el);
+});
 </script>
 </body>
 </html>
