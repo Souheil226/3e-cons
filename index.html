@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -603,29 +602,66 @@ body::before {
   background: var(--glass);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 1.4rem 1rem;
+  padding: 1.4rem .8rem;
   cursor: pointer;
   transition: all .25s;
   text-align: center;
   height: 100%;
+  overflow: hidden; /* ← FIX 1: يمنع الزر من الخروج عن الإطار */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .fb-main-card:hover { background: rgba(217,119,6,.07); border-color: rgba(217,119,6,.4); transform: translateY(-2px); }
 .fb-main-card.active { background: rgba(217,119,6,.1); border-color: var(--accent); box-shadow: 0 0 0 1px rgba(217,119,6,.2); }
 .fb-main-card.featured { background: rgba(217,119,6,.08); border-color: rgba(217,119,6,.45); }
-.fb-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(217,119,6,.12); display: flex; align-items: center; justify-content: center; margin: 0 auto .85rem; transition: background .2s; }
+.fb-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(217,119,6,.12); display: flex; align-items: center; justify-content: center; margin: 0 auto .85rem; transition: background .2s; flex-shrink: 0; }
 .fb-main-card.active .fb-icon, .fb-main-card:hover .fb-icon { background: rgba(217,119,6,.2); }
 .fb-icon i { color: var(--accent); font-size: 1.2rem; }
 .fb-main-card h3 { font-family: var(--font-display); font-size: .88rem; font-weight: 600; color: var(--white); margin-bottom: .3rem; line-height: 1.3; }
 .fb-arrow { font-size: .7rem; color: var(--muted); margin-top: .5rem; transition: color .2s, transform .2s; display: block; }
 .fb-main-card.active .fb-arrow { color: var(--accent); transform: rotate(180deg); }
-.fb-badge { display: inline-block; font-size: .65rem; padding: .2rem .55rem; border-radius: 999px; background: rgba(217,119,6,.2); color: var(--accent); font-weight: 600; margin-bottom: .4rem; }
+.fb-badge { display: inline-block; font-size: .65rem; padding: .2rem .55rem; border-radius: 999px; background: rgba(217,119,6,.2); color: var(--accent); font-weight: 600; margin-bottom: .4rem; white-space: nowrap; }
+
+/* ← FIX 1: إصلاح زر Voraussetzungen على الموبايل */
 .fb-req-btn {
-  display: inline-flex; align-items: center; gap: .4rem; margin-top: .85rem; padding: .42rem .95rem;
-  border-radius: 7px; font-size: .72rem; font-weight: 600; color: var(--accent); border: 1px solid rgba(217,119,6,.35);
-  background: rgba(217,119,6,.08); text-decoration: none; transition: all .2s; cursor: pointer; font-family: var(--font-body); white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  margin-top: .85rem;
+  padding: .42rem .7rem;
+  border-radius: 7px;
+  font-size: .68rem;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid rgba(217,119,6,.35);
+  background: rgba(217,119,6,.08);
+  text-decoration: none;
+  transition: all .2s;
+  cursor: pointer;
+  font-family: var(--font-body);
+  white-space: normal;       /* يسمح بالتفاف النص */
+  text-align: center;
+  line-height: 1.3;
+  word-break: keep-all;
+  max-width: 100%;           /* لا يتجاوز عرض البطاقة */
+  justify-content: center;
 }
 .fb-req-btn:hover { background: rgba(217,119,6,.18); border-color: var(--accent); transform: translateY(-1px); color: var(--accent); }
-.fb-standalone { background: var(--glass); border: 1px solid var(--border); border-radius: 14px; padding: 1.4rem 1rem; text-align: center; transition: all .25s; height: 100%; }
+
+.fb-standalone {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.4rem .8rem;
+  text-align: center;
+  transition: all .25s;
+  height: 100%;
+  overflow: hidden; /* ← FIX 1 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .fb-standalone:hover { background: rgba(217,119,6,.05); border-color: rgba(217,119,6,.35); transform: translateY(-2px); }
 .fb-standalone h3 { font-family: var(--font-display); font-size: .88rem; font-weight: 600; color: var(--white); margin-bottom: .25rem; }
 .fb-standalone p { font-size: .75rem; color: var(--muted); margin: 0; }
@@ -701,6 +737,14 @@ body::before {
 .bb-btn-amber { color: var(--accent); border-color: rgba(217,119,6,.28); background: rgba(217,119,6,.08); }
 .bb-btn-amber:hover { background: rgba(217,119,6,.18); color: var(--accent); }
 
+/* ← FIX 2: عمود الصورة الوسطى في bridge يتمركز عمودياً */
+.bridge-center-col {
+  display: flex !important;
+  align-items: center !important;    /* تمركز عمودي */
+  justify-content: center !important;
+  align-self: stretch;               /* يمتد لكامل ارتفاع الـ row */
+}
+
 /* ═══════════════ CONTACT ═══════════════ */
 .contact-section { padding: 8rem 5vw; background: var(--navy); }
 .contact-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; }
@@ -745,10 +789,14 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
   .bb-btn { display: none; }
   footer { flex-direction: column; text-align: center; gap: .75rem; }
   .footer-links a { margin-left: .75rem; margin-right: .75rem; }
+  /* ← FIX 1 موبايل: تصغير حجم الخط أكثر للبطاقات الصغيرة */
+  .fb-req-btn { font-size: .62rem; padding: .35rem .55rem; gap: .25rem; }
+  .fb-req-btn i { font-size: .65rem; }
 }
 @media (max-width: 575px) {
   .hero { padding: 5rem 1rem 2.5rem; }
   .hero h1 { font-size: 1.75rem; }
+  .fb-main-card, .fb-standalone { padding: 1rem .6rem; }
 }
 </style>
 </head>
@@ -813,8 +861,6 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
 <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
-
-  <!-- Header -->
   <div class="mn-header">
     <a href="index.html" class="mn-brand">
       <img src="logo_3e.jpg" alt="3E">
@@ -825,121 +871,48 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
     </button>
   </div>
 
-  <!-- Body -->
   <div class="mn-body">
-
     <div class="mn-section-label">Navigation</div>
-
-    <a href="#home"         class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-house"></i></span>
-      Startseite
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="#services"     class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span>
-      Leistungen
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="#fachbereiche" class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-briefcase"></i></span>
-      Branchen
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="#process"      class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-timeline"></i></span>
-      Ablauf
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="#about"        class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-users"></i></span>
-      Über uns
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="#kontakt"      class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-envelope"></i></span>
-      Kontakt
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
+    <a href="#home"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span>Startseite<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="#services"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span>Leistungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="#fachbereiche" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-briefcase"></i></span>Branchen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="#process"      class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline"></i></span>Ablauf<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="#about"        class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users"></i></span>Über uns<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="#kontakt"      class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-envelope"></i></span>Kontakt<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
 
     <div class="mn-divider"></div>
     <div class="mn-section-label">Mehr Seiten</div>
 
-    <!-- Service accordion -->
     <button class="mn-accordion-btn" data-mn-target="mn-acc-service">
-      <span class="mn-icon"><i class="fa-solid fa-gear"></i></span>
-      Service
-      <i class="fa-solid fa-chevron-right mn-chevron"></i>
+      <span class="mn-icon"><i class="fa-solid fa-gear"></i></span>Service<i class="fa-solid fa-chevron-right mn-chevron"></i>
     </button>
     <div class="mn-accordion-body" id="mn-acc-service">
-      <!-- Bewerber sub -->
-      <button class="mn-sub-label" data-mn-sub="mn-sub-bewerber">
-        Bewerber
-        <i class="fa-solid fa-chevron-right mn-chevron"></i>
-      </button>
+      <button class="mn-sub-label" data-mn-sub="mn-sub-bewerber">Bewerber<i class="fa-solid fa-chevron-right mn-chevron"></i></button>
       <div class="mn-sub-body" id="mn-sub-bewerber">
         <a href="service-bewerber.html#dokumentenorganisation" class="mn-sub2-link" onclick="closeMobileNav()">Dokumentenorganisation</a>
         <a href="service-bewerber.html#bewerbungsprozess"      class="mn-sub2-link" onclick="closeMobileNav()">Bewerbungsprozess</a>
         <a href="service-bewerber.html#profil-video"           class="mn-sub2-link" onclick="closeMobileNav()">Profil-Video Anleitung</a>
       </div>
-      <!-- Unternehmen sub -->
-      <button class="mn-sub-label" data-mn-sub="mn-sub-unternehmen">
-        Unternehmen
-        <i class="fa-solid fa-chevron-right mn-chevron"></i>
-      </button>
+      <button class="mn-sub-label" data-mn-sub="mn-sub-unternehmen">Unternehmen<i class="fa-solid fa-chevron-right mn-chevron"></i></button>
       <div class="mn-sub-body" id="mn-sub-unternehmen">
         <a href="service-unternehmen.html#vermittlung"         class="mn-sub2-link" onclick="closeMobileNav()">Vermittlung von Fachkräften</a>
         <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-sub2-link" onclick="closeMobileNav()">Beschwerdeverfahren</a>
       </div>
     </div>
 
-    <a href="Bewerbung.html"            class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span>
-      Bewerbung
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="vermitlung.html"           class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-list-check"></i></span>
-      Voraussetzungen
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="arbeitsmarkt.html"         class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span>
-      Arbeitsmarkt
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="arbeitundsozialrecht.html" class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span>
-      Arbeits- und Sozialrecht
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="aufenthaltsrecht.html"     class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-passport"></i></span>
-      Aufenthaltsrecht
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="alltag-deutschland.html"   class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-sun"></i></span>
-      Alltag in Deutschland
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-    <a href="Chatbot.html"              class="mn-link" onclick="closeMobileNav()">
-      <span class="mn-icon"><i class="fa-solid fa-robot"></i></span>
-      Chatbot-3e
-      <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
-    </a>
-
-  </div><!-- /mn-body -->
-
-  <!-- Footer CTAs -->
-  <div class="mn-footer">
-    <a href="registraion.html" class="mn-cta-primary" onclick="closeMobileNav()">
-      <i class="fa-solid fa-arrow-right"></i> Als Bewerber starten
-    </a>
-    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()">
-      <i class="fa-solid fa-building"></i> Für Unternehmen
-    </a>
+    <a href="Bewerbung.html"            class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span>Bewerbung<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="vermitlung.html"           class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span>Voraussetzungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="arbeitsmarkt.html"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span>Arbeitsmarkt<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="arbeitundsozialrecht.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span>Arbeits- und Sozialrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="aufenthaltsrecht.html"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-passport"></i></span>Aufenthaltsrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="alltag-deutschland.html"   class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span>Alltag in Deutschland<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+    <a href="Chatbot.html"              class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-robot"></i></span>Chatbot-3e<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
   </div>
 
+  <div class="mn-footer">
+    <a href="registraion.html" class="mn-cta-primary" onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> Als Bewerber starten</a>
+    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building"></i> Für Unternehmen</a>
+  </div>
 </nav>
 
 <!-- ═══════════════ HERO ═══════════════ -->
@@ -998,11 +971,47 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
       <div class="col-12 col-md-6"><p class="section-sub mb-0">Ausgewählte Fachbereiche, in denen der Bedarf in Deutschland besonders hoch ist.</p></div>
     </div>
     <div class="row g-3 mb-3">
-      <div class="col-6 col-sm-4 col-lg"><div class="fb-main-card featured" data-target="sub-medizin"><span class="fb-badge">Hohe Nachfrage</span><div class="fb-icon mx-auto"><i class="fa-solid fa-heart-pulse"></i></div><h3>Medizin &amp; Pflege</h3><span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span><a href="vermitlung.html#aerzte" class="fb-req-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a></div></div>
-      <div class="col-6 col-sm-4 col-lg"><div class="fb-main-card" data-target="sub-handwerk"><div class="fb-icon mx-auto"><i class="fa-solid fa-helmet-safety"></i></div><h3>Handwerk</h3><span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span><a href="vermitlung.html#ausbildung" class="fb-req-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a></div></div>
-      <div class="col-6 col-sm-4 col-lg"><div class="fb-standalone"><div class="fb-icon mx-auto"><i class="fa-solid fa-utensils"></i></div><h3>Gastronomie</h3><p>Küche, Service &amp; Restaurantbetrieb</p><a href="vermitlung.html#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a></div></div>
-      <div class="col-6 col-sm-4 col-lg"><div class="fb-standalone"><div class="fb-icon mx-auto"><i class="fa-solid fa-bell-concierge"></i></div><h3>Hotel</h3><p>Empfang, Housekeeping &amp; Management</p><a href="vermitlung.html#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a></div></div>
-      <div class="col-6 col-sm-4 col-lg"><div class="fb-standalone"><div class="fb-icon mx-auto"><i class="fa-solid fa-truck-fast"></i></div><h3>Logistik</h3><p>Lager, Transport &amp; Lieferkette</p><a href="vermitlung.html#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a></div></div>
+      <div class="col-6 col-sm-4 col-lg">
+        <div class="fb-main-card featured" data-target="sub-medizin">
+          <span class="fb-badge">Hohe Nachfrage</span>
+          <div class="fb-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <h3>Medizin &amp; Pflege</h3>
+          <span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+          <a href="vermitlung.html#aerzte" class="fb-req-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-lg">
+        <div class="fb-main-card" data-target="sub-handwerk">
+          <div class="fb-icon"><i class="fa-solid fa-helmet-safety"></i></div>
+          <h3>Handwerk</h3>
+          <span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+          <a href="vermitlung.html#ausbildung" class="fb-req-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-lg">
+        <div class="fb-standalone">
+          <div class="fb-icon"><i class="fa-solid fa-utensils"></i></div>
+          <h3>Gastronomie</h3>
+          <p>Küche, Service &amp; Restaurantbetrieb</p>
+          <a href="vermitlung.html#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-lg">
+        <div class="fb-standalone">
+          <div class="fb-icon"><i class="fa-solid fa-bell-concierge"></i></div>
+          <h3>Hotel</h3>
+          <p>Empfang, Housekeeping &amp; Management</p>
+          <a href="vermitlung.html#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a>
+        </div>
+      </div>
+      <div class="col-6 col-sm-4 col-lg">
+        <div class="fb-standalone">
+          <div class="fb-icon"><i class="fa-solid fa-truck-fast"></i></div>
+          <h3>Logistik</h3>
+          <p>Lager, Transport &amp; Lieferkette</p>
+          <a href="vermitlung.html#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a>
+        </div>
+      </div>
     </div>
     <div class="fb-sub-panel" id="sub-medizin">
       <div class="fb-sub-title"><i class="fa-solid fa-heart-pulse me-1"></i>Medizin &amp; Pflege — Spezialisierungen</div>
@@ -1074,7 +1083,8 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
     <p class="bridge-desc mx-auto mt-2">Klare Mehrwerte für Bewerber und Unternehmen — transparent und ohne versteckte Kosten.</p>
   </div>
   <div style="max-width:1200px; margin:0 auto">
-    <div class="row g-4 align-items-start">
+    <!-- ← FIX 2: align-items-center بدل align-items-start -->
+    <div class="row g-4 align-items-center">
       <div class="col-12 col-xl-5">
         <div class="col-label col-label-green"><i class="fa-solid fa-user-tie"></i> Für Bewerber</div>
         <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-circle-check"></i></div><div class="b-row-text"><h4>Kostenlose Registrierung</h4><p>Gratis starten, ohne jedes finanzielle Risiko.</p></div></div>
@@ -1086,9 +1096,12 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
         <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-passport"></i></div><div class="b-row-text"><h4>Visum &amp; Behörden</h4><p>Vollständige Begleitung durch alle Visaprozesse.</p></div></div>
         <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-comments"></i></div><div class="b-row-text"><h4>Dreisprachiger Support</h4><p>Deutsch, Französisch und Arabisch — immer erreichbar.</p></div></div>
       </div>
-      <div class="col-2 d-none d-xl-flex align-items-center justify-content-center bridge-center-col">
+
+      <!-- ← FIX 2: الصورة الوسطى - bridge-center-col مع align-self stretch -->
+      <div class="col-2 bridge-center-col d-none d-xl-flex">
         <img src="dj.png" alt="3E Consulting" class="bridge-logo-img">
       </div>
+
       <div class="col-12 col-xl-5">
         <div class="col-label col-label-amber"><i class="fa-solid fa-building"></i> Für Unternehmen</div>
         <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-award"></i></div><div class="b-row-text"><h4>Geprüfte B1/B2-Fachkräfte</h4><p>Anerkanntes Deutschzertifikat — sofort einsatzbereit.</p></div></div>
@@ -1172,16 +1185,8 @@ document.querySelectorAll('.menu-toggle-btn').forEach(btn => {
   const mobileNavClose  = document.getElementById('mobileNavClose');
   const overlay         = document.getElementById('mobileNavOverlay');
 
-  function openMobileNav()  {
-    mobileNav.classList.add('open');
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMobileNavFn() {
-    mobileNav.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  function openMobileNav()  { mobileNav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMobileNavFn() { mobileNav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
 
   window.closeMobileNav = closeMobileNavFn;
 
@@ -1190,7 +1195,6 @@ document.querySelectorAll('.menu-toggle-btn').forEach(btn => {
   overlay        .addEventListener('click', closeMobileNavFn);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNavFn(); });
 
-  /* Level-1 accordion */
   document.querySelectorAll('.mn-accordion-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetId = btn.dataset.mnTarget;
@@ -1202,7 +1206,6 @@ document.querySelectorAll('.menu-toggle-btn').forEach(btn => {
     });
   });
 
-  /* Level-2 sub-accordion */
   document.querySelectorAll('.mn-sub-label').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetId = btn.dataset.mnSub;
