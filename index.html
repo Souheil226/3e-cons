@@ -717,8 +717,8 @@ body::before {
 .b-row-icon-amber i { color: var(--accent); font-size: .9rem; }
 .b-row-text h4 { font-size: .82rem; font-weight: 500; color: var(--white); margin: 0 0 2px; }
 .b-row-text p { font-size: .73rem; color: var(--muted); margin: 0; line-height: 1.4; font-weight: 300; }
-.bridge-logo-img { width: 100%; max-width: 300px; display: block; opacity: .95; transition: transform .3s, opacity .3s; margin: 0 auto; }
-.bridge-logo-img:hover { transform: scale(1.06); opacity: 1; }
+.bridge-logo-img { width: 140%; max-width: 300px; display: block; opacity: .95; transition: transform .3s, opacity .3s; margin: 0 auto; }
+.bridge-logo-img:hover { transform: scale(1.09); opacity: 1; }
 .bb-card { border-radius: 14px; padding: 1.3rem 1.5rem; display: flex; align-items: center; gap: 1rem; border: 1px solid; transition: border-color .2s, background .2s; height: 100%; }
 .bb-green { background: rgba(74,222,128,.04); border-color: rgba(74,222,128,.16); }
 .bb-green:hover { border-color: rgba(74,222,128,.32); background: rgba(74,222,128,.07); }
@@ -746,13 +746,191 @@ body::before {
 }
 
 /* ═══════════════ CONTACT ═══════════════ */
-.contact-section { padding: 8rem 5vw; background: var(--navy); }
-.contact-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; }
-.field label { font-size: .78rem; color: var(--muted); letter-spacing: .04em; margin-bottom: .4rem; display: block; }
-.field input, .field textarea { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 8px; padding: .8rem 1rem; font-size: .9rem; color: var(--white); font-family: var(--font-body); outline: none; transition: border-color .2s; resize: none; width: 100%; }
-.field input:focus, .field textarea:focus { border-color: var(--accent); background: rgba(217,119,6,.05); outline: none; box-shadow: none; }
-.btn-submit { background: var(--accent); color: var(--white); padding: .9rem; border-radius: 10px; font-size: .95rem; font-weight: 500; border: none; cursor: pointer; transition: all .2s; font-family: var(--font-body); width: 100%; }
-.btn-submit:hover { background: var(--accent-hover); transform: translateY(-2px); }
+.contact-section {
+  padding: 8rem 5vw;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -150px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217,119,6,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.contact-section::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,222,128,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.contact-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-info-side .section-tag { margin-bottom: .75rem; }
+.contact-info-side h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.contact-info-side p {
+  font-size: .95rem;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+.cinfo-cards { display: flex; flex-direction: column; gap: .85rem; }
+.cinfo-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+  text-decoration: none;
+  transition: all .2s;
+}
+.cinfo-card:hover {
+  background: rgba(217,119,6,.06);
+  border-color: rgba(217,119,6,.3);
+  transform: translateX(4px);
+}
+.cinfo-card-icon {
+  width: 44px; height: 44px;
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cinfo-card-icon.green { background: rgba(74,222,128,.1); border: 1px solid rgba(74,222,128,.2); }
+.cinfo-card-icon.green i { color: var(--bright); font-size: 1.1rem; }
+.cinfo-card-icon.amber { background: rgba(217,119,6,.1); border: 1px solid rgba(217,119,6,.2); }
+.cinfo-card-icon.amber i { color: var(--accent); font-size: 1.1rem; }
+.cinfo-card-text { display: flex; flex-direction: column; }
+.cinfo-card-text span { font-size: .72rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .2rem; }
+.cinfo-card-text strong { font-size: .9rem; color: var(--white); font-weight: 500; }
+
+/* FORM SIDE */
+.contact-form-side {
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.contact-form-side::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.contact-form-side h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: .4rem;
+}
+.contact-form-side p {
+  font-size: .82rem;
+  color: var(--muted);
+  margin-bottom: 1.8rem;
+  font-weight: 300;
+}
+.field label {
+  font-size: .75rem;
+  color: var(--muted);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: .45rem;
+  display: block;
+}
+.field input, .field textarea {
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .9rem 1.1rem;
+  font-size: .9rem;
+  color: var(--white);
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color .2s, background .2s;
+  resize: none;
+  width: 100%;
+}
+.field input:focus, .field textarea:focus {
+  border-color: var(--accent);
+  background: rgba(217,119,6,.05);
+  outline: none;
+  box-shadow: none;
+}
+.field input::placeholder, .field textarea::placeholder { color: rgba(134,163,142,.45); }
+
+/* type selector */
+.type-selector { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: 1.2rem; }
+.type-btn {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  color: var(--muted);
+  font-size: .82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: var(--font-body);
+}
+.type-btn:hover { border-color: rgba(217,119,6,.4); color: var(--white); }
+.type-btn.active { border-color: var(--accent); background: rgba(217,119,6,.1); color: var(--white); }
+.type-btn i { font-size: .9rem; color: var(--accent); }
+.type-label { font-size: .72rem; color: var(--muted); letter-spacing:.06em; text-transform:uppercase; margin-bottom:.5rem; display:block; }
+
+.btn-submit {
+  background: var(--accent);
+  color: var(--white);
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: .95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all .25s;
+  font-family: var(--font-display);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  letter-spacing: .02em;
+  margin-top: .5rem;
+}
+.btn-submit:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(217,119,6,.3); }
+.btn-submit i { font-size: .9rem; }
+
+@media (max-width: 991px) {
+  .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+}
 
 /* ═══════════════ FOOTER ═══════════════ */
 footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: rgba(15,32,23,.92); }
@@ -1123,19 +1301,53 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 
 <!-- ═══════════════ CONTACT ═══════════════ -->
 <section id="kontakt" class="contact-section">
-  <div style="max-width:640px; margin:0 auto; text-align:center">
-    <span class="section-tag">Kontakt</span>
-    <h2>Haben Sie Fragen?</h2>
-    <p style="font-size:.95rem; color:var(--muted); margin-bottom:2.5rem; line-height:1.7; font-weight:300">Schreiben Sie uns — wir antworten innerhalb von 24 Stunden und helfen Ihnen bei jedem Schritt.</p>
-    <form class="text-start">
-      <div class="row g-3 mb-3">
-        <div class="col-12 col-sm-6"><div class="field"><label>Ihr Name</label><input type="text" placeholder="Max Mustermann"></div></div>
-        <div class="col-12 col-sm-6"><div class="field"><label>E-Mail</label><input type="email" placeholder="max@beispiel.de"></div></div>
+  <div class="contact-wrap">
+
+    <!-- INFO SIDE -->
+    <div class="contact-info-side">
+      <span class="section-tag">Kontakt</span>
+      <h2>Lassen Sie uns sprechen</h2>
+      <p>Haben Sie Fragen zu Ihrer Bewerbung oder Ihrer Stellensuche? Wir sind für Sie da — auf Deutsch, Französisch und Arabisch.</p>
+      <div class="cinfo-cards">
+        <a href="https://wa.me/213XXXXXXXXX" class="cinfo-card" target="_blank">
+          <div class="cinfo-card-icon green"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="cinfo-card-text"><span>WhatsApp</span><strong>+213 555827722</strong></div>
+        </a>
+
+        <a href="mailto:info@3e-consulting.de" class="cinfo-card">
+          <div class="cinfo-card-icon amber"><i class="fa-solid fa-envelope"></i></div>
+          <div class="cinfo-card-text"><span>E-Mail</span><strong>merabtisouheil0@gmail.com</strong></div>
+        </a>
+      
       </div>
-      <div class="field mb-3"><label>Betreff</label><input type="text" placeholder="Worum geht es?"></div>
-      <div class="field mb-3"><label>Nachricht</label><textarea rows="5" placeholder="Ihre Nachricht..."></textarea></div>
-      <button type="submit" class="btn-submit">Nachricht senden →</button>
-    </form>
+    </div>
+
+    <!-- FORM SIDE -->
+    <div class="contact-form-side">
+      <h3>Nachricht senden</h3>
+      <p>Wir antworten innerhalb von 24 Stunden.</p>
+
+      <span class="type-label">Sie sind</span>
+      <div class="type-selector">
+        <button class="type-btn active" onclick="this.classList.add('active');this.nextElementSibling.classList.remove('active')">
+          <i class="fa-solid fa-user-tie"></i> Bewerber
+        </button>
+        <button class="type-btn" onclick="this.classList.add('active');this.previousElementSibling.classList.remove('active')">
+          <i class="fa-solid fa-building"></i> Unternehmen
+        </button>
+      </div>
+
+      <form>
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-sm-6"><div class="field"><label>Ihr Name</label><input type="text" placeholder="Max Mustermann"></div></div>
+          <div class="col-12 col-sm-6"><div class="field"><label>E-Mail</label><input type="email" placeholder="max@beispiel.de"></div></div>
+        </div>
+        <div class="field mb-3"><label>Telefon / WhatsApp</label><input type="tel" placeholder="+213 XX XX XX XX"></div>
+        <div class="field mb-3"><label>Nachricht</label><textarea rows="5" placeholder="Wie können wir Ihnen helfen?"></textarea></div>
+        <button type="submit" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> Nachricht senden</button>
+      </form>
+    </div>
+
   </div>
 </section>
 
