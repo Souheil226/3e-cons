@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arbeits- und Sozialrecht in Deutschland | 3E Consulting</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <style>
@@ -22,34 +23,22 @@
     }
     *,*::before,*::after{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{font-family:var(--font-body);background:var(--navy);color:#fff;padding-top:70px}
+    body{font-family:var(--font-body);background:var(--navy);color:#fff;padding-top: 72px}
 
     /* ── NAV ── */
-    .site-nav{background:rgba(15,32,23,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-    .nav-brand-img{height:36px;width:36px;border-radius:8px;object-fit:cover}
-    .nav-brand-text{font-family:var(--font-display);font-size:1rem;font-weight:800;color:#fff;letter-spacing:.06em}
-    .nav-link-item{font-size:.875rem;color:var(--muted)!important;transition:color .2s}
-    .nav-link-item:hover{color:#fff!important}
+    
+    
+    
+    
     .btn-menu{background:var(--accent);color:#fff;border:none;font-size:.82rem;font-weight:500;border-radius:8px;padding:.45rem 1.1rem}
     .btn-menu:hover{background:#b45309;color:#fff}
 
     /* ── DROPDOWN ── */
-    .custom-dropdown{
-      background:rgba(15,32,23,.97);
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:.75rem;
-      min-width:260px;
-      max-width:calc(100vw - 1.5rem);
-      box-shadow:0 20px 50px rgba(0,0,0,.4);
-    }
-    .custom-dropdown .dropdown-item{
-      color:rgba(255,255,255,.7);font-size:.85rem;border-radius:6px;
-      padding:.5rem .7rem;white-space:normal;
-    }
-    .custom-dropdown .dropdown-item:hover{background:var(--glass);color:#fff}
-    .custom-dropdown .dropdown-divider{border-color:var(--border)}
-    .sub-label{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:.4rem .7rem .1rem}
+    
+    
+    
+    
+    
 
     /* ── HERO ── */
     .section-tag{font-size:.72rem;font-weight:500;color:var(--accent);letter-spacing:.15em;text-transform:uppercase}
@@ -122,14 +111,11 @@
 
     /* ══ MOBILE ══════════════════════════════════════════════════ */
     @media(max-width:991px){
-      .dropdown-menu.custom-dropdown{
-        right:0 !important;
-        left:auto !important;
-      }
+      .dropdown-menu
     }
 
     @media(max-width:768px){
-      body{padding-top:64px}
+      body{padding-top: 72px}
       .page-hero h1{font-size:clamp(1.65rem,7vw,2.2rem)}
       .page-hero p{font-size:.9rem}
 
@@ -157,49 +143,391 @@
       .report-section h2{font-size:1.05rem}
       .rights-table{font-size:.78rem}
 
-      .custom-dropdown{
-        min-width:0 !important;
-        width:calc(100vw - 1.5rem) !important;
-      }
+      
     }
+  
+  /* ══════════════════════════════════════════════
+     3E CONSULTING — NAVBAR CSS (from index.html)
+     ══════════════════════════════════════════════ */
+
+  /* ── Navbar wrapper ── */
+  .navbar-3e {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1050;
+    padding: 1rem 5vw;
+    background: rgba(15,32,23,.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Brand ── */
+  .navbar-brand-3e {
+    display: flex; align-items: center; gap: 9px; text-decoration: none;
+  }
+  .navbar-brand-3e img {
+    height: 36px; width: 36px; border-radius: 8px; object-fit: cover;
+  }
+  .navbar-brand-3e span {
+    font-family: var(--font-display);
+    font-size: 1.05rem; font-weight: 800;
+    color: #fff; letter-spacing: .06em; white-space: nowrap;
+  }
+
+  /* ── Desktop nav links ── */
+  .nav-link-3e {
+    font-size: .875rem; color: var(--muted) !important;
+    text-decoration: none; transition: color .2s; padding: .3rem .6rem;
+  }
+  .nav-link-3e:hover { color: #ffffff !important; }
+
+  /* ── MENÜ button ── */
+  .btn-menu {
+    background: var(--accent); color: #ffffff !important;
+    padding: .55rem 1.3rem; border-radius: 8px;
+    font-size: .85rem; font-weight: 500; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: .4rem;
+    transition: background .2s, transform .15s;
+  }
+  .btn-menu:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+  /* ── Desktop dropdown panel ── */
+  .nav-dropdown-panel {
+    position: absolute; top: calc(100% + .6rem); right: 0;
+    min-width: 340px; max-width: 420px;
+    max-height: 75vh; overflow-y: auto;
+    background: rgba(15,32,23,.97);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 1rem; backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    z-index: 200; display: none;
+  }
+  .nav-dropdown-panel.open { display: block; }
+
+  /* ── Hamburger ── */
+  .hamburger-btn {
+    background: transparent; border: 1px solid var(--border);
+    border-radius: 8px; color: #ffffff;
+    padding: .45rem .75rem; font-size: 1.1rem;
+    cursor: pointer; display: none; align-items: center;
+    transition: background .2s, border-color .2s;
+  }
+  .hamburger-btn:hover {
+    background: rgba(217,119,6,.1); border-color: rgba(217,119,6,.4);
+  }
+
+  /* ── Mobile overlay ── */
+  .mobile-nav-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.55); z-index: 1055;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s ease; backdrop-filter: blur(4px);
+  }
+  .mobile-nav-overlay.open { opacity: 1; pointer-events: all; }
+
+  /* ── Mobile drawer ── */
+  .mobile-nav {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: min(320px, 88vw);
+    background: linear-gradient(160deg, #0d2619 0%, #091a0f 100%);
+    border-right: 1px solid rgba(74,222,128,.14);
+    z-index: 1060; display: flex; flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform .32s cubic-bezier(.4,0,.2,1); overflow: hidden;
+  }
+  .mobile-nav.open { transform: translateX(0); }
+
+  .mn-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.1rem .85rem;
+    border-bottom: 1px solid rgba(74,222,128,.1); flex-shrink: 0;
+  }
+  .mn-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .mn-brand img { height: 30px; width: 30px; border-radius: 7px; object-fit: cover; }
+  .mn-brand span {
+    font-family: var(--font-display);
+    font-size: .9rem; font-weight: 800; color: #fff; letter-spacing: .06em;
+  }
+  .mn-close {
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 8px; color: var(--muted);
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; cursor: pointer;
+    transition: background .15s, color .15s; flex-shrink: 0;
+  }
+  .mn-close:hover { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
+
+  .mn-body {
+    flex: 1; padding: .6rem 0 .5rem;
+    overflow-y: auto; overflow-x: hidden;
+  }
+  .mn-body::-webkit-scrollbar { width: 3px; }
+  .mn-body::-webkit-scrollbar-track { background: transparent; }
+  .mn-body::-webkit-scrollbar-thumb { background: rgba(74,222,128,.2); border-radius: 2px; }
+
+  .mn-section-label {
+    font-size: .62rem; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted);
+    padding: .9rem 1.2rem .35rem; opacity: .7;
+  }
+  .mn-link {
+    display: flex; align-items: center; gap: .75rem;
+    padding: .68rem 1.2rem; font-size: .88rem; font-weight: 500;
+    color: rgba(255,255,255,.85); text-decoration: none;
+    transition: background .15s, color .15s;
+  }
+  .mn-link .mn-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .75rem; color: var(--muted); flex-shrink: 0;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .mn-link:hover { background: rgba(217,119,6,.07); color: #fff; }
+  .mn-link:hover .mn-icon { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
+  .mn-link-arrow { margin-left: auto; font-size: .65rem; color: var(--muted); opacity: .5; }
+
+  .mn-divider { height: 1px; background: rgba(74,222,128,.08); margin: .55rem 1.2rem; }
+
+  .mn-footer {
+    padding: .85rem 1rem 1.1rem;
+    border-top: 1px solid rgba(74,222,128,.1);
+    display: flex; flex-direction: column; gap: .55rem; flex-shrink: 0;
+  }
+  .mn-cta-primary {
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: .82rem 1rem; border-radius: 10px;
+    background: var(--accent); color: #fff !important;
+    font-size: .88rem; font-weight: 600; text-decoration: none;
+    transition: background .2s, transform .15s;
+    font-family: var(--font-display); letter-spacing: .02em; white-space: nowrap;
+  }
+  .mn-cta-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .mn-cta-secondary {
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: .78rem 1rem; border-radius: 10px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+    color: rgba(255,255,255,.8) !important; font-size: .88rem; font-weight: 500;
+    text-decoration: none; transition: background .2s, border-color .2s; white-space: nowrap;
+  }
+  .mn-cta-secondary:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
+
+  /* ── Desktop dropdown interior (V2) ── */
+  .mn2-who { padding: .75rem .85rem .6rem; border-bottom: 1px solid var(--border); }
+  .mn2-who-label { font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .55rem; }
+  .mn2-who-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .mn2-who-btn {
+    display: flex; align-items: center; justify-content: center; gap: .45rem;
+    padding: .6rem .8rem; border-radius: 9px; border: 1px solid var(--border);
+    background: var(--glass); color: var(--muted);
+    font-size: .8rem; font-weight: 500; cursor: pointer;
+    transition: all .18s; font-family: var(--font-body);
+  }
+  .mn2-who-btn:hover { border-color: rgba(217,119,6,.4); color: #fff; background: rgba(217,119,6,.08); }
+  .mn2-who-btn.mn2-who-active { border-color: var(--accent); background: rgba(217,119,6,.12); color: #fff; }
+  .mn2-who-btn i { font-size: .85rem; color: var(--accent); }
+
+  .mn2-panel { padding: .5rem 0; }
+  .mn2-group { padding: .4rem .6rem; }
+  .mn2-group-label {
+    font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent);
+    padding: .5rem .6rem .4rem; opacity: .8;
+    display: flex; align-items: center; gap: .4rem;
+  }
+  .mn2-group-label i { font-size: .75rem; }
+  .mn2-link {
+    display: flex; align-items: center; gap: .6rem;
+    padding: .55rem .75rem; border-radius: 8px;
+    text-decoration: none; font-size: .83rem; color: var(--muted); transition: all .15s;
+  }
+  .mn2-link:hover { background: rgba(217,119,6,.07); color: #fff; }
+  .mn2-link i { font-size: .8rem; color: var(--accent); opacity: .7; width: 14px; text-align: center; }
+  .mn2-divider { height: 1px; background: var(--border); margin: .4rem .75rem; }
+  .mn2-chatbot-btn {
+    display: flex; align-items: center; gap: .75rem;
+    padding: .75rem .85rem; margin: .4rem .6rem .5rem;
+    border-radius: 10px; background: rgba(217,119,6,.08);
+    border: 1px solid rgba(217,119,6,.25); text-decoration: none; transition: all .2s;
+  }
+  .mn2-chatbot-btn:hover { background: rgba(217,119,6,.15); border-color: rgba(217,119,6,.4); }
+  .mn2-chatbot-btn > i:first-child { font-size: 1.1rem; color: var(--accent); flex-shrink: 0; }
+  .mn2-chatbot-btn div { display: flex; flex-direction: column; }
+  .mn2-chatbot-btn strong { font-size: .85rem; color: #fff; font-weight: 600; }
+  .mn2-chatbot-btn span { font-size: .72rem; color: var(--muted); margin-top: .1rem; }
+
+  /* ── Mobile WHO buttons ── */
+  .mn-who-btn {
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: .65rem .8rem; border-radius: 9px;
+    border: 1px solid var(--border); background: rgba(255,255,255,.04);
+    color: var(--muted); font-size: .82rem; font-weight: 500;
+    cursor: pointer; font-family: var(--font-body); transition: all .18s; width: 100%;
+  }
+  .mn-who-btn:hover { border-color: rgba(217,119,6,.4); color: #fff; }
+  .mn-who-btn.mn-who-active { border-color: var(--accent); background: rgba(217,119,6,.12); color: #fff; }
+  .mn-who-btn i { font-size: .85rem; color: var(--accent); }
+
+  /* ── Responsive ── */
+  @media (max-width: 991px) {
+    .hamburger-btn     { display: inline-flex !important; }
+    .nav-desktop-links { display: none !important; }
+  }
+  /* ═══════════════════════════════════════════════════════ */
+
   </style>
 </head>
 <body>
 
-<!-- ═══ NAVBAR ════════════════════════════════════════════ -->
-<nav class="navbar navbar-expand-lg site-nav fixed-top py-2 px-3 px-md-4">
-  <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="index.html">
-    <img src="logo_3e.jpg" alt="3E" class="nav-brand-img">
-    <span class="nav-brand-text">3E Consulting</span>
-  </a>
-  <ul class="navbar-nav ms-auto d-none d-lg-flex gap-3 me-4">
-    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#services">Leistungen</a></li>
-    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#process">Ablauf</a></li>
-    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#about">Über uns</a></li>
-    <li class="nav-item"><a class="nav-link nav-link-item" href="index.html#kontakt">Kontakt</a></li>
-  </ul>
-  <div class="dropdown">
-    <button class="btn-menu btn" type="button"
-            data-bs-toggle="dropdown" data-bs-offset="0,8"
-            aria-expanded="false">MENÜ ▾</button>
-    <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
-      <li><div class="sub-label">Service — Bewerber</div></li>
-      <li><a class="dropdown-item ps-3" href="service-bewerber.html#dokumentenorganisation">↳ Dokumentenorganisation</a></li>
-      <li><a class="dropdown-item ps-3" href="service-bewerber.html#bewerbungsprozess">↳ Bewerbungsprozess</a></li>
-      <li><a class="dropdown-item ps-3" href="service-bewerber.html#profil-video">↳ Profil-Video Anleitung</a></li>
-      <li><a class="dropdown-item ps-3" href="service-bewerber.html#erste-schritte">↳ Erste Schritte in DE</a></li>
-      <li><div class="sub-label mt-1">Service — Unternehmen</div></li>
-      <li><a class="dropdown-item ps-3" href="service-unternehmen.html#vermittlung">↳ Vermittlung von Fachkräften</a></li>
-      <li><a class="dropdown-item ps-3" href="service-unternehmen.html#beschwerdeverfahren">↳ Beschwerdeverfahren</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="Bewerbung.html">Bewerbung</a></li>
-      <li><a class="dropdown-item" href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
-      <li><a class="dropdown-item" href="arbeitundsozialrecht.html" style="color:var(--accent)">Arbeits- und Sozialrecht ✓</a></li>
-      <li><a class="dropdown-item" href="aufenthaltsrecht.html">Aufenthaltsrecht</a></li>
-      <li><a class="dropdown-item" href="alltag-deutschland.html">Alltag in Deutschland</a></li>
+<!-- ═══════════════ NAVBAR (from index.html) ═══════════════ -->
+<header class="navbar-3e">
+  <div class="d-flex align-items-center justify-content-between w-100">
+    <a href="index.html" class="navbar-brand-3e">
+      <img src="logo_3e.jpg" alt="3E Consulting">
+      <span>3E Consulting</span>
+    </a>
+    <ul class="nav-desktop-links d-flex list-unstyled mb-0 gap-3 mx-auto">
+      <li><a href="index.html#services"  class="nav-link-3e">Leistungen</a></li>
+      <li><a href="index.html#process"   class="nav-link-3e">Ablauf</a></li>
+      <li><a href="index.html#about"     class="nav-link-3e">Über uns</a></li>
+      <li><a href="index.html#kontakt"   class="nav-link-3e">Kontakt</a></li>
     </ul>
+    <div class="d-flex align-items-center gap-3">
+      <div class="position-relative d-none d-lg-block">
+        <button class="btn-menu" id="menuToggle">MENÜ ▾</button>
+        <div class="nav-dropdown-panel" id="menuDropdown">
+          <div class="mn2-who">
+            <p class="mn2-who-label">Sie sind</p>
+            <div class="mn2-who-btns">
+              <button class="mn2-who-btn mn2-who-active" onclick="mn2Switch(this,'bewerber')">
+                <i class="fa-solid fa-user-tie"></i> Bewerber
+              </button>
+              <button class="mn2-who-btn" onclick="mn2Switch(this,'unternehmen')">
+                <i class="fa-solid fa-building"></i> Unternehmen
+              </button>
+            </div>
+          </div>
+          <!-- BEWERBER PANEL -->
+          <div class="mn2-panel" id="mn2-bewerber">
+            <div class="mn2-group">
+              <div class="mn2-group-label">Jetzt starten</div>
+              <a href="Bewerbung.html"                               class="mn2-link"><i class="fa-solid fa-file-pen"></i> Bewerbung einreichen</a>
+              <a href="vermitlung.html"                              class="mn2-link"><i class="fa-solid fa-list-check"></i> Voraussetzungen prüfen</a>
+              <a href="service-bewerber.html#dokumentenorganisation" class="mn2-link"><i class="fa-solid fa-folder-open"></i> Dokumentenorganisation</a>
+              <a href="service-bewerber.html#profil-video"           class="mn2-link"><i class="fa-solid fa-video"></i> Profil-Video erstellen</a>
+            </div>
+            <div class="mn2-divider"></div>
+            <div class="mn2-group">
+              <div class="mn2-group-label"><i class="fa-solid fa-book-open"></i> Gut vorbereitet sein</div>
+              <a href="arbeitsmarkt.html"         class="mn2-link"><i class="fa-solid fa-chart-line"></i> Arbeitsmarkt Deutschland</a>
+              <a href="arbeitundsozialrecht.html" class="mn2-link"><i class="fa-solid fa-scale-balanced"></i> Arbeits- und Sozialrecht</a>
+              <a href="aufenthaltsrecht.html"     class="mn2-link"><i class="fa-solid fa-passport"></i> Aufenthaltsrecht &amp; Visum</a>
+              <a href="alltag-deutschland.html"   class="mn2-link"><i class="fa-solid fa-sun"></i> Alltag in Deutschland</a>
+            </div>
+            <div class="mn2-divider"></div>
+            <a href="Chatbot.html" class="mn2-chatbot-btn">
+              <i class="fa-solid fa-robot"></i>
+              <div><strong>Chatbot-3e</strong><span>Stellen Sie jede Frage</span></div>
+              <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
+            </a>
+          </div>
+          <!-- UNTERNEHMEN PANEL -->
+          <div class="mn2-panel" id="mn2-unternehmen" style="display:none">
+            <div class="mn2-group">
+              <div class="mn2-group-label"><i class="fa-solid fa-building"></i> Für Unternehmen</div>
+              <a href="service-unternehmen.html#vermittlung"         class="mn2-link"><i class="fa-solid fa-users-viewfinder"></i> Fachkräfte finden</a>
+              <a href="service-unternehmen.html#beschwerdeverfahren" class="mn2-link"><i class="fa-solid fa-headset"></i> Support &amp; Beschwerden</a>
+              <a href="login_company.php"                            class="mn2-link"><i class="fa-solid fa-right-to-bracket"></i> Unternehmens-Login</a>
+            </div>
+            <div class="mn2-divider"></div>
+            <a href="index.html#kontakt" class="mn2-chatbot-btn" onclick="document.getElementById('menuDropdown').classList.remove('open')">
+              <i class="fa-solid fa-envelope"></i>
+              <div><strong>Kontakt aufnehmen</strong><span>Wir antworten in 24h</span></div>
+              <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
+            </a>
+          </div>
+        </div><!-- /nav-dropdown-panel -->
+      </div><!-- /position-relative -->
+      <button class="hamburger-btn d-lg-none" id="hamburgerBtn" aria-label="Menü öffnen">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ MOBILE NAV OVERLAY ═══ -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+<!-- ═══ MOBILE NAV DRAWER ═══ -->
+<nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
+  <div class="mn-header">
+    <a href="index.html" class="mn-brand">
+      <img src="logo_3e.jpg" alt="3E">
+      <span>3E Consulting</span>
+    </a>
+    <button class="mn-close" id="mobileNavClose" aria-label="Menü schließen">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="mn-body">
+    <div style="padding:.8rem 1rem .6rem;">
+      <p class="mn-section-label" style="padding:0 0 .5rem;">Sie sind</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
+        <button class="mn-who-btn mn-who-active" onclick="mnMobileSwitch(this,'mob-bewerber')" id="mob-btn-bewerber">
+          <i class="fa-solid fa-user-tie"></i> Bewerber
+        </button>
+        <button class="mn-who-btn" onclick="mnMobileSwitch(this,'mob-unternehmen')" id="mob-btn-unternehmen">
+          <i class="fa-solid fa-building"></i> Unternehmen
+        </button>
+      </div>
+    </div>
+    <div class="mn-divider"></div>
+    <!-- BEWERBER PANEL -->
+    <div id="mob-bewerber">
+      <div class="mn-section-label" style="padding-top:.7rem;">🚀 Jetzt starten</div>
+      <a href="index.html"    class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span>Startseite<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="index.html#services" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span>Leistungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="index.html#process"  class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline"></i></span>Ablauf<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="Bewerbung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span>Bewerbung<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="vermitlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span>Voraussetzungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open"></i></span>Dokumentenorganisation<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-divider"></div>
+      <div class="mn-section-label" style="padding-top:.7rem;">📚 Gut vorbereitet sein</div>
+      <a href="arbeitsmarkt.html"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span>Arbeitsmarkt<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="arbeitundsozialrecht.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span>Arbeits- und Sozialrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="aufenthaltsrecht.html"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-passport"></i></span>Aufenthaltsrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="alltag-deutschland.html"   class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span>Alltag in Deutschland<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-divider"></div>
+      <a href="Chatbot.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;">
+        <span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);"><i class="fa-solid fa-robot" style="color:var(--accent)"></i></span>
+        <span style="color:var(--white)">Chatbot-3e</span>
+        <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+      </a>
+    </div>
+    <!-- UNTERNEHMEN PANEL -->
+    <div id="mob-unternehmen" style="display:none">
+      <div class="mn-section-label" style="padding-top:.7rem;">🏢 Für Unternehmen</div>
+      <a href="index.html#about"                             class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users"></i></span>Über uns<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-unternehmen.html#vermittlung"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder"></i></span>Fachkräfte finden<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset"></i></span>Support &amp; Beschwerden<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="login_company.php"                            class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket"></i></span>Unternehmens-Login<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-divider"></div>
+      <a href="index.html#kontakt" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;">
+        <span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);"><i class="fa-solid fa-envelope" style="color:var(--accent)"></i></span>
+        <span style="color:var(--white)">Kontakt aufnehmen</span>
+        <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+      </a>
+    </div>
+  </div>
+  <div class="mn-footer">
+    <a href="registraion.html" class="mn-cta-primary"    onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> Als Bewerber starten</a>
+    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building"></i> Für Unternehmen</a>
   </div>
 </nav>
+
+
+
 
 <!-- ═══ HERO ══════════════════════════════════════════════ -->
 <header class="page-hero container-lg px-3 px-md-4 py-4 py-md-5 mt-2">
@@ -552,7 +880,6 @@
   </div><!-- /row -->
 </div><!-- /container -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 // TOC active
 const tocLinks = document.querySelectorAll('.toc-card a');
@@ -570,11 +897,11 @@ Chart.defaults.borderColor = 'rgba(74,222,128,.12)';
 Chart.defaults.font.family = "'DM Sans',sans-serif";
 
 /* ── لوحة الألوان: درجات خضراء فقط ── */
-const green1='#4ade80';   // أخضر أساسي (bright)
+const green1='#16a34a';   // أخضر أساسي (bright)
 const green2='#16a34a';   // أخضر داكن
-const green3='#86efac';   // أخضر فاتح
-const green4='#15803d';   // أخضر داكن جداً
-const green5='#22c55e';   // أخضر متوسط
+const green3='#16a34a';   // أخضر فاتح
+const green4='#16a34a';   // أخضر داكن جداً
+const green5='#16a34a';   // أخضر متوسط
 const greenPalette=[green1,green2,green3,green4,green5];
 
 // 1. Mindestlohn line
@@ -644,6 +971,53 @@ new Chart(document.getElementById('chartEltern'),{
     scales:{y:{beginAtZero:true,max:16,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+' Mon.'}},
       x:{grid:{display:false},ticks:{font:{size:10}}}}}
 });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ════════════════════════════════════════════════════
+   3E Consulting — Navbar JS (from index.html)
+   ════════════════════════════════════════════════════ */
+function mn2Switch(btn, panel) {
+  document.querySelectorAll('.mn2-who-btn').forEach(b => b.classList.remove('mn2-who-active'));
+  btn.classList.add('mn2-who-active');
+  document.querySelectorAll('.mn2-panel').forEach(p => p.style.display = 'none');
+  document.getElementById('mn2-' + panel).style.display = 'block';
+}
+function mnMobileSwitch(btn, panel) {
+  document.querySelectorAll('.mn-who-btn').forEach(b => b.classList.remove('mn-who-active'));
+  btn.classList.add('mn-who-active');
+  document.getElementById('mob-bewerber').style.display    = 'none';
+  document.getElementById('mob-unternehmen').style.display = 'none';
+  document.getElementById(panel).style.display = 'block';
+}
+(function () {
+  const menuToggleBtn = document.getElementById('menuToggle');
+  const menuDropdown  = document.getElementById('menuDropdown');
+  if (!menuToggleBtn || !menuDropdown) return;
+  menuToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menuDropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', () => {
+    menuDropdown.classList.remove('open');
+  });
+  menuDropdown.addEventListener('click', e => e.stopPropagation());
+})();
+(function () {
+  const hamburgerBtn   = document.getElementById('hamburgerBtn');
+  const mobileNav      = document.getElementById('mobileNav');
+  const mobileNavClose = document.getElementById('mobileNavClose');
+  const overlay        = document.getElementById('mobileNavOverlay');
+  if (!hamburgerBtn || !mobileNav) return;
+  function openMobileNav()  { mobileNav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMobileNavFn() { mobileNav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  window.closeMobileNav = closeMobileNavFn;
+  hamburgerBtn  .addEventListener('click', openMobileNav);
+  mobileNavClose.addEventListener('click', closeMobileNavFn);
+  overlay       .addEventListener('click', closeMobileNavFn);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNavFn(); });
+})();
+/* ═══════════════════════════════════════════════════ */
 </script>
 </body>
 </html>
