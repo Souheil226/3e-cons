@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -16,379 +17,417 @@
   --chat-bg:#0d1f13;--user-bubble:#d97706;--bot-bubble:rgba(255,255,255,.06);
   --input-bg:rgba(255,255,255,.05);
   --font-d:'Syne',sans-serif;--font-b:'DM Sans',sans-serif;
-  --topbar-h:60px;
-  --inputbar-h:80px;
+  --topbar-h:56px;--inputbar-h:72px;
 }
 
-/* ── BASE ── */
-html { height: 100%; }
-body {
-  height: 100%;
-  font-family: var(--font-b);
-  background: var(--navy);
-  color: var(--white);
-  overflow: hidden;      /* desktop: no scroll */
+/* ── THEME LIGHT ── */
+body.light-mode{
+  --navy:#f0f4f0;--navy2:#e8f0e8;--chat-bg:#f5f7f5;
+  --white:#1a2a1a;--muted:#4a6a4a;--border:rgba(26,90,42,.15);
+  --glass:rgba(0,0,0,.03);--bot-bubble:rgba(0,0,0,.04);
+  --input-bg:rgba(0,0,0,.04);
+  background:#f0f4f0;color:#1a2a1a;
 }
+body.light-mode .top-bar{background:rgba(240,244,240,.96);}
+body.light-mode .sidebar{background:#e8f0e8;}
+body.light-mode .input-bar{background:rgba(240,244,240,.98);}
+body.light-mode .bubble.user{background:var(--accent);}
+body.light-mode .bubble.bot{background:rgba(0,0,0,.06);border-color:rgba(26,90,42,.2);color:#1a2a1a;}
+body.light-mode .bubble.bot strong{color:#059669;}
+body.light-mode #userInput{color:#1a2a1a;}
+body.light-mode .topic-label{color:#4a6a4a;}
+body.light-mode .mob-header{background:rgba(240,244,240,.95);}
+
+html,body{height:100%;overflow:hidden;}
+body{font-family:var(--font-b);background:var(--navy);color:var(--white);transition:background .3s,color .3s;}
 
 /* ── TOP BAR ── */
-/* ── TOP BAR — Premium redesign ── */
 .top-bar{
-  position:fixed;top:0;left:0;right:0;z-index:200;
+  position:fixed;top:0;left:0;right:0;z-index:300;
   height:var(--topbar-h);
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 1rem 0 1.1rem;
-  background:rgba(10,26,15,.96);
+  padding:0 .85rem 0 .85rem;
+  background:rgba(10,26,15,.97);
   backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
   border-bottom:1px solid rgba(74,222,128,.1);
+  gap:.5rem;
 }
-/* left: logo */
-.top-brand{
-  display:flex;align-items:center;gap:.55rem;text-decoration:none;flex-shrink:0;
-}
-.top-brand img{
-  height:30px;width:30px;border-radius:7px;object-fit:cover;
-  border:1px solid rgba(74,222,128,.2);
-}
-.top-brand-text{display:flex;flex-direction:column;line-height:1.1;}
-.top-brand-name{
-  font-family:var(--font-d);font-size:.9rem;font-weight:800;
-  color:#fff;letter-spacing:.04em;
-}
-.top-brand-tag{
-  font-size:.6rem;font-weight:600;letter-spacing:.08em;
-  color:rgba(74,222,128,.6);text-transform:uppercase;
-}
-/* right: actions */
-.top-actions{display:flex;align-items:center;gap:.5rem;}
+.top-brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;flex-shrink:0;min-width:0;}
+.top-brand img{height:28px;width:28px;border-radius:7px;object-fit:cover;border:1px solid rgba(74,222,128,.2);flex-shrink:0;}
+.top-brand-text{display:flex;flex-direction:column;line-height:1.1;min-width:0;}
+.top-brand-name{font-family:var(--font-d);font-size:.82rem;font-weight:800;color:#fff;letter-spacing:.04em;white-space:nowrap;}
+.top-brand-tag{font-size:.55rem;font-weight:600;letter-spacing:.08em;color:rgba(74,222,128,.6);text-transform:uppercase;}
+.top-actions{display:flex;align-items:center;gap:.35rem;flex-shrink:0;}
+
+/* ── STATUS INDICATOR ── */
+.status-dot{display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;color:rgba(255,255,255,.5);padding:.25rem .55rem;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);white-space:nowrap;}
+.status-dot .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;}
+.status-dot .dot.slow{background:#f59e0b;animation:blink 1.2s ease-in-out infinite;}
+.status-dot .dot.offline{background:#ef4444;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.status-dot .slabel{display:none;}
+@media(min-width:600px){.status-dot .slabel{display:inline;}}
+
+/* ── THEME TOGGLE ── */
+.theme-btn{width:30px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.75rem;transition:all .2s;flex-shrink:0;}
+.theme-btn:hover{border-color:rgba(217,119,6,.4);background:rgba(217,119,6,.08);color:#fff;}
 
 /* ── LANGUAGE DROPDOWN ── */
 .lang-dropdown{position:relative;}
-.lang-trigger{
-  display:inline-flex;align-items:center;gap:.35rem;
-  padding:.38rem .7rem .38rem .65rem;
-  border-radius:8px;
-  border:1px solid rgba(255,255,255,.1);
-  background:rgba(255,255,255,.05);
-  color:rgba(255,255,255,.75);
-  font-size:.78rem;font-weight:600;
-  font-family:var(--font-b);cursor:pointer;
-  transition:all .18s;white-space:nowrap;
-  outline:none;
-}
-.lang-trigger:hover{
-  border-color:rgba(217,119,6,.4);
-  background:rgba(217,119,6,.08);
-  color:#fff;
-}
-.lang-trigger .flag{font-size:.85rem;line-height:1;}
-.lang-trigger .chevron{
-  font-size:.65rem;color:rgba(255,255,255,.4);
-  transition:transform .2s;margin-left:.1rem;
-}
-.lang-dropdown.open .lang-trigger{
-  border-color:rgba(217,119,6,.5);
-  background:rgba(217,119,6,.1);
-  color:var(--accent);
-}
+.lang-trigger{display:inline-flex;align-items:center;gap:.3rem;padding:.32rem .6rem .32rem .55rem;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,255,255,.75);font-size:.75rem;font-weight:600;font-family:var(--font-b);cursor:pointer;transition:all .18s;white-space:nowrap;outline:none;}
+.lang-trigger:hover{border-color:rgba(217,119,6,.4);background:rgba(217,119,6,.08);color:#fff;}
+.lang-trigger .flag{font-size:.8rem;line-height:1;}
+.lang-trigger .chevron{font-size:.6rem;color:rgba(255,255,255,.4);transition:transform .2s;margin-left:.05rem;}
+.lang-dropdown.open .lang-trigger{border-color:rgba(217,119,6,.5);background:rgba(217,119,6,.1);color:var(--accent);}
 .lang-dropdown.open .chevron{transform:rotate(180deg);}
-
-.lang-menu{
-  display:none;
-  position:absolute;top:calc(100% + 8px);right:0;
-  min-width:150px;
-  background:#0f2017;
-  border:1px solid rgba(74,222,128,.15);
-  border-radius:10px;
-  overflow:hidden;
-  box-shadow:0 8px 32px rgba(0,0,0,.5);
-  z-index:300;
-}
+.lang-menu{display:none;position:absolute;top:calc(100% + 6px);right:0;min-width:140px;background:#0f2017;border:1px solid rgba(74,222,128,.15);border-radius:10px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:400;}
 .lang-dropdown.open .lang-menu{display:block;}
-.lang-option{
-  display:flex;align-items:center;gap:.65rem;
-  padding:.6rem .9rem;
-  font-size:.8rem;font-weight:500;
-  color:rgba(255,255,255,.65);
-  cursor:pointer;
-  transition:background .15s,color .15s;
-  font-family:var(--font-b);
-  border:none;background:transparent;width:100%;text-align:left;
-}
+.lang-option{display:flex;align-items:center;gap:.6rem;padding:.55rem .85rem;font-size:.78rem;font-weight:500;color:rgba(255,255,255,.65);cursor:pointer;transition:background .15s,color .15s;font-family:var(--font-b);border:none;background:transparent;width:100%;text-align:left;}
 .lang-option:hover{background:rgba(217,119,6,.1);color:#fff;}
-.lang-option.active{
-  color:var(--accent);background:rgba(217,119,6,.08);
-}
-.lang-option .flag{font-size:.95rem;}
+.lang-option.active{color:var(--accent);background:rgba(217,119,6,.08);}
+.lang-option .flag{font-size:.9rem;}
 .lang-option .lang-name{flex:1;}
-.lang-option .check{
-  font-size:.7rem;color:var(--accent);
-  opacity:0;transition:opacity .15s;
-}
+.lang-option .check{font-size:.68rem;color:var(--accent);opacity:0;transition:opacity .15s;}
 .lang-option.active .check{opacity:1;}
 
-/* back button */
-.top-back{
-  display:inline-flex;align-items:center;gap:.35rem;
-  font-size:.78rem;color:rgba(255,255,255,.45);
-  text-decoration:none;
-  padding:.38rem .65rem;
-  border-radius:8px;
-  border:1px solid rgba(255,255,255,.08);
-  background:transparent;
-  transition:all .18s;white-space:nowrap;
-}
-.top-back:hover{
-  color:rgba(255,255,255,.85);
-  border-color:rgba(74,222,128,.25);
-  background:rgba(74,222,128,.05);
-}
-.top-back i{font-size:.7rem;}
-/* hide back label text on very small screens */
-@media(max-width:380px){.top-back-label{display:none;}}
+/* back + export */
+.top-back{display:inline-flex;align-items:center;gap:.3rem;font-size:.74rem;color:rgba(255,255,255,.45);text-decoration:none;padding:.32rem .6rem;border-radius:8px;border:1px solid rgba(255,255,255,.08);background:transparent;transition:all .18s;white-space:nowrap;}
+.top-back:hover{color:rgba(255,255,255,.85);border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.05);}
+.top-back i{font-size:.68rem;}
+.export-btn{display:inline-flex;align-items:center;gap:.3rem;font-size:.73rem;color:rgba(255,255,255,.5);padding:.32rem .6rem;border-radius:8px;border:1px solid rgba(255,255,255,.08);background:transparent;cursor:pointer;font-family:var(--font-b);transition:all .18s;white-space:nowrap;}
+.export-btn:hover{color:#fff;border-color:rgba(74,222,128,.3);background:rgba(74,222,128,.06);}
 
-/* ── APP GRID ── */
+/* Hide labels on very small screens */
+@media(max-width:420px){.top-back-label,.export-label,.top-brand-tag{display:none;}}
+@media(max-width:360px){.top-brand-name{font-size:.75rem;}}
+
+/* ── APP LAYOUT ── */
 .app{
   display:grid;
-  grid-template-columns:280px 1fr;
-  height:100vh;
+  grid-template-columns:260px 1fr;
+  height:100dvh;
   padding-top:var(--topbar-h);
+  overflow:hidden;
 }
 
 /* ── SIDEBAR ── */
 .sidebar{background:var(--navy2);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
-.sidebar-header{padding:1.25rem 1rem .75rem;border-bottom:1px solid var(--border);}
-.sidebar-title{font-family:var(--font-d);font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.85rem;}
-.new-chat-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.65rem;border-radius:10px;background:var(--accent);color:var(--white);border:none;cursor:pointer;font-size:.85rem;font-weight:600;font-family:var(--font-b);transition:background .2s,transform .15s;}
+.sidebar-header{padding:1rem .85rem .65rem;border-bottom:1px solid var(--border);}
+.sidebar-title{font-family:var(--font-d);font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;}
+.new-chat-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.6rem;border-radius:10px;background:var(--accent);color:var(--white);border:none;cursor:pointer;font-size:.82rem;font-weight:600;font-family:var(--font-b);transition:background .2s,transform .15s;}
 .new-chat-btn:hover{background:var(--accent-h);transform:translateY(-1px);}
-.sidebar-section{padding:.75rem 1rem .25rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
-.topic-list{padding:0 .5rem;flex:1;overflow-y:auto;}
+.sidebar-section{padding:.65rem .85rem .2rem;font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.topic-list{padding:0 .4rem;flex:1;overflow-y:auto;}
 .topic-list::-webkit-scrollbar{width:3px;}
 .topic-list::-webkit-scrollbar-thumb{background:rgba(74,222,128,.15);border-radius:2px;}
-.topic-item{display:flex;align-items:center;gap:.65rem;padding:.6rem .75rem;border-radius:9px;cursor:pointer;transition:background .15s;margin-bottom:.2rem;}
+.topic-item{display:flex;align-items:center;gap:.6rem;padding:.55rem .7rem;border-radius:9px;cursor:pointer;transition:background .15s;margin-bottom:.18rem;}
 .topic-item:hover,.topic-item.active{background:var(--glass);}
 .topic-item.active{border-left:2px solid var(--accent);}
-.topic-icon{width:28px;height:28px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(217,119,6,.12);}
-.topic-icon i{color:var(--accent);font-size:.8rem;}
-.topic-label{font-size:.82rem;color:var(--muted);line-height:1.3;}
+.topic-icon{width:26px;height:26px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(217,119,6,.12);}
+.topic-icon i{color:var(--accent);font-size:.75rem;}
+.topic-label{font-size:.8rem;color:var(--muted);line-height:1.3;}
 .topic-item.active .topic-label,.topic-item:hover .topic-label{color:var(--white);}
+.msgs-left-wrap{padding:.55rem .85rem;border-top:1px solid var(--border);font-size:.7rem;color:var(--muted);}
+.msgs-left-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin-top:4px;overflow:hidden;}
+.msgs-left-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .4s ease;}
 
 /* ── CHAT AREA ── */
 .chat-area{
-  display:flex;
-  flex-direction:column;
+  display:flex;flex-direction:column;
   background:var(--chat-bg);
-  overflow:hidden;
-  position:relative;
+  overflow:hidden;position:relative;
+  height:100%;
 }
 
-/* ── WELCOME ── */
-.welcome-screen{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:2rem 1.5rem;text-align:center;overflow-y:auto;
+/* ── MOBILE HEADER (inside chat-area) ── */
+.mob-header{
+  display:none;
+  align-items:center;justify-content:space-between;
+  padding:.55rem .9rem;
+  border-bottom:1px solid var(--border);
+  background:rgba(13,31,19,.96);
+  flex-shrink:0;
+  min-height:44px;
 }
-.welcome-icon{width:64px;height:64px;border-radius:18px;background:rgba(217,119,6,.15);border:1px solid rgba(217,119,6,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;}
-.welcome-icon i{color:var(--accent);font-size:1.6rem;}
-.welcome-title{font-family:var(--font-d);font-size:1.5rem;font-weight:800;margin-bottom:.5rem;}
+.mob-title{font-family:var(--font-d);font-size:.82rem;font-weight:700;color:var(--white);}
+.mob-sidebar-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+
+/* ── WELCOME SCREEN ── */
+.welcome-screen{
+  flex:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  padding:1.5rem 1rem 1rem;
+  text-align:center;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.welcome-icon{width:56px;height:56px;border-radius:16px;background:rgba(217,119,6,.15);border:1px solid rgba(217,119,6,.3);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;}
+.welcome-icon i{color:var(--accent);font-size:1.4rem;}
+.welcome-title{font-family:var(--font-d);font-size:1.25rem;font-weight:800;margin-bottom:.4rem;line-height:1.2;}
 .welcome-title em{font-style:normal;color:var(--accent);}
-.welcome-sub{font-size:.9rem;color:var(--muted);line-height:1.6;max-width:400px;margin:0 auto 2rem;}
-.suggest-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem;width:100%;max-width:580px;margin:0 auto;}
-.suggest-btn{display:flex;align-items:flex-start;gap:.6rem;padding:.8rem .9rem;border-radius:12px;border:1px solid var(--border);background:var(--glass);cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .15s;font-family:var(--font-b);}
+.welcome-sub{font-size:.84rem;color:var(--muted);line-height:1.55;max-width:340px;margin:0 auto 1.25rem;}
+
+/* ── SUGGEST GRID — FIXED MOBILE ── */
+.suggest-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:.55rem;
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+}
+.suggest-btn{
+  display:flex;align-items:flex-start;gap:.55rem;
+  padding:.7rem .8rem;
+  border-radius:11px;
+  border:1px solid var(--border);
+  background:var(--glass);
+  cursor:pointer;text-align:left;
+  transition:border-color .2s,background .2s,transform .15s;
+  font-family:var(--font-b);
+  /* key fix: no transform on mobile to avoid layout jumps */
+}
 .suggest-btn:hover{border-color:rgba(217,119,6,.4);background:rgba(217,119,6,.07);transform:translateY(-1px);}
-.suggest-btn i{color:var(--accent);font-size:.85rem;margin-top:.1rem;flex-shrink:0;}
-.suggest-btn span{font-size:.79rem;color:var(--muted);line-height:1.45;}
+.suggest-btn:active{transform:scale(.97);}
+.suggest-btn i{color:var(--accent);font-size:.82rem;margin-top:.12rem;flex-shrink:0;}
+.suggest-btn span{font-size:.76rem;color:var(--muted);line-height:1.4;}
 .suggest-btn:hover span{color:var(--white);}
 
 /* ── MESSAGES ── */
-.messages{
-  flex:1;overflow-y:auto;
-  padding:1.5rem 1.25rem;
-  display:flex;flex-direction:column;gap:1.25rem;
-  scroll-behavior:smooth;
-  -webkit-overflow-scrolling:touch;  /* smooth iOS scroll */
-}
-.messages::-webkit-scrollbar{width:4px;}
+.messages{flex:1;overflow-y:auto;padding:1.25rem 1rem;display:flex;flex-direction:column;gap:1rem;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;}
+.messages::-webkit-scrollbar{width:3px;}
 .messages::-webkit-scrollbar-thumb{background:rgba(74,222,128,.15);border-radius:2px;}
-
-.msg-row{display:flex;align-items:flex-start;gap:.75rem;}
+.msg-row{display:flex;align-items:flex-start;gap:.65rem;animation:msgIn .22s ease;}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .msg-row.user{flex-direction:row-reverse;}
-.avatar{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;}
+.avatar{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;}
 .avatar.bot{background:rgba(217,119,6,.2);border:1px solid rgba(217,119,6,.3);color:var(--accent);}
 .avatar.user{background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.25);color:var(--bright);}
-.bubble{max-width:72%;padding:.85rem 1.1rem;border-radius:14px;font-size:.875rem;line-height:1.65;}
+.bubble{max-width:78%;padding:.75rem .95rem;border-radius:13px;font-size:.855rem;line-height:1.6;}
 .bubble.bot{background:var(--bot-bubble);border:1px solid var(--border);border-top-left-radius:4px;color:var(--white);}
 .bubble.user{background:var(--user-bubble);color:var(--white);border-top-right-radius:4px;}
-.bubble p{margin-bottom:.55rem;}
+.bubble p{margin-bottom:.5rem;}
 .bubble p:last-child{margin-bottom:0;}
 .bubble strong{color:var(--bright);font-weight:600;}
 .bubble a{color:var(--accent);text-decoration:underline;}
-.link-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem;}
-.link-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:8px;background:rgba(217,119,6,.15);border:1px solid rgba(217,119,6,.35);color:var(--accent);font-size:.77rem;font-weight:600;text-decoration:none;cursor:pointer;transition:background .2s,transform .15s;font-family:var(--font-b);}
+.link-btns{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.65rem;}
+.link-btn{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .8rem;border-radius:8px;background:rgba(217,119,6,.15);border:1px solid rgba(217,119,6,.35);color:var(--accent);font-size:.74rem;font-weight:600;text-decoration:none;cursor:pointer;transition:background .2s,transform .15s;font-family:var(--font-b);}
 .link-btn:hover{background:rgba(217,119,6,.28);transform:translateY(-1px);}
-
-/* book btn */
-.book-btn{display:inline-flex;align-items:center;gap:.55rem;padding:.6rem 1.4rem;border-radius:12px;background:#d97706;color:#fff !important;font-size:.82rem;font-weight:700;letter-spacing:.03em;text-decoration:none !important;font-family:var(--font-b);border:none;position:relative;overflow:hidden;box-shadow:0 4px 15px rgba(217,119,6,.4),inset 0 1px 0 rgba(255,255,255,.15);transition:transform .18s,box-shadow .18s,background .18s;margin-top:.55rem;}
+.book-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.2rem;border-radius:11px;background:#d97706;color:#fff !important;font-size:.79rem;font-weight:700;letter-spacing:.03em;text-decoration:none !important;font-family:var(--font-b);border:none;position:relative;overflow:hidden;box-shadow:0 4px 14px rgba(217,119,6,.35),inset 0 1px 0 rgba(255,255,255,.15);transition:transform .18s,box-shadow .18s,background .18s;margin-top:.5rem;}
 .book-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.18) 0%,transparent 60%);border-radius:inherit;}
-.book-btn:hover{background:#b45309;box-shadow:0 6px 22px rgba(217,119,6,.55);transform:translateY(-2px);color:#fff !important;}
-.book-btn .btn-icon{width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;}
+.book-btn:hover{background:#b45309;box-shadow:0 6px 20px rgba(217,119,6,.5);transform:translateY(-2px);color:#fff !important;}
+.book-btn .btn-icon{width:20px;height:20px;border-radius:6px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:.66rem;flex-shrink:0;}
 .book-btn .btn-text{display:flex;flex-direction:column;line-height:1.1;}
-.book-btn .btn-text span:first-child{font-size:.8rem;font-weight:700;}
-.book-btn .btn-text small{font-size:.66rem;font-weight:400;opacity:.85;}
-
-.price-badge{display:inline-flex;align-items:center;gap:.3rem;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);color:#4ade80;padding:.25rem .7rem;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.02em;margin:.45rem 0;font-family:var(--font-b);}
-.sector-btns{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem;}
-.sector-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:8px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.25);color:var(--bright);font-size:.77rem;font-weight:600;cursor:pointer;transition:background .2s,transform .15s;font-family:var(--font-b);border:none;}
+.book-btn .btn-text span:first-child{font-size:.77rem;font-weight:700;}
+.book-btn .btn-text small{font-size:.63rem;font-weight:400;opacity:.85;}
+.price-badge{display:inline-flex;align-items:center;gap:.28rem;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);color:#4ade80;padding:.22rem .65rem;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.02em;margin:.4rem 0;font-family:var(--font-b);}
+.sector-btns{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.65rem;}
+.sector-btn{display:inline-flex;align-items:center;gap:.38rem;padding:.42rem .85rem;border-radius:8px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.25);color:var(--bright);font-size:.74rem;font-weight:600;cursor:pointer;transition:background .2s,transform .15s;font-family:var(--font-b);}
 .sector-btn:hover{background:rgba(74,222,128,.18);transform:translateY(-1px);}
 
-/* typing dots */
-.typing-dots{display:flex;gap:4px;align-items:center;padding:.2rem 0;}
-.typing-dots span{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:bounce 1.2s infinite;}
+/* ── TYPING DOTS ── */
+.typing-dots{display:flex;gap:4px;align-items:center;padding:.15rem 0;}
+.typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:bounce 1.2s infinite;}
 .typing-dots span:nth-child(2){animation-delay:.2s;}
 .typing-dots span:nth-child(3){animation-delay:.4s;}
-@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 
-/* ════════════════════════════════════════
-   INPUT BAR — FIXED STABLE BOTTOM
-   ════════════════════════════════════════ */
+/* ── RATING ── */
+.rating-widget{display:flex;align-items:center;gap:.55rem;margin-top:.75rem;padding:.5rem .7rem;border-radius:9px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);}
+.rating-q{font-size:.7rem;color:var(--muted);flex:1;}
+.rating-btns{display:flex;gap:.35rem;}
+.rating-btn{width:28px;height:28px;border-radius:7px;border:1px solid rgba(255,255,255,.1);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:all .18s;}
+.rating-btn.pos:hover,.rating-btn.pos.chosen{background:rgba(74,222,128,.15);border-color:rgba(74,222,128,.4);}
+.rating-btn.neg:hover,.rating-btn.neg.chosen{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.35);}
+.rating-btn:disabled{cursor:default;opacity:.5;}
+.rating-done{font-size:.7rem;color:var(--muted);font-style:italic;}
+
+/* ── FOLLOW-UP ── */
+.followup-wrap{display:flex;flex-wrap:wrap;gap:.38rem;margin-top:.65rem;}
+.followup-btn{display:inline-flex;align-items:center;gap:.3rem;padding:.32rem .7rem;border-radius:20px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--muted);font-size:.7rem;font-weight:500;cursor:pointer;transition:all .18s;font-family:var(--font-b);}
+.followup-btn:hover{border-color:rgba(217,119,6,.4);color:var(--accent);background:rgba(217,119,6,.07);}
+.followup-btn i{font-size:.62rem;}
+
+/* ── WHATSAPP CARD ── */
+.wa-card{margin-top:.75rem;background:linear-gradient(135deg,rgba(37,211,102,.07),rgba(37,211,102,.02));border:1px solid rgba(37,211,102,.25);border-radius:12px;padding:.85rem .9rem;display:flex;flex-direction:column;gap:.65rem;}
+.wa-card-top{display:flex;align-items:center;gap:.65rem;}
+.wa-icon{width:36px;height:36px;border-radius:50%;background:rgba(37,211,102,.14);border:1px solid rgba(37,211,102,.28);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;color:#25d366;}
+.wa-card-title{font-size:.78rem;font-weight:700;color:var(--white);line-height:1.2;}
+.wa-card-sub{font-size:.68rem;color:var(--muted);margin-top:2px;}
+.wa-btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;background:#25d366;color:#fff !important;text-decoration:none !important;border-radius:9px;padding:.5rem .9rem;font-size:.77rem;font-weight:700;font-family:var(--font-b);transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 12px rgba(37,211,102,.2);}
+.wa-btn:hover{background:#1da851;transform:translateY(-1px);}
+.wa-btn i{font-size:.85rem;}
+
+/* ── MIC ── */
+.mic-btn{width:34px;height:34px;border-radius:9px;flex-shrink:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--muted);}
+.mic-btn:hover{background:rgba(217,119,6,.12);border-color:rgba(217,119,6,.3);color:var(--accent);}
+.mic-btn.listening{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.4);color:#ef4444;animation:micPulse 1s ease-in-out infinite;}
+@keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.3)}50%{box-shadow:0 0 0 6px rgba(239,68,68,0)}}
+
+/* ── QUICK CHIPS ── */
 .quick-chips{
-  display:flex;gap:.45rem;flex-wrap:wrap;
-  padding:.6rem 1.25rem .2rem;
+  display:flex;gap:.4rem;
+  padding:.5rem .9rem .15rem;
   flex-shrink:0;
+  overflow-x:auto;flex-wrap:nowrap;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
 }
-.chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .75rem;border-radius:999px;border:1px solid var(--border);background:transparent;font-size:.72rem;color:var(--muted);cursor:pointer;font-family:var(--font-b);transition:all .15s;}
+.quick-chips::-webkit-scrollbar{display:none;}
+.chip{display:inline-flex;align-items:center;gap:.3rem;padding:.28rem .7rem;border-radius:999px;border:1px solid var(--border);background:transparent;font-size:.7rem;color:var(--muted);cursor:pointer;font-family:var(--font-b);transition:all .15s;white-space:nowrap;flex-shrink:0;}
 .chip:hover{border-color:rgba(217,119,6,.35);color:var(--accent);background:rgba(217,119,6,.07);}
 
+/* ── INPUT BAR ── */
 .input-bar{
-  flex-shrink:0;               /* never compress */
-  padding:.85rem 1.25rem 1rem;
+  flex-shrink:0;
+  padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
   border-top:1px solid var(--border);
-  background:rgba(13,31,19,.98);
+  background:rgba(13,31,19,.99);
 }
-.input-wrap{
-  display:flex;align-items:flex-end;gap:.65rem;
-  background:var(--input-bg);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:.65rem .75rem;
-  transition:border-color .2s;
-}
+.input-wrap{display:flex;align-items:flex-end;gap:.45rem;background:var(--input-bg);border:1px solid var(--border);border-radius:13px;padding:.6rem .7rem;transition:border-color .2s;}
 .input-wrap:focus-within{border-color:rgba(217,119,6,.45);}
-#userInput{
-  flex:1;background:transparent;border:none;outline:none;
-  color:var(--white);font-size:.9rem;
-  font-family:var(--font-b);resize:none;line-height:1.5;
-  max-height:120px;scrollbar-width:none;
-  /* CRITICAL: prevent iOS zoom on focus */
-  font-size:16px !important;
-}
-#userInput::placeholder{color:var(--muted);font-size:14px;}
+#userInput{flex:1;background:transparent;border:none;outline:none;color:var(--white);font-family:var(--font-b);resize:none;line-height:1.5;max-height:110px;scrollbar-width:none;font-size:16px !important;}
+#userInput::placeholder{color:var(--muted);font-size:.82rem;}
 #userInput::-webkit-scrollbar{display:none;}
-.send-btn{width:36px;height:36px;border-radius:9px;flex-shrink:0;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .15s;}
+.send-btn{width:34px;height:34px;border-radius:9px;flex-shrink:0;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .15s;}
 .send-btn:hover{background:var(--accent-h);transform:scale(1.05);}
-.send-btn i{color:#fff;font-size:.9rem;}
+.send-btn i{color:#fff;font-size:.85rem;}
 .send-btn:disabled{background:rgba(217,119,6,.25);cursor:not-allowed;transform:none;}
-.input-hint{text-align:center;font-size:.72rem;color:rgba(134,163,142,.5);margin-top:.5rem;}
+.input-hint{text-align:center;font-size:.68rem;color:rgba(134,163,142,.45);margin-top:.45rem;}
 
-/* mobile header strip */
-.mob-header{display:none;}
+/* ── SCROLL BUTTON ── */
+.scroll-btn{display:none;position:absolute;bottom:88px;right:14px;z-index:10;width:32px;height:32px;border-radius:50%;background:rgba(217,119,6,.9);border:none;cursor:pointer;color:#fff;font-size:.75rem;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(217,119,6,.3);transition:opacity .2s;}
+.scroll-btn.show{display:flex;}
+.scroll-btn:hover{background:var(--accent-h);}
 
-/* ════════════════════════════════════════
-   RESPONSIVE — MOBILE
-   ════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════
+   MOBILE RESPONSIVE — Complete overhaul
+   ══════════════════════════════════════════════════ */
 @media(max-width:768px){
 
-  /* Let body scroll naturally so keyboard pushes content up */
-  html, body {
-    height: 100%;
-    overflow: hidden;
+  /* Layout */
+  html,body{height:100dvh;height:-webkit-fill-available;overflow:hidden;}
+  .app{
+    grid-template-columns:1fr;
+    height:100dvh;
+    height:-webkit-fill-available;
+    padding-top:var(--topbar-h);
+    display:flex;
+    flex-direction:column;
   }
 
-  .app {
-    grid-template-columns: 1fr;
-    /* Use dvh (dynamic viewport height) — shrinks when keyboard opens */
-    height: 100dvh;
-    height: -webkit-fill-available; /* Safari fallback */
+  /* Sidebar: hidden by default, slide in on open */
+  .sidebar{display:none;}
+  .sidebar.mob-open{
+    display:flex;
+    position:fixed;
+    left:0;top:var(--topbar-h);bottom:0;
+    width:min(280px,82vw);
+    z-index:250;
+    box-shadow:4px 0 24px rgba(0,0,0,.4);
   }
 
-  .sidebar { display: none; }
+  /* Mobile overlay behind sidebar */
+  .mob-overlay{display:none;position:fixed;inset:0;top:var(--topbar-h);background:rgba(0,0,0,.55);z-index:240;}
+  .mob-overlay.show{display:block;}
 
-  /* Mobile top strip inside chat */
-  .mob-header{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:.6rem 1rem;
-    border-bottom:1px solid var(--border);
-    background:rgba(13,31,19,.95);
+  /* Mobile header strip inside chat area */
+  .mob-header{display:flex;}
+
+  /* Chat area fills remaining height */
+  .chat-area{
+    flex:1;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+    position:relative;
+    /* account for topbar */
+    height:calc(100dvh - var(--topbar-h));
+    height:calc(-webkit-fill-available - var(--topbar-h));
+  }
+
+  /* Welcome screen scrollable */
+  .welcome-screen{
+    flex:1;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:1.25rem .85rem 1rem;
+    justify-content:flex-start;
+    padding-top:1.5rem;
+  }
+
+  .welcome-title{font-size:1.1rem;}
+  .welcome-sub{font-size:.8rem;margin-bottom:1rem;}
+  .welcome-icon{width:50px;height:50px;margin-bottom:.75rem;}
+  .welcome-icon i{font-size:1.25rem;}
+
+  /* Suggest grid: single column on mobile */
+  .suggest-grid{
+    grid-template-columns:1fr;
+    max-width:100%;
+    gap:.45rem;
+  }
+  .suggest-btn{
+    padding:.65rem .8rem;
+    border-radius:10px;
+  }
+  .suggest-btn span{font-size:.78rem;}
+
+  /* Messages */
+  .messages{
+    flex:1;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:.9rem .85rem;
+    padding-bottom:.5rem;
+  }
+  .bubble{max-width:90%;}
+
+  /* Quick chips: horizontal scroll, no wrap */
+  .quick-chips{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    padding:.45rem .85rem .1rem;
     flex-shrink:0;
   }
-  .mob-title{font-family:var(--font-d);font-size:.85rem;font-weight:700;}
-  .mob-sidebar-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;}
 
-  /* Chat area fills remaining space, input stays at bottom */
-  .chat-area {
-    height: 100dvh;
-    height: -webkit-fill-available;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    /* This is the key: when keyboard opens, the container shrinks
-       and input-bar stays glued to the new bottom */
-    position: relative;
+  /* Input bar */
+  .input-bar{
+    flex-shrink:0;
+    padding:.65rem .85rem calc(.65rem + env(safe-area-inset-bottom));
   }
+  .input-hint{display:none;}
 
-  .welcome-screen {
-    flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+  /* Hide status on mobile */
+  .status-dot{display:none;}
+  .export-btn{display:none;}
 
-  .messages {
-    flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    /* Extra bottom padding so last message isn't hidden behind input */
-    padding-bottom: 1rem;
-  }
-
-  /* Input bar: flex-shrink:0 already set globally,
-     this ensures it's always visible above keyboard */
-  .input-bar {
-    flex-shrink: 0;
-    /* Safe area for notch/home bar on iPhone */
-    padding-bottom: calc(.85rem + env(safe-area-inset-bottom));
-  }
-
-  .quick-chips {
-    flex-shrink: 0;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding: .5rem 1rem .2rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .quick-chips::-webkit-scrollbar { display: none; }
-
-  .bubble { max-width: 88%; }
-  .suggest-grid { grid-template-columns: 1fr; }
-
-  /* Sidebar overlay (mobile) */
-  .sidebar.mob-open{
-    display:flex;position:fixed;left:0;top:60px;bottom:0;
-    width:280px;z-index:200;
-  }
-  .mob-overlay{display:none;position:fixed;inset:0;top:60px;background:rgba(0,0,0,.5);z-index:199;}
-  .mob-overlay.show{display:block;}
+  /* Scroll btn higher on mobile */
+  .scroll-btn{bottom:calc(var(--inputbar-h) + 8px);}
 }
 
 @media(max-width:480px){
-  .welcome-title { font-size:1.2rem; }
-  .suggest-grid { gap:.5rem; }
-  .top-bar { padding:0 .75rem; }
+  :root{--topbar-h:52px;}
+  .top-bar{padding:0 .65rem;}
+  .top-brand img{height:26px;width:26px;}
+  .top-brand-name{font-size:.78rem;}
+  .lang-trigger{padding:.28rem .5rem;font-size:.72rem;}
+  .top-back{padding:.28rem .5rem;font-size:.7rem;}
+  .theme-btn{width:28px;height:28px;font-size:.7rem;}
+  .mob-title{font-size:.78rem;}
+  .welcome-title{font-size:1rem;}
+  .suggest-btn span{font-size:.76rem;}
+  .bubble{font-size:.83rem;}
+}
+
+@media(max-width:360px){
+  :root{--topbar-h:50px;}
+  .top-actions{gap:.25rem;}
+  .top-brand-name{font-size:.72rem;}
 }
 </style>
 </head>
 <body>
+
 <header class="top-bar">
-  <!-- Logo -->
   <a class="top-brand" href="index.html">
     <img src="logo_3e.jpg" alt="3E Consulting">
     <div class="top-brand-text">
@@ -396,11 +435,18 @@ body {
       <span class="top-brand-tag">Bewerber Assistent</span>
     </div>
   </a>
-
-  <!-- Right actions -->
   <div class="top-actions">
-
-    <!-- Language dropdown -->
+    <div class="status-dot" id="statusDot">
+      <span class="dot" id="statusBall"></span>
+      <span class="slabel" id="statusLabel">Online</span>
+    </div>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Hell/Dunkel">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+    <button class="export-btn" onclick="exportChat()" title="Chat exportieren">
+      <i class="fa-solid fa-download"></i>
+      <span class="export-label">Export</span>
+    </button>
     <div class="lang-dropdown" id="langDropdown">
       <button class="lang-trigger" id="langTrigger" onclick="toggleLangMenu()" aria-haspopup="listbox" aria-expanded="false">
         <span class="flag" id="langFlag">🇩🇪</span>
@@ -408,32 +454,18 @@ body {
         <i class="fa-solid fa-chevron-down chevron"></i>
       </button>
       <div class="lang-menu" role="listbox" id="langMenu">
-        <button class="lang-option active" id="opt-de" onclick="selectLang('de')" role="option">
-          <span class="flag">🇩🇪</span>
-          <span class="lang-name">Deutsch</span>
-          <i class="fa-solid fa-check check"></i>
-        </button>
-        <button class="lang-option" id="opt-en" onclick="selectLang('en')" role="option">
-          <span class="flag">🇬🇧</span>
-          <span class="lang-name">English</span>
-          <i class="fa-solid fa-check check"></i>
-        </button>
-        <button class="lang-option" id="opt-ar" onclick="selectLang('ar')" role="option">
-          <span class="flag">🇩🇿</span>
-          <span class="lang-name">العربية</span>
-          <i class="fa-solid fa-check check"></i>
-        </button>
+        <button class="lang-option active" id="opt-de" onclick="selectLang('de')" role="option"><span class="flag">🇩🇪</span><span class="lang-name">Deutsch</span><i class="fa-solid fa-check check"></i></button>
+        <button class="lang-option" id="opt-en" onclick="selectLang('en')" role="option"><span class="flag">🇬🇧</span><span class="lang-name">English</span><i class="fa-solid fa-check check"></i></button>
+        <button class="lang-option" id="opt-ar" onclick="selectLang('ar')" role="option"><span class="flag">🇩🇿</span><span class="lang-name">العربية</span><i class="fa-solid fa-check check"></i></button>
       </div>
     </div>
-
-    <!-- Back button -->
     <a class="top-back" href="index.html">
       <i class="fa-solid fa-arrow-left"></i>
       <span class="top-back-label" id="backLabel">Zurück</span>
     </a>
-
   </div>
 </header>
+
 <div class="mob-overlay" id="mobOverlay" onclick="closeSidebar()"></div>
 <div class="app">
   <aside class="sidebar" id="sidebar">
@@ -445,23 +477,38 @@ body {
     </div>
     <div class="sidebar-section" id="sideQuickLabel">Schnellzugriff</div>
     <div class="topic-list" id="topicList"></div>
+    <div class="msgs-left-wrap" id="msgsLeftWrap">
+      <span id="msgsLeftText">8 / 10 Fragen heute</span>
+      <div class="msgs-left-bar"><div class="msgs-left-fill" id="msgsLeftFill" style="width:80%"></div></div>
+    </div>
   </aside>
+
   <div class="chat-area">
     <div class="mob-header">
       <button class="mob-sidebar-btn" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
       <span class="mob-title" id="mobTitle">Bewerber Assistent</span>
       <button class="mob-sidebar-btn" onclick="resetChat()"><i class="fa-solid fa-rotate-left"></i></button>
     </div>
+
     <div id="welcomeScreen" class="welcome-screen">
       <div class="welcome-icon"><i class="fa-solid fa-robot"></i></div>
       <h1 class="welcome-title" id="welcomeTitle">Hallo! Ich bin Ihr <em>Assistent</em></h1>
       <p class="welcome-sub" id="welcomeSub">Stellen Sie mir eine Frage oder wählen Sie ein Thema.</p>
       <div class="suggest-grid" id="suggestGrid"></div>
     </div>
+
     <div id="messages" class="messages" style="display:none;"></div>
+
+    <button class="scroll-btn" id="scrollBtn" onclick="scrollToBottom()">
+      <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
     <div class="quick-chips" id="quickChips"></div>
     <div class="input-bar">
       <div class="input-wrap">
+        <button class="mic-btn" id="micBtn" onclick="toggleVoice()" title="Spracheingabe">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
         <textarea id="userInput" rows="1" placeholder="Stellen Sie mir eine Frage..." onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
         <button class="send-btn" id="sendBtn" onclick="sendMessage()">
           <i class="fa-solid fa-paper-plane"></i>
@@ -473,221 +520,328 @@ body {
 </div>
 
 <script>
-/* ══════════════════════════════════
-   MOBILE KEYBOARD FIX
-   Scroll messages to bottom when keyboard opens/closes
-══════════════════════════════════ */
+/* ══════════════════════════════════ MOBILE KEYBOARD FIX ══════════════════════════════════ */
 (function(){
-  // visualViewport API — fires when keyboard opens/closes
   if(window.visualViewport){
-    window.visualViewport.addEventListener('resize', () => {
-      // Small delay to let layout settle
-      setTimeout(() => {
-        const msgs = document.getElementById('messages');
-        if(msgs && msgs.style.display !== 'none'){
-          msgs.scrollTop = msgs.scrollHeight;
-        }
-      }, 100);
+    window.visualViewport.addEventListener('resize',()=>{
+      setTimeout(()=>{const m=document.getElementById('messages');if(m&&m.style.display!=='none')m.scrollTop=m.scrollHeight;},100);
     });
   }
-
-  // iOS: prevent body scroll when input focused
-  document.getElementById('userInput').addEventListener('focus', function(){
-    setTimeout(() => {
-      const msgs = document.getElementById('messages');
-      if(msgs && msgs.style.display !== 'none'){
-        msgs.scrollTop = msgs.scrollHeight;
-      }
-    }, 350);
+  document.getElementById('userInput').addEventListener('focus',function(){
+    setTimeout(()=>{const m=document.getElementById('messages');if(m&&m.style.display!=='none')m.scrollTop=m.scrollHeight;},350);
   });
 })();
 
-/* ══════════════════════════════════
-   PROXY URL
-══════════════════════════════════ */
-const PROXY_URL = 'api_proxy_gemini.php';
+/* ══════════════════════════════════ CONFIG ══════════════════════════════════ */
+const PROXY_URL   = 'api_proxy_gemini.php';
+const WA_NUMBER   = '213XXXXXXXXX';
+const MAX_MSGS    = 10;
 
-/* ══════════════════════════════════
-   SECTORS DATABASE
-══════════════════════════════════ */
-const SECTORS = {
-  pflege:{available:true,label:{de:'Medizin & Pflege',en:'Healthcare & Nursing',ar:'الطب والتمريض'},icon:'🏥',pages:[{label:'📋 Voraussetzungen',url:'vermitlung.html#pflege'},{label:'🏢 Stellen ansehen',url:'index.html#fachbereiche'}],conditions:{de:`<p><strong>Voraussetzungen für Pflege:</strong></p><p>✔ Deutschkenntnisse <strong>B2</strong> (Pflicht)<br>✔ Pflegeausbildung oder medizinische Qualifikation<br>✔ Anerkennungsverfahren in Deutschland<br>✔ Gesundheitszeugnis<br>✔ Motivation und Einfühlungsvermögen</p>`,en:`<p><strong>Requirements for Healthcare/Nursing:</strong></p><p>✔ German level <strong>B2</strong> (mandatory)<br>✔ Nursing or medical qualification<br>✔ Recognition procedure in Germany<br>✔ Health certificate</p>`,ar:`<p><strong>شروط التمريض:</strong></p><p>✔ مستوى ألماني <strong>B2</strong> (إلزامي)<br>✔ مؤهل تمريض أو طبي<br>✔ إجراءات الاعتراف في ألمانيا</p>`}},
-  handwerk:{available:true,label:{de:'Handwerk',en:'Skilled Trades',ar:'الحرف اليدوية'},icon:'🔧',pages:[{label:'📋 Voraussetzungen',url:'vermitlung.html#handwerk'},{label:'🏢 Stellen ansehen',url:'index.html#fachbereiche'}],conditions:{de:`<p><strong>Voraussetzungen für Handwerk:</strong></p><p>✔ Deutschkenntnisse <strong>B1</strong><br>✔ Berufsausbildung im Handwerk<br>✔ Körperliche Eignung<br>✔ Teamfähigkeit</p>`,en:`<p><strong>Requirements for Trades:</strong></p><p>✔ German <strong>B1</strong><br>✔ Vocational training<br>✔ Physical fitness</p>`,ar:`<p><strong>شروط الحرف:</strong></p><p>✔ ألماني <strong>B1</strong><br>✔ تدريب مهني<br>✔ لياقة بدنية</p>`}},
-  gastronomie:{available:true,label:{de:'Gastronomie & Hotel',en:'Hospitality & Hotel',ar:'الضيافة والفندقة'},icon:'🍽️',pages:[{label:'📋 Voraussetzungen',url:'vermitlung.html#gastronomie'}],conditions:{de:`<p><strong>Voraussetzungen für Gastronomie:</strong></p><p>✔ Deutschkenntnisse <strong>B1</strong><br>✔ Erfahrung von Vorteil<br>✔ Flexibilität (Schichtarbeit)</p>`,en:`<p><strong>Requirements for Hospitality:</strong></p><p>✔ German <strong>B1</strong><br>✔ Flexibility for shifts</p>`,ar:`<p><strong>شروط الضيافة:</strong></p><p>✔ ألماني <strong>B1</strong><br>✔ مرونة في المواعيد</p>`}},
-  logistik:{available:true,label:{de:'Logistik & Transport',en:'Logistics & Transport',ar:'اللوجستيك والنقل'},icon:'🚛',pages:[{label:'📋 Voraussetzungen',url:'vermitlung.html#logistik'}],conditions:{de:`<p><strong>Voraussetzungen für Logistik:</strong></p><p>✔ Deutschkenntnisse <strong>B1</strong><br>✔ Führerschein (je nach Position)<br>✔ Zuverlässigkeit</p>`,en:`<p><strong>Requirements for Logistics:</strong></p><p>✔ German <strong>B1</strong><br>✔ Driving license (if needed)</p>`,ar:`<p><strong>شروط اللوجستيك:</strong></p><p>✔ ألماني <strong>B1</strong><br>✔ رخصة قيادة (حسب المنصب)</p>`}},
-  it:{available:false,label:{de:'IT & Informatik',en:'IT & Computer Science',ar:'تقنية المعلومات'},icon:'💻'},
-  medizin_arzt:{available:false,label:{de:'Arzt / Zahnarzt',en:'Doctor / Dentist',ar:'طبيب / طبيب أسنان'},icon:'👨‍⚕️'},
+/* ══════════════════════════════════ STATE ══════════════════════════════════ */
+let chatStarted=false, isTyping=false, conversationHistory=[];
+let waitingForSector=false, currentLang='de';
+let msgsUsed = parseInt(localStorage.getItem('msgsUsed')||'0');
+let lastMsgDate = localStorage.getItem('lastMsgDate')||'';
+let isDark = true;
+let recognition = null, isListening = false;
+let lastBotKey = null;
+
+/* ══════════════════════════════════ DAILY RESET ══════════════════════════════════ */
+function checkDailyReset(){
+  const today = new Date().toDateString();
+  if(lastMsgDate !== today){ msgsUsed=0; localStorage.setItem('msgsUsed','0'); localStorage.setItem('lastMsgDate',today); lastMsgDate=today; }
+  updateMsgsCounter();
+}
+function updateMsgsCounter(){
+  const left = MAX_MSGS - msgsUsed;
+  const pct  = Math.max(0,(left/MAX_MSGS)*100);
+  const labels={de:`${left} / ${MAX_MSGS} Fragen heute`,en:`${left} / ${MAX_MSGS} questions today`,ar:`${left} / ${MAX_MSGS} أسئلة اليوم`};
+  const el=document.getElementById('msgsLeftText');
+  const fill=document.getElementById('msgsLeftFill');
+  if(el) el.textContent=labels[currentLang];
+  if(fill) fill.style.width=pct+'%';
+}
+checkDailyReset();
+
+/* ══════════════════════════════════ STATUS ══════════════════════════════════ */
+function setStatus(state){
+  const ball=document.getElementById('statusBall');
+  const lbl=document.getElementById('statusLabel');
+  if(!ball)return;
+  ball.className='dot'+(state==='slow'?' slow':state==='offline'?' offline':'');
+  const labels={online:{de:'Online',en:'Online',ar:'متصل'},slow:{de:'Langsam',en:'Slow',ar:'بطيء'},offline:{de:'Offline',en:'Offline',ar:'غير متصل'}};
+  if(lbl) lbl.textContent=labels[state][currentLang];
+}
+setStatus('online');
+
+/* ══════════════════════════════════ THEME ══════════════════════════════════ */
+function toggleTheme(){
+  isDark=!isDark;
+  document.body.classList.toggle('light-mode',!isDark);
+  document.getElementById('themeIcon').className=isDark?'fa-solid fa-moon':'fa-solid fa-sun';
+  localStorage.setItem('chatTheme',isDark?'dark':'light');
+}
+(function(){
+  const saved=localStorage.getItem('chatTheme');
+  if(saved==='light'){isDark=false;document.body.classList.add('light-mode');document.getElementById('themeIcon').className='fa-solid fa-sun';}
+})();
+
+/* ══════════════════════════════════ EXPORT ══════════════════════════════════ */
+function exportChat(){
+  const msgs=document.querySelectorAll('#messages .msg-row');
+  if(!msgs.length){alert('Kein Chat zum Exportieren.');return;}
+  let txt=`3E Consulting — Chatbot Export\n${new Date().toLocaleString()}\n${'─'.repeat(40)}\n\n`;
+  msgs.forEach(row=>{
+    const isUser=row.classList.contains('user');
+    const role=isUser?'SIE':'BOT';
+    const bub=row.querySelector('.bubble');
+    if(bub) txt+=`[${role}]\n${bub.innerText.trim()}\n\n`;
+  });
+  const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`3e-chat-${Date.now()}.txt`;
+  a.click();
+}
+
+/* ══════════════════════════════════ VOICE ══════════════════════════════════ */
+function toggleVoice(){
+  const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SpeechRecognition){
+    const msg={de:'Spracheingabe wird in diesem Browser nicht unterstützt.',en:'Voice input not supported in this browser.',ar:'إدخال الصوت غير مدعوم في هذا المتصفح.'};
+    showToast(msg[currentLang],'warn'); return;
+  }
+  if(isListening){ recognition&&recognition.stop(); return; }
+  recognition=new SpeechRecognition();
+  recognition.lang=currentLang==='de'?'de-DE':currentLang==='ar'?'ar-DZ':'en-US';
+  recognition.interimResults=false; recognition.maxAlternatives=1;
+  isListening=true;
+  document.getElementById('micBtn').classList.add('listening');
+  recognition.start();
+  recognition.onresult=e=>{
+    const transcript=e.results[0][0].transcript;
+    document.getElementById('userInput').value=transcript;
+    autoResize(document.getElementById('userInput'));
+  };
+  recognition.onend=()=>{ isListening=false; document.getElementById('micBtn').classList.remove('listening'); };
+  recognition.onerror=()=>{ isListening=false; document.getElementById('micBtn').classList.remove('listening'); };
+}
+
+/* ══════════════════════════════════ SCROLL BTN ══════════════════════════════════ */
+function scrollToBottom(){const m=document.getElementById('messages');if(m)m.scrollTop=m.scrollHeight;}
+document.getElementById('messages').addEventListener('scroll',function(){
+  const atBottom=this.scrollHeight-this.scrollTop-this.clientHeight<80;
+  document.getElementById('scrollBtn').classList.toggle('show',!atBottom&&chatStarted);
+});
+
+/* ══════════════════════════════════ SECTORS ══════════════════════════════════ */
+const SECTORS={
+  pflege:{available:true,label:{de:'Medizin & Pflege',en:'Healthcare & Nursing',ar:'الطب والتمريض'},icon:'🏥',pages:[{label:'📋 Voraussetzungen',url:'vermitlung.html#pflege'},{label:'🏢 Stellen ansehen',url:'index.html#fachbereiche'}],conditions:{de:`<p><strong>Voraussetzungen für Pflege:</strong></p><p>✔ Deutschkenntnisse <strong>B2</strong> (Pflicht)<br>✔ Pflegeausbildung oder medizinische Qualifikation<br>✔ Anerkennungsverfahren in Deutschland<br>✔ Gesundheitszeugnis</p>`,en:`<p><strong>Requirements for Healthcare:</strong></p><p>✔ German <strong>B2</strong> (mandatory)<br>✔ Nursing or medical qualification<br>✔ Recognition procedure in Germany</p>`,ar:`<p><strong>شروط التمريض:</strong></p><p>✔ مستوى ألماني <strong>B2</strong> (إلزامي)<br>✔ مؤهل تمريض أو طبي</p>`}},
+  handwerk:{available:true,label:{de:'Handwerk',en:'Skilled Trades',ar:'الحرف اليدوية'},icon:'🔧',pages:[{label:'📋 Voraussetzungen',url:'vermitlung.html#handwerk'},{label:'🏢 Stellen ansehen',url:'index.html#fachbereiche'}],conditions:{de:`<p><strong>Voraussetzungen für Handwerk:</strong></p><p>✔ Deutschkenntnisse <strong>B1</strong><br>✔ Berufsausbildung im Handwerk<br>✔ Körperliche Eignung</p>`,en:`<p><strong>Requirements for Trades:</strong></p><p>✔ German <strong>B1</strong><br>✔ Vocational training</p>`,ar:`<p><strong>شروط الحرف:</strong></p><p>✔ ألماني <strong>B1</strong><br>✔ تدريب مهني</p>`}},
+  gastronomie:{available:true,label:{de:'Gastronomie & Hotel',en:'Hospitality & Hotel',ar:'الضيافة والفندقة'},icon:'🍽️',pages:[{label:'📋 Voraussetzungen',url:'vermitlung.html#gastronomie'}],conditions:{de:`<p><strong>Voraussetzungen für Gastronomie:</strong></p><p>✔ Deutschkenntnisse <strong>B1</strong><br>✔ Flexibilität (Schichtarbeit)</p>`,en:`<p><strong>Requirements for Hospitality:</strong></p><p>✔ German <strong>B1</strong><br>✔ Flexibility for shifts</p>`,ar:`<p><strong>شروط الضيافة:</strong></p><p>✔ ألماني <strong>B1</strong><br>✔ مرونة في المواعيد</p>`}},
+  logistik:{available:true,label:{de:'Logistik & Transport',en:'Logistics & Transport',ar:'اللوجستيك والنقل'},icon:'🚛',pages:[{label:'📋 Voraussetzungen',url:'vermitlung.html#logistik'}],conditions:{de:`<p><strong>Voraussetzungen für Logistik:</strong></p><p>✔ Deutschkenntnisse <strong>B1</strong><br>✔ Führerschein (je nach Position)</p>`,en:`<p><strong>Requirements for Logistics:</strong></p><p>✔ German <strong>B1</strong><br>✔ Driving license (if needed)</p>`,ar:`<p><strong>شروط اللوجستيك:</strong></p><p>✔ ألماني <strong>B1</strong><br>✔ رخصة قيادة (حسب المنصب)</p>`}},
+  it:{available:false,label:{de:'IT & Informatik',en:'IT',ar:'تقنية المعلومات'},icon:'💻'},
+  medizin_arzt:{available:false,label:{de:'Arzt / Zahnarzt',en:'Doctor/Dentist',ar:'طبيب'},icon:'👨‍⚕️'},
   architektur:{available:false,label:{de:'Architektur',en:'Architecture',ar:'الهندسة المعمارية'},icon:'🏗️'},
-  buchhaltung:{available:false,label:{de:'Buchhaltung / Finanzen',en:'Accounting / Finance',ar:'المحاسبة'},icon:'📊'},
+  buchhaltung:{available:false,label:{de:'Buchhaltung',en:'Accounting',ar:'المحاسبة'},icon:'📊'},
 };
-
-let waitingForSector = false;
 
 function detectSectorFromText(text){
   const t=text.toLowerCase();
-  const map={
-    pflege:['pflege','krankenpflege','altenpflege','nurse','nursing','تمريض','رعاية','صحة'],
-    handwerk:['handwerk','elektriker','klempner','maler','schreiner','craft','trade','حرفة','كهربائي','نجار'],
-    gastronomie:['gastro','restaurant','hotel','küche','koch','hospitality','ضيافة','فندق','مطبخ'],
-    logistik:['logistik','transport','lkw','fahrer','lager','logistics','driver','لوجستيك','نقل','سائق'],
-    it:['it','informatik','software','developer','تقنية','برمجة'],
-    medizin_arzt:['arzt','zahnarzt','doktor','doctor','dentist','طبيب'],
-    architektur:['architekt','architecture','هندسة معمارية'],
-    buchhaltung:['buchhalter','finanzen','accountant','محاسبة'],
-  };
-  for(const [key,words] of Object.entries(map)){if(words.some(w=>t.includes(w)))return key;}
+  const map={pflege:['pflege','krankenpflege','altenpflege','nurse','nursing','تمريض','رعاية'],handwerk:['handwerk','elektriker','klempner','craft','trade','حرفة','كهربائي'],gastronomie:['gastro','restaurant','hotel','küche','ضيافة','فندق'],logistik:['logistik','transport','lkw','fahrer','لوجستيك','نقل'],it:['it','informatik','software','تقنية'],medizin_arzt:['arzt','zahnarzt','doctor','طبيب'],architektur:['architekt','هندسة معمارية'],buchhaltung:['buchhalter','accountant','محاسبة']};
+  for(const[k,w]of Object.entries(map)){if(w.some(x=>t.includes(x)))return k;}
   return null;
 }
-
-function handleJobSectorResponse(sectorKey){
+function handleJobSectorResponse(key){
   waitingForSector=false;
-  const sector=SECTORS[sectorKey];
-  if(!sector){
-    const msg={de:`<p>Dieses Berufsfeld ist nicht verfügbar. Verfügbar: Pflege, Handwerk, Gastronomie, Logistik.</p>`,en:`<p>This field is not available. Available: Healthcare, Trades, Hospitality, Logistics.</p>`,ar:`<p>هذا المجال غير متاح. المتاح: تمريض، حرف، ضيافة، لوجستيك.</p>`};
-    addMessage('bot',msg[currentLang]); return;
-  }
-  if(!sector.available){
-    const msg={de:`<p><strong>${sector.label.de}</strong> ist derzeit nicht verfügbar.</p><p>Verfügbar: 🏥 Pflege · 🔧 Handwerk · 🍽️ Gastronomie · 🚛 Logistik</p>`,en:`<p><strong>${sector.label.en}</strong> is not available.</p>`,ar:`<p><strong>${sector.label.ar}</strong> غير متاح حالياً.</p>`};
-    addMessage('bot',msg[currentLang]); return;
-  }
-  addMessage('bot',sector.conditions[currentLang],sector.pages);
+  const s=SECTORS[key];
+  if(!s){addMessage('bot',{de:`<p>Nicht verfügbar.</p>`,en:`<p>Not available.</p>`,ar:`<p>غير متاح.</p>`}[currentLang]);return;}
+  if(!s.available){addMessage('bot',{de:`<p><strong>${s.label.de}</strong> derzeit nicht verfügbar. Verfügbar: Pflege · Handwerk · Gastronomie · Logistik</p>`,en:`<p>Not available.</p>`,ar:`<p>غير متاح.</p>`}[currentLang]);return;}
+  addMessage('bot',s.conditions[currentLang],s.pages,'ausbildung');
 }
-
 function askForSector(){
   waitingForSector=true;
-  const sectorList=Object.entries(SECTORS).map(([key,s])=>`<button class="sector-btn" onclick="pickSector('${key}')">${s.icon} ${s.label[currentLang]}</button>`).join('');
-  const msg={de:`<p>In welchem <strong>Berufsfeld</strong> suchen Sie?</p><div class="sector-btns">${sectorList}</div>`,en:`<p>Which <strong>field</strong> are you looking for?</p><div class="sector-btns">${sectorList}</div>`,ar:`<p>في أي <strong>مجال</strong> تبحث؟</p><div class="sector-btns">${sectorList}</div>`};
-  addMessage('bot',msg[currentLang]);
+  const list=Object.entries(SECTORS).map(([k,s])=>`<button class="sector-btn" onclick="pickSector('${k}')">${s.icon} ${s.label[currentLang]}</button>`).join('');
+  addMessage('bot',{de:`<p>In welchem <strong>Berufsfeld</strong>?</p><div class="sector-btns">${list}</div>`,en:`<p>Which <strong>field</strong>?</p><div class="sector-btns">${list}</div>`,ar:`<p>أي <strong>مجال</strong>؟</p><div class="sector-btns">${list}</div>`}[currentLang]);
+}
+function pickSector(k){const s=SECTORS[k];if(!s)return;addMessage('user',`<p>${s.icon} ${s.label[currentLang]}</p>`);handleJobSectorResponse(k);}
+
+/* ══════════════════════════════════ FOLLOW-UPS ══════════════════════════════════ */
+const FOLLOWUPS={
+  cv:{de:['Was brauche ich für die Bewerbung?','Was kostet das Motivationsschreiben?','Wie registriere ich mich?'],en:['What do I need to apply?','How much is the motivation letter?','How do I register?'],ar:['ماذا أحتاج للتقديم؟','كم تكلف رسالة التحفيز؟','كيف أسجل؟']},
+  motivation:{de:['Wie schreibe ich einen Lebenslauf?','Was kostet es?','Welche Dokumente brauche ich?'],en:['How do I write a CV?','How much does it cost?','What documents do I need?'],ar:['كيف أكتب السيرة الذاتية؟','كم يكلف؟','ما الوثائق المطلوبة؟']},
+  docs:{de:['Brauche ich alle Dokumente übersetzt?','Was kostet der Lebenslauf?','Wie lange dauert der Visaprozess?'],en:['Do I need all documents translated?','How much is the CV?','How long does the visa take?'],ar:['هل أحتاج ترجمة الوثائق؟','كم تكلف السيرة الذاتية؟','كم يستغرق التأشيرة؟']},
+  ausbildung:{de:['Welches Sprachniveau brauche ich?','Was sind meine Chancen?','Wie bewerbe ich mich?'],en:['What language level do I need?','What are my chances?','How do I apply?'],ar:['ما مستوى اللغة المطلوب؟','ما هي فرصي؟','كيف أتقدم؟']},
+  visum:{de:['Wie lange dauert der Prozess?','Brauche ich ein Sperrkonto?','Was kostet das Visum?'],en:['How long does it take?','Do I need a blocked account?','How much is the visa?'],ar:['كم يستغرق الوقت؟','هل أحتاج حساباً مقيداً؟','كم يكلف التأشيرة؟']},
+  kosten:{de:['Ist die Registrierung wirklich kostenlos?','Wann muss ich zahlen?','Was bekomme ich für mein Geld?'],en:['Is registration really free?','When do I pay?','What do I get?'],ar:['هل التسجيل مجاني حقاً؟','متى أدفع؟','ماذا أحصل مقابل المال؟']},
+  interview:{de:['Wie bereite ich mich vor?','Was kostet das Training?','Welche Fragen werden gestellt?'],en:['How do I prepare?','How much is the training?','What questions are asked?'],ar:['كيف أستعد؟','كم يكلف التدريب؟','ما الأسئلة التي تُطرح؟']},
+  default:{de:['Wie registriere ich mich?','Was kostet die Plattform?','Wie hoch sind meine Chancen?'],en:['How do I register?','What does it cost?','What are my chances?'],ar:['كيف أسجل؟','كم تكلف المنصة؟','ما هي فرصي؟']}
+};
+function addFollowUps(key){
+  const list=FOLLOWUPS[key]||FOLLOWUPS.default;
+  const wrap=document.createElement('div');
+  wrap.className='followup-wrap';
+  list.forEach(q=>{
+    const btn=document.createElement('button');
+    btn.className='followup-btn';
+    btn.innerHTML=`<i class="fa-solid fa-arrow-right"></i>${q}`;
+    btn.onclick=()=>{document.getElementById('userInput').value=q;sendMessage();wrap.remove();};
+    wrap.appendChild(btn);
+  });
+  const msgs=document.getElementById('messages');
+  const lastBubble=msgs.querySelector('.msg-row.bot:last-child .bubble');
+  if(lastBubble) lastBubble.appendChild(wrap);
 }
 
-function pickSector(key){
-  const sector=SECTORS[key];
-  if(!sector)return;
-  addMessage('user',`<p>${sector.icon} ${sector.label[currentLang]}</p>`);
-  handleJobSectorResponse(key);
+/* ══════════════════════════════════ RATING ══════════════════════════════════ */
+function addRating(msgRow){
+  const bubble=msgRow.querySelector('.bubble');
+  if(!bubble)return;
+  const id='r'+Date.now();
+  const labels={de:'War das hilfreich?',en:'Was this helpful?',ar:'هل كان هذا مفيداً؟'};
+  const wrap=document.createElement('div');
+  wrap.className='rating-widget';
+  wrap.id=id;
+  wrap.innerHTML=`<span class="rating-q">${labels[currentLang]}</span><div class="rating-btns"><button class="rating-btn pos" onclick="rateMsg('${id}',true,this)" title="Ja">👍</button><button class="rating-btn neg" onclick="rateMsg('${id}',false,this)" title="Nein">👎</button></div>`;
+  bubble.appendChild(wrap);
+}
+function rateMsg(id,positive,btn){
+  const wrap=document.getElementById(id);
+  if(!wrap)return;
+  wrap.querySelectorAll('.rating-btn').forEach(b=>{b.disabled=true;});
+  btn.classList.add('chosen');
+  if(!positive){
+    setTimeout(()=>{
+      const bubble=wrap.closest('.bubble');
+      if(bubble&&!bubble.querySelector('.wa-card')){
+        const tmp=document.createElement('div');tmp.innerHTML=buildWACard();bubble.appendChild(tmp.firstElementChild);
+      }
+    },300);
+  }
+  setTimeout(()=>{ wrap.innerHTML=`<span class="rating-done">${positive?'✓ Danke!':'👍 Wir verbessern uns!'}</span>`; },600);
 }
 
-/* ══════════════════════════════════
-   LANGUAGE
-══════════════════════════════════ */
-let currentLang='de';
+/* ══════════════════════════════════ WHATSAPP ══════════════════════════════════ */
+const WA_MSGS_TEXT={
+  de:'Hallo 3E-Consulting, ich habe eine Frage die der Chatbot nicht beantworten konnte.',
+  en:'Hello 3E-Consulting, I have a question the chatbot could not answer.',
+  ar:'مرحباً 3E-Consulting، لديّ سؤال لم يستطع الشات بوت الإجابة عليه.'
+};
+function buildWACard(){
+  const url=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MSGS_TEXT[currentLang])}`;
+  const titles={de:'Direkt mit uns schreiben',en:'Chat with us directly',ar:'راسلنا مباشرةً'};
+  const subs={de:'Unser Team antwortet schnell auf WhatsApp',en:'Our team replies quickly on WhatsApp',ar:'فريقنا يرد بسرعة على واتساب'};
+  const btns={de:'Jetzt auf WhatsApp schreiben',en:'Message us on WhatsApp',ar:'راسلنا على واتساب الآن'};
+  return `<div class="wa-card"><div class="wa-card-top"><span class="wa-icon"><i class="fa-brands fa-whatsapp"></i></span><div><div class="wa-card-title">${titles[currentLang]}</div><div class="wa-card-sub">${subs[currentLang]}</div></div></div><a class="wa-btn" href="${url}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> ${btns[currentLang]}</a></div>`;
+}
+const FALLBACK={
+  de:`<p>Entschuldigung, auf diese Frage habe ich leider keine Antwort.</p>`,
+  en:`<p>Sorry, I don't have an answer for that right now.</p>`,
+  ar:`<p>عذراً، لا أملك إجابة على هذا السؤال حالياً.</p>`
+};
+
+/* ══════════════════════════════════ LANGUAGE DATA ══════════════════════════════════ */
 const LANGS={
   de:{back:'Zurück',newChat:'Neues Gespräch',sideTitle:'Themen',sideQuickLabel:'Schnellzugriff',mobTitle:'Bewerber Assistent',welcomeTitle:'Hallo! Ich bin Ihr <em>Assistent</em>',welcomeSub:'Stellen Sie mir eine Frage oder wählen Sie ein Thema.',placeholder:'Stellen Sie mir eine Frage...',inputHint:'Enter zum Senden · Shift+Enter für neue Zeile'},
   en:{back:'Back',newChat:'New Chat',sideTitle:'Topics',sideQuickLabel:'Quick Access',mobTitle:'Applicant Assistant',welcomeTitle:'Hello! I\'m your <em>Assistant</em>',welcomeSub:'Ask me or choose a topic.',placeholder:'Ask me anything...',inputHint:'Press Enter to send · Shift+Enter for new line'},
   ar:{back:'رجوع',newChat:'محادثة جديدة',sideTitle:'المواضيع',sideQuickLabel:'وصول سريع',mobTitle:'مساعد المتقدمين',welcomeTitle:'مرحباً! أنا <em>مساعدك</em>',welcomeSub:'اسألني أو اختر موضوعاً.',placeholder:'اسألني أي سؤال...',inputHint:'اضغط Enter للإرسال'}
 };
-
 const CHIPS={de:['Lebenslauf','Dokumente','Ausbildung','Job suchen','Visum','Kosten','Registrierung'],en:['CV','Documents','Ausbildung','Find a Job','Visa','Costs','Registration'],ar:['السيرة الذاتية','الوثائق','التدريب','البحث عن عمل','التأشيرة','التكاليف','التسجيل']};
-
 const TOPICS={
   de:[{key:'cv',label:'Lebenslauf',icon:'fa-file-lines'},{key:'motivation',label:'Motivationsschreiben',icon:'fa-envelope'},{key:'docs',label:'Dokumente',icon:'fa-folder-open'},{key:'ausbildung',label:'Ausbildung in Deutschland',icon:'fa-graduation-cap'},{key:'job',label:'Job / Stelle suchen',icon:'fa-briefcase'},{key:'interview',label:'Vorstellungsgespräch',icon:'fa-comments'},{key:'video',label:'Profil-Video',icon:'fa-video'},{key:'visum',label:'Visum & Aufenthalt',icon:'fa-passport'},{key:'kosten',label:'Kosten & Preise',icon:'fa-coins'},{key:'chancen',label:'Meine Chancen',icon:'fa-chart-line'},{key:'sperrkonto',label:'Sperrkonto',icon:'fa-building-columns'},{key:'schritte',label:'Erste Schritte in DE',icon:'fa-map-location-dot'},{key:'register',label:'Registrierung',icon:'fa-user-plus'},{key:'kontakt',label:'Kontakt & Support',icon:'fa-headset'}],
   en:[{key:'cv',label:'CV / Resume',icon:'fa-file-lines'},{key:'motivation',label:'Motivation Letter',icon:'fa-envelope'},{key:'docs',label:'Documents',icon:'fa-folder-open'},{key:'ausbildung',label:'Ausbildung in Germany',icon:'fa-graduation-cap'},{key:'job',label:'Find a Job',icon:'fa-briefcase'},{key:'interview',label:'Job Interview',icon:'fa-comments'},{key:'video',label:'Profile Video',icon:'fa-video'},{key:'visum',label:'Visa & Residence',icon:'fa-passport'},{key:'kosten',label:'Costs & Pricing',icon:'fa-coins'},{key:'chancen',label:'My Chances',icon:'fa-chart-line'},{key:'sperrkonto',label:'Blocked Account',icon:'fa-building-columns'},{key:'schritte',label:'First Steps in Germany',icon:'fa-map-location-dot'},{key:'register',label:'Registration',icon:'fa-user-plus'},{key:'kontakt',label:'Contact & Support',icon:'fa-headset'}],
   ar:[{key:'cv',label:'السيرة الذاتية',icon:'fa-file-lines'},{key:'motivation',label:'رسالة التحفيز',icon:'fa-envelope'},{key:'docs',label:'الوثائق المطلوبة',icon:'fa-folder-open'},{key:'ausbildung',label:'التدريب في ألمانيا',icon:'fa-graduation-cap'},{key:'job',label:'البحث عن عمل',icon:'fa-briefcase'},{key:'interview',label:'مقابلة العمل',icon:'fa-comments'},{key:'video',label:'فيديو الملف',icon:'fa-video'},{key:'visum',label:'التأشيرة والإقامة',icon:'fa-passport'},{key:'kosten',label:'التكاليف والأسعار',icon:'fa-coins'},{key:'chancen',label:'فرص القبول',icon:'fa-chart-line'},{key:'sperrkonto',label:'الحساب المقيّد',icon:'fa-building-columns'},{key:'schritte',label:'الخطوات الأولى في ألمانيا',icon:'fa-map-location-dot'},{key:'register',label:'التسجيل',icon:'fa-user-plus'},{key:'kontakt',label:'التواصل والدعم',icon:'fa-headset'}]
 };
-
 const SUGGESTS={
   de:[{key:'job',icon:'fa-briefcase',text:'Ich suche eine Stelle in Deutschland'},{key:'ausbildung',icon:'fa-graduation-cap',text:'Was sind die Voraussetzungen für Ausbildung?'},{key:'kosten',icon:'fa-coins',text:'Was kostet die Plattform?'},{key:'chancen',icon:'fa-chart-line',text:'Wie hoch sind meine Chancen?'},{key:'visum',icon:'fa-passport',text:'Wie läuft der Visa-Prozess ab?'},{key:'docs',icon:'fa-folder-open',text:'Welche Dokumente brauche ich?'},{key:'sperrkonto',icon:'fa-building-columns',text:'Brauche ich ein Sperrkonto?'},{key:'register',icon:'fa-user-plus',text:'Wie registriere ich mich?'}],
-  en:[{key:'job',icon:'fa-briefcase',text:'I\'m looking for a job in Germany'},{key:'ausbildung',icon:'fa-graduation-cap',text:'What are the requirements for Ausbildung?'},{key:'kosten',icon:'fa-coins',text:'How much does the platform cost?'},{key:'chancen',icon:'fa-chart-line',text:'What are my chances?'},{key:'visum',icon:'fa-passport',text:'How does the visa process work?'},{key:'docs',icon:'fa-folder-open',text:'What documents do I need?'},{key:'sperrkonto',icon:'fa-building-columns',text:'Do I need a blocked account?'},{key:'register',icon:'fa-user-plus',text:'How do I register?'}],
+  en:[{key:'job',icon:'fa-briefcase',text:"I'm looking for a job in Germany"},{key:'ausbildung',icon:'fa-graduation-cap',text:'What are the requirements for Ausbildung?'},{key:'kosten',icon:'fa-coins',text:'How much does the platform cost?'},{key:'chancen',icon:'fa-chart-line',text:'What are my chances?'},{key:'visum',icon:'fa-passport',text:'How does the visa process work?'},{key:'docs',icon:'fa-folder-open',text:'What documents do I need?'},{key:'sperrkonto',icon:'fa-building-columns',text:'Do I need a blocked account?'},{key:'register',icon:'fa-user-plus',text:'How do I register?'}],
   ar:[{key:'job',icon:'fa-briefcase',text:'أبحث عن عمل في ألمانيا'},{key:'ausbildung',icon:'fa-graduation-cap',text:'ما هي شروط التدريب المهني؟'},{key:'kosten',icon:'fa-coins',text:'كم تكلف المنصة؟'},{key:'chancen',icon:'fa-chart-line',text:'ما هي فرص قبولي؟'},{key:'visum',icon:'fa-passport',text:'كيف تسير عملية التأشيرة؟'},{key:'docs',icon:'fa-folder-open',text:'ما هي الوثائق المطلوبة؟'},{key:'sperrkonto',icon:'fa-building-columns',text:'هل أحتاج إلى حساب مقيّد؟'},{key:'register',icon:'fa-user-plus',text:'كيف أسجّل في المنصة؟'}]
 };
 
 const RESPONSES={
-  cv:{de:{text:`<p>Der <strong>Lebenslauf</strong> muss auf <strong>Deutsch</strong>, aktuell und professionell sein.</p><p>Wir erstellen ihn für Sie: <span class="price-badge"><i class="fa-solid fa-tag"></i> 4.500 DA</span></p><p><a class="book-btn" href="service-bewerber.html#Bewerbungsprozess"><span class="btn-icon"><i class="fa-solid fa-calendar-check"></i></span><span class="btn-text"><span>Lebenslauf bestellen</span><small>Schnell · Professionell</small></span></a></p>`,links:[{label:'📄 Vorlagen',url:'Bewerbung.html#lebenslauf'}]},en:{text:`<p>Your <strong>CV</strong> must be in <strong>German</strong>. <span class="price-badge"><i class="fa-solid fa-tag"></i> 4,500 DA</span></p>`,links:[{label:'📄 Templates',url:'Bewerbung.html#lebenslauf'}]},ar:{text:`<p><strong>السيرة الذاتية</strong> باللغة الألمانية. <span class="price-badge"><i class="fa-solid fa-tag"></i> 4,500 دج</span></p>`,links:[{label:'📄 القوالب',url:'Bewerbung.html#lebenslauf'}]}},
+  cv:{de:{text:`<p>Der <strong>Lebenslauf</strong> muss auf <strong>Deutsch</strong> sein. <span class="price-badge"><i class="fa-solid fa-tag"></i> 4.500 DA</span></p><p><a class="book-btn" href="service-bewerber.html#Bewerbungsprozess"><span class="btn-icon"><i class="fa-solid fa-calendar-check"></i></span><span class="btn-text"><span>Lebenslauf bestellen</span><small>Schnell · Professionell</small></span></a></p>`,links:[{label:'📄 Vorlagen',url:'Bewerbung.html#lebenslauf'}]},en:{text:`<p>Your <strong>CV</strong> must be in <strong>German</strong>. <span class="price-badge">4,500 DA</span></p>`,links:[{label:'📄 Templates',url:'Bewerbung.html#lebenslauf'}]},ar:{text:`<p><strong>السيرة الذاتية</strong> بالألمانية. <span class="price-badge">4,500 دج</span></p>`,links:[{label:'📄 القوالب',url:'Bewerbung.html#lebenslauf'}]}},
   motivation:{de:{text:`<p><strong>Motivationsschreiben</strong>: max. 1 A4-Seite. <span class="price-badge"><i class="fa-solid fa-tag"></i> 7.500 DA</span></p><p><a class="book-btn" href="service-bewerber.html"><span class="btn-icon"><i class="fa-solid fa-pen-nib"></i></span><span class="btn-text"><span>Motivationsschreiben bestellen</span><small>Individuell · Überzeugend</small></span></a></p>`,links:[]},en:{text:`<p><strong>Motivation letter</strong>: 1 A4 page. <span class="price-badge">7,500 DA</span></p>`,links:[]},ar:{text:`<p><strong>رسالة التحفيز</strong>: صفحة A4. <span class="price-badge">7,500 دج</span></p>`,links:[]}},
-  docs:{de:{text:`<p><strong>Pflichtdokumente:</strong><br>✔ Reisepass / Ausweis<br>✔ Schulzeugnisse<br>✔ Sprachzertifikat (min. <strong>B1</strong>)<br>✔ Lebenslauf auf Deutsch<br>✔ Motivationsschreiben</p><p>Alle müssen übersetzt sein.</p>`,links:[{label:'📂 Voraussetzungen',url:'vermitlung.html'}]},en:{text:`<p><strong>Required docs:</strong><br>✔ Passport<br>✔ School certificates<br>✔ Language cert (B1+)<br>✔ CV in German</p>`,links:[{label:'Requirements',url:'vermitlung.html'}]},ar:{text:`<p><strong>الوثائق الإلزامية:</strong><br>✔ جواز سفر<br>✔ شهادات الدراسة<br>✔ شهادة لغة (B1+)<br>✔ سيرة ذاتية بالألمانية</p>`,links:[{label:'📂 المتطلبات',url:'vermitlung.html'}]}},
+  docs:{de:{text:`<p><strong>Pflichtdokumente:</strong><br>✔ Reisepass<br>✔ Schulzeugnisse<br>✔ Sprachzertifikat (min. <strong>B1</strong>)<br>✔ Lebenslauf auf Deutsch<br>✔ Motivationsschreiben</p>`,links:[{label:'📂 Voraussetzungen',url:'vermitlung.html'}]},en:{text:`<p><strong>Required docs:</strong><br>✔ Passport<br>✔ School certificates<br>✔ Language cert (B1+)<br>✔ CV in German</p>`,links:[{label:'Requirements',url:'vermitlung.html'}]},ar:{text:`<p><strong>الوثائق الإلزامية:</strong><br>✔ جواز سفر<br>✔ شهادات الدراسة<br>✔ شهادة لغة (B1+)<br>✔ سيرة ذاتية بالألمانية</p>`,links:[{label:'📂 المتطلبات',url:'vermitlung.html'}]}},
   ausbildung:{de:{text:`<p>Für <strong>Ausbildung in Deutschland</strong>:<br>✔ Deutsch <strong>B1</strong> (besser B2)<br>✔ Anerkannte Schulabschlüsse<br>✔ Gesundheitliche Eignung</p>`,links:[{label:'📋 Voraussetzungen',url:'vermitlung.html'},{label:'🏢 Branchen',url:'index.html#fachbereiche'}]},en:{text:`<p>For <strong>Ausbildung</strong>:<br>✔ German B1 (B2 preferred)<br>✔ Recognized school certs</p>`,links:[{label:'Requirements',url:'vermitlung.html'}]},ar:{text:`<p>للـ<strong>Ausbildung</strong>:<br>✔ ألماني B1 (B2 أفضل)<br>✔ شهادات معترف بها</p>`,links:[{label:'📋 المتطلبات',url:'vermitlung.html'}]}},
-  interview:{de:{text:`<p><strong>Interview-Training</strong> bei 3E — 3 Sitzungen.</p><p><span class="price-badge"><i class="fa-solid fa-tag"></i> 12.000 DA · 3 Sitzungen</span></p><p><a class="book-btn" href="service-bewerber.html"><span class="btn-icon"><i class="fa-solid fa-comments"></i></span><span class="btn-text"><span>Training buchen</span><small>3 Sitzungen · Feedback</small></span></a></p>`,links:[{label:'🎯 Service',url:'service-bewerber.html'}]},en:{text:`<p><strong>Interview Training</strong> — 3 sessions. <span class="price-badge">12,000 DA</span></p>`,links:[]},ar:{text:`<p><strong>تدريب المقابلة</strong> — 3 جلسات. <span class="price-badge">12,000 دج</span></p>`,links:[]}},
-  video:{de:{text:`<p><strong>Profil-Video</strong>: 60–90 Sek., Deutsch, gute Qualität.</p>`,links:[{label:'🎥 Richtlinien',url:'Bewerbung.html#profil-video'}]},en:{text:`<p><strong>Profile video</strong>: 60–90 sec, German.</p>`,links:[]},ar:{text:`<p><strong>فيديو الملف</strong>: 60–90 ثانية، ألماني.</p>`,links:[]}},
+  interview:{de:{text:`<p><strong>Interview-Training</strong> — 3 Sitzungen. <span class="price-badge"><i class="fa-solid fa-tag"></i> 12.000 DA</span></p><p><a class="book-btn" href="service-bewerber.html"><span class="btn-icon"><i class="fa-solid fa-comments"></i></span><span class="btn-text"><span>Training buchen</span><small>3 Sitzungen · Feedback</small></span></a></p>`,links:[]},en:{text:`<p><strong>Interview Training</strong> — 3 sessions. <span class="price-badge">12,000 DA</span></p>`,links:[]},ar:{text:`<p><strong>تدريب المقابلة</strong> — 3 جلسات. <span class="price-badge">12,000 دج</span></p>`,links:[]}},
+  video:{de:{text:`<p><strong>Profil-Video</strong>: 60–90 Sek., Deutsch, gute Qualität.</p>`,links:[{label:'🎥 Richtlinien',url:'Bewerbung.html#profil-video'}]},en:{text:`<p><strong>Profile video</strong>: 60–90 sec, in German.</p>`,links:[]},ar:{text:`<p><strong>فيديو الملف</strong>: 60–90 ثانية، بالألمانية.</p>`,links:[]}},
   visum:{de:{text:`<p>✔ <strong>Berufsausbildungsvisum</strong> §17<br>✔ <strong>Fachkräftevisum</strong> §18<br>✔ <strong>Chancenkarte</strong></p>`,links:[{label:'📜 Aufenthaltsrecht',url:'aufenthaltsrecht.html'}]},en:{text:`<p>✔ Training Visa §17<br>✔ Skilled Worker Visa §18<br>✔ Opportunity Card</p>`,links:[]},ar:{text:`<p>✔ تأشيرة تدريب مهني §17<br>✔ تأشيرة عمال مهرة §18</p>`,links:[]}},
-  kosten:{de:{text:`<p>✔ Registrierung: <strong>KOSTENLOS</strong><br>✔ Lebenslauf: <strong>4500 DA</strong><br>✔ Motivationsschreiben: <strong>7500 DA</strong><br>✔ Interview-Vorbereitung: <strong>12000 DA</strong></p>`,links:[{label:'💼 Services',url:'service-bewerber.html'}]},en:{text:`<p>✔ Registration: FREE<br>✔ CV: 4,500 DA<br>✔ Motivation: 7,500 DA<br>✔ Interview: 12,000 DA</p>`,links:[]},ar:{text:`<p>✔ التسجيل: مجاني<br>✔ سيرة ذاتية: 4,500 دج<br>✔ رسالة تحفيز: 7,500 دج<br>✔ مقابلة: 12,000 دج</p>`,links:[]}},
+  kosten:{de:{text:`<p>✔ Registrierung: <strong>KOSTENLOS</strong><br>✔ Lebenslauf: <strong>4500 DA</strong><br>✔ Motivationsschreiben: <strong>7500 DA</strong><br>✔ Interview-Training: <strong>12000 DA</strong></p>`,links:[{label:'💼 Services',url:'service-bewerber.html'}]},en:{text:`<p>✔ Registration: FREE<br>✔ CV: 4,500 DA<br>✔ Motivation: 7,500 DA<br>✔ Interview: 12,000 DA</p>`,links:[]},ar:{text:`<p>✔ التسجيل: مجاني<br>✔ سيرة ذاتية: 4,500 دج<br>✔ رسالة تحفيز: 7,500 دج<br>✔ مقابلة: 12,000 دج</p>`,links:[]}},
   chancen:{de:{text:`<p>Chancen abhängig von:<br>✔ Deutschkenntnisse (B2 empfohlen)<br>✔ Dokumentenqualität<br>✔ Berufserfahrung</p>`,links:[]},en:{text:`<p>Chances depend on:<br>✔ German level (B2 recommended)<br>✔ Document quality</p>`,links:[]},ar:{text:`<p>الفرص تعتمد على:<br>✔ مستوى الألمانية (B2)<br>✔ جودة الوثائق</p>`,links:[]}},
-  sperrkonto:{de:{text:`<p>Ein <strong>Sperrkonto</strong> ist für Ausbildung / Arbeit <strong>nicht erforderlich</strong>.</p>`,links:[]},en:{text:`<p><strong>Blocked account</strong> not required for Ausbildung/work.</p>`,links:[]},ar:{text:`<p><strong>الحساب المقيّد</strong> غير مطلوب للتدريب والعمل.</p>`,links:[]}},
+  sperrkonto:{de:{text:`<p>Ein <strong>Sperrkonto</strong> ist für Ausbildung/Arbeit <strong>nicht erforderlich</strong>.</p>`,links:[]},en:{text:`<p><strong>Blocked account</strong> not required for Ausbildung/work.</p>`,links:[]},ar:{text:`<p><strong>الحساب المقيّد</strong> غير مطلوب للتدريب والعمل.</p>`,links:[]}},
   schritte:{de:{text:`<p><strong>Erste Schritte:</strong><br>✔ Anmeldung beim Einwohnermeldeamt<br>✔ Krankenversicherung<br>✔ Bankkonto<br>✔ SIM-Karte</p>`,links:[{label:'🇩🇪 Alltag in DE',url:'alltag-deutschland.html'}]},en:{text:`<p><strong>First steps:</strong><br>✔ Register at municipality<br>✔ Health insurance<br>✔ Bank account</p>`,links:[]},ar:{text:`<p><strong>الخطوات الأولى:</strong><br>✔ التسجيل في مكتب السكان<br>✔ تأمين صحي<br>✔ حساب بنكي</p>`,links:[]}},
-  register:{de:{text:`<p>1️⃣ Registrieren → 2️⃣ Daten ausfüllen → 3️⃣ Dokumente hochladen → 4️⃣ Video → 5️⃣ Einreichen</p><p><a class="book-btn" href="registraion.html"><span class="btn-icon"><i class="fa-solid fa-user-plus"></i></span><span class="btn-text"><span>Jetzt registrieren</span><small>Kostenlos · Schnell</small></span></a></p>`,links:[]},en:{text:`<p>1️⃣ Register → 2️⃣ Fill details → 3️⃣ Upload docs → 4️⃣ Video → 5️⃣ Submit</p>`,links:[{label:'✅ Register',url:'registraion.html'}]},ar:{text:`<p>1️⃣ التسجيل → 2️⃣ أدخل البيانات → 3️⃣ ارفع الوثائق → 4️⃣ فيديو → 5️⃣ أرسل</p>`,links:[{label:'✅ سجّل الآن',url:'registraion.html'}]}},
+  register:{de:{text:`<p>1️⃣ Registrieren → 2️⃣ Daten → 3️⃣ Dokumente → 4️⃣ Video → 5️⃣ Einreichen</p><p><a class="book-btn" href="registraion.html"><span class="btn-icon"><i class="fa-solid fa-user-plus"></i></span><span class="btn-text"><span>Jetzt registrieren</span><small>Kostenlos · Schnell</small></span></a></p>`,links:[]},en:{text:`<p>1️⃣ Register → 2️⃣ Fill details → 3️⃣ Upload docs → 4️⃣ Video → 5️⃣ Submit</p>`,links:[{label:'✅ Register',url:'registraion.html'}]},ar:{text:`<p>1️⃣ التسجيل → 2️⃣ أدخل البيانات → 3️⃣ ارفع الوثائق → 4️⃣ فيديو → 5️⃣ أرسل</p>`,links:[{label:'✅ سجّل الآن',url:'registraion.html'}]}},
   kontakt:{de:{text:`<p>📧 <a href="mailto:merabtisouheil@gmail.com">merabtisouheil@gmail.com</a></p>`,links:[{label:'📬 Kontakt',url:'index.html#contact'}]},en:{text:`<p>📧 <a href="mailto:merabtisouheil@gmail.com">merabtisouheil@gmail.com</a></p>`,links:[]},ar:{text:`<p>📧 <a href="mailto:merabtisouheil@gmail.com">merabtisouheil@gmail.com</a></p>`,links:[]}}
 };
 
-const FALLBACK={de:`<p>Ich habe Ihre Frage nicht verstanden. Wählen Sie ein Thema links.</p>`,en:`<p>I didn't understand. Please choose a topic.</p>`,ar:`<p>لم أفهم. الرجاء اختيار موضوع.</p>`};
-
-/* KEYWORDS */
-const KEYWORDS={
-  cv:['lebenslauf','cv','resume','سيرة'],
-  motivation:['motivat','anschreiben','letter','رسالة'],
-  docs:['dokument','unterlag','وثيق','zeugnis'],
-  ausbildung:['ausbildung','apprenti','تدريب','voraussetz'],
-  job:['job','stelle','arbeit','work','عمل','وظيفة'],
-  interview:['interview','gespräch','مقابلة'],
-  video:['video','فيديو'],
-  visum:['visum','visa','تأشيرة'],
-  kosten:['kost','preis','price','cost','تكلف','تكاليف'],
-  chancen:['chance','فرص'],
-  sperrkonto:['sperrkonto','blocked','حساب مقيد'],
-  schritte:['erste','ankunft','خطوات','bank','kranken'],
-  register:['registrierung','register','konto','account','حساب'],
-  kontakt:['kontakt','contact','support','تواصل']
-};
-
-function detectTopic(text){
-  const t=text.toLowerCase();
-  for(const [key,words] of Object.entries(KEYWORDS)){if(words.some(w=>t.includes(w)))return key;}
-  return null;
-}
+const KEYWORDS={cv:['lebenslauf','cv','resume','سيرة'],motivation:['motivat','anschreiben','letter','رسالة'],docs:['dokument','unterlag','وثيق','zeugnis'],ausbildung:['ausbildung','apprenti','تدريب','voraussetz'],job:['job','stelle','arbeit','work','عمل','وظيفة'],interview:['interview','gespräch','مقابلة'],video:['video','فيديو'],visum:['visum','visa','تأشيرة'],kosten:['kost','preis','price','cost','تكلف'],chancen:['chance','فرص'],sperrkonto:['sperrkonto','blocked','حساب مقيد'],schritte:['erste','ankunft','خطوات','bank','kranken'],register:['registrierung','register','konto','account','حساب'],kontakt:['kontakt','contact','support','تواصل']};
+function detectTopic(text){const t=text.toLowerCase();for(const[k,w]of Object.entries(KEYWORDS)){if(w.some(x=>t.includes(x)))return k;}return null;}
 
 const SYSTEM_PROMPT=`You are the official AI assistant of 3E-Consulting, connecting Algerian candidates with German employers.
 RULES: Short, clear, professional answers. Max 150 words. Use HTML: <p>, <strong>, <br>, <a href="...">label</a>. Detect language → reply in SAME language.
 SECTORS: Pflege (B2), Handwerk (B1), Gastronomie (B1), Logistik (B1). NOT available: IT, Arzt, Architektur, Buchhaltung.
-PRICING: Registration FREE | CV 4,500 DA | Motivation 7,500 DA | Interview 12,000 DA.`;
+PRICING: Registration FREE | CV 4,500 DA | Motivation 7,500 DA | Interview 12,000 DA.
+Context: Remember what the user said earlier in this conversation to give relevant answers.`;
 
-/* STATE */
-let chatStarted=false, isTyping=false, conversationHistory=[];
-
-function renderSidebar(){document.getElementById('topicList').innerHTML=TOPICS[currentLang].map(t=>`<div class="topic-item" onclick="askTopic('${t.key}')"><div class="topic-icon"><i class="fa-solid ${t.icon}"></i></div><span class="topic-label">${t.label}</span></div>`).join('');}
-function renderSuggests(){document.getElementById('suggestGrid').innerHTML=SUGGESTS[currentLang].map(s=>`<button class="suggest-btn" onclick="askTopic('${s.key}')"><i class="fa-solid ${s.icon}"></i><span>${s.text}</span></button>`).join('');}
-function renderChips(){document.getElementById('quickChips').innerHTML=CHIPS[currentLang].map(c=>`<button class="chip" onclick="sendChip('${c}')">${c}</button>`).join('');}
-function applyLangUI(){const L=LANGS[currentLang];document.getElementById('backLabel').textContent=L.back;document.getElementById('newChatLabel').textContent=L.newChat;document.getElementById('sideTitle').textContent=L.sideTitle;document.getElementById('sideQuickLabel').textContent=L.sideQuickLabel;document.getElementById('mobTitle').textContent=L.mobTitle;document.getElementById('welcomeTitle').innerHTML=L.welcomeTitle;document.getElementById('welcomeSub').textContent=L.welcomeSub;document.getElementById('userInput').placeholder=L.placeholder;document.getElementById('inputHint').textContent=L.inputHint;document.body.style.direction=currentLang==='ar'?'rtl':'ltr';}
-
+/* ══════════════════════════════════ UI HELPERS ══════════════════════════════════ */
 function startChat(){if(!chatStarted){chatStarted=true;document.getElementById('welcomeScreen').style.display='none';document.getElementById('messages').style.display='flex';}}
 
-function addMessage(role,html,links){
+function addMessage(role,html,links,topicKey){
   startChat();
   const msgs=document.getElementById('messages');
   const isBot=role==='bot';
   const row=document.createElement('div');
   row.className=`msg-row ${role}`;
-  const av=`<div class="avatar ${role}">${isBot?'<i class="fa-solid fa-robot" style="font-size:.75rem"></i>':'<i class="fa-solid fa-user" style="font-size:.75rem"></i>'}</div>`;
+  const av=`<div class="avatar ${role}">${isBot?'<i class="fa-solid fa-robot" style="font-size:.72rem"></i>':'<i class="fa-solid fa-user" style="font-size:.72rem"></i>'}</div>`;
   let linksHtml='';
-  if(links&&links.length){linksHtml=`<div class="link-btns">${links.map(l=>`<a class="link-btn" href="${l.url}"><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.65rem"></i>${l.label}</a>`).join('')}</div>`;}
+  if(links&&links.length) linksHtml=`<div class="link-btns">${links.map(l=>`<a class="link-btn" href="${l.url}"><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.62rem"></i>${l.label}</a>`).join('')}</div>`;
   const bubble=`<div class="bubble ${role}">${html}${linksHtml}</div>`;
   row.innerHTML=isBot?av+bubble:bubble+av;
   msgs.appendChild(row);
   msgs.scrollTop=msgs.scrollHeight;
+  if(isBot){
+    setTimeout(()=>{addRating(row);},400);
+    if(topicKey) setTimeout(()=>{addFollowUps(topicKey);},500);
+  }
+  return row;
 }
 
-function showTyping(){startChat();const msgs=document.getElementById('messages');const row=document.createElement('div');row.className='msg-row bot';row.id='typingRow';row.innerHTML=`<div class="avatar bot"><i class="fa-solid fa-robot" style="font-size:.75rem"></i></div><div class="bubble bot"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight;}
+function showTyping(){startChat();const msgs=document.getElementById('messages');const row=document.createElement('div');row.className='msg-row bot';row.id='typingRow';row.innerHTML=`<div class="avatar bot"><i class="fa-solid fa-robot" style="font-size:.72rem"></i></div><div class="bubble bot"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight;}
 function removeTyping(){const el=document.getElementById('typingRow');if(el)el.remove();}
 
+function showToast(msg,type='info'){
+  let t=document.getElementById('chatToast');
+  if(!t){t=document.createElement('div');t.id='chatToast';t.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);padding:8px 18px;border-radius:20px;font-size:.76rem;font-weight:600;z-index:500;transition:opacity .3s;white-space:nowrap;';document.body.appendChild(t);}
+  t.textContent=msg;
+  t.style.background=type==='warn'?'rgba(245,158,11,.9)':'rgba(74,222,128,.9)';
+  t.style.color='#fff';t.style.opacity='1';
+  setTimeout(()=>t.style.opacity='0',2500);
+}
+
+/* ══════════════════════════════════ SEND LOGIC ══════════════════════════════════ */
 function askTopic(key){
   const q=SUGGESTS[currentLang].find(s=>s.key===key);
   const label=q?q.text:(TOPICS[currentLang].find(t=>t.key===key)?.label||key);
   addMessage('user',`<p>${label}</p>`);
   if(key==='job'){askForSector();closeSidebar();return;}
-  respond(key,label);
-  closeSidebar();
+  respond(key,label);closeSidebar();
 }
-
 function sendChip(text){document.getElementById('userInput').value=text;sendMessage();}
-
 function sendMessage(){
   const input=document.getElementById('userInput');
   const text=input.value.trim();
   if(!text||isTyping)return;
+  if(msgsUsed>=MAX_MSGS){
+    const lim={de:`<p>Sie haben heute Ihr Limit von ${MAX_MSGS} Fragen erreicht. Schreiben Sie uns direkt!</p>${buildWACard()}`,en:`<p>You've reached today's limit of ${MAX_MSGS} questions. Contact us directly!</p>${buildWACard()}`,ar:`<p>وصلت إلى حد ${MAX_MSGS} سؤال اليوم. راسلنا مباشرة!</p>${buildWACard()}`};
+    addMessage('bot',lim[currentLang]);return;
+  }
   input.value='';input.style.height='auto';
   addMessage('user',`<p>${escapeHtml(text)}</p>`);
+  msgsUsed++;localStorage.setItem('msgsUsed',msgsUsed);updateMsgsCounter();
   if(waitingForSector){
-    const sectorKey=detectSectorFromText(text);
-    if(sectorKey){handleJobSectorResponse(sectorKey);return;}
-    const msg={de:`<p>Bitte wählen Sie einen Sektor:</p>`,en:`<p>Please pick a field:</p>`,ar:`<p>الرجاء اختيار المجال:</p>`};
-    addMessage('bot',msg[currentLang]);
+    const sk=detectSectorFromText(text);
+    if(sk){handleJobSectorResponse(sk);return;}
+    addMessage('bot',{de:`<p>Bitte wählen Sie einen Sektor.</p>`,en:`<p>Please pick a field.</p>`,ar:`<p>الرجاء اختيار المجال.</p>`}[currentLang]);
     askForSector();return;
   }
   const topic=detectTopic(text);
@@ -702,56 +856,77 @@ async function respond(key,userText){
   showTyping();
   const msgText=userText||(TOPICS[currentLang].find(t=>t.key===key)?.label)||key||'Hello';
   conversationHistory.push({role:'user',content:msgText});
+  const t0=Date.now();
   try{
     const res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:600,system:SYSTEM_PROMPT,messages:conversationHistory})});
+    const elapsed=Date.now()-t0;
+    if(elapsed>4000)setStatus('slow'); else setStatus('online');
     const data=await res.json();
     removeTyping();
     if(data.content&&data.content[0]&&data.content[0].text){
       const aiText=data.content[0].text;
       conversationHistory.push({role:'assistant',content:aiText});
       const staticLinks=(key&&RESPONSES[key])?RESPONSES[key][currentLang]?.links:null;
-      addMessage('bot',aiText,staticLinks);
-    }else throw new Error('no content');
+      const row=addMessage('bot',aiText,staticLinks,key||'default');
+      lastBotKey=key;
+      const txt=aiText.toLowerCase();
+      const unknownSigs=['leider','nicht beantworten','außerhalb','no answer','can\'t help','لا أعرف','لا أستطيع','لا أملك','don\'t know','not sure','beyond','outside'];
+      if(unknownSigs.some(s=>txt.includes(s))){
+        setTimeout(()=>{
+          const bub=row.querySelector('.bubble');
+          if(bub&&!bub.querySelector('.wa-card')){
+            const d=document.createElement('div');d.innerHTML=buildWACard();bub.appendChild(d.firstElementChild);
+          }
+        },300);
+      }
+    } else throw new Error('no content');
   }catch(err){
+    setStatus('offline');setTimeout(()=>setStatus('online'),5000);
     removeTyping();
     const resp=key&&RESPONSES[key]?RESPONSES[key][currentLang]:null;
-    if(resp)addMessage('bot',resp.text,resp.links);
-    else addMessage('bot',FALLBACK[currentLang]);
+    if(resp){addMessage('bot',resp.text,resp.links,key);}
+    else{const fallHtml=FALLBACK[currentLang]+buildWACard();addMessage('bot',fallHtml,null,'default');}
   }
   isTyping=false;
   document.getElementById('sendBtn').disabled=false;
 }
 
-function resetChat(){chatStarted=false;conversationHistory=[];waitingForSector=false;document.getElementById('welcomeScreen').style.display='flex';document.getElementById('messages').style.display='none';document.getElementById('messages').innerHTML='';document.getElementById('userInput').value='';closeSidebar();}
-function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
-function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
-function escapeHtml(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-/* ── Language dropdown logic ── */
-const LANG_META={
-  de:{flag:'🇩🇪',code:'DE'},
-  en:{flag:'🇬🇧',code:'EN'},
-  ar:{flag:'🇩🇿',code:'AR'}
-};
-function toggleLangMenu(){
-  const dd=document.getElementById('langDropdown');
-  const open=dd.classList.toggle('open');
-  document.getElementById('langTrigger').setAttribute('aria-expanded',open);
+/* ══════════════════════════════════ UI FUNCTIONS ══════════════════════════════════ */
+function renderSidebar(){document.getElementById('topicList').innerHTML=TOPICS[currentLang].map(t=>`<div class="topic-item" onclick="askTopic('${t.key}')"><div class="topic-icon"><i class="fa-solid ${t.icon}"></i></div><span class="topic-label">${t.label}</span></div>`).join('');}
+function renderSuggests(){document.getElementById('suggestGrid').innerHTML=SUGGESTS[currentLang].map(s=>`<button class="suggest-btn" onclick="askTopic('${s.key}')"><i class="fa-solid ${s.icon}"></i><span>${s.text}</span></button>`).join('');}
+function renderChips(){document.getElementById('quickChips').innerHTML=CHIPS[currentLang].map(c=>`<button class="chip" onclick="sendChip('${c}')">${c}</button>`).join('');}
+function applyLangUI(){
+  const L=LANGS[currentLang];
+  document.getElementById('backLabel').textContent=L.back;
+  document.getElementById('newChatLabel').textContent=L.newChat;
+  document.getElementById('sideTitle').textContent=L.sideTitle;
+  document.getElementById('sideQuickLabel').textContent=L.sideQuickLabel;
+  document.getElementById('mobTitle').textContent=L.mobTitle;
+  document.getElementById('welcomeTitle').innerHTML=L.welcomeTitle;
+  document.getElementById('welcomeSub').textContent=L.welcomeSub;
+  document.getElementById('userInput').placeholder=L.placeholder;
+  document.getElementById('inputHint').textContent=L.inputHint;
+  document.body.style.direction=currentLang==='ar'?'rtl':'ltr';
+  updateMsgsCounter();
 }
+function resetChat(){chatStarted=false;conversationHistory=[];waitingForSector=false;document.getElementById('welcomeScreen').style.display='flex';document.getElementById('messages').style.display='none';document.getElementById('messages').innerHTML='';document.getElementById('userInput').value='';closeSidebar();lastBotKey=null;}
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
+function escapeHtml(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* Lang */
+const LANG_META={de:{flag:'🇩🇪',code:'DE'},en:{flag:'🇬🇧',code:'EN'},ar:{flag:'🇩🇿',code:'AR'}};
+function toggleLangMenu(){const dd=document.getElementById('langDropdown');const open=dd.classList.toggle('open');document.getElementById('langTrigger').setAttribute('aria-expanded',open);}
 function selectLang(lang){
   const dd=document.getElementById('langDropdown');
   dd.classList.remove('open');
   document.getElementById('langTrigger').setAttribute('aria-expanded','false');
   document.getElementById('langFlag').textContent=LANG_META[lang].flag;
   document.getElementById('langCode').textContent=LANG_META[lang].code;
-  ['de','en','ar'].forEach(l=>{
-    document.getElementById('opt-'+l).classList.toggle('active',l===lang);
-  });
+  ['de','en','ar'].forEach(l=>document.getElementById('opt-'+l).classList.toggle('active',l===lang));
   setLang(lang);
 }
-document.addEventListener('click',function(e){
-  const dd=document.getElementById('langDropdown');
-  if(dd&&!dd.contains(e.target)) dd.classList.remove('open');
-});
+document.addEventListener('click',function(e){const dd=document.getElementById('langDropdown');if(dd&&!dd.contains(e.target))dd.classList.remove('open');});
 function setLang(lang){currentLang=lang;applyLangUI();renderSidebar();renderSuggests();renderChips();}
 function toggleSidebar(){const s=document.getElementById('sidebar'),o=document.getElementById('mobOverlay'),open=s.classList.toggle('mob-open');o.classList.toggle('show',open);}
 function closeSidebar(){document.getElementById('sidebar').classList.remove('mob-open');document.getElementById('mobOverlay').classList.remove('show');}
