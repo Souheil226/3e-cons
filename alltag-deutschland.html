@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -11,600 +12,258 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --navy: #0f2017; --accent: #d97706; --accent-hover: #b45309;
-      --bright: #4ade80; --gold: #fbbf24; --white: #fff; --muted: #86a38e;
-      --border: rgba(74,222,128,.18); --glass: rgba(255,255,255,.04);
-      --de: #60a5fa; --dz: #4ade80;
-      --font-display: 'Syne', sans-serif; --font-body: 'DM Sans', sans-serif;
-      --radius-sm: 10px; --radius-md: 14px; --radius-lg: 18px;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0f2017;--accent:#d97706;--accent-hover:#b45309;
+      --bright:#4ade80;--gold:#fbbf24;--white:#fff;--muted:#86a38e;
+      --border:rgba(74,222,128,.18);--glass:rgba(255,255,255,.04);
+      --de:#60a5fa;--dz:#4ade80;
+      --font-display:'Syne',sans-serif;--font-body:'DM Sans',sans-serif;
+      --radius-sm:10px;--radius-md:14px;--radius-lg:18px;
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); background: var(--navy); color: var(--white); padding-top: 72px; overflow-x: hidden; }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-body);background:var(--navy);color:var(--white);padding-top:72px;overflow-x:hidden}
 
-    /* ── NAV ── */
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    /* ── TABS ── */
+    .page-tabs{
+      display:flex;gap:0;max-width:1100px;margin:0 auto;
+      padding:1.5rem 5vw 0;border-bottom:1px solid var(--border);
+    }
+    .tab-btn{
+      display:flex;align-items:center;gap:.5rem;
+      padding:.7rem 1.4rem;font-family:var(--font-display);font-size:.82rem;font-weight:700;
+      letter-spacing:.04em;color:var(--muted);background:none;border:none;cursor:pointer;
+      border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;white-space:nowrap;
+    }
+    .tab-btn i{font-size:.9rem}
+    .tab-btn:hover{color:var(--white)}
+    .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
 
     /* ── HERO ── */
-    .page-hero { padding: 3rem 5vw 2rem; max-width: 1100px; margin: 0 auto; }
-    .section-tag { font-size: .75rem; color: var(--accent); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem; display: block; }
-    .page-hero h1 { font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
-    .page-hero h1 em { font-style: normal; color: var(--accent); }
-    .page-hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 700px; }
+    .page-hero{padding:2rem 5vw 1.5rem;max-width:1100px;margin:0 auto}
+    .section-tag{font-size:.75rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem;display:block}
+    .page-hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;line-height:1.1;margin-bottom:.75rem}
+    .page-hero h1 em{font-style:normal;color:var(--accent)}
+    .page-hero p{color:var(--muted);font-size:1rem;line-height:1.7;max-width:700px}
 
     /* ── KPI ── */
-    .kpi-row {
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-      gap: 1rem;
-      max-width: 1100px;
-      margin: 0 auto 2rem;
-      padding: 0 5vw;
-    }
-    .kpi-card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      text-align: center;
-    }
-    .kpi-card .kpi-num { font-family: var(--font-display); font-size: 1.75rem; font-weight: 800; color: var(--accent); }
-    .kpi-card .kpi-label { font-size: .78rem; color: var(--muted); margin-top: .4rem; line-height: 1.4; }
+    .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1100px;margin:0 auto 1.5rem;padding:0 5vw}
+    .kpi-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.25rem;text-align:center}
+    .kpi-card .kpi-num{font-family:var(--font-display);font-size:1.75rem;font-weight:800;color:var(--accent)}
+    .kpi-card .kpi-label{font-size:.78rem;color:var(--muted);margin-top:.4rem;line-height:1.4}
 
     /* ── LAYOUT ── */
-    .content-layout {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 5vw 5rem;
-      align-items: start;
-    }
+    .content-layout{display:grid;grid-template-columns:220px 1fr;gap:2rem;max-width:1100px;margin:0 auto;padding:0 5vw 5rem;align-items:start}
 
     /* ── TOC ── */
-    aside.toc {
-      position: sticky;
-      top: 90px;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-    }
-    .toc-title { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
-    aside.toc a { display: block; padding: .55rem .75rem; font-size: .83rem; color: var(--muted); text-decoration: none; border-radius: 8px; border-left: 2px solid transparent; transition: all .15s; }
-    aside.toc a:hover, aside.toc a.active { color: var(--white); background: var(--glass); border-left-color: var(--accent); }
+    aside.toc{position:sticky;top:90px;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.25rem}
+    .toc-title{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+    aside.toc a{display:block;padding:.55rem .75rem;font-size:.83rem;color:var(--muted);text-decoration:none;border-radius:8px;border-left:2px solid transparent;transition:all .15s}
+    aside.toc a:hover,aside.toc a.active{color:var(--white);background:var(--glass);border-left-color:var(--accent)}
 
-    /* ── SECTION BASE ── */
-    .report-section, .bewerber-section {
-      scroll-margin-top: 100px;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2rem 2.25rem;
-      margin-bottom: 1.5rem;
-    }
-    .report-section:target, .bewerber-section:target {
-      border-color: rgba(217,119,6,.5);
-      box-shadow: 0 0 0 1px rgba(217,119,6,.2), 0 8px 32px rgba(0,0,0,.3);
-    }
-    .section-num { font-size: .72rem; font-weight: 600; color: var(--accent); letter-spacing: .1em; margin-bottom: .5rem; display: block; }
-    .report-section h2, .bewerber-section h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: .5rem; }
-    .report-section .subtitle, .bewerber-section .subtitle { color: var(--bright); font-size: .9rem; font-weight: 500; margin-bottom: 1.25rem; }
-    .report-section p, .bewerber-section p { color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
-    .report-section ul, .bewerber-section ul { padding-left: 1.25rem; color: var(--muted); line-height: 1.9; margin-bottom: 1rem; }
-    .bewerber-section li { margin-bottom: .35rem; }
+    /* ── SECTIONS ── */
+    .report-section,.bewerber-section{scroll-margin-top:100px;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem 2.25rem;margin-bottom:1.5rem}
+    .report-section:target,.bewerber-section:target{border-color:rgba(217,119,6,.5);box-shadow:0 0 0 1px rgba(217,119,6,.2),0 8px 32px rgba(0,0,0,.3)}
+    .section-num{font-size:.72rem;font-weight:600;color:var(--accent);letter-spacing:.1em;margin-bottom:.5rem;display:block}
+    .report-section h2,.bewerber-section h2{font-family:var(--font-display);font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
+    .report-section .subtitle,.bewerber-section .subtitle{color:var(--bright);font-size:.9rem;font-weight:500;margin-bottom:1.25rem}
+    .report-section p,.bewerber-section p{color:var(--muted);line-height:1.75;margin-bottom:1rem}
+    .report-section ul,.bewerber-section ul{padding-left:1.25rem;color:var(--muted);line-height:1.9;margin-bottom:1rem}
+    .bewerber-section li{margin-bottom:.35rem}
 
     /* ── INFO CARDS ── */
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-    .info-card {
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 1.25rem;
-      border-top: 3px solid var(--accent);
-    }
-    .info-card-icon {
-      width: 38px; height: 38px;
-      background: rgba(217,119,6,.12);
-      border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: .85rem;
-    }
-    .info-card-icon i { color: var(--accent); font-size: 1.15rem; }
-    .info-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: .5rem; color: var(--white); }
-    .info-card p { font-size: .88rem; margin-bottom: 0; color: var(--muted); }
+    .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0}
+    .info-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem;border-top:3px solid var(--accent)}
+    .info-card-icon{width:38px;height:38px;background:rgba(217,119,6,.12);border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:.85rem}
+    .info-card-icon i{color:var(--accent);font-size:1.15rem}
+    .info-card h3{font-family:var(--font-display);font-size:1rem;font-weight:700;margin-bottom:.5rem;color:var(--white)}
+    .info-card p{font-size:.88rem;margin-bottom:0;color:var(--muted)}
+
+    /* ── VISA CARDS (Aufenthaltsrecht) ── */
+    .visa-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1.25rem;height:100%;border-top:3px solid var(--accent)}
+    .visa-card h3{font-family:var(--font-display);font-size:.95rem;font-weight:700;margin-bottom:.5rem;color:var(--white);display:flex;align-items:center;gap:.5rem}
+    .visa-card p{font-size:.85rem;color:var(--muted);margin-bottom:.75rem}
+    .visa-tag{display:inline-block;background:rgba(217,119,6,.15);border:1px solid rgba(217,119,6,.3);color:var(--accent);font-size:.7rem;font-weight:700;padding:.2rem .7rem;border-radius:20px;letter-spacing:.04em}
+
+    /* ── AUFENTHALT STEPS ── */
+    .step-item{display:flex;align-items:flex-start;gap:1rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.25rem}
+    .step-num{width:32px;height:32px;border-radius:50%;background:rgba(217,119,6,.15);border:1px solid rgba(217,119,6,.35);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.8rem;font-weight:800;color:var(--accent);flex-shrink:0}
+    .step-item h4{font-family:var(--font-display);font-size:.9rem;font-weight:700;color:var(--white);margin-bottom:.3rem}
+    .step-item p{font-size:.84rem;color:var(--muted);margin:0}
+
+    /* ── INSURANCE ITEMS (Arbeit) ── */
+    .insurance-item{display:flex;align-items:flex-start;gap:1rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.25rem;margin-bottom:.5rem}
+    .insurance-icon{width:40px;height:40px;border-radius:10px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .insurance-icon i{color:var(--bright);font-size:1.1rem}
+    .insurance-item h4{font-family:var(--font-display);font-size:.9rem;font-weight:700;color:var(--white);margin-bottom:.3rem}
+    .insurance-item p{font-size:.84rem;color:var(--muted);margin:0}
+
+    /* ── TABLES ── */
+    .rights-table{width:100%;border-collapse:collapse;font-size:.88rem}
+    .rights-table th{background:rgba(217,119,6,.12);color:var(--accent);font-weight:700;padding:.75rem 1rem;text-align:left;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+    .rights-table td{padding:.7rem 1rem;border-bottom:1px solid var(--border);color:var(--muted)}
+    .rights-table tr:hover td{background:rgba(255,255,255,.02);color:#fff}
+    .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px}
+
+    /* ── LAW BADGE ── */
+    .law-badge{font-size:.65rem;font-weight:700;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.3);color:#93c5fd;padding:.15rem .6rem;border-radius:20px;margin-left:.4rem}
 
     /* ── COMPARE ── */
-    .compare-intro {
-      background: rgba(96,165,250,.06); border: 1px solid rgba(96,165,250,.2);
-      border-radius: var(--radius-sm); padding: 1.25rem 1.5rem; margin: 1.25rem 0 1.75rem;
-      font-size: .92rem; color: var(--muted); line-height: 1.75;
-    }
-    .compare-intro em { color: var(--white); font-style: normal; }
-    .compare-row {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 1rem;
-      align-items: stretch;
-      margin-bottom: 1rem;
-    }
-    .compare-side { border-radius: var(--radius-sm); padding: 1.15rem 1.25rem; }
-    .compare-side.de { background: rgba(96,165,250,.07); border: 1px solid rgba(96,165,250,.22); }
-    .compare-side.dz { background: rgba(74,222,128,.07); border: 1px solid rgba(74,222,128,.22); }
-    .compare-side .flag { font-size: 1.1rem; margin-bottom: .4rem; }
-    .compare-side h4 { font-family: var(--font-display); font-size: .82rem; font-weight: 700; margin-bottom: .5rem; letter-spacing: .04em; text-transform: uppercase; }
-    .compare-side.de h4 { color: var(--de); }
-    .compare-side.dz h4 { color: var(--dz); }
-    .compare-side p { font-size: .85rem; margin-bottom: 0; line-height: 1.65; }
-    .compare-topic { display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: .75rem; font-weight: 700; color: var(--accent); text-align: center; min-width: 80px; padding: .5rem; }
-    .depth-box { background: rgba(217,119,6,.06); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 1rem 1.25rem; margin: 1.25rem 0; font-size: .88rem; color: var(--muted); line-height: 1.7; }
-    .depth-box strong { color: var(--white); }
-    .legend-row { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 1rem; font-size: .82rem; flex-wrap: wrap; }
-    .legend-row span { display: flex; align-items: center; gap: .4rem; color: var(--muted); }
-    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .legend-dot.de { background: var(--de); }
-    .legend-dot.dz { background: var(--dz); }
+    .compare-intro{background:rgba(96,165,250,.06);border:1px solid rgba(96,165,250,.2);border-radius:var(--radius-sm);padding:1.25rem 1.5rem;margin:1.25rem 0 1.75rem;font-size:.92rem;color:var(--muted);line-height:1.75}
+    .compare-intro em{color:var(--white);font-style:normal}
+    .compare-row{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:stretch;margin-bottom:1rem}
+    .compare-side{border-radius:var(--radius-sm);padding:1.15rem 1.25rem}
+    .compare-side.de{background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.22)}
+    .compare-side.dz{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.22)}
+    .compare-side .flag{font-size:1.1rem;margin-bottom:.4rem}
+    .compare-side h4{font-family:var(--font-display);font-size:.82rem;font-weight:700;margin-bottom:.5rem;letter-spacing:.04em;text-transform:uppercase}
+    .compare-side.de h4{color:var(--de)}
+    .compare-side.dz h4{color:var(--dz)}
+    .compare-side p{font-size:.85rem;margin-bottom:0;line-height:1.65}
+    .compare-topic{display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.75rem;font-weight:700;color:var(--accent);text-align:center;min-width:80px;padding:.5rem}
+    .depth-box{background:rgba(217,119,6,.06);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin:1.25rem 0;font-size:.88rem;color:var(--muted);line-height:1.7}
+    .depth-box strong{color:var(--white)}
+    .legend-row{display:flex;gap:1.5rem;justify-content:center;margin-bottom:1rem;font-size:.82rem;flex-wrap:wrap}
+    .legend-row span{display:flex;align-items:center;gap:.4rem;color:var(--muted)}
+    .legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+    .legend-dot.de{background:var(--de)}
+    .legend-dot.dz{background:var(--dz)}
 
     /* ── CHARTS ── */
-    .chart-box { background: rgba(255,255,255,.02); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin: 1.5rem 0; }
-    .chart-box h3 { font-family: var(--font-display); font-size: .95rem; font-weight: 700; margin-bottom: .25rem; }
-    .chart-box .chart-desc { font-size: .8rem; color: var(--muted); margin-bottom: 1rem; }
-    .chart-wrap { position: relative; width: 100%; max-height: 340px; }
-    .charts-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .chart-box{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;margin:1.5rem 0}
+    .chart-box h3{font-family:var(--font-display);font-size:.95rem;font-weight:700;margin-bottom:.25rem}
+    .chart-box .chart-desc{font-size:.8rem;color:var(--muted);margin-bottom:1rem}
+    .chart-wrap{position:relative;width:100%;max-height:300px}
+    .chart-wrap.tall{max-height:260px}
+    .charts-2col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 
-    .tip-box { background: rgba(217,119,6,.08); border: 1px solid rgba(217,119,6,.3); border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin: 1.25rem 0; font-size: .88rem; color: var(--muted); line-height: 1.65; }
-    .tip-box strong { color: var(--accent); }
-    .source-note { font-size: .75rem; color: rgba(134,163,142,.6); margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); font-style: italic; }
+    /* ── TIP / SOURCE ── */
+    .tip-box{background:rgba(217,119,6,.08);border:1px solid rgba(217,119,6,.3);border-radius:var(--radius-sm);padding:1rem 1.25rem;margin:1.25rem 0;font-size:.88rem;color:var(--muted);line-height:1.65}
+    .tip-box strong{color:var(--accent)}
+    .source-note{font-size:.75rem;color:rgba(134,163,142,.6);margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);font-style:italic}
 
     /* ── ERSTE SCHRITTE ── */
-    .step-block {
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      margin: 1.25rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .step-block::before {
-      content: "";
-      position: absolute; left: 0; top: 0;
-      width: 4px; height: 100%;
-      background: linear-gradient(to bottom, var(--accent), var(--bright));
-    }
-    .step-header {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      margin-bottom: 1.25rem;
-    }
-    .step-icon {
-      width: 56px; height: 56px;
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(217,119,6,.12);
-      border: 1px solid rgba(217,119,6,.3);
-      flex-shrink: 0;
-    }
-    .step-icon i { color: var(--accent); font-size: 1.4rem; }
-    .step-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: .3rem; }
-    .step-desc { color: var(--muted); line-height: 1.7; font-size: .9rem; }
+    .step-block{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;margin:1.25rem 0;position:relative;overflow:hidden}
+    .step-block::before{content:"";position:absolute;left:0;top:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--accent),var(--bright))}
+    .step-header{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem}
+    .step-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(217,119,6,.12);border:1px solid rgba(217,119,6,.3);flex-shrink:0}
+    .step-icon i{color:var(--accent);font-size:1.4rem}
+    .step-title{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:.3rem}
+    .step-desc{color:var(--muted);line-height:1.7;font-size:.9rem}
+    .link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.85rem;margin-top:1rem}
+    .link-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.1rem;text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s;display:flex;flex-direction:column;gap:.4rem}
+    .link-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 30px rgba(0,0,0,.3)}
+    .link-card i{color:var(--accent);font-size:1.1rem}
+    .link-name{color:#dd8a04;font-weight:700;font-size:.95rem}
+    .link-desc{color:var(--muted);font-size:.82rem;line-height:1.5}
+    .step-tip{margin-top:1rem;padding:.9rem 1.1rem;border-radius:var(--radius-sm);background:rgba(217,119,6,.08);border:1px solid rgba(217,119,6,.25);color:#e9d9cd;font-size:.875rem;line-height:1.6}
+    .step-tip i{color:var(--accent);margin-right:.4rem}
 
-    /* ── LINK GRID ── */
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: .85rem;
-      margin-top: 1rem;
-    }
-    .link-card {
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.1rem;
-      text-decoration: none;
-      transition: transform .2s, border-color .2s, box-shadow .2s;
-      display: flex; flex-direction: column; gap: .4rem;
-    }
-    .link-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
-    .link-card i { color: var(--accent); font-size: 1.1rem; }
-    .link-name { color: #dd8a04; font-weight: 700; font-size: .95rem; }
-    .link-desc { color: var(--muted); font-size: .82rem; line-height: 1.5; }
-
-    .step-tip {
-      margin-top: 1rem; padding: .9rem 1.1rem;
-      border-radius: var(--radius-sm);
-      background: rgba(217,119,6,.08);
-      border: 1px solid rgba(217,119,6,.25);
-      color: #e9d9cd; font-size: .875rem; line-height: 1.6;
-    }
-    .step-tip i { color: var(--accent); margin-right: .4rem; }
-    .step-tip--green { background: rgba(74,222,128,.08); border-color: rgba(74,222,128,.25); }
-    .step-tip--green i { color: var(--bright); }
+    /* ══ NAVBAR ══ */
+    .navbar-3e{position:fixed;top:0;left:0;right:0;z-index:1050;padding:1rem 5vw;background:rgba(15,32,23,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .navbar-brand-3e{display:flex;align-items:center;gap:9px;text-decoration:none}
+    .navbar-brand-3e img{height:36px;width:36px;border-radius:8px;object-fit:cover}
+    .navbar-brand-3e span{font-family:var(--font-display);font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap}
+    .nav-link-3e{font-size:.875rem;color:var(--muted)!important;text-decoration:none;transition:color .2s;padding:.3rem .6rem}
+    .nav-link-3e:hover{color:#ffffff!important}
+    .btn-menu{background:var(--accent);color:#ffffff!important;padding:.55rem 1.3rem;border-radius:8px;font-size:.85rem;font-weight:500;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:background .2s,transform .15s}
+    .btn-menu:hover{background:var(--accent-hover);transform:translateY(-1px)}
+    .nav-dropdown-panel{position:absolute;top:calc(100% + .6rem);right:0;min-width:340px;max-width:420px;max-height:75vh;overflow-y:auto;background:rgba(15,32,23,.97);border:1px solid var(--border);border-radius:12px;padding:1rem;backdrop-filter:blur(20px);box-shadow:0 20px 50px rgba(0,0,0,.4);z-index:200;display:none}
+    .nav-dropdown-panel.open{display:block}
+    .hamburger-btn{background:transparent;border:1px solid var(--border);border-radius:8px;color:#ffffff;padding:.45rem .75rem;font-size:1.1rem;cursor:pointer;display:none;align-items:center;transition:background .2s,border-color .2s}
+    .hamburger-btn:hover{background:rgba(217,119,6,.1);border-color:rgba(217,119,6,.4)}
+    .mobile-nav-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1055;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(4px)}
+    .mobile-nav-overlay.open{opacity:1;pointer-events:all}
+    .mobile-nav{position:fixed;top:0;left:0;bottom:0;width:min(320px,88vw);background:linear-gradient(160deg,#0d2619 0%,#091a0f 100%);border-right:1px solid rgba(74,222,128,.14);z-index:1060;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .32s cubic-bezier(.4,0,.2,1);overflow:hidden}
+    .mobile-nav.open{transform:translateX(0)}
+    .mn-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.1rem .85rem;border-bottom:1px solid rgba(74,222,128,.1);flex-shrink:0}
+    .mn-brand{display:flex;align-items:center;gap:8px;text-decoration:none}
+    .mn-brand img{height:30px;width:30px;border-radius:7px;object-fit:cover}
+    .mn-brand span{font-family:var(--font-display);font-size:.9rem;font-weight:800;color:#fff;letter-spacing:.06em}
+    .mn-close{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--muted);width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;transition:background .15s,color .15s;flex-shrink:0}
+    .mn-close:hover{background:rgba(217,119,6,.15);color:var(--accent);border-color:rgba(217,119,6,.3)}
+    .mn-body{flex:1;padding:.6rem 0 .5rem;overflow-y:auto;overflow-x:hidden}
+    .mn-section-label{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:.9rem 1.2rem .35rem;opacity:.7}
+    .mn-link{display:flex;align-items:center;gap:.75rem;padding:.68rem 1.2rem;font-size:.88rem;font-weight:500;color:rgba(255,255,255,.85);text-decoration:none;transition:background .15s,color .15s}
+    .mn-link .mn-icon{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--muted);flex-shrink:0;transition:background .15s,color .15s,border-color .15s}
+    .mn-link:hover{background:rgba(217,119,6,.07);color:#fff}
+    .mn-link:hover .mn-icon{background:rgba(217,119,6,.15);color:var(--accent);border-color:rgba(217,119,6,.3)}
+    .mn-link-arrow{margin-left:auto;font-size:.65rem;color:var(--muted);opacity:.5}
+    .mn-divider{height:1px;background:rgba(74,222,128,.08);margin:.55rem 1.2rem}
+    .mn-footer{padding:.85rem 1rem 1.1rem;border-top:1px solid rgba(74,222,128,.1);display:flex;flex-direction:column;gap:.55rem;flex-shrink:0}
+    .mn-cta-primary{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.82rem 1rem;border-radius:10px;background:var(--accent);color:#fff!important;font-size:.88rem;font-weight:600;text-decoration:none;transition:background .2s,transform .15s;font-family:var(--font-display);letter-spacing:.02em;white-space:nowrap}
+    .mn-cta-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+    .mn-cta-secondary{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.78rem 1rem;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.8)!important;font-size:.88rem;font-weight:500;text-decoration:none;transition:background .2s,border-color .2s;white-space:nowrap}
+    .mn-cta-secondary:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.2)}
+    .mn2-who{padding:.75rem .85rem .6rem;border-bottom:1px solid var(--border)}
+    .mn2-who-label{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.55rem}
+    .mn2-who-btns{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+    .mn2-who-btn{display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.6rem .8rem;border-radius:9px;border:1px solid var(--border);background:var(--glass);color:var(--muted);font-size:.8rem;font-weight:500;cursor:pointer;transition:all .18s;font-family:var(--font-body)}
+    .mn2-who-btn:hover{border-color:rgba(217,119,6,.4);color:#fff;background:rgba(217,119,6,.08)}
+    .mn2-who-btn.mn2-who-active{border-color:var(--accent);background:rgba(217,119,6,.12);color:#fff}
+    .mn2-who-btn i{font-size:.85rem;color:var(--accent)}
+    .mn2-panel{padding:.5rem 0}
+    .mn2-group{padding:.4rem .6rem}
+    .mn2-group-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:.5rem .6rem .4rem;opacity:.8;display:flex;align-items:center;gap:.4rem}
+    .mn2-group-label i{font-size:.75rem}
+    .mn2-link{display:flex;align-items:center;gap:.6rem;padding:.55rem .75rem;border-radius:8px;text-decoration:none;font-size:.83rem;color:var(--muted);transition:all .15s}
+    .mn2-link:hover{background:rgba(217,119,6,.07);color:#fff}
+    .mn2-link i{font-size:.8rem;color:var(--accent);opacity:.7;width:14px;text-align:center}
+    .mn2-divider{height:1px;background:var(--border);margin:.4rem .75rem}
+    .mn2-chatbot-btn{display:flex;align-items:center;gap:.75rem;padding:.75rem .85rem;margin:.4rem .6rem .5rem;border-radius:10px;background:rgba(217,119,6,.08);border:1px solid rgba(217,119,6,.25);text-decoration:none;transition:all .2s}
+    .mn2-chatbot-btn:hover{background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.4)}
+    .mn2-chatbot-btn>i:first-child{font-size:1.1rem;color:var(--accent);flex-shrink:0}
+    .mn2-chatbot-btn div{display:flex;flex-direction:column}
+    .mn2-chatbot-btn strong{font-size:.85rem;color:#fff;font-weight:600}
+    .mn2-chatbot-btn span{font-size:.72rem;color:var(--muted);margin-top:.1rem}
+    .mn-who-btn{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.65rem .8rem;border-radius:9px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--muted);font-size:.82rem;font-weight:500;cursor:pointer;font-family:var(--font-body);transition:all .18s;width:100%}
+    .mn-who-btn:hover{border-color:rgba(217,119,6,.4);color:#fff}
+    .mn-who-btn.mn-who-active{border-color:var(--accent);background:rgba(217,119,6,.12);color:#fff}
+    .mn-who-btn i{font-size:.85rem;color:var(--accent)}
 
     /* ── RESPONSIVE ── */
-
-    /* Tablet: 768–1024px */
-    @media (max-width: 1024px) {
-      .kpi-row { grid-template-columns: repeat(2,1fr); }
-      .charts-2col { grid-template-columns: 1fr; }
+    @media(max-width:1024px){.kpi-row{grid-template-columns:repeat(2,1fr)}.charts-2col{grid-template-columns:1fr}}
+    @media(max-width:991px){.hamburger-btn{display:inline-flex!important}.nav-desktop-links{display:none!important}}
+    @media(max-width:900px){
+      .content-layout{grid-template-columns:1fr;padding:0 4vw 3rem;gap:1.25rem}
+      aside.toc{position:static;display:flex;flex-wrap:wrap;gap:.4rem;padding:.85rem 1rem;border-radius:var(--radius-sm)}
+      .toc-title{width:100%;margin-bottom:.25rem}
+      aside.toc a{font-size:.72rem;padding:.35rem .65rem;border:1px solid var(--border);border-left:1px solid var(--border);border-radius:20px;white-space:nowrap}
+      .info-grid{grid-template-columns:1fr}
+      .compare-row{grid-template-columns:1fr;gap:.5rem}
+      .compare-topic{min-width:unset;padding:.2rem 0;font-size:.8rem;border-top:1px dashed var(--border);border-bottom:1px dashed var(--border)}
+      .page-tabs{padding:1rem 4vw 0;overflow-x:auto}
+      .tab-btn{padding:.6rem 1rem;font-size:.75rem}
     }
-
-    /* Tablet/mobile: under 900px – collapse sidebar */
-    @media (max-width: 900px) {
-      .content-layout {
-        grid-template-columns: 1fr;
-        padding: 0 4vw 3rem;
-        gap: 1.25rem;
-      }
-      aside.toc {
-        position: static;
-        display: flex;
-        flex-wrap: wrap;
-        gap: .4rem;
-        padding: .85rem 1rem;
-        border-radius: var(--radius-sm);
-      }
-      .toc-title { width: 100%; margin-bottom: .25rem; }
-      aside.toc a {
-        font-size: .72rem; padding: .35rem .65rem;
-        border: 1px solid var(--border);
-        border-left: 1px solid var(--border);
-        border-radius: 20px;
-        white-space: nowrap;
-      }
-      .info-grid { grid-template-columns: 1fr; }
-      .compare-row { grid-template-columns: 1fr; gap: .5rem; }
-      .compare-topic { min-width: unset; padding: .2rem 0; font-size: .8rem; border-top: 1px dashed var(--border); border-bottom: 1px dashed var(--border); }
+    @media(max-width:768px){
+      .page-hero{padding:1.75rem 1.25rem 1.25rem}
+      .page-hero h1{font-size:clamp(1.5rem,6vw,2rem)}
+      .kpi-row{grid-template-columns:1fr 1fr;gap:.65rem;padding:0 1.25rem}
+      .content-layout{padding:0 1.25rem 3rem}
+      .report-section,.bewerber-section{padding:1.35rem 1.1rem;border-radius:var(--radius-md);margin-bottom:1rem}
+      .step-block{padding:1.25rem 1rem 1.25rem 1.25rem}
+      .step-header{gap:.85rem}
+      .step-icon{width:46px;height:46px;border-radius:11px}
+      .step-icon i{font-size:1.2rem}
+      .link-grid{grid-template-columns:1fr}
+      .chart-wrap{max-height:250px}
+      .page-tabs{padding:1rem 1.25rem 0}
     }
-
-    /* Mobile: under 768px */
-    @media (max-width: 768px) {
-      body { padding-top: 72px; }
-      
-      
-
-      .page-hero { padding: 2rem 1.25rem 1.5rem; }
-      .page-hero h1 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
-      .page-hero p { font-size: .95rem; }
-
-      .kpi-row { grid-template-columns: 1fr 1fr; gap: .65rem; padding: 0 1.25rem; }
-      .kpi-card { padding: 1rem .85rem; }
-      .kpi-card .kpi-num { font-size: 1.35rem; }
-      .kpi-card .kpi-label { font-size: .72rem; }
-
-      .content-layout { padding: 0 1.25rem 3rem; gap: 1rem; }
-
-      .report-section, .bewerber-section {
-        padding: 1.35rem 1.1rem;
-        border-radius: var(--radius-md);
-        margin-bottom: 1rem;
-      }
-      .report-section h2, .bewerber-section h2 { font-size: 1.25rem; }
-      .report-section .subtitle, .bewerber-section .subtitle { font-size: .85rem; }
-
-      .info-card { padding: 1rem; }
-
-      .step-block { padding: 1.25rem 1rem 1.25rem 1.25rem; }
-      .step-header { flex-direction: row; gap: .85rem; }
-      .step-icon { width: 46px; height: 46px; border-radius: 11px; }
-      .step-icon i { font-size: 1.2rem; }
-      .step-title { font-size: 1.05rem; }
-      .step-desc { font-size: .85rem; }
-
-      .link-grid { grid-template-columns: 1fr; }
-      .link-card { padding: .9rem 1rem; }
-
-      .chart-wrap { max-height: 280px; }
-      .chart-box { padding: 1.1rem; }
-
-      .compare-side { padding: 1rem; }
-      .compare-side p { font-size: .82rem; }
-
-      
+    @media(max-width:480px){
+      .page-hero{padding:1.5rem 1rem 1rem}
+      .kpi-row{padding:0 1rem;gap:.5rem}
+      .content-layout{padding:0 1rem 2.5rem}
+      .report-section,.bewerber-section{padding:1.1rem .9rem}
+      .tab-btn{padding:.5rem .75rem;font-size:.7rem}
+      .step-block{padding:1rem .85rem 1rem 1.1rem}
     }
-
-    /* Small mobile: under 480px */
-    @media (max-width: 480px) {
-      
-      
-
-      .page-hero { padding: 1.75rem 1rem 1.25rem; }
-      .page-hero h1 { font-size: 1.5rem; }
-      .page-hero p { font-size: .88rem; }
-
-      .kpi-row { padding: 0 1rem; gap: .5rem; }
-      .kpi-card .kpi-num { font-size: 1.2rem; }
-      .kpi-card .kpi-label { font-size: .68rem; }
-
-      .content-layout { padding: 0 1rem 2.5rem; }
-
-      .report-section, .bewerber-section { padding: 1.1rem .9rem; }
-
-      .info-grid { gap: .75rem; }
-      .info-card { padding: .9rem; }
-
-      .step-block { padding: 1rem .85rem 1rem 1.1rem; }
-      .step-header { gap: .7rem; }
-      .step-icon { width: 40px; height: 40px; border-radius: 10px; }
-      .step-icon i { font-size: 1rem; }
-      .step-title { font-size: .98rem; }
-
-      .link-grid { gap: .65rem; }
-      .link-card { padding: .85rem; }
-      .link-name { font-size: .88rem; }
-      .link-desc { font-size: .78rem; }
-
-      .compare-intro { padding: 1rem; font-size: .85rem; }
-      .depth-box { padding: .85rem 1rem; font-size: .84rem; }
-      .tip-box { padding: .85rem 1rem; font-size: .84rem; }
-
-      .chart-wrap { max-height: 240px; }
-      .legend-row { gap: .85rem; font-size: .75rem; }
-    }
-  
-  /* ══════════════════════════════════════════════
-     3E CONSULTING — NAVBAR CSS (from index.html)
-     ══════════════════════════════════════════════ */
-
-  /* ── Navbar wrapper ── */
-  .navbar-3e {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1050;
-    padding: 1rem 5vw;
-    background: rgba(15,32,23,.92);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  /* ── Brand ── */
-  .navbar-brand-3e {
-    display: flex; align-items: center; gap: 9px; text-decoration: none;
-  }
-  .navbar-brand-3e img {
-    height: 36px; width: 36px; border-radius: 8px; object-fit: cover;
-  }
-  .navbar-brand-3e span {
-    font-family: var(--font-display);
-    font-size: 1.05rem; font-weight: 800;
-    color: #fff; letter-spacing: .06em; white-space: nowrap;
-  }
-
-  /* ── Desktop nav links ── */
-  .nav-link-3e {
-    font-size: .875rem; color: var(--muted) !important;
-    text-decoration: none; transition: color .2s; padding: .3rem .6rem;
-  }
-  .nav-link-3e:hover { color: #ffffff !important; }
-
-  /* ── MENÜ button ── */
-  .btn-menu {
-    background: var(--accent); color: #ffffff !important;
-    padding: .55rem 1.3rem; border-radius: 8px;
-    font-size: .85rem; font-weight: 500; border: none; cursor: pointer;
-    display: inline-flex; align-items: center; gap: .4rem;
-    transition: background .2s, transform .15s;
-  }
-  .btn-menu:hover { background: var(--accent-hover); transform: translateY(-1px); }
-
-  /* ── Desktop dropdown panel ── */
-  .nav-dropdown-panel {
-    position: absolute; top: calc(100% + .6rem); right: 0;
-    min-width: 340px; max-width: 420px;
-    max-height: 75vh; overflow-y: auto;
-    background: rgba(15,32,23,.97);
-    border: 1px solid var(--border); border-radius: 12px;
-    padding: 1rem; backdrop-filter: blur(20px);
-    box-shadow: 0 20px 50px rgba(0,0,0,.4);
-    z-index: 200; display: none;
-  }
-  .nav-dropdown-panel.open { display: block; }
-
-  /* ── Hamburger ── */
-  .hamburger-btn {
-    background: transparent; border: 1px solid var(--border);
-    border-radius: 8px; color: #ffffff;
-    padding: .45rem .75rem; font-size: 1.1rem;
-    cursor: pointer; display: none; align-items: center;
-    transition: background .2s, border-color .2s;
-  }
-  .hamburger-btn:hover {
-    background: rgba(217,119,6,.1); border-color: rgba(217,119,6,.4);
-  }
-
-  /* ── Mobile overlay ── */
-  .mobile-nav-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,.55); z-index: 1055;
-    opacity: 0; pointer-events: none;
-    transition: opacity .3s ease; backdrop-filter: blur(4px);
-  }
-  .mobile-nav-overlay.open { opacity: 1; pointer-events: all; }
-
-  /* ── Mobile drawer ── */
-  .mobile-nav {
-    position: fixed; top: 0; left: 0; bottom: 0;
-    width: min(320px, 88vw);
-    background: linear-gradient(160deg, #0d2619 0%, #091a0f 100%);
-    border-right: 1px solid rgba(74,222,128,.14);
-    z-index: 1060; display: flex; flex-direction: column;
-    transform: translateX(-100%);
-    transition: transform .32s cubic-bezier(.4,0,.2,1); overflow: hidden;
-  }
-  .mobile-nav.open { transform: translateX(0); }
-
-  .mn-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1rem 1.1rem .85rem;
-    border-bottom: 1px solid rgba(74,222,128,.1); flex-shrink: 0;
-  }
-  .mn-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-  .mn-brand img { height: 30px; width: 30px; border-radius: 7px; object-fit: cover; }
-  .mn-brand span {
-    font-family: var(--font-display);
-    font-size: .9rem; font-weight: 800; color: #fff; letter-spacing: .06em;
-  }
-  .mn-close {
-    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
-    border-radius: 8px; color: var(--muted);
-    width: 34px; height: 34px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; cursor: pointer;
-    transition: background .15s, color .15s; flex-shrink: 0;
-  }
-  .mn-close:hover { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
-
-  .mn-body {
-    flex: 1; padding: .6rem 0 .5rem;
-    overflow-y: auto; overflow-x: hidden;
-  }
-  .mn-body::-webkit-scrollbar { width: 3px; }
-  .mn-body::-webkit-scrollbar-track { background: transparent; }
-  .mn-body::-webkit-scrollbar-thumb { background: rgba(74,222,128,.2); border-radius: 2px; }
-
-  .mn-section-label {
-    font-size: .62rem; font-weight: 700; letter-spacing: .14em;
-    text-transform: uppercase; color: var(--muted);
-    padding: .9rem 1.2rem .35rem; opacity: .7;
-  }
-  .mn-link {
-    display: flex; align-items: center; gap: .75rem;
-    padding: .68rem 1.2rem; font-size: .88rem; font-weight: 500;
-    color: rgba(255,255,255,.85); text-decoration: none;
-    transition: background .15s, color .15s;
-  }
-  .mn-link .mn-icon {
-    width: 30px; height: 30px; border-radius: 8px;
-    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
-    display: flex; align-items: center; justify-content: center;
-    font-size: .75rem; color: var(--muted); flex-shrink: 0;
-    transition: background .15s, color .15s, border-color .15s;
-  }
-  .mn-link:hover { background: rgba(217,119,6,.07); color: #fff; }
-  .mn-link:hover .mn-icon { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
-  .mn-link-arrow { margin-left: auto; font-size: .65rem; color: var(--muted); opacity: .5; }
-
-  .mn-divider { height: 1px; background: rgba(74,222,128,.08); margin: .55rem 1.2rem; }
-
-  .mn-footer {
-    padding: .85rem 1rem 1.1rem;
-    border-top: 1px solid rgba(74,222,128,.1);
-    display: flex; flex-direction: column; gap: .55rem; flex-shrink: 0;
-  }
-  .mn-cta-primary {
-    display: flex; align-items: center; justify-content: center; gap: .5rem;
-    padding: .82rem 1rem; border-radius: 10px;
-    background: var(--accent); color: #fff !important;
-    font-size: .88rem; font-weight: 600; text-decoration: none;
-    transition: background .2s, transform .15s;
-    font-family: var(--font-display); letter-spacing: .02em; white-space: nowrap;
-  }
-  .mn-cta-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
-  .mn-cta-secondary {
-    display: flex; align-items: center; justify-content: center; gap: .5rem;
-    padding: .78rem 1rem; border-radius: 10px;
-    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
-    color: rgba(255,255,255,.8) !important; font-size: .88rem; font-weight: 500;
-    text-decoration: none; transition: background .2s, border-color .2s; white-space: nowrap;
-  }
-  .mn-cta-secondary:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
-
-  /* ── Desktop dropdown interior (V2) ── */
-  .mn2-who { padding: .75rem .85rem .6rem; border-bottom: 1px solid var(--border); }
-  .mn2-who-label { font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .55rem; }
-  .mn2-who-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
-  .mn2-who-btn {
-    display: flex; align-items: center; justify-content: center; gap: .45rem;
-    padding: .6rem .8rem; border-radius: 9px; border: 1px solid var(--border);
-    background: var(--glass); color: var(--muted);
-    font-size: .8rem; font-weight: 500; cursor: pointer;
-    transition: all .18s; font-family: var(--font-body);
-  }
-  .mn2-who-btn:hover { border-color: rgba(217,119,6,.4); color: #fff; background: rgba(217,119,6,.08); }
-  .mn2-who-btn.mn2-who-active { border-color: var(--accent); background: rgba(217,119,6,.12); color: #fff; }
-  .mn2-who-btn i { font-size: .85rem; color: var(--accent); }
-
-  .mn2-panel { padding: .5rem 0; }
-  .mn2-group { padding: .4rem .6rem; }
-  .mn2-group-label {
-    font-size: .65rem; font-weight: 700; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--accent);
-    padding: .5rem .6rem .4rem; opacity: .8;
-    display: flex; align-items: center; gap: .4rem;
-  }
-  .mn2-group-label i { font-size: .75rem; }
-  .mn2-link {
-    display: flex; align-items: center; gap: .6rem;
-    padding: .55rem .75rem; border-radius: 8px;
-    text-decoration: none; font-size: .83rem; color: var(--muted); transition: all .15s;
-  }
-  .mn2-link:hover { background: rgba(217,119,6,.07); color: #fff; }
-  .mn2-link i { font-size: .8rem; color: var(--accent); opacity: .7; width: 14px; text-align: center; }
-  .mn2-divider { height: 1px; background: var(--border); margin: .4rem .75rem; }
-  .mn2-chatbot-btn {
-    display: flex; align-items: center; gap: .75rem;
-    padding: .75rem .85rem; margin: .4rem .6rem .5rem;
-    border-radius: 10px; background: rgba(217,119,6,.08);
-    border: 1px solid rgba(217,119,6,.25); text-decoration: none; transition: all .2s;
-  }
-  .mn2-chatbot-btn:hover { background: rgba(217,119,6,.15); border-color: rgba(217,119,6,.4); }
-  .mn2-chatbot-btn > i:first-child { font-size: 1.1rem; color: var(--accent); flex-shrink: 0; }
-  .mn2-chatbot-btn div { display: flex; flex-direction: column; }
-  .mn2-chatbot-btn strong { font-size: .85rem; color: #fff; font-weight: 600; }
-  .mn2-chatbot-btn span { font-size: .72rem; color: var(--muted); margin-top: .1rem; }
-
-  /* ── Mobile WHO buttons ── */
-  .mn-who-btn {
-    display: flex; align-items: center; justify-content: center; gap: .5rem;
-    padding: .65rem .8rem; border-radius: 9px;
-    border: 1px solid var(--border); background: rgba(255,255,255,.04);
-    color: var(--muted); font-size: .82rem; font-weight: 500;
-    cursor: pointer; font-family: var(--font-body); transition: all .18s; width: 100%;
-  }
-  .mn-who-btn:hover { border-color: rgba(217,119,6,.4); color: #fff; }
-  .mn-who-btn.mn-who-active { border-color: var(--accent); background: rgba(217,119,6,.12); color: #fff; }
-  .mn-who-btn i { font-size: .85rem; color: var(--accent); }
-
-  /* ── Responsive ── */
-  @media (max-width: 991px) {
-    .hamburger-btn     { display: inline-flex !important; }
-    .nav-desktop-links { display: none !important; }
-  }
-  /* ═══════════════════════════════════════════════════════ */
-
   </style>
 </head>
-
 <body>
 
-<!-- ═══════════════ NAVBAR (from index.html) ═══════════════ -->
+<!-- NAVBAR -->
 <header class="navbar-3e">
   <div class="d-flex align-items-center justify-content-between w-100">
     <a href="index.html" class="navbar-brand-3e">
@@ -612,10 +271,10 @@
       <span>3E Consulting</span>
     </a>
     <ul class="nav-desktop-links d-flex list-unstyled mb-0 gap-3 mx-auto">
-      <li><a href="index.html#services"  class="nav-link-3e">Leistungen</a></li>
-      <li><a href="index.html#process"   class="nav-link-3e">Ablauf</a></li>
-      <li><a href="index.html#about"     class="nav-link-3e">Über uns</a></li>
-      <li><a href="index.html#kontakt"   class="nav-link-3e">Kontakt</a></li>
+      <li><a href="index.html#services" class="nav-link-3e">Leistungen</a></li>
+      <li><a href="index.html#process"  class="nav-link-3e">Ablauf</a></li>
+      <li><a href="index.html#about"    class="nav-link-3e">Über uns</a></li>
+      <li><a href="index.html#kontakt"  class="nav-link-3e">Kontakt</a></li>
     </ul>
     <div class="d-flex align-items-center gap-3">
       <div class="position-relative d-none d-lg-block">
@@ -624,15 +283,10 @@
           <div class="mn2-who">
             <p class="mn2-who-label">Sie sind</p>
             <div class="mn2-who-btns">
-              <button class="mn2-who-btn mn2-who-active" onclick="mn2Switch(this,'bewerber')">
-                <i class="fa-solid fa-user-tie"></i> Bewerber
-              </button>
-              <button class="mn2-who-btn" onclick="mn2Switch(this,'unternehmen')">
-                <i class="fa-solid fa-building"></i> Unternehmen
-              </button>
+              <button class="mn2-who-btn mn2-who-active" onclick="mn2Switch(this,'bewerber')"><i class="fa-solid fa-user-tie"></i> Bewerber</button>
+              <button class="mn2-who-btn" onclick="mn2Switch(this,'unternehmen')"><i class="fa-solid fa-building"></i> Unternehmen</button>
             </div>
           </div>
-          <!-- BEWERBER PANEL -->
           <div class="mn2-panel" id="mn2-bewerber">
             <div class="mn2-group">
               <div class="mn2-group-label">Jetzt starten</div>
@@ -644,10 +298,10 @@
             <div class="mn2-divider"></div>
             <div class="mn2-group">
               <div class="mn2-group-label"><i class="fa-solid fa-book-open"></i> Gut vorbereitet sein</div>
-              <a href="arbeitsmarkt.html"         class="mn2-link"><i class="fa-solid fa-chart-line"></i> Arbeitsmarkt Deutschland</a>
-              <a href="arbeitundsozialrecht.html" class="mn2-link"><i class="fa-solid fa-scale-balanced"></i> Arbeits- und Sozialrecht</a>
-              <a href="aufenthaltsrecht.html"     class="mn2-link"><i class="fa-solid fa-passport"></i> Aufenthaltsrecht &amp; Visum</a>
-              <a href="alltag-deutschland.html"   class="mn2-link"><i class="fa-solid fa-sun"></i> Alltag in Deutschland</a>
+              <a href="arbeitsmarkt.html"       class="mn2-link"><i class="fa-solid fa-chart-line"></i> Arbeitsmarkt Deutschland</a>
+              <a href="alltag-deutschland.html?tab=arbeit"      class="mn2-link"><i class="fa-solid fa-scale-balanced"></i> Arbeits- und Sozialrecht</a>
+              <a href="alltag-deutschland.html?tab=aufenthalt"  class="mn2-link"><i class="fa-solid fa-passport"></i> Aufenthaltsrecht &amp; Visum</a>
+              <a href="alltag-deutschland.html?tab=alltag"      class="mn2-link"><i class="fa-solid fa-sun"></i> Alltag in Deutschland</a>
             </div>
             <div class="mn2-divider"></div>
             <a href="Chatbot.html" class="mn2-chatbot-btn">
@@ -656,7 +310,6 @@
               <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
             </a>
           </div>
-          <!-- UNTERNEHMEN PANEL -->
           <div class="mn2-panel" id="mn2-unternehmen" style="display:none">
             <div class="mn2-group">
               <div class="mn2-group-label"><i class="fa-solid fa-building"></i> Für Unternehmen</div>
@@ -671,470 +324,545 @@
               <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
             </a>
           </div>
-        </div><!-- /nav-dropdown-panel -->
-      </div><!-- /position-relative -->
-      <button class="hamburger-btn d-lg-none" id="hamburgerBtn" aria-label="Menü öffnen">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+        </div>
+      </div>
+      <button class="hamburger-btn d-lg-none" id="hamburgerBtn" aria-label="Menü öffnen"><i class="fa-solid fa-bars"></i></button>
     </div>
   </div>
 </header>
 
-<!-- ═══ MOBILE NAV OVERLAY ═══ -->
 <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-
-<!-- ═══ MOBILE NAV DRAWER ═══ -->
 <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
   <div class="mn-header">
-    <a href="index.html" class="mn-brand">
-      <img src="logo_3e.jpg" alt="3E">
-      <span>3E Consulting</span>
-    </a>
-    <button class="mn-close" id="mobileNavClose" aria-label="Menü schließen">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
+    <a href="index.html" class="mn-brand"><img src="logo_3e.jpg" alt="3E"><span>3E Consulting</span></a>
+    <button class="mn-close" id="mobileNavClose" aria-label="Menü schließen"><i class="fa-solid fa-xmark"></i></button>
   </div>
   <div class="mn-body">
-    <div style="padding:.8rem 1rem .6rem;">
-      <p class="mn-section-label" style="padding:0 0 .5rem;">Sie sind</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-        <button class="mn-who-btn mn-who-active" onclick="mnMobileSwitch(this,'mob-bewerber')" id="mob-btn-bewerber">
-          <i class="fa-solid fa-user-tie"></i> Bewerber
-        </button>
-        <button class="mn-who-btn" onclick="mnMobileSwitch(this,'mob-unternehmen')" id="mob-btn-unternehmen">
-          <i class="fa-solid fa-building"></i> Unternehmen
-        </button>
+    <div style="padding:.8rem 1rem .6rem">
+      <p class="mn-section-label" style="padding:0 0 .5rem">Sie sind</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <button class="mn-who-btn mn-who-active" onclick="mnMobileSwitch(this,'mob-bewerber')"><i class="fa-solid fa-user-tie"></i> Bewerber</button>
+        <button class="mn-who-btn" onclick="mnMobileSwitch(this,'mob-unternehmen')"><i class="fa-solid fa-building"></i> Unternehmen</button>
       </div>
     </div>
     <div class="mn-divider"></div>
-    <!-- BEWERBER PANEL -->
     <div id="mob-bewerber">
-      <div class="mn-section-label" style="padding-top:.7rem;">🚀 Jetzt starten</div>
-      <a href="index.html"    class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span>Startseite<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem">🚀 Jetzt starten</div>
+      <a href="index.html"          class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span>Startseite<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <a href="index.html#services" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span>Leistungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="index.html#process"  class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline"></i></span>Ablauf<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="Bewerbung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span>Bewerbung<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="vermitlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span>Voraussetzungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open"></i></span>Dokumentenorganisation<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="Bewerbung.html"      class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span>Bewerbung<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="vermitlung.html"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span>Voraussetzungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
-      <div class="mn-section-label" style="padding-top:.7rem;">📚 Gut vorbereitet sein</div>
-      <a href="arbeitsmarkt.html"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span>Arbeitsmarkt<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="arbeitundsozialrecht.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span>Arbeits- und Sozialrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="aufenthaltsrecht.html"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-passport"></i></span>Aufenthaltsrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="alltag-deutschland.html"   class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span>Alltag in Deutschland<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem">📚 Gut vorbereitet sein</div>
+      <a href="arbeitsmarkt.html"                    class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span>Arbeitsmarkt<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="alltag-deutschland.html?tab=arbeit"   class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span>Arbeits- und Sozialrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="alltag-deutschland.html?tab=aufenthalt" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-passport"></i></span>Aufenthaltsrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="alltag-deutschland.html?tab=alltag"   class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span>Alltag in Deutschland<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
-      <a href="Chatbot.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;">
-        <span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);"><i class="fa-solid fa-robot" style="color:var(--accent)"></i></span>
-        <span style="color:var(--white)">Chatbot-3e</span>
-        <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+      <a href="Chatbot.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem">
+        <span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3)"><i class="fa-solid fa-robot" style="color:var(--accent)"></i></span>
+        <span style="color:var(--white)">Chatbot-3e</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i>
       </a>
     </div>
-    <!-- UNTERNEHMEN PANEL -->
     <div id="mob-unternehmen" style="display:none">
-      <div class="mn-section-label" style="padding-top:.7rem;">🏢 Für Unternehmen</div>
-      <a href="index.html#about"                             class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users"></i></span>Über uns<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem">🏢 Für Unternehmen</div>
       <a href="service-unternehmen.html#vermittlung"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder"></i></span>Fachkräfte finden<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset"></i></span>Support &amp; Beschwerden<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <a href="login_company.php"                            class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket"></i></span>Unternehmens-Login<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
-      <a href="index.html#kontakt" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;">
-        <span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);"><i class="fa-solid fa-envelope" style="color:var(--accent)"></i></span>
-        <span style="color:var(--white)">Kontakt aufnehmen</span>
-        <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+      <a href="index.html#kontakt" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem">
+        <span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3)"><i class="fa-solid fa-envelope" style="color:var(--accent)"></i></span>
+        <span style="color:var(--white)">Kontakt aufnehmen</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i>
       </a>
     </div>
   </div>
   <div class="mn-footer">
-    <a href="registraion.html" class="mn-cta-primary"    onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> Als Bewerber starten</a>
+    <a href="registraion.html" class="mn-cta-primary"  onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> Als Bewerber starten</a>
     <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building"></i> Für Unternehmen</a>
   </div>
 </nav>
 
-
-
-
-<header class="page-hero">
-  <div class="section-tag">Leben &amp; Kultur · Deutschland</div>
-  <h1>Alltag in <em>Deutschland</em></h1>
-  <p>Praktische Tipps für den Alltag — und ein ehrlicher Blick auf die kulturellen Unterschiede zwischen Deutschland und Algerien.</p>
-</header>
-
-<div class="kpi-row">
-  <div class="kpi-card"><div class="kpi-num">22:00</div><div class="kpi-label">Ruhezeit beginnt<br>(Sonntag besonders)</div></div>
-  <div class="kpi-card"><div class="kpi-num">Pfand</div><div class="kpi-label">Flaschenpfand:<br>25 ct (Einweg)</div></div>
-  <div class="kpi-card"><div class="kpi-num">Bargeld</div><div class="kpi-label">Deutsche zahlen<br>oft noch bar</div></div>
-  <div class="kpi-card"><div class="kpi-num">Pünktlich</div><div class="kpi-label">5 Min. früher =<br>pünktlich</div></div>
+<!-- ══ PAGE TABS ══ -->
+<div class="page-tabs" id="pageTabs">
+  <button class="tab-btn active" data-tab="alltag"      onclick="switchTab('alltag')"><i class="bi bi-sun"></i> Alltag in Deutschland</button>
+  <button class="tab-btn"        data-tab="aufenthalt"  onclick="switchTab('aufenthalt')"><i class="bi bi-passport"></i> Aufenthaltsrecht &amp; Visum</button>
+  <button class="tab-btn"        data-tab="arbeit"      onclick="switchTab('arbeit')"><i class="bi bi-briefcase"></i> Arbeits- &amp; Sozialrecht</button>
 </div>
 
-<div class="content-layout">
-  <aside class="toc">
-    <div class="toc-title">Inhaltsverzeichnis</div>
-    <a href="#alltag">Alltag &amp; Regeln</a>
-    <a href="#kommunikation">Kommunikation</a>
-    <a href="#mentalitaet">DE vs. DZ</a>
-    <a href="#integration">Integration</a>
-    <a href="#praktisch">Praktisches</a>
-    <a href="#erste-schritte">Erste Schritte</a>
-  </aside>
+<!-- ══════════════════════════════════════
+     TAB 1 — ALLTAG IN DEUTSCHLAND
+══════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-alltag">
 
-  <main>
+  <header class="page-hero">
+    <span class="section-tag">Leben &amp; Kultur · Deutschland</span>
+    <h1>Alltag in <em>Deutschland</em></h1>
+    <p>Praktische Tipps für den Alltag — und ein ehrlicher Blick auf die kulturellen Unterschiede zwischen Deutschland und Algerien.</p>
+  </header>
 
-    <!-- 01 ALLTAG -->
-    <section id="alltag" class="report-section">
-      <span class="section-num">01</span>
-      <h2>Alltag &amp; gesellschaftliche Regeln</h2>
-      <p class="subtitle">Was im täglichen Leben anders ist als in Algerien</p>
-      <p>Deutschland ist ein Land der <strong style="color:var(--white)">Regeln und Routinen</strong>. Vieles, was in Algerien selbstverständlich ist — lautes Reden auf der Straße, Spontaneität bei Terminen, spätes Einkaufen — funktioniert hier anders.</p>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-card-icon"><i class="bi bi-volume-mute-fill"></i></div>
-          <h3>Ruhezeiten</h3>
-          <p>Ab 22 Uhr und ganztägig sonntags gilt Ruhe. Kein lautes Musikhören, Bohren oder Rasenmähen. Nachbarn rufen die Polizei — das ist normal, nicht persönlich gemeint.</p>
+  <div class="kpi-row">
+    <div class="kpi-card"><div class="kpi-num">22:00</div><div class="kpi-label">Ruhezeit beginnt<br>(Sonntag besonders)</div></div>
+    <div class="kpi-card"><div class="kpi-num">Pfand</div><div class="kpi-label">Flaschenpfand:<br>25 ct (Einweg)</div></div>
+    <div class="kpi-card"><div class="kpi-num">Bargeld</div><div class="kpi-label">Deutsche zahlen<br>oft noch bar</div></div>
+    <div class="kpi-card"><div class="kpi-num">Pünktlich</div><div class="kpi-label">5 Min. früher =<br>pünktlich</div></div>
+  </div>
+
+  <div class="content-layout">
+    <aside class="toc" id="toc-alltag">
+      <div class="toc-title">Inhaltsverzeichnis</div>
+      <a href="#alltag">Alltag &amp; Regeln</a>
+      <a href="#kommunikation">Kommunikation</a>
+      <a href="#mentalitaet">DE vs. DZ</a>
+      <a href="#integration">Integration</a>
+      <a href="#praktisch">Praktisches</a>
+      <a href="#erste-schritte">Erste Schritte</a>
+    </aside>
+    <main>
+      <section id="alltag" class="report-section">
+        <span class="section-num">01</span>
+        <h2>Alltag &amp; gesellschaftliche Regeln</h2>
+        <p class="subtitle">Was im täglichen Leben anders ist als in Algerien</p>
+        <p>Deutschland ist ein Land der <strong style="color:var(--white)">Regeln und Routinen</strong>. Vieles, was in Algerien selbstverständlich ist — lautes Reden auf der Straße, Spontaneität bei Terminen, spätes Einkaufen — funktioniert hier anders.</p>
+        <div class="info-grid">
+          <div class="info-card"><div class="info-card-icon"><i class="bi bi-volume-mute-fill"></i></div><h3>Ruhezeiten</h3><p>Ab 22 Uhr und ganztägig sonntags gilt Ruhe. Kein lautes Musikhören, Bohren oder Rasenmähen. Nachbarn rufen die Polizei — das ist normal, nicht persönlich gemeint.</p></div>
+          <div class="info-card"><div class="info-card-icon"><i class="bi bi-recycle"></i></div><h3>Mülltrennung</h3><p>Papier, Plastik, Bio, Restmüll — alles getrennt. Falsche Trennung kann Ärger mit Vermieter oder Nachbarn geben. Pfandflaschen (25 ct) zurückgeben lohnt sich.</p></div>
+          <div class="info-card"><div class="info-card-icon"><i class="bi bi-shop"></i></div><h3>Öffnungszeiten</h3><p>Supermärkte schließen meist um 20–22 Uhr, sonntags oft ganz. Planen Sie Einkäufe im Voraus — spontanes „noch schnell einkaufen" am Sonntag ist schwierig.</p></div>
+          <div class="info-card"><div class="info-card-icon"><i class="bi bi-bus-front-fill"></i></div><h3>Öffentliche Verkehrsmittel</h3><p>Bus und Bahn fahren nach Fahrplan — nicht nach Bedarf. Ticket vor Fahrtantritt kaufen oder per App. Schwarzfahren kostet 60 € Strafe.</p></div>
         </div>
-        <div class="info-card">
-          <div class="info-card-icon"><i class="bi bi-recycle"></i></div>
-          <h3>Mülltrennung</h3>
-          <p>Papier, Plastik, Bio, Restmüll — alles getrennt. Falsche Trennung kann Ärger mit Vermieter oder Nachbarn geben. Pfandflaschen (25 ct) zurückgeben lohnt sich.</p>
+      </section>
+
+      <section id="kommunikation" class="report-section">
+        <span class="section-num">02</span>
+        <h2>Kommunikation &amp; Umgangsformen</h2>
+        <p class="subtitle">Wie Deutsche reden — und was dahintersteckt</p>
+        <p>Deutsche Kommunikation wirkt auf Menschen aus dem Maghreb oft kühl oder distanziert. In Wahrheit ist sie meist <strong style="color:var(--white)">sachlich, nicht unfreundlich</strong>.</p>
+        <ul>
+          <li><strong style="color:var(--white)">Direktheit:</strong> „Das gefällt mir nicht" ist ehrliche Meinung, kein Angriff</li>
+          <li><strong style="color:var(--white)">Sie vs. Du:</strong> Im Beruf fast immer „Sie" — erst nach expliziter Einladung „Du"</li>
+          <li><strong style="color:var(--white)">Körperkontakt:</strong> Weniger als in Algerien — kein Küssen zur Begrüßung</li>
+          <li><strong style="color:var(--white)">Smalltalk:</strong> Wetter, Arbeit — keine persönlichen Fragen zu Gehalt, Religion oder Familie</li>
+        </ul>
+      </section>
+
+      <section id="mentalitaet" class="report-section">
+        <span class="section-num">03</span>
+        <h2>Deutschland &amp; Algerien — Mentalitätsvergleich</h2>
+        <p class="subtitle">Zwei Welten, die einander verstehen können</p>
+        <div class="compare-intro">Dieser Vergleich ist <em>keine Wertung</em>, sondern eine Orientierungshilfe. Wer die Unterschiede kennt, vermeidet Missverständnisse und findet schneller Anschluss.</div>
+        <div class="legend-row">
+          <span><span class="legend-dot de"></span> Deutschland</span>
+          <span><span class="legend-dot dz"></span> Algerien</span>
         </div>
-        <div class="info-card">
-          <div class="info-card-icon"><i class="bi bi-shop"></i></div>
-          <h3>Öffnungszeiten</h3>
-          <p>Supermärkte schließen meist um 20–22 Uhr, sonntags oft ganz. Planen Sie Einkäufe im Voraus — spontanes „noch schnell einkaufen" am Sonntag ist schwierig.</p>
+        <div class="compare-row">
+          <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Termine gelten als verbindlich. 5 Minuten vor der vereinbarten Zeit da sein ist normal. Verspätung ohne Ankündigung gilt als respektlos.</p></div>
+          <div class="compare-topic">Zeit &amp;<br>Pünktlichkeit</div>
+          <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Zeit ist flexibler — gesellschaftliche Pflichten können Pläne verschieben. Pünktlichkeit ist wichtig, aber weniger strikt.</p></div>
         </div>
-        <div class="info-card">
-          <div class="info-card-icon"><i class="bi bi-bus-front-fill"></i></div>
-          <h3>Öffentliche Verkehrsmittel</h3>
-          <p>Bus und Bahn fahren nach Fahrplan — nicht nach Bedarf. Ticket vor Fahrtantritt kaufen oder per App. Schwarzfahren kostet 60 € Strafe.</p>
+        <div class="compare-row">
+          <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Sachlich und direkt. Kritik am Verhalten, nicht an der Person. Emotionen werden im Beruf zurückgehalten.</p></div>
+          <div class="compare-topic">Kommunikation</div>
+          <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Wärmer, persönlicher, indirekter. Beziehungen vor Geschäft. Kritik wird oft indirekt geäußert.</p></div>
         </div>
-      </div>
-    </section>
-
-    <!-- 02 KOMMUNIKATION -->
-    <section id="kommunikation" class="report-section">
-      <span class="section-num">02</span>
-      <h2>Kommunikation &amp; Umgangsformen</h2>
-      <p class="subtitle">Wie Deutsche reden — und was dahintersteckt</p>
-      <p>Deutsche Kommunikation wirkt auf Menschen aus dem Maghreb oft kühl oder distanziert. In Wahrheit ist sie meist <strong style="color:var(--white)">sachlich, nicht unfreundlich</strong>.</p>
-      <ul>
-        <li><strong style="color:var(--white)">Direktheit:</strong> „Das gefällt mir nicht" ist ehrliche Meinung, kein Angriff</li>
-        <li><strong style="color:var(--white)">Sie vs. Du:</strong> Im Beruf fast immer „Sie" — erst nach expliziter Einladung „Du"</li>
-        <li><strong style="color:var(--white)">Körperkontakt:</strong> Weniger als in Algerien — kein Küssen zur Begrüßung</li>
-        <li><strong style="color:var(--white)">Smalltalk:</strong> Wetter, Arbeit — keine persönlichen Fragen zu Gehalt, Religion oder Familie</li>
-      </ul>
-    </section>
-
-    <!-- 03 MENTALITÄT -->
-    <section id="mentalitaet" class="report-section">
-      <span class="section-num">03</span>
-      <h2>Deutschland &amp; Algerien — Mentalitätsvergleich</h2>
-      <p class="subtitle">Zwei Welten, die einander verstehen können</p>
-      <div class="compare-intro">
-        Dieser Vergleich ist <em>keine Wertung</em>, sondern eine Orientierungshilfe. Wer die Unterschiede kennt, vermeidet Missverständnisse und findet schneller Anschluss.
-      </div>
-      <div class="legend-row">
-        <span><span class="legend-dot de"></span> Deutschland</span>
-        <span><span class="legend-dot dz"></span> Algerien</span>
-      </div>
-
-      <div class="compare-row">
-        <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Termine gelten als verbindlich. 5 Minuten vor der vereinbarten Zeit da sein ist normal. Verspätung ohne Ankündigung gilt als respektlos.</p></div>
-        <div class="compare-topic">Zeit &amp;<br>Pünktlichkeit</div>
-        <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Zeit ist flexibler — gesellschaftliche Pflichten (Familie, Nachbarn) können Pläne verschieben. Pünktlichkeit ist wichtig, aber weniger strikt.</p></div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Sachlich und direkt. Kritik am Verhalten, nicht an der Person. Emotionen werden im Beruf zurückgehalten.</p></div>
-        <div class="compare-topic">Kommunikation</div>
-        <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Wärmer, persönlicher, indirekter. Beziehungen vor Geschäft. Kritik wird oft indirekt geäußert.</p></div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Das Individuum steht im Mittelpunkt. Erwachsene Kinder ziehen früh aus. Entscheidungen trifft man selbst.</p></div>
-        <div class="compare-topic">Familie &amp;<br>Individualismus</div>
-        <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Die Familie ist das Fundament. Entscheidungen werden oft gemeinsam getroffen. Solidarität mit Verwandten ist selbstverständlich.</p></div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Alles wird geplant — Terminkalender, Urlaub Monate im Voraus. Spontaneität ist die Ausnahme.</p></div>
-        <div class="compare-topic">Planung vs.<br>Spontaneität</div>
-        <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Flexiblerer Umgang mit Plänen. Besuche ohne Ankündigung sind willkommen. Das Leben passiert oft im Moment.</p></div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Regeln gelten für alle gleich — unabhängig von Beziehungen. Behörden und Verträge sind verlässlich.</p></div>
-        <div class="compare-topic">Regeln &amp;<br>Beziehungen</div>
-        <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Persönliche Netzwerke spielen eine große Rolle. „Wen man kennt" kann Türen öffnen.</p></div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Private Sphäre ist heilig. Nachbarn grüßen, kennen sich aber selten persönlich.</p></div>
-        <div class="compare-topic">Privatsphäre &amp;<br>Nachbarschaft</div>
-        <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Gemeinschaft ist allgegenwärtig. Nachbarn kennen sich, helfen einander, teilen Essen.</p></div>
-      </div>
-
-      <div class="depth-box">
-        <strong>Was steckt dahinter?</strong> Deutschland ist ein nordeuropäisches Industrieland mit protestantischer Arbeitsethik — das fördert Planung und Regeltreue. Algerien ist mediterran mit starker familiärer Struktur — das fördert Flexibilität und Gemeinschaft. Keine Seite ist „besser" — aber wer in Deutschland lebt, muss die deutsche Logik verstehen.
-      </div>
-
-      <div class="chart-box">
-        <h3>Kulturelle Dimensionen — Vergleich</h3>
-        <p class="chart-desc">Relative Ausprägung (0–100)</p>
-        <div class="chart-wrap"><canvas id="chartRadar"></canvas></div>
-      </div>
-      <div class="charts-2col">
+        <div class="compare-row">
+          <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Das Individuum steht im Mittelpunkt. Erwachsene Kinder ziehen früh aus. Entscheidungen trifft man selbst.</p></div>
+          <div class="compare-topic">Familie &amp;<br>Individualismus</div>
+          <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Die Familie ist das Fundament. Entscheidungen werden oft gemeinsam getroffen. Solidarität mit Verwandten ist selbstverständlich.</p></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Alles wird geplant — Terminkalender, Urlaub Monate im Voraus. Spontaneität ist die Ausnahme.</p></div>
+          <div class="compare-topic">Planung vs.<br>Spontaneität</div>
+          <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Flexiblerer Umgang mit Plänen. Besuche ohne Ankündigung sind willkommen. Das Leben passiert oft im Moment.</p></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-side de"><div class="flag">🇩🇪</div><h4>Deutschland</h4><p>Private Sphäre ist heilig. Nachbarn grüßen, kennen sich aber selten persönlich.</p></div>
+          <div class="compare-topic">Privatsphäre &amp;<br>Nachbarschaft</div>
+          <div class="compare-side dz"><div class="flag">🇩🇿</div><h4>Algerien</h4><p>Gemeinschaft ist allgegenwärtig. Nachbarn kennen sich, helfen einander, teilen Essen.</p></div>
+        </div>
+        <div class="depth-box"><strong>Was steckt dahinter?</strong> Deutschland ist ein nordeuropäisches Industrieland mit protestantischer Arbeitsethik — das fördert Planung und Regeltreue. Algerien ist mediterran mit starker familiärer Struktur — das fördert Flexibilität und Gemeinschaft. Keine Seite ist „besser" — aber wer in Deutschland lebt, muss die deutsche Logik verstehen.</div>
         <div class="chart-box">
-          <h3>Vertrauen: Institutionen vs. Netzwerke</h3>
-          <p class="chart-desc">Woran orientieren sich Menschen?</p>
-          <div class="chart-wrap" style="max-height:260px"><canvas id="chartVertrauen"></canvas></div>
+          <h3>Kulturelle Dimensionen — Vergleich</h3>
+          <p class="chart-desc">Relative Ausprägung (0–100)</p>
+          <div class="chart-wrap"><canvas id="chartRadar"></canvas></div>
         </div>
-        <div class="chart-box">
-          <h3>Soziale Prioritäten</h3>
-          <p class="chart-desc">Was steht im Mittelpunkt?</p>
-          <div class="chart-wrap" style="max-height:260px"><canvas id="chartPrioritaet"></canvas></div>
+        <div class="charts-2col">
+          <div class="chart-box"><h3>Vertrauen: Institutionen vs. Netzwerke</h3><p class="chart-desc">Woran orientieren sich Menschen?</p><div class="chart-wrap" style="max-height:240px"><canvas id="chartVertrauen"></canvas></div></div>
+          <div class="chart-box"><h3>Soziale Prioritäten</h3><p class="chart-desc">Was steht im Mittelpunkt?</p><div class="chart-wrap" style="max-height:240px"><canvas id="chartPrioritaet"></canvas></div></div>
         </div>
-      </div>
-      <div class="tip-box">
-        <strong>Der goldene Mittelweg:</strong> Behalten Sie Ihre algerischen Werte — Gastfreundschaft, Familiensinn, Wärme — und lernen Sie gleichzeitig die deutschen: Pünktlichkeit, Direktheit, schriftliche Vereinbarungen.
-      </div>
-    </section>
+        <div class="tip-box"><strong>Der goldene Mittelweg:</strong> Behalten Sie Ihre algerischen Werte — Gastfreundschaft, Familiensinn, Wärme — und lernen Sie gleichzeitig die deutschen: Pünktlichkeit, Direktheit, schriftliche Vereinbarungen.</div>
+      </section>
 
-    <!-- 04 INTEGRATION -->
-    <section id="integration" class="report-section">
-      <span class="section-num">04</span>
-      <h2>Integration — Was wirklich hilft</h2>
-      <p class="subtitle">Vom Fremdsein zum Dazugehören</p>
-      <ul>
-        <li><strong style="color:var(--white)">Deutsch lernen:</strong> Nicht nur für den Job — sondern für Freundschaften und Alltag</li>
-        <li><strong style="color:var(--white)">Vereine &amp; Sport:</strong> Fußballverein, Fitnessstudio, Sprachcafé — der schnellste Weg zu Kontakten</li>
-        <li><strong style="color:var(--white)">Algerische Community:</strong> Moschee, algerische Restaurants, Diaspora-Gruppen</li>
-        <li><strong style="color:var(--white)">Deutsche Freunde:</strong> Einladung zum Kaffee annehmen, auch wenn es ungewohnt formal wirkt</li>
-        <li><strong style="color:var(--white)">Geduld:</strong> Integration dauert 2–3 Jahre — das ist normal</li>
-      </ul>
-    </section>
+      <section id="integration" class="report-section">
+        <span class="section-num">04</span>
+        <h2>Integration — Was wirklich hilft</h2>
+        <p class="subtitle">Vom Fremdsein zum Dazugehören</p>
+        <ul>
+          <li><strong style="color:var(--white)">Deutsch lernen:</strong> Nicht nur für den Job — sondern für Freundschaften und Alltag</li>
+          <li><strong style="color:var(--white)">Vereine &amp; Sport:</strong> Fußballverein, Fitnessstudio, Sprachcafé — der schnellste Weg zu Kontakten</li>
+          <li><strong style="color:var(--white)">Algerische Community:</strong> Moschee, algerische Restaurants, Diaspora-Gruppen</li>
+          <li><strong style="color:var(--white)">Deutsche Freunde:</strong> Einladung zum Kaffee annehmen, auch wenn es ungewohnt formal wirkt</li>
+          <li><strong style="color:var(--white)">Geduld:</strong> Integration dauert 2–3 Jahre — das ist normal</li>
+        </ul>
+      </section>
 
-    <!-- 05 PRAKTISCH -->
-    <section id="praktisch" class="report-section">
-      <span class="section-num">05</span>
-      <h2>Praktische Checkliste</h2>
-      <p class="subtitle">Die ersten Wochen in Deutschland</p>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-card-icon"><i class="bi bi-phone-fill"></i></div>
-          <h3>SIM-Karte &amp; Internet</h3>
-          <p>Prepaid-Karte (Aldi Talk, Lidl Connect) sofort nach Ankunft. Für Behörden und Bank brauchen Sie oft eine deutsche Nummer.</p>
+      <section id="praktisch" class="report-section">
+        <span class="section-num">05</span>
+        <h2>Praktische Checkliste</h2>
+        <p class="subtitle">Die ersten Wochen in Deutschland</p>
+        <div class="info-grid">
+          <div class="info-card"><div class="info-card-icon"><i class="bi bi-phone-fill"></i></div><h3>SIM-Karte &amp; Internet</h3><p>Prepaid-Karte (Aldi Talk, Lidl Connect) sofort nach Ankunft. Für Behörden und Bank brauchen Sie oft eine deutsche Nummer.</p></div>
+          <div class="info-card"><div class="info-card-icon"><i class="bi bi-bank2"></i></div><h3>Bankkonto</h3><p>N26, DKB oder Sparkasse — Anmeldung + Ausweis reichen meist. Gehalt und Miete laufen nur über deutsches Konto.</p></div>
+          <div class="info-card"><div class="info-card-icon"><i class="bi bi-heart-pulse-fill"></i></div><h3>Arzt &amp; Apotheke</h3><p>Hausarzt wählen (Termin nötig!). Rezeptfreie Medikamente nur in der Apotheke — nicht im Supermarkt wie in DZ.</p></div>
+          <div class="info-card"><div class="info-card-icon"><i class="bi bi-moon-stars-fill"></i></div><h3>Religion &amp; Essen</h3><p>Halal-Lebensmittel in türkischen/arabischen Läden. Freitagsgebet in größeren Städten gut organisiert.</p></div>
         </div>
-        <div class="info-card">
-          <div class="info-card-icon"><i class="bi bi-bank2"></i></div>
-          <h3>Bankkonto</h3>
-          <p>N26, DKB oder Sparkasse — Anmeldung + Ausweis reichen meist. Gehalt und Miete laufen nur über deutsches Konto.</p>
-        </div>
-        <div class="info-card">
-          <div class="info-card-icon"><i class="bi bi-heart-pulse-fill"></i></div>
-          <h3>Arzt &amp; Apotheke</h3>
-          <p>Hausarzt wählen (Termin nötig!). Rezeptfreie Medikamente nur in der Apotheke — nicht im Supermarkt wie in DZ.</p>
-        </div>
-        <div class="info-card">
-          <div class="info-card-icon"><i class="bi bi-moon-stars-fill"></i></div>
-          <h3>Religion &amp; Essen</h3>
-          <p>Halal-Lebensmittel in türkischen/arabischen Läden. Freitagsgebet in größeren Städten gut organisiert.</p>
-        </div>
-      </div>
-      <p class="source-note">Hinweis: Kulturelle Vergleiche beschreiben allgemeine Tendenzen. Integration bedeutet, Unterschiede zu verstehen und Brücken zu bauen. Stand: 2025.</p>
-    </section>
+        <p class="source-note">Hinweis: Kulturelle Vergleiche beschreiben allgemeine Tendenzen. Integration bedeutet, Unterschiede zu verstehen und Brücken zu bauen. Stand: 2025.</p>
+      </section>
 
-    <!-- 06 ERSTE SCHRITTE -->
-    <section id="erste-schritte" class="bewerber-section">
-      <span class="section-num">06</span>
-      <h2>Erste Schritte in Deutschland</h2>
-      <p class="subtitle">Unterstützung nach Ihrer Ankunft</p>
-      <p>Nach Ihrer Ankunft in Deutschland begleiten wir Sie durch alle wichtigen bürokratischen und praktischen Schritte. Hier finden Sie eine strukturierte Übersicht mit hilfreichen Links für jeden Schritt.</p>
-
-      <!-- SCHRITT 1: Wohnungssuche -->
-      <div class="step-block">
-        <div class="step-header">
-          <div class="step-icon"><i class="bi bi-house-door-fill"></i></div>
-          <div>
-            <h3 class="step-title">1. Wohnungssuche</h3>
-            <p class="step-desc">Suchen Sie frühzeitig nach einer Unterkunft — WG-Zimmer sind für den Anfang oft die einfachste und günstigste Option. Die folgenden Portale sind in Deutschland am meisten genutzt:</p>
+      <section id="erste-schritte" class="bewerber-section">
+        <span class="section-num">06</span>
+        <h2>Erste Schritte in Deutschland</h2>
+        <p class="subtitle">Unterstützung nach Ihrer Ankunft</p>
+        <p>Nach Ihrer Ankunft in Deutschland begleiten wir Sie durch alle wichtigen bürokratischen und praktischen Schritte.</p>
+        <div class="step-block">
+          <div class="step-header"><div class="step-icon"><i class="bi bi-house-door-fill"></i></div><div><h3 class="step-title">1. Wohnungssuche</h3><p class="step-desc">Suchen Sie frühzeitig nach einer Unterkunft — WG-Zimmer sind für den Anfang oft die einfachste Option.</p></div></div>
+          <div class="link-grid">
+            <a href="https://www.wg-gesucht.de/" target="_blank" class="link-card"><i class="bi bi-box-arrow-up-right"></i><span class="link-name">WG-Gesucht</span><span class="link-desc">Größtes WG-Portal Deutschlands</span></a>
+            <a href="https://www.kleinanzeigen.de" target="_blank" class="link-card"><i class="bi bi-box-arrow-up-right"></i><span class="link-name">Kleinanzeigen</span><span class="link-desc">Private WG- und Wohnungsangebote</span></a>
+            <a href="https://www.immowelt.de/" target="_blank" class="link-card"><i class="bi bi-box-arrow-up-right"></i><span class="link-name">Immowelt</span><span class="link-desc">Wohnungen &amp; Häuser zur Miete</span></a>
+            <a href="https://www.immobilienscout24.de" target="_blank" class="link-card"><i class="bi bi-box-arrow-up-right"></i><span class="link-name">ImmobilienScout24</span><span class="link-desc">Deutschlands größtes Immobilienportal</span></a>
           </div>
         </div>
-        <div class="link-grid">
-          <a href="https://www.wg-gesucht.de/" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">WG-Gesucht</span>
-            <span class="link-desc">Größtes WG-Portal Deutschlands</span>
-          </a>
-          <a href="https://www.kleinanzeigen.de/s-wg-gesuche/k0" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">Kleinanzeigen</span>
-            <span class="link-desc">Private WG- und Wohnungsangebote</span>
-          </a>
-          <a href="https://www.immowelt.de/" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">Immowelt</span>
-            <span class="link-desc">Wohnungen &amp; Häuser zur Miete</span>
-          </a>
-          <a href="https://www.immobilienscout24.de/wohnen/wg-zimmer.html" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">ImmobilienScout24</span>
-            <span class="link-desc">Deutschlands größtes Immobilienportal</span>
-          </a>
+        <div class="step-block">
+          <div class="step-header"><div class="step-icon"><i class="bi bi-building-fill"></i></div><div><h3 class="step-title">2. Anmeldung beim Einwohnermeldeamt</h3><p class="step-desc">Innerhalb von 14 Tagen nach Einzug müssen Sie sich beim Bürgeramt anmelden. Die Meldebescheinigung brauchen Sie für Bankkonto, Krankenversicherung und viele weitere Behördengänge.</p></div></div>
+          <div class="step-tip"><i class="bi bi-info-circle-fill"></i> Termin im Voraus online buchen — Wartezeiten können mehrere Wochen betragen.</div>
         </div>
-      </div>
-
-      <!-- SCHRITT 2: Anmeldung -->
-      <div class="step-block">
-        <div class="step-header">
-          <div class="step-icon"><i class="bi bi-building-fill"></i></div>
-          <div>
-            <h3 class="step-title">2. Anmeldung beim Einwohnermeldeamt</h3>
-            <p class="step-desc">Innerhalb von 14 Tagen nach Einzug müssen Sie sich beim zuständigen Einwohnermeldeamt (Bürgeramt) anmelden. Die Anmeldebestätigung (Meldebescheinigung) brauchen Sie für Bankkonto, Krankenversicherung und viele weitere Behördengänge.</p>
+        <div class="step-block">
+          <div class="step-header"><div class="step-icon"><i class="bi bi-heart-pulse-fill"></i></div><div><h3 class="step-title">3. Krankenversicherung</h3><p class="step-desc">In Deutschland ist eine Krankenversicherung Pflicht. Als Arbeitnehmer werden Sie automatisch in der gesetzlichen Krankenversicherung (GKV) versichert.</p></div></div>
+          <div class="link-grid">
+            <a href="https://www.bundesgesundheitsministerium.de" target="_blank" class="link-card"><i class="bi bi-box-arrow-up-right"></i><span class="link-name">Bundesgesundheitsministerium</span><span class="link-desc">Offizieller Ratgeber zur GKV</span></a>
+            <a href="https://www.krankenkasseninfo.de/" target="_blank" class="link-card"><i class="bi bi-box-arrow-up-right"></i><span class="link-name">Krankenkasseninfo</span><span class="link-desc">Vergleich aller gesetzlichen Kassen</span></a>
+            <a href="https://www.check24.de" target="_blank" class="link-card"><i class="bi bi-box-arrow-up-right"></i><span class="link-name">CHECK24</span><span class="link-desc">Vergleichsportal für Versicherungen</span></a>
           </div>
         </div>
-        <div class="step-tip"><i class="bi bi-info-circle-fill"></i> Termin im Voraus online buchen — Wartezeiten können mehrere Wochen betragen.</div>
-      </div>
-
-      <!-- SCHRITT 3: Krankenversicherung -->
-      <div class="step-block">
-        <div class="step-header">
-          <div class="step-icon"><i class="bi bi-heart-pulse-fill"></i></div>
-          <div>
-            <h3 class="step-title">3. Krankenversicherung</h3>
-            <p class="step-desc">In Deutschland ist eine Krankenversicherung Pflicht. Als Arbeitnehmer werden Sie automatisch in der gesetzlichen Krankenversicherung (GKV) versichert. Wählen Sie Ihre Krankenkasse vor dem ersten Arbeitstag — Ihr Arbeitgeber benötigt die Angabe.</p>
+        <div class="step-block">
+          <div class="step-header"><div class="step-icon"><i class="bi bi-shield-check"></i></div><div><h3 class="step-title">4. Haftpflichtversicherung</h3><p class="step-desc">Die private Haftpflichtversicherung gehört zu den wichtigsten Versicherungen in Deutschland. Sie übernimmt die Kosten, wenn Sie einer anderen Person oder deren Eigentum versehentlich Schaden zufügen. Sie kostet meist nur wenige Euro pro Monat.</p></div></div>
+          <div class="link-grid">
+            <a href="https://www.check24.de" target="_blank" class="link-card"><i class="bi bi-box-arrow-up-right"></i><span class="link-name">CHECK24</span><span class="link-desc">Vergleichsportal Haftpflicht</span></a>
+            <a href="https://www.allianz.de" target="_blank" class="link-card"><i class="bi bi-box-arrow-up-right"></i><span class="link-name">Allianz</span><span class="link-desc">Haftpflicht und mehr</span></a>
           </div>
         </div>
-        <div class="link-grid">
-          <a href="https://www.bundesgesundheitsministerium.de/themen/krankenversicherung/online-ratgeber-krankenversicherung/krankenversicherung" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">Bundesgesundheitsministerium</span>
-            <span class="link-desc">Offizieller Ratgeber zur GKV</span>
-          </a>
-          <a href="https://www.krankenkasseninfo.de/" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">Krankenkasseninfo</span>
-            <span class="link-desc">Vergleich aller gesetzlichen Kassen</span>
-          </a>
-          <a href="https://www.verivox.de/" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">Verivox</span>
-            <span class="link-desc">Vergleichsportal für Versicherungen</span>
-          </a>
-          <a href="https://www.gesetzlichekrankenkassen.de/" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">GesetzlicheKrankenkassen</span>
-            <span class="link-desc">Übersicht aller Krankenkassen</span>
-          </a>
+        <div class="step-block">
+          <div class="step-header"><div class="step-icon"><i class="bi bi-person-check-fill"></i></div><div><h3 class="step-title">5. Unterstützung bei Behördensachen</h3><p class="step-desc">Wir unterstützen Sie bei wichtigen behördlichen Angelegenheiten, z. B. bei Fragen zur Ausländerbehörde, zum Jobcenter oder zur Anerkennung von Qualifikationen.</p></div></div>
         </div>
-      </div>
+      </section>
+    </main>
+  </div>
+</div><!-- /tab-alltag -->
 
-      <!-- SCHRITT 4: Haftpflichtversicherung -->
-      <div class="step-block">
-        <div class="step-header">
-          <div class="step-icon"><i class="bi bi-shield-check"></i></div>
-          <div>
-            <h3 class="step-title">4. Haftpflichtversicherung</h3>
-            <p class="step-desc">Die private Haftpflichtversicherung gehört zu den wichtigsten Versicherungen in Deutschland. Sie übernimmt die Kosten, wenn Sie einer anderen Person oder deren Eigentum versehentlich einen Schaden zufügen — z. B. ein beschädigtes Smartphone, ein Wasserschaden in der Mietwohnung oder ein verschuldeter Fahrradunfall. Sie kostet meist nur wenige Euro pro Monat.</p>
-          </div>
+
+<!-- ══════════════════════════════════════
+     TAB 2 — AUFENTHALTSRECHT
+══════════════════════════════════════ -->
+<div class="tab-panel" id="tab-aufenthalt">
+
+  <header class="page-hero">
+    <span class="section-tag">Rechtswissen · Einreise &amp; Aufenthalt</span>
+    <h1>Aufenthaltsrecht &amp; <em>Visum</em></h1>
+    <p>Alles Wichtige zu Visum, Aufenthaltstitel, Behördengängen und dem Weg zur deutschen Staatsbürgerschaft — speziell für algerische Staatsbürger.</p>
+  </header>
+
+  <div class="kpi-row">
+    <div class="kpi-card"><div class="kpi-num">D-Visum</div><div class="kpi-label">Nationaler Typ<br>für &gt; 90 Tage</div></div>
+    <div class="kpi-card"><div class="kpi-num">14 Tage</div><div class="kpi-label">Frist zur<br>Wohnungsanmeldung</div></div>
+    <div class="kpi-card"><div class="kpi-num">5 Jahre</div><div class="kpi-label">Bis zur Niederlassungs-<br>erlaubnis (Regelfall)</div></div>
+    <div class="kpi-card"><div class="kpi-num">2024</div><div class="kpi-label">Doppelte Staatsbürger-<br>schaft erlaubt</div></div>
+  </div>
+
+  <div class="content-layout">
+    <aside class="toc" id="toc-aufenthalt">
+      <div class="toc-title">Inhaltsverzeichnis</div>
+      <a href="#visaarten">Visum &amp; Einreise</a>
+      <a href="#aufenthaltstitel">Aufenthaltstitel</a>
+      <a href="#ausbildung">Ausbildung &amp; Arbeit</a>
+      <a href="#anmeldung">Anmeldung</a>
+      <a href="#daueraufenthalt">Daueraufenthalt</a>
+      <a href="#familie">Familiennachzug</a>
+    </aside>
+    <main>
+      <section id="visaarten" class="report-section">
+        <div class="section-num">01</div>
+        <h2>Visum &amp; Einreise</h2>
+        <p class="subtitle">Der erste Schritt nach Deutschland</p>
+        <p>Algerische Staatsbürger benötigen für <strong style="color:#fff">Erwerbstätigkeit, Ausbildung oder einen längeren Aufenthalt</strong> ein nationales Visum (D-Visum), das vor der Einreise bei der deutschen Botschaft in Algier beantragt wird.</p>
+        <div class="row g-3 my-3">
+          <div class="col-sm-6"><div class="visa-card"><h3>Nationales Visum (Typ D)</h3><p>Für Aufenthalte über 90 Tage: Ausbildung, Arbeit, Studium, Familiennachzug.</p><span class="visa-tag">Vor Einreise beantragen</span></div></div>
+          <div class="col-sm-6"><div class="visa-card"><h3>Kurzaufenthalt (Schengen)</h3><p>Bis 90 Tage innerhalb von 180 Tagen — Tourismus, Besuch, kurze Geschäftsreisen.</p><span class="visa-tag">Visumfrei für Algerien</span></div></div>
+          <div class="col-sm-6"><div class="visa-card"><h3>Erforderliche Dokumente</h3><p>Reisepass, Vertrag/Ausbildungsplatz, Krankenversicherung, Finanzierungsnachweis, Sprachzertifikat.</p></div></div>
+          <div class="col-sm-6"><div class="visa-card"><h3>Zuständige Stelle</h3><p>Deutsche Botschaft Algier — Termin online buchen, Unterlagen vollständig einreichen.</p></div></div>
         </div>
-        <div class="link-grid">
-          <a href="https://www.bundesgesundheitsministerium.de" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">Bundesgesundheitsministerium</span>
-            <span class="link-desc">Offizielle Informationen zur GKV</span>
-          </a>
-          <a href="https://www.check24.de" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">CHECK24</span>
-            <span class="link-desc">Vergleichsportal für Versicherungen und Tarife</span>
-          </a>
-          <a href="https://www.allianz.de" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">Allianz</span>
-            <span class="link-desc">Kranken-, Haftpflicht- und mehr</span>
-          </a>
-          <a href="https://www.axa.de" target="_blank" class="link-card">
-            <i class="bi bi-box-arrow-up-right"></i>
-            <span class="link-name">AXA</span>
-            <span class="link-desc">Versicherungsunternehmen in Deutschland</span>
-          </a>
+        <div class="tip-box"><strong>Tipp für Azubis:</strong> Beantragen Sie das Visum erst, wenn Sie einen unterschriebenen Ausbildungsvertrag haben.</div>
+      </section>
+
+      <section id="aufenthaltstitel" class="report-section">
+        <div class="section-num">02</div>
+        <h2>Aufenthaltstitel — Die wichtigsten Arten</h2>
+        <p class="subtitle">Was auf Ihrem Ausweis steht, bestimmt Ihre Rechte</p>
+        <div class="table-scroll">
+          <table class="rights-table">
+            <thead><tr><th>Aufenthaltstitel</th><th>Zweck</th><th>Dauer</th></tr></thead>
+            <tbody>
+              <tr><td>Aufenthaltserlaubnis</td><td>Befristeter Aufenthalt (Ausbildung, Arbeit, Studium)</td><td>1–3 Jahre, verlängerbar</td></tr>
+              <tr><td>Blaue Karte EU</td><td>Hochqualifizierte Fachkräfte</td><td>Bis 4 Jahre</td></tr>
+              <tr><td>Chancenkarte</td><td>Jobsuche ohne festen Arbeitsvertrag</td><td>Max. 1 Jahr</td></tr>
+              <tr><td>Niederlassungserlaubnis</td><td>Unbefristeter Aufenthalt</td><td>Unbefristet</td></tr>
+              <tr><td>Duldung</td><td>Aussetzung der Abschiebung</td><td>Kurzfristig</td></tr>
+            </tbody>
+          </table>
         </div>
-      </div>
+        <div class="chart-box"><h3>Aufenthaltstitel im Überblick</h3><p class="chart-desc">Schritte bis zum unbefristeten Aufenthalt</p><div class="chart-wrap"><canvas id="chartAufenthalt"></canvas></div></div>
+      </section>
 
-      <!-- SCHRITT 5: Behördengänge -->
-      <div class="step-block">
-        <div class="step-header">
-          <div class="step-icon"><i class="bi bi-person-check-fill"></i></div>
-          <div>
-            <h3 class="step-title">5. Unterstützung bei Behördensachen</h3>
-            <p class="step-desc">Wir unterstützen Sie bei wichtigen behördlichen Angelegenheiten, z. B. bei Fragen zur Ausländerbehörde, zum Jobcenter oder zur Anerkennung von Qualifikationen. Wir helfen Ihnen, die notwendigen Schritte besser zu verstehen und vorzubereiten.</p>
-          </div>
+      <section id="ausbildung" class="report-section">
+        <div class="section-num">03</div>
+        <h2>Ausbildung &amp; Arbeit</h2>
+        <p class="subtitle">Der häufigste Weg für junge Zuwanderer</p>
+        <p>Wer eine duale Ausbildung absolvieren möchte, erhält eine <strong style="color:#fff">Aufenthaltserlaubnis zum Zweck der Ausbildung</strong>.</p>
+        <div class="d-flex flex-column gap-3 my-3">
+          <div class="step-item"><div class="step-num">1</div><div><h4>Ausbildungsplatz finden</h4><p>Voraussetzung für das Visum. Mindestalter meist 18 Jahre.</p></div></div>
+          <div class="step-item"><div class="step-num">2</div><div><h4>Visum bei der Botschaft</h4><p>Vertrag, Sprachkenntnisse (B1 empfohlen), Krankenversicherung, Finanzierung.</p></div></div>
+          <div class="step-item"><div class="step-num">3</div><div><h4>Ausländerbehörde</h4><p>Innerhalb von 2 Wochen Aufenthaltserlaubnis beantragen.</p></div></div>
+          <div class="step-item"><div class="step-num">4</div><div><h4>Nach der Ausbildung</h4><p>18 Monate Jobsuche — dann unbefristeter Arbeitsvertrag möglich.</p></div></div>
         </div>
-      </div>
+        <div class="row g-3">
+          <div class="col-md-6"><div class="chart-box"><h3>Typischer Ausbildungsweg</h3><p class="chart-desc">Integrationsfortschritt über die Jahre</p><div class="chart-wrap"><canvas id="chartTimeline"></canvas></div></div></div>
+          <div class="col-md-6"><div class="chart-box"><h3>Visum-Anforderungen</h3><p class="chart-desc">Wichtigkeit der Kriterien (%)</p><div class="chart-wrap"><canvas id="chartVisum"></canvas></div></div></div>
+        </div>
+      </section>
 
-    </section>
-  </main>
-</div>
+      <section id="anmeldung" class="report-section">
+        <div class="section-num">04</div>
+        <h2>Anmeldung &amp; Behörden</h2>
+        <p class="subtitle">Pflichttermine nach der Ankunft</p>
+        <div class="table-scroll">
+          <table class="rights-table">
+            <thead><tr><th>Schritt</th><th>Behörde</th><th>Frist</th></tr></thead>
+            <tbody>
+              <tr><td>Wohnungsanmeldung</td><td>Bürgeramt</td><td>14 Tage nach Einzug</td></tr>
+              <tr><td>Aufenthaltserlaubnis</td><td>Ausländerbehörde</td><td>Vor Ablauf des Visums</td></tr>
+              <tr><td>Krankenversicherung</td><td>Krankenkasse</td><td>Vor Arbeitsbeginn</td></tr>
+              <tr><td>Steuer-ID</td><td>Finanzamt (per Post)</td><td>Nach Anmeldung</td></tr>
+              <tr><td>Bankkonto</td><td>Bank</td><td>So früh wie möglich</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tip-box mt-3"><strong>Wichtig:</strong> Ohne Anmeldung (Meldebescheinigung) kein Bankkonto, kein Vertrag, keine Aufenthaltserlaubnis.</div>
+      </section>
 
-<script>
-// Menu
-const menuToggle = document.getElementById('menuToggle');
-const menuDropdown = document.getElementById('menuDropdown');
-menuToggle.addEventListener('click', e => { e.stopPropagation(); menuDropdown.hidden = !menuDropdown.hidden; });
-document.querySelectorAll('.menu-toggle').forEach(btn => {
-  btn.addEventListener('click', e => { e.stopPropagation(); const s = btn.nextElementSibling; s.hidden = !s.hidden; });
-});
-document.addEventListener('click', () => { menuDropdown.hidden = true; document.querySelectorAll('
-if (location.hash) setActiveToc(location.hash.slice(1));
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) setActiveToc(e.target.id); });
-}, { rootMargin: '-30% 0px -60% 0px' });
-allSections.forEach(s => obs.observe(s));
+      <section id="daueraufenthalt" class="report-section">
+        <div class="section-num">05</div>
+        <h2>Daueraufenthalt &amp; Einbürgerung</h2>
+        <p class="subtitle">Vom befristeten Visum zur deutschen Staatsbürgerschaft</p>
+        <div class="row g-3 my-3">
+          <div class="col-sm-6"><div class="visa-card"><h3><i class="bi bi-house-door-fill" style="color:var(--accent)"></i> Niederlassungserlaubnis</h3><p>Nach 5 Jahren legalen Aufenthalt, Einkommen, Deutsch B1, Wohnraum.</p></div></div>
+          <div class="col-sm-6"><div class="visa-card"><h3><i class="bi bi-lightning-charge-fill" style="color:var(--accent)"></i> Schnellerer Weg</h3><p>Nach 3 Jahren bei besonderer Integration (C1-Deutsch, Engagement).</p></div></div>
+          <div class="col-sm-6"><div class="visa-card"><h3><i class="bi bi-flag-fill" style="color:var(--accent)"></i> Einbürgerung</h3><p>Frühestens nach 5 Jahren (neue Regelung 2024). Deutsch B1, Einbürgerungstest.</p></div></div>
+          <div class="col-sm-6"><div class="visa-card"><h3><i class="bi bi-journal-text" style="color:var(--accent)"></i> Doppelte Staatsbürgerschaft</h3><p>Seit Juni 2024 in der Regel erlaubt — algerische Staatsbürgerschaft behalten.</p></div></div>
+        </div>
+        <div class="chart-box"><h3>Wege zum dauerhaften Aufenthalt</h3><p class="chart-desc">Mindestaufenthaltsdauer in Jahren</p><div class="chart-wrap"><canvas id="chartDauer"></canvas></div></div>
+      </section>
 
-// Charts
-Chart.defaults.color = '#86a38e';
-Chart.defaults.font.family = "'DM Sans', sans-serif";
-const de = '#60a5fa', dz = '#4ade80';
+      <section id="familie" class="report-section">
+        <div class="section-num">06</div>
+        <h2>Familiennachzug</h2>
+        <p class="subtitle">Ehepartner und Kinder nachholen</p>
+        <ul>
+          <li><strong style="color:#fff">Ehegattennachzug:</strong> Deutsch A1 erforderlich</li>
+          <li><strong style="color:#fff">Kindernachzug:</strong> Unter 16 ohne Sprachnachweis</li>
+          <li><strong style="color:#fff">Elternnachzug:</strong> Nur in Härtefällen</li>
+          <li>Bearbeitungszeit: mehrere Monate — frühzeitig planen</li>
+        </ul>
+        <p class="source-note">Hinweis: Keine Rechtsberatung. Gesetzliche Grundlage: Aufenthaltsgesetz (AufenthG). Stand: 2025.</p>
+      </section>
+    </main>
+  </div>
+</div><!-- /tab-aufenthalt -->
 
-new Chart(document.getElementById('chartRadar'), {
-  type: 'radar',
-  data: {
-    labels: ['Pünktlichkeit','Direktheit','Familienorientierung','Spontaneität','Regeltreue','Gemeinschaft','Privatsphäre'],
-    datasets: [
-      { label: 'Deutschland', data: [92,85,55,25,90,40,88], borderColor: de, backgroundColor: 'rgba(96,165,250,.15)', pointBackgroundColor: de, pointRadius: 4 },
-      { label: 'Algerien', data: [45,35,92,78,48,85,40], borderColor: dz, backgroundColor: 'rgba(74,222,128,.12)', pointBackgroundColor: dz, pointRadius: 4 }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    scales: { r: { beginAtZero: true, max: 100, grid: { color: 'rgba(74,222,128,.1)' }, angleLines: { color: 'rgba(74,222,128,.1)' }, pointLabels: { font: { size: 11 } }, ticks: { display: false } } },
-    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 16 } } }
-  }
-});
 
-new Chart(document.getElementById('chartVertrauen'), {
-  type: 'bar',
-  data: {
-    labels: ['Behörden','Netzwerke','Verträge','Mündlich'],
-    datasets: [
-      { label: '🇩🇪 DE', data: [85,25,90,20], backgroundColor: de, borderRadius: 4 },
-      { label: '🇩🇿 DZ', data: [35,88,40,70], backgroundColor: dz, borderRadius: 4 }
-    ]
-  },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } }, scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v+'%' }, grid: { color: 'rgba(74,222,128,.08)' } }, x: { grid: { display: false } } } }
-});
+<!-- ══════════════════════════════════════
+     TAB 3 — ARBEITS- & SOZIALRECHT
+══════════════════════════════════════ -->
+<div class="tab-panel" id="tab-arbeit">
 
-new Chart(document.getElementById('chartPrioritaet'), {
-  type: 'bar',
-  data: {
-    labels: ['Beruf','Familie','Gemeinschaft','Freizeit'],
-    datasets: [
-      { label: '🇩🇪 Deutschland', data: [35,20,15,30], backgroundColor: de, borderRadius: 4 },
-      { label: '🇩🇿 Algerien', data: [22,38,28,12], backgroundColor: dz, borderRadius: 4 }
-    ]
-  },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } }, scales: { y: { beginAtZero: true, max: 45, ticks: { callback: v => v+'%' }, grid: { color: 'rgba(74,222,128,.08)' } }, x: { grid: { display: false } } } }
-});
-</script>
+  <header class="page-hero">
+    <span class="section-tag">Rechtswissen · Deutschland</span>
+    <h1>Arbeits- &amp; <em>Sozialrecht</em></h1>
+    <p>Ihre Rechte und Pflichten als Arbeitnehmer in Deutschland — von Vertrag über Sozialversicherung bis Kündigung.</p>
+  </header>
+
+  <div class="kpi-row">
+    <div class="kpi-card"><div class="kpi-num">12,82 €</div><div class="kpi-label">Mindestlohn<br>ab 01.01.2025</div></div>
+    <div class="kpi-card"><div class="kpi-num">20 Tage</div><div class="kpi-label">Gesetzlicher<br>Mindesturlaub</div></div>
+    <div class="kpi-card"><div class="kpi-num">5 Säulen</div><div class="kpi-label">Sozialversicherungs-<br>system</div></div>
+    <div class="kpi-card"><div class="kpi-num">6 Wochen</div><div class="kpi-label">Entgeltfortzahlung<br>im Krankheitsfall</div></div>
+  </div>
+
+  <div class="content-layout">
+    <aside class="toc" id="toc-arbeit">
+      <div class="toc-title">Inhaltsverzeichnis</div>
+      <a href="#arbeitsvertrag">Arbeitsvertrag</a>
+      <a href="#arbeitszeit">Arbeitszeit &amp; Lohn</a>
+      <a href="#sozialversicherung">Sozialversicherung</a>
+      <a href="#urlaub-krankheit">Urlaub &amp; Krankheit</a>
+      <a href="#kuendigung">Kündigung</a>
+      <a href="#familie-arbeit">Familie &amp; Elternzeit</a>
+    </aside>
+    <main>
+      <section id="arbeitsvertrag" class="report-section">
+        <div class="section-num">01</div>
+        <h2>Der Arbeitsvertrag</h2>
+        <p class="subtitle">Grundlage jeder Beschäftigung in Deutschland</p>
+        <p>Jede Beschäftigung basiert auf einem <strong style="color:#fff">Arbeitsvertrag</strong> — er regelt die wichtigsten Bedingungen Ihrer Tätigkeit und muss schriftlich bestätigt werden.</p>
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-sm-6"><div class="info-card"><h3>Pflichtangaben <span class="law-badge">Nachweisgesetz</span></h3><p>Name, Arbeitsbeginn, Vergütung, Arbeitszeit, Urlaubstage, Kündigungsfristen — der Arbeitgeber muss diese schriftlich mitteilen.</p></div></div>
+          <div class="col-12 col-sm-6"><div class="info-card"><h3>Probezeit</h3><p>Maximal 6 Monate. Verkürzte Kündigungsfrist von 2 Wochen. Für Auszubildende meist 1–3 Monate.</p></div></div>
+          <div class="col-12 col-sm-6"><div class="info-card"><h3>Ausbildungsvertrag</h3><p>Auszubildende haben einen speziellen Vertrag nach dem Berufsbildungsgesetz (BBiG) — regelt Ausbildungsdauer, Vergütung und Prüfungen.</p></div></div>
+          <div class="col-12 col-sm-6"><div class="info-card"><h3>Tarifvertrag</h3><p>In vielen Branchen gelten Tarifverträge — sie können bessere Löhne und Bedingungen als das Gesetz vorschreiben.</p></div></div>
+        </div>
+        <div class="tip-box"><strong>Tipp:</strong> Lesen Sie Ihren Vertrag sorgfältig, bevor Sie unterschreiben. Achten Sie auf Arbeitszeit, Vergütung, Probezeit und Kündigungsfristen.</div>
+      </section>
+
+      <section id="arbeitszeit" class="report-section">
+        <div class="section-num">02</div>
+        <h2>Arbeitszeit &amp; Vergütung</h2>
+        <p class="subtitle">Was Ihnen gesetzlich zusteht</p>
+        <div class="table-scroll mb-3">
+          <table class="rights-table">
+            <thead><tr><th>Thema</th><th>Gesetzliche Regelung</th><th>Gesetz</th></tr></thead>
+            <tbody>
+              <tr><td>Mindestlohn</td><td>12,82 € brutto/Stunde (ab 01.01.2025)</td><td>MiLoG</td></tr>
+              <tr><td>Tägliche Arbeitszeit</td><td>Max. 8 Stunden, ausnahmsweise 10 Std.</td><td>ArbZG</td></tr>
+              <tr><td>Wochenarbeitszeit</td><td>Max. 48 Stunden/Woche im Durchschnitt</td><td>ArbZG</td></tr>
+              <tr><td>Pausen</td><td>Ab 6 Std.: 30 Min. · Ab 9 Std.: 45 Min.</td><td>ArbZG</td></tr>
+              <tr><td>Ruhezeit</td><td>Mindestens 11 Stunden zwischen Arbeitstagen</td><td>ArbZG</td></tr>
+              <tr><td>Überstunden</td><td>Müssen vergütet oder durch Freizeit ausgeglichen werden</td><td>ArbZG</td></tr>
+              <tr><td>Ausbildungsvergütung</td><td>2025: ca. 620–1.100 € je nach Ausbildungsjahr</td><td>BBiG</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row g-3">
+          <div class="col-12 col-md-6"><div class="chart-box h-100"><h3>Mindestlohn-Entwicklung</h3><p class="chart-desc">Bruttostundenlohn in Euro (2015–2025)</p><div class="chart-wrap tall"><canvas id="chartLohn"></canvas></div></div></div>
+          <div class="col-12 col-md-6"><div class="chart-box h-100"><h3>Typischer Arbeitstag (8 Std.)</h3><p class="chart-desc">Zeitaufteilung laut Arbeitszeitgesetz</p><div class="chart-wrap tall"><canvas id="chartArbeitszeit"></canvas></div></div></div>
+        </div>
+      </section>
+
+      <section id="sozialversicherung" class="report-section">
+        <div class="section-num">03</div>
+        <h2>Die Sozialversicherung</h2>
+        <p class="subtitle">Fünf Säulen des deutschen Sozialsystems</p>
+        <p>Arbeitnehmer und Arbeitgeber zahlen gemeinsam in die <strong style="color:#fff">Sozialversicherung</strong> ein — automatisch vom Bruttogehalt.</p>
+        <div class="d-flex flex-column gap-2 mb-3">
+          <div class="insurance-item"><div class="insurance-icon"><i class="bi bi-heart-pulse-fill"></i></div><div><h4>Krankenversicherung (KV)</h4><p>Pflichtversicherung. Deckt Arztbesuche, Krankenhaus, Medikamente. Arbeitnehmeranteil ca. 7,3 % + Zusatzbeitrag.</p></div></div>
+          <div class="insurance-item"><div class="insurance-icon"><i class="bi bi-person-fill-up"></i></div><div><h4>Rentenversicherung (RV)</h4><p>Sichert das Einkommen im Alter. Arbeitnehmeranteil ca. 9,3 %. Mindestens 5 Jahre Beitragszeit für Anspruch.</p></div></div>
+          <div class="insurance-item"><div class="insurance-icon"><i class="bi bi-graph-down-arrow"></i></div><div><h4>Arbeitslosenversicherung (AV)</h4><p>Absicherung bei Jobverlust. Arbeitnehmeranteil ca. 1,3 %. Anspruch nach mindestens 12 Monaten Beitragszeit.</p></div></div>
+          <div class="insurance-item"><div class="insurance-icon"><i class="bi bi-bandaid-fill"></i></div><div><h4>Pflegeversicherung (PV)</h4><p>Finanziert Pflege im Alter oder bei Krankheit. Arbeitnehmeranteil ca. 1,7 %.</p></div></div>
+          <div class="insurance-item"><div class="insurance-icon"><i class="bi bi-shield-fill-exclamation"></i></div><div><h4>Unfallversicherung (UV)</h4><p>Wird allein vom Arbeitgeber bezahlt. Deckt Arbeits- und Wegeunfälle — kostenlos für den Arbeitnehmer.</p></div></div>
+        </div>
+        <div class="chart-box mb-3"><h3>Sozialabgaben — Arbeitnehmeranteil</h3><p class="chart-desc">Ungefähre Verteilung der Abzüge vom Bruttogehalt (%)</p><div class="chart-wrap"><canvas id="chartSozial"></canvas></div></div>
+        <div class="tip-box"><strong>Wichtig für Zuwanderer:</strong> Ohne Krankenversicherung dürfen Sie in Deutschland nicht arbeiten. Wählen Sie eine gesetzliche (GKV) oder private Krankenkasse (PKV).</div>
+      </section>
+
+      <section id="urlaub-krankheit" class="report-section">
+        <div class="section-num">04</div>
+        <h2>Urlaub &amp; Krankheit</h2>
+        <p class="subtitle">Erholung und Absicherung im Krankheitsfall</p>
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-sm-6"><div class="info-card"><h3><i class="bi bi-umbrella-fill"></i> Urlaubsanspruch</h3><p>Mindestens <strong style="color:#fff">20 Werktage</strong> bei 5-Tage-Woche. Viele Tarifverträge gewähren 28–30 Tage.</p></div></div>
+          <div class="col-12 col-sm-6"><div class="info-card"><h3><i class="bi bi-thermometer-half"></i> Krankmeldung</h3><p>Ab dem 1. Krankheitstag Arbeitgeber informieren. Ab dem 3. Tag ist eine <strong style="color:#fff">ärztliche AU-Bescheinigung</strong> erforderlich.</p></div></div>
+          <div class="col-12 col-sm-6"><div class="info-card"><h3><i class="bi bi-cash-stack"></i> Entgeltfortzahlung</h3><p>6 Wochen volles Gehalt. Danach zahlt die Krankenkasse <strong style="color:#fff">Krankengeld</strong> (ca. 70 % brutto, max. 90 % netto).</p></div></div>
+          <div class="col-12 col-sm-6"><div class="info-card"><h3><i class="bi bi-mortarboard-fill"></i> Krankheit in der Ausbildung</h3><p>Auszubildende haben denselben Anspruch. Längere Krankheit kann die Ausbildungszeit verlängern.</p></div></div>
+        </div>
+        <div class="chart-box"><h3>Urlaubstage nach Betriebszugehörigkeit</h3><p class="chart-desc">Typische Urlaubstage in Deutschland (Gesetz + Tarif)</p><div class="chart-wrap"><canvas id="chartUrlaub"></canvas></div></div>
+      </section>
+
+      <section id="kuendigung" class="report-section">
+        <div class="section-num">05</div>
+        <h2>Kündigung &amp; Kündigungsschutz</h2>
+        <p class="subtitle">Wann und wie ein Arbeitsverhältnis enden kann</p>
+        <p>In Deutschland ist eine Kündigung nur unter bestimmten Voraussetzungen wirksam. Arbeitnehmer genießen nach der Probezeit einen starken <strong style="color:#fff">Kündigungsschutz</strong>.</p>
+        <div class="table-scroll mb-3">
+          <table class="rights-table">
+            <thead><tr><th>Situation</th><th>Frist (Arbeitnehmer)</th><th>Frist (Arbeitgeber)</th></tr></thead>
+            <tbody>
+              <tr><td>In der Probezeit</td><td>2 Wochen</td><td>2 Wochen</td></tr>
+              <tr><td>Bis 2 Jahre</td><td>4 Wochen zum 15. oder Monatsende</td><td>4 Wochen</td></tr>
+              <tr><td>2–5 Jahre</td><td>4 Wochen</td><td>1 Monat zum Monatsende</td></tr>
+              <tr><td>5–8 Jahre</td><td>4 Wochen</td><td>2 Monate zum Monatsende</td></tr>
+              <tr><td>Ab 8 Jahren</td><td>4 Wochen</td><td>3 Monate zum Monatsende</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li>Kündigungen müssen <strong style="color:#fff">schriftlich</strong> erfolgen (E-Mail reicht nicht)</li>
+          <li><strong style="color:#fff">Kündigungsschutz</strong> gilt ab 6 Monaten in Betrieben mit mehr als 10 Mitarbeitern</li>
+          <li>Sonderkündigungsschutz für Schwangere, Schwerbehinderte und Betriebsratsmitglieder</li>
+          <li>Bei <strong style="color:#fff">Aufhebungsvertrag</strong> — beiderseitige Einigung, oft mit Abfindung</li>
+          <li>Streitigkeiten vor dem <strong style="color:#fff">Arbeitsgericht</strong> (Klagefrist: 3 Wochen)</li>
+        </ul>
+        <div class="tip-box"><strong>Achtung:</strong> Unterschreiben Sie keinen Aufhebungsvertrag unter Druck. Holen Sie sich Beratung bei der Gewerkschaft oder einer Rechtsberatung.</div>
+      </section>
+
+      <section id="familie-arbeit" class="report-section">
+        <div class="section-num">06</div>
+        <h2>Familie, Mutterschutz &amp; Elternzeit</h2>
+        <p class="subtitle">Rechte für werdende Eltern</p>
+        <div class="row g-3 mb-3">
+          <div class="col-12 col-sm-6"><div class="info-card"><h3>Mutterschutz <span class="law-badge">MuSchG</span></h3><p>6 Wochen vor und 8 Wochen nach der Entbindung: Beschäftigungsverbot mit vollem Lohn. Kündigungsschutz ab Beginn der Schwangerschaft.</p></div></div>
+          <div class="col-12 col-sm-6"><div class="info-card"><h3>Elternzeit <span class="law-badge">BEEG</span></h3><p>Bis zu 3 Jahre pro Kind. Kündigungsschutz während der gesamten Elternzeit.</p></div></div>
+          <div class="col-12 col-sm-6"><div class="info-card"><h3>Elterngeld</h3><p>65–67 % des Nettoeinkommens (min. 300 €, max. 1.800 €/Monat) für bis zu 14 Monate.</p></div></div>
+          <div class="col-12 col-sm-6"><div class="info-card"><h3>Kinderbetreuung</h3><p>Ab dem 1. Lebensjahr hat jedes Kind einen Rechtsanspruch auf einen Kita-Platz.</p></div></div>
+        </div>
+        <div class="chart-box mb-3"><h3>Elterngeld — Bezugsdauer (Monate)</h3><p class="chart-desc">Maximale Bezugsdauer bei Aufteilung zwischen beiden Elternteilen</p><div class="chart-wrap tall"><canvas id="chartEltern"></canvas></div></div>
+        <p class="source-note">Hinweis: Diese Seite bietet eine vereinfachte Übersicht und ersetzt keine Rechtsberatung. Gesetze: ArbZG, MiLoG, SGB, KSchG, MuSchG, BEEG. Stand: 2025.</p>
+      </section>
+    </main>
+  </div>
+</div><!-- /tab-arbeit -->
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script>
-/* ════════════════════════════════════════════════════
-   3E Consulting — Navbar JS (from index.html)
-   ════════════════════════════════════════════════════ */
+/* ── TAB SYSTEM ── */
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  // re-init TOC for new tab
+  initToc();
+}
+
+// Read ?tab= from URL on load
+(function(){
+  const params = new URLSearchParams(location.search);
+  const t = params.get('tab');
+  if (t && ['alltag','aufenthalt','arbeit'].includes(t)) switchTab(t);
+})();
+
+/* ── TOC ACTIVE ── */
+function initToc() {
+  const allLinks = document.querySelectorAll('aside.toc a');
+  const allSecs  = document.querySelectorAll('.report-section, .bewerber-section');
+  allSecs.forEach(s => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          allLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+        }
+      });
+    }, {rootMargin: '-35% 0px -55% 0px'}).observe(s);
+  });
+}
+initToc();
+
+/* ── NAVBAR ── */
 function mn2Switch(btn, panel) {
   document.querySelectorAll('.mn2-who-btn').forEach(b => b.classList.remove('mn2-who-active'));
   btn.classList.add('mn2-who-active');
@@ -1148,34 +876,121 @@ function mnMobileSwitch(btn, panel) {
   document.getElementById('mob-unternehmen').style.display = 'none';
   document.getElementById(panel).style.display = 'block';
 }
-(function () {
-  const menuToggleBtn = document.getElementById('menuToggle');
-  const menuDropdown  = document.getElementById('menuDropdown');
-  if (!menuToggleBtn || !menuDropdown) return;
-  menuToggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    menuDropdown.classList.toggle('open');
-  });
-  document.addEventListener('click', () => {
-    menuDropdown.classList.remove('open');
-  });
-  menuDropdown.addEventListener('click', e => e.stopPropagation());
+(function(){
+  const tog = document.getElementById('menuToggle');
+  const dd  = document.getElementById('menuDropdown');
+  if (!tog || !dd) return;
+  tog.addEventListener('click', e => { e.stopPropagation(); dd.classList.toggle('open'); });
+  document.addEventListener('click', () => dd.classList.remove('open'));
+  dd.addEventListener('click', e => e.stopPropagation());
 })();
-(function () {
-  const hamburgerBtn   = document.getElementById('hamburgerBtn');
-  const mobileNav      = document.getElementById('mobileNav');
-  const mobileNavClose = document.getElementById('mobileNavClose');
-  const overlay        = document.getElementById('mobileNavOverlay');
-  if (!hamburgerBtn || !mobileNav) return;
-  function openMobileNav()  { mobileNav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeMobileNavFn() { mobileNav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
-  window.closeMobileNav = closeMobileNavFn;
-  hamburgerBtn  .addEventListener('click', openMobileNav);
-  mobileNavClose.addEventListener('click', closeMobileNavFn);
-  overlay       .addEventListener('click', closeMobileNavFn);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNavFn(); });
+(function(){
+  const hb  = document.getElementById('hamburgerBtn');
+  const mn  = document.getElementById('mobileNav');
+  const cls = document.getElementById('mobileNavClose');
+  const ov  = document.getElementById('mobileNavOverlay');
+  if (!hb || !mn) return;
+  function open()  { mn.classList.add('open'); ov.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close() { mn.classList.remove('open'); ov.classList.remove('open'); document.body.style.overflow=''; }
+  window.closeMobileNav = close;
+  hb.addEventListener('click', open);
+  cls.addEventListener('click', close);
+  ov.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if(e.key==='Escape') close(); });
 })();
 
+/* ── CHARTS ── */
+Chart.defaults.color       = '#86a38e';
+Chart.defaults.borderColor = 'rgba(74,222,128,.12)';
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+
+const g1='#16a34a', gPal=[g1,g1,g1,g1,g1];
+const de='#60a5fa', dz='#4ade80';
+
+// Radar
+new Chart(document.getElementById('chartRadar'),{
+  type:'radar',
+  data:{
+    labels:['Pünktlichkeit','Direktheit','Familienorientierung','Spontaneität','Regeltreue','Gemeinschaft','Privatsphäre'],
+    datasets:[
+      {label:'Deutschland',data:[92,85,55,25,90,40,88],borderColor:de,backgroundColor:'rgba(96,165,250,.15)',pointBackgroundColor:de,pointRadius:4},
+      {label:'Algerien',   data:[45,35,92,78,48,85,40],borderColor:dz,backgroundColor:'rgba(74,222,128,.12)',pointBackgroundColor:dz,pointRadius:4}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    scales:{r:{beginAtZero:true,max:100,grid:{color:'rgba(74,222,128,.1)'},angleLines:{color:'rgba(74,222,128,.1)'},pointLabels:{font:{size:11}},ticks:{display:false}}},
+    plugins:{legend:{position:'bottom',labels:{usePointStyle:true,padding:16}}}}
+});
+new Chart(document.getElementById('chartVertrauen'),{
+  type:'bar',
+  data:{labels:['Behörden','Netzwerke','Verträge','Mündlich'],
+    datasets:[{label:'🇩🇪 DE',data:[85,25,90,20],backgroundColor:de,borderRadius:4},{label:'🇩🇿 DZ',data:[35,88,40,70],backgroundColor:dz,borderRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{usePointStyle:true}}},scales:{y:{beginAtZero:true,max:100,ticks:{callback:v=>v+'%'},grid:{color:'rgba(74,222,128,.08)'}},x:{grid:{display:false}}}}
+});
+new Chart(document.getElementById('chartPrioritaet'),{
+  type:'bar',
+  data:{labels:['Beruf','Familie','Gemeinschaft','Freizeit'],
+    datasets:[{label:'🇩🇪 Deutschland',data:[35,20,15,30],backgroundColor:de,borderRadius:4},{label:'🇩🇿 Algerien',data:[22,38,28,12],backgroundColor:dz,borderRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{usePointStyle:true}}},scales:{y:{beginAtZero:true,max:45,ticks:{callback:v=>v+'%'},grid:{color:'rgba(74,222,128,.08)'}},x:{grid:{display:false}}}}
+});
+
+// Aufenthaltsrecht charts
+new Chart(document.getElementById('chartAufenthalt'),{
+  type:'bar',
+  data:{labels:['Visum (D)','Aufenthalts-erlaubnis','Verlängerung','Niederlassung','Einbürgerung'],
+    datasets:[{data:[1,2,3,4,5],backgroundColor:gPal,borderRadius:6}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:6,ticks:{stepSize:1}},x:{grid:{display:false}}}}
+});
+new Chart(document.getElementById('chartTimeline'),{
+  type:'line',
+  data:{labels:['Jahr 0','Jahr 1','Jahr 2','Jahr 3','Jahr 4','Jahr 5+'],
+    datasets:[{data:[10,30,55,75,90,100],borderColor:g1,backgroundColor:'rgba(74,222,128,.15)',fill:true,tension:0.4,pointRadius:5,pointBackgroundColor:g1}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{max:100,ticks:{callback:v=>v+'%'}},x:{grid:{display:false}}}}
+});
+new Chart(document.getElementById('chartVisum'),{
+  type:'doughnut',
+  data:{labels:['Ausbildungsvertrag','Sprache','Finanzierung','Krankenvers.','Pass'],
+    datasets:[{data:[35,25,20,12,8],backgroundColor:['#d97706','#4ade80','#fbbf24','#60a5fa','#a78bfa'],borderColor:'#0f2017',borderWidth:3}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'bottom',labels:{padding:8,usePointStyle:true,font:{size:10}}}}}
+});
+new Chart(document.getElementById('chartDauer'),{
+  type:'bar',
+  data:{labels:['Niederlassung (Regel)','Niederlassung (schnell)','Einbürgerung (neu)','Einbürgerung (früher)'],
+    datasets:[{data:[5,3,5,8],backgroundColor:gPal,borderRadius:6}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Jahre`}}},scales:{y:{beginAtZero:true,max:10,ticks:{callback:v=>v+' J.'}},x:{grid:{display:false}}}}
+});
+
+// Arbeit charts
+new Chart(document.getElementById('chartLohn'),{
+  type:'line',
+  data:{labels:['2015','2017','2019','2021','2022','2024','2025'],
+    datasets:[{label:'Mindestlohn (€/Std.)',data:[8.50,8.84,9.19,9.60,10.45,12.41,12.82],borderColor:g1,backgroundColor:'rgba(74,222,128,.15)',fill:true,tension:0.35,pointBackgroundColor:g1,pointRadius:5}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} €/Std.`}}},scales:{y:{beginAtZero:false,min:7,ticks:{callback:v=>v+' €'}},x:{grid:{display:false}}}}
+});
+new Chart(document.getElementById('chartArbeitszeit'),{
+  type:'doughnut',
+  data:{labels:['Arbeitszeit','Pausen','Ruhezeit'],
+    datasets:[{data:[8,0.75,11],backgroundColor:['#d97706','#3b82f6','#ec4899'],borderColor:'#0f2017',borderWidth:3}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'bottom',labels:{padding:10,usePointStyle:true,font:{size:11}}}}}
+});
+new Chart(document.getElementById('chartSozial'),{
+  type:'bar',
+  data:{labels:['Krankenvers.','Rentenvers.','Arbeitslosenvers.','Pflegevers.','Lohnsteuer*'],
+    datasets:[{label:'Anteil (%)',data:[8.5,9.3,1.3,1.7,15],backgroundColor:gPal,borderRadius:6}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ca. ${c.raw}%`}}},scales:{y:{beginAtZero:true,max:20,ticks:{callback:v=>v+'%'}},x:{grid:{display:false},ticks:{font:{size:10}}}}}
+});
+new Chart(document.getElementById('chartUrlaub'),{
+  type:'bar',
+  data:{labels:['Gesetzl. Minimum','Durchschnitt DE','Tarifvertrag','Öffentl. Dienst'],
+    datasets:[{label:'Urlaubstage',data:[20,28,30,30],backgroundColor:gPal,borderRadius:6}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Tage`}}},scales:{y:{beginAtZero:true,max:35,ticks:{callback:v=>v+' Tage'}},x:{grid:{display:false}}}}
+});
+new Chart(document.getElementById('chartEltern'),{
+  type:'bar',
+  data:{labels:['Mutter allein','Vater allein','Beide (Basis)','Beide (+Partner)','Max. gesamt'],
+    datasets:[{label:'Monate',data:[12,2,12,14,14],backgroundColor:gPal,borderRadius:6}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} Monate`}}},scales:{y:{beginAtZero:true,max:16,ticks:{callback:v=>v+' Mon.'}},x:{grid:{display:false},ticks:{font:{size:10}}}}}
+});
 </script>
 </body>
 </html>
