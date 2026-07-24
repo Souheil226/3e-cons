@@ -1,32 +1,135 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" dir="ltr" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3E Consulting — Engage · Expand · Excel</title>
 
+<!-- ═══════════════ PRIMARY SEO META ═══════════════ -->
+<title id="pageTitle">3E Consulting | Fachkräftevermittlung Algerien – Deutschland</title>
+<meta name="description" content="3E Consulting vermittelt qualifizierte Fachkräfte aus Algerien an deutsche Unternehmen – mit persönlicher Begleitung bei Bewerbung, Visum, Sprache und Integration in Deutschland.">
+<meta name="keywords" content="Fachkräftevermittlung Algerien Deutschland, Recruiting Fachkräfte, Pflegekräfte Deutschland, Handwerker Vermittlung, Visum Fachkräfte, Fachkräfte Einwanderung Deutschland, Ausbildung Pflege Deutschland, Jobs für Algerier in Deutschland, 3E Consulting">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="language" content="German">
+<meta http-equiv="content-language" content="de">
+<meta name="theme-color" content="#f5f0e2">
+<meta name="author" content="3E Consulting">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://3econsulting.net/">
+
+<!-- Favicon (reuses existing brand asset — no extra files required) -->
+<link rel="icon" type="image/png" href="Logo-cropped.png">
+<link rel="shortcut icon" href="Logo-cropped.png">
+<link rel="apple-touch-icon" href="Logo-cropped.png">
+
+<!-- ═══════════════ OPEN GRAPH ═══════════════ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="3E Consulting">
+<meta property="og:title" content="3E Consulting | Fachkräftevermittlung Algerien – Deutschland">
+<meta property="og:description" content="Wir begleiten Fachkräfte aus Algerien auf ihrem Weg nach Deutschland – von der Bewerbung über Visum und Sprachkurse bis zur erfolgreichen Vermittlung bei deutschen Unternehmen.">
+<meta property="og:url" content="https://3econsulting.net/">
+<meta property="og:image" content="https://3econsulting.net/Logo-cropped.png">
+<meta property="og:image:alt" content="3E Consulting Logo – Engage, Expand, Excel">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="ar_AR">
+
+<!-- ═══════════════ TWITTER CARD ═══════════════ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3E Consulting | Fachkräftevermittlung Algerien – Deutschland">
+<meta name="twitter:description" content="Wir begleiten Fachkräfte aus Algerien auf ihrem Weg nach Deutschland – von der Bewerbung über Visum und Sprachkurse bis zur erfolgreichen Vermittlung bei deutschen Unternehmen.">
+<meta name="twitter:image" content="https://3econsulting.net/Logo-cropped.png">
+<meta name="twitter:image:alt" content="3E Consulting Logo – Engage, Expand, Excel">
+
+<!-- ═══════════════ STRUCTURED DATA (JSON-LD) ═══════════════ -->
+<!-- TODO: replace the placeholder street/city/postal code and opening hours below with your real business details -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://3econsulting.net/#organization",
+      "name": "3E Consulting",
+      "url": "https://3econsulting.net/",
+      "logo": "https://3econsulting.net/Logo-cropped.png",
+      "description": "3E Consulting ist ein Full-Service-Integrationspartner, der qualifizierte Fachkräfte aus Algerien mit deutschen Unternehmen zusammenbringt und bei Bewerbung, Visum, Sprache und Integration begleitet.",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+213-799-456834",
+          "contactType": "customer service",
+          "email": "info@3econsulting.net",
+          "areaServed": ["DE", "DZ"],
+          "availableLanguage": ["German", "French", "English", "Arabic"]
+        }
+      ]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://3econsulting.net/#localbusiness",
+      "name": "3E Consulting",
+      "image": "https://3econsulting.net/Logo-cropped.png",
+      "url": "https://3econsulting.net/",
+      "telephone": "+213799456834",
+      "email": "info@3econsulting.net",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "PLATZHALTER – Straße und Hausnummer eintragen",
+        "addressLocality": "PLATZHALTER – Stadt eintragen",
+        "postalCode": "PLATZHALTER",
+        "addressCountry": "DZ"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://3econsulting.net/#website",
+      "name": "3E Consulting",
+      "url": "https://3econsulting.net/",
+      "inLanguage": "de"
+    }
+  ]
+}
+</script>
+
+<!-- ═══════════════ STYLESHEETS ═══════════════ -->
+<!-- Bootstrap controls layout/grid — kept render-blocking on purpose to avoid layout shift -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Font Awesome is decorative (icons only) — loaded non-blocking via preload/swap -->
+<link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Share+Tech+Mono&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Share+Tech+Mono&family=Orbitron:wght@700;800;900&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════ CSS VARIABLES ═══════════════ */
 :root {
-  --navy: #0f2017;
-  --navy-dark: #091a0f;
-  --blue: #14532d;
-  --accent: #d97706;
-  --accent-hover: #b45309;
-  --bright: #4ade80;
-  --gold: #fbbf24;
-  --white: #ffffff;
-  --light: #f5f0e8;
-  --muted: #86a38e;
-  --border: rgba(74,222,128,.18);
-  --glass: rgba(255,255,255,.04);
+  --navy: #f5f0e2;
+  --navy-dark: #eee6d2;
+  --blue: #1f7a3d;
+  --accent: #e07a1f;
+  --accent-hover: #c2650f;
+  --bright: #1f7a3d;
+  --gold: #e07a1f;
+  --white: #23241f;
+  --light: #23241f;
+  --muted: #4a4a44;
+  --border: rgba(31,122,61,.22);
+  --glass: rgba(31,122,61,.05);
   --font-display: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
+  --font-ar: 'Cairo', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -55,6 +158,27 @@ body::before {
 .fw-300 { font-weight: 300; }
 .fw-500 { font-weight: 500; }
 
+/* ═══════════════ RTL SUPPORT ═══════════════ */
+html[dir="rtl"] body { font-family: var(--font-ar); }
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] h4,
+html[dir="rtl"] .font-display,
+html[dir="rtl"] .hero h1, html[dir="rtl"] .section-title, html[dir="rtl"] .bridge-title,
+html[dir="rtl"] .fb-main-card h3, html[dir="rtl"] .fb-standalone h3,
+html[dir="rtl"] .pstep h3, html[dir="rtl"] .svc-card h3,
+html[dir="rtl"] .about-section h2, html[dir="rtl"] .contact-info-side h2,
+html[dir="rtl"] .contact-form-side h3, html[dir="rtl"] .bb-text h4,
+html[dir="rtl"] .mn2-chatbot-btn strong, html[dir="rtl"] .col-label,
+html[dir="rtl"] .btn-submit, html[dir="rtl"] .mn-cta-primary { font-family: var(--font-ar); }
+html[dir="rtl"] .mn-link-arrow,
+html[dir="rtl"] .fa-chevron-right,
+html[dir="rtl"] .mn2-chatbot-btn > i:last-child { transform: scaleX(-1); }
+html[dir="rtl"] .hero-eyebrow::before { display: none; }
+html[dir="rtl"] .btn-primary-3e svg,
+html[dir="rtl"] .btn-secondary-3e svg,
+html[dir="rtl"] .card-btn svg { transform: scaleX(-1); }
+html[dir="rtl"] .footer-links a { margin-left: 0; margin-right: 1.5rem; }
+html[dir="rtl"] .bb-btn { margin-left: 0; margin-right: auto; }
+
 /* ═══════════════ LOGO IMAGE ═══════════════ */
 .logo-img-main {
   height: 38px;
@@ -75,7 +199,7 @@ body::before {
   top: 0; left: 0; right: 0;
   z-index: 1050;
   padding: 1rem 5vw;
-  background: rgba(15,32,23,.92);
+  background: rgba(245,240,226,.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
@@ -90,7 +214,7 @@ body::before {
 
 .btn-menu {
   background: var(--accent);
-  color: var(--white) !important;
+  color: #fff !important;
   padding: .55rem 1.3rem;
   border-radius: 8px;
   font-size: .85rem;
@@ -101,6 +225,7 @@ body::before {
   align-items: center;
   gap: .4rem;
   transition: background .2s, transform .15s;
+  white-space: nowrap;
 }
 .btn-menu:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
@@ -112,15 +237,16 @@ body::before {
   max-width: 420px;
   max-height: 75vh;
   overflow-y: auto;
-  background: rgba(15,32,23,.97);
+  background: rgba(250,247,238,.98);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1rem;
   backdrop-filter: blur(20px);
-  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+  box-shadow: 0 20px 50px rgba(0,0,0,.12);
   z-index: 200;
   display: none;
 }
+html[dir="rtl"] .nav-dropdown-panel { right: auto; left: 0; }
 .nav-dropdown-panel.open { display: block; }
 
 .menu-list { list-style: none; margin: 0; padding: 0; }
@@ -141,7 +267,7 @@ body::before {
   text-align: left;
   transition: background .15s, color .15s;
 }
-.menu-toggle-btn:hover, .menu-toggle-btn.open { background: var(--glass); color: var(--bright); }
+.menu-toggle-btn:hover, .menu-toggle-btn.open { background: var(--glass); color: var(--blue); }
 .menu-toggle-btn::after {
   content: '›';
   font-size: 1.1rem;
@@ -163,10 +289,10 @@ body::before {
   border-radius: 8px;
   transition: background .15s;
 }
-.menu-l1 > li > a:hover { background: var(--glass); color: var(--bright); }
+.menu-l1 > li > a:hover { background: var(--glass); color: var(--blue); }
 .menu-l2 { padding-left: .5rem; margin-top: .25rem; border-left: 2px solid var(--border); display: none; }
 .menu-l2.open { display: block; }
-.menu-l3 { padding-left: .75rem; margin: .25rem 0 .5rem; border-left: 2px solid rgba(217,119,6,.3); display: none; }
+.menu-l3 { padding-left: .75rem; margin: .25rem 0 .5rem; border-left: 2px solid rgba(224,122,31,.3); display: none; }
 .menu-l3.open { display: block; }
 .menu-l3 a {
   display: block;
@@ -192,17 +318,95 @@ body::before {
   display: none;
   align-items: center;
   transition: background .2s, border-color .2s;
+  flex-shrink: 0;
 }
 .hamburger-btn:hover {
-  background: rgba(217,119,6,.1);
-  border-color: rgba(217,119,6,.4);
+  background: rgba(224,122,31,.1);
+  border-color: rgba(224,122,31,.4);
+}
+
+/* ═══════════════ LANGUAGE SWITCHER (simple & professional, no flags) ═══════════════ */
+.lang-switch-wrap { position: relative; flex-shrink: 0; }
+.btn-lang {
+  background: rgba(31,122,61,.06);
+  border: 1px solid var(--border);
+  color: var(--white);
+  padding: .55rem .85rem;
+  border-radius: 8px;
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  transition: background .2s, border-color .2s;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  letter-spacing: .02em;
+}
+.btn-lang:hover { background: rgba(224,122,31,.1); border-color: rgba(224,122,31,.4); }
+.btn-lang i.fa-globe { font-size: .85rem; color: var(--accent); }
+.btn-lang i.fa-chevron-down { font-size: .6rem; opacity: .6; }
+.lang-dropdown-panel {
+  position: absolute;
+  top: calc(100% + .6rem);
+  right: 0;
+  min-width: 160px;
+  background: rgba(250,247,238,.98);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .4rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.12);
+  z-index: 200;
+  display: none;
+}
+html[dir="rtl"] .lang-dropdown-panel { right: auto; left: 0; }
+.lang-dropdown-panel.open { display: block; }
+.lang-option {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .6rem;
+  padding: .6rem .75rem;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: .84rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .15s;
+  background: none; border: none; width: 100%;
+  text-align: left; font-family: var(--font-body);
+}
+html[dir="rtl"] .lang-option { text-align: right; }
+.lang-option:hover { background: rgba(224,122,31,.08); color: var(--white); }
+.lang-option.lang-active { background: rgba(224,122,31,.14); color: var(--white); }
+.lang-option .check { color: var(--accent); font-size: .7rem; opacity: 0; }
+.lang-option.lang-active .check { opacity: 1; }
+
+.mn-lang-row { display: grid; grid-template-columns: repeat(4,1fr); gap: .4rem; }
+.mn-lang-btn {
+  padding: .55rem .3rem;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: rgba(31,122,61,.05);
+  color: var(--muted);
+  font-size: .72rem; font-weight: 600;
+  cursor: pointer; font-family: var(--font-body);
+  transition: all .18s;
+}
+.mn-lang-btn:hover { border-color: rgba(224,122,31,.4); color: var(--white); }
+.mn-lang-btn.mn-lang-active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+
+@media (max-width: 991px) {
+  .btn-lang span.lang-txt { display: none; }
+  .btn-lang { padding: .55rem .65rem; }
+  .btn-lang i.fa-chevron-down { display: none; }
 }
 
 /* ═══════════════ MOBILE NAV V2 ═══════════════ */
 .mobile-nav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.55);
+  background: rgba(30,30,25,.45);
   z-index: 1055;
   opacity: 0;
   pointer-events: none;
@@ -215,8 +419,8 @@ body::before {
   position: fixed;
   top: 0; left: 0; bottom: 0;
   width: min(320px, 88vw);
-  background: linear-gradient(160deg, #0d2619 0%, #091a0f 100%);
-  border-right: 1px solid rgba(74,222,128,.14);
+  background: linear-gradient(160deg, #faf7ee 0%, #f0e9d6 100%);
+  border-right: 1px solid rgba(31,122,61,.16);
   z-index: 1060;
   display: flex;
   flex-direction: column;
@@ -224,21 +428,28 @@ body::before {
   transition: transform .32s cubic-bezier(.4,0,.2,1);
   overflow: hidden;
 }
+html[dir="rtl"] .mobile-nav {
+  left: auto; right: 0;
+  border-right: none;
+  border-left: 1px solid rgba(31,122,61,.16);
+  transform: translateX(100%);
+}
 .mobile-nav.open { transform: translateX(0); }
 
 .mn-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: .75rem;
   padding: 1rem 1.1rem .85rem;
-  border-bottom: 1px solid rgba(74,222,128,.1);
+  border-bottom: 1px solid rgba(31,122,61,.12);
   flex-shrink: 0;
 }
-.mn-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.mn-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; min-width: 0; }
 .mn-brand img { height: 30px; width: 30px; border-radius: 7px; object-fit: cover; }
 .mn-close {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(31,122,61,.06);
+  border: 1px solid rgba(31,122,61,.14);
   border-radius: 8px;
   color: var(--muted);
   width: 34px; height: 34px;
@@ -248,7 +459,7 @@ body::before {
   transition: background .15s, color .15s;
   flex-shrink: 0;
 }
-.mn-close:hover { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
+.mn-close:hover { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
 
 .mn-body {
   flex: 1;
@@ -258,7 +469,7 @@ body::before {
 }
 .mn-body::-webkit-scrollbar { width: 3px; }
 .mn-body::-webkit-scrollbar-track { background: transparent; }
-.mn-body::-webkit-scrollbar-thumb { background: rgba(74,222,128,.2); border-radius: 2px; }
+.mn-body::-webkit-scrollbar-thumb { background: rgba(31,122,61,.25); border-radius: 2px; }
 
 .mn-section-label {
   font-size: .62rem;
@@ -267,7 +478,7 @@ body::before {
   text-transform: uppercase;
   color: var(--muted);
   padding: .9rem 1.2rem .35rem;
-  opacity: .7;
+  opacity: .75;
 }
 
 .mn-link {
@@ -277,24 +488,25 @@ body::before {
   padding: .68rem 1.2rem;
   font-size: .88rem;
   font-weight: 500;
-  color: rgba(255,255,255,.85);
+  color: rgba(35,36,31,.85);
   text-decoration: none;
   transition: background .15s, color .15s;
 }
 .mn-link .mn-icon {
   width: 30px; height: 30px;
   border-radius: 8px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(31,122,61,.06);
+  border: 1px solid rgba(31,122,61,.12);
   display: flex; align-items: center; justify-content: center;
   font-size: .75rem;
   color: var(--muted);
   flex-shrink: 0;
   transition: background .15s, color .15s, border-color .15s;
 }
-.mn-link:hover { background: rgba(217,119,6,.07); color: #fff; }
-.mn-link:hover .mn-icon { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
+.mn-link:hover { background: rgba(224,122,31,.08); color: #000; }
+.mn-link:hover .mn-icon { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
 .mn-link-arrow { margin-left: auto; font-size: .65rem; color: var(--muted); opacity: .5; }
+html[dir="rtl"] .mn-link-arrow { margin-left: 0; margin-right: auto; }
 
 .mn-accordion-btn {
   width: 100%;
@@ -306,7 +518,7 @@ body::before {
   border: none;
   font-size: .88rem;
   font-weight: 500;
-  color: rgba(255,255,255,.85);
+  color: rgba(35,36,31,.85);
   font-family: var(--font-body);
   cursor: pointer;
   text-align: left;
@@ -315,8 +527,8 @@ body::before {
 .mn-accordion-btn .mn-icon {
   width: 30px; height: 30px;
   border-radius: 8px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(31,122,61,.06);
+  border: 1px solid rgba(31,122,61,.12);
   display: flex; align-items: center; justify-content: center;
   font-size: .75rem;
   color: var(--muted);
@@ -324,15 +536,15 @@ body::before {
   transition: background .15s, color .15s, border-color .15s;
 }
 .mn-chevron { margin-left: auto; font-size: .65rem; color: var(--muted); transition: transform .25s ease, color .15s; }
-.mn-accordion-btn.open { background: rgba(217,119,6,.07); color: #fff; }
-.mn-accordion-btn.open .mn-icon { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
+.mn-accordion-btn.open { background: rgba(224,122,31,.08); color: #000; }
+.mn-accordion-btn.open .mn-icon { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
 .mn-accordion-btn.open .mn-chevron { transform: rotate(90deg); color: var(--accent); }
 
 .mn-accordion-body {
   max-height: 0;
   overflow: hidden;
   transition: max-height .28s cubic-bezier(.4,0,.2,1);
-  background: rgba(0,0,0,.18);
+  background: rgba(31,122,61,.04);
 }
 .mn-accordion-body.open { max-height: 500px; }
 
@@ -354,24 +566,24 @@ body::before {
   transition: color .15s;
 }
 .mn-sub-label .mn-chevron { font-size: .6rem; }
-.mn-sub-label.open { color: rgba(255,255,255,.7); }
+.mn-sub-label.open { color: rgba(35,36,31,.8); }
 .mn-sub-label.open .mn-chevron { transform: rotate(90deg); color: var(--accent); }
 
 .mn-sub-body {
   max-height: 0;
   overflow: hidden;
   transition: max-height .22s ease;
-  background: rgba(0,0,0,.12);
+  background: rgba(31,122,61,.03);
 }
 .mn-sub-body.open { max-height: 300px; }
 
 .mn-sub2-link {
   display: flex;
   align-items: center;
-  gap: .55rem;
-  padding: .52rem 1.2rem .52rem 3.2rem;
+  gab: .55rem;                      
+  padding: .52rem 1.2rem .52rem 3.2rem;     
   font-size: .79rem;
-  color: rgba(134,163,142,.75);
+  color: rgba(74,74,68,.85);
   text-decoration: none;
   transition: background .15s, color .15s;
 }
@@ -379,16 +591,16 @@ body::before {
   content: '';
   width: 4px; height: 4px;
   border-radius: 50%;
-  background: rgba(217,119,6,.45);
+  background: rgba(224,122,31,.55);
   flex-shrink: 0;
 }
-.mn-sub2-link:hover { background: rgba(217,119,6,.05); color: #fff; }
+.mn-sub2-link:hover { background: rgba(224,122,31,.06); color: #000; }
 
-.mn-divider { height: 1px; background: rgba(74,222,128,.08); margin: .55rem 1.2rem; }
+.mn-divider { height: 1px; background: rgba(31,122,61,.12); margin: .55rem 1.2rem; }
 
 .mn-footer {
   padding: .85rem 1rem 1.1rem;
-  border-top: 1px solid rgba(74,222,128,.1);
+  border-top: 1px solid rgba(31,122,61,.12);
   display: flex;
   flex-direction: column;
   gap: .55rem;
@@ -419,16 +631,16 @@ body::before {
   gap: .5rem;
   padding: .78rem 1rem;
   border-radius: 10px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.1);
-  color: rgba(255,255,255,.8) !important;
+  background: rgba(31,122,61,.08);
+  border: 1px solid rgba(31,122,61,.2);
+  color: rgba(35,36,31,.85) !important;
   font-size: .88rem;
   font-weight: 500;
   text-decoration: none;
   transition: background .2s, border-color .2s;
   white-space: nowrap;
 }
-.mn-cta-secondary:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
+.mn-cta-secondary:hover { background: rgba(31,122,61,.14); border-color: rgba(31,122,61,.35); }
 
 /* ═══════════════ HERO ═══════════════ */
 .hero {
@@ -445,7 +657,7 @@ body::before {
   top: -200px; right: -100px;
   width: 700px; height: 700px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(74,222,128,.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(31,122,61,.14) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero::after {
@@ -454,7 +666,7 @@ body::before {
   bottom: -150px; left: -80px;
   width: 500px; height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(74,222,128,.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(31,122,61,.08) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero-eyebrow {
@@ -477,8 +689,10 @@ body::before {
   letter-spacing: -.02em;
   color: var(--white);
   margin-bottom: 1.5rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
-.hero h1 em { font-style: normal; color: var(--accent); }
+.hero h1 em { font-style: normal; color: var(--blue); }
 .hero-sub {
   font-size: 1.05rem;
   color: var(--muted);
@@ -489,7 +703,7 @@ body::before {
 }
 .btn-primary-3e {
   background: var(--accent);
-  color: var(--white);
+  color: #fff;
   padding: .85rem 2rem;
   border-radius: 10px;
   font-size: .95rem;
@@ -502,7 +716,7 @@ body::before {
   align-items: center;
   gap: .5rem;
 }
-.btn-primary-3e:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(217,119,6,.3); color: var(--white); }
+.btn-primary-3e:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(224,122,31,.3); color: #fff; }
 .btn-secondary-3e {
   border: 1px solid var(--border);
   color: var(--white);
@@ -518,10 +732,10 @@ body::before {
   align-items: center;
   gap: .5rem;
 }
-.btn-secondary-3e:hover { border-color: var(--accent); background: rgba(217,119,6,.08); color: var(--white); }
+.btn-secondary-3e:hover { border-color: var(--accent); background: rgba(224,122,31,.08); color: var(--white); }
 
 .hero-card {
-  background: rgba(255,255,255,.04);
+  background: rgba(31,122,61,.05);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 2rem;
@@ -550,10 +764,12 @@ body::before {
   margin-bottom: .75rem;
 }
 .card-btn:last-child { margin-bottom: 0; }
-.card-btn-bewerber { background: var(--accent); color: var(--white); }
-.card-btn-bewerber:hover { background: var(--accent-hover); transform: translateX(3px); color: var(--white); }
-.card-btn-company { background: rgba(255,255,255,.06); color: var(--white); border: 1px solid var(--border); }
-.card-btn-company:hover { background: rgba(255,255,255,.1); transform: translateX(3px); color: var(--white); }
+.card-btn-bewerber { background: var(--accent); color: #fff; }
+.card-btn-bewerber:hover { background: var(--accent-hover); transform: translateX(3px); color: #fff; }
+.card-btn-company { background: rgba(31,122,61,.08); color: var(--white); border: 1px solid var(--border); }
+.card-btn-company:hover { background: rgba(31,122,61,.14); transform: translateX(3px); color: var(--white); }
+html[dir="rtl"] .card-btn-bewerber:hover,
+html[dir="rtl"] .card-btn-company:hover { transform: translateX(-3px); }
 
 /* ═══════════════ SECTION UTILS ═══════════════ */
 .section-tag {
@@ -576,16 +792,16 @@ body::before {
 .divider { border-top: 1px solid var(--border); }
 
 /* ═══════════════ SERVICES ═══════════════ */
-.services-section { padding: 8rem 5vw; background: linear-gradient(180deg, #091a0f 0%, #0a1e12 100%); }
-.svc-card { background: rgba(255,255,255,.03); padding: 2.5rem 2rem; transition: background .25s; border: 1px solid var(--border); height: 100%; }
-.svc-card:hover { background: rgba(217,119,6,.07); }
-.svc-num { font-family: var(--font-display); font-size: .75rem; font-weight: 700; color: var(--accent); letter-spacing: .1em; margin-bottom: 1.2rem; opacity: .6; }
-.svc-card .svc-icon i { color: var(--accent); font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+.services-section { padding: 8rem 5vw; background: linear-gradient(180deg, #f0e9d6 0%, #ece3cd 100%); }
+.svc-card { background: rgba(31,122,61,.04); padding: 2.5rem 2rem; transition: background .25s; border: 1px solid var(--border); height: 100%; }
+.svc-card:hover { background: rgba(224,122,31,.08); }
+.svc-num { font-family: var(--font-display); font-size: .75rem; font-weight: 700; color: var(--accent); letter-spacing: .1em; margin-bottom: 1.2rem; opacity: .7; }
+.svc-card .svc-icon i { color: var(--blue); font-size: 1.8rem; margin-bottom: 1rem; display: block; }
 .svc-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: .75rem; }
 .svc-card p { font-size: .875rem; color: var(--muted); line-height: 1.7; font-weight: 300; margin: 0; }
 
 /* ═══════════════ FACHBEREICHE ═══════════════ */
-.fachbereiche-section { padding: 8rem 5vw; background: linear-gradient(180deg, #0a1e12 0%, var(--navy) 100%); }
+.fachbereiche-section { padding: 8rem 5vw; background: linear-gradient(180deg, #ece3cd 0%, var(--navy) 100%); }
 .fb-main-card {
   background: var(--glass);
   border: 1px solid var(--border);
@@ -600,16 +816,16 @@ body::before {
   flex-direction: column;
   align-items: center;
 }
-.fb-main-card:hover { background: rgba(217,119,6,.07); border-color: rgba(217,119,6,.4); transform: translateY(-2px); }
-.fb-main-card.active { background: rgba(217,119,6,.1); border-color: var(--accent); box-shadow: 0 0 0 1px rgba(217,119,6,.2); }
-.fb-main-card.featured { background: rgba(217,119,6,.08); border-color: rgba(217,119,6,.45); }
-.fb-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(217,119,6,.12); display: flex; align-items: center; justify-content: center; margin: 0 auto .85rem; transition: background .2s; flex-shrink: 0; }
-.fb-main-card.active .fb-icon, .fb-main-card:hover .fb-icon { background: rgba(217,119,6,.2); }
-.fb-icon i { color: var(--accent); font-size: 1.2rem; }
+.fb-main-card:hover { background: rgba(224,122,31,.08); border-color: rgba(224,122,31,.4); transform: translateY(-2px); }
+.fb-main-card.active { background: rgba(224,122,31,.12); border-color: var(--accent); box-shadow: 0 0 0 1px rgba(224,122,31,.2); }
+.fb-main-card.featured { background: rgba(224,122,31,.1); border-color: rgba(224,122,31,.45); }
+.fb-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(31,122,61,.12); display: flex; align-items: center; justify-content: center; margin: 0 auto .85rem; transition: background .2s; flex-shrink: 0; }
+.fb-main-card.active .fb-icon, .fb-main-card:hover .fb-icon { background: rgba(224,122,31,.2); }
+.fb-icon i { color: var(--blue); font-size: 1.2rem; }
 .fb-main-card h3 { font-family: var(--font-display); font-size: .88rem; font-weight: 600; color: var(--white); margin-bottom: .3rem; line-height: 1.3; }
 .fb-arrow { font-size: .7rem; color: var(--muted); margin-top: .5rem; transition: color .2s, transform .2s; display: block; }
 .fb-main-card.active .fb-arrow { color: var(--accent); transform: rotate(180deg); }
-.fb-badge { display: inline-block; font-size: .65rem; padding: .2rem .55rem; border-radius: 999px; background: rgba(217,119,6,.2); color: var(--accent); font-weight: 600; margin-bottom: .4rem; white-space: nowrap; }
+.fb-badge { display: inline-block; font-size: .65rem; padding: .2rem .55rem; border-radius: 999px; background: rgba(224,122,31,.16); color: var(--accent-hover); font-weight: 600; margin-bottom: .4rem; white-space: nowrap; }
 .fb-req-btn {
   display: inline-flex;
   align-items: center;
@@ -619,9 +835,9 @@ body::before {
   border-radius: 7px;
   font-size: .68rem;
   font-weight: 600;
-  color: var(--accent);
-  border: 1px solid rgba(217,119,6,.35);
-  background: rgba(217,119,6,.08);
+  color: var(--accent-hover);
+  border: 1px solid rgba(224,122,31,.4);
+  background: rgba(224,122,31,.1);
   text-decoration: none;
   transition: all .2s;
   cursor: pointer;
@@ -633,7 +849,7 @@ body::before {
   max-width: 100%;
   justify-content: center;
 }
-.fb-req-btn:hover { background: rgba(217,119,6,.18); border-color: var(--accent); transform: translateY(-1px); color: var(--accent); }
+.fb-req-btn:hover { background: rgba(224,122,31,.2); border-color: var(--accent); transform: translateY(-1px); color: var(--accent-hover); }
 
 .fb-standalone {
   background: var(--glass);
@@ -648,80 +864,80 @@ body::before {
   flex-direction: column;
   align-items: center;
 }
-.fb-standalone:hover { background: rgba(217,119,6,.05); border-color: rgba(217,119,6,.35); transform: translateY(-2px); }
+.fb-standalone:hover { background: rgba(224,122,31,.06); border-color: rgba(224,122,31,.35); transform: translateY(-2px); }
 .fb-standalone h3 { font-family: var(--font-display); font-size: .88rem; font-weight: 600; color: var(--white); margin-bottom: .25rem; }
 .fb-standalone p { font-size: .75rem; color: var(--muted); margin: 0; }
-.fb-sub-panel { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; display: none; animation: panelIn .2s ease; }
+.fb-sub-panel { background: rgba(31,122,61,.04); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; display: none; animation: panelIn .2s ease; }
 .fb-sub-panel.visible { display: block; }
 @keyframes panelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-.fb-sub-title { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.fb-sub-title { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-hover); margin-bottom: 1rem; }
 .fb-sub-item { display: flex; align-items: center; gap: .65rem; background: var(--glass); border: 1px solid var(--border); border-radius: 10px; padding: .75rem 1rem; transition: border-color .15s, background .15s; margin-bottom: .65rem; }
-.fb-sub-item:hover { border-color: rgba(217,119,6,.3); background: rgba(217,119,6,.05); }
-.fb-sub-item i { color: var(--accent); font-size: .95rem; flex-shrink: 0; }
+.fb-sub-item:hover { border-color: rgba(224,122,31,.3); background: rgba(224,122,31,.06); }
+.fb-sub-item i { color: var(--blue); font-size: .95rem; flex-shrink: 0; }
 .fb-sub-item span { font-size: .82rem; color: var(--muted); }
 
 /* ═══════════════ PROCESS ═══════════════ */
 .process-section { padding: 8rem 5vw; background: var(--navy); }
 .pstep { padding: 0 1rem; text-align: center; }
-.pstep-dot { width: 56px; height: 56px; border-radius: 50%; background: rgba(217,119,6,.12); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--accent); position: relative; z-index: 1; }
+.pstep-dot { width: 56px; height: 56px; border-radius: 50%; background: rgba(224,122,31,.12); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--accent-hover); position: relative; z-index: 1; }
 .pstep h3 { font-family: var(--font-display); font-size: .95rem; font-weight: 600; color: var(--white); margin-bottom: .6rem; }
 .pstep p { font-size: .82rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
-.process-connector { position: absolute; top: 28px; left: 12.5%; right: 12.5%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent 40%, transparent 60%, var(--accent)); opacity: .3; pointer-events: none; }
+.process-connector { position: absolute; top: 28px; left: 12.5%; right: 12.5%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent 40%, transparent 60%, var(--accent)); opacity: .35; pointer-events: none; }
 
 /* ═══════════════ ABOUT ═══════════════ */
-.about-section { padding: 8rem 5vw; background: linear-gradient(180deg, #0a1e12 0%, var(--navy) 100%); }
-.about-label { font-size: .75rem; font-weight: 500; color: var(--gold); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem; }
+.about-section { padding: 8rem 5vw; background: linear-gradient(180deg, #ece3cd 0%, var(--navy) 100%); }
+.about-label { font-size: .75rem; font-weight: 500; color: var(--accent-hover); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem; }
 .about-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1.5rem; }
 .about-desc { font-size: 1rem; color: var(--muted); line-height: 1.8; font-weight: 300; margin-bottom: 2rem; }
 .about-item { display: flex; gap: 1rem; align-items: flex-start; background: var(--glass); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; transition: border-color .2s; margin-bottom: 1rem; }
-.about-item:hover { border-color: rgba(217,119,6,.4); }
-.about-item-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(217,119,6,.12); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; color: var(--accent); }
+.about-item:hover { border-color: rgba(224,122,31,.4); }
+.about-item-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(31,122,61,.12); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; color: var(--blue); }
 .about-item-text h4 { font-size: .9rem; font-weight: 500; color: var(--white); margin-bottom: .25rem; }
 .about-item-text p { font-size: .82rem; color: var(--muted); line-height: 1.5; font-weight: 300; margin: 0; }
-.about-visual-card { border-radius: 20px; overflow: hidden; border: 1px solid rgba(74,222,128,.2); background: rgba(255,255,255,.04); box-shadow: 0 25px 60px rgba(0,0,0,.5); transition: transform .3s ease, box-shadow .3s ease; }
+.about-visual-card { border-radius: 20px; overflow: hidden; border: 1px solid rgba(31,122,61,.25); background: rgba(31,122,61,.04); box-shadow: 0 25px 60px rgba(35,36,31,.14); transition: transform .3s ease, box-shadow .3s ease; }
 .about-visual-card img { width: 100%; height: auto; display: block; aspect-ratio: 4/3; object-fit: cover; }
-.av-caption { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-top: 1px solid rgba(74,222,128,.12); background: rgba(255,255,255,.03); }
-.av-caption-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bright); box-shadow: 0 0 8px var(--bright); flex-shrink: 0; }
+.av-caption { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-top: 1px solid rgba(31,122,61,.14); background: rgba(31,122,61,.03); }
+.av-caption-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 8px var(--blue); flex-shrink: 0; }
 .av-caption p { font-size: .8rem; color: var(--muted); line-height: 1.5; margin: 0; }
 .av-caption p strong { color: var(--white); font-weight: 500; }
 
 /* ═══════════════ BRIDGE ═══════════════ */
-.bridge-section { padding: 7rem 5vw 6rem; background: linear-gradient(180deg, var(--navy) 0%, #091a0f 100%); position: relative; overflow: hidden; }
-.bridge-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(217,119,6,.4), transparent); }
+.bridge-section { padding: 7rem 5vw 6rem; background: linear-gradient(180deg, var(--navy) 0%, #f0e9d6 100%); position: relative; overflow: hidden; }
+.bridge-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(224,122,31,.4), transparent); }
 .bridge-title { font-family: var(--font-display); font-size: clamp(1.9rem, 3.5vw, 2.7rem); font-weight: 700; color: var(--white); line-height: 1.15; }
 .bridge-title em { font-style: normal; color: var(--accent); }
 .bridge-desc { font-size: .95rem; color: var(--muted); max-width: 480px; line-height: 1.6; font-weight: 300; }
 .col-label { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1rem; border-radius: 999px; font-size: .75rem; font-weight: 600; font-family: var(--font-display); letter-spacing: .04em; margin-bottom: 1.2rem; }
-.col-label-green { background: rgba(74,222,128,.07); border: 1px solid rgba(74,222,128,.22); color: var(--bright); }
-.col-label-amber { background: rgba(217,119,6,.08); border: 1px solid rgba(217,119,6,.28); color: var(--accent); }
-.b-row { display: flex; align-items: center; gap: .85rem; padding: .75rem 1rem; background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 10px; transition: background .2s, border-color .2s; margin-bottom: .6rem; }
-.b-row:hover { background: rgba(217,119,6,.05); border-color: rgba(217,119,6,.25); }
+.col-label-green { background: rgba(31,122,61,.08); border: 1px solid rgba(31,122,61,.28); color: var(--blue); }
+.col-label-amber { background: rgba(224,122,31,.1); border: 1px solid rgba(224,122,31,.32); color: var(--accent-hover); }
+.b-row { display: flex; align-items: center; gap: .85rem; padding: .75rem 1rem; background: rgba(31,122,61,.04); border: 1px solid var(--border); border-radius: 10px; transition: background .2s, border-color .2s; margin-bottom: .6rem; }
+.b-row:hover { background: rgba(224,122,31,.06); border-color: rgba(224,122,31,.25); }
 .b-row-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.b-row-icon-green { background: rgba(74,222,128,.08); border: 1px solid rgba(74,222,128,.15); }
-.b-row-icon-green i { color: var(--bright); font-size: .9rem; }
-.b-row-icon-amber { background: rgba(217,119,6,.09); border: 1px solid rgba(217,119,6,.18); }
-.b-row-icon-amber i { color: var(--accent); font-size: .9rem; }
+.b-row-icon-green { background: rgba(31,122,61,.1); border: 1px solid rgba(31,122,61,.2); }
+.b-row-icon-green i { color: var(--blue); font-size: .9rem; }
+.b-row-icon-amber { background: rgba(224,122,31,.12); border: 1px solid rgba(224,122,31,.22); }
+.b-row-icon-amber i { color: var(--accent-hover); font-size: .9rem; }
 .b-row-text h4 { font-size: .82rem; font-weight: 500; color: var(--white); margin: 0 0 2px; }
 .b-row-text p { font-size: .73rem; color: var(--muted); margin: 0; line-height: 1.4; font-weight: 300; }
 .bridge-logo-img { width: 140%; max-width: 300px; display: block; opacity: .95; transition: transform .3s, opacity .3s; margin: 0 auto; }
 .bridge-logo-img:hover { transform: scale(1.09); opacity: 1; }
 .bb-card { border-radius: 14px; padding: 1.3rem 1.5rem; display: flex; align-items: center; gap: 1rem; border: 1px solid; transition: border-color .2s, background .2s; height: 100%; }
-.bb-green { background: rgba(74,222,128,.04); border-color: rgba(74,222,128,.16); }
-.bb-green:hover { border-color: rgba(74,222,128,.32); background: rgba(74,222,128,.07); }
-.bb-amber { background: rgba(217,119,6,.05); border-color: rgba(217,119,6,.18); }
-.bb-amber:hover { border-color: rgba(217,119,6,.38); background: rgba(217,119,6,.08); }
+.bb-green { background: rgba(31,122,61,.05); border-color: rgba(31,122,61,.22); }
+.bb-green:hover { border-color: rgba(31,122,61,.4); background: rgba(31,122,61,.08); }
+.bb-amber { background: rgba(224,122,31,.06); border-color: rgba(224,122,31,.24); }
+.bb-amber:hover { border-color: rgba(224,122,31,.45); background: rgba(224,122,31,.1); }
 .bb-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.bb-icon-green { background: rgba(74,222,128,.1); }
-.bb-icon-green i { color: var(--bright); font-size: 1rem; }
-.bb-icon-amber { background: rgba(217,119,6,.12); }
-.bb-icon-amber i { color: var(--accent); font-size: 1rem; }
-.bb-text h4 { font-size: .85rem; font-weight: 600; color: var(--white); margin-bottom: .15rem; font-family: var(--font-display); }
+.bb-icon-green { background: rgba(31,122,61,.12); }
+.bb-icon-green i { color: var(--blue); font-size: 1rem; }
+.bb-icon-amber { background: rgba(224,122,31,.15); }
+.bb-icon-amber i { color: var(--accent-hover); font-size: 1rem; }
+.bb-text h3 { font-size: .85rem; font-weight: 600; color: var(--white); margin-bottom: .15rem; font-family: var(--font-display); }
 .bb-text p { font-size: .74rem; color: var(--muted); line-height: 1.5; font-weight: 300; margin: 0; }
 .bb-btn { margin-left: auto; flex-shrink: 0; padding: .45rem 1.1rem; border-radius: 8px; font-size: .75rem; font-weight: 500; text-decoration: none; transition: all .2s; white-space: nowrap; border: 1px solid; }
-.bb-btn-green { color: var(--bright); border-color: rgba(74,222,128,.28); background: rgba(74,222,128,.07); }
-.bb-btn-green:hover { background: rgba(74,222,128,.15); color: var(--bright); }
-.bb-btn-amber { color: var(--accent); border-color: rgba(217,119,6,.28); background: rgba(217,119,6,.08); }
-.bb-btn-amber:hover { background: rgba(217,119,6,.18); color: var(--accent); }
+.bb-btn-green { color: var(--blue); border-color: rgba(31,122,61,.32); background: rgba(31,122,61,.08); }
+.bb-btn-green:hover { background: rgba(31,122,61,.18); color: var(--blue); }
+.bb-btn-amber { color: var(--accent-hover); border-color: rgba(224,122,31,.32); background: rgba(224,122,31,.1); }
+.bb-btn-amber:hover { background: rgba(224,122,31,.2); color: var(--accent-hover); }
 .bridge-center-col {
   display: flex !important;
   align-items: center !important;
@@ -731,44 +947,45 @@ body::before {
 
 /* ═══════════════ CONTACT ═══════════════ */
 .contact-section { padding: 8rem 5vw; background: var(--navy); position: relative; overflow: hidden; }
-.contact-section::before { content: ''; position: absolute; top: -200px; right: -150px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(217,119,6,.06) 0%, transparent 70%); pointer-events: none; }
-.contact-section::after { content: ''; position: absolute; bottom: -100px; left: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(74,222,128,.05) 0%, transparent 70%); pointer-events: none; }
+.contact-section::before { content: ''; position: absolute; top: -200px; right: -150px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(224,122,31,.08) 0%, transparent 70%); pointer-events: none; }
+.contact-section::after { content: ''; position: absolute; bottom: -100px; left: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(31,122,61,.07) 0%, transparent 70%); pointer-events: none; }
 .contact-wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; position: relative; z-index: 1; }
 .contact-info-side .section-tag { margin-bottom: .75rem; }
 .contact-info-side h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 1rem; }
 .contact-info-side p { font-size: .95rem; color: var(--muted); line-height: 1.75; font-weight: 300; margin-bottom: 2.5rem; }
 .cinfo-cards { display: flex; flex-direction: column; gap: .85rem; }
-.cinfo-card { display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.3rem; text-decoration: none; transition: all .2s; }
-.cinfo-card:hover { background: rgba(217,119,6,.06); border-color: rgba(217,119,6,.3); transform: translateX(4px); }
+.cinfo-card { display: flex; align-items: center; gap: 1rem; background: rgba(31,122,61,.04); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem 1.3rem; text-decoration: none; transition: all .2s; }
+.cinfo-card:hover { background: rgba(224,122,31,.07); border-color: rgba(224,122,31,.32); transform: translateX(4px); }
+html[dir="rtl"] .cinfo-card:hover { transform: translateX(-4px); }
 .cinfo-card-icon { width: 44px; height: 44px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.cinfo-card-icon.green { background: rgba(74,222,128,.1); border: 1px solid rgba(74,222,128,.2); }
-.cinfo-card-icon.green i { color: var(--bright); font-size: 1.1rem; }
-.cinfo-card-icon.amber { background: rgba(217,119,6,.1); border: 1px solid rgba(217,119,6,.2); }
-.cinfo-card-icon.amber i { color: var(--accent); font-size: 1.1rem; }
+.cinfo-card-icon.green { background: rgba(31,122,61,.12); border: 1px solid rgba(31,122,61,.24); }
+.cinfo-card-icon.green i { color: var(--blue); font-size: 1.1rem; }
+.cinfo-card-icon.amber { background: rgba(224,122,31,.14); border: 1px solid rgba(224,122,31,.26); }
+.cinfo-card-icon.amber i { color: var(--accent-hover); font-size: 1.1rem; }
 .cinfo-card-text { display: flex; flex-direction: column; }
 .cinfo-card-text span { font-size: .72rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .2rem; }
 .cinfo-card-text strong { font-size: .9rem; color: var(--white); font-weight: 500; }
-.contact-form-side { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 24px; padding: 2.5rem; position: relative; overflow: hidden; }
+.contact-form-side { background: rgba(31,122,61,.04); border: 1px solid var(--border); border-radius: 24px; padding: 2.5rem; position: relative; overflow: hidden; }
 .contact-form-side::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
 .contact-form-side h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: .4rem; }
 .contact-form-side p { font-size: .82rem; color: var(--muted); margin-bottom: 1.8rem; font-weight: 300; }
 .field label { font-size: .75rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .45rem; display: block; }
-.field input, .field textarea { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 10px; padding: .9rem 1.1rem; font-size: .9rem; color: var(--white); font-family: var(--font-body); outline: none; transition: border-color .2s, background .2s; resize: none; width: 100%; }
-.field input:focus, .field textarea:focus { border-color: var(--accent); background: rgba(217,119,6,.05); outline: none; box-shadow: none; }
-.field input::placeholder, .field textarea::placeholder { color: rgba(134,163,142,.45); }
+.field input, .field textarea { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: .9rem 1.1rem; font-size: .9rem; color: var(--white); font-family: var(--font-body); outline: none; transition: border-color .2s, background .2s; resize: none; width: 100%; }
+.field input:focus, .field textarea:focus { border-color: var(--accent); background: #fff; outline: none; box-shadow: none; }
+.field input::placeholder, .field textarea::placeholder { color: rgba(74,74,68,.5); }
 .type-selector { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-bottom: 1.2rem; }
-.type-btn { display: flex; align-items: center; gap: .6rem; padding: .75rem 1rem; border-radius: 10px; border: 1px solid var(--border); background: rgba(255,255,255,.03); color: var(--muted); font-size: .82rem; font-weight: 500; cursor: pointer; transition: all .2s; font-family: var(--font-body); }
-.type-btn:hover { border-color: rgba(217,119,6,.4); color: var(--white); }
-.type-btn.active { border-color: var(--accent); background: rgba(217,119,6,.1); color: var(--white); }
-.type-btn i { font-size: .9rem; color: var(--accent); }
+.type-btn { display: flex; align-items: center; gap: .6rem; padding: .75rem 1rem; border-radius: 10px; border: 1px solid var(--border); background: rgba(31,122,61,.03); color: var(--muted); font-size: .82rem; font-weight: 500; cursor: pointer; transition: all .2s; font-family: var(--font-body); }
+.type-btn:hover { border-color: rgba(224,122,31,.4); color: var(--white); }
+.type-btn.active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+.type-btn i { font-size: .9rem; color: var(--accent-hover); }
 .type-label { font-size: .72rem; color: var(--muted); letter-spacing:.06em; text-transform:uppercase; margin-bottom:.5rem; display:block; }
-.btn-submit { background: var(--accent); color: var(--white); padding: 1rem; border-radius: 12px; font-size: .95rem; font-weight: 600; border: none; cursor: pointer; transition: all .25s; font-family: var(--font-display); width: 100%; display: flex; align-items: center; justify-content: center; gap: .6rem; letter-spacing: .02em; margin-top: .5rem; }
-.btn-submit:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(217,119,6,.3); }
+.btn-submit { background: var(--accent); color: #fff; padding: 1rem; border-radius: 12px; font-size: .95rem; font-weight: 600; border: none; cursor: pointer; transition: all .25s; font-family: var(--font-display); width: 100%; display: flex; align-items: center; justify-content: center; gap: .6rem; letter-spacing: .02em; margin-top: .5rem; }
+.btn-submit:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(224,122,31,.3); }
 .btn-submit i { font-size: .9rem; }
 @media (max-width: 991px) { .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; } }
 
 /* ═══════════════ FOOTER ═══════════════ */
-footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: rgba(15,32,23,.92); }
+footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: rgba(245,240,226,.95); }
 .footer-copy { font-size: .78rem; color: var(--muted); }
 .footer-links a { font-size: .78rem; color: var(--muted); text-decoration: none; transition: color .2s; margin-left: 1.5rem; }
 .footer-links a:hover { color: var(--white); }
@@ -778,27 +995,27 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 .mn2-who-label { font-size:.65rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:.55rem; }
 .mn2-who-btns { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
 .mn2-who-btn { display:flex; align-items:center; justify-content:center; gap:.45rem; padding:.6rem .8rem; border-radius:9px; border:1px solid var(--border); background:var(--glass); color:var(--muted); font-size:.8rem; font-weight:500; cursor:pointer; transition:all .18s; font-family:var(--font-body); }
-.mn2-who-btn:hover { border-color:rgba(217,119,6,.4); color:var(--white); background:rgba(217,119,6,.08); }
-.mn2-who-btn.mn2-who-active { border-color:var(--accent); background:rgba(217,119,6,.12); color:var(--white); }
-.mn2-who-btn i { font-size:.85rem; color:var(--accent); }
+.mn2-who-btn:hover { border-color:rgba(224,122,31,.4); color:var(--white); background:rgba(224,122,31,.1); }
+.mn2-who-btn.mn2-who-active { border-color:var(--accent); background:rgba(224,122,31,.14); color:var(--white); }
+.mn2-who-btn i { font-size:.85rem; color:var(--accent-hover); }
 .mn2-panel { padding:.5rem 0; }
 .mn2-group { padding:.4rem .6rem; }
-.mn2-group-label { font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); padding:.5rem .6rem .4rem; opacity:.8; display:flex; align-items:center; gap:.4rem; }
+.mn2-group-label { font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-hover); padding:.5rem .6rem .4rem; opacity:.9; display:flex; align-items:center; gap:.4rem; }
 .mn2-group-label i { font-size:.75rem; }
 .mn2-link { display:flex; align-items:center; gap:.6rem; padding:.55rem .75rem; border-radius:8px; text-decoration:none; font-size:.83rem; color:var(--muted); transition:all .15s; }
-.mn2-link:hover { background:rgba(217,119,6,.07); color:var(--white); }
-.mn2-link i { font-size:.8rem; color:var(--accent); opacity:.7; width:14px; text-align:center; }
+.mn2-link:hover { background:rgba(224,122,31,.08); color:var(--white); }
+.mn2-link i { font-size:.8rem; color:var(--accent-hover); opacity:.8; width:14px; text-align:center; }
 .mn2-divider { height:1px; background:var(--border); margin:.4rem .75rem; }
-.mn2-chatbot-btn { display:flex; align-items:center; gap:.75rem; padding:.75rem .85rem; margin:.4rem .6rem .5rem; border-radius:10px; background:rgba(217,119,6,.08); border:1px solid rgba(217,119,6,.25); text-decoration:none; transition:all .2s; }
-.mn2-chatbot-btn:hover { background:rgba(217,119,6,.15); border-color:rgba(217,119,6,.4); }
-.mn2-chatbot-btn > i:first-child { font-size:1.1rem; color:var(--accent); flex-shrink:0; }
+.mn2-chatbot-btn { display:flex; align-items:center; gap:.75rem; padding:.75rem .85rem; margin:.4rem .6rem .5rem; border-radius:10px; background:rgba(224,122,31,.1); border:1px solid rgba(224,122,31,.28); text-decoration:none; transition:all .2s; }
+.mn2-chatbot-btn:hover { background:rgba(224,122,31,.18); border-color:rgba(224,122,31,.42); }
+.mn2-chatbot-btn > i:first-child { font-size:1.1rem; color:var(--accent-hover); flex-shrink:0; }
 .mn2-chatbot-btn div { display:flex; flex-direction:column; }
 .mn2-chatbot-btn strong { font-size:.85rem; color:var(--white); font-weight:600; }
 .mn2-chatbot-btn span { font-size:.72rem; color:var(--muted); margin-top:.1rem; }
-.mn-who-btn { display:flex; align-items:center; justify-content:center; gap:.5rem; padding:.65rem .8rem; border-radius:9px; border:1px solid var(--border); background:rgba(255,255,255,.04); color:var(--muted); font-size:.82rem; font-weight:500; cursor:pointer; font-family:var(--font-body); transition:all .18s; width:100%; }
-.mn-who-btn:hover { border-color:rgba(217,119,6,.4); color:var(--white); }
-.mn-who-btn.mn-who-active { border-color:var(--accent); background:rgba(217,119,6,.12); color:var(--white); }
-.mn-who-btn i { font-size:.85rem; color:var(--accent); }
+.mn-who-btn { display:flex; align-items:center; justify-content:center; gap:.5rem; padding:.65rem .8rem; border-radius:9px; border:1px solid var(--border); background:rgba(31,122,61,.05); color:var(--muted); font-size:.82rem; font-weight:500; cursor:pointer; font-family:var(--font-body); transition:all .18s; width:100%; }
+.mn-who-btn:hover { border-color:rgba(224,122,31,.4); color:var(--white); }
+.mn-who-btn.mn-who-active { border-color:var(--accent); background:rgba(224,122,31,.14); color:var(--white); }
+.mn-who-btn i { font-size:.85rem; color:var(--accent-hover); }
 
 /* ═══════════════ ANIMATIONS ═══════════════ */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -809,6 +1026,28 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 .animate-delay-3 { animation-delay: .3s; }
 .animate-fade { animation: fadeIn .9s .2s ease both; }
 
+/* ═══════════════ ACCESSIBILITY ═══════════════ */
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.skip-link {
+  z-index: 2000;
+  background: var(--accent);
+  color: #fff !important;
+  padding: .75rem 1.25rem;
+  border-radius: 0 0 8px 0;
+  font-size: .85rem;
+  font-weight: 600;
+  text-decoration: none;
+  top: 0; left: 0;
+}
+
 /* ═══════════════ RESPONSIVE ═══════════════ */
 @media (max-width: 1199px) { .bridge-center-col { display: none !important; } }
 @media (max-width: 991px) {
@@ -816,7 +1055,7 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
   .nav-desktop-links { display: none !important; }
   .hero { min-height: auto; padding: 6rem 1.5rem 3rem; }
   .hero h1 { font-size: clamp(1.9rem, 7vw, 2.8rem); }
-  .hero-eyebrow { display: block; font-size: .62rem; text-align: center; padding: .45rem .9rem; background: rgba(217,119,6,.1); border: 1px solid rgba(217,119,6,.3); border-radius: 999px; max-width: fit-content; margin: 0 auto 1.5rem; }
+  .hero-eyebrow { display: block; font-size: .62rem; text-align: center; padding: .45rem .9rem; background: rgba(224,122,31,.1); border: 1px solid rgba(224,122,31,.3); border-radius: 999px; max-width: fit-content; margin: 0 auto 1.5rem; }
   .hero-eyebrow::before { display: none; }
   .hero-sub { margin: 0 auto 2rem; }
   .hero-actions { justify-content: center; }
@@ -836,84 +1075,122 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
   .hero { padding: 5rem 1rem 2.5rem; }
   .hero h1 { font-size: 1.75rem; }
   .fb-main-card, .fb-standalone { padding: 1rem .6rem; }
-  .logo-img-main { height: 40px; }
-  .logo-img-sm   { height: 30px; }
+  .logo-img-main { height: 30px; }
+  .logo-img-sm   { height: 24px; }
+  .navbar-3e { padding: .75rem 4vw; }
+  .btn-menu { padding: .5rem 1rem; font-size: .78rem; }
+  .hamburger-btn { padding: .4rem .65rem; font-size: 1rem; }
 }
+@media (max-width: 420px) {
+  .navbar-3e { padding: .7rem 3.5vw; }
+  .btn-lang { padding: .5rem .55rem; }
+  .d-flex.align-items-center.gap-2.gap-sm-3.flex-shrink-0 { gap: .4rem !important; }
+}
+
+.logo-img-main {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+@media(max-width:991px){ .logo-img-main{ max-width:190px; height:34px; } }
+@media(max-width:576px){ .logo-img-main{ max-width:165px; height:32px; } }
+@media(max-width:400px){ .logo-img-main{ max-width:135px; height:29px; } }
 </style>
 </head>
 <body>
 
+<!-- Skip link for keyboard/screen-reader users -->
+<a href="#main-content" class="skip-link visually-hidden-focusable">Zum Hauptinhalt springen</a>
+
 <!-- ═══════════════ NAVBAR ═══════════════ -->
 <header class="navbar-3e">
-  <div class="d-flex align-items-center justify-content-between w-100">
+  <div class="d-flex align-items-center justify-content-between w-100 gap-2 gap-sm-3">
 
     <!-- ✅ LOGO IMAGE — الهيدر -->
-    <a href="index.html">
-      <img src="Logo-cropped.png" alt="3E Consulting" class="logo-img-main">
-    </a>
+     <a href="index.html" class="brand">
+    
+    <img src="Logo-cropped.png" alt="3E Consulting Logo" class="logo-img-main" decoding="async">
+  </a>
 
-    <ul class="nav-desktop-links d-flex list-unstyled mb-0 gap-3 mx-auto">
-      <li><a href="#services"  class="nav-link-3e">Leistungen</a></li>
-      <li><a href="#process"   class="nav-link-3e">Ablauf</a></li>
-      <li><a href="#about"     class="nav-link-3e">Über uns</a></li>
-      <li><a href="#kontakt"   class="nav-link-3e">Kontakt</a></li>
-    </ul>
-    <div class="d-flex align-items-center gap-3">
+    <nav aria-label="Hauptnavigation" style="display:contents">
+      <ul class="nav-desktop-links d-flex list-unstyled mb-0 gap-3 mx-auto">
+        <li><a href="#services"  class="nav-link-3e" data-i18n="nav.services">Leistungen</a></li>
+        <li><a href="#process"   class="nav-link-3e" data-i18n="nav.process">Ablauf</a></li>
+        <li><a href="#kontakt"   class="nav-link-3e" data-i18n="nav.contact">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="d-flex align-items-center gap-2 gap-sm-3 flex-shrink-0">
+
+      <!-- LANGUAGE SWITCHER — simple, professional, no flags -->
+      <div class="lang-switch-wrap">
+        <button class="btn-lang" id="langToggle" aria-haspopup="true" aria-expanded="false" aria-controls="langDropdown">
+          <i class="fa-solid fa-globe" aria-hidden="true"></i>
+          <span class="lang-txt" id="langLabelCurrent">DE</span>
+          <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+        </button>
+        <div class="lang-dropdown-panel" id="langDropdown">
+          <button class="lang-option lang-active" data-lang="de" onclick="setLanguage('de')">Deutsch <i class="fa-solid fa-check check" aria-hidden="true"></i></button>
+          <button class="lang-option" data-lang="fr" onclick="setLanguage('fr')">Français <i class="fa-solid fa-check check" aria-hidden="true"></i></button>
+          <button class="lang-option" data-lang="en" onclick="setLanguage('en')">English <i class="fa-solid fa-check check" aria-hidden="true"></i></button>
+          <button class="lang-option" data-lang="ar" onclick="setLanguage('ar')">العربية <i class="fa-solid fa-check check" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
       <div class="position-relative d-none d-lg-block">
-        <button class="btn-menu" id="menuToggle">MENÜ ▾</button>
+        <button class="btn-menu" id="menuToggle" aria-haspopup="true" aria-expanded="false" aria-controls="menuDropdown"><span data-i18n="nav.menu">MENÜ</span> ▾</button>
         <div class="nav-dropdown-panel" id="menuDropdown">
           <div class="mn2-who">
-            <p class="mn2-who-label">Sie sind</p>
+            <p class="mn2-who-label" data-i18n="nav.youAre">Sie sind</p>
             <div class="mn2-who-btns">
-              <button class="mn2-who-btn mn2-who-active" onclick="mn2Switch(this,'bewerber')">
-                <i class="fa-solid fa-user-tie"></i> Bewerber
+              <button class="mn2-who-btn mn2-who-active" aria-pressed="true" onclick="mn2Switch(this,'bewerber')">
+                <i class="fa-solid fa-user-tie" aria-hidden="true"></i> <span data-i18n="nav.applicant">Bewerber</span>
               </button>
-              <button class="mn2-who-btn" onclick="mn2Switch(this,'unternehmen')">
-                <i class="fa-solid fa-building"></i> Unternehmen
+              <button class="mn2-who-btn" aria-pressed="false" onclick="mn2Switch(this,'unternehmen')">
+                <i class="fa-solid fa-building" aria-hidden="true"></i> <span data-i18n="nav.company">Unternehmen</span>
               </button>
             </div>
           </div>
           <div class="mn2-panel" id="mn2-bewerber">
             <div class="mn2-group">
-              <div class="mn2-group-label">Jetzt starten</div>
-              <a href="Bewerbung.html" class="mn2-link"><i class="fa-solid fa-file-pen"></i> Bewerbung einreichen</a>
-              <a href="vermitlung.html" class="mn2-link"><i class="fa-solid fa-list-check"></i> Voraussetzungen prüfen</a>
-              <a href="service-bewerber.html#dokumentenorganisation" class="mn2-link"><i class="fa-solid fa-folder-open"></i> Dokumentenorganisation</a>
-              <a href="service-bewerber.html#profil-video" class="mn2-link"><i class="fa-solid fa-video"></i> Profil-Video erstellen</a>
+              <div class="mn2-group-label" data-i18n="nav.startNow">Jetzt starten</div>
+              <a href="Bewerbung.html" class="mn2-link"><i class="fa-solid fa-file-pen" aria-hidden="true"></i> <span data-i18n="nav.submitApplication">Bewerbung einreichen</span></a>
+              <a href="vermitlung.html" class="mn2-link"><i class="fa-solid fa-list-check" aria-hidden="true"></i> <span data-i18n="nav.checkRequirements">Voraussetzungen prüfen</span></a>
+              <a href="service-bewerber.html#dokumentenorganisation" class="mn2-link"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> <span data-i18n="nav.docOrganization">Dokumentenorganisation</span></a>
+              <a href="service-bewerber.html#profil-video" class="mn2-link"><i class="fa-solid fa-video" aria-hidden="true"></i> <span data-i18n="nav.profileVideo">Profil-Video erstellen</span></a>
             </div>
             <div class="mn2-divider"></div>
             <div class="mn2-group">
-              <div class="mn2-group-label"><i class="fa-solid fa-book-open"></i> Gut vorbereitet sein</div>
-              <a href="arbeitsmarkt.html" class="mn2-link"><i class="fa-solid fa-chart-line"></i> Arbeitsmarkt Deutschland</a>
-              <a href="arbeitundsozialrecht.html" class="mn2-link"><i class="fa-solid fa-scale-balanced"></i> Arbeits- und Sozialrecht</a>
-              <a href="aufenthaltsrecht.html" class="mn2-link"><i class="fa-solid fa-passport"></i> Aufenthaltsrecht & Visum</a>
-              <a href="alltag-deutschland.html" class="mn2-link"><i class="fa-solid fa-sun"></i> Alltag in Deutschland</a>
+              <div class="mn2-group-label"><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span data-i18n="nav.beWellPrepared">Gut vorbereitet sein</span></div>
+              <a href="arbeitsmarkt.html" class="mn2-link"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> <span data-i18n="nav.labourMarket">Arbeitsmarkt Deutschland</span></a>
+              <a href="alltag-deutschland.html" class="mn2-link"><i class="fa-solid fa-sun" aria-hidden="true"></i> <span data-i18n="nav.dailyLife">Alltag in Deutschland</span></a>
             </div>
             <div class="mn2-divider"></div>
             <a href="Chatbot.html" class="mn2-chatbot-btn">
-              <i class="fa-solid fa-robot"></i>
-              <div><strong>Chatbot-3e</strong><span>Stellen Sie jede Frage</span></div>
-              <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
+              <i class="fa-solid fa-robot" aria-hidden="true"></i>
+              <div><strong>Chatbot-3e</strong><span data-i18n="nav.askAnyQuestion">Stellen Sie jede Frage</span></div>
+              <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5" aria-hidden="true"></i>
             </a>
           </div>
           <div class="mn2-panel" id="mn2-unternehmen" style="display:none">
             <div class="mn2-group">
-              <div class="mn2-group-label"><i class="fa-solid fa-building"></i> Für Unternehmen</div>
-              <a href="service-unternehmen.html#vermittlung" class="mn2-link"><i class="fa-solid fa-users-viewfinder"></i> Fachkräfte finden</a>
-              <a href="service-unternehmen.html#beschwerdeverfahren" class="mn2-link"><i class="fa-solid fa-headset"></i> Support & Beschwerden</a>
-              <a href="login_company.php" class="mn2-link"><i class="fa-solid fa-right-to-bracket"></i> Unternehmens-Login</a>
+              <div class="mn2-group-label"><i class="fa-solid fa-building" aria-hidden="true"></i> <span data-i18n="nav.forCompanies">Für Unternehmen</span></div>
+              <a href="service-unternehmen.html#vermittlung" class="mn2-link"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i> <span data-i18n="nav.findTalent">Fachkräfte finden</span></a>
+              <a href="service-unternehmen.html#beschwerdeverfahren" class="mn2-link"><i class="fa-solid fa-headset" aria-hidden="true"></i> <span data-i18n="nav.supportComplaints">Support &amp; Beschwerden</span></a>
+              <a href="login_company.php" class="mn2-link"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> <span data-i18n="nav.companyLogin">Unternehmens-Login</span></a>
             </div>
             <div class="mn2-divider"></div>
             <a href="#kontakt" class="mn2-chatbot-btn" onclick="document.getElementById('menuDropdown').classList.remove('open')">
-              <i class="fa-solid fa-envelope"></i>
-              <div><strong>Kontakt aufnehmen</strong><span>Wir antworten in 24h</span></div>
-              <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              <div><strong data-i18n="nav.getInTouch">Kontakt aufnehmen</strong><span data-i18n="nav.replyIn24h">Wir antworten in 24h</span></div>
+              <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5" aria-hidden="true"></i>
             </a>
           </div>
         </div>
       </div>
-      <button class="hamburger-btn d-lg-none" id="hamburgerBtn" aria-label="Menü öffnen">
-        <i class="fa-solid fa-bars"></i>
+      <button class="hamburger-btn d-lg-none" id="hamburgerBtn" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileNav">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
       </button>
     </div>
   </div>
@@ -924,81 +1201,83 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
   <div class="mn-header">
 
-    <!-- ✅ LOGO IMAGE — موبايل ناف -->
-    <a href="index.html">
-      <img src="Logo-cropped.png" alt="3E Consulting" class="logo-img-sm">
-    </a>
+   
 
     <button class="mn-close" id="mobileNavClose" aria-label="Menü schließen">
-      <i class="fa-solid fa-xmark"></i>
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
     </button>
   </div>
   <div class="mn-body">
+
+    
+    <div class="mn-divider"></div>
+
     <div style="padding:.8rem 1rem .6rem;">
-      <p class="mn-section-label" style="padding:0 0 .5rem;">Sie sind</p>
+      <p class="mn-section-label" style="padding:0 0 .5rem;" data-i18n="nav.youAre">Sie sind</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-        <button class="mn-who-btn mn-who-active" onclick="mnMobileSwitch(this,'mob-bewerber')" id="mob-btn-bewerber">
-          <i class="fa-solid fa-user-tie"></i> Bewerber
+        <button class="mn-who-btn mn-who-active" aria-pressed="true" onclick="mnMobileSwitch(this,'mob-bewerber')" id="mob-btn-bewerber">
+          <i class="fa-solid fa-user-tie" aria-hidden="true"></i> <span data-i18n="nav.applicant">Bewerber</span>
         </button>
-        <button class="mn-who-btn" onclick="mnMobileSwitch(this,'mob-unternehmen')" id="mob-btn-unternehmen">
-          <i class="fa-solid fa-building"></i> Unternehmen
+        <button class="mn-who-btn" aria-pressed="false" onclick="mnMobileSwitch(this,'mob-unternehmen')" id="mob-btn-unternehmen">
+          <i class="fa-solid fa-building" aria-hidden="true"></i> <span data-i18n="nav.company">Unternehmen</span>
         </button>
       </div>
     </div>
     <div class="mn-divider"></div>
     <div id="mob-bewerber">
-      <div class="mn-section-label" style="padding-top:.7rem;">🚀 Jetzt starten</div>
-      <a href="#home"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span>Startseite<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="#services"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span>Leistungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="#process"      class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline"></i></span>Ablauf<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="Bewerbung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span>Bewerbung<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="vermitlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span>Voraussetzungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open"></i></span>Dokumentenorganisation<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem;">🚀 <span data-i18n="nav.startNow">Jetzt starten</span></div>
+      <a href="#home"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house" aria-hidden="true"></i></span><span data-i18n="nav.home">Startseite</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="#services"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span><span data-i18n="nav.services">Leistungen</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="#process"      class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline" aria-hidden="true"></i></span><span data-i18n="nav.process">Ablauf</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="Bewerbung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen" aria-hidden="true"></i></span><span data-i18n="nav.application">Bewerbung</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="vermitlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check" aria-hidden="true"></i></span><span data-i18n="nav.requirements">Voraussetzungen</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open" aria-hidden="true"></i></span><span data-i18n="nav.docOrganization">Dokumentenorganisation</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
       <div class="mn-divider"></div>
-      <div class="mn-section-label" style="padding-top:.7rem;">📚 Gut vorbereitet sein</div>
-      <a href="arbeitsmarkt.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span>Arbeitsmarkt<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="arbeitundsozialrecht.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span>Arbeits- und Sozialrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="aufenthaltsrecht.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-passport"></i></span>Aufenthaltsrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="alltag-deutschland.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span>Alltag in Deutschland<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem;">📚 <span data-i18n="nav.beWellPrepared">Gut vorbereitet sein</span></div>
+      <a href="arbeitsmarkt.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span><span data-i18n="nav.labourMarketShort">Arbeitsmarkt</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="alltag-deutschland.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></span><span data-i18n="nav.dailyLife">Alltag in Deutschland</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
       <div class="mn-divider"></div>
-      <a href="Chatbot.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;"><span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);"><i class="fa-solid fa-robot" style="color:var(--accent)"></i></span><span style="color:var(--white)">Chatbot-3e</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="Chatbot.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(224,122,31,.1);border-radius:10px;margin:.4rem .8rem;"><span class="mn-icon" style="background:rgba(224,122,31,.18);border-color:rgba(224,122,31,.32);"><i class="fa-solid fa-robot" style="color:var(--accent-hover)" aria-hidden="true"></i></span><span style="color:var(--white)">Chatbot-3e</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
     </div>
     <div id="mob-unternehmen" style="display:none">
-      <div class="mn-section-label" style="padding-top:.7rem;">🏢 Für Unternehmen</div>
-      <a href="#about"        class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users"></i></span>Über uns<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="service-unternehmen.html#vermittlung" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder"></i></span>Fachkräfte finden<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset"></i></span>Support & Beschwerden<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="login_company.php" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket"></i></span>Unternehmens-Login<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem;">🏢 <span data-i18n="nav.forCompanies">Für Unternehmen</span></div>
+      <a href="#about"        class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users" aria-hidden="true"></i></span><span data-i18n="nav.about">Über uns</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="service-unternehmen.html#vermittlung" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i></span><span data-i18n="nav.findTalent">Fachkräfte finden</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></span><span data-i18n="nav.supportComplaints">Support &amp; Beschwerden</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="login_company.php" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i></span><span data-i18n="nav.companyLogin">Unternehmens-Login</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
       <div class="mn-divider"></div>
-      <a href="#kontakt" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;"><span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);"><i class="fa-solid fa-envelope" style="color:var(--accent)"></i></span><span style="color:var(--white)">Kontakt aufnehmen</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="#kontakt" class="mn-link" onclick="closeMobileNav()" style="background:rgba(224,122,31,.1);border-radius:10px;margin:.4rem .8rem;"><span class="mn-icon" style="background:rgba(224,122,31,.18);border-color:rgba(224,122,31,.32);"><i class="fa-solid fa-envelope" style="color:var(--accent-hover)" aria-hidden="true"></i></span><span style="color:var(--white)" data-i18n="nav.getInTouch">Kontakt aufnehmen</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
     </div>
   </div>
   <div class="mn-footer">
-    <a href="registraion.html" class="mn-cta-primary" onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> Als Bewerber starten</a>
-    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building"></i> Für Unternehmen</a>
+    <a href="06_onboarding_bewerber.php" class="mn-cta-primary" onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> <span data-i18n="nav.startAsApplicant">Als Bewerber starten</span></a>
+    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building" aria-hidden="true"></i> <span data-i18n="nav.forCompanies">Für Unternehmen</span></a>
   </div>
 </nav>
 
+
+<!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+<main id="main-content">
 
 <!-- ═══════════════ HERO ═══════════════ -->
 <section class="hero" id="home">
   <div class="container-fluid px-0 position-relative" style="z-index:1; max-width:1200px; margin:0 auto; width:100%">
     <div class="row align-items-center g-4 g-xl-5">
       <div class="col-12 col-lg-7">
-        <div class="hero-eyebrow animate-up">IHR FULL-SERVICE-INTEGRATIONSPARTNER FÜR DEUTSCHLAND</div>
-        <h1 class="animate-up animate-delay-1">Von <em>Algerien</em> bis<br>zum deutschen<br>Arbeitgeber</h1>
-        <p class="hero-sub animate-up animate-delay-2">Wir begleiten Sie auf jedem Schritt — von der Dokumentenvorbereitung über die Unterkunftssuche bis zu Ihrer erfolgreichen Ankunft in Deutschland.</p>
+        <div class="hero-eyebrow animate-up" data-i18n="hero.eyebrow">IHR FULL-SERVICE-INTEGRATIONSPARTNER FÜR DEUTSCHLAND</div>
+        <h1 class="animate-up animate-delay-1" data-i18n-html="hero.title">Von <em>Algerien</em> bis<br>zum deutschen<br>Arbeitgeber</h1>
+        <p class="hero-sub animate-up animate-delay-2" data-i18n="hero.sub">Wir begleiten Sie auf jedem Schritt — von der Dokumentenvorbereitung über die Unterkunftssuche bis zu Ihrer erfolgreichen Ankunft in Deutschland.</p>
       </div>
       <div class="col-12 col-lg-5 animate-fade">
         <div class="hero-card">
-          <img src="karriere-berufe-industriemechaniker-hero-baeumer.jpg" alt="Azubi in Deutschland">
-          <a href="registraion.html" class="card-btn card-btn-company">
-            Ich bin Bewerber
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <img src="karriere-berufe-industriemechaniker-hero-baeumer.jpg" alt="Fachkraft aus Algerien während der praktischen Ausbildung bei einem deutschen Unternehmen" fetchpriority="high" decoding="async">
+          <a href="06_onboarding_bewerber.php" class="card-btn card-btn-company">
+            <span data-i18n="hero.imApplicant">Ich bin Bewerber</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="register_company.php" class="card-btn card-btn-bewerber">
-            Ich bin Unternehmen
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span data-i18n="hero.imCompany">Ich bin Unternehmen</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
@@ -1010,70 +1289,70 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 <section id="fachbereiche" class="fachbereiche-section">
   <div style="max-width:1200px; margin:0 auto">
     <div class="row align-items-end mb-4 g-3">
-      <div class="col-12 col-md-6"><div class="section-tag">Unsere Spezialisierung</div><h2 class="section-title">Branchen, in denen<br>wir vermitteln</h2></div>
-      <div class="col-12 col-md-6"><p class="section-sub mb-0">Ausgewählte Fachbereiche, in denen der Bedarf in Deutschland besonders hoch ist.</p></div>
+      <div class="col-12 col-md-6"><div class="section-tag" data-i18n="fb.tag">Unsere Spezialisierung</div><h2 class="section-title" data-i18n-html="fb.title">Branchen, in denen<br>wir vermitteln</h2></div>
+      <div class="col-12 col-md-6"><p class="section-sub mb-0" data-i18n="fb.sub">Ausgewählte Fachbereiche, in denen der Bedarf in Deutschland besonders hoch ist.</p></div>
     </div>
     <div class="row g-3 mb-3">
       <div class="col-6 col-sm-4 col-lg">
-        <div class="fb-main-card featured" data-target="sub-medizin">
-          <span class="fb-badge">Hohe Nachfrage</span>
-          <div class="fb-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-          <h3>Medizin &amp; Pflege</h3>
-          <span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-          <a href="vermitlung.html?track=aerzte#aerzte" class="fb-req-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a>
-        </div>
+        <article class="fb-main-card featured" data-target="sub-medizin">
+          <span class="fb-badge" data-i18n="fb.highDemand">Hohe Nachfrage</span>
+          <div class="fb-icon"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i></div>
+          <h3 data-i18n="fb.medizin.title">Medizin & Pflege</h3>
+          <span class="fb-arrow"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+          <a href="vermitlung.html?track=aerzte#aerzte" class="fb-req-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-list-check" aria-hidden="true"></i> <span data-i18n="fb.requirements">Voraussetzungen</span></a>
+        </article>
       </div>
       <div class="col-6 col-sm-4 col-lg">
-        <div class="fb-main-card" data-target="sub-handwerk">
-          <div class="fb-icon"><i class="fa-solid fa-helmet-safety"></i></div>
-          <h3>Handwerk</h3>
-          <span class="fb-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-          <a href="vermitlung.html?track=ausbildung#ausbildung" class="fb-req-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a>
-        </div>
+        <article class="fb-main-card" data-target="sub-handwerk">
+          <div class="fb-icon"><i class="fa-solid fa-helmet-safety" aria-hidden="true"></i></div>
+          <h3 data-i18n="fb.handwerk.title">Handwerk</h3>
+          <span class="fb-arrow"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+          <a href="vermitlung.html?track=shared&field=handwerk#shared" class="fb-req-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-list-check" aria-hidden="true"></i> <span data-i18n="fb.requirements">Voraussetzungen</span></a>
+        </article>
       </div>
       <div class="col-6 col-sm-4 col-lg">
-        <div class="fb-standalone">
-          <div class="fb-icon"><i class="fa-solid fa-user-nurse"></i></div>
-          <h3>Pflege-Ausbildung</h3>
-          <p>Pflegefachkraft &amp; Altenpflege</p>
-          <a href="vermitlung.html?track=pflege#pflege" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a>
-        </div>
+        <article class="fb-standalone">
+          <div class="fb-icon"><i class="fa-solid fa-user-nurse" aria-hidden="true"></i></div>
+          <h3 data-i18n="fb.pflege.title">Pflege-Ausbildung</h3>
+          <p data-i18n="fb.pflege.desc">Pflegefachkraft & Altenpflege</p>
+          <a href="vermitlung.html?track=pflege#pflege" class="fb-req-btn"><i class="fa-solid fa-list-check" aria-hidden="true"></i> <span data-i18n="fb.requirements">Voraussetzungen</span></a>
+        </article>
       </div>
       <div class="col-6 col-sm-4 col-lg">
-        <div class="fb-standalone">
-          <div class="fb-icon"><i class="fa-solid fa-utensils"></i></div>
-          <h3>Gastro &amp; Hotel</h3>
-          <p>Küche, Service &amp; Empfang</p>
-          <a href="vermitlung.html?track=ausbildung#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a>
-        </div>
+        <article class="fb-standalone">
+          <div class="fb-icon"><i class="fa-solid fa-utensils" aria-hidden="true"></i></div>
+          <h3 data-i18n="fb.gastro.title">Gastro & Hotel</h3>
+          <p data-i18n="fb.gastro.desc">Küche, Service & Empfang</p>
+          <a href="vermitlung.html?track=shared&field=gastro#shared" class="fb-req-btn"><i class="fa-solid fa-list-check" aria-hidden="true"></i> <span data-i18n="fb.requirements">Voraussetzungen</span></a>
+        </article>
       </div>
       <div class="col-6 col-sm-4 col-lg">
-        <div class="fb-standalone">
-          <div class="fb-icon"><i class="fa-solid fa-truck-fast"></i></div>
-          <h3>Logistik</h3>
-          <p>Lager, Transport &amp; Lieferkette</p>
-          <a href="vermitlung.html?track=ausbildung#ausbildung" class="fb-req-btn"><i class="fa-solid fa-list-check"></i> Voraussetzungen</a>
-        </div>
+        <article class="fb-standalone">
+          <div class="fb-icon"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></div>
+          <h3 data-i18n="fb.logistik.title">Logistik</h3>
+          <p data-i18n="fb.logistik.desc">Lager, Transport &amp; Lieferkette</p>
+          <a href="vermitlung.html?track=shared&field=logistik#shared" class="fb-req-btn"><i class="fa-solid fa-list-check" aria-hidden="true"></i> <span data-i18n="fb.requirements">Voraussetzungen</span></a>
+        </article>
       </div>
     </div>
     <div class="fb-sub-panel" id="sub-medizin">
-      <div class="fb-sub-title"><i class="fa-solid fa-heart-pulse me-1"></i>Medizin &amp; Pflege — Spezialisierungen</div>
+      <h4 class="fb-sub-title"><i class="fa-solid fa-heart-pulse me-1" aria-hidden="true"></i><span data-i18n="fb.medizin.subTitle">Medizin &amp; Pflege — Spezialisierungen</span></h4>
       <div class="row g-2">
-        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-bed-pulse"></i><span>Krankenpfleger/in</span></div></div>
-        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-person-cane"></i><span>Altenpfleger/in</span></div></div>
-        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-user-nurse"></i><span>Pflegefachkraft</span></div></div>
-        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-person-walking"></i><span>Physiotherapeut/in</span></div></div>
-        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-stethoscope"></i><span>Hausarzt / Facharzt</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-bed-pulse" aria-hidden="true"></i><span data-i18n="fb.medizin.item1">Krankenpfleger/in</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-person-cane" aria-hidden="true"></i><span data-i18n="fb.medizin.item2">Altenpfleger/in</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-user-nurse" aria-hidden="true"></i><span data-i18n="fb.medizin.item3">Pflegefachkraft</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-person-walking" aria-hidden="true"></i><span data-i18n="fb.medizin.item4">Physiotherapeut/in</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-stethoscope" aria-hidden="true"></i><span data-i18n="fb.medizin.item5">Hausarzt / Facharzt</span></div></div>
       </div>
     </div>
     <div class="fb-sub-panel" id="sub-handwerk">
-      <div class="fb-sub-title"><i class="fa-solid fa-helmet-safety me-1"></i>Handwerk — Spezialisierungen</div>
+      <h4 class="fb-sub-title"><i class="fa-solid fa-helmet-safety me-1" aria-hidden="true"></i><span data-i18n="fb.handwerk.subTitle">Handwerk — Spezialisierungen</span></h4>
       <div class="row g-2">
-        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-building-columns"></i><span>Baugewerbe</span></div></div>
-        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-bolt"></i><span>Elektrik</span></div></div>
-        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-faucet-drip"></i><span>Sanitär, Heizung &amp; Klima</span></div></div>
-        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-paint-roller"></i><span>Maler / Lackierer</span></div></div>
-        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-gear"></i><span>Metallbau</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-building-columns" aria-hidden="true"></i><span data-i18n="fb.handwerk.item1">Baugewerbe</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span data-i18n="fb.handwerk.item2">Elektrik</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-faucet-drip" aria-hidden="true"></i><span data-i18n="fb.handwerk.item3">Sanitär, Heizung &amp; Klima</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-paint-roller" aria-hidden="true"></i><span data-i18n="fb.handwerk.item4">Maler / Lackierer</span></div></div>
+        <div class="col-12 col-sm-6 col-md-4"><div class="fb-sub-item"><i class="fa-solid fa-gear" aria-hidden="true"></i><span data-i18n="fb.handwerk.item5">Metallbau</span></div></div>
       </div>
     </div>
   </div>
@@ -1084,15 +1363,15 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 <section id="process" class="process-section">
   <div style="max-width:1200px; margin:0 auto">
     <div class="row align-items-end mb-5 g-3">
-      <div class="col-12 col-md-6"><div class="section-tag">Wie es funktioniert</div><h2 class="section-title">In 4 Schritten<br>zum Ziel</h2></div>
-      <div class="col-12 col-md-6"><p class="section-sub mb-0">Ein klarer, transparenter Prozess — damit Sie wissen, was Sie erwartet.</p></div>
+      <div class="col-12 col-md-6"><div class="section-tag" data-i18n="process.tag">Wie es funktioniert</div><h2 class="section-title" data-i18n-html="process.title">In 4 Schritten<br>zum Ziel</h2></div>
+      <div class="col-12 col-md-6"><p class="section-sub mb-0" data-i18n="process.sub">Ein klarer, transparenter Prozess — damit Sie wissen, was Sie erwartet.</p></div>
     </div>
     <div class="row g-4 position-relative" id="processSteps">
       <div class="process-connector d-none d-lg-block"></div>
-      <div class="col-12 col-sm-6 col-lg-3"><div class="pstep"><div class="pstep-dot">01</div><h3>Profil erstellen</h3><p>Kostenlos registrieren, Profil ausfüllen und Dokumente hochladen.</p></div></div>
-      <div class="col-12 col-sm-6 col-lg-3"><div class="pstep"><div class="pstep-dot">02</div><h3>Prüfung &amp; Freigabe</h3><p>Unser Team prüft Ihre Unterlagen und gibt Ihr Profil für Firmen frei.</p></div></div>
-      <div class="col-12 col-sm-6 col-lg-3"><div class="pstep"><div class="pstep-dot">03</div><h3>Firmenkontakt</h3><p>Passende Unternehmen sehen Ihr Profil und nehmen Kontakt auf.</p></div></div>
-      <div class="col-12 col-sm-6 col-lg-3"><div class="pstep"><div class="pstep-dot">04</div><h3>Start in Deutschland</h3><p>Wir begleiten Sie bis zur Ankunft — Unterkunft, Visum, Integration.</p></div></div>
+      <div class="col-12 col-sm-6 col-lg-3"><article class="pstep"><div class="pstep-dot">01</div><h3 data-i18n="process.step1.title">Profil erstellen</h3><p data-i18n="process.step1.desc">Kostenlos registrieren, Profil ausfüllen und Dokumente hochladen.</p></article></div>
+      <div class="col-12 col-sm-6 col-lg-3"><article class="pstep"><div class="pstep-dot">02</div><h3 data-i18n="process.step2.title">Prüfung &amp; Freigabe</h3><p data-i18n="process.step2.desc">Unser Team prüft Ihre Unterlagen und gibt Ihr Profil für Firmen frei.</p></article></div>
+      <div class="col-12 col-sm-6 col-lg-3"><article class="pstep"><div class="pstep-dot">03</div><h3 data-i18n="process.step3.title">Firmenkontakt</h3><p data-i18n="process.step3.desc">Passende Unternehmen sehen Ihr Profil und nehmen Kontakt auf.</p></article></div>
+      <div class="col-12 col-sm-6 col-lg-3"><article class="pstep"><div class="pstep-dot">04</div><h3 data-i18n="process.step4.title">Start in Deutschland</h3><p data-i18n="process.step4.desc">Wir begleiten Sie bis zur Ankunft — Unterkunft, Visum, Integration.</p></article></div>
     </div>
   </div>
 </section>
@@ -1102,16 +1381,16 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 <section id="services" class="services-section">
   <div style="max-width:1200px; margin:0 auto">
     <div class="row align-items-end mb-5 g-3">
-      <div class="col-12 col-md-6"><div class="section-tag">Was wir bieten</div><h2 class="section-title">Vollständige Begleitung<br>auf Ihrem Weg</h2></div>
-      <div class="col-12 col-md-6"><p class="section-sub mb-0">Von der ersten Anfrage bis zur erfolgreichen Integration — wir sind Ihr verlässlicher Partner.</p></div>
+      <div class="col-12 col-md-6"><div class="section-tag" data-i18n="svc.tag">Was wir bieten</div><h2 class="section-title" data-i18n-html="svc.title">Vollständige Begleitung<br>auf Ihrem Weg</h2></div>
+      <div class="col-12 col-md-6"><p class="section-sub mb-0" data-i18n="svc.sub">Von der ersten Anfrage bis zur erfolgreichen Integration — wir sind Ihr verlässlicher Partner.</p></div>
     </div>
     <div class="row g-0" style="border:1px solid var(--border); border-radius:16px; overflow:hidden;">
-      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border); border-bottom:1px solid var(--border);"><div class="svc-card h-100"><div class="svc-num">01</div><span class="svc-icon"><i class="fa-solid fa-plane"></i></span><h3>Erster Schritt bis Ankunft</h3><p>Von der Vorbereitung bis zur Ankunft — wir begleiten Sie durch jeden Schritt.</p></div></div>
-      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border); border-bottom:1px solid var(--border);"><div class="svc-card h-100"><div class="svc-num">02</div><span class="svc-icon"><i class="fa-solid fa-comments"></i></span><h3>Sprachvorbereitung</h3><p>Beratung zu Sprachzertifikaten und Vorbereitung auf den deutschen Arbeitsalltag.</p></div></div>
-      <div class="col-12 col-sm-6 col-lg-4" style="border-bottom:1px solid var(--border);"><div class="svc-card h-100"><div class="svc-num">03</div><span class="svc-icon"><i class="fa-solid fa-file-lines"></i></span><h3>Dokumentenorganisation</h3><p>Alle Dokumente sammeln, übersetzen und korrekt ordnen — professionell.</p></div></div>
-      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border);"><div class="svc-card h-100"><div class="svc-num">04</div><span class="svc-icon"><i class="fa-solid fa-handshake"></i></span><h3>Firmenvermittlung</h3><p>Direkte Verbindung zu deutschen Unternehmen, die Fachkräfte suchen.</p></div></div>
-      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border);"><div class="svc-card h-100"><div class="svc-num">05</div><span class="svc-icon"><i class="fa-solid fa-passport"></i></span><h3>Visum &amp; Behörden</h3><p>Schritt-für-Schritt-Begleitung durch den Visa-Prozess.</p></div></div>
-      <div class="col-12 col-sm-6 col-lg-4"><div class="svc-card h-100"><div class="svc-num">06</div><span class="svc-icon"><i class="fa-solid fa-house"></i></span><h3>Unterkunft finden</h3><p>Aktive Unterstützung bei der Suche nach geeigneter Unterkunft.</p></div></div>
+      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border); border-bottom:1px solid var(--border);"><article class="svc-card h-100"><div class="svc-num">01</div><span class="svc-icon"><i class="fa-solid fa-plane" aria-hidden="true"></i></span><h3 data-i18n="svc.item1.title">Erster Schritt bis Ankunft</h3><p data-i18n="svc.item1.desc">Von der Vorbereitung bis zur Ankunft — wir begleiten Sie durch jeden Schritt.</p></article></div>
+      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border); border-bottom:1px solid var(--border);"><article class="svc-card h-100"><div class="svc-num">02</div><span class="svc-icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></span><h3 data-i18n="svc.item2.title">Sprachvorbereitung</h3><p data-i18n="svc.item2.desc">Beratung zu Sprachzertifikaten und Vorbereitung auf den deutschen Arbeitsalltag.</p></article></div>
+      <div class="col-12 col-sm-6 col-lg-4" style="border-bottom:1px solid var(--border);"><article class="svc-card h-100"><div class="svc-num">03</div><span class="svc-icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span><h3 data-i18n="svc.item3.title">Dokumentenorganisation</h3><p data-i18n="svc.item3.desc">Alle Dokumente sammeln, übersetzen und korrekt ordnen — professionell.</p></article></div>
+      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border);"><article class="svc-card h-100"><div class="svc-num">04</div><span class="svc-icon"><i class="fa-solid fa-handshake" aria-hidden="true"></i></span><h3 data-i18n="svc.item4.title">Firmenvermittlung</h3><p data-i18n="svc.item4.desc">Direkte Verbindung zu deutschen Unternehmen, die Fachkräfte suchen.</p></article></div>
+      <div class="col-12 col-sm-6 col-lg-4" style="border-right:1px solid var(--border);"><article class="svc-card h-100"><div class="svc-num">05</div><span class="svc-icon"><i class="fa-solid fa-passport" aria-hidden="true"></i></span><h3 data-i18n="svc.item5.title">Visum & Behörden</h3><p data-i18n="svc.item5.desc">Schritt-für-Schritt-Begleitung durch den Visa-Prozess.</p></article></div>
+      <div class="col-12 col-sm-6 col-lg-4"><article class="svc-card h-100"><div class="svc-num">06</div><span class="svc-icon"><i class="fa-solid fa-house" aria-hidden="true"></i></span><h3 data-i18n="svc.item6.title">Unterkunft finden</h3><p data-i18n="svc.item6.desc">Aktive Unterstützung bei der Suche nach geeigneter Unterkunft.</p></article></div>
     </div>
   </div>
 </section>
@@ -1120,41 +1399,41 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 <!-- ═══════════════ BRIDGE ═══════════════ -->
 <section id="vorteile" class="bridge-section">
   <div class="text-center mb-5">
-    <span class="section-tag">Unsere Plattform verbindet</span>
-    <h2 class="bridge-title">Ihre Vorteile — <em>auf beiden Seiten der Brücke</em></h2>
-    <p class="bridge-desc mx-auto mt-2">Klare Mehrwerte für Bewerber und Unternehmen — transparent und ohne versteckte Kosten.</p>
+    <span class="section-tag" data-i18n="bridge.tag">Unsere Plattform verbindet</span>
+    <h2 class="bridge-title" data-i18n-html="bridge.title">Ihre Vorteile — <em>auf beiden Seiten der Brücke</em></h2>
+    <p class="bridge-desc mx-auto mt-2" data-i18n="bridge.sub">Klare Mehrwerte für Bewerber und Unternehmen — transparent und ohne versteckte Kosten.</p>
   </div>
   <div style="max-width:1200px; margin:0 auto">
     <div class="row g-4 align-items-center">
       <div class="col-12 col-xl-5">
-        <div class="col-label col-label-green"><i class="fa-solid fa-user-tie"></i> Für Bewerber</div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-circle-check"></i></div><div class="b-row-text"><h4>Kostenlose Registrierung</h4><p>Gratis starten, ohne jedes finanzielle Risiko.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-coins"></i></div><div class="b-row-text"><h4>Zahlung nur bei Vertragsabschluss</h4><p>Zero-Risk-Modell — erst nach Unterzeichnung zahlen.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-video"></i></div><div class="b-row-text"><h4>Video-Profil statt Papierstapel</h4><p>30–90 Sek. — Persönlichkeit und Kompetenz direkt zeigen.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-shield-halved"></i></div><div class="b-row-text"><h4>Transparenter Zugang</h4><p>Klarer Weg ohne unlautere Vermittler.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-map-location-dot"></i></div><div class="b-row-text"><h4>Umfassende Begleitung</h4><p>Qualifikationsanerkennung und Visa — Schritt für Schritt.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-graduation-cap"></i></div><div class="b-row-text"><h4>Sprachkurse &amp; Training</h4><p>Zertifizierte Kurse und interkulturelle Trainings.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-passport"></i></div><div class="b-row-text"><h4>Visum &amp; Behörden</h4><p>Vollständige Begleitung durch alle Visaprozesse.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-comments"></i></div><div class="b-row-text"><h4>Dreisprachiger Support</h4><p>Deutsch, Französisch und Arabisch — immer erreichbar.</p></div></div>
+        <h3 class="col-label col-label-green"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> <span data-i18n="bridge.forApplicants">Für Bewerber</span></h3>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a1.title">Kostenlose Registrierung</h4><p data-i18n="bridge.a1.desc">Gratis starten, ohne jedes finanzielle Risiko.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-coins" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a2.title">Zahlung nur bei Vertragsabschluss</h4><p data-i18n="bridge.a2.desc">Zero-Risk-Modell — erst nach Unterzeichnung zahlen.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-video" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a3.title">Video-Profil statt Papierstapel</h4><p data-i18n="bridge.a3.desc">30–90 Sek. — Persönlichkeit und Kompetenz direkt zeigen.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a4.title">Transparenter Zugang</h4><p data-i18n="bridge.a4.desc">Klarer Weg ohne unlautere Vermittler.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a5.title">Umfassende Begleitung</h4><p data-i18n="bridge.a5.desc">Qualifikationsanerkennung und Visa — Schritt für Schritt.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a6.title">Sprachkurse & Training</h4><p data-i18n="bridge.a6.desc">Zertifizierte Kurse und interkulturelle Trainings.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-passport" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a7.title">Visum & Behörden</h4><p data-i18n="bridge.a7.desc">Vollständige Begleitung durch alle Visaprozesse.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-comments" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a8.title">Dreisprachiger Support</h4><p data-i18n="bridge.a8.desc">Deutsch, Französisch und Arabisch — immer erreichbar.</p></div></div>
       </div>
       <div class="col-2 bridge-center-col d-none d-xl-flex">
-        <img src="dj.png" alt="3E Consulting" class="bridge-logo-img">
+        <img src="dj.png" alt="3E Consulting – Symbol für die Verbindung zwischen Algerien und Deutschland" class="bridge-logo-img" loading="lazy" decoding="async">
       </div>
       <div class="col-12 col-xl-5">
-        <div class="col-label col-label-amber"><i class="fa-solid fa-building"></i> Für Unternehmen</div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-award"></i></div><div class="b-row-text"><h4>Geprüfte B1/B2-Fachkräfte</h4><p>Anerkanntes Deutschzertifikat — sofort einsatzbereit.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-file-video"></i></div><div class="b-row-text"><h4>Kandidaten per Video kennenlernen</h4><p>30–90 Sek. sichten — vor dem ersten Kontakt.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-hand-holding-dollar"></i></div><div class="b-row-text"><h4>Zahlung nur bei Einstellung</h4><p>Kein Kostenrisiko — nur bei erfolgreichem Abschluss.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-users-viewfinder"></i></div><div class="b-row-text"><h4>Exklusiver Talentpool</h4><p>Vorqualifizierte algerische Fachkräfte — exklusiv.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-bolt"></i></div><div class="b-row-text"><h4>Prozess-Effizienz §81a</h4><p>Beschleunigtes Fachkräfteverfahren inklusive.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-shield-halved"></i></div><div class="b-row-text"><h4>Integrationsrisiko minimiert</h4><p>Onboarding-Pakete für nachhaltige Eingliederung.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-filter"></i></div><div class="b-row-text"><h4>Vorgefilterter Bewerberpool</h4><p>Jede Bewerbung persönlich geprüft — nur Passende.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-headset"></i></div><div class="b-row-text"><h4>Betreuung nach Einstellung</h4><p>Wir bleiben ansprechbar — für Integration und Fragen.</p></div></div>
+        <h3 class="col-label col-label-amber"><i class="fa-solid fa-building" aria-hidden="true"></i> <span data-i18n="bridge.forCompanies">Für Unternehmen</span></h3>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-award" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b1.title">Geprüfte B1/B2-Fachkräfte</h4><p data-i18n="bridge.b1.desc">Anerkanntes Deutschzertifikat — sofort einsatzbereit.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-file-video" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b2.title">Kandidaten per Video kennenlernen</h4><p data-i18n="bridge.b2.desc">30–90 Sek. sichten — vor dem ersten Kontakt.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b3.title">Zahlung nur bei Einstellung</h4><p data-i18n="bridge.b3.desc">Kein Kostenrisiko — nur bei erfolgreichem Abschluss.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b4.title">Exklusiver Talentpool</h4><p data-i18n="bridge.b4.desc">Vorqualifizierte algerische Fachkräfte — exklusiv.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b5.title">Prozess-Effizienz §81a</h4><p data-i18n="bridge.b5.desc">Beschleunigtes Fachkräfteverfahren inklusive.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b6.title">Integrationsrisiko minimiert</h4><p data-i18n="bridge.b6.desc">Onboarding-Pakete für nachhaltige Eingliederung.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-filter" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b7.title">Vorgefilterter Bewerberpool</h4><p data-i18n="bridge.b7.desc">Jede Bewerbung persönlich geprüft — nur Passende.</p></div></div>
+        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-headset" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b8.title">Betreuung nach Einstellung</h4><p data-i18n="bridge.b8.desc">Wir bleiben ansprechbar — für Integration und Fragen.</p></div></div>
       </div>
     </div>
     <div class="row g-3 mt-4">
-      <div class="col-12 col-md-6"><div class="bb-card bb-green"><div class="bb-icon bb-icon-green"><i class="fa-solid fa-rocket"></i></div><div class="bb-text"><h4>Bereit für Ihren Weg nach Deutschland?</h4><p>Kostenlos registrieren und Video-Profil erstellen — in Minuten.</p></div><a href="registraion.html" class="bb-btn bb-btn-green">Jetzt starten →</a></div></div>
-      <div class="col-12 col-md-6"><div class="bb-card bb-amber"><div class="bb-icon bb-icon-amber"><i class="fa-solid fa-magnifying-glass"></i></div><div class="bb-text"><h4>Fachkräftemangel lösen?</h4><p>Zugang zu geprüften, motivierten Kandidaten — ohne Vorabkosten.</p></div><a href="login_company.php" class="bb-btn bb-btn-amber">Kandidaten sehen →</a></div></div>
+      <div class="col-12 col-md-6"><div class="bb-card bb-green"><div class="bb-icon bb-icon-green"><i class="fa-solid fa-rocket" aria-hidden="true"></i></div><div class="bb-text"><h3 data-i18n="bridge.cta1.title">Bereit für Ihren Weg nach Deutschland?</h3><p data-i18n="bridge.cta1.desc">Kostenlos registrieren und Video-Profil erstellen — in Minuten.</p></div><a href="registraion.html" class="bb-btn bb-btn-green" data-i18n="bridge.cta1.btn">Jetzt starten →</a></div></div>
+      <div class="col-12 col-md-6"><div class="bb-card bb-amber"><div class="bb-icon bb-icon-amber"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></div><div class="bb-text"><h3 data-i18n="bridge.cta2.title">Fachkräftemangel lösen?</h3><p data-i18n="bridge.cta2.desc">Zugang zu geprüften, motivierten Kandidaten — ohne Vorabkosten.</p></div><a href="login_company.php" class="bb-btn bb-btn-amber" data-i18n="bridge.cta2.btn">Kandidaten sehen →</a></div></div>
     </div>
   </div>
 </section>
@@ -1163,40 +1442,40 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 <section id="kontakt" class="contact-section">
   <div class="contact-wrap">
     <div class="contact-info-side">
-      <span class="section-tag">Kontakt</span>
-      <h2>Lassen Sie uns sprechen</h2>
-      <p>Haben Sie Fragen zu Ihrer Bewerbung oder Ihrer Stellensuche? Wir sind für Sie da </p>
+      <span class="section-tag" data-i18n="contact.tag">Kontakt</span>
+      <h2 data-i18n="contact.title">Lassen Sie uns sprechen</h2>
+      <p data-i18n="contact.sub">Haben Sie Fragen zu Ihrer Bewerbung oder Ihrer Stellensuche? Wir sind für Sie da </p>
       <div class="cinfo-cards">
-        <a href="https://wa.me/213799456834" class="cinfo-card" target="_blank">
-          <div class="cinfo-card-icon green"><i class="fa-brands fa-whatsapp"></i></div>
+        <a href="https://wa.me/213799456834" class="cinfo-card" target="_blank" rel="noopener">
+          <div class="cinfo-card-icon green"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></div>
           <div class="cinfo-card-text"><span>WhatsApp</span><strong>+213 799456834</strong></div>
         </a>
         <a href="mailto:info@3e-consulting.de" class="cinfo-card">
-          <div class="cinfo-card-icon amber"><i class="fa-solid fa-envelope"></i></div>
-          <div class="cinfo-card-text"><span>E-Mail</span><strong>merabtisouheil0@gmail.com</strong></div>
+          <div class="cinfo-card-icon amber"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
+          <div class="cinfo-card-text"><span data-i18n="contact.email">E-Mail</span><strong>info@3econsulting.net</strong></div>
         </a>
       </div>
     </div>
     <div class="contact-form-side">
-      <h3>Nachricht senden</h3>
-      <p>Wir antworten innerhalb von 24 Stunden.</p>
-      <span class="type-label">Sie sind</span>
-      <div class="type-selector">
-        <button class="type-btn active" onclick="this.classList.add('active');this.nextElementSibling.classList.remove('active')">
-          <i class="fa-solid fa-user-tie"></i> Bewerber
+      <h3 data-i18n="contact.form.title">Nachricht senden</h3>
+      <p data-i18n="contact.form.sub">Wir antworten innerhalb von 24 Stunden.</p>
+      <span class="type-label" id="contactTypeLabel" data-i18n="contact.form.youAre">Sie sind</span>
+      <div class="type-selector" role="group" aria-labelledby="contactTypeLabel">
+        <button type="button" class="type-btn active" aria-pressed="true" onclick="this.classList.add('active');this.setAttribute('aria-pressed','true');this.nextElementSibling.classList.remove('active');this.nextElementSibling.setAttribute('aria-pressed','false')">
+          <i class="fa-solid fa-user-tie" aria-hidden="true"></i> <span data-i18n="nav.applicant">Bewerber</span>
         </button>
-        <button class="type-btn" onclick="this.classList.add('active');this.previousElementSibling.classList.remove('active')">
-          <i class="fa-solid fa-building"></i> Unternehmen
+        <button type="button" class="type-btn" aria-pressed="false" onclick="this.classList.add('active');this.setAttribute('aria-pressed','true');this.previousElementSibling.classList.remove('active');this.previousElementSibling.setAttribute('aria-pressed','false')">
+          <i class="fa-solid fa-building" aria-hidden="true"></i> <span data-i18n="nav.company">Unternehmen</span>
         </button>
       </div>
       <form id="contactForm" onsubmit="sendToWhatsApp(event)">
         <div class="row g-3 mb-3">
-          <div class="col-12 col-sm-6"><div class="field"><label>Ihr Name</label><input type="text" id="cf-name" placeholder="Max Mustermann" required></div></div>
-          <div class="col-12 col-sm-6"><div class="field"><label>E-Mail</label><input type="email" id="cf-email" placeholder="max@beispiel.de"></div></div>
+          <div class="col-12 col-sm-6"><div class="field"><label for="cf-name" data-i18n="contact.form.name">Ihr Name</label><input type="text" id="cf-name" name="name" placeholder="Souheil Merabti " required></div></div>
+          <div class="col-12 col-sm-6"><div class="field"><label for="cf-email" data-i18n="contact.email">E-Mail</label><input type="email" id="cf-email" name="email" placeholder="info@3econsulting.net"></div></div>
         </div>
-        <div class="field mb-3"><label>Telefon / WhatsApp</label><input type="tel" id="cf-phone" placeholder="+213 XX XX XX XX"></div>
-        <div class="field mb-3"><label>Nachricht</label><textarea id="cf-message" rows="5" placeholder="Wie können wir Ihnen helfen?" required></textarea></div>
-        <button type="submit" class="btn-submit"><i class="fa-brands fa-whatsapp"></i> Über WhatsApp senden</button>
+        <div class="field mb-3"><label for="cf-phone" data-i18n="contact.form.phone">Telefon / WhatsApp</label><input type="tel" id="cf-phone" name="phone" placeholder="+213 XX XX XX XX"></div>
+        <div class="field mb-3"><label for="cf-message" data-i18n="contact.form.message">Nachricht</label><textarea id="cf-message" name="message" rows="5" data-i18n-placeholder="contact.form.messagePh" placeholder="Wie können wir Ihnen helfen?" required></textarea></div>
+        <button type="submit" class="btn-submit"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <span data-i18n="contact.form.submit">Über WhatsApp senden</span></button>
       </form>
       <script>
       function sendToWhatsApp(e) {
@@ -1215,50 +1494,445 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
   </div>
 </section>
 
+</main>
+
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
   <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 w-100">
 
     <!-- ✅ LOGO IMAGE — الفوتر -->
     <a href="index.html">
-      <img src="Logo-cropped.png" alt="3E Consulting" class="logo-img-sm">
+      <img src="Logo-cropped.png" alt="3E Consulting Logo" class="logo-img-sm" loading="lazy" decoding="async">
     </a>
 
-    <div class="footer-copy">© 2026 3E Consulting. Alle Rechte vorbehalten.</div>
+    <div class="footer-copy" data-i18n="footer.copy">© 2026 3E Consulting. Alle Rechte vorbehalten.</div>
     <div class="footer-links">
-      <a href="impressum.php">Impressum</a>
-      <a href="impressum.php#tab-datenschutz">Datenschutz</a>
+      <a href="impressum.php" data-i18n="footer.imprint">Impressum</a>
+      <a href="impressum.php#tab-datenschutz" data-i18n="footer.privacy">Datenschutz</a>
     </div>
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" defer></script>
 <script>
+/* ════════════════════════════════════════════════════════════════
+   I18N — TRANSLATION DICTIONARY (DE / FR / EN / AR)
+   ════════════════════════════════════════════════════════════════ */
+const I18N = {
+  de: {
+    "nav.services":"Leistungen","nav.process":"Ablauf","nav.about":"Über uns","nav.contact":"Kontakt",
+    "nav.menu":"MENÜ","nav.youAre":"Sie sind","nav.applicant":"Bewerber","nav.company":"Unternehmen",
+    "nav.startNow":"Jetzt starten","nav.submitApplication":"Bewerbung einreichen","nav.checkRequirements":"Voraussetzungen prüfen",
+    "nav.docOrganization":"Dokumentenorganisation","nav.profileVideo":"Profil-Video erstellen",
+    "nav.beWellPrepared":"Gut vorbereitet sein","nav.labourMarket":"Arbeitsmarkt Deutschland","nav.labourMarketShort":"Arbeitsmarkt",
+    "nav.dailyLife":"Alltag in Deutschland","nav.askAnyQuestion":"Stellen Sie jede Frage",
+    "nav.forCompanies":"Für Unternehmen","nav.findTalent":"Fachkräfte finden","nav.supportComplaints":"Support & Beschwerden",
+    "nav.companyLogin":"Unternehmens-Login","nav.getInTouch":"Kontakt aufnehmen","nav.replyIn24h":"Wir antworten in 24h",
+    "nav.language":"Sprache","nav.home":"Startseite","nav.application":"Bewerbung","nav.requirements":"Voraussetzungen",
+    "nav.startAsApplicant":"Als Bewerber starten",
+    "hero.eyebrow":"IHR FULL-SERVICE-INTEGRATIONSPARTNER FÜR DEUTSCHLAND",
+    "hero.title":"Von <em>Algerien</em> bis<br>zum deutschen<br>Arbeitgeber",
+    "hero.sub":"Wir begleiten Sie auf jedem Schritt — von der Dokumentenvorbereitung über die Unterkunftssuche bis zu Ihrer erfolgreichen Ankunft in Deutschland.",
+    "hero.imApplicant":"Ich bin Bewerber","hero.imCompany":"Ich bin Unternehmen",
+    "fb.tag":"Unsere Spezialisierung","fb.title":"Branchen, in denen<br>wir vermitteln",
+    "fb.sub":"Ausgewählte Fachbereiche, in denen der Bedarf in Deutschland besonders hoch ist.",
+    "fb.highDemand":"Hohe Nachfrage","fb.requirements":"Voraussetzungen",
+    "fb.medizin.title":"Medizin & Pflege","fb.medizin.subTitle":"Medizin & Pflege — Spezialisierungen",
+    "fb.medizin.item1":"Krankenpfleger/in","fb.medizin.item2":"Altenpfleger/in","fb.medizin.item3":"Pflegefachkraft",
+    "fb.medizin.item4":"Physiotherapeut/in","fb.medizin.item5":"Hausarzt / Facharzt",
+    "fb.handwerk.title":"Handwerk","fb.handwerk.subTitle":"Handwerk — Spezialisierungen",
+    "fb.handwerk.item1":"Baugewerbe","fb.handwerk.item2":"Elektrik","fb.handwerk.item3":"Sanitär, Heizung & Klima",
+    "fb.handwerk.item4":"Maler / Lackierer","fb.handwerk.item5":"Metallbau",
+    "fb.pflege.title":"Pflege-Ausbildung","fb.pflege.desc":"Pflegefachkraft & Altenpflege",
+    "fb.gastro.title":"Gastro & Hotel","fb.gastro.desc":"Küche, Service & Empfang",
+    "fb.logistik.title":"Logistik","fb.logistik.desc":"Lager, Transport & Lieferkette",
+    "process.tag":"Wie es funktioniert","process.title":"In 4 Schritten<br>zum Ziel",
+    "process.sub":"Ein klarer, transparenter Prozess — damit Sie wissen, was Sie erwartet.",
+    "process.step1.title":"Profil erstellen","process.step1.desc":"Kostenlos registrieren, Profil ausfüllen und Dokumente hochladen.",
+    "process.step2.title":"Prüfung & Freigabe","process.step2.desc":"Unser Team prüft Ihre Unterlagen und gibt Ihr Profil für Firmen frei.",
+    "process.step3.title":"Firmenkontakt","process.step3.desc":"Passende Unternehmen sehen Ihr Profil und nehmen Kontakt auf.",
+    "process.step4.title":"Start in Deutschland","process.step4.desc":"Wir begleiten Sie bis zur Ankunft — Unterkunft, Visum, Integration.",
+    "svc.tag":"Was wir bieten","svc.title":"Vollständige Begleitung<br>auf Ihrem Weg",
+    "svc.sub":"Von der ersten Anfrage bis zur erfolgreichen Integration — wir sind Ihr verlässlicher Partner.",
+    "svc.item1.title":"Erster Schritt bis Ankunft","svc.item1.desc":"Von der Vorbereitung bis zur Ankunft — wir begleiten Sie durch jeden Schritt.",
+    "svc.item2.title":"Sprachvorbereitung","svc.item2.desc":"Beratung zu Sprachzertifikaten und Vorbereitung auf den deutschen Arbeitsalltag.",
+    "svc.item3.title":"Dokumentenorganisation","svc.item3.desc":"Alle Dokumente sammeln, übersetzen und korrekt ordnen — professionell.",
+    "svc.item4.title":"Firmenvermittlung","svc.item4.desc":"Direkte Verbindung zu deutschen Unternehmen, die Fachkräfte suchen.",
+    "svc.item5.title":"Visum & Behörden","svc.item5.desc":"Schritt-für-Schritt-Begleitung durch den Visa-Prozess.",
+    "svc.item6.title":"Unterkunft finden","svc.item6.desc":"Aktive Unterstützung bei der Suche nach geeigneter Unterkunft.",
+    "bridge.tag":"Unsere Plattform verbindet","bridge.title":"Ihre Vorteile — <em>auf beiden Seiten der Brücke</em>",
+    "bridge.sub":"Klare Mehrwerte für Bewerber und Unternehmen — transparent und ohne versteckte Kosten.",
+    "bridge.forApplicants":"Für Bewerber","bridge.forCompanies":"Für Unternehmen",
+    "bridge.a1.title":"Kostenlose Registrierung","bridge.a1.desc":"Gratis starten, ohne jedes finanzielle Risiko.",
+    "bridge.a2.title":"Zahlung nur bei Vertragsabschluss","bridge.a2.desc":"Zero-Risk-Modell — erst nach Unterzeichnung zahlen.",
+    "bridge.a3.title":"Video-Profil statt Papierstapel","bridge.a3.desc":"30–90 Sek. — Persönlichkeit und Kompetenz direkt zeigen.",
+    "bridge.a4.title":"Transparenter Zugang","bridge.a4.desc":"Klarer Weg ohne unlautere Vermittler.",
+    "bridge.a5.title":"Umfassende Begleitung","bridge.a5.desc":"Qualifikationsanerkennung und Visa — Schritt für Schritt.",
+    "bridge.a6.title":"Sprachkurse & Training","bridge.a6.desc":"Zertifizierte Kurse und interkulturelle Trainings.",
+    "bridge.a7.title":"Visum & Behörden","bridge.a7.desc":"Vollständige Begleitung durch alle Visaprozesse.",
+    "bridge.a8.title":"Viersprachiger Support","bridge.a8.desc":"Deutsch, Französisch ,English und Arabisch — immer erreichbar.",
+    "bridge.b1.title":"Geprüfte B1/B2-Fachkräfte","bridge.b1.desc":"Anerkanntes Deutschzertifikat — sofort einsatzbereit.",
+    "bridge.b2.title":"Kandidaten per Video kennenlernen","bridge.b2.desc":"30–90 Sek. sichten — vor dem ersten Kontakt.",
+    "bridge.b3.title":"Zahlung nur bei Einstellung","bridge.b3.desc":"Kein Kostenrisiko — nur bei erfolgreichem Abschluss.",
+    "bridge.b4.title":"Exklusiver Talentpool","bridge.b4.desc":"Vorqualifizierte algerische Fachkräfte — exklusiv.",
+    "bridge.b5.title":"Prozess-Effizienz §81a","bridge.b5.desc":"Beschleunigtes Fachkräfteverfahren inklusive.",
+    "bridge.b6.title":"Integrationsrisiko minimiert","bridge.b6.desc":"Onboarding-Pakete für nachhaltige Eingliederung.",
+    "bridge.b7.title":"Vorgefilterter Bewerberpool","bridge.b7.desc":"Jede Bewerbung persönlich geprüft — nur Passende.",
+    "bridge.b8.title":"Betreuung nach Einstellung","bridge.b8.desc":"Wir bleiben ansprechbar — für Integration und Fragen.",
+    "bridge.cta1.title":"Bereit für Ihren Weg nach Deutschland?","bridge.cta1.desc":"Kostenlos registrieren und Video-Profil erstellen — in Minuten.","bridge.cta1.btn":"Jetzt starten →",
+    "bridge.cta2.title":"Fachkräftemangel lösen?","bridge.cta2.desc":"Zugang zu geprüften, motivierten Kandidaten — ohne Vorabkosten.","bridge.cta2.btn":"Kandidaten sehen →",
+    "contact.tag":"Kontakt","contact.title":"Lassen Sie uns sprechen",
+    "contact.sub":"Haben Sie Fragen zu Ihrer Bewerbung oder Ihrer Stellensuche? Wir sind für Sie da ",
+    "contact.email":"E-Mail",
+    "contact.form.title":"Nachricht senden","contact.form.sub":"Wir antworten innerhalb von 24 Stunden.",
+    "contact.form.youAre":"Sie sind","contact.form.name":"Ihr Name","contact.form.phone":"Telefon / WhatsApp",
+    "contact.form.message":"Nachricht","contact.form.messagePh":"Wie können wir Ihnen helfen?","contact.form.submit":"Über WhatsApp senden",
+    "footer.copy":"© 2026 3E Consulting. Alle Rechte vorbehalten.","footer.imprint":"Impressum","footer.privacy":"Datenschutz",
+    "pageTitle":"3E Consulting | Fachkräftevermittlung Algerien – Deutschland"
+  },
+
+  fr: {
+    "nav.services":"Services","nav.process":"Processus","nav.about":"À propos","nav.contact":"Contact",
+    "nav.menu":"MENU","nav.youAre":"Vous êtes","nav.applicant":"Candidat","nav.company":"Entreprise",
+    "nav.startNow":"Commencer maintenant","nav.submitApplication":"Soumettre une candidature","nav.checkRequirements":"Vérifier les conditions",
+    "nav.docOrganization":"Organisation des documents","nav.profileVideo":"Créer une vidéo de profil",
+    "nav.beWellPrepared":"Bien se préparer","nav.labourMarket":"Marché du travail en Allemagne","nav.labourMarketShort":"Marché du travail",
+    "nav.dailyLife":"Vie quotidienne en Allemagne","nav.askAnyQuestion":"Posez toutes vos questions",
+    "nav.forCompanies":"Pour les entreprises","nav.findTalent":"Trouver des talents","nav.supportComplaints":"Support & réclamations",
+    "nav.companyLogin":"Connexion entreprise","nav.getInTouch":"Nous contacter","nav.replyIn24h":"Réponse sous 24h",
+    "nav.language":"Langue","nav.home":"Accueil","nav.application":"Candidature","nav.requirements":"Conditions requises",
+    "nav.startAsApplicant":"Commencer en tant que candidat",
+    "hero.eyebrow":"VOTRE PARTENAIRE D'INTÉGRATION FULL-SERVICE POUR L'ALLEMAGNE",
+    "hero.title":"De l'<em>Algérie</em><br>à votre employeur<br>allemand",
+    "hero.sub":"Nous vous accompagnons à chaque étape — de la préparation des documents à la recherche de logement, jusqu'à votre arrivée réussie en Allemagne.",
+    "hero.imApplicant":"Je suis candidat","hero.imCompany":"Je suis une entreprise",
+    "fb.tag":"Notre spécialisation","fb.title":"Secteurs dans lesquels<br>nous plaçons",
+    "fb.sub":"Des secteurs spécifiques où la demande en Allemagne est particulièrement élevée.",
+    "fb.highDemand":"Forte demande","fb.requirements":"Conditions requises",
+    "fb.medizin.title":"Médecine & Soins","fb.medizin.subTitle":"Médecine &amp; Soins — Spécialisations",
+    "fb.medizin.item1":"Infirmier(ère)","fb.medizin.item2":"Aide-soignant(e) pour personnes âgées","fb.medizin.item3":"Professionnel(le) de soins",
+    "fb.medizin.item4":"Kinésithérapeute","fb.medizin.item5":"Médecin généraliste / spécialiste",
+    "fb.handwerk.title":"Artisanat","fb.handwerk.subTitle":"Artisanat — Spécialisations",
+    "fb.handwerk.item1":"Bâtiment","fb.handwerk.item2":"Électricité","fb.handwerk.item3":"Sanitaire, chauffage &amp; climatisation",
+    "fb.handwerk.item4":"Peintre / Laqueur","fb.handwerk.item5":"Métallurgie",
+    "fb.pflege.title":"Formation en soins infirmiers","fb.pflege.desc":"Professionnel de soins &amp; gériatrie",
+    "fb.gastro.title":"Restauration &; Hôtellerie","fb.gastro.desc":"Cuisine, service & réception",
+    "fb.logistik.title":"Logistique","fb.logistik.desc":"Entrepôt, transport &amp; chaîne d'approvisionnement",
+    "process.tag":"Comment ça marche","process.title":"En 4 étapes<br>vers l'objectif",
+    "process.sub":"Un processus clair et transparent — pour que vous sachiez à quoi vous attendre.",
+    "process.step1.title":"Créer un profil","process.step1.desc":"Inscrivez-vous gratuitement, remplissez votre profil et téléchargez vos documents.",
+    "process.step2.title":"Vérification &validation","process.step2.desc":"Notre équipe vérifie vos documents et valide votre profil pour les entreprises.",
+    "process.step3.title":"Contact avec l'entreprise","process.step3.desc":"Les entreprises correspondantes voient votre profil et vous contactent.",
+    "process.step4.title":"Départ vers l'Allemagne","process.step4.desc":"Nous vous accompagnons jusqu'à votre arrivée — logement, visa, intégration.",
+    "svc.tag":"Ce que nous offrons","svc.title":"Un accompagnement complet<br>sur votre parcours",
+    "svc.sub":"De la première demande jusqu'à une intégration réussie — nous sommes votre partenaire fiable.",
+    "svc.item1.title":"Premiers pas jusqu'à l'arrivée","svc.item1.desc":"De la préparation à l'arrivée — nous vous accompagnons à chaque étape.",
+    "svc.item2.title":"Préparation linguistique","svc.item2.desc":"Conseils sur les certificats de langue et préparation au quotidien professionnel allemand.",
+    "svc.item3.title":"Organisation des documents","svc.item3.desc":"Collecte, traduction et classement correct de tous les documents — de façon professionnelle.",
+    "svc.item4.title":"Placement en entreprise","svc.item4.desc":"Connexion directe avec des entreprises allemandes à la recherche de personnel qualifié.",
+    "svc.item5.title":"Visa & démarches administratives","svc.item5.desc":"Accompagnement pas à pas tout au long de la procédure de visa.",
+    "svc.item6.title":"Recherche de logement","svc.item6.desc":"Soutien actif dans la recherche d'un logement adapté.",
+    "bridge.tag":"Notre plateforme relie","bridge.title":"Vos avantages — <em>des deux côtés du pont</em>",
+    "bridge.sub":"Des avantages clairs pour les candidats et les entreprises — transparents et sans frais cachés.",
+    "bridge.forApplicants":"Pour les candidats","bridge.forCompanies":"Pour les entreprises",
+    "bridge.a1.title":"Inscription gratuite","bridge.a1.desc":"Démarrez gratuitement, sans aucun risque financier.",
+    "bridge.a2.title":"Paiement uniquement à la signature du contrat","bridge.a2.desc":"Modèle sans risque — payez uniquement après signature.",
+    "bridge.a3.title":"Profil vidéo plutôt qu'une pile de papiers","bridge.a3.desc":"30 à 90 sec. — montrez directement votre personnalité et vos compétences.",
+    "bridge.a4.title":"Accès transparent","bridge.a4.desc":"Un parcours clair, sans intermédiaires malhonnêtes.",
+    "bridge.a5.title":"Accompagnement complet","bridge.a5.desc":"Reconnaissance des qualifications et visa — étape par étape.",
+    "bridge.a6.title":"Cours de langue &amp; training","bridge.a6.desc":"Cours certifiés et formations interculturelles.",
+    "bridge.a7.title":"Visa & démarches administratives","bridge.a7.desc":"Accompagnement complet tout au long des procédures de visa.",
+    "bridge.a8.title":"Support trilingue","bridge.a8.desc":"Allemand, français et arabe — toujours disponible.",
+    "bridge.b1.title":"Personnel qualifié vérifié niveau B1/B2","bridge.b1.desc":"Certificat d'allemand reconnu — opérationnel immédiatement.",
+    "bridge.b2.title":"Découvrez les candidats en vidéo","bridge.b2.desc":"Visionnez 30–90 sec. clips — avant le premier contact.",
+    "bridge.b3.title":"Paiement uniquement à l'embauche","bridge.b3.desc":"Aucun risque financier — seulement en cas de succès.",
+    "bridge.b4.title":"Vivier de talents exclusif","bridge.b4.desc":"Personnel algérien pré-qualifié — en exclusivité.",
+    "bridge.b5.title":"Efficacité du processus §81a","bridge.b5.desc":"Procédure accélérée pour personnel qualifié incluse.",
+    "bridge.b6.title":"Risque d'intégration minimisé","bridge.b6.desc":"Programmes d'accueil pour une intégration durable.",
+    "bridge.b7.title":"Vivier de candidats pré-filtré","bridge.b7.desc":"Chaque candidature vérifiée personnellement — seulement les profils adaptés.",
+    "bridge.b8.title":"Accompagnement après l'embauche","bridge.b8.desc":"Nous restons disponibles — pour l'intégration et vos questions.",
+    "bridge.cta1.title":"Prêt pour votre parcours vers l'Allemagne ?","bridge.cta1.desc":"Inscrivez-vous gratuitement et créez votre profil vidéo — en quelques minutes.","bridge.cta1.btn":"Commencer maintenant →",
+    "bridge.cta2.title":"Résoudre la pénurie de personnel qualifié ?","bridge.cta2.desc":"Accès à des candidats vérifiés et motivés — sans frais initiaux.","bridge.cta2.btn":"Voir les candidats →",
+    "contact.tag":"Contact","contact.title":"Parlons-en",
+    "contact.sub":"Vous avez des questions sur votre candidature ou votre recherche d'emploi ? Nous sommes là pour vous ",
+    "contact.email":"E-mail",
+    "contact.form.title":"Envoyer un message","contact.form.sub":"Nous répondons sous 24 heures.",
+    "contact.form.youAre":"Vous êtes","contact.form.name":"Votre nom","contact.form.phone":"Téléphone / WhatsApp",
+    "contact.form.message":"Message","contact.form.messagePh":"Comment pouvons-nous vous aider ?","contact.form.submit":"Envoyer via WhatsApp",
+    "footer.copy":"© 2026 3E Consulting. Tous droits réservés.","footer.imprint":"Mentions légales","footer.privacy":"Confidentialité",
+    "pageTitle":"3E Consulting | Recrutement de talents Algérie – Allemagne"
+  },
+
+  en: {
+    "nav.services":"Services","nav.process":"Process","nav.about":"About us","nav.contact":"Contact",
+    "nav.menu":"MENU","nav.youAre":"You are","nav.applicant":"Applicant","nav.company":"Company",
+    "nav.startNow":"Get started","nav.submitApplication":"Submit application","nav.checkRequirements":"Check requirements",
+    "nav.docOrganization":"Document organization","nav.profileVideo":"Create profile video",
+    "nav.beWellPrepared":"Be well prepared","nav.labourMarket":"German labour market","nav.labourMarketShort":"Labour market",
+    "nav.dailyLife":"Daily life in Germany","nav.askAnyQuestion":"Ask any question",
+    "nav.forCompanies":"For companies","nav.findTalent":"Find talent","nav.supportComplaints":"Support & complaints",
+    "nav.companyLogin":"Company login","nav.getInTouch":"Get in touch","nav.replyIn24h":"We reply within 24h",
+    "nav.language":"Language","nav.home":"Home","nav.application":"Application","nav.requirements":"Requirements",
+    "nav.startAsApplicant":"Start as an applicant",
+    "hero.eyebrow":"YOUR FULL-SERVICE INTEGRATION PARTNER FOR GERMANY",
+    "hero.title":"From <em>Algeria</em><br>to your German<br>employer",
+    "hero.sub":"We support you every step of the way — from document preparation to finding accommodation, all the way to your successful arrival in Germany.",
+    "hero.imApplicant":"I'm an applicant","hero.imCompany":"I'm a company",
+    "fb.tag":"Our specialization","fb.title":"Industries where<br>we place candidates",
+    "fb.sub":"Selected fields where demand in Germany is particularly high.",
+    "fb.highDemand":"High demand","fb.requirements":"Requirements",
+    "fb.medizin.title":"Medicine &amp; Care","fb.medizin.subTitle":"Medicine &amp; Care — Specializations",
+    "fb.medizin.item1":"Nurse","fb.medizin.item2":"Elderly care worker","fb.medizin.item3":"Qualified care professional",
+    "fb.medizin.item4":"Physiotherapist","fb.medizin.item5":"General / specialist practitioner",
+    "fb.handwerk.title":"Skilled trades","fb.handwerk.subTitle":"Skilled trades — Specializations",
+    "fb.handwerk.item1":"Construction","fb.handwerk.item2":"Electrical","fb.handwerk.item3":"Plumbing, heating &amp; AC",
+    "fb.handwerk.item4":"Painter / Varnisher","fb.handwerk.item5":"Metalworking",
+    "fb.pflege.title":"Nursing training","fb.pflege.desc":"Qualified nursing &amp; elderly care",
+    "fb.gastro.title":"Gastronomy &amp; Hotel","fb.gastro.desc":"Kitchen, service &amp; front desk",
+    "fb.logistik.title":"Logistics","fb.logistik.desc":"Warehouse, transport &amp; supply chain",
+    "process.tag":"How it works","process.title":"4 steps<br>to your goal",
+    "process.sub":"A clear, transparent process — so you know exactly what to expect.",
+    "process.step1.title":"Create a profile","process.step1.desc":"Register for free, fill in your profile and upload your documents.",
+    "process.step2.title":"Review &amp; approval","process.step2.desc":"Our team reviews your documents and releases your profile to companies.",
+    "process.step3.title":"Company contact","process.step3.desc":"Matching companies view your profile and get in touch.",
+    "process.step4.title":"Start in Germany","process.step4.desc":"We support you all the way to arrival — accommodation, visa, integration.",
+    "svc.tag":"What we offer","svc.title":"Complete support<br>on your journey",
+    "svc.sub":"From your first inquiry to successful integration — we are your reliable partner.",
+    "svc.item1.title":"First step to arrival","svc.item1.desc":"From preparation to arrival — we support you through every step.",
+    "svc.item2.title":"Language preparation","svc.item2.desc":"Advice on language certificates and preparation for everyday work life in Germany.",
+    "svc.item3.title":"Document organization","svc.item3.desc":"Collecting, translating and correctly organizing all documents — professionally.",
+    "svc.item4.title":"Company placement","svc.item4.desc":"Direct connection to German companies looking for skilled workers.",
+    "svc.item5.title":"Visa &amp; authorities","svc.item5.desc":"Step-by-step support throughout the visa process.",
+    "svc.item6.title":"Finding accommodation","svc.item6.desc":"Active support in finding suitable accommodation.",
+    "bridge.tag":"Our platform connects","bridge.title":"Your benefits — <em>on both sides of the bridge</em>",
+    "bridge.sub":"Clear value for applicants and companies alike — transparent and with no hidden costs.",
+    "bridge.forApplicants":"For applicants","bridge.forCompanies":"For companies",
+    "bridge.a1.title":"Free registration","bridge.a1.desc":"Get started for free, with no financial risk at all.",
+    "bridge.a2.title":"Payment only upon contract signing","bridge.a2.desc":"Zero-risk model — pay only after signing.",
+    "bridge.a3.title":"Video profile instead of paperwork","bridge.a3.desc":"30–90 sec. — show your personality and skills directly.",
+    "bridge.a4.title":"Transparent access","bridge.a4.desc":"A clear path without unfair intermediaries.",
+    "bridge.a5.title":"Comprehensive support","bridge.a5.desc":"Qualification recognition and visa — step by step.",
+    "bridge.a6.title":"Language courses &amp; training","bridge.a6.desc":"Certified courses and intercultural training.",
+    "bridge.a7.title":"Visa &amp; authorities","bridge.a7.desc":"Full support throughout all visa procedures.",
+    "bridge.a8.title":"Trilingual support","bridge.a8.desc":"German, French and Arabic — always available.",
+    "bridge.b1.title":"Verified B1/B2 skilled workers","bridge.b1.desc":"Recognized German certificate — ready to work immediately.",
+    "bridge.b2.title":"Get to know candidates via video","bridge.b2.desc":"Review 30–90 sec. clips — before the first contact.",
+    "bridge.b3.title":"Payment only upon hiring","bridge.b3.desc":"No cost risk — only pay upon successful hire.",
+    "bridge.b4.title":"Exclusive talent pool","bridge.b4.desc":"Pre-qualified Algerian professionals — exclusively.",
+    "bridge.b5.title":"§81a process efficiency","bridge.b5.desc":"Accelerated skilled worker procedure included.",
+    "bridge.b6.title":"Reduced integration risk","bridge.b6.desc":"Onboarding packages for sustainable integration.",
+    "bridge.b7.title":"Pre-filtered applicant pool","bridge.b7.desc":"Every application personally reviewed — only suitable matches.",
+    "bridge.b8.title":"Support after hiring","bridge.b8.desc":"We remain available — for integration and any questions.",
+    "bridge.cta1.title":"Ready for your journey to Germany?","bridge.cta1.desc":"Register for free and create your video profile — in minutes.","bridge.cta1.btn":"Get started →",
+    "bridge.cta2.title":"Solve your skilled worker shortage?","bridge.cta2.desc":"Access verified, motivated candidates — with no upfront costs.","bridge.cta2.btn":"See candidates →",
+    "contact.tag":"Contact","contact.title":"Let's talk",
+    "contact.sub":"Have questions about your application or job search? We're here for you ",
+    "contact.email":"Email",
+    "contact.form.title":"Send a message","contact.form.sub":"We reply within 24 hours.",
+    "contact.form.youAre":"You are","contact.form.name":"Your name","contact.form.phone":"Phone / WhatsApp",
+    "contact.form.message":"Message","contact.form.messagePh":"How can we help you?","contact.form.submit":"Send via WhatsApp",
+    "footer.copy":"© 2026 3E Consulting. All rights reserved.","footer.imprint":"Imprint","footer.privacy":"Privacy Policy",
+    "pageTitle":"3E Consulting | Skilled Worker Recruitment Algeria – Germany"
+  },
+
+  ar: {
+    "nav.services":"الخدمات","nav.process":"سير العمل","nav.about":"من نحن","nav.contact":"اتصل بنا",
+    "nav.menu":"القائمة","nav.youAre":"أنت","nav.applicant":"متقدم","nav.company":"شركة",
+    "nav.startNow":"ابدأ الآن","nav.submitApplication":"تقديم طلب","nav.checkRequirements":"التحقق من الشروط",
+    "nav.docOrganization":"تنظيم الوثائق","nav.profileVideo":"إنشاء فيديو تعريفي",
+    "nav.beWellPrepared":"كن مستعدًا جيدًا","nav.labourMarket":"سوق العمل في ألمانيا","nav.labourMarketShort":"سوق العمل",
+    "nav.dailyLife":"الحياة اليومية في ألمانيا","nav.askAnyQuestion":"اطرح أي سؤال",
+    "nav.forCompanies":"للشركات","nav.findTalent":"إيجاد الكفاءات","nav.supportComplaints":"الدعم والشكاوى",
+    "nav.companyLogin":"تسجيل دخول الشركات","nav.getInTouch":"تواصل معنا","nav.replyIn24h":"نرد خلال 24 ساعة",
+    "nav.language":"اللغة","nav.home":"الرئيسية","nav.application":"الطلب","nav.requirements":"الشروط المطلوبة",
+    "nav.startAsApplicant":"ابدأ كمتقدم",
+    "hero.eyebrow":"شريككم الشامل للاندماج في ألمانيا",
+    "hero.title":"من <em>الجزائر</em><br>إلى صاحب العمل<br>الألماني",
+    "hero.sub":"نرافقك في كل خطوة — من تحضير الوثائق إلى البحث عن سكن، وصولًا إلى وصولك بنجاح إلى ألمانيا.",
+    "hero.imApplicant":"أنا متقدم","hero.imCompany":"أنا شركة",
+    "fb.tag":"مجال تخصصنا","fb.title":"القطاعات التي<br>نوظف فيها",
+    "fb.sub":"مجالات مختارة يكون فيها الطلب في ألمانيا مرتفعًا بشكل خاص.",
+    "fb.highDemand":"طلب مرتفع","fb.requirements":"الشروط المطلوبة",
+    "fb.medizin.title":"الطب والتمريض","fb.medizin.subTitle":"الطب والتمريض — التخصصات",
+    "fb.medizin.item1":"ممرض/ة","fb.medizin.item2":"مرافق/ة كبار السن","fb.medizin.item3":"كادر تمريض متخصص",
+    "fb.medizin.item4":"أخصائي علاج طبيعي","fb.medizin.item5":"طبيب عام / أخصائي",
+    "fb.handwerk.title":"الحرف اليدوية","fb.handwerk.subTitle":"الحرف اليدوية — التخصصات",
+    "fb.handwerk.item1":"البناء","fb.handwerk.item2":"الكهرباء","fb.handwerk.item3":"السباكة والتدفئة والتكييف",
+    "fb.handwerk.item4":"دهان / طلاء","fb.handwerk.item5":"أعمال المعادن",
+    "fb.pflege.title":"التكوين في مجال التمريض","fb.pflege.desc":"كادر تمريض متخصص ورعاية كبار السن",
+    "fb.gastro.title":"المطاعم والفندقة","fb.gastro.desc":"المطبخ والخدمة والاستقبال",
+    "fb.logistik.title":"اللوجستيك","fb.logistik.desc":"المستودعات والنقل وسلسلة التوريد",
+    "process.tag":"كيف تسير العملية","process.title":"في 4 خطوات<br>نحو هدفك",
+    "process.sub":"مسار واضح وشفاف — لتعرف بالضبط ما ينتظرك.",
+    "process.step1.title":"إنشاء ملف تعريفي","process.step1.desc":"سجّل مجانًا، أكمل ملفك الشخصي وارفع وثائقك.",
+    "process.step2.title":"المراجعة والموافقة","process.step2.desc":"يقوم فريقنا بمراجعة وثائقك ويعتمد ملفك للشركات.",
+    "process.step3.title":"التواصل مع الشركات","process.step3.desc":"تطّلع الشركات المناسبة على ملفك وتتواصل معك.",
+    "process.step4.title":"الانطلاق نحو ألمانيا","process.step4.desc":"نرافقك حتى وصولك — السكن، التأشيرة، الاندماج.",
+    "svc.tag":"ما الذي نقدمه","svc.title":"مرافقة كاملة<br>في مسارك",
+    "svc.sub":"من أول استفسار وحتى الاندماج الناجح — نحن شريكك الموثوق.",
+    "svc.item1.title":"من الخطوة الأولى وحتى الوصول","svc.item1.desc":"من التحضير وحتى الوصول — نرافقك في كل خطوة.",
+    "svc.item2.title":"التحضير اللغوي","svc.item2.desc":"استشارة حول شهادات اللغة والتحضير للحياة المهنية اليومية في ألمانيا.",
+    "svc.item3.title":"تنظيم الوثائق","svc.item3.desc":"جمع جميع الوثائق وترجمتها وترتيبها بشكل صحيح — باحترافية.",
+    "svc.item4.title":"التوظيف لدى الشركات","svc.item4.desc":"اتصال مباشر بالشركات الألمانية التي تبحث عن كفاءات.",
+    "svc.item5.title":"التأشيرة والإجراءات الإدارية","svc.item5.desc":"مرافقة خطوة بخطوة طوال إجراءات التأشيرة.",
+    "svc.item6.title":"البحث عن سكن","svc.item6.desc":"دعم فعّال في البحث عن سكن مناسب.",
+    "bridge.tag":"منصتنا تربط بين الطرفين","bridge.title":"مزاياك — <em>على جانبي الجسر</em>",
+    "bridge.sub":"مزايا واضحة للمتقدمين والشركات على حد سواء — بشفافية وبدون تكاليف خفية.",
+    "bridge.forApplicants":"للمتقدمين","bridge.forCompanies":"للشركات",
+    "bridge.a1.title":"تسجيل مجاني","bridge.a1.desc":"ابدأ مجانًا، بدون أي مخاطرة مالية.",
+    "bridge.a2.title":"الدفع فقط عند إبرام العقد","bridge.a2.desc":"نموذج بدون مخاطرة — ادفع فقط بعد التوقيع.",
+    "bridge.a3.title":"ملف فيديو بدلاً من كومة أوراق","bridge.a3.desc":"30-90 ثانية — أظهر شخصيتك وكفاءتك مباشرة.",
+    "bridge.a4.title":"وصول شفاف","bridge.a4.desc":"مسار واضح بدون وسطاء غير موثوقين.",
+    "bridge.a5.title":"مرافقة شاملة","bridge.a5.desc":"معادلة المؤهلات والتأشيرة — خطوة بخطوة.",
+    "bridge.a6.title":"دورات لغة وتدريب","bridge.a6.desc":"دورات معتمدة وتدريبات بين ثقافية.",
+    "bridge.a7.title":"التأشيرة والإجراءات الإدارية","bridge.a7.desc":"مرافقة كاملة طوال جميع إجراءات التأشيرة.",
+    "bridge.a8.title":"دعم بثلاث لغات","bridge.a8.desc":"الألمانية والفرنسية والعربية — متاح دائمًا.",
+    "bridge.b1.title":"كفاءات مُعتمدة بمستوى B1/B2","bridge.b1.desc":"شهادة ألمانية معترف بها — جاهزة للعمل فورًا.",
+    "bridge.b2.title":"تعرّف على المرشحين عبر الفيديو","bridge.b2.desc":"مشاهدة 30-90 ثانية — قبل أول تواصل.",
+    "bridge.b3.title":"الدفع فقط عند التوظيف","bridge.b3.desc":"بدون مخاطرة مالية — الدفع فقط عند النجاح.",
+    "bridge.b4.title":"مجموعة كفاءات حصرية","bridge.b4.desc":"كفاءات جزائرية مؤهلة مسبقًا — بشكل حصري.",
+    "bridge.b5.title":"كفاءة إجرائية بموجب المادة 81a","bridge.b5.desc":"إجراء معجّل للكفاءات مُدرج ضمن الخدمة.",
+    "bridge.b6.title":"تقليل مخاطر الاندماج","bridge.b6.desc":"باقات تأهيل من أجل اندماج مستدام.",
+    "bridge.b7.title":"مجموعة متقدمين مُفلترة مسبقًا","bridge.b7.desc":"كل طلب تقديم يُراجع شخصيًا — فقط الملفات المناسبة.",
+    "bridge.b8.title":"متابعة بعد التوظيف","bridge.b8.desc":"نبقى متاحين — من أجل الاندماج والإجابة عن الأسئلة.",
+    "bridge.cta1.title":"مستعد لمسارك نحو ألمانيا؟","bridge.cta1.desc":"سجّل مجانًا وأنشئ ملفك التعريفي بالفيديو — خلال دقائق.","bridge.cta1.btn":"← ابدأ الآن",
+    "bridge.cta2.title":"تريد حل مشكلة نقص الكفاءات؟","bridge.cta2.desc":"وصول إلى مرشحين مؤهلين ومتحمسين — بدون أي تكاليف مسبقة.","bridge.cta2.btn":"← عرض المرشحين",
+    "contact.tag":"اتصل بنا","contact.title":"لنتحدث",
+    "contact.sub":"هل لديك أسئلة حول طلبك أو بحثك عن عمل؟ نحن هنا من أجلك ",
+    "contact.email":"البريد الإلكتروني",
+    "contact.form.title":"إرسال رسالة","contact.form.sub":"نرد خلال 24 ساعة.",
+    "contact.form.youAre":"أنت","contact.form.name":"اسمك","contact.form.phone":"الهاتف / واتساب",
+    "contact.form.message":"الرسالة","contact.form.messagePh":"كيف يمكننا مساعدتك؟","contact.form.submit":"إرسال عبر واتساب",
+    "footer.copy":"© 2026 3E Consulting. جميع الحقوق محفوظة.","footer.imprint":"بيانات الناشر","footer.privacy":"سياسة الخصوصية",
+    "pageTitle":"3E Consulting | توظيف الكفاءات من الجزائر نحو ألمانيا"
+  }
+};
+
+let currentLang = 'de';
+const LANG_META = {
+  de: { label: 'DE', dir: 'ltr' },
+  fr: { label: 'FR', dir: 'ltr' },
+  en: { label: 'EN', dir: 'ltr' },
+  ar: { label: 'AR', dir: 'rtl' }
+};
+
+function applyTranslations(lang) {
+  const dict = I18N[lang] || I18N.de;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+  });
+
+  if (dict['pageTitle']) document.title = dict['pageTitle'];
+}
+
+function setLanguage(lang) {
+  if (!I18N[lang]) return;
+  currentLang = lang;
+  const meta = LANG_META[lang];
+
+  const html = document.getElementById('htmlRoot');
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', meta.dir);
+
+  applyTranslations(lang);
+
+  document.getElementById('langLabelCurrent').textContent = meta.label;
+
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.classList.toggle('lang-active', opt.getAttribute('data-lang') === lang);
+  });
+  document.querySelectorAll('.mn-lang-btn').forEach(btn => {
+    btn.classList.toggle('mn-lang-active', btn.getAttribute('data-lang') === lang);
+  });
+
+  document.getElementById('langDropdown').classList.remove('open');
+
+  try { localStorage.setItem('3e_lang', lang); } catch (e) {}
+}
+
+(function initLanguage() {
+  let saved = 'de';
+  try {
+    const stored = localStorage.getItem('3e_lang');
+    if (stored && I18N[stored]) saved = stored;
+  } catch (e) {}
+  setLanguage(saved);
+})();
+
+(function () {
+  const langToggleBtn = document.getElementById('langToggle');
+  const langDropdown   = document.getElementById('langDropdown');
+  if (!langToggleBtn || !langDropdown) return;
+
+  langToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const menuDropdown = document.getElementById('menuDropdown');
+    if (menuDropdown) menuDropdown.classList.remove('open');
+    const menuToggle = document.getElementById('menuToggle');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    const isOpen = langDropdown.classList.toggle('open');
+    langToggleBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', () => {
+    langDropdown.classList.remove('open');
+    langToggleBtn.setAttribute('aria-expanded', 'false');
+  });
+  langDropdown.addEventListener('click', e => e.stopPropagation());
+})();
+
+/* ════════════════════════════════════════════════════════════════
+   NAVBAR / MENU / MOBILE NAV JS
+   ════════════════════════════════════════════════════════════════ */
 function mn2Switch(btn, panel) {
-  document.querySelectorAll('.mn2-who-btn').forEach(b => b.classList.remove('mn2-who-active'));
+  document.querySelectorAll('.mn2-who-btn').forEach(b => { b.classList.remove('mn2-who-active'); b.setAttribute('aria-pressed','false'); });
   btn.classList.add('mn2-who-active');
+  btn.setAttribute('aria-pressed','true');
   document.querySelectorAll('.mn2-panel').forEach(p => p.style.display = 'none');
   document.getElementById('mn2-' + panel).style.display = 'block';
 }
 function mnMobileSwitch(btn, panel) {
-  document.querySelectorAll('.mn-who-btn').forEach(b => b.classList.remove('mn-who-active'));
+  document.querySelectorAll('.mn-who-btn').forEach(b => { b.classList.remove('mn-who-active'); b.setAttribute('aria-pressed','false'); });
   btn.classList.add('mn-who-active');
+  btn.setAttribute('aria-pressed','true');
   document.getElementById('mob-bewerber').style.display = 'none';
   document.getElementById('mob-unternehmen').style.display = 'none';
   document.getElementById(panel).style.display = 'block';
 }
 const menuToggleBtn = document.getElementById('menuToggle');
 const menuDropdown  = document.getElementById('menuDropdown');
-menuToggleBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('open'); });
-document.addEventListener('click', () => { menuDropdown.classList.remove('open'); });
+menuToggleBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const langDropdown = document.getElementById('langDropdown');
+  if (langDropdown) langDropdown.classList.remove('open');
+  const langToggle = document.getElementById('langToggle');
+  if (langToggle) langToggle.setAttribute('aria-expanded', 'false');
+  const isOpen = menuDropdown.classList.toggle('open');
+  menuToggleBtn.setAttribute('aria-expanded', String(isOpen));
+});
+document.addEventListener('click', () => {
+  menuDropdown.classList.remove('open');
+  menuToggleBtn.setAttribute('aria-expanded', 'false');
+});
 menuDropdown.addEventListener('click', e => e.stopPropagation());
 (function () {
   const hamburgerBtn   = document.getElementById('hamburgerBtn');
   const mobileNav      = document.getElementById('mobileNav');
   const mobileNavClose = document.getElementById('mobileNavClose');
   const overlay        = document.getElementById('mobileNavOverlay');
-  function openMobileNav()   { mobileNav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeMobileNavFn(){ mobileNav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  function openMobileNav()   { mobileNav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; hamburgerBtn.setAttribute('aria-expanded','true'); }
+  function closeMobileNavFn(){ mobileNav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; hamburgerBtn.setAttribute('aria-expanded','false'); }
   window.closeMobileNav = closeMobileNavFn;
   hamburgerBtn  .addEventListener('click', openMobileNav);
   mobileNavClose.addEventListener('click', closeMobileNavFn);
