@@ -8,51 +8,102 @@
   <title>3E Consulting — Engage · Expand · Excel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
 
     :root {
-      --navy: #0f2017;
-      --accent: #d97706;
-      --accent-hover: #b45309;
-      --bright: #4ade80;
-      --white: #fff;
-      --muted: #86a38e;
-      --border: rgba(74, 222, 128, .18);
-      --glass: rgba(255, 255, 255, .04);
-      --font-display: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-    }
+  --navy: #f5f0e2;
+  --navy-dark: #eee6d2;
+  --blue: #1f7a3d;
+  --accent: #e07a1f;
+  --accent-hover: #c2650f;
+  --bright: #1f7a3d;
+  --gold: #e07a1f;
+  --white: #23241f;
+  --muted: #4a4a44;
+  --border: rgba(31,122,61,.22);
+  --glass: rgba(31,122,61,.05);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
 
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); background: var(--navy); color: var(--white); padding-top: 72px; }
+   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ── NAV ── */
-    
-    
-    
-    
-    
-    
-    
-    
-    @media(max-width: 991px) {
-      
+html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
+body { font-family: var(--font-body); background: var(--navy); color: var(--white); padding-top: 72px; overflow-x: hidden; max-width: 100%; width: 100%; position: relative; }
+img, svg { max-width: 100%; height: auto; }
+
+    /* ── RTL / Arabic support ── */
+    html[dir="rtl"] body { font-family: 'Cairo', 'DM Sans', sans-serif; }
+    html[dir="rtl"] .page-hero h1,
+    html[dir="rtl"] .bewerber-section h2,
+    html[dir="rtl"] .bh-card-header h3,
+    html[dir="rtl"] .pricing-card h3,
+    html[dir="rtl"] .video-block h3 { font-family: 'Cairo', 'Syne', sans-serif; }
+    html[dir="rtl"] aside.toc a { border-left: none; border-right: 2px solid transparent; }
+    html[dir="rtl"] aside.toc a:hover, html[dir="rtl"] aside.toc a.active { border-left-color: transparent; border-right-color: var(--accent); }
+    html[dir="rtl"] .bh-card { border-left: none; border-right: 3px solid var(--accent); }
+    html[dir="rtl"] .bh-list li, html[dir="rtl"] .video-block ul li { padding-left: 0; padding-right: 1.5rem; }
+    html[dir="rtl"] .bh-list.check li::before, html[dir="rtl"] .bh-list.cross li::before,
+    html[dir="rtl"] .video-block ul.check li::before, html[dir="rtl"] .video-block ul.cross li::before { left: auto; right: 0; }
+    html[dir="rtl"] .bh-step, html[dir="rtl"] .bh-tip, html[dir="rtl"] .bh-card-header,
+    html[dir="rtl"] .bh-q, html[dir="rtl"] .mn2-chatbot-btn, html[dir="rtl"] .mn-link,
+    html[dir="rtl"] .navbar-brand-3e, html[dir="rtl"] .mn-brand, html[dir="rtl"] .brand { flex-direction: row-reverse; }
+    html[dir="rtl"] .mn-link-arrow { margin-left: 0; margin-right: auto; transform: scaleX(-1); }
+    html[dir="rtl"] .script-line { grid-template-columns: 1fr 110px; }
+    html[dir="rtl"] .script-line .script-label { order: 2; text-align: left; }
+    html[dir="rtl"] .script-line .script-text { order: 1; }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switcher { position: relative; }
+    .lang-toggle-btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      background: var(--glass); border: 1px solid var(--border);
+      color: var(--white); padding: .5rem .9rem; border-radius: 8px;
+      font-size: .85rem; font-weight: 500; cursor: pointer;
+      transition: border-color .2s, background .2s;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    .lang-toggle-btn:hover { border-color: rgba(217,119,6,.4); background: rgba(217,119,6,.08); }
+    .lang-toggle-btn i.bi-globe2 { color: var(--accent); font-size: .95rem; }
+    .lang-toggle-btn .lang-current { font-weight: 600; }
+    .lang-toggle-btn i.bi-chevron-down { font-size: .7rem; color: var(--muted); transition: transform .2s; }
+    .lang-toggle-btn.open i.bi-chevron-down { transform: rotate(180deg); }
+
+    /* FIX: constrain dropdown width so it can never exceed the viewport on very
+       narrow phones (was a fixed min-width with no upper viewport-based cap) */
+    .lang-dropdown {
+      position: absolute; top: calc(100% + .5rem); right: 0;
+      min-width: 170px; max-width: calc(100vw - 24px);
+      background: rgba(15,32,23,.98);
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: .4rem; backdrop-filter: blur(20px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+      z-index: 300; display: none;
+    }
+    .lang-dropdown.open { display: block; }
+    html[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+
+    .lang-option {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: .6rem; padding: .6rem .8rem; border-radius: 8px;
+      color: var(--muted); font-size: .85rem; cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .lang-option:hover { background: rgba(217,119,6,.1); color: var(--white); }
+    .lang-option.active { color: var(--white); background: rgba(217,119,6,.15); }
+    .lang-option.active i.bi-check2 { display: inline-block; color: var(--accent); }
+    .lang-option i.bi-check2 { display: none; font-size: .8rem; }
+    .lang-option .lang-name { display: flex; align-items: center; gap: .55rem; }
+    .lang-option .lang-flag { font-size: 1rem; }
+
+    /* زر اللغة على الشاشات الصغيرة: نفس الزر، بحجم مُصغّر قليلاً */
+    @media(max-width: 480px) {
+      .lang-toggle-btn { padding: .45rem .6rem; font-size: .78rem; gap: .3rem; }
+      .lang-dropdown { min-width: 150px; right: -10px; }
+      html[dir="rtl"] .lang-dropdown { left: -10px; right: auto; }
+    }
 
     /* ── HERO ── */
     .page-hero { padding: 3rem 5vw 2rem; max-width: 1100px; margin: 0 auto; }
@@ -112,6 +163,23 @@
     .video-embed iframe, .video-embed video { width: 100%; height: 100%; border: none; }
     .video-placeholder { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--muted); font-size: .88rem; text-align: center; padding: 2rem; }
 
+    /* ── VIDEO TABS (Ausbildung / Arbeit) ── */
+    .vex-tabs { display: flex; gap: .6rem; margin-bottom: 1rem; }
+    .vex-tab {
+      display: flex; align-items: center; gap: .5rem;
+      padding: .6rem 1.1rem; border-radius: 9px;
+      border: 1px solid var(--border); background: var(--glass);
+      color: var(--muted); font-size: .85rem; font-weight: 500;
+      cursor: pointer; font-family: var(--font-body); transition: all .18s;
+    }
+    .vex-tab:hover { border-color: rgba(217,119,6,.4); color: #fff; background: rgba(217,119,6,.08); }
+    .vex-tab.vex-tab-active { border-color: var(--accent); background: rgba(217,119,6,.12); color: #fff; }
+    .vex-tab i { font-size: .85rem; color: var(--accent); }
+    @media(max-width: 480px) {
+      .vex-tabs { gap: .4rem; }
+      .vex-tab { padding: .5rem .8rem; font-size: .78rem; }
+    }
+
     /* ── BTN PRIMARY ── */
     .btn-primary { display: inline-flex; align-items: center; gap: .5rem; margin-top: .5rem; background: var(--accent); color: var(--white); padding: .75rem 1.5rem; border-radius: 10px; font-size: .9rem; font-weight: 500; text-decoration: none; transition: all .2s; }
     .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
@@ -168,6 +236,7 @@
       background: rgba(255,255,255,.02); border: 1px solid var(--border);
       border-radius: 10px; padding: .9rem 1rem;
     }
+    
     .bh-step-num {
       width: 2rem; height: 2rem; border-radius: 50%;
       background: rgba(217,119,6,.2);
@@ -241,6 +310,15 @@
       .bh-a { font-size: .8rem !important; }
       .bh-step strong { font-size: .85rem !important; }
       .bh-step p { font-size: .78rem !important; }
+      .content-layout, .page-hero, main, section { max-width: 100vw !important; overflow-x: hidden !important; }
+  .pricing-grid { gap: .75rem !important; }
+  .bh-factors { grid-template-columns: 1fr 1fr !important; gap: .6rem !important; }
+  .bh-card { margin-bottom: .9rem !important; }
+  .bewerber-section { margin-bottom: 1rem !important; }
+  .video-block { padding: 1rem 1.1rem !important; margin: 1rem 0 !important; }
+  .script-box { padding: 1rem 1.1rem !important; }
+  aside.toc { gap: .5rem !important; }
+  .bh-tip { padding: .7rem .85rem !important; font-size: .8rem !important; }
     }
 
     @media(max-width: 480px) {
@@ -265,6 +343,14 @@
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
+  @media(max-width: 480px) {
+  .page-hero { padding: 1.6rem 3vw 1rem !important; }
+  .bewerber-section { padding: 1rem .85rem !important; }
+  .bh-card { padding: .9rem !important; }
+  .script-line { gap: .5rem !important; padding: .35rem 0 !important; }
+  .pricing-card { padding: 1.1rem !important; }
+  .bh-factors { grid-template-columns: 1fr 1fr !important; }
+}
 
   /* ── Brand ── */
   .navbar-brand-3e {
@@ -297,9 +383,11 @@
   .btn-menu:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
   /* ── Desktop dropdown panel ── */
+  /* FIX: cap width so it can never overflow the viewport, especially on
+     narrow phones where 340px alone can exceed the screen width */
   .nav-dropdown-panel {
     position: absolute; top: calc(100% + .6rem); right: 0;
-    min-width: 340px; max-width: 420px;
+    min-width: 340px; max-width: min(420px, calc(100vw - 24px));
     max-height: 75vh; overflow-y: auto;
     background: rgba(15,32,23,.97);
     border: 1px solid var(--border); border-radius: 12px;
@@ -462,6 +550,21 @@
   .mn2-chatbot-btn strong { font-size: .85rem; color: #fff; font-weight: 600; }
   .mn2-chatbot-btn span { font-size: .72rem; color: var(--muted); margin-top: .1rem; }
 
+
+    /* TEMPLATES */
+    .templates-intro { display: flex; align-items: center; gap: .6rem; margin-top: 1.4rem; margin-bottom: .9rem; font-size: .85rem; color: var(--white); font-weight: 600; }
+    .templates-intro i { color: #2b579a; font-size: 1.05rem; }
+    .templates-grid { display: grid; grid-template-columns: 1fr; gap: .9rem; margin-bottom: .5rem; }
+    .template-card { background: rgba(255,255,255,.03); border: 1px solid rgba(43,87,154,.35); border-radius: 12px; padding: 1.1rem; display: flex; flex-direction: column; transition: border-color .2s,transform .2s,background .2s; overflow: hidden; word-wrap: break-word; width: 100%; box-sizing: border-box; }
+    .template-card:hover { border-color: rgba(43,87,154,.7); background: rgba(43,87,154,.07); transform: translateY(-2px); }
+    .template-card-icon { width: 38px; height: 38px; border-radius: 9px; background: rgba(43,87,154,.18); border: 1px solid rgba(43,87,154,.4); display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; }
+    .template-card-icon i { font-size: 1.1rem; color: #5b8fd9; }
+    .template-card-title { font-family: var(--font-display); font-size: .9rem; font-weight: 700; color: var(--white); margin-bottom: .3rem; line-height: 1.3; }
+    .template-card-desc { font-size: .76rem; color: var(--muted); line-height: 1.55; flex: 1; margin-bottom: .9rem; }
+    .template-card-btn { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; padding: .55rem .9rem; border-radius: 7px; background: #2b579a; color: #fff; text-decoration: none; font-size: .78rem; font-weight: 600; font-family: var(--font-body); transition: background .2s,transform .15s; }
+    .template-card-btn:hover { background: #1f4275; transform: translateY(-1px); }
+    .templates-hint { font-size: .76rem; color: var(--muted); display: flex; align-items: flex-start; gap: .4rem; margin-top: .4rem; }
+    .templates-hint i { color: var(--accent); margin-top: .15rem; flex-shrink: 0; }
   /* ── Mobile WHO buttons ── */
   .mn-who-btn {
     display: flex; align-items: center; justify-content: center; gap: .5rem;
@@ -480,6 +583,137 @@
     .nav-desktop-links { display: none !important; }
   }
   /* ═══════════════════════════════════════════════════════ */
+.logo-img-main {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+/* FIX: navbar layout must not depend solely on Bootstrap utility classes —
+   guarantees spacing between logo and language switcher even if Bootstrap
+   CSS is slow/blocked on mobile networks */
+.navbar-3e .d-flex.justify-content-between {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  gap: .75rem;
+}
+.navbar-3e .d-flex.justify-content-between > div:last-child {
+  display: flex !important;
+  align-items: center !important;
+  gap: .75rem !important;
+  flex-shrink: 0;
+}
+.brand { flex-shrink: 0; }
+.brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+
+/* ── MOBILE LOGO — matched to Alltag_deutschland.html (mobile only, desktop untouched) ── */
+@media(max-width:991px){
+  .navbar-3e > .d-flex{ gap:.75rem; }
+  .navbar-3e .brand{ flex-shrink:1; min-width:0; overflow:hidden; }
+  .logo-img-main{ max-width:190px; width:auto; height:34px; flex-shrink:1; }
+  .navbar-3e .d-flex.align-items-center.gap-3{ flex-shrink:0; gap:.6rem!important; }
+}
+@media(max-width:576px){
+  .navbar-3e > .d-flex{ gap:.6rem; }
+  .logo-img-main{ max-width:165px; height:32px; }
+  .lang-toggle-btn{ padding:.45rem .6rem; }
+  .hamburger-btn{ padding:.42rem .65rem; }
+}
+@media(max-width:400px){
+  .navbar-3e > .d-flex{ gap:.45rem; }
+  .navbar-3e .d-flex.align-items-center.gap-3{ gap:.4rem!important; }
+  .logo-img-main{ max-width:135px; height:29px; }
+  .lang-toggle-btn{ padding:.4rem .5rem; }
+  .hamburger-btn{ padding:.38rem .55rem; font-size:1rem; }
+}
+
+@media(max-width:991px){ .logo-img-main{ max-width:190px; height:34px; } }
+@media(max-width:576px){ .logo-img-main{ max-width:165px; height:32px; } }
+@media(max-width:400px){ .logo-img-main{ max-width:135px; height:29px; } }
+
+
+
+
+  .lang-toggle-btn:hover { border-color: rgba(224,122,31,.4); background:rgba(224,122,31,.08); }
+.lang-dropdown { background: rgba(250,247,238,.98); box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+.lang-option:hover { background: rgba(224,122,31,.1); color: var(--white); }
+.lang-option.active { color: var(--white); background: rgba(224,122,31,.15); }
+.bewerber-section:target { border-color: rgba(224,122,31,.5); box-shadow: 0 0 0 1px rgba(224,122,31,.2), 0 8px 32px rgba(0,0,0,.3); }
+.pricing-card.featured { border-color: rgba(224,122,31,.5); background: rgba(224,122,31,.06); }
+.script-box { background: rgba(224,122,31,.06); border: 1px solid rgba(224,122,31,.25); }
+.bh-icon { background: rgba(224,122,31,.15); }
+.bh-tip { background: rgba(224,122,31,.08); border: 1px solid rgba(224,122,31,.25); }
+.bh-step-num { background: rgba(224,122,31,.2); }
+.bh-factor-icon { background: rgba(224,122,31,.12); }
+
+.duration-badge { background: rgba(31,122,61,.1); }
+.bh-q { background: rgba(31,122,61,.05); }
+.bh-quote { background: rgba(31,122,61,.05); border: 1px solid rgba(31,122,61,.2); }
+.bh-quote > i { color: rgba(31,122,61,.3); }
+.vex-tab:hover { border-color: rgba(224,122,31,.4); color: var(--white); background: rgba(224,122,31,.08); }
+.vex-tab.vex-tab-active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+.nav-dropdown-panel { background: rgba(250,247,238,.98); box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+.mn2-who-btn:hover { border-color: rgba(224,122,31,.4); color: var(--white); background: rgba(224,122,31,.08); }
+.mn2-who-btn.mn2-who-active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+.mn2-link:hover { background: rgba(224,122,31,.08); color: var(--white); }
+.mn2-chatbot-btn { background: rgba(224,122,31,.08); border: 1px solid rgba(224,122,31,.25); }
+.mn2-chatbot-btn:hover { background: rgba(224,122,31,.15); border-color: rgba(224,122,31,.4); }
+.mn2-chatbot-btn strong { color: var(--white); }
+.mobile-nav {
+  background: linear-gradient(160deg, #faf7ee 0%, #f0e9d6 100%);
+  border-right: 1px solid rgba(31,122,61,.16);
+}
+.mn-header { border-bottom: 1px solid rgba(31,122,61,.12); }
+.mn-brand span { color: var(--white); }
+.mn-close { background: rgba(31,122,61,.06); border: 1px solid rgba(31,122,61,.14); }
+.mn-close:hover { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
+.mn-body::-webkit-scrollbar-thumb { background: rgba(31,122,61,.25); }
+.mn-link { color: rgba(35,36,31,.85); }
+.mn-link .mn-icon { background: rgba(31,122,61,.06); border: 1px solid rgba(31,122,61,.12); }
+.mn-link:hover { background: rgba(224,122,31,.08); color: #000; }
+.mn-link:hover .mn-icon { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
+.mn-divider { background: rgba(31,122,61,.08); }
+.mn-footer { border-top: 1px solid rgba(31,122,61,.12); }
+.mn-cta-secondary {
+  background: rgba(31,122,61,.08);
+  border: 1px solid rgba(31,122,61,.2);
+  color: rgba(35,36,31,.85) !important;
+}
+.mn-cta-secondary:hover { background: rgba(31,122,61,.14); border-color: rgba(31,122,61,.35); }
+.mn-who-btn { background: rgba(31,122,61,.05); }
+.mn-who-btn:hover { border-color: rgba(224,122,31,.4); color: var(--white); }
+.mn-who-btn.mn-who-active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+.hamburger-btn:hover { background: rgba(224,122,31,.1); border-color: rgba(224,122,31,.4); }
+
+
+/* بعد */
+.nav-link-3e { color: #fffffd !important; }
+.nav-link-3e:hover { color: #ffae00ab !important; }
+/* قبل */
+.lang-toggle-btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: var(--glass); border: 1px solid var(--border);
+  color: var(--white); padding: .5rem .9rem; border-radius: 8px;
+  font-size: .85rem; font-weight: 500; cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.lang-toggle-btn:hover { border-color: rgba(224,122,31,.4); background: rgba(224,122,31,.08); }
+
+/* بعد */
+.lang-toggle-btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: rgba(255, 255, 255, 0.911); border: 1px solid var(--border);
+  color: var(--white); padding: .5rem .9rem; border-radius: 8px;
+  font-size: .85rem; font-weight: 500; cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.lang-toggle-btn:hover { background: rgba(233, 228, 222, 0.856); border-color: rgba(224,122,31,.4); }
+
+
+
+
 
   </style>
 </head>
@@ -488,17 +722,45 @@
 <!-- ═══════════════ NAVBAR (from index.html) ═══════════════ -->
 <header class="navbar-3e">
   <div class="d-flex align-items-center justify-content-between w-100">
-    <a href="index.html" class="navbar-brand-3e">
-      <img src="logo_3e.jpg" alt="3E Consulting">
-      <span>3E Consulting</span>
-    </a>
+     <a href="index.html" class="brand">
+    
+    <img src="Logo-cropped.png" alt="3E Consulting" class="logo-img-main">
+  </a>
     <ul class="nav-desktop-links d-flex list-unstyled mb-0 gap-3 mx-auto">
-      <li><a href="index.html#services"  class="nav-link-3e">Leistungen</a></li>
-      <li><a href="index.html#process"   class="nav-link-3e">Ablauf</a></li>
-      <li><a href="index.html#about"     class="nav-link-3e">Über uns</a></li>
-      <li><a href="index.html#kontakt"   class="nav-link-3e">Kontakt</a></li>
+      <li><a href="index.html#services"  class="nav-link-3e" data-i18n="nav.services">Leistungen</a></li>
+      <li><a href="index.html#process"   class="nav-link-3e" data-i18n="nav.process">Ablauf</a></li>
+      <li><a href="index.html#about"     class="nav-link-3e" data-i18n="nav.about">Über uns</a></li>
+      <li><a href="index.html#kontakt"   class="nav-link-3e" data-i18n="nav.contact">Kontakt</a></li>
     </ul>
     <div class="d-flex align-items-center gap-3">
+
+      <!-- ═══ LANGUAGE SWITCHER (Desktop + Mobile, نفس الزر) ═══ -->
+      <div class="lang-switcher">
+        <button class="lang-toggle-btn" id="langToggleBtn" type="button">
+          <i class="bi bi-globe2"></i>
+          <span class="lang-current" id="langCurrentLabel">DE</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <div class="lang-option" data-lang="de" onclick="setLanguage('de')">
+            <span class="lang-name"><span class="lang-flag">🇩🇪</span> Deutsch</span>
+            <i class="bi bi-check2"></i>
+          </div>
+          <div class="lang-option" data-lang="fr" onclick="setLanguage('fr')">
+            <span class="lang-name"><span class="lang-flag">🇫🇷</span> Français</span>
+            <i class="bi bi-check2"></i>
+          </div>
+          <div class="lang-option" data-lang="en" onclick="setLanguage('en')">
+            <span class="lang-name"><span class="lang-flag">🇬🇧</span> English</span>
+            <i class="bi bi-check2"></i>
+          </div>
+          <div class="lang-option" data-lang="ar" onclick="setLanguage('ar')">
+            <span class="lang-name"><span class="lang-flag">🇩🇿</span> العربية</span>
+            <i class="bi bi-check2"></i>
+          </div>
+        </div>
+      </div>
+
       <div class="position-relative d-none d-lg-block">
         <button class="btn-menu" id="menuToggle">MENÜ ▾</button>
         <div class="nav-dropdown-panel" id="menuDropdown">
@@ -526,8 +788,6 @@
             <div class="mn2-group">
               <div class="mn2-group-label"><i class="fa-solid fa-book-open"></i> Gut vorbereitet sein</div>
               <a href="arbeitsmarkt.html"         class="mn2-link"><i class="fa-solid fa-chart-line"></i> Arbeitsmarkt Deutschland</a>
-              <a href="arbeitundsozialrecht.html" class="mn2-link"><i class="fa-solid fa-scale-balanced"></i> Arbeits- und Sozialrecht</a>
-              <a href="aufenthaltsrecht.html"     class="mn2-link"><i class="fa-solid fa-passport"></i> Aufenthaltsrecht &amp; Visum</a>
               <a href="alltag-deutschland.html"   class="mn2-link"><i class="fa-solid fa-sun"></i> Alltag in Deutschland</a>
             </div>
             <div class="mn2-divider"></div>
@@ -576,6 +836,7 @@
     </button>
   </div>
   <div class="mn-body">
+
     <div style="padding:.8rem 1rem .6rem;">
       <p class="mn-section-label" style="padding:0 0 .5rem;">Sie sind</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
@@ -590,7 +851,7 @@
     <div class="mn-divider"></div>
     <!-- BEWERBER PANEL -->
     <div id="mob-bewerber">
-      <div class="mn-section-label" style="padding-top:.7rem;">🚀 Jetzt starten</div>
+      <div class="mn-section-label" style="padding-top:.7rem;"> Jetzt starten</div>
       <a href="index.html"    class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span>Startseite<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <a href="index.html#services" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span>Leistungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <a href="index.html#process"  class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline"></i></span>Ablauf<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
@@ -598,10 +859,8 @@
       <a href="vermitlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span>Voraussetzungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open"></i></span>Dokumentenorganisation<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
-      <div class="mn-section-label" style="padding-top:.7rem;">📚 Gut vorbereitet sein</div>
+      <div class="mn-section-label" style="padding-top:.7rem;">Gut vorbereitet sein</div>
       <a href="arbeitsmarkt.html"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span>Arbeitsmarkt<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="arbeitundsozialrecht.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span>Arbeits- und Sozialrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="aufenthaltsrecht.html"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-passport"></i></span>Aufenthaltsrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <a href="alltag-deutschland.html"   class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span>Alltag in Deutschland<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
       <a href="Chatbot.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;">
@@ -626,7 +885,7 @@
     </div>
   </div>
   <div class="mn-footer">
-    <a href="registraion.html" class="mn-cta-primary"    onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> Als Bewerber starten</a>
+    <a href="06_onboarding_bewerber.php" class="mn-cta-primary"    onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> Als Bewerber starten</a>
     <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building"></i> Für Unternehmen</a>
   </div>
 </nav>
@@ -636,20 +895,20 @@
 
 <!-- ═══ HERO ═══ -->
 <header class="page-hero">
-  <div class="section-tag">Service · Bewerber</div>
-  <h1>Leistungen für <em>Bewerber</em></h1>
-  <p>Von der Dokumentenvorbereitung bis zur erfolgreichen Ankunft in Deutschland — wir begleiten Sie auf jedem Schritt Ihres Weges.</p>
+  <div class="section-tag" data-i18n="hero.tag">Service · Bewerber</div>
+  <h1 data-i18n-html="hero.title">Leistungen für <em>Bewerber</em></h1>
+  <p data-i18n="hero.desc">Von der Dokumentenvorbereitung bis zur erfolgreichen Ankunft in Deutschland — wir begleiten Sie auf jedem Schritt Ihres Weges.</p>
 </header>
 
 <!-- ═══ CONTENT ═══ -->
 <div class="content-layout">
 
   <aside class="toc">
-    <div class="toc-title">Inhaltsverzeichnis</div>
-    <a href="#dokumentenorganisation">Dokumentenorganisation</a>
-    <a href="#bewerbungsprozess">Bewerbungsprozess</a>
-    <a href="#profil-video">Profil-Video</a>
-    <a href="#bewerbungshilfe">Bewerbungshilfe</a>
+    <div class="toc-title" data-i18n="toc.title">Inhaltsverzeichnis</div>
+    <a href="#dokumentenorganisation" data-i18n="toc.doc">Dokumentenorganisation</a>
+    <a href="#bewerbungsprozess" data-i18n="toc.process">Bewerbungsprozess</a>
+    <a href="#profil-video" data-i18n="toc.video">Profil-Video</a>
+    <a href="#bewerbungshilfe" data-i18n="toc.help">Bewerbungshilfe</a>
   
   </aside>
 
@@ -658,137 +917,140 @@
     <!-- 01 Dokumentenorganisation -->
     <section id="dokumentenorganisation" class="bewerber-section">
       <div class="section-num">01</div>
-      <h2>Dokumentenorganisation</h2>
-      <p class="subtitle">Beglaubigte Dokumente, Visum und Behörden</p>
-      <p>Wir unterstützen Sie bei der vollständigen Organisation Ihrer Bewerbungsunterlagen — von der Sammlung bis zur Einreichung bei den zuständigen Behörden.</p>
+      <h2 data-i18n="s1.title">Dokumentenorganisation</h2>
+      <p class="subtitle" data-i18n="s1.subtitle">Beglaubigte Dokumente, Visum und Behörden</p>
+      <p data-i18n="s1.desc">Wir unterstützen Sie bei der vollständigen Organisation Ihrer Bewerbungsunterlagen — von der Sammlung bis zur Einreichung bei den zuständigen Behörden.</p>
       <ul>
-        <li>Sammeln aller erforderlichen Unterlagen</li>
-        <li>Beglaubigte Übersetzungen durch anerkannte Übersetzer</li>
-        <li>Visumantrag und Begleitung bei Behördengängen</li>
-        <li>Prüfung der Vollständigkeit Ihrer Bewerbungsmappe</li>
+        <li data-i18n="s1.li1">Sammeln aller erforderlichen Unterlagen</li>
+        <li data-i18n="s1.li2">Beglaubigte Übersetzungen durch anerkannte Übersetzer</li>
+        <li data-i18n="s1.li3">Visumantrag und Begleitung bei Behördengängen</li>
+        <li data-i18n="s1.li4">Prüfung der Vollständigkeit Ihrer Bewerbungsmappe</li>
       </ul>
     </section>
 
     <!-- 02 Bewerbungsprozess -->
     <section id="bewerbungsprozess" class="bewerber-section">
       <div class="section-num">02</div>
-      <h2>Bewerbungsprozess</h2>
-      <p class="subtitle">Ihr persönlicher Begleiter — von der ersten Datei bis zum Vorstellungsgespräch</p>
-      <p>Wir begleiten Sie <strong>ab dem allerersten Schritt</strong> Ihrer Bewerbung. Laden Sie Ihre Unterlagen hoch — wir prüfen sie sorgfältig, geben Ihnen Feedback und unterstützen Sie bei jedem weiteren Schritt.</p>
+      <h2 data-i18n="s2.title">Bewerbungsprozess</h2>
+      <p class="subtitle" data-i18n="s2.subtitle">Ihr persönlicher Begleiter — von der ersten Datei bis zum Vorstellungsgespräch</p>
+      <p data-i18n-html="s2.desc">Wir begleiten Sie <strong>ab dem allerersten Schritt</strong> Ihrer Bewerbung. Laden Sie Ihre Unterlagen hoch — wir prüfen sie sorgfältig, geben Ihnen Feedback und unterstützen Sie bei jedem weiteren Schritt.</p>
 
-      <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--white);margin:1.75rem 0 .75rem;">Unsere Leistungen im Überblick</h3>
+      <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--white);margin:1.75rem 0 .75rem;" data-i18n="s2.overview">Unsere Leistungen im Überblick</h3>
       <ul>
-        <li><strong>Upload &amp; Prüfung Ihrer Unterlagen</strong> — Vollständigkeit und Qualität kontrolliert</li>
-        <li><strong>Bewerbungsunterlagen erstellen</strong> — Professioneller Lebenslauf und Motivationsschreiben</li>
-        <li><strong>Bewerbung einreichen</strong> — Korrekte Einreichung bei deutschen Unternehmen</li>
-        <li><strong>Vorstellungsgespräch-Vorbereitung</strong> — Training für typische Fragen und Auftreten</li>
-        <li><strong>Deutschkurse</strong> — Zugang zu Sprachkursen über die 3E Academy</li>
+        <li data-i18n-html="s2.li1"><strong>Upload &amp; Prüfung Ihrer Unterlagen</strong> — Vollständigkeit und Qualität kontrolliert</li>
+        <li data-i18n-html="s2.li2"><strong>Bewerbungsunterlagen erstellen</strong> — Professioneller Lebenslauf und Motivationsschreiben</li>
+        <li data-i18n-html="s2.li3"><strong>Bewerbung einreichen</strong> — Korrekte Einreichung bei deutschen Unternehmen</li>
+        <li data-i18n-html="s2.li4"><strong>Vorstellungsgespräch-Vorbereitung</strong> — Training für typische Fragen und Auftreten</li>
+        <li data-i18n-html="s2.li5"><strong>Deutschkurse</strong> — Zugang zu Sprachkursen über die 3E Academy</li>
       </ul>
 
       <div style="background:rgba(74,222,128,.06);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0;">
         <p style="margin:0;color:var(--bright);font-weight:500;font-size:.9rem;margin-bottom:.4rem;">
-          <i class="bi bi-translate"></i> Deutschkurse &amp; Sprachförderung
+          <i class="bi bi-translate"></i> <span data-i18n="s2.langbox.title">Deutschkurse &amp; Sprachförderung</span>
         </p>
-        <p style="margin:0;font-size:.88rem;color:var(--muted);line-height:1.65;">
+        <p style="margin:0;font-size:.88rem;color:var(--muted);line-height:1.65;" data-i18n-html="s2.langbox.desc">
           Gute Deutschkenntnisse sind der Schlüssel zu einer erfolgreichen Bewerbung. Über unsere Partnerschaft mit der <strong>3E Academy</strong> bieten wir Ihnen Zugang zu strukturierten Deutschkursen — von A1 bis B2.
         </p>
-        <a href="https://3e-academy-url.de" target="_blank" rel="noopener" class="btn-primary" style="margin-top:1rem;font-size:.85rem;padding:.6rem 1.2rem;">
+        <a href="3e-academy.html" target="_blank" rel="noopener" class="btn-primary" style="margin-top:1rem;font-size:.85rem;padding:.6rem 1.2rem;" data-i18n="s2.langbox.cta">
           Zur 3E Academy →
         </a>
       </div>
-
-      <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--white);margin:1.75rem 0 .5rem;">Einzelleistungen buchen</h3>
-      <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;">Jede Leistung einzeln oder im Kombi-Paket zum Vorteilspreis.</p>
-
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="pricing-icon"></div>
-          <h3>Motivationsschreiben</h3>
-          <p>Individuelles Anschreiben, professionell formuliert und auf Ihre Zielstelle abgestimmt.</p>
-          <div class="pricing-price">XX <span>DA</span></div>
-          <a href="checkout.php?service=motivationsschreiben&price=19" class="btn-book">Jetzt buchen</a>
-        </div>
-        <div class="pricing-card featured">
-          <div class="pricing-icon"></div>
-          <p>Strukturierter deutscher Lebenslauf nach den Standards deutscher Arbeitgeber.</p>
-          <div class="pricing-price">XX <span>DA</span></div>
-          <a href="checkout.php?service=lebenslauf&price=15" class="btn-book">Jetzt buchen</a>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-icon"></div>
-          <h3>Vorstellungsgespräch</h3>
-          <p>Gezielte Vorbereitung — typische Fragen, Antwortstrategien und professionelles Auftreten.</p>
-          <div class="pricing-price">XX <span>DA</span></div>
-          <a href="checkout.php?service=vorstellungsgespraech&price=20" class="btn-book">Jetzt buchen</a>
-        </div>
-      </div>
-
-      <p class="pricing-note">
-        Alle Preise inkl. MwSt. · Bearbeitungszeit: 2–3 Werktage ·
-        <strong style="color:var(--accent)">Kombi-Paket (alle 3): 45 €</strong> statt 54 €
-      </p>
     </section>
 
     <!-- 03 Profil-Video -->
     <section id="profil-video" class="bewerber-section">
       <div class="section-num">03</div>
-      <h2>Profil-Video Anleitung</h2>
-      <p class="subtitle">Ihr persönlicher Eindruck für deutsche Arbeitgeber</p>
-      <p>Ein professionelles Profil-Video erhöht Ihre Chancen bei deutschen Unternehmen erheblich. Folgen Sie dieser Anleitung Schritt für Schritt.</p>
+      <h2 data-i18n="s3.title">Profil-Video Anleitung</h2>
+      <p class="subtitle" data-i18n="s3.subtitle">Ihr persönlicher Eindruck für deutsche Arbeitgeber</p>
+      <p data-i18n="s3.desc">Ein professionelles Profil-Video erhöht Ihre Chancen bei deutschen Unternehmen erheblich. Folgen Sie dieser Anleitung Schritt für Schritt.</p>
 
       <div class="video-block">
-        <h3>Kamera &amp; Umgebung</h3>
+        <h3 data-i18n="s3.cam.title">Kamera &amp; Umgebung</h3>
         <ul class="check">
-          <li>Kamera auf Augenhöhe — nicht von oben oder unten.</li>
-          <li>Aufgeräumter, neutraler Hintergrund.</li>
-          <li>Gute Beleuchtung von vorne — kein Gegenlicht.</li>
-          <li>Ruhige Umgebung ohne Hintergrundgeräusche.</li>
-          <li>Direkt in die Kamera schauen während des Sprechens.</li>
+          <li data-i18n="s3.cam.li1">Kamera auf Augenhöhe — nicht von oben oder unten.</li>
+          <li data-i18n="s3.cam.li2">Aufgeräumter, neutraler Hintergrund.</li>
+          <li data-i18n="s3.cam.li3">Gute Beleuchtung von vorne — kein Gegenlicht.</li>
+          <li data-i18n="s3.cam.li4">Ruhige Umgebung ohne Hintergrundgeräusche.</li>
+          <li data-i18n="s3.cam.li5">Direkt in die Kamera schauen während des Sprechens.</li>
         </ul>
       </div>
 
       <div class="video-block">
-        <h3> Videolänge</h3>
-        <p style="color:var(--muted);font-size:.88rem;line-height:1.65;margin-bottom:.75rem;">
+        <h3 data-i18n="s3.duration.title"> Videolänge</h3>
+        <p style="color:var(--muted);font-size:.88rem;line-height:1.65;margin-bottom:.75rem;" data-i18n-html="s3.duration.desc">
           Zwischen <strong style="color:var(--white)">60 und 90 Sekunden</strong> — nicht zu kurz, nicht zu lang.
         </p>
         <div class="duration-badge">
-          <i class="bi bi-clock-fill"></i> Minimum: 1 Minute &nbsp;·&nbsp; Maximum: 1,5 Minuten
+          <i class="bi bi-clock-fill"></i> <span data-i18n="s3.duration.badge">Minimum: 1 Minute &nbsp;·&nbsp; Maximum: 1,5 Minuten</span>
         </div>
-        <p style="font-size:.82rem;color:var(--muted);margin:0;">Videos über 2 Minuten werden von Personalverantwortlichen meist nicht vollständig angesehen.</p>
+        <p style="font-size:.82rem;color:var(--muted);margin:0;" data-i18n="s3.duration.note">Videos über 2 Minuten werden von Personalverantwortlichen meist nicht vollständig angesehen.</p>
       </div>
 
       <div class="video-block">
-        <h3> Mein Vorstellungsvideo — Struktur</h3>
+        <h3 data-i18n="s3.script.title"> Mein Vorstellungsvideo — Struktur</h3>
         <div class="script-box">
-          <div class="script-line"><span class="script-label">Begrüßung</span><span class="script-text">„Hallo, mein Name ist [Name] und ich komme aus [Land]."</span></div>
-          <div class="script-line"><span class="script-label">Ziel</span><span class="script-text">„Ich suche eine Ausbildung im Handwerk oder im medizinischen Bereich in Deutschland."</span></div>
-          <div class="script-line"><span class="script-label">Erfahrung</span><span class="script-text">„Durch meine Tätigkeit im Kundenkontakt bin ich kommunikationsstark und belastbar."</span></div>
-          <div class="script-line"><span class="script-label">Motivation</span><span class="script-text">„Ich bin motiviert, zuverlässig und möchte mich durch Tatkraft und Lernbereitschaft beweisen."</span></div>
-          <div class="script-line"><span class="script-label">Abschluss</span><span class="script-text">„Vielen Dank für Ihre Zeit. Ich freue mich sehr auf Ihre Rückmeldung."</span></div>
+          <div class="script-line"><span class="script-label" data-i18n="s3.script.l1.label">Begrüßung</span><span class="script-text" data-i18n="s3.script.l1.text">„Hallo, mein Name ist [Name] und ich komme aus [Land]."</span></div>
+          <div class="script-line"><span class="script-label" data-i18n="s3.script.l2.label">Ziel</span><span class="script-text" data-i18n="s3.script.l2.text">„Ich suche eine Ausbildung im Handwerk oder im medizinischen Bereich in Deutschland."</span></div>
+          <div class="script-line"><span class="script-label" data-i18n="s3.script.l3.label">Erfahrung</span><span class="script-text" data-i18n="s3.script.l3.text">„Durch meine Tätigkeit im Kundenkontakt bin ich kommunikationsstark und belastbar."</span></div>
+          <div class="script-line"><span class="script-label" data-i18n="s3.script.l4.label">Motivation</span><span class="script-text" data-i18n="s3.script.l4.text">„Ich bin motiviert, zuverlässig und möchte mich durch Tatkraft und Lernbereitschaft beweisen."</span></div>
+          <div class="script-line"><span class="script-label" data-i18n="s3.script.l5.label">Abschluss</span><span class="script-text" data-i18n="s3.script.l5.text">„Vielen Dank für Ihre Zeit. Ich freue mich sehr auf Ihre Rückmeldung."</span></div>
         </div>
-      </div>
-
+        
+      
       <div class="video-block">
-        <h3><i class="bi bi-x-circle-fill" style="color:#f87171"></i> Häufige Fehler — bitte vermeiden</h3>
+        <h3><i class="bi bi-x-circle-fill" style="color:#f87171"></i> <span data-i18n="s3.errors.title">Häufige Fehler — bitte vermeiden</span></h3>
         <ul class="cross">
-          <li>Nach unten schauen statt in die Kamera.</li>
-          <li>Zu schnell sprechen — der Zuschauer versteht Sie nicht.</li>
-          <li>Video länger als 2 Minuten.</li>
-          <li>Schlechte Beleuchtung — Gesicht zu dunkel oder überbelichtet.</li>
-          <li>Laute Geräusche im Hintergrund.</li>
+          <li data-i18n="s3.errors.li1">Nach unten schauen statt in die Kamera.</li>
+          <li data-i18n="s3.errors.li2">Zu schnell sprechen — der Zuschauer versteht Sie nicht.</li>
+          <li data-i18n="s3.errors.li3">Video länger als 2 Minuten.</li>
+          <li data-i18n="s3.errors.li4">Schlechte Beleuchtung — Gesicht zu dunkel oder überbelichtet.</li>
+          <li data-i18n="s3.errors.li5">Laute Geräusche im Hintergrund.</li>
         </ul>
       </div>
-
-      <div class="video-block">
-        <h3><i class="bi bi-play-circle-fill" style="color:var(--bright)"></i> Beispielvideo</h3>
-        <p style="color:var(--muted);font-size:.88rem;margin-bottom:.5rem;">So sollte ein professionelles Profilvideo aussehen:</p>
-        <div class="video-embed">
-          <div class="video-placeholder">
-            Beispielvideo wird in Kürze verfügbar sein.<br>
-            <small style="margin-top:.5rem;display:block;">YouTube- oder lokales Video hier einfügen.</small>
-          </div>
+ <div class="templates-intro"><i class="bi bi-file-earmark-pdf-fill" style="font-size:1.35rem;color:#d97706"></i> <span data-i18n="s6_templates_intro">Video-Selbstpräsentation</span></div>
+      <div class="templates-grid">
+        <div class="template-card">
+          <div class="template-card-icon"><i class="bi bi-file-earmark-pdf-fill" style="font-size:1.35rem;color:#d97706"></i></div>
+          <div class="template-card-title" data-i18n="s6_t1_title">Anleitung für Ausbildungs-Bewerber</div>
+          <div class="template-card-desc" data-i18n="s6_t1_desc">Anleitung und Hinweise zum Einführungsvideo über Ausbildung.</div>
+          <a href="3E_Anleitung für Ausbildungsbewerber.pdf" download class="template-card-btn"><i class="bi bi-download"></i> <span data-i18n="download">Herunterladen</span></a>
         </div>
+        <div class="template-card">
+          <div class="template-card-icon"><i class="bi bi-file-earmark-pdf-fill" style="font-size:1.35rem;color:#d97706"></i></div>
+          <div class="template-card-title" data-i18n="s6_t2_title">Anleitung für Arbeits-Bewerber</div>
+          <div class="template-card-desc" data-i18n="s6_t2_desc">Leitfaden und Anweisungen zum Einführungsvideo über Arbeit.</div>
+          <a href="3E_Anleitung für Arbeitsbewerber.pdf" download class="template-card-btn"><i class="bi bi-download"></i> <span data-i18n="download">Herunterladen</span></a>
+        </div>
+       
+      </div>
+      </div>
+      
+      <div class="video-block">
+        <h3><i class="bi bi-play-circle-fill" style="color:var(--bright)"></i> <span data-i18n="s3.example.title">Beispielvideo</span></h3>
+        <p style="color:var(--muted);font-size:.88rem;margin-bottom:.9rem;" data-i18n="s3.example.desc">So sollte ein professionelles Profilvideo aussehen:</p>
+
+        <div class="vex-tabs">
+          <button class="vex-tab vex-tab-active" id="vexBtnAusbildung" onclick="vexSwitch('ausbildung')">
+            <i class="fa-solid fa-graduation-cap"></i> <span data-i18n="s3.example.tab.ausbildung">Ausbildung</span>
+          </button>
+          <button class="vex-tab" id="vexBtnArbeit" onclick="vexSwitch('arbeit')">
+            <i class="fa-solid fa-briefcase"></i> <span data-i18n="s3.example.tab.arbeit">Arbeit</span>
+          </button>
+        </div>
+
+      <div class="video-embed" id="vexPane-ausbildung">
+  <video controls poster="videos/ausbildung-cover.jpg">
+    <source src="1782843076_Bewerbung.mov" type="video/mp4">
+    Ihr Browser unterstützt das Videoformat nicht.
+  </video>
+</div>
+
+<div class="video-embed" id="vexPane-arbeit" style="display:none">
+  <video controls poster="videos/arbeit-cover.jpg">
+    <source src="video_6a5a8b61947634.53041636.mp4" type="video/mp4">
+    Ihr Browser unterstützt das Videoformat nicht.
+  </video>
+</div>
       </div>
 
    
@@ -797,40 +1059,40 @@
     <!-- 04 BEWERBUNGSHILFE (NEU) -->
     <section id="bewerbungshilfe" class="bewerber-section">
       <div class="section-num">04</div>
-      <h2>Bewerbungshilfe &amp; Interview-Guide</h2>
-      <p class="subtitle">Die wichtigsten Strategien für Ihren Berufseinstieg in Deutschland</p>
-      <p>Aus unserem Ratgeber für Berufseinsteiger — kompakt und sofort anwendbar: Von der perfekten Bewerbung bis zum überzeugenden Vorstellungsgespräch.</p>
+      <h2 data-i18n="s4.title">Bewerbungshilfe &amp; Interview-Guide</h2>
+      <p class="subtitle" data-i18n="s4.subtitle">Die wichtigsten Strategien für Ihren Berufseinstieg in Deutschland</p>
+      <p data-i18n="s4.desc">Aus unserem Ratgeber für Berufseinsteiger — kompakt und sofort anwendbar: Von der perfekten Bewerbung bis zum überzeugenden Vorstellungsgespräch.</p>
 
       <!-- Lebenslauf & Anschreiben -->
       <div class="bh-card">
         <div class="bh-card-header">
           <div class="bh-icon"><i class="bi bi-file-earmark-person-fill"></i></div>
-          <h3>Lebenslauf &amp; Anschreiben</h3>
+          <h3 data-i18n="s4.c1.title">Lebenslauf &amp; Anschreiben</h3>
         </div>
         <div class="bh-cols">
           <div class="bh-col">
-            <div class="bh-label good">✓ So geht's richtig</div>
+            <div class="bh-label good" data-i18n="s4.c1.good.label">✓ So geht's richtig</div>
             <ul class="bh-list check">
-              <li>Klare Struktur: Kontaktdaten → Ausbildung → Praktika → Zusatzkenntnisse</li>
-              <li>Konkrete Ergebnisse zeigen, nicht nur Tätigkeiten aufzählen</li>
-              <li>Anschreiben: max. 1 Seite, persönlicher Bezug zum Unternehmen</li>
-              <li>Schlüsselbegriffe aus der Stellenausschreibung verwenden</li>
-              <li>Soft Skills durch echte Beispiele belegen</li>
+              <li data-i18n="s4.c1.good.li1">Klare Struktur: Kontaktdaten → Ausbildung → Praktika → Zusatzkenntnisse</li>
+              <li data-i18n="s4.c1.good.li2">Konkrete Ergebnisse zeigen, nicht nur Tätigkeiten aufzählen</li>
+              <li data-i18n="s4.c1.good.li3">Anschreiben: max. 1 Seite, persönlicher Bezug zum Unternehmen</li>
+              <li data-i18n="s4.c1.good.li4">Schlüsselbegriffe aus der Stellenausschreibung verwenden</li>
+              <li data-i18n="s4.c1.good.li5">Soft Skills durch echte Beispiele belegen</li>
             </ul>
           </div>
           <div class="bh-col">
-            <div class="bh-label bad">✗ Diese Fehler vermeiden</div>
+            <div class="bh-label bad" data-i18n="s4.c1.bad.label">✗ Diese Fehler vermeiden</div>
             <ul class="bh-list cross">
-              <li>Standardeinstieg „Hiermit bewerbe ich mich…" — wirkt austauschbar</li>
-              <li>Vage Aussagen wie „Ich bin teamfähig" ohne Beispiel</li>
-              <li>Zu lange Fließtexte — klare Stichpunkte sind besser</li>
-              <li>KI-Texte ohne persönliche Anpassung — Authentizität geht verloren</li>
+              <li data-i18n="s4.c1.bad.li1">Standardeinstieg „Hiermit bewerbe ich mich…" — wirkt austauschbar</li>
+              <li data-i18n="s4.c1.bad.li2">Vage Aussagen wie „Ich bin teamfähig" ohne Beispiel</li>
+              <li data-i18n="s4.c1.bad.li3">Zu lange Fließtexte — klare Stichpunkte sind besser</li>
+              <li data-i18n="s4.c1.bad.li4">KI-Texte ohne persönliche Anpassung — Authentizität geht verloren</li>
             </ul>
           </div>
         </div>
         <div class="bh-tip">
           <i class="bi bi-lightbulb-fill"></i>
-          <span><strong>Tipp:</strong> Statt „Ich bin engagiert" lieber: „Während meines Praktikums habe ich gelernt, auch in stressigen Situationen freundlich und lösungsorientiert zu bleiben."</span>
+          <span data-i18n-html="s4.c1.tip"><strong>Tipp:</strong> Statt „Ich bin engagiert" lieber: „Während meines Praktikums habe ich gelernt, auch in stressigen Situationen freundlich und lösungsorientiert zu bleiben."</span>
         </div>
       </div>
 
@@ -838,28 +1100,28 @@
       <div class="bh-card">
         <div class="bh-card-header">
           <div class="bh-icon"><i class="bi bi-arrow-right-circle-fill"></i></div>
-          <h3>Die 5 Phasen des Bewerbungsprozesses</h3>
+          <h3 data-i18n="s4.c2.title">Die 5 Phasen des Bewerbungsprozesses</h3>
         </div>
         <div class="bh-steps">
           <div class="bh-step">
             <div class="bh-step-num">1</div>
-            <div><strong>Bewerbung &amp; Vorauswahl</strong><p>Vollständige Unterlagen einreichen. Schlüsselbegriffe aus der Ausschreibung verwenden.</p></div>
+            <div data-i18n-html="s4.c2.step1"><strong>Bewerbung &amp; Vorauswahl</strong><p>Vollständige Unterlagen einreichen. Schlüsselbegriffe aus der Ausschreibung verwenden.</p></div>
           </div>
           <div class="bh-step">
             <div class="bh-step-num">2</div>
-            <div><strong>Telefon- oder Videointerview</strong><p>15–30 Minuten Kennenlerngespräch. Stellenanzeige nochmals lesen, 1–2 Fragen vorbereiten.</p></div>
+            <div data-i18n-html="s4.c2.step2"><strong>Telefon- oder Videointerview</strong><p>15–30 Minuten Kennenlerngespräch. Stellenanzeige nochmals lesen, 1–2 Fragen vorbereiten.</p></div>
           </div>
           <div class="bh-step">
             <div class="bh-step-num">3</div>
-            <div><strong>Persönliches Gespräch</strong><p>Über Arbeitsweise und Motivation sprechen. Konkrete Beispiele aus Praktika nennen.</p></div>
+            <div data-i18n-html="s4.c2.step3"><strong>Persönliches Gespräch</strong><p>Über Arbeitsweise und Motivation sprechen. Konkrete Beispiele aus Praktika nennen.</p></div>
           </div>
           <div class="bh-step">
             <div class="bh-step-num">4</div>
-            <div><strong>Praktische Aufgabe oder Test</strong><p>Ruhig bleiben — es geht ums Denken, nicht um Perfektion. Gedanken laut erklären.</p></div>
+            <div data-i18n-html="s4.c2.step4"><strong>Praktische Aufgabe oder Test</strong><p>Ruhig bleiben — es geht ums Denken, nicht um Perfektion. Gedanken laut erklären.</p></div>
           </div>
           <div class="bh-step">
             <div class="bh-step-num">5</div>
-            <div><strong>Vertragsangebot</strong><p>Professionell bleiben und für die Möglichkeit bedanken. Bei längerem Schweigen ruhig nachfragen.</p></div>
+            <div data-i18n-html="s4.c2.step5"><strong>Vertragsangebot</strong><p>Professionell bleiben und für die Möglichkeit bedanken. Bei längerem Schweigen ruhig nachfragen.</p></div>
           </div>
         </div>
       </div>
@@ -868,29 +1130,29 @@
       <div class="bh-card">
         <div class="bh-card-header">
           <div class="bh-icon"><i class="bi bi-chat-quote-fill"></i></div>
-          <h3>Typische Interviewfragen &amp; Musterantworten</h3>
+          <h3 data-i18n="s4.c3.title">Typische Interviewfragen &amp; Musterantworten</h3>
         </div>
-        <p style="color:var(--muted);font-size:.85rem;margin-bottom:1rem;">Finden Sie unbedingt Ihre eigenen Formulierungen — diese Beispiele zeigen nur die Struktur!</p>
+        <p style="color:var(--muted);font-size:.85rem;margin-bottom:1rem;" data-i18n="s4.c3.hint">Finden Sie unbedingt Ihre eigenen Formulierungen — diese Beispiele zeigen nur die Struktur!</p>
         <div class="bh-qa-list">
           <div class="bh-qa">
-            <div class="bh-q"><i class="bi bi-question-circle-fill"></i> „Erzählen Sie etwas über sich."</div>
-            <div class="bh-a">Struktur: Werdegang (1 Satz) → Stärke/Arbeitsweise (1 Satz) → Motivation (1 Satz). Dauer: 60–90 Sekunden, persönlich und klar.</div>
+            <div class="bh-q"><i class="bi bi-question-circle-fill"></i> <span data-i18n="s4.c3.q1">„Erzählen Sie etwas über sich."</span></div>
+            <div class="bh-a" data-i18n="s4.c3.a1">Struktur: Werdegang (1 Satz) → Stärke/Arbeitsweise (1 Satz) → Motivation (1 Satz). Dauer: 60–90 Sekunden, persönlich und klar.</div>
           </div>
           <div class="bh-qa">
-            <div class="bh-q"><i class="bi bi-question-circle-fill"></i> „Warum haben Sie sich bei uns beworben?"</div>
-            <div class="bh-a">„Ihr Unternehmen spricht mich an, weil Sie junge Mitarbeitende aktiv fördern. Ich suche ein Umfeld, in dem ich Verantwortung übernehmen und viel lernen kann."</div>
+            <div class="bh-q"><i class="bi bi-question-circle-fill"></i> <span data-i18n="s4.c3.q2">„Warum haben Sie sich bei uns beworben?"</span></div>
+            <div class="bh-a" data-i18n="s4.c3.a2">„Ihr Unternehmen spricht mich an, weil Sie junge Mitarbeitende aktiv fördern. Ich suche ein Umfeld, in dem ich Verantwortung übernehmen und viel lernen kann."</div>
           </div>
           <div class="bh-qa">
-            <div class="bh-q"><i class="bi bi-question-circle-fill"></i> „Wie gehen Sie mit Stress um?"</div>
-            <div class="bh-a">„Ich plane Aufgaben nach Prioritäten und arbeite Schritt für Schritt ab. Wenn es eng wird, bleibe ich ruhig und bitte frühzeitig um Unterstützung."</div>
+            <div class="bh-q"><i class="bi bi-question-circle-fill"></i> <span data-i18n="s4.c3.q3">„Wie gehen Sie mit Stress um?"</span></div>
+            <div class="bh-a" data-i18n="s4.c3.a3">„Ich plane Aufgaben nach Prioritäten und arbeite Schritt für Schritt ab. Wenn es eng wird, bleibe ich ruhig und bitte frühzeitig um Unterstützung."</div>
           </div>
           <div class="bh-qa">
-            <div class="bh-q"><i class="bi bi-question-circle-fill"></i> „Was sind Ihre Stärken?"</div>
-            <div class="bh-a">„Ich arbeite sehr zuverlässig und bleibe auch bei Routineaufgaben konzentriert. Außerdem finde ich schnell Struktur, wenn etwas chaotisch wird."</div>
+            <div class="bh-q"><i class="bi bi-question-circle-fill"></i> <span data-i18n="s4.c3.q4">„Was sind Ihre Stärken?"</span></div>
+            <div class="bh-a" data-i18n="s4.c3.a4">„Ich arbeite sehr zuverlässig und bleibe auch bei Routineaufgaben konzentriert. Außerdem finde ich schnell Struktur, wenn etwas chaotisch wird."</div>
           </div>
           <div class="bh-qa">
-            <div class="bh-q"><i class="bi bi-question-circle-fill"></i> „Haben Sie noch Fragen?" — Niemals Nein sagen!</div>
-            <div class="bh-a">„Wie sieht die Einarbeitung bei Ihnen aus?" oder „Was würden Sie sich vom idealen Kandidaten in den ersten 3 Monaten wünschen?"</div>
+            <div class="bh-q"><i class="bi bi-question-circle-fill"></i> <span data-i18n="s4.c3.q5">„Haben Sie noch Fragen?" — Niemals Nein sagen!</span></div>
+            <div class="bh-a" data-i18n="s4.c3.a5">„Wie sieht die Einarbeitung bei Ihnen aus?" oder „Was würden Sie sich vom idealen Kandidaten in den ersten 3 Monaten wünschen?"</div>
           </div>
         </div>
       </div>
@@ -899,33 +1161,33 @@
       <div class="bh-card">
         <div class="bh-card-header">
           <div class="bh-icon"><i class="bi bi-stars"></i></div>
-          <h3>Die 5 Erfolgsfaktoren im Gespräch</h3>
+          <h3 data-i18n="s4.c4.title">Die 5 Erfolgsfaktoren im Gespräch</h3>
         </div>
         <div class="bh-factors">
           <div class="bh-factor">
             <div class="bh-factor-icon"><i class="bi bi-eye-fill"></i></div>
-            <strong>Klarheit</strong>
-            <p>Über sich, Stärken und Ziele — wer klar denkt, wirkt sicher.</p>
+            <strong data-i18n="s4.c4.f1.name">Klarheit</strong>
+            <p data-i18n="s4.c4.f1.desc">Über sich, Stärken und Ziele — wer klar denkt, wirkt sicher.</p>
           </div>
           <div class="bh-factor">
             <div class="bh-factor-icon"><i class="bi bi-person-check-fill"></i></div>
-            <strong>Echtheit</strong>
-            <p>Bleib du selbst — Authentizität überzeugt mehr als Perfektion.</p>
+            <strong data-i18n="s4.c4.f2.name">Echtheit</strong>
+            <p data-i18n="s4.c4.f2.desc">Bleib du selbst — Authentizität überzeugt mehr als Perfektion.</p>
           </div>
           <div class="bh-factor">
             <div class="bh-factor-icon"><i class="bi bi-link-45deg"></i></div>
-            <strong>Bezug</strong>
-            <p>Zeig, dass du das Unternehmen verstanden hast.</p>
+            <strong data-i18n="s4.c4.f3.name">Bezug</strong>
+            <p data-i18n="s4.c4.f3.desc">Zeig, dass du das Unternehmen verstanden hast.</p>
           </div>
           <div class="bh-factor">
             <div class="bh-factor-icon"><i class="bi bi-journal-text"></i></div>
-            <strong>Beispiele</strong>
-            <p>Eigenschaften an konkreten Situationen zeigen, nicht nur behaupten.</p>
+            <strong data-i18n="s4.c4.f4.name">Beispiele</strong>
+            <p data-i18n="s4.c4.f4.desc">Eigenschaften an konkreten Situationen zeigen, nicht nur behaupten.</p>
           </div>
           <div class="bh-factor">
             <div class="bh-factor-icon"><i class="bi bi-emoji-smile-fill"></i></div>
-            <strong>Haltung</strong>
-            <p>Wie du auftrittst zählt — ruhig, offen, auf Augenhöhe.</p>
+            <strong data-i18n="s4.c4.f5.name">Haltung</strong>
+            <p data-i18n="s4.c4.f5.desc">Wie du auftrittst zählt — ruhig, offen, auf Augenhöhe.</p>
           </div>
         </div>
       </div>
@@ -933,8 +1195,8 @@
       <!-- Quote -->
       <div class="bh-quote">
         <i class="bi bi-quote"></i>
-        <p>„Die besten Antworten sind keine perfekten Sätze, sondern echte Gedanken. Zeig, wie du lernst, mit Menschen umgehst und Verantwortung übernimmst."</p>
-        <span>— Ratgeber für Berufseinsteiger</span>
+        <p data-i18n="s4.quote.text">„Die besten Antworten sind keine perfekten Sätze, sondern echte Gedanken. Zeig, wie du lernst, mit Menschen umgehst und Verantwortung übernimmst."</p>
+        <span data-i18n="s4.quote.author">— Ratgeber für Berufseinsteiger</span>
       </div>
     </section>
 
@@ -944,35 +1206,29 @@
 </div>
 
 <script>
-const menuToggle   = document.getElementById('menuToggle');
-const menuDropdown = document.getElementById('menuDropdown');
-
-menuToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const open = !menuDropdown.hidden;
-  menuDropdown.hidden = open;
-  menuToggle.setAttribute('aria-expanded', String(!open));
-});
-
-document.querySelectorAll('.menu-toggle').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const sub = btn.nextElementSibling;
-    sub.hidden = !sub.hidden;
-    btn.classList.toggle('open', !sub.hidden);
-  });
-});
-
-document.addEventListener('click', () => {
-  menuDropdown.hidden = true;
-  menuToggle.setAttribute('aria-expanded', 'false');
-  document.querySelectorAll('
+/* TOC active link on scroll */
+const sections = document.querySelectorAll('.bewerber-section[id]');
+const tocLinks = document.querySelectorAll('aside.toc a');
+function setActive(id) {
+  tocLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+}
 if (location.hash) setActive(location.hash.slice(1));
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
 }, { rootMargin: '-40% 0px' });
 sections.forEach(s => observer.observe(s));
 </script>
+
+<script>
+/* Profil-Video: toggle between Ausbildung / Arbeit example videos */
+function vexSwitch(which) {
+  document.getElementById('vexBtnAusbildung').classList.toggle('vex-tab-active', which === 'ausbildung');
+  document.getElementById('vexBtnArbeit').classList.toggle('vex-tab-active', which === 'arbeit');
+  document.getElementById('vexPane-ausbildung').style.display = (which === 'ausbildung') ? 'block' : 'none';
+  document.getElementById('vexPane-arbeit').style.display = (which === 'arbeit') ? 'block' : 'none';
+}
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script>
 /* ════════════════════════════════════════════════════
@@ -995,15 +1251,28 @@ function mnMobileSwitch(btn, panel) {
   const menuToggleBtn = document.getElementById('menuToggle');
   const menuDropdown  = document.getElementById('menuDropdown');
   if (!menuToggleBtn || !menuDropdown) return;
-  menuToggleBtn.addEventListener('click', (e) => {
+  menuToggleBtn.addEventListener('click', function (e) {
     e.stopPropagation();
-    menuDropdown.classList.toggle('open');
-  });
-  document.addEventListener('click', () => {
-    menuDropdown.classList.remove('open');
-  });
-  menuDropdown.addEventListener('click', e => e.stopPropagation());
+    e.preventDefault();
+    const willOpen = !menuDropdown.classList.contains('open');
+    // أغلق أي قائمة منسدلة أخرى مفتوحة (مثل قائمة اللغة) قبل الفتح
+    document.querySelectorAll('.lang-dropdown.open').forEach(function (d) { d.classList.remove('open'); });
+    document.querySelectorAll('.lang-toggle-btn.open').forEach(function (b) { b.classList.remove('open'); });
+    menuDropdown.classList.toggle('open', willOpen);
+  }, true);
+  menuDropdown.addEventListener('click', function (e) { e.stopPropagation(); });
 })();
+
+/* مستمع نقر واحد وموحّد على document لإغلاق كل القوائم المنسدلة عند النقر خارجها */
+document.addEventListener('click', function (e) {
+  const menuDropdown = document.getElementById('menuDropdown');
+  const menuToggleBtn = document.getElementById('menuToggle');
+  if (menuDropdown && menuDropdown.classList.contains('open')) {
+    if (!menuDropdown.contains(e.target) && e.target !== menuToggleBtn) {
+      menuDropdown.classList.remove('open');
+    }
+  }
+});
 (function () {
   const hamburgerBtn   = document.getElementById('hamburgerBtn');
   const mobileNav      = document.getElementById('mobileNav');
@@ -1019,6 +1288,592 @@ function mnMobileSwitch(btn, panel) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNavFn(); });
 })();
 /* ═══════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════════════
+   3E Consulting — LANGUAGE SWITCHER (DE / FR / EN / AR)
+   ════════════════════════════════════════════════════ */
+(function () {
+
+  // ── قاموس الترجمة الشامل (DE / FR / EN / AR) ──
+  const translations = {
+    de: {
+      "nav.services": "Leistungen",
+      "nav.process":  "Ablauf",
+      "nav.about":    "Über uns",
+      "nav.contact":  "Kontakt",
+
+      "hero.tag":   "Service · Bewerber",
+      "hero.title": "Leistungen für <em>Bewerber</em>",
+      "hero.desc":  "Von der Dokumentenvorbereitung bis zur erfolgreichen Ankunft in Deutschland — wir begleiten Sie auf jedem Schritt Ihres Weges.",
+
+      "toc.title":   "Inhaltsverzeichnis",
+      "toc.doc":     "Dokumentenorganisation",
+      "toc.process": "Bewerbungsprozess",
+      "toc.video":   "Profil-Video",
+      "toc.help":    "Bewerbungshilfe",
+
+      "s1.title":    "Dokumentenorganisation",
+      "s1.subtitle": "Beglaubigte Dokumente, Visum und Behörden",
+      "s1.desc":     "Wir unterstützen Sie bei der vollständigen Organisation Ihrer Bewerbungsunterlagen — von der Sammlung bis zur Einreichung bei den zuständigen Behörden.",
+      "s1.li1": "Sammeln aller erforderlichen Unterlagen",
+      "s1.li2": "Beglaubigte Übersetzungen durch anerkannte Übersetzer",
+      "s1.li3": "Visumantrag und Begleitung bei Behördengängen",
+      "s1.li4": "Prüfung der Vollständigkeit Ihrer Bewerbungsmappe",
+
+      "s2.title":    "Bewerbungsprozess",
+      "s2.subtitle": "Ihr persönlicher Begleiter — von der ersten Datei bis zum Vorstellungsgespräch",
+      "s2.desc":     "Wir begleiten Sie <strong>ab dem allerersten Schritt</strong> Ihrer Bewerbung. Laden Sie Ihre Unterlagen hoch — wir prüfen sie sorgfältig, geben Ihnen Feedback und unterstützen Sie bei jedem weiteren Schritt.",
+      "s2.overview": "Unsere Leistungen im Überblick",
+      "s2.li1": "<strong>Upload &amp; Prüfung Ihrer Unterlagen</strong> — Vollständigkeit und Qualität kontrolliert",
+      "s2.li2": "<strong>Bewerbungsunterlagen erstellen</strong> — Professioneller Lebenslauf und Motivationsschreiben",
+      "s2.li3": "<strong>Bewerbung einreichen</strong> — Korrekte Einreichung bei deutschen Unternehmen",
+      "s2.li4": "<strong>Vorstellungsgespräch-Vorbereitung</strong> — Training für typische Fragen und Auftreten",
+      "s2.li5": "<strong>Deutschkurse</strong> — Zugang zu Sprachkursen über die 3E Academy",
+      "s2.langbox.title": "Deutschkurse & Sprachförderung",
+      "s2.langbox.desc":  "Gute Deutschkenntnisse sind der Schlüssel zu einer erfolgreichen Bewerbung. Über unsere Partnerschaft mit der <strong>3E Academy</strong> bieten wir Ihnen Zugang zu strukturierten Deutschkursen — von A1 bis B2.",
+      "s2.langbox.cta":   "Zur 3E Academy →",
+      "s2.book.title": "Einzelleistungen buchen",
+      "s2.book.desc":  "Jede Leistung einzeln oder im Kombi-Paket zum Vorteilspreis.",
+      "s2.book.now":   "Jetzt buchen",
+      "s2.card1.title": "Motivationsschreiben",
+      "s2.card1.desc":  "Individuelles Anschreiben, professionell formuliert und auf Ihre Zielstelle abgestimmt.",
+      "s2.card2.title": "Lebenslauf",
+      "s2.card2.desc":  "Strukturierter deutscher Lebenslauf nach den Standards deutscher Arbeitgeber.",
+      "s2.card3.title": "Vorstellungsgespräch",
+      "s2.card3.desc":  "Gezielte Vorbereitung — typische Fragen, Antwortstrategien und professionelles Auftreten.",
+      "s2.pricing.note": "Alle Preise inkl. MwSt. · Bearbeitungszeit: 2–3 Werktage · <strong style=\"color:var(--accent)\">Kombi-Paket (alle 3): 45 €</strong> statt 54 €",
+
+      "s3.title":    "Profil-Video Anleitung",
+      "s3.subtitle": "Ihr persönlicher Eindruck für deutsche Arbeitgeber",
+      "s3.desc":     "Ein professionelles Profil-Video erhöht Ihre Chancen bei deutschen Unternehmen erheblich. Folgen Sie dieser Anleitung Schritt für Schritt.",
+      "s3.cam.title": "Kamera  Umgebung",
+      "s3.cam.li1": "Kamera auf Augenhöhe — nicht von oben oder unten.",
+      "s3.cam.li2": "Aufgeräumter, neutraler Hintergrund.",
+      "s3.cam.li3": "Gute Beleuchtung von vorne — kein Gegenlicht.",
+      "s3.cam.li4": "Ruhige Umgebung ohne Hintergrundgeräusche.",
+      "s3.cam.li5": "Direkt in die Kamera schauen während des Sprechens.",
+      "s3.duration.title": " Videolänge",
+      "s3.duration.desc":  "Zwischen <strong style=\"color:var(--white)\">60 und 90 Sekunden</strong> — nicht zu kurz, nicht zu lang.",
+      "s3.duration.badge": "Minimum: 1 Minute & Maximum: 1,3 Minuten",
+      "s3.duration.note":  "Videos über 2 Minuten werden von Personalverantwortlichen meist nicht vollständig angesehen.",
+      "s3.script.title": " Mein Vorstellungsvideo — Struktur",
+      "s3.script.l1.label": "Begrüßung", "s3.script.l1.text": "„Hallo, mein Name ist [Name] und ich komme aus [Land].\"",
+      "s3.script.l2.label": "Ziel", "s3.script.l2.text": "„Ich suche eine Ausbildung im Handwerk oder im medizinischen Bereich in Deutschland.\"",
+      "s3.script.l3.label": "Erfahrung", "s3.script.l3.text": "„Durch meine Tätigkeit im Kundenkontakt bin ich kommunikationsstark und belastbar.\"",
+      "s3.script.l4.label": "Motivation", "s3.script.l4.text": "„Ich bin motiviert, zuverlässig und möchte mich durch Tatkraft und Lernbereitschaft beweisen.\"",
+      "s3.script.l5.label": "Abschluss", "s3.script.l5.text": "„Vielen Dank für Ihre Zeit. Ich freue mich sehr auf Ihre Rückmeldung.\"",
+      "s3.errors.title": "Häufige Fehler — bitte vermeiden",
+      "s3.errors.li1": "Nach unten schauen statt in die Kamera.",
+      "s3.errors.li2": "Zu schnell sprechen — der Zuschauer versteht Sie nicht.",
+      "s3.errors.li3": "Video länger als 2 Minuten.",
+      "s3.errors.li4": "Schlechte Beleuchtung — Gesicht zu dunkel oder überbelichtet.",
+      "s3.errors.li5": "Laute Geräusche im Hintergrund.",
+      "s3.example.title": "Beispielvideo",
+      "s3.example.desc":  "So sollte ein professionelles Profilvideo aussehen:",
+      "s3.example.tab.ausbildung": "Ausbildung",
+      "s3.example.tab.arbeit": "Arbeit",
+      "s3.example.soon":  "Beispielvideo wird in Kürze verfügbar sein.",
+      "s3.example.hint":  "YouTube- oder lokales Video hier einfügen.",
+
+      "s4.title":    "Bewerbungshilfe  Interview-Guide",
+      "s4.subtitle": "Die wichtigsten Strategien für Ihren Berufseinstieg in Deutschland",
+      "s4.desc":     "Aus unserem Ratgeber für Berufseinsteiger — kompakt und sofort anwendbar: Von der perfekten Bewerbung bis zum überzeugenden Vorstellungsgespräch.",
+      "s4.c1.title": "Lebenslauf &amp; Anschreiben",
+      "s4.c1.good.label": "✓ So geht's richtig",
+      "s4.c1.good.li1": "Klare Struktur: Kontaktdaten → Ausbildung → Praktika → Zusatzkenntnisse",
+      "s4.c1.good.li2": "Konkrete Ergebnisse zeigen, nicht nur Tätigkeiten aufzählen",
+      "s4.c1.good.li3": "Anschreiben: max. 1 Seite, persönlicher Bezug zum Unternehmen",
+      "s4.c1.good.li4": "Schlüsselbegriffe aus der Stellenausschreibung verwenden",
+      "s4.c1.good.li5": "Soft Skills durch echte Beispiele belegen",
+      "s4.c1.bad.label": "✗ Diese Fehler vermeiden",
+      "s4.c1.bad.li1": "Standardeinstieg „Hiermit bewerbe ich mich…\" — wirkt austauschbar",
+      "s4.c1.bad.li2": "Vage Aussagen wie „Ich bin teamfähig\" ohne Beispiel",
+      "s4.c1.bad.li3": "Zu lange Fließtexte — klare Stichpunkte sind besser",
+      "s4.c1.bad.li4": "KI-Texte ohne persönliche Anpassung — Authentizität geht verloren",
+      "s4.c1.tip": "<strong>Tipp:</strong> Statt „Ich bin engagiert\" lieber: „Während meines Praktikums habe ich gelernt, auch in stressigen Situationen freundlich und lösungsorientiert zu bleiben.\"",
+      "s4.c2.title": "Die 5 Phasen des Bewerbungsprozesses",
+      "s4.c2.step1": "<strong>Bewerbung Vorauswahl</strong><p>Vollständige Unterlagen einreichen. Schlüsselbegriffe aus der Ausschreibung verwenden.</p>",
+      "s4.c2.step2": "<strong>Telefon- oder Videointerview</strong><p>15–30 Minuten Kennenlerngespräch. Stellenanzeige nochmals lesen, 1–2 Fragen vorbereiten.</p>",
+      "s4.c2.step3": "<strong>Persönliches Gespräch</strong><p>Über Arbeitsweise und Motivation sprechen. Konkrete Beispiele aus Praktika nennen.</p>",
+      "s4.c2.step4": "<strong>Praktische Aufgabe oder Test</strong><p>Ruhig bleiben — es geht ums Denken, nicht um Perfektion. Gedanken laut erklären.</p>",
+      "s4.c2.step5": "<strong>Vertragsangebot</strong><p>Professionell bleiben und für die Möglichkeit bedanken. Bei längerem Schweigen ruhig nachfragen.</p>",
+      "s4.c3.title": "Typische Interviewfragen  Musterantworten",
+      "s4.c3.hint":  "Finden Sie unbedingt Ihre eigenen Formulierungen — diese Beispiele zeigen nur die Struktur!",
+      "s4.c3.q1": "„Erzählen Sie etwas über sich.\"",
+      "s4.c3.a1": "Struktur: Werdegang (1 Satz) → Stärke/Arbeitsweise (1 Satz) → Motivation (1 Satz). Dauer: 60–90 Sekunden, persönlich und klar.",
+      "s4.c3.q2": "„Warum haben Sie sich bei uns beworben?\"",
+      "s4.c3.a2": "„Ihr Unternehmen spricht mich an, weil Sie junge Mitarbeitende aktiv fördern. Ich suche ein Umfeld, in dem ich Verantwortung übernehmen und viel lernen kann.\"",
+      "s4.c3.q3": "„Wie gehen Sie mit Stress um?\"",
+      "s4.c3.a3": "„Ich plane Aufgaben nach Prioritäten und arbeite Schritt für Schritt ab. Wenn es eng wird, bleibe ich ruhig und bitte frühzeitig um Unterstützung.\"",
+      "s4.c3.q4": "„Was sind Ihre Stärken?\"",
+      "s4.c3.a4": "„Ich arbeite sehr zuverlässig und bleibe auch bei Routineaufgaben konzentriert. Außerdem finde ich schnell Struktur, wenn etwas chaotisch wird.\"",
+      "s4.c3.q5": "„Haben Sie noch Fragen?\" — Niemals Nein sagen!",
+      "s4.c3.a5": "„Wie sieht die Einarbeitung bei Ihnen aus?\" oder „Was würden Sie sich vom idealen Kandidaten in den ersten 3 Monaten wünschen?\"",
+      "s4.c4.title": "Die 5 Erfolgsfaktoren im Gespräch",
+      "s4.c4.f1.name": "Klarheit", "s4.c4.f1.desc": "Über sich, Stärken und Ziele — wer klar denkt, wirkt sicher.",
+      "s4.c4.f2.name": "Echtheit", "s4.c4.f2.desc": "Bleib du selbst — Authentizität überzeugt mehr als Perfektion.",
+      "s4.c4.f3.name": "Bezug", "s4.c4.f3.desc": "Zeig, dass du das Unternehmen verstanden hast.",
+      "s4.c4.f4.name": "Beispiele", "s4.c4.f4.desc": "Eigenschaften an konkreten Situationen zeigen, nicht nur behaupten.",
+      "s4.c4.f5.name": "Haltung", "s4.c4.f5.desc": "Wie du auftrittst zählt — ruhig, offen, auf Augenhöhe.",
+      "s4.quote.text":   "„Die besten Antworten sind keine perfekten Sätze, sondern echte Gedanken. Zeig, wie du lernst, mit Menschen umgehst und Verantwortung übernimmst.\"",
+      "s4.quote.author": "— Ratgeber für Berufseinsteiger"
+    },
+
+    fr: {
+      "nav.services": "Services",
+      "nav.process":  "Déroulement",
+      "nav.about":    "À propos",
+      "nav.contact":  "Contact",
+
+      "hero.tag":   "Service · Candidats",
+      "hero.title": "Services pour <em>candidats</em>",
+      "hero.desc":  "De la préparation des documents jusqu'à votre arrivée réussie en Allemagne — nous vous accompagnons à chaque étape de votre parcours.",
+
+      "toc.title":   "Table des matières",
+      "toc.doc":     "Organisation des documents",
+      "toc.process": "Processus de candidature",
+      "toc.video":   "Vidéo de profil",
+      "toc.help":    "Aide à la candidature",
+
+      "s1.title":    "Organisation des documents",
+      "s1.subtitle": "Documents certifiés, visa et démarches administratives",
+      "s1.desc":     "Nous vous accompagnons dans l'organisation complète de votre dossier de candidature — de la collecte jusqu'au dépôt auprès des autorités compétentes.",
+      "s1.li1": "Collecte de tous les documents nécessaires",
+      "s1.li2": "Traductions certifiées par des traducteurs agréés",
+      "s1.li3": "Demande de visa et accompagnement dans les démarches administratives",
+      "s1.li4": "Vérification de l'exhaustivité de votre dossier de candidature",
+
+      "s2.title":    "Processus de candidature",
+      "s2.subtitle": "Votre accompagnateur personnel — du premier document à l'entretien d'embauche",
+      "s2.desc":     "Nous vous accompagnons <strong>dès la toute première étape</strong> de votre candidature. Téléchargez vos documents — nous les vérifions soigneusement, vous donnons un retour et vous soutenons à chaque étape suivante.",
+      "s2.overview": "Nos services en un coup d'œil",
+      "s2.li1": "<strong>Téléchargement et vérification de vos documents</strong> — contrôle de l'exhaustivité et de la qualité",
+      "s2.li2": "<strong>Création du dossier de candidature</strong> — CV professionnel et lettre de motivation",
+      "s2.li3": "<strong>Envoi de la candidature</strong> — dépôt correct auprès des entreprises allemandes",
+      "s2.li4": "<strong>Préparation à l'entretien d'embauche</strong> — entraînement aux questions types et à l'attitude",
+      "s2.li5": "<strong>Cours d'allemand</strong> — accès à des cours de langue via la 3E Academy",
+      "s2.langbox.title": "Cours d'allemand & soutien linguistique",
+      "s2.langbox.desc":  "De bonnes connaissances de l'allemand sont la clé d'une candidature réussie. Grâce à notre partenariat avec la <strong>3E Academy</strong>, nous vous donnons accès à des cours d'allemand structurés — du niveau A1 à B2.",
+      "s2.langbox.cta":   "Vers la 3E Academy →",
+      "s2.book.title": "Réserver des services individuels",
+      "s2.book.desc":  "Chaque service séparément ou en formule combinée à prix avantageux.",
+      "s2.book.now":   "Réserver maintenant",
+      "s2.card1.title": "Lettre de motivation",
+      "s2.card1.desc":  "Lettre de motivation personnalisée, rédigée de façon professionnelle et adaptée à votre poste cible.",
+      "s2.card2.title": "CV",
+      "s2.card2.desc":  "CV allemand structuré selon les standards des employeurs allemands.",
+      "s2.card3.title": "Entretien d'embauche",
+      "s2.card3.desc":  "Préparation ciblée — questions types, stratégies de réponse et attitude professionnelle.",
+      "s2.pricing.note": "Tous les prix TTC · Délai de traitement : 2–3 jours ouvrés · <strong style=\"color:var(--accent)\">Offre combinée (les 3) : 45 €</strong> au lieu de 54 €",
+
+      "s3.title":    "Guide de la vidéo de profil",
+      "s3.subtitle": "Votre impression personnelle auprès des employeurs allemands",
+      "s3.desc":     "Une vidéo de profil professionnelle augmente considérablement vos chances auprès des entreprises allemandes. Suivez ce guide étape par étape.",
+      "s3.cam.title": "Caméra &amp; environnement",
+      "s3.cam.li1": "Caméra à hauteur des yeux — ni du dessus ni du dessous.",
+      "s3.cam.li2": "Arrière-plan neutre et bien rangé.",
+      "s3.cam.li3": "Bon éclairage de face — pas de contre-jour.",
+      "s3.cam.li4": "Environnement calme, sans bruits de fond.",
+      "s3.cam.li5": "Regarder directement la caméra en parlant.",
+      "s3.duration.title": " Durée de la vidéo",
+      "s3.duration.desc":  "Entre <strong style=\"color:var(--white)\">60 et 90 secondes</strong> — ni trop court, ni trop long.",
+      "s3.duration.badge": "Minimum : 1 minute &nbsp;·&nbsp; Maximum : 1,5 minute",
+      "s3.duration.note":  "Les vidéos de plus de 2 minutes ne sont généralement pas regardées en entier par les recruteurs.",
+      "s3.script.title": " Ma vidéo de présentation — structure",
+      "s3.script.l1.label": "Salutation", "s3.script.l1.text": "« Bonjour, je m'appelle [Nom] et je viens de [Pays]. »",
+      "s3.script.l2.label": "Objectif", "s3.script.l2.text": "« Je recherche une formation dans l'artisanat ou dans le secteur médical en Allemagne. »",
+      "s3.script.l3.label": "Expérience", "s3.script.l3.text": "« Grâce à mon activité en contact avec la clientèle, je communique bien et je suis résistant(e) au stress. »",
+      "s3.script.l4.label": "Motivation", "s3.script.l4.text": "« Je suis motivé(e), fiable et je souhaite faire mes preuves par mon engagement et ma volonté d'apprendre. »",
+      "s3.script.l5.label": "Conclusion", "s3.script.l5.text": "« Merci beaucoup pour votre temps. J'attends votre réponse avec impatience. »",
+      "s3.errors.title": "Erreurs fréquentes — à éviter",
+      "s3.errors.li1": "Regarder vers le bas au lieu de la caméra.",
+      "s3.errors.li2": "Parler trop vite — le spectateur ne vous comprend pas.",
+      "s3.errors.li3": "Vidéo de plus de 2 minutes.",
+      "s3.errors.li4": "Mauvais éclairage — visage trop sombre ou surexposé.",
+      "s3.errors.li5": "Bruits forts en arrière-plan.",
+      "s3.example.title": "Vidéo exemple",
+      "s3.example.desc":  "Voici à quoi devrait ressembler une vidéo de profil professionnelle :",
+      "s3.example.tab.ausbildung": "Formation",
+      "s3.example.tab.arbeit": "Emploi",
+      "s3.example.soon":  "La vidéo exemple sera bientôt disponible.",
+      "s3.example.hint":  "Insérer ici une vidéo YouTube ou locale.",
+
+      "s4.title":    "Aide à la candidature &amp; guide d'entretien",
+      "s4.subtitle": "Les stratégies les plus importantes pour votre entrée sur le marché du travail allemand",
+      "s4.desc":     "Extrait de notre guide pour les jeunes actifs — compact et directement applicable : de la candidature parfaite à l'entretien d'embauche convaincant.",
+      "s4.c1.title": "CV &amp; lettre de motivation",
+      "s4.c1.good.label": "✓ Comment bien faire",
+      "s4.c1.good.li1": "Structure claire : coordonnées → formation → stages → compétences complémentaires",
+      "s4.c1.good.li2": "Montrer des résultats concrets, pas seulement énumérer des tâches",
+      "s4.c1.good.li3": "Lettre de motivation : max. 1 page, lien personnel avec l'entreprise",
+      "s4.c1.good.li4": "Utiliser les mots-clés de l'offre d'emploi",
+      "s4.c1.good.li5": "Illustrer les compétences comportementales par des exemples réels",
+      "s4.c1.bad.label": "✗ Erreurs à éviter",
+      "s4.c1.bad.li1": "Introduction standard « Par la présente, je pose ma candidature… » — semble impersonnelle",
+      "s4.c1.bad.li2": "Affirmations vagues comme « Je travaille bien en équipe » sans exemple",
+      "s4.c1.bad.li3": "Textes trop longs — des points clairs sont préférables",
+      "s4.c1.bad.li4": "Textes générés par IA sans adaptation personnelle — l'authenticité se perd",
+      "s4.c1.tip": "<strong>Astuce :</strong> Au lieu de « Je suis engagé(e) », préférez : « Pendant mon stage, j'ai appris à rester aimable et orienté(e) solution même dans les situations stressantes. »",
+      "s4.c2.title": "Les 5 phases du processus de candidature",
+      "s4.c2.step1": "<strong>Candidature &amp; présélection</strong><p>Soumettre un dossier complet. Utiliser les mots-clés de l'offre d'emploi.</p>",
+      "s4.c2.step2": "<strong>Entretien téléphonique ou vidéo</strong><p>Entretien de découverte de 15 à 30 minutes. Relire l'annonce, préparer 1 à 2 questions.</p>",
+      "s4.c2.step3": "<strong>Entretien en personne</strong><p>Parler de votre façon de travailler et de votre motivation. Citer des exemples concrets de stages.</p>",
+      "s4.c2.step4": "<strong>Exercice pratique ou test</strong><p>Restez calme — l'important est la réflexion, pas la perfection. Expliquez votre raisonnement à voix haute.</p>",
+      "s4.c2.step5": "<strong>Offre de contrat</strong><p>Restez professionnel(le) et remerciez pour l'opportunité. En cas de silence prolongé, relancez calmement.</p>",
+      "s4.c3.title": "Questions d'entretien typiques &amp; réponses types",
+      "s4.c3.hint":  "Trouvez absolument vos propres formulations — ces exemples ne montrent que la structure !",
+      "s4.c3.q1": "« Parlez-moi un peu de vous. »",
+      "s4.c3.a1": "Structure : parcours (1 phrase) → point fort/méthode de travail (1 phrase) → motivation (1 phrase). Durée : 60–90 secondes, personnel et clair.",
+      "s4.c3.q2": "« Pourquoi avez-vous postulé chez nous ? »",
+      "s4.c3.a2": "« Votre entreprise m'intéresse car vous encouragez activement les jeunes collaborateurs. Je recherche un environnement où je peux prendre des responsabilités et beaucoup apprendre. »",
+      "s4.c3.q3": "« Comment gérez-vous le stress ? »",
+      "s4.c3.a3": "« Je planifie les tâches par priorité et j'avance étape par étape. Quand la situation devient tendue, je reste calme et je demande de l'aide à temps. »",
+      "s4.c3.q4": "« Quels sont vos points forts ? »",
+      "s4.c3.a4": "« Je travaille de manière très fiable et reste concentré(e) même sur des tâches routinières. Je trouve aussi rapidement de la structure quand une situation devient chaotique. »",
+      "s4.c3.q5": "« Avez-vous encore des questions ? » — Ne jamais dire non !",
+      "s4.c3.a5": "« Comment se déroule l'intégration chez vous ? » ou « Qu'attendriez-vous du candidat idéal pendant les 3 premiers mois ? »",
+      "s4.c4.title": "Les 5 facteurs clés de succès en entretien",
+      "s4.c4.f1.name": "Clarté", "s4.c4.f1.desc": "Sur soi, ses points forts et ses objectifs — qui pense clairement paraît sûr de soi.",
+      "s4.c4.f2.name": "Authenticité", "s4.c4.f2.desc": "Restez vous-même — l'authenticité convainc plus que la perfection.",
+      "s4.c4.f3.name": "Pertinence", "s4.c4.f3.desc": "Montrez que vous avez compris l'entreprise.",
+      "s4.c4.f4.name": "Exemples", "s4.c4.f4.desc": "Illustrer ses qualités par des situations concrètes, pas seulement les affirmer.",
+      "s4.c4.f5.name": "Attitude", "s4.c4.f5.desc": "Votre attitude compte — calme, ouvert(e), d'égal à égal.",
+      "s4.quote.text":   "« Les meilleures réponses ne sont pas des phrases parfaites, mais des pensées sincères. Montrez comment vous apprenez, interagissez avec les autres et prenez des responsabilités. »",
+      "s4.quote.author": "— Guide pour les jeunes actifs"
+    },
+
+    en: {
+      "nav.services": "Services",
+      "nav.process":  "Process",
+      "nav.about":    "About us",
+      "nav.contact":  "Contact",
+
+      "hero.tag":   "Service · Applicants",
+      "hero.title": "Services for <em>applicants</em>",
+      "hero.desc":  "From document preparation to a successful arrival in Germany — we support you at every step of your journey.",
+
+      "toc.title":   "Table of contents",
+      "toc.doc":     "Document organization",
+      "toc.process": "Application process",
+      "toc.video":   "Profile video",
+      "toc.help":    "Application support",
+
+      "s1.title":    "Document organization",
+      "s1.subtitle": "Certified documents, visa and authorities",
+      "s1.desc":     "We support you in fully organizing your application documents — from collection to submission to the responsible authorities.",
+      "s1.li1": "Collecting all required documents",
+      "s1.li2": "Certified translations by recognized translators",
+      "s1.li3": "Visa application and support with official procedures",
+      "s1.li4": "Checking the completeness of your application file",
+
+      "s2.title":    "Application process",
+      "s2.subtitle": "Your personal companion — from the first file to the job interview",
+      "s2.desc":     "We support you <strong>from the very first step</strong> of your application. Upload your documents — we check them carefully, give you feedback and support you at every further step.",
+      "s2.overview": "Our services at a glance",
+      "s2.li1": "<strong>Upload &amp; review of your documents</strong> — completeness and quality checked",
+      "s2.li2": "<strong>Creating application documents</strong> — professional CV and cover letter",
+      "s2.li3": "<strong>Submitting the application</strong> — correct submission to German companies",
+      "s2.li4": "<strong>Job interview preparation</strong> — training for typical questions and demeanor",
+      "s2.li5": "<strong>German courses</strong> — access to language courses via the 3E Academy",
+      "s2.langbox.title": "German courses &amp; language support",
+      "s2.langbox.desc":  "Good German skills are the key to a successful application. Through our partnership with the <strong>3E Academy</strong>, we give you access to structured German courses — from A1 to B2.",
+      "s2.langbox.cta":   "To the 3E Academy →",
+      "s2.book.title": "Book individual services",
+      "s2.book.desc":  "Each service individually or as a combo package at a discounted price.",
+      "s2.book.now":   "Book now",
+      "s2.card1.title": "Cover letter",
+      "s2.card1.desc":  "Individual cover letter, professionally written and tailored to your target position.",
+      "s2.card2.title": "CV",
+      "s2.card2.desc":  "Structured German CV according to the standards of German employers.",
+      "s2.card3.title": "Job interview",
+      "s2.card3.desc":  "Targeted preparation — typical questions, answer strategies and professional demeanor.",
+      "s2.pricing.note": "All prices incl. VAT · Processing time: 2–3 business days · <strong style=\"color:var(--accent)\">Combo package (all 3): €45</strong> instead of €54",
+
+      "s3.title":    "Profile video guide",
+      "s3.subtitle": "Your personal impression for German employers",
+      "s3.desc":     "A professional profile video significantly increases your chances with German companies. Follow this guide step by step.",
+      "s3.cam.title": "Camera &amp; environment",
+      "s3.cam.li1": "Camera at eye level — not from above or below.",
+      "s3.cam.li2": "Tidy, neutral background.",
+      "s3.cam.li3": "Good lighting from the front — no backlight.",
+      "s3.cam.li4": "Quiet environment without background noise.",
+      "s3.cam.li5": "Look directly into the camera while speaking.",
+      "s3.duration.title": " Video length",
+      "s3.duration.desc":  "Between <strong style=\"color:var(--white)\">60 and 90 seconds</strong> — not too short, not too long.",
+      "s3.duration.badge": "Minimum: 1 minute &nbsp;·&nbsp; Maximum: 1.5 minutes",
+      "s3.duration.note":  "Videos longer than 2 minutes are usually not watched in full by recruiters.",
+      "s3.script.title": " My introduction video — structure",
+      "s3.script.l1.label": "Greeting", "s3.script.l1.text": "\"Hello, my name is [Name] and I'm from [Country].\"",
+      "s3.script.l2.label": "Goal", "s3.script.l2.text": "\"I'm looking for an apprenticeship in a trade or in the medical field in Germany.\"",
+      "s3.script.l3.label": "Experience", "s3.script.l3.text": "\"Through my work in customer contact I'm a strong communicator and resilient.\"",
+      "s3.script.l4.label": "Motivation", "s3.script.l4.text": "\"I am motivated, reliable and want to prove myself through drive and willingness to learn.\"",
+      "s3.script.l5.label": "Closing", "s3.script.l5.text": "\"Thank you very much for your time. I look forward to hearing from you.\"",
+      "s3.errors.title": "Common mistakes — please avoid",
+      "s3.errors.li1": "Looking down instead of into the camera.",
+      "s3.errors.li2": "Speaking too fast — the viewer doesn't understand you.",
+      "s3.errors.li3": "Video longer than 2 minutes.",
+      "s3.errors.li4": "Poor lighting — face too dark or overexposed.",
+      "s3.errors.li5": "Loud background noise.",
+      "s3.example.title": "Example video",
+      "s3.example.desc":  "This is what a professional profile video should look like:",
+      "s3.example.tab.ausbildung": "Apprenticeship",
+      "s3.example.tab.arbeit": "Job",
+      "s3.example.soon":  "Example video will be available soon.",
+      "s3.example.hint":  "Insert YouTube or local video here.",
+
+      "s4.title":    "Application support &amp; interview guide",
+      "s4.subtitle": "The most important strategies for starting your career in Germany",
+      "s4.desc":     "From our guide for career starters — compact and immediately applicable: from the perfect application to a convincing job interview.",
+      "s4.c1.title": "CV &amp; cover letter",
+      "s4.c1.good.label": "✓ How to get it right",
+      "s4.c1.good.li1": "Clear structure: contact details → education → internships → additional skills",
+      "s4.c1.good.li2": "Show concrete results, not just list tasks",
+      "s4.c1.good.li3": "Cover letter: max. 1 page, personal reference to the company",
+      "s4.c1.good.li4": "Use keywords from the job posting",
+      "s4.c1.good.li5": "Back up soft skills with real examples",
+      "s4.c1.bad.label": "✗ Mistakes to avoid",
+      "s4.c1.bad.li1": "Standard opening \"Hereby I apply for…\" — feels generic",
+      "s4.c1.bad.li2": "Vague statements like \"I'm a team player\" without an example",
+      "s4.c1.bad.li3": "Overly long running text — clear bullet points are better",
+      "s4.c1.bad.li4": "AI-generated text without personal adaptation — loses authenticity",
+      "s4.c1.tip": "<strong>Tip:</strong> Instead of \"I am dedicated\", try: \"During my internship I learned to stay friendly and solution-oriented even in stressful situations.\"",
+      "s4.c2.title": "The 5 phases of the application process",
+      "s4.c2.step1": "<strong>Application &amp; pre-selection</strong><p>Submit complete documents. Use keywords from the job posting.</p>",
+      "s4.c2.step2": "<strong>Phone or video interview</strong><p>15–30 minute get-to-know-you conversation. Re-read the job ad, prepare 1–2 questions.</p>",
+      "s4.c2.step3": "<strong>Personal interview</strong><p>Talk about your way of working and motivation. Give concrete examples from internships.</p>",
+      "s4.c2.step4": "<strong>Practical task or test</strong><p>Stay calm — it's about your thinking, not perfection. Explain your reasoning out loud.</p>",
+      "s4.c2.step5": "<strong>Contract offer</strong><p>Stay professional and thank them for the opportunity. If there's a long silence, follow up calmly.</p>",
+      "s4.c3.title": "Typical interview questions &amp; sample answers",
+      "s4.c3.hint":  "Be sure to find your own wording — these examples only show the structure!",
+      "s4.c3.q1": "\"Tell me a bit about yourself.\"",
+      "s4.c3.a1": "Structure: background (1 sentence) → strength/way of working (1 sentence) → motivation (1 sentence). Duration: 60–90 seconds, personal and clear.",
+      "s4.c3.q2": "\"Why did you apply to us?\"",
+      "s4.c3.a2": "\"Your company appeals to me because you actively support young employees. I'm looking for an environment where I can take on responsibility and learn a lot.\"",
+      "s4.c3.q3": "\"How do you handle stress?\"",
+      "s4.c3.a3": "\"I plan tasks by priority and work through them step by step. When things get tight, I stay calm and ask for support early.\"",
+      "s4.c3.q4": "\"What are your strengths?\"",
+      "s4.c3.a4": "\"I work very reliably and stay focused even on routine tasks. I also quickly bring structure when things get chaotic.\"",
+      "s4.c3.q5": "\"Do you have any questions?\" — Never say no!",
+      "s4.c3.a5": "\"What does onboarding look like at your company?\" or \"What would you want from the ideal candidate in the first 3 months?\"",
+      "s4.c4.title": "The 5 success factors in an interview",
+      "s4.c4.f1.name": "Clarity", "s4.c4.f1.desc": "About yourself, your strengths and goals — clear thinking looks confident.",
+      "s4.c4.f2.name": "Authenticity", "s4.c4.f2.desc": "Be yourself — authenticity convinces more than perfection.",
+      "s4.c4.f3.name": "Relevance", "s4.c4.f3.desc": "Show that you understand the company.",
+      "s4.c4.f4.name": "Examples", "s4.c4.f4.desc": "Show qualities through concrete situations, don't just claim them.",
+      "s4.c4.f5.name": "Attitude", "s4.c4.f5.desc": "How you carry yourself matters — calm, open, on equal footing.",
+      "s4.quote.text":   "\"The best answers aren't perfect sentences, but genuine thoughts. Show how you learn, deal with people and take on responsibility.\"",
+      "s4.quote.author": "— Guide for career starters"
+    },
+
+    ar: {
+      "nav.services": "الخدمات",
+      "nav.process":  "المسار",
+      "nav.about":    "من نحن",
+      "nav.contact":  "اتصل بنا",
+
+      "hero.tag":   "خدمة · المتقدمون",
+      "hero.title": "خدمات <em>للمتقدمين</em>",
+      "hero.desc":  "من تجهيز المستندات إلى الوصول الناجح إلى ألمانيا — نرافقكم في كل خطوة من رحلتكم.",
+
+      "toc.title":   "فهرس المحتويات",
+      "toc.doc":     "تنظيم المستندات",
+      "toc.process": "مسار التقديم",
+      "toc.video":   "فيديو الملف الشخصي",
+      "toc.help":    "مساعدة التقديم",
+
+      "s1.title":    "تنظيم المستندات",
+      "s1.subtitle": "مستندات موثّقة، تأشيرة والجهات الرسمية",
+      "s1.desc":     "ندعمكم في التنظيم الكامل لملف التقديم الخاص بكم — من جمع المستندات وحتى تقديمها للجهات المختصة.",
+      "s1.li1": "جمع كل المستندات المطلوبة",
+      "s1.li2": "ترجمات موثّقة من قبل مترجمين معتمدين",
+      "s1.li3": "طلب التأشيرة والمرافقة في الإجراءات الرسمية",
+      "s1.li4": "التحقق من اكتمال ملف التقديم الخاص بكم",
+
+      "s2.title":    "مسار التقديم",
+      "s2.subtitle": "مرافقكم الشخصي — من أول ملف حتى المقابلة الشخصية",
+      "s2.desc":     "نرافقكم <strong>منذ الخطوة الأولى</strong> لتقديمكم. ارفعوا مستنداتكم — نراجعها بعناية، نقدّم لكم ملاحظات وندعمكم في كل خطوة لاحقة.",
+      "s2.overview": "خدماتنا في لمحة",
+      "s2.li1": "<strong>رفع ومراجعة مستنداتكم</strong> — التحقق من الاكتمال والجودة",
+      "s2.li2": "<strong>إعداد ملف التقديم</strong> — سيرة ذاتية احترافية وخطاب تحفيزي",
+      "s2.li3": "<strong>تقديم الطلب</strong> — التقديم الصحيح للشركات الألمانية",
+      "s2.li4": "<strong>التحضير للمقابلة الشخصية</strong> — تدريب على الأسئلة الشائعة وطريقة التعامل",
+      "s2.li5": "<strong>دورات اللغة الألمانية</strong> — الوصول إلى دورات لغوية عبر 3E Academy",
+      "s2.langbox.title": "دورات اللغة الألمانية والدعم اللغوي",
+      "s2.langbox.desc":  "إتقان اللغة الألمانية هو مفتاح النجاح في التقديم. من خلال شراكتنا مع <strong>3E Academy</strong>، نمنحكم إمكانية الوصول إلى دورات ألمانية منظمة — من A1 إلى B2.",
+      "s2.langbox.cta":   "← إلى 3E Academy",
+      "s2.book.title": "حجز خدمات فردية",
+      "s2.book.desc":  "كل خدمة على حدة أو كباقة مجمّعة بسعر مخفّض.",
+      "s2.book.now":   "احجز الآن",
+      "s2.card1.title": "خطاب تحفيزي",
+      "s2.card1.desc":  "خطاب تحفيزي فردي، مصاغ باحترافية ومطابق للوظيفة المستهدفة.",
+      "s2.card2.title": "السيرة الذاتية",
+      "s2.card2.desc":  "سيرة ذاتية ألمانية منظمة وفق معايير أصحاب العمل الألمان.",
+      "s2.card3.title": "مقابلة شخصية",
+      "s2.card3.desc":  "تحضير مركّز — الأسئلة الشائعة، استراتيجيات الإجابة والحضور الاحترافي.",
+      "s2.pricing.note": "جميع الأسعار شاملة الضريبة · مدة المعالجة: 2 إلى 3 أيام عمل · <strong style=\"color:var(--accent)\">الباقة المجمّعة (الثلاث خدمات): 45 يورو</strong> بدلاً من 54 يورو",
+
+      "s3.title":    "دليل فيديو الملف الشخصي",
+      "s3.subtitle": "انطباعكم الشخصي أمام أصحاب العمل الألمان",
+      "s3.desc":     "فيديو الملف الشخصي الاحترافي يزيد فرصكم بشكل كبير لدى الشركات الألمانية. اتبعوا هذا الدليل خطوة بخطوة.",
+      "s3.cam.title": "الكاميرا والمحيط",
+      "s3.cam.li1": "الكاميرا على مستوى العينين — ليست من الأعلى ولا من الأسفل.",
+      "s3.cam.li2": "خلفية مرتبة ومحايدة.",
+      "s3.cam.li3": "إضاءة جيدة من الأمام — بدون ضوء خلفي.",
+      "s3.cam.li4": "محيط هادئ بدون ضجيج خلفي.",
+      "s3.cam.li5": "النظر مباشرة إلى الكاميرا أثناء الحديث.",
+      "s3.duration.title": " مدة الفيديو",
+      "s3.duration.desc":  "بين <strong style=\"color:var(--white)\">60 و90 ثانية</strong> — ليست قصيرة جداً ولا طويلة جداً.",
+      "s3.duration.badge": "الحد الأدنى: دقيقة واحدة &nbsp;·&nbsp; الحد الأقصى: دقيقة ونصف",
+      "s3.duration.note":  "الفيديوهات التي تتجاوز دقيقتين غالباً لا يشاهدها المسؤولون عن التوظيف بالكامل.",
+      "s3.script.title": " فيديو التعريف الخاص بي — البنية",
+      "s3.script.l1.label": "الترحيب", "s3.script.l1.text": "«مرحباً، اسمي [الاسم] وأنا من [البلد].»",
+      "s3.script.l2.label": "الهدف", "s3.script.l2.text": "«أبحث عن تدريب مهني في الحرف اليدوية أو في المجال الطبي في ألمانيا.»",
+      "s3.script.l3.label": "الخبرة", "s3.script.l3.text": "«بفضل عملي في التواصل مع العملاء، أتمتع بمهارات تواصل قوية وقدرة على تحمل الضغط.»",
+      "s3.script.l4.label": "الدافع", "s3.script.l4.text": "«أنا شخص متحمس وموثوق وأرغب في إثبات نفسي من خلال الجدية والرغبة في التعلم.»",
+      "s3.script.l5.label": "الختام", "s3.script.l5.text": "«شكراً جزيلاً على وقتكم. أتطلع بشدة إلى ردكم.»",
+      "s3.errors.title": "أخطاء شائعة — يُرجى تجنبها",
+      "s3.errors.li1": "النظر إلى الأسفل بدلاً من الكاميرا.",
+      "s3.errors.li2": "التحدث بسرعة كبيرة — لا يفهمكم المشاهد.",
+      "s3.errors.li3": "فيديو يتجاوز مدته دقيقتين.",
+      "s3.errors.li4": "إضاءة سيئة — الوجه معتم جداً أو شديد الإضاءة.",
+      "s3.errors.li5": "ضوضاء عالية في الخلفية.",
+      "s3.example.title": "فيديو نموذجي",
+      "s3.example.desc":  "هكذا يجب أن يبدو فيديو ملف شخصي احترافي:",
+      "s3.example.tab.ausbildung": "التكوين المهني",
+      "s3.example.tab.arbeit": "العمل",
+      "s3.example.soon":  "سيتوفر الفيديو النموذجي قريباً.",
+      "s3.example.hint":  "أدرج هنا فيديو من يوتيوب أو ملفاً محلياً.",
+
+      "s4.title":    "مساعدة التقديم ودليل المقابلة",
+      "s4.subtitle": "أهم الاستراتيجيات لبدء مسيرتكم المهنية في ألمانيا",
+      "s4.desc":     "من دليلنا للمقبلين على سوق العمل — مختصر وقابل للتطبيق فوراً: من التقديم المثالي إلى المقابلة الشخصية المقنعة.",
+      "s4.c1.title": "السيرة الذاتية والخطاب التحفيزي",
+      "s4.c1.good.label": "✓ كيف تفعل ذلك بشكل صحيح",
+      "s4.c1.good.li1": "بنية واضحة: بيانات التواصل ← التعليم ← التدريب ← المهارات الإضافية",
+      "s4.c1.good.li2": "عرض نتائج ملموسة وليس فقط سرد المهام",
+      "s4.c1.good.li3": "الخطاب التحفيزي: صفحة واحدة كحد أقصى، مع إشارة شخصية للشركة",
+      "s4.c1.good.li4": "استخدام الكلمات المفتاحية من إعلان الوظيفة",
+      "s4.c1.good.li5": "دعم المهارات الشخصية بأمثلة حقيقية",
+      "s4.c1.bad.label": "✗ أخطاء يجب تجنبها",
+      "s4.c1.bad.li1": "بداية نمطية «بموجب هذا أتقدم بطلبي…» — تبدو غير مميزة",
+      "s4.c1.bad.li2": "عبارات غامضة مثل «أنا قادر على العمل ضمن فريق» بدون مثال",
+      "s4.c1.bad.li3": "نصوص طويلة جداً — النقاط الواضحة أفضل",
+      "s4.c1.bad.li4": "نصوص مُولّدة بالذكاء الاصطناعي بدون تخصيص شخصي — تفقد المصداقية",
+      "s4.c1.tip": "<strong>نصيحة:</strong> بدلاً من «أنا ملتزم»، يُفضّل: «تعلمت خلال فترة تدريبي أن أبقى ودوداً وموجهاً نحو الحلول حتى في المواقف الضاغطة.»",
+      "s4.c2.title": "المراحل الخمس لعملية التقديم",
+      "s4.c2.step1": "<strong>التقديم والفرز الأولي</strong><p>تقديم مستندات كاملة. استخدام الكلمات المفتاحية من إعلان الوظيفة.</p>",
+      "s4.c2.step2": "<strong>مقابلة هاتفية أو عبر الفيديو</strong><p>محادثة تعارف تستغرق 15 إلى 30 دقيقة. إعادة قراءة إعلان الوظيفة وتحضير سؤال أو سؤالين.</p>",
+      "s4.c2.step3": "<strong>مقابلة شخصية</strong><p>الحديث عن أسلوب العمل والدافع. ذكر أمثلة ملموسة من فترات التدريب.</p>",
+      "s4.c2.step4": "<strong>مهمة عملية أو اختبار</strong><p>البقاء هادئاً — الأمر يتعلق بطريقة التفكير وليس الكمال. شرح الأفكار بصوت مسموع.</p>",
+      "s4.c2.step5": "<strong>عرض العقد</strong><p>البقاء محترفاً والشكر على الفرصة. في حال طول فترة الانتظار، المتابعة بهدوء.</p>",
+      "s4.c3.title": "أسئلة المقابلة الشائعة ونماذج الإجابات",
+      "s4.c3.hint":  "احرصوا على إيجاد صياغتكم الخاصة — هذه الأمثلة توضح البنية فقط!",
+      "s4.c3.q1": "«حدّثني قليلاً عن نفسك.»",
+      "s4.c3.a1": "البنية: المسار المهني (جملة واحدة) ← نقطة القوة/أسلوب العمل (جملة واحدة) ← الدافع (جملة واحدة). المدة: 60 إلى 90 ثانية، شخصية وواضحة.",
+      "s4.c3.q2": "«لماذا تقدمتم إلينا؟»",
+      "s4.c3.a2": "«شركتكم تجذبني لأنكم تدعمون الموظفين الشباب بفعالية. أبحث عن بيئة يمكنني فيها تحمل المسؤولية وتعلم الكثير.»",
+      "s4.c3.q3": "«كيف تتعاملون مع الضغط؟»",
+      "s4.c3.a3": "«أخطط للمهام حسب الأولوية وأنجزها خطوة بخطوة. عندما تضيق الأمور، أبقى هادئاً وأطلب الدعم مبكراً.»",
+      "s4.c3.q4": "«ما هي نقاط قوتكم؟»",
+      "s4.c3.a4": "«أعمل بموثوقية عالية وأبقى مركزاً حتى في المهام الروتينية. كما أجد بسرعة تنظيماً عندما تصبح الأمور فوضوية.»",
+      "s4.c3.q5": "«هل لديكم أسئلة؟» — لا تقولوا أبداً لا!",
+      "s4.c3.a5": "«كيف يبدو برنامج التأهيل لديكم؟» أو «ماذا تتوقعون من المرشح المثالي خلال الأشهر الثلاثة الأولى؟»",
+      "s4.c4.title": "عوامل النجاح الخمسة في المقابلة",
+      "s4.c4.f1.name": "الوضوح", "s4.c4.f1.desc": "حول نفسك ونقاط قوتك وأهدافك — من يفكر بوضوح يبدو واثقاً.",
+      "s4.c4.f2.name": "الصدق", "s4.c4.f2.desc": "كن على طبيعتك — المصداقية أكثر إقناعاً من الكمال.",
+      "s4.c4.f3.name": "الصلة", "s4.c4.f3.desc": "أظهر أنك فهمت الشركة.",
+      "s4.c4.f4.name": "الأمثلة", "s4.c4.f4.desc": "أظهر صفاتك من خلال مواقف ملموسة، وليس فقط بالادعاء.",
+      "s4.c4.f5.name": "الحضور", "s4.c4.f5.desc": "طريقة ظهورك مهمة — هادئ، منفتح، وعلى قدم المساواة.",
+      "s4.quote.text":   "«أفضل الإجابات ليست جملاً مثالية، بل أفكاراً حقيقية. أظهر كيف تتعلم، وتتعامل مع الناس، وتتحمل المسؤولية.»",
+      "s4.quote.author": "— دليل المقبلين على سوق العمل"
+    }
+  };
+
+  const langLabels  = { de: 'DE', fr: 'FR', en: 'EN', ar: 'AR' };
+  const langToggle  = document.getElementById('langToggleBtn');
+  const langDrop    = document.getElementById('langDropdown');
+  const langCurrent = document.getElementById('langCurrentLabel');
+
+  // فتح/إغلاق القائمة المنسدلة (ديسكتوب)
+  if (langToggle && langDrop) {
+    langToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+      const willOpen = !langDrop.classList.contains('open');
+      // أغلق قائمة MENÜ إذا كانت مفتوحة قبل فتح قائمة اللغة
+      const menuDropdown = document.getElementById('menuDropdown');
+      if (menuDropdown) menuDropdown.classList.remove('open');
+      langDrop.classList.toggle('open', willOpen);
+      langToggle.classList.toggle('open', willOpen);
+    }, true);
+    langDrop.addEventListener('click', function (e) { e.stopPropagation(); });
+  }
+
+  /* مستمع نقر واحد وموحّد على document لإغلاق قائمة اللغة عند النقر خارجها */
+  document.addEventListener('click', function (e) {
+    if (langDrop && langDrop.classList.contains('open')) {
+      if (!langDrop.contains(e.target) && e.target !== langToggle && !(langToggle && langToggle.contains(e.target))) {
+        langDrop.classList.remove('open');
+        langToggle.classList.remove('open');
+      }
+    }
+  });
+
+  function applyTranslations(lang) {
+    const dict = translations[lang] || translations.de;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+      const key = el.getAttribute('data-i18n-html');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+  }
+
+  function updateActiveUI(lang) {
+    // ديسكتوب: علامة الصح + الخط الحالي
+    document.querySelectorAll('.lang-option').forEach(function (opt) {
+      opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+    });
+    if (langCurrent) langCurrent.textContent = langLabels[lang] || 'DE';
+
+    // موبايل: تفعيل الزر المطابق
+    document.querySelectorAll('.mn-lang-btn').forEach(function (btn) {
+      btn.classList.toggle('mn-lang-active', btn.getAttribute('data-lang') === lang);
+    });
+  }
+
+  function setLanguage(lang) {
+    if (!translations[lang]) lang = 'de';
+
+    // اتجاه الصفحة: العربية RTL، البقية LTR
+    const dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.setAttribute('dir', dir);
+
+    applyTranslations(lang);
+    updateActiveUI(lang);
+
+    // حفظ الاختيار محلياً
+    try { localStorage.setItem('site_lang', lang); } catch (e) {}
+
+    // إغلاق القوائم المفتوحة بعد الاختيار
+    if (langDrop) { langDrop.classList.remove('open'); }
+    if (langToggle) { langToggle.classList.remove('open'); }
+  }
+
+  // إتاحة الدالة عالمياً (تُستدعى من onclick في الـ HTML)
+  window.setLanguage = setLanguage;
+
+  // تحميل اللغة المحفوظة عند فتح الصفحة (افتراضي: الألمانية)
+  document.addEventListener('DOMContentLoaded', function () {
+    let saved = 'de';
+    try { saved = localStorage.getItem('site_lang') || 'de'; } catch (e) {}
+    setLanguage(saved);
+  });
+
+})();
 </script>
 </body>
 </html>
