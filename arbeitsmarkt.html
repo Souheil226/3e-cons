@@ -1,55 +1,88 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" dir="ltr" id="htmlRoot">
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arbeitsmarkt in Deutschland 2024/2025 | 3E Consulting</title>
+  <title data-i18n="am_page_title">Arbeitsmarkt in Deutschland 2024/2025 | 3E Consulting</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <style>
     :root {
-      --navy:   #0f2017;
-      --accent: #d97706;
-      --accent-hover: #b45309;
-      --bright: #4ade80;
-      --gold:   #fbbf24;
-      --muted:  #86a38e;
-      --border: rgba(74,222,128,.18);
-      --glass:  rgba(255,255,255,.04);
-      --font-display: 'Syne', sans-serif;
-      --font-body:    'DM Sans', sans-serif;
-    }
+  --navy: #f5f0e2;
+  --navy-dark: #eee6d2;
+  --blue: #1f7a3d;
+  --accent: #e07a1f;
+  --accent-hover: #c2650f;
+  --bright: #1f7a3d;
+  --gold: #e07a1f;
+  --white: #23241f;
+  --muted: #4a4a44;
+  --border: rgba(31,122,61,.22);
+  --glass: rgba(31,122,61,.05);
+}
+body{ background:var(--navy); color:var(--white); }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{font-family:var(--font-body);background:var(--navy);color:#fff;padding-top: 72px}
+    body{font-family:var(--font-body);padding-top: 72px}
 
-    /* ── NAV — identisch mit Bewerbung.html ── */
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    /* RTL SUPPORT */
+    html[dir="rtl"] body { font-family: 'DM Sans', 'Tahoma', sans-serif; }
+    html[dir="rtl"] aside.toc a { border-left: none; border-right: 2px solid transparent; }
+    html[dir="rtl"] aside.toc a:hover, html[dir="rtl"] aside.toc a.active { border-left-color: transparent; border-right-color: var(--accent); }
+    html[dir="rtl"] .guideline-section ul,
+    html[dir="rtl"] .report-section ul { padding-left: 0; padding-right: 1.2rem; }
+    html[dir="rtl"] .mn-link-arrow { margin-left: 0; margin-right: auto; transform: scaleX(-1); }
+    html[dir="rtl"] .mobile-nav { right: 0; left: auto; border-right: none; border-left: 1px solid rgba(74,222,128,.14); transform: translateX(100%); }
+    html[dir="rtl"] .mobile-nav.open { transform: translateX(0); }
+    html[dir="rtl"] .nav-dropdown-panel { right: auto !important; left: 0 !important; }
+    html[dir="rtl"] .strategy-item { direction: rtl; }
+    html[dir="rtl"] .sector-card h3, html[dir="rtl"] .region-card h4 { direction: rtl; }
+
+    /* LANG SWITCHER */
+    .lang-switch { position: relative; display: inline-block; }
+    .lang-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.05); border: 1px solid var(--border);
+      color: #fff; padding: .5rem .9rem; border-radius: 8px;
+      font-size: .82rem; font-weight: 600; cursor: pointer;
+      font-family: var(--font-body); transition: all .2s;
+    }
+    .lang-btn:hover { background: rgba(217,119,6,.15); border-color: rgba(217,119,6,.4); }
+    .lang-dropdown {
+      position: absolute; top: calc(100% + .5rem); right: 0;
+      background: rgba(15,32,23,.98); border: 1px solid var(--border);
+      border-radius: 10px; padding: .4rem; min-width: 170px;
+      display: none; z-index: 3000; backdrop-filter: blur(20px);
+      box-shadow: 0 15px 40px rgba(0,0,0,.4);
+    }
+    html[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem .7rem; border-radius: 7px; cursor: pointer;
+      font-size: .85rem; color: var(--muted); transition: all .15s;
+      background: none; border: none; width: 100%; text-align: left;
+      font-family: var(--font-body);
+    }
+    html[dir="rtl"] .lang-option { text-align: right; }
+    .lang-option:hover { background: rgba(217,119,6,.1); color: #fff; }
+    .lang-option.active { color: var(--accent); font-weight: 700; background: rgba(217,119,6,.08); }
+    .lang-flag { font-size: 1rem; }
+
+    .mn-lang-block { padding: .8rem 1rem; border-bottom: 1px solid var(--border); }
+    .mn-lang-label { font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .55rem; }
+    .mn-lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+    .mn-lang-btn {
+      display: flex; align-items: center; justify-content: center; gap: .4rem;
+      padding: .55rem .6rem; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--glass); color: var(--muted); font-size: .78rem; font-weight: 500;
+      cursor: pointer; transition: all .18s; font-family: var(--font-body);
+    }
+    .mn-lang-btn:hover { border-color: rgba(217,119,6,.4); color: #fff; }
+    .mn-lang-btn.active { border-color: var(--accent); background: rgba(217,119,6,.12); color: #fff; }
 
     /* ── HERO ── */
     .section-tag{font-size:.72rem;font-weight:500;color:var(--accent);letter-spacing:.15em;text-transform:uppercase}
@@ -121,12 +154,8 @@
       .sector-grid,.charts-2col,.region-grid{grid-template-columns:1fr}
     }
     @media(max-width:768px){
-      body{padding-top: 72px!important}
-      
-      
-      
-      
-      .page-hero{padding:2.2rem 5vw 1.5rem!important}
+      html,body{overflow-x:hidden!important;max-width:100%!important}body{padding-top:72px!important;position:relative!important}
+      .page-hero{padding:1.5rem 1rem 1.5rem!important;width:100%!important;box-sizing:border-box!important}
       .page-hero h1{font-size:clamp(1.6rem,7vw,2.2rem)!important;word-break:break-word}
       .kpi-row{grid-template-columns:1fr 1fr!important;gap:.6rem!important;padding:0 4vw!important}
       .kpi-card{padding:.9rem 1rem!important}
@@ -143,18 +172,13 @@
       .chart-wrap.tall{height:190px!important}
     }
     @media(max-width:480px){
-      
-      
-      
       .kpi-num{font-size:1.15rem!important}
       .kpi-label{font-size:.65rem!important}
     }
-  
-  /* ══════════════════════════════════════════════
-     3E CONSULTING — NAVBAR CSS (from index.html)
-     ══════════════════════════════════════════════ */
 
-  /* ── Navbar wrapper ── */
+  /* ══════════════════════════════════════════════
+     3E CONSULTING — NAVBAR CSS
+     ══════════════════════════════════════════════ */
   .navbar-3e {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -164,28 +188,15 @@
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
+ 
+  .logo-img-sm { height: 28px; width: auto; object-fit: contain; display: block; }
 
-  /* ── Brand ── */
-  .navbar-brand-3e {
-    display: flex; align-items: center; gap: 9px; text-decoration: none;
-  }
-  .navbar-brand-3e img {
-    height: 36px; width: 36px; border-radius: 8px; object-fit: cover;
-  }
-  .navbar-brand-3e span {
-    font-family: var(--font-display);
-    font-size: 1.05rem; font-weight: 800;
-    color: #fff; letter-spacing: .06em; white-space: nowrap;
-  }
-
-  /* ── Desktop nav links ── */
   .nav-link-3e {
     font-size: .875rem; color: var(--muted) !important;
     text-decoration: none; transition: color .2s; padding: .3rem .6rem;
   }
   .nav-link-3e:hover { color: #ffffff !important; }
 
-  /* ── MENÜ button ── */
   .btn-menu {
     background: var(--accent); color: #ffffff !important;
     padding: .55rem 1.3rem; border-radius: 8px;
@@ -195,7 +206,6 @@
   }
   .btn-menu:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-  /* ── Desktop dropdown panel ── */
   .nav-dropdown-panel {
     position: absolute; top: calc(100% + .6rem); right: 0;
     min-width: 340px; max-width: 420px;
@@ -204,11 +214,11 @@
     border: 1px solid var(--border); border-radius: 12px;
     padding: 1rem; backdrop-filter: blur(20px);
     box-shadow: 0 20px 50px rgba(0,0,0,.4);
-    z-index: 200; display: none;
+    z-index: 2000; display: none;
   }
+  html[dir="rtl"] .nav-dropdown-panel { left: 0 !important; right: auto !important; }
   .nav-dropdown-panel.open { display: block; }
 
-  /* ── Hamburger ── */
   .hamburger-btn {
     background: transparent; border: 1px solid var(--border);
     border-radius: 8px; color: #ffffff;
@@ -216,11 +226,8 @@
     cursor: pointer; display: none; align-items: center;
     transition: background .2s, border-color .2s;
   }
-  .hamburger-btn:hover {
-    background: rgba(217,119,6,.1); border-color: rgba(217,119,6,.4);
-  }
+  .hamburger-btn:hover { background: rgba(217,119,6,.1); border-color: rgba(217,119,6,.4); }
 
-  /* ── Mobile overlay ── */
   .mobile-nav-overlay {
     position: fixed; inset: 0;
     background: rgba(0,0,0,.55); z-index: 1055;
@@ -229,7 +236,6 @@
   }
   .mobile-nav-overlay.open { opacity: 1; pointer-events: all; }
 
-  /* ── Mobile drawer ── */
   .mobile-nav {
     position: fixed; top: 0; left: 0; bottom: 0;
     width: min(320px, 88vw);
@@ -246,12 +252,7 @@
     padding: 1rem 1.1rem .85rem;
     border-bottom: 1px solid rgba(74,222,128,.1); flex-shrink: 0;
   }
-  .mn-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-  .mn-brand img { height: 30px; width: 30px; border-radius: 7px; object-fit: cover; }
-  .mn-brand span {
-    font-family: var(--font-display);
-    font-size: .9rem; font-weight: 800; color: #fff; letter-spacing: .06em;
-  }
+  .mn-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
   .mn-close {
     background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
     border-radius: 8px; color: var(--muted);
@@ -262,10 +263,7 @@
   }
   .mn-close:hover { background: rgba(217,119,6,.15); color: var(--accent); border-color: rgba(217,119,6,.3); }
 
-  .mn-body {
-    flex: 1; padding: .6rem 0 .5rem;
-    overflow-y: auto; overflow-x: hidden;
-  }
+  .mn-body { flex: 1; padding: .6rem 0 .5rem; overflow-y: auto; overflow-x: hidden; }
   .mn-body::-webkit-scrollbar { width: 3px; }
   .mn-body::-webkit-scrollbar-track { background: transparent; }
   .mn-body::-webkit-scrollbar-thumb { background: rgba(74,222,128,.2); border-radius: 2px; }
@@ -317,7 +315,6 @@
   }
   .mn-cta-secondary:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
 
-  /* ── Desktop dropdown interior (V2) ── */
   .mn2-who { padding: .75rem .85rem .6rem; border-bottom: 1px solid var(--border); }
   .mn2-who-label { font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .55rem; }
   .mn2-who-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
@@ -361,7 +358,6 @@
   .mn2-chatbot-btn strong { font-size: .85rem; color: #fff; font-weight: 600; }
   .mn2-chatbot-btn span { font-size: .72rem; color: var(--muted); margin-top: .1rem; }
 
-  /* ── Mobile WHO buttons ── */
   .mn-who-btn {
     display: flex; align-items: center; justify-content: center; gap: .5rem;
     padding: .65rem .8rem; border-radius: 9px;
@@ -373,81 +369,190 @@
   .mn-who-btn.mn-who-active { border-color: var(--accent); background: rgba(217,119,6,.12); color: #fff; }
   .mn-who-btn i { font-size: .85rem; color: var(--accent); }
 
-  /* ── Responsive ── */
   @media (max-width: 991px) {
     .hamburger-btn     { display: inline-flex !important; }
     .nav-desktop-links { display: none !important; }
   }
   /* ═══════════════════════════════════════════════════════ */
 
-  </style>
+  @media(max-width:768px){
+    .content-layout, .page-hero, section, article, .container, [class*="wrap"], [class*="inner"] {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
+  html { overflow-x: hidden !important; max-width: 100% !important; }
+  body { overflow-x: hidden !important; max-width: 100% !important; position: relative !important; }
+  *, *::before, *::after { box-sizing: border-box; }
+  img, video, iframe, table { max-width: 100% !important; }
+  .page-hero { padding-left: 1rem !important; padding-right: 1rem !important; box-sizing: border-box; width: 100% !important; }
+
+  html, body { overflow-x: hidden !important; max-width: 100% !important; }
+  *, *::before, *::after { box-sizing: border-box; }
+
+  @media (max-width: 768px) {
+    html, body { overflow-x: hidden !important; max-width: 100% !important; position: relative !important; }
+    body { padding-top: 68px !important; }
+    .page-hero { padding: 1.5rem 1rem 1.2rem !important; max-width: 100% !important; width: 100% !important; }
+    .page-hero h1 { font-size: 1.75rem !important; }
+    .page-hero p  { font-size: .9rem !important; }
+    .content-layout { display: block !important; padding: 0 1rem 3rem !important; max-width: 100% !important; width: 100% !important; }
+    aside.toc {
+      position: static !important; display: flex !important; flex-wrap: wrap !important;
+      gap: .4rem !important; padding: .85rem !important; margin-bottom: 1rem !important;
+      border-radius: 12px !important; width: 100% !important;
+    }
+    .toc-title { width: 100% !important; margin-bottom: .4rem !important; }
+    aside.toc a { font-size: .72rem !important; padding: .35rem .65rem !important; border-left: 1px solid var(--border) !important; }
+    .svc-section, .guideline-section, section { padding: 1.1rem 1rem !important; border-radius: 14px !important; margin-bottom: 1rem !important; width: 100% !important; overflow: hidden !important; }
+    .steps-grid, .screening-grid, .docs-grid, .process-grid { grid-template-columns: 1fr !important; gap: .75rem !important; }
+    p, h2, h3, h4, li, span { word-wrap: break-word !important; overflow-wrap: break-word !important; }
+    .btn-primary-3e, .btn-secondary-3e, .voraussetzungen-btn { width: 100% !important; justify-content: center !important; white-space: normal !important; text-align: center !important; }
+    [class*="card"], [class*="step"], [class*="item"] { max-width: 100% !important; overflow: hidden !important; box-sizing: border-box !important; }
+  }
+
+  @media (max-width: 480px) {
+    .page-hero h1 { font-size: 1.5rem !important; }
+    .page-hero { padding: 1.2rem .85rem !important; }
+    .content-layout { padding: 0 .85rem 2rem !important; }
+  }
+
+
+.logo-img-main {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+@media(max-width:991px){ .logo-img-main{ max-width:190px; height:34px; } }
+@media(max-width:576px){ .logo-img-main{ max-width:165px; height:32px; } }
+@media(max-width:400px){ .logo-img-main{ max-width:135px; height:29px; } }
+
+
+aside.toc a:hover,aside.toc a.active{ color:var(--white); }
+.chart-box h3{ color:var(--white); }
+.strategy-item h4{ color:var(--white); }
+
+
+.severity-med{background:rgba(224,122,31,.2);color:#c2650f}
+.region-card.cool { background:rgba(31,122,61,.06); border-color:rgba(31,122,61,.25); }
+.source-note{ color:rgba(74,74,68,.65); border-top:1px solid var(--border); }
+.report-section:target{ border-color:rgba(224,122,31,.5); box-shadow:0 0 0 1px rgba(224,122,31,.2),0 8px 32px rgba(0,0,0,.3); }
+.lang-btn { background: rgba(255, 255, 255, 0.911); border: 1px solid var(--border); color: var(--white); }
+.lang-btn:hover { background: rgba(233, 228, 222, 0.856); border-color: rgba(224,122,31,.4);}
+  
+.lang-dropdown { background: rgba(250,247,238,.98); box-shadow: 0 15px 40px rgba(0,0,0,.12); }
+.lang-option:hover { background: rgba(224,122,31,.1); color: var(--white); }
+.nav-dropdown-panel { background: rgba(250,247,238,.98); box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+.hamburger-btn:hover { background: rgba(224,122,31,.1); border-color: rgba(224,122,31,.4); }
+.mobile-nav { background: linear-gradient(160deg, #faf7ee 0%, #f0e9d6 100%); border-right: 1px solid rgba(31,122,61,.14); }
+.mn-header { border-bottom: 1px solid rgba(31,122,61,.1); }
+.mn-close { background: rgba(31,122,61,.06); border: 1px solid rgba(31,122,61,.14); }
+.mn-close:hover { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
+.mn-body::-webkit-scrollbar-thumb { background: rgba(31,122,61,.2); }
+.mn-link { color: rgba(35,36,31,.85); }
+.mn-link .mn-icon { background: rgba(31,122,61,.06); border: 1px solid rgba(31,122,61,.12); }
+.mn-link:hover { background: rgba(224,122,31,.08); color: var(--white); }
+.mn-link:hover .mn-icon { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
+.mn-divider { background: rgba(31,122,61,.08); }
+.mn-footer { border-top: 1px solid rgba(31,122,61,.1); }
+.mn-cta-secondary { background: rgba(31,122,61,.08); border: 1px solid rgba(31,122,61,.2); color: rgba(35,36,31,.85) !important; }
+.mn-cta-secondary:hover { background: rgba(31,122,61,.14); border-color: rgba(31,122,61,.35); }
+.mn2-who-btn:hover { border-color: rgba(224,122,31,.4); color: var(--white); background: rgba(224,122,31,.08); }
+.mn2-who-btn.mn2-who-active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+.mn2-link:hover { background: rgba(224,122,31,.07); color: var(--white); }
+.mn2-chatbot-btn { background: rgba(224,122,31,.08); border: 1px solid rgba(224,122,31,.25); }
+.mn2-chatbot-btn:hover { background: rgba(224,122,31,.15); border-color: rgba(224,122,31,.4); }
+.mn2-chatbot-btn strong { color: var(--white); }
+.mn-who-btn { background: rgba(31,122,61,.05); }
+.mn-who-btn:hover { border-color: rgba(224,122,31,.4); color: var(--white); }
+.mn-who-btn.mn-who-active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+.nav-link-3e { color: #fffffd !important; }
+.nav-link-3e:hover { color: #ffae00ab !important; }
+
+
+</style>
 </head>
 <body>
 
-<!-- ═══════════════ NAVBAR (from index.html) ═══════════════ -->
+<!-- ═══════════════ NAVBAR ═══════════════ -->
 <header class="navbar-3e">
   <div class="d-flex align-items-center justify-content-between w-100">
-    <a href="index.html" class="navbar-brand-3e">
-      <img src="logo_3e.jpg" alt="3E Consulting">
-      <span>3E Consulting</span>
-    </a>
+     <a href="index.html" class="brand">
+    
+    <img src="Logo-cropped.png" alt="3E Consulting Logo" class="logo-img-main" decoding="async">
+  </a>
     <ul class="nav-desktop-links d-flex list-unstyled mb-0 gap-3 mx-auto">
-      <li><a href="index.html#services"  class="nav-link-3e">Leistungen</a></li>
-      <li><a href="index.html#process"   class="nav-link-3e">Ablauf</a></li>
-      <li><a href="index.html#about"     class="nav-link-3e">Über uns</a></li>
-      <li><a href="index.html#kontakt"   class="nav-link-3e">Kontakt</a></li>
+      <li><a href="index.html#services"  class="nav-link-3e" data-i18n="nav_services">Leistungen</a></li>
+      <li><a href="index.html#process"   class="nav-link-3e" data-i18n="nav_process">Ablauf</a></li>
+      <li><a href="index.html#about"     class="nav-link-3e" data-i18n="nav_about">Über uns</a></li>
+      <li><a href="index.html#kontakt"   class="nav-link-3e" data-i18n="nav_contact">Kontakt</a></li>
     </ul>
     <div class="d-flex align-items-center gap-3">
+
+      <!-- LANGUAGE SWITCHER (DESKTOP) -->
+      <div class="lang-switch d-none d-lg-block">
+        <button class="lang-btn" id="langToggle"><i class="bi bi-globe2"></i> <span id="langBtnLabel">DE</span> <i class="bi bi-caret-down-fill" style="font-size:.6rem"></i></button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option" data-lang="de" onclick="setLanguage('de')"><span class="lang-flag">🇩🇪</span> Deutsch</button>
+          <button class="lang-option" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span> العربية</button>
+          <button class="lang-option" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span> Français</button>
+          <button class="lang-option" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span> English</button>
+        </div>
+      </div>
+
       <div class="position-relative d-none d-lg-block">
-        <button class="btn-menu" id="menuToggle">MENÜ ▾</button>
+        <button class="btn-menu" id="menuToggle" data-i18n="menu_btn">MENÜ ▾</button>
         <div class="nav-dropdown-panel" id="menuDropdown">
           <div class="mn2-who">
-            <p class="mn2-who-label">Sie sind</p>
+            <p class="mn2-who-label" data-i18n="you_are">Sie sind</p>
             <div class="mn2-who-btns">
               <button class="mn2-who-btn mn2-who-active" onclick="mn2Switch(this,'bewerber')">
-                <i class="fa-solid fa-user-tie"></i> Bewerber
+                <i class="fa-solid fa-user-tie"></i> <span data-i18n="applicant">Bewerber</span>
               </button>
               <button class="mn2-who-btn" onclick="mn2Switch(this,'unternehmen')">
-                <i class="fa-solid fa-building"></i> Unternehmen
+                <i class="fa-solid fa-building"></i> <span data-i18n="company">Unternehmen</span>
               </button>
             </div>
           </div>
           <!-- BEWERBER PANEL -->
           <div class="mn2-panel" id="mn2-bewerber">
             <div class="mn2-group">
-              <div class="mn2-group-label">Jetzt starten</div>
-              <a href="Bewerbung.html"                               class="mn2-link"><i class="fa-solid fa-file-pen"></i> Bewerbung einreichen</a>
-              <a href="vermitlung.html"                              class="mn2-link"><i class="fa-solid fa-list-check"></i> Voraussetzungen prüfen</a>
-              <a href="service-bewerber.html#dokumentenorganisation" class="mn2-link"><i class="fa-solid fa-folder-open"></i> Dokumentenorganisation</a>
-              <a href="service-bewerber.html#profil-video"           class="mn2-link"><i class="fa-solid fa-video"></i> Profil-Video erstellen</a>
+              <div class="mn2-group-label" data-i18n="start_now">Jetzt starten</div>
+              <a href="Bewerbung.html"                               class="mn2-link"><i class="fa-solid fa-file-pen"></i> <span data-i18n="submit_application">Bewerbung einreichen</span></a>
+              <a href="vermitlung.html"                              class="mn2-link"><i class="fa-solid fa-list-check"></i> <span data-i18n="check_requirements">Voraussetzungen prüfen</span></a>
+              <a href="service-bewerber.html#dokumentenorganisation" class="mn2-link"><i class="fa-solid fa-folder-open"></i> <span data-i18n="doc_organization">Dokumentenorganisation</span></a>
+              <a href="service-bewerber.html#profil-video"           class="mn2-link"><i class="fa-solid fa-video"></i> <span data-i18n="create_profile_video">Profil-Video erstellen</span></a>
             </div>
             <div class="mn2-divider"></div>
             <div class="mn2-group">
-              <div class="mn2-group-label"><i class="fa-solid fa-book-open"></i> Gut vorbereitet sein</div>
-              <a href="arbeitsmarkt.html"         class="mn2-link"><i class="fa-solid fa-chart-line"></i> Arbeitsmarkt Deutschland</a>
-              <a href="arbeitundsozialrecht.html" class="mn2-link"><i class="fa-solid fa-scale-balanced"></i> Arbeits- und Sozialrecht</a>
-              <a href="aufenthaltsrecht.html"     class="mn2-link"><i class="fa-solid fa-passport"></i> Aufenthaltsrecht &amp; Visum</a>
-              <a href="alltag-deutschland.html"   class="mn2-link"><i class="fa-solid fa-sun"></i> Alltag in Deutschland</a>
+              <div class="mn2-group-label"><i class="fa-solid fa-book-open"></i> <span data-i18n="well_prepared">Gut vorbereitet sein</span></div>
+              <a href="arbeitsmarkt.html"         class="mn2-link"><i class="fa-solid fa-chart-line"></i> <span data-i18n="job_market">Arbeitsmarkt Deutschland</span></a>
+              <a href="alltag-deutschland.html"   class="mn2-link"><i class="fa-solid fa-sun"></i> <span data-i18n="daily_life">Alltag in Deutschland</span></a>
             </div>
             <div class="mn2-divider"></div>
             <a href="Chatbot.html" class="mn2-chatbot-btn">
               <i class="fa-solid fa-robot"></i>
-              <div><strong>Chatbot-3e</strong><span>Stellen Sie jede Frage</span></div>
+              <div><strong data-i18n="chatbot_title">Chatbot-3e</strong><span data-i18n="chatbot_desc">Stellen Sie jede Frage</span></div>
               <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
             </a>
           </div>
           <!-- UNTERNEHMEN PANEL -->
           <div class="mn2-panel" id="mn2-unternehmen" style="display:none">
             <div class="mn2-group">
-              <div class="mn2-group-label"><i class="fa-solid fa-building"></i> Für Unternehmen</div>
-              <a href="service-unternehmen.html#vermittlung"         class="mn2-link"><i class="fa-solid fa-users-viewfinder"></i> Fachkräfte finden</a>
-              <a href="service-unternehmen.html#beschwerdeverfahren" class="mn2-link"><i class="fa-solid fa-headset"></i> Support &amp; Beschwerden</a>
-              <a href="login_company.php"                            class="mn2-link"><i class="fa-solid fa-right-to-bracket"></i> Unternehmens-Login</a>
+              <div class="mn2-group-label"><i class="fa-solid fa-building"></i> <span data-i18n="for_companies">Für Unternehmen</span></div>
+              <a href="service-unternehmen.html#vermittlung"         class="mn2-link"><i class="fa-solid fa-users-viewfinder"></i> <span data-i18n="find_talent">Fachkräfte finden</span></a>
+              <a href="service-unternehmen.html#beschwerdeverfahren" class="mn2-link"><i class="fa-solid fa-headset"></i> <span data-i18n="support_complaints">Support &amp; Beschwerden</span></a>
+              <a href="login_company.php"                            class="mn2-link"><i class="fa-solid fa-right-to-bracket"></i> <span data-i18n="company_login">Unternehmens-Login</span></a>
             </div>
             <div class="mn2-divider"></div>
             <a href="index.html#kontakt" class="mn2-chatbot-btn" onclick="document.getElementById('menuDropdown').classList.remove('open')">
               <i class="fa-solid fa-envelope"></i>
-              <div><strong>Kontakt aufnehmen</strong><span>Wir antworten in 24h</span></div>
+              <div><strong data-i18n="get_in_touch">Kontakt aufnehmen</strong><span data-i18n="reply_24h">Wir antworten in 24h</span></div>
               <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
             </a>
           </div>
@@ -467,77 +572,84 @@
 <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
   <div class="mn-header">
     <a href="index.html" class="mn-brand">
-      <img src="logo_3e.jpg" alt="3E">
-      <span>3E Consulting</span>
+      <img src="Logo-cropped.png" alt="3E Consulting" class="logo-img-sm">
     </a>
     <button class="mn-close" id="mobileNavClose" aria-label="Menü schließen">
       <i class="fa-solid fa-xmark"></i>
     </button>
   </div>
   <div class="mn-body">
+
+    <!-- MOBILE LANGUAGE SWITCHER -->
+    <div class="mn-lang-block">
+      <p class="mn-lang-label" data-i18n="language">Sprache</p>
+      <div class="mn-lang-grid">
+        <button class="mn-lang-btn" data-lang-mobile="de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+        <button class="mn-lang-btn" data-lang-mobile="ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+        <button class="mn-lang-btn" data-lang-mobile="fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+        <button class="mn-lang-btn" data-lang-mobile="en" onclick="setLanguage('en')">🇬🇧 English</button>
+      </div>
+    </div>
+
     <div style="padding:.8rem 1rem .6rem;">
-      <p class="mn-section-label" style="padding:0 0 .5rem;">Sie sind</p>
+      <p class="mn-section-label" style="padding:0 0 .5rem;" data-i18n="you_are">Sie sind</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
         <button class="mn-who-btn mn-who-active" onclick="mnMobileSwitch(this,'mob-bewerber')" id="mob-btn-bewerber">
-          <i class="fa-solid fa-user-tie"></i> Bewerber
+          <i class="fa-solid fa-user-tie"></i> <span data-i18n="applicant">Bewerber</span>
         </button>
         <button class="mn-who-btn" onclick="mnMobileSwitch(this,'mob-unternehmen')" id="mob-btn-unternehmen">
-          <i class="fa-solid fa-building"></i> Unternehmen
+          <i class="fa-solid fa-building"></i> <span data-i18n="company">Unternehmen</span>
         </button>
       </div>
     </div>
     <div class="mn-divider"></div>
     <!-- BEWERBER PANEL -->
     <div id="mob-bewerber">
-      <div class="mn-section-label" style="padding-top:.7rem;">🚀 Jetzt starten</div>
-      <a href="index.html"    class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span>Startseite<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="index.html#services" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span>Leistungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="index.html#process"  class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline"></i></span>Ablauf<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="Bewerbung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span>Bewerbung<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="vermitlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span>Voraussetzungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open"></i></span>Dokumentenorganisation<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem;" data-i18n="start_now">Jetzt starten</div>
+      <a href="index.html"    class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span><span data-i18n="home">Startseite</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="index.html#services" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span><span data-i18n="nav_services">Leistungen</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="index.html#process"  class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline"></i></span><span data-i18n="nav_process">Ablauf</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="Bewerbung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span><span data-i18n="application">Bewerbung</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="vermitlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span><span data-i18n="requirements">Voraussetzungen</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open"></i></span><span data-i18n="doc_organization">Dokumentenorganisation</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
-      <div class="mn-section-label" style="padding-top:.7rem;">📚 Gut vorbereitet sein</div>
-      <a href="arbeitsmarkt.html"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span>Arbeitsmarkt<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="arbeitundsozialrecht.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span>Arbeits- und Sozialrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="aufenthaltsrecht.html"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-passport"></i></span>Aufenthaltsrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="alltag-deutschland.html"   class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span>Alltag in Deutschland<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem;" data-i18n="well_prepared">Gut vorbereitet sein</div>
+      <a href="arbeitsmarkt.html"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span><span data-i18n="job_market_short">Arbeitsmarkt</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="alltag-deutschland.html"   class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span><span data-i18n="daily_life">Alltag in Deutschland</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
       <a href="Chatbot.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;">
         <span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);"><i class="fa-solid fa-robot" style="color:var(--accent)"></i></span>
-        <span style="color:var(--white)">Chatbot-3e</span>
+        <span style="color:#fff" data-i18n="chatbot_title">Chatbot-3e</span>
         <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
       </a>
     </div>
     <!-- UNTERNEHMEN PANEL -->
     <div id="mob-unternehmen" style="display:none">
-      <div class="mn-section-label" style="padding-top:.7rem;">🏢 Für Unternehmen</div>
-      <a href="index.html#about"                             class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users"></i></span>Über uns<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="service-unternehmen.html#vermittlung"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder"></i></span>Fachkräfte finden<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset"></i></span>Support &amp; Beschwerden<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="login_company.php"                            class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket"></i></span>Unternehmens-Login<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem;">🏢 <span data-i18n="for_companies">Für Unternehmen</span></div>
+      <a href="index.html#about"                             class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users"></i></span><span data-i18n="nav_about">Über uns</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-unternehmen.html#vermittlung"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder"></i></span><span data-i18n="find_talent">Fachkräfte finden</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset"></i></span><span data-i18n="support_complaints">Support &amp; Beschwerden</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="login_company.php"                            class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket"></i></span><span data-i18n="company_login">Unternehmens-Login</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
       <a href="index.html#kontakt" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;">
         <span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);"><i class="fa-solid fa-envelope" style="color:var(--accent)"></i></span>
-        <span style="color:var(--white)">Kontakt aufnehmen</span>
+        <span style="color:#fff" data-i18n="get_in_touch">Kontakt aufnehmen</span>
         <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
       </a>
     </div>
   </div>
   <div class="mn-footer">
-    <a href="registraion.html" class="mn-cta-primary"    onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> Als Bewerber starten</a>
-    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building"></i> Für Unternehmen</a>
+    <a href="06_onboarding_bewerber.php" class="mn-cta-primary"    onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="start_as_applicant">Als Bewerber starten</span></a>
+    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building"></i> <span data-i18n="for_companies">Für Unternehmen</span></a>
   </div>
 </nav>
 
 
-
-
 <!-- ═══ HERO ═══ -->
 <header class="page-hero" style="padding:3rem 5vw 2rem;max-width:1100px;margin:0 auto">
-  <div class="section-tag" style="margin-bottom:.75rem">Marktanalyse · 2024/2025</div>
-  <h1 style="margin-bottom:1rem">Der deutsche <em>Arbeitsmarkt</em></h1>
-  <p style="max-width:680px">
+  <div class="section-tag" style="margin-bottom:.75rem" data-i18n="am_tag">Marktanalyse · 2024/2025</div>
+  <h1 style="margin-bottom:1rem" data-i18n-html="am_hero_title">Der deutsche <em>Arbeitsmarkt</em></h1>
+  <p style="max-width:680px" data-i18n="am_hero_desc">
     Deutschland kämpft mit einem massiven Fachkräftemangel. Dieser Bericht zeigt,
     wo die größten Engpässe liegen, warum der Ausbildungsmarkt nicht funktioniert
     und welche Lösungen die Politik verfolgt.
@@ -546,20 +658,20 @@
 
 <!-- ═══ KPI ═══ -->
 <div class="kpi-row">
-  <div class="kpi-card"><div class="kpi-num">46.000+</div><div class="kpi-label">Unbesetzte Stellen<br>im Gesundheitswesen</div></div>
-  <div class="kpi-card"><div class="kpi-num">1,2 Mio.</div><div class="kpi-label">Auszubildende im<br>Dualen System</div></div>
-  <div class="kpi-card"><div class="kpi-num">2,9 Mio.</div><div class="kpi-label">Junge Erwachsene (20–34)<br>ohne Berufsabschluss</div></div>
-  <div class="kpi-card"><div class="kpi-num">2×</div><div class="kpi-label">Anstieg ausländischer<br>Azubis in 10 Jahren</div></div>
+  <div class="kpi-card"><div class="kpi-num">46.000+</div><div class="kpi-label" data-i18n="am_kpi1_label">Unbesetzte Stellen<br>im Gesundheitswesen</div></div>
+  <div class="kpi-card"><div class="kpi-num">1,2 Mio.</div><div class="kpi-label" data-i18n="am_kpi2_label">Auszubildende im<br>Dualen System</div></div>
+  <div class="kpi-card"><div class="kpi-num">2,9 Mio.</div><div class="kpi-label" data-i18n="am_kpi3_label">Junge Erwachsene (20–34)<br>ohne Berufsabschluss</div></div>
+  <div class="kpi-card"><div class="kpi-num">2×</div><div class="kpi-label" data-i18n="am_kpi4_label">Anstieg ausländischer<br>Azubis in 10 Jahren</div></div>
 </div>
 
 <!-- ═══ CONTENT ═══ -->
 <div class="content-layout">
   <aside class="toc">
-    <div class="toc-title">Inhaltsverzeichnis</div>
-    <a href="#engpassberufe">Engpassberufe</a>
-    <a href="#ausbildungsmarkt">Ausbildungsmarkt</a>
-    <a href="#regionen">Regionale Unterschiede</a>
-    <a href="#loesungen">Lösungsstrategien</a>
+    <div class="toc-title" data-i18n="am_toc_title">Inhaltsverzeichnis</div>
+    <a href="#engpassberufe" data-i18n="am_toc_1">Engpassberufe</a>
+    <a href="#ausbildungsmarkt" data-i18n="am_toc_2">Ausbildungsmarkt</a>
+    <a href="#regionen" data-i18n="am_toc_3">Regionale Unterschiede</a>
+    <a href="#loesungen" data-i18n="am_toc_4">Lösungsstrategien</a>
   </aside>
 
   <main>
@@ -567,27 +679,26 @@
     <!-- 01 -->
     <section id="engpassberufe" class="report-section">
       <div class="section-num">01</div>
-      <h2>Engpassberufe — Wo liegt der Mangel?</h2>
-      <p class="subtitle">Die am stärksten betroffenen Branchen im Überblick</p>
-      <p>Der Arbeitsmarktbericht identifiziert mehrere Bereiche mit schweren „Engpässen" — Berufe, für die Unternehmen monatelang nach Bewerbern suchen, ohne eine Stelle besetzen zu können.</p>
+      <h2 data-i18n="am_s1_title">Engpassberufe — Wo liegt der Mangel?</h2>
+      <p class="subtitle" data-i18n="am_s1_subtitle">Die am stärksten betroffenen Branchen im Überblick</p>
+      <p data-i18n="am_s1_p1">Der Arbeitsmarktbericht identifiziert mehrere Bereiche mit schweren „Engpässen" — Berufe, für die Unternehmen monatelang nach Bewerbern suchen, ohne eine Stelle besetzen zu können.</p>
       <div class="sector-grid">
         <div class="sector-card">
-          <h3><i class="bi bi-heart-pulse-fill"></i>Gesundheit &amp; Pflege <span class="severity-badge severity-high">KRITISCH</span></h3>
-          <p>Pflege, Altenpflege und Physiotherapie sind am stärksten betroffen. Wartezeiten von mehreren Monaten sind keine Seltenheit.</p>
+          <h3><i class="bi bi-heart-pulse-fill"></i><span data-i18n="am_sec1_title">Gesundheit &amp; Pflege</span> <span class="severity-badge severity-high" data-i18n="am_severity_critical">KRITISCH</span></h3>
+          <p data-i18n="am_sec1_desc">Pflege, Altenpflege und Physiotherapie sind am stärksten betroffen. Wartezeiten von mehreren Monaten sind keine Seltenheit.</p>
         </div>
         <div class="sector-card">
-          <h3><i class="bi bi-tools"></i>Handwerk &amp; Bau <span class="severity-badge severity-high">KRITISCH</span></h3>
-          <p>SHK-Techniker, Dachdecker und Installateure fehlen massiv — und bremsen damit direkt die deutsche Energiewende.</p>
+          <h3><i class="bi bi-tools"></i><span data-i18n="am_sec2_title">Handwerk &amp; Bau</span> <span class="severity-badge severity-high" data-i18n="am_severity_critical">KRITISCH</span></h3>
+          <p data-i18n="am_sec2_desc">SHK-Techniker, Dachdecker und Installateure fehlen massiv — und bremsen damit direkt die deutsche Energiewende.</p>
         </div>
         <div class="sector-card">
-          <h3><i class="bi bi-mortarboard-fill"></i>Bildung <span class="severity-badge severity-high">KRITISCH</span></h3>
-          <p>Lehrkräfte und Erzieher in Kindertagesstätten werden dringend gesucht. Viele Kitas und Schulen können Stellen nicht besetzen.</p>
+          <h3><i class="bi bi-mortarboard-fill"></i><span data-i18n="am_sec3_title">Bildung</span> <span class="severity-badge severity-high" data-i18n="am_severity_critical">KRITISCH</span></h3>
+          <p data-i18n="am_sec3_desc">Lehrkräfte und Erzieher in Kindertagesstätten werden dringend gesucht. Viele Kitas und Schulen können Stellen nicht besetzen.</p>
         </div>
-       
       </div>
       <div class="chart-box">
-        <h3>Engpass-Index nach Branche</h3>
-        <p class="chart-desc">Relative Schwere des Fachkräftemangels (Index 0–100, Schätzung 2024/2025)</p>
+        <h3 data-i18n="am_chart1_title">Engpass-Index nach Branche</h3>
+        <p class="chart-desc" data-i18n="am_chart1_desc">Relative Schwere des Fachkräftemangels (Index 0–100, Schätzung 2024/2025)</p>
         <div class="chart-wrap"><canvas id="chartEngpass"></canvas></div>
       </div>
     </section>
@@ -595,56 +706,56 @@
     <!-- 02 -->
     <section id="ausbildungsmarkt" class="report-section">
       <div class="section-num">02</div>
-      <h2>Der Ausbildungsmarkt — Das Passungsproblem</h2>
-      <p class="subtitle">Viele Azubi-Plätze bleiben frei — gleichzeitig finden Tausende keinen Einstieg</p>
-      <p>Das zentrale Problem: Es gibt ein <strong style="color:#fff">Passungsproblem</strong>. Unternehmen finden keine Auszubildenden, während Hunderttausende junge Menschen keinen Zugang zur dualen Ausbildung haben.</p>
+      <h2 data-i18n="am_s2_title">Der Ausbildungsmarkt — Das Passungsproblem</h2>
+      <p class="subtitle" data-i18n="am_s2_subtitle">Viele Azubi-Plätze bleiben frei — gleichzeitig finden Tausende keinen Einstieg</p>
+      <p data-i18n="am_s2_p1">Das zentrale Problem: Es gibt ein <strong style="color:#fff">Passungsproblem</strong>. Unternehmen finden keine Auszubildenden, während Hunderttausende junge Menschen keinen Zugang zur dualen Ausbildung haben.</p>
       <ul>
-        <li><strong style="color:#fff">1,2 Millionen</strong> Auszubildende im dualen System</li>
-        <li><strong style="color:#fff">2,9 Millionen</strong> junge Erwachsene (20–34 Jahre) ohne Berufsabschluss</li>
-        <li>Unternehmen melden unbesetzte Ausbildungsplätze — Bewerber scheitern an Hürden und fehlender Orientierung</li>
+        <li data-i18n="am_s2_li1"><strong style="color:#fff">1,2 Millionen</strong> Auszubildende im dualen System</li>
+        <li data-i18n="am_s2_li2"><strong style="color:#fff">2,9 Millionen</strong> junge Erwachsene (20–34 Jahre) ohne Berufsabschluss</li>
+        <li data-i18n="am_s2_li3">Unternehmen melden unbesetzte Ausbildungsplätze — Bewerber scheitern an Hürden und fehlender Orientierung</li>
       </ul>
       <div class="charts-2col">
         <div class="chart-box">
-          <h3>Azubis vs. Ohne Abschluss</h3>
-          <p class="chart-desc">Millionen junge Erwachsene (20–34 J.) in Deutschland</p>
+          <h3 data-i18n="am_chart2_title">Azubis vs. Ohne Abschluss</h3>
+          <p class="chart-desc" data-i18n="am_chart2_desc">Millionen junge Erwachsene (20–34 J.) in Deutschland</p>
           <div class="chart-wrap tall"><canvas id="chartPassung"></canvas></div>
         </div>
         <div class="chart-box">
-          <h3>Ausländische Azubis — Trend</h3>
-          <p class="chart-desc">Anteil ausländischer Auszubildender am Gesamtbestand (%)</p>
+          <h3 data-i18n="am_chart3_title">Ausländische Azubis — Trend</h3>
+          <p class="chart-desc" data-i18n="am_chart3_desc">Anteil ausländischer Auszubildender am Gesamtbestand (%)</p>
           <div class="chart-wrap tall"><canvas id="chartAuslaender"></canvas></div>
         </div>
       </div>
-      <p>Die Abhängigkeit von ausländischen Auszubildenden hat sich in zehn Jahren <strong style="color:var(--accent)">verdoppelt</strong>.</p>
+      <p data-i18n="am_s2_p2">Die Abhängigkeit von ausländischen Auszubildenden hat sich in zehn Jahren <strong style="color:var(--accent)">verdoppelt</strong>.</p>
     </section>
 
     <!-- 03 -->
     <section id="regionen" class="report-section">
       <div class="section-num">03</div>
-      <h2>Regionale Unterschiede</h2>
-      <p class="subtitle">Nicht alle Regionen sind gleich betroffen</p>
-      <p>Der Fachkräftemangel trifft Deutschland ungleich. Während einige Regionen noch relativ gut aufgestellt sind, kämpfen andere mit extremer Personalnot.</p>
+      <h2 data-i18n="am_s3_title">Regionale Unterschiede</h2>
+      <p class="subtitle" data-i18n="am_s3_subtitle">Nicht alle Regionen sind gleich betroffen</p>
+      <p data-i18n="am_s3_p1">Der Fachkräftemangel trifft Deutschland ungleich. Während einige Regionen noch relativ gut aufgestellt sind, kämpfen andere mit extremer Personalnot.</p>
       <div class="region-grid">
         <div class="region-card hot">
-          <h4>Hotspots: Süddeutschland</h4>
-          <p><strong style="color:#fff">Bayern &amp; Baden-Württemberg</strong> — starke Wirtschaft, aber härtester Wettbewerb um Fachkräfte.</p>
+          <h4 data-i18n="am_reg1_title">Hotspots: Süddeutschland</h4>
+          <p data-i18n="am_reg1_desc"><strong style="color:#fff">Bayern &amp; Baden-Württemberg</strong> — starke Wirtschaft, aber härtester Wettbewerb um Fachkräfte.</p>
         </div>
         <div class="region-card cool">
-          <h4></i>Großstädte: Relativ besser</h4>
-          <p><strong style="color:#fff">Berlin &amp; Hamburg</strong> — dank urbaner Anziehungskraft etwas besser versorgt als ländliche Regionen.</p>
+          <h4 data-i18n="am_reg2_title">Großstädte: Relativ besser</h4>
+          <p data-i18n="am_reg2_desc"><strong style="color:#fff">Berlin &amp; Hamburg</strong> — dank urbaner Anziehungskraft etwas besser versorgt als ländliche Regionen.</p>
         </div>
         <div class="region-card hot">
-          <h4>Ländliche Regionen: Doppelte Belastung</h4>
-          <p>Abwanderung junger Menschen und eine alternde Bevölkerung verschärfen den Mangel zusätzlich.</p>
+          <h4 data-i18n="am_reg3_title">Ländliche Regionen: Doppelte Belastung</h4>
+          <p data-i18n="am_reg3_desc">Abwanderung junger Menschen und eine alternde Bevölkerung verschärfen den Mangel zusätzlich.</p>
         </div>
         <div class="region-card hot">
-          <h4>Folge: Energiewende unter Druck</h4>
-          <p>Fehlende Handwerker verzögern Wärmepumpen-Installationen und Solarprojekte — direkter Wirtschaftsschaden.</p>
+          <h4 data-i18n="am_reg4_title">Folge: Energiewende unter Druck</h4>
+          <p data-i18n="am_reg4_desc">Fehlende Handwerker verzögern Wärmepumpen-Installationen und Solarprojekte — direkter Wirtschaftsschaden.</p>
         </div>
       </div>
       <div class="chart-box">
-        <h3>Fachkräfteengpass nach Region</h3>
-        <p class="chart-desc">Index der offenen Stellen pro 1.000 Beschäftigte (Schätzung 2024)</p>
+        <h3 data-i18n="am_chart4_title">Fachkräfteengpass nach Region</h3>
+        <p class="chart-desc" data-i18n="am_chart4_desc">Index der offenen Stellen pro 1.000 Beschäftigte (Schätzung 2024)</p>
         <div class="chart-wrap"><canvas id="chartRegion"></canvas></div>
       </div>
     </section>
@@ -652,29 +763,440 @@
     <!-- 04 -->
     <section id="loesungen" class="report-section">
       <div class="section-num">04</div>
-      <h2>Wie plant Deutschland die Lösung?</h2>
-      <p class="subtitle">Fünf zentrale Strategien gegen den Fachkräftemangel</p>
-      <p>Die Politik und Wirtschaft setzen auf ein breites Bündel von Maßnahmen, um den Arbeitsmarkt langfristig zu stabilisieren.</p>
+      <h2 data-i18n="am_s4_title">Wie plant Deutschland die Lösung?</h2>
+      <p class="subtitle" data-i18n="am_s4_subtitle">Fünf zentrale Strategien gegen den Fachkräftemangel</p>
+      <p data-i18n="am_s4_p1">Die Politik und Wirtschaft setzen auf ein breites Bündel von Maßnahmen, um den Arbeitsmarkt langfristig zu stabilisieren.</p>
       <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.25rem">
-        <div class="strategy-item"><div class="strategy-num">1</div><div><h4>Fachkräftezuwanderung</h4><p>Neue Gesetze wie die <strong style="color:#fff">Chancenkarte</strong> sollen qualifizierte Arbeitskräfte aus Nicht-EU-Ländern gezielt nach Deutschland holen.</p></div></div>
-        <div class="strategy-item"><div class="strategy-num">2</div><div><h4>Interne Potenziale aktivieren</h4><p>Qualifizierung von <strong style="color:#fff">An- und Ungelernten</strong> durch Nachqualifizierung in den Arbeitsmarkt integrieren.</p></div></div>
-        <div class="strategy-item"><div class="strategy-num">3</div><div><h4>Arbeitsbedingungen verbessern</h4><p>Mehr Flexibilität und gezielte Ansprache von <strong style="color:#fff">Frauen und älteren Arbeitnehmern</strong>.</p></div></div>
-        <div class="strategy-item"><div class="strategy-num">5</div><div><h4>Unterstützung für KMU</h4><p>Kleine und mittlere Unternehmen erhalten Hilfe beim <strong style="color:#fff">Employer Branding</strong>.</p></div></div>
+        <div class="strategy-item"><div class="strategy-num">1</div><div><h4 data-i18n="am_strat1_title">Fachkräftezuwanderung</h4><p data-i18n="am_strat1_desc">Neue Gesetze wie die <strong style="color:#fff">Chancenkarte</strong> sollen qualifizierte Arbeitskräfte aus Nicht-EU-Ländern gezielt nach Deutschland holen.</p></div></div>
+        <div class="strategy-item"><div class="strategy-num">2</div><div><h4 data-i18n="am_strat2_title">Interne Potenziale aktivieren</h4><p data-i18n="am_strat2_desc">Qualifizierung von <strong style="color:#fff">An- und Ungelernten</strong> durch Nachqualifizierung in den Arbeitsmarkt integrieren.</p></div></div>
+        <div class="strategy-item"><div class="strategy-num">3</div><div><h4 data-i18n="am_strat3_title">Arbeitsbedingungen verbessern</h4><p data-i18n="am_strat3_desc">Mehr Flexibilität und gezielte Ansprache von <strong style="color:#fff">Frauen und älteren Arbeitnehmern</strong>.</p></div></div>
+        <div class="strategy-item"><div class="strategy-num">5</div><div><h4 data-i18n="am_strat5_title">Unterstützung für KMU</h4><p data-i18n="am_strat5_desc">Kleine und mittlere Unternehmen erhalten Hilfe beim <strong style="color:#fff">Employer Branding</strong>.</p></div></div>
       </div>
       <div class="chart-box">
-        <h3>Investitionsschwerpunkte der Fachkräftestrategie</h3>
-        <p class="chart-desc">Geplante Mittelverteilung auf die fünf Strategiebereiche (%)</p>
+        <h3 data-i18n="am_chart5_title">Investitionsschwerpunkte der Fachkräftestrategie</h3>
+        <p class="chart-desc" data-i18n="am_chart5_desc">Geplante Mittelverteilung auf die fünf Strategiebereiche (%)</p>
         <div class="chart-wrap tall"><canvas id="chartStrategie"></canvas></div>
       </div>
-      <p class="source-note">Quelle: Zusammenfassung auf Basis des deutschen Arbeitsmarktberichts 2024/2025 (BA, IW Köln, Destatis). Zahlen sind Schätzwerte zur Veranschaulichung.</p>
+      <p class="source-note" data-i18n="am_source_note">Quelle: Zusammenfassung auf Basis des deutschen Arbeitsmarktberichts 2024/2025 (BA, IW Köln, Destatis). Zahlen sind Schätzwerte zur Veranschaulichung.</p>
     </section>
 
   </main>
 </div>
 
+<!-- ═══ TRANSLATIONS (EMBEDDED DIRECTLY — NO EXTERNAL FILE) ═══ -->
 <script>
+window.__I18N__ = {
+  de: {
+    am_page_title: "Arbeitsmarkt in Deutschland 2024/2025 | 3E Consulting",
+    nav_services: "Leistungen",
+    nav_process: "Ablauf",
+    nav_about: "Über uns",
+    nav_contact: "Kontakt",
+    menu_btn: "MENÜ ▾",
+    you_are: "Sie sind",
+    applicant: "Bewerber",
+    company: "Unternehmen",
+    start_now: "Jetzt starten",
+    submit_application: "Bewerbung einreichen",
+    check_requirements: "Voraussetzungen prüfen",
+    doc_organization: "Dokumentenorganisation",
+    create_profile_video: "Profil-Video erstellen",
+    well_prepared: "Gut vorbereitet sein",
+    job_market: "Arbeitsmarkt Deutschland",
+    job_market_short: "Arbeitsmarkt",
+    daily_life: "Alltag in Deutschland",
+    chatbot_title: "Chatbot-3e",
+    chatbot_desc: "Stellen Sie jede Frage",
+    for_companies: "Für Unternehmen",
+    find_talent: "Fachkräfte finden",
+    support_complaints: "Support & Beschwerden",
+    company_login: "Unternehmens-Login",
+    get_in_touch: "Kontakt aufnehmen",
+    reply_24h: "Wir antworten in 24h",
+    language: "Sprache",
+    home: "Startseite",
+    application: "Bewerbung",
+    requirements: "Voraussetzungen",
+    start_as_applicant: "Als Bewerber starten",
 
+    am_tag: "Marktanalyse · 2024/2025",
+    am_hero_title: "Der deutsche <em>Arbeitsmarkt</em>",
+    am_hero_desc: "Deutschland kämpft mit einem massiven Fachkräftemangel. Dieser Bericht zeigt, wo die größten Engpässe liegen, warum der Ausbildungsmarkt nicht funktioniert und welche Lösungen die Politik verfolgt.",
+    am_kpi1_label: "Unbesetzte Stellenim Gesundheitswesen",
+    am_kpi2_label: "Auszubildende im Dualen System",
+    am_kpi3_label: "Junge Erwachsene (20–34) ohne Berufsabschluss",
+    am_kpi4_label: "Anstieg ausländischer Azubis in 10 Jahren",
 
+    am_toc_title: "Inhaltsverzeichnis",
+    am_toc_1: "Engpassberufe",
+    am_toc_2: "Ausbildungsmarkt",
+    am_toc_3: "Regionale Unterschiede",
+    am_toc_4: "Lösungsstrategien",
+
+    am_s1_title: "Engpassberufe — Wo liegt der Mangel?",
+    am_s1_subtitle: "Die am stärksten betroffenen Branchen im Überblick",
+    am_s1_p1: "Der Arbeitsmarktbericht identifiziert mehrere Bereiche mit schweren „Engpässen\" — Berufe, für die Unternehmen monatelang nach Bewerbern suchen, ohne eine Stelle besetzen zu können.",
+    am_sec1_title: "Gesundheit & Pflege",
+    am_sec1_desc: "Pflege, Altenpflege und Physiotherapie sind am stärksten betroffen. Wartezeiten von mehreren Monaten sind keine Seltenheit.",
+    am_sec2_title: "Handwerk & Bau",
+    am_sec2_desc: "SHK-Techniker, Dachdecker und Installateure fehlen massiv — und bremsen damit direkt die deutsche Energiewende.",
+    am_sec3_title: "Bildung",
+    am_sec3_desc: "Lehrkräfte und Erzieher in Kindertagesstätten werden dringend gesucht. Viele Kitas und Schulen können Stellen nicht besetzen.",
+    am_severity_critical: "KRITISCH",
+    am_chart1_title: "Engpass-Index nach Branche",
+    am_chart1_desc: "Relative Schwere des Fachkräftemangels (Index 0–100, Schätzung 2024/2025)",
+
+    am_s2_title: "Der Ausbildungsmarkt — Das Passungsproblem",
+    am_s2_subtitle: "Viele Azubi-Plätze bleiben frei — gleichzeitig finden Tausende keinen Einstieg",
+    am_s2_p1: "Das zentrale Problem: Es gibt ein Passungsproblem. Unternehmen finden keine Auszubildenden, während Hunderttausende junge Menschen keinen Zugang zur dualen Ausbildung haben.",
+    am_s2_li1: "1,2 Millionen Auszubildende im dualen System",
+    am_s2_li2: "2,9 Millionen junge Erwachsene (20–34 Jahre) ohne Berufsabschluss",
+    am_s2_li3: "Unternehmen melden unbesetzte Ausbildungsplätze — Bewerber scheitern an Hürden und fehlender Orientierung",
+    am_chart2_title: "Azubis vs. Ohne Abschluss",
+    am_chart2_desc: "Millionen junge Erwachsene (20–34 J.) in Deutschland",
+    am_chart3_title: "Ausländische Azubis — Trend",
+    am_chart3_desc: "Anteil ausländischer Auszubildender am Gesamtbestand (%)",
+    am_s2_p2: "Die Abhängigkeit von ausländischen Auszubildenden hat sich in zehn Jahren verdoppelt.",
+
+    am_s3_title: "Regionale Unterschiede",
+    am_s3_subtitle: "Nicht alle Regionen sind gleich betroffen",
+    am_s3_p1: "Der Fachkräftemangel trifft Deutschland ungleich. Während einige Regionen noch relativ gut aufgestellt sind, kämpfen andere mit extremer Personalnot.",
+    am_reg1_title: "Hotspots: Süddeutschland",
+    am_reg1_desc: "Bayern & Baden-Württemberg — starke Wirtschaft, aber härtester Wettbewerb um Fachkräfte.",
+    am_reg2_title: "Großstädte: Relativ besser",
+    am_reg2_desc: "Berlin & Hamburg — dank urbaner Anziehungskraft etwas besser versorgt als ländliche Regionen.",
+    am_reg3_title: "Ländliche Regionen: Doppelte Belastung",
+    am_reg3_desc: "Abwanderung junger Menschen und eine alternde Bevölkerung verschärfen den Mangel zusätzlich.",
+    am_reg4_title: "Folge: Energiewende unter Druck",
+    am_reg4_desc: "Fehlende Handwerker verzögern Wärmepumpen-Installationen und Solarprojekte — direkter Wirtschaftsschaden.",
+    am_chart4_title: "Fachkräfteengpass nach Region",
+    am_chart4_desc: "Index der offenen Stellen pro 1.000 Beschäftigte (Schätzung 2024)",
+
+    am_s4_title: "Wie plant Deutschland die Lösung?",
+    am_s4_subtitle: "Fünf zentrale Strategien gegen den Fachkräftemangel",
+    am_s4_p1: "Die Politik und Wirtschaft setzen auf ein breites Bündel von Maßnahmen, um den Arbeitsmarkt langfristig zu stabilisieren.",
+    am_strat1_title: "Fachkräftezuwanderung",
+    am_strat1_desc: "Neue Gesetze wie die Chancenkarte sollen qualifizierte Arbeitskräfte aus Nicht-EU-Ländern gezielt nach Deutschland holen.",
+    am_strat2_title: "Interne Potenziale aktivieren",
+    am_strat2_desc: "Qualifizierung von An- und Ungelernten durch Nachqualifizierung in den Arbeitsmarkt integrieren.",
+    am_strat3_title: "Arbeitsbedingungen verbessern",
+    am_strat3_desc: "Mehr Flexibilität und gezielte Ansprache von Frauen und älteren Arbeitnehmern.",
+    am_strat5_title: "Unterstützung für KMU",
+    am_strat5_desc: "Kleine und mittlere Unternehmen erhalten Hilfe beim Employer Branding.",
+    am_chart5_title: "Investitionsschwerpunkte der Fachkräftestrategie",
+    am_chart5_desc: "Geplante Mittelverteilung auf die fünf Strategiebereiche (%)",
+    am_source_note: "Quelle: Zusammenfassung auf Basis des deutschen Arbeitsmarktberichts 2024/2025 (BA, IW Köln, Destatis). Zahlen sind Schätzwerte zur Veranschaulichung."
+  },
+
+  ar: {
+    am_page_title: "سوق العمل في ألمانيا 2024/2025 | 3E Consulting",
+    nav_services: "الخدمات",
+    nav_process: "آلية العمل",
+    nav_about: "من نحن",
+    nav_contact: "اتصل بنا",
+    menu_btn: "القائمة ▾",
+    you_are: "أنت",
+    applicant: "متقدّم للعمل",
+    company: "شركة",
+    start_now: "ابدأ الآن",
+    submit_application: "تقديم طلب",
+    check_requirements: "التحقق من الشروط",
+    doc_organization: "تنظيم المستندات",
+    create_profile_video: "إنشاء فيديو تعريفي",
+    well_prepared: "كن مستعدًا جيدًا",
+    job_market: "سوق العمل الألماني",
+    job_market_short: "سوق العمل",
+    daily_life: "الحياة اليومية في ألمانيا",
+    chatbot_title: "روبوت المحادثة 3e",
+    chatbot_desc: "اطرح أي سؤال",
+    for_companies: "للشركات",
+    find_talent: "العثور على كفاءات",
+    support_complaints: "الدعم والشكاوى",
+    company_login: "تسجيل دخول الشركات",
+    get_in_touch: "تواصل معنا",
+    reply_24h: "نرد خلال 24 ساعة",
+    language: "اللغة",
+    home: "الرئيسية",
+    application: "طلب التقديم",
+    requirements: "الشروط",
+    start_as_applicant: "ابدأ كمتقدّم للعمل",
+
+    am_tag: "تحليل السوق · 2024/2025",
+    am_hero_title: "سوق العمل <em>الألماني</em>",
+    am_hero_desc: "تعاني ألمانيا من نقص حاد في الكفاءات المهنية. يوضح هذا التقرير أين تكمن أكبر الفجوات، ولماذا لا يعمل سوق التدريب المهني بشكل جيد، وما هي الحلول التي تتبناها السياسة.",
+    am_kpi1_label: "وظائف شاغرة<br>في قطاع الرعاية الصحية",
+    am_kpi2_label: "متدربون في<br>النظام المزدوج",
+    am_kpi3_label: "شباب (20–34 سنة)<br>بدون مؤهل مهني",
+    am_kpi4_label: "تضاعف عدد المتدربين<br>الأجانب خلال 10 سنوات",
+
+    am_toc_title: "جدول المحتويات",
+    am_toc_1: "المهن ذات النقص الحاد",
+    am_toc_2: "سوق التدريب المهني",
+    am_toc_3: "الفروقات الإقليمية",
+    am_toc_4: "استراتيجيات الحلول",
+
+    am_s1_title: "المهن ذات النقص الحاد — أين يكمن النقص؟",
+    am_s1_subtitle: "نظرة عامة على القطاعات الأكثر تضررًا",
+    am_s1_p1: "يحدد تقرير سوق العمل عدة قطاعات تعاني من \"اختناقات\" شديدة — مهن تبحث فيها الشركات عن متقدمين لأشهر دون أن تتمكن من شغل الوظيفة.",
+    am_sec1_title: "الصحة والرعاية",
+    am_sec1_desc: "التمريض ورعاية المسنين والعلاج الطبيعي هي الأكثر تضررًا. فترات الانتظار التي تمتد لأشهر ليست نادرة.",
+    am_sec2_title: "الحرف اليدوية والبناء",
+    am_sec2_desc: "يوجد نقص هائل في فنيي التدفئة والتكييف وعمال الأسقف والسباكين — مما يعيق مباشرة التحول الطاقي الألماني.",
+    am_sec3_title: "التعليم",
+    am_sec3_desc: "هناك حاجة ماسة إلى المعلمين والمربين في رياض الأطفال. العديد من رياض الأطفال والمدارس غير قادرة على شغل وظائفها.",
+    am_severity_critical: "حرج",
+    am_chart1_title: "مؤشر النقص حسب القطاع",
+    am_chart1_desc: "الشدة النسبية لنقص الكفاءات (مؤشر 0–100، تقديرات 2024/2025)",
+
+    am_s2_title: "سوق التدريب المهني — مشكلة عدم التطابق",
+    am_s2_subtitle: "الكثير من أماكن التدريب تبقى شاغرة — بينما لا يجد آلاف الشباب فرصة للالتحاق",
+    am_s2_p1: "المشكلة الأساسية: هناك مشكلة عدم تطابق. لا تجد الشركات متدربين، بينما مئات الآلاف من الشباب لا يستطيعون الوصول إلى التدريب المهني المزدوج.",
+    am_s2_li1: "1.2 مليون متدرب في النظام المزدوج",
+    am_s2_li2: "2.9 مليون شاب (20–34 سنة) بدون مؤهل مهني",
+    am_s2_li3: "تُبلغ الشركات عن أماكن تدريب شاغرة — بينما يفشل المتقدمون بسبب العوائق ونقص التوجيه",
+    am_chart2_title: "المتدربون مقابل من دون مؤهل",
+    am_chart2_desc: "ملايين الشباب (20–34 سنة) في ألمانيا",
+    am_chart3_title: "المتدربون الأجانب — الاتجاه",
+    am_chart3_desc: "نسبة المتدربين الأجانب من إجمالي المتدربين (%)",
+    am_s2_p2: "تضاعف الاعتماد على المتدربين الأجانب خلال عشر سنوات.",
+
+    am_s3_title: "الفروقات الإقليمية",
+    am_s3_subtitle: "لا تتأثر جميع المناطق بنفس الدرجة",
+    am_s3_p1: "يؤثر نقص الكفاءات على ألمانيا بشكل غير متساوٍ. بينما لا تزال بعض المناطق في وضع جيد نسبيًا، تعاني مناطق أخرى من نقص حاد في العمالة.",
+    am_reg1_title: "البؤر الساخنة: جنوب ألمانيا",
+    am_reg1_desc: "بافاريا وبادن-فورتمبيرغ — اقتصاد قوي، لكن أشد منافسة على الكفاءات.",
+    am_reg2_title: "المدن الكبرى: أفضل نسبيًا",
+    am_reg2_desc: "برلين وهامبورغ — بفضل الجاذبية الحضرية، وضعها أفضل قليلاً من المناطق الريفية.",
+    am_reg3_title: "المناطق الريفية: عبء مضاعف",
+    am_reg3_desc: "هجرة الشباب وشيخوخة السكان تزيد من حدة النقص.",
+    am_reg4_title: "النتيجة: التحول الطاقي تحت الضغط",
+    am_reg4_desc: "نقص الحرفيين يؤخر تركيب مضخات الحرارة ومشاريع الطاقة الشمسية — ضرر اقتصادي مباشر.",
+    am_chart4_title: "نقص الكفاءات حسب المنطقة",
+    am_chart4_desc: "مؤشر الوظائف الشاغرة لكل 1000 موظف (تقديرات 2024)",
+
+    am_s4_title: "كيف تخطط ألمانيا للحل؟",
+    am_s4_subtitle: "خمس استراتيجيات رئيسية لمواجهة نقص الكفاءات",
+    am_s4_p1: "تعتمد السياسة والاقتصاد على مجموعة واسعة من الإجراءات لتحقيق استقرار سوق العمل على المدى الطويل.",
+    am_strat1_title: "هجرة الكفاءات",
+    am_strat1_desc: "تهدف قوانين جديدة مثل \"بطاقة الفرص\" إلى جذب العمالة المؤهلة من خارج الاتحاد الأوروبي إلى ألمانيا.",
+    am_strat2_title: "تفعيل الإمكانات الداخلية",
+    am_strat2_desc: "دمج العمال غير المؤهلين وذوي المهارات المحدودة في سوق العمل عبر إعادة التأهيل.",
+    am_strat3_title: "تحسين ظروف العمل",
+    am_strat3_desc: "مزيد من المرونة واستهداف النساء والعمال الأكبر سنًا.",
+    am_strat5_title: "دعم الشركات الصغيرة والمتوسطة",
+    am_strat5_desc: "تحصل الشركات الصغيرة والمتوسطة على مساعدة في بناء العلامة التجارية كصاحب عمل.",
+    am_chart5_title: "أولويات الاستثمار في استراتيجية الكفاءات",
+    am_chart5_desc: "التوزيع المخطط للأموال على مجالات الاستراتيجية الخمسة (%)",
+    am_source_note: "المصدر: ملخص مبني على تقرير سوق العمل الألماني 2024/2025 (الوكالة الفيدرالية للعمل، معهد IW كولونيا، ديستاتيس). الأرقام تقديرية لأغراض التوضيح."
+  },
+
+  fr: {
+    am_page_title: "Marché du travail en Allemagne 2024/2025 | 3E Consulting",
+    nav_services: "Services",
+    nav_process: "Processus",
+    nav_about: "À propos",
+    nav_contact: "Contact",
+    menu_btn: "MENU ▾",
+    you_are: "Vous êtes",
+    applicant: "Candidat",
+    company: "Entreprise",
+    start_now: "Commencer maintenant",
+    submit_application: "Soumettre une candidature",
+    check_requirements: "Vérifier les conditions",
+    doc_organization: "Organisation des documents",
+    create_profile_video: "Créer une vidéo de profil",
+    well_prepared: "Bien se préparer",
+    job_market: "Marché du travail allemand",
+    job_market_short: "Marché du travail",
+    daily_life: "Vie quotidienne en Allemagne",
+    chatbot_title: "Chatbot-3e",
+    chatbot_desc: "Posez n'importe quelle question",
+    for_companies: "Pour les entreprises",
+    find_talent: "Trouver des talents",
+    support_complaints: "Support & réclamations",
+    company_login: "Connexion entreprise",
+    get_in_touch: "Nous contacter",
+    reply_24h: "Nous répondons sous 24h",
+    language: "Langue",
+    home: "Accueil",
+    application: "Candidature",
+    requirements: "Conditions requises",
+    start_as_applicant: "Commencer en tant que candidat",
+
+    am_tag: "Analyse du marché · 2024/2025",
+    am_hero_title: "Le marché du travail <em>allemand</em>",
+    am_hero_desc: "L'Allemagne fait face à une pénurie massive de main-d'œuvre qualifiée. Ce rapport montre où se situent les plus grands goulots d'étranglement, pourquoi le marché de la formation ne fonctionne pas et quelles solutions la politique poursuit.",
+    am_kpi1_label: "Postes vacants<br>dans le secteur de la santé",
+    am_kpi2_label: "Apprentis dans<br>le système dual",
+    am_kpi3_label: "Jeunes adultes (20–34 ans)<br>sans qualification professionnelle",
+    am_kpi4_label: "Doublement des apprentis<br>étrangers en 10 ans",
+
+    am_toc_title: "Table des matières",
+    am_toc_1: "Métiers en tension",
+    am_toc_2: "Marché de la formation",
+    am_toc_3: "Différences régionales",
+    am_toc_4: "Stratégies de solution",
+
+    am_s1_title: "Métiers en tension — Où se situe la pénurie ?",
+    am_s1_subtitle: "Aperçu des secteurs les plus touchés",
+    am_s1_p1: "Le rapport sur le marché du travail identifie plusieurs secteurs souffrant de graves « goulots d'étranglement » — des métiers pour lesquels les entreprises cherchent des candidats pendant des mois sans pouvoir pourvoir le poste.",
+    am_sec1_title: "Santé & soins",
+    am_sec1_desc: "Les soins infirmiers, les soins aux personnes âgées et la physiothérapie sont les plus touchés. Des délais d'attente de plusieurs mois ne sont pas rares.",
+    am_sec2_title: "Artisanat & construction",
+    am_sec2_desc: "Les techniciens CVC, couvreurs et installateurs manquent massivement — freinant directement la transition énergétique allemande.",
+    am_sec3_title: "Éducation",
+    am_sec3_desc: "Les enseignants et éducateurs dans les crèches sont recherchés de toute urgence. De nombreuses crèches et écoles ne peuvent pourvoir leurs postes.",
+    am_severity_critical: "CRITIQUE",
+    am_chart1_title: "Indice de pénurie par secteur",
+    am_chart1_desc: "Gravité relative de la pénurie de main-d'œuvre qualifiée (indice 0–100, estimation 2024/2025)",
+
+    am_s2_title: "Le marché de la formation — Le problème d'adéquation",
+    am_s2_subtitle: "De nombreuses places d'apprentissage restent vacantes — tandis que des milliers ne trouvent pas d'accès",
+    am_s2_p1: "Le problème central : il existe un problème d'adéquation. Les entreprises ne trouvent pas d'apprentis, tandis que des centaines de milliers de jeunes n'ont pas accès à la formation duale.",
+    am_s2_li1: "1,2 million d'apprentis dans le système dual",
+    am_s2_li2: "2,9 millions de jeunes adultes (20–34 ans) sans qualification professionnelle",
+    am_s2_li3: "Les entreprises signalent des places d'apprentissage vacantes — les candidats échouent face aux obstacles et au manque d'orientation",
+    am_chart2_title: "Apprentis vs. sans diplôme",
+    am_chart2_desc: "Millions de jeunes adultes (20–34 ans) en Allemagne",
+    am_chart3_title: "Apprentis étrangers — Tendance",
+    am_chart3_desc: "Part des apprentis étrangers dans le total (%)",
+    am_s2_p2: "La dépendance aux apprentis étrangers a doublé en dix ans.",
+
+    am_s3_title: "Différences régionales",
+    am_s3_subtitle: "Toutes les régions ne sont pas touchées de la même manière",
+    am_s3_p1: "La pénurie de main-d'œuvre qualifiée touche l'Allemagne de manière inégale. Alors que certaines régions restent relativement bien positionnées, d'autres souffrent d'un manque de personnel extrême.",
+    am_reg1_title: "Points chauds : Sud de l'Allemagne",
+    am_reg1_desc: "Bavière & Bade-Wurtemberg — économie forte, mais concurrence la plus rude pour les talents.",
+    am_reg2_title: "Grandes villes : relativement mieux loties",
+    am_reg2_desc: "Berlin & Hambourg — mieux desservies grâce à l'attractivité urbaine que les régions rurales.",
+    am_reg3_title: "Régions rurales : double charge",
+    am_reg3_desc: "L'exode des jeunes et une population vieillissante aggravent encore la pénurie.",
+    am_reg4_title: "Conséquence : la transition énergétique sous pression",
+    am_reg4_desc: "Le manque d'artisans retarde l'installation de pompes à chaleur et les projets solaires — un préjudice économique direct.",
+    am_chart4_title: "Pénurie de main-d'œuvre par région",
+    am_chart4_desc: "Indice des postes vacants pour 1 000 employés (estimation 2024)",
+
+    am_s4_title: "Comment l'Allemagne prévoit-elle de résoudre le problème ?",
+    am_s4_subtitle: "Cinq stratégies clés contre la pénurie de main-d'œuvre qualifiée",
+    am_s4_p1: "La politique et l'économie misent sur un large éventail de mesures pour stabiliser durablement le marché du travail.",
+    am_strat1_title: "Immigration de main-d'œuvre qualifiée",
+    am_strat1_desc: "De nouvelles lois comme la « Chancenkarte » visent à attirer en Allemagne des travailleurs qualifiés issus de pays hors UE.",
+    am_strat2_title: "Activer les potentiels internes",
+    am_strat2_desc: "Intégrer au marché du travail les travailleurs peu ou pas qualifiés grâce à la requalification.",
+    am_strat3_title: "Améliorer les conditions de travail",
+    am_strat3_desc: "Plus de flexibilité et une approche ciblée envers les femmes et les travailleurs âgés.",
+    am_strat5_title: "Soutien aux PME",
+    am_strat5_desc: "Les petites et moyennes entreprises reçoivent une aide pour leur marque employeur.",
+    am_chart5_title: "Priorités d'investissement de la stratégie de main-d'œuvre",
+    am_chart5_desc: "Répartition prévue des fonds sur les cinq domaines stratégiques (%)",
+    am_source_note: "Source : synthèse basée sur le rapport sur le marché du travail allemand 2024/2025 (BA, IW Cologne, Destatis). Les chiffres sont des estimations à titre indicatif."
+  },
+
+  en: {
+    am_page_title: "German Labor Market 2024/2025 | 3E Consulting",
+    nav_services: "Services",
+    nav_process: "Process",
+    nav_about: "About Us",
+    nav_contact: "Contact",
+    menu_btn: "MENU ▾",
+    you_are: "You are",
+    applicant: "Applicant",
+    company: "Company",
+    start_now: "Start now",
+    submit_application: "Submit application",
+    check_requirements: "Check requirements",
+    doc_organization: "Document organization",
+    create_profile_video: "Create profile video",
+    well_prepared: "Be well prepared",
+    job_market: "German labor market",
+    job_market_short: "Labor market",
+    daily_life: "Daily life in Germany",
+    chatbot_title: "Chatbot-3e",
+    chatbot_desc: "Ask any question",
+    for_companies: "For companies",
+    find_talent: "Find talent",
+    support_complaints: "Support & complaints",
+    company_login: "Company login",
+    get_in_touch: "Get in touch",
+    reply_24h: "We reply within 24h",
+    language: "Language",
+    home: "Home",
+    application: "Application",
+    requirements: "Requirements",
+    start_as_applicant: "Start as applicant",
+
+    am_tag: "Market Analysis · 2024/2025",
+    am_hero_title: "The German <em>Labor Market</em>",
+    am_hero_desc: "Germany is grappling with a massive shortage of skilled workers. This report shows where the biggest bottlenecks lie, why the training market isn't working, and what solutions policymakers are pursuing.",
+    am_kpi1_label: "Unfilled positions<br>in healthcare",
+    am_kpi2_label: "Apprentices in the<br>dual system",
+    am_kpi3_label: "Young adults (20–34)<br>without vocational qualification",
+    am_kpi4_label: "Doubling of foreign<br>apprentices in 10 years",
+
+    am_toc_title: "Table of Contents",
+    am_toc_1: "Shortage occupations",
+    am_toc_2: "Training market",
+    am_toc_3: "Regional differences",
+    am_toc_4: "Solution strategies",
+
+    am_s1_title: "Shortage occupations — Where is the gap?",
+    am_s1_subtitle: "Overview of the most affected sectors",
+    am_s1_p1: "The labor market report identifies several areas with severe \"bottlenecks\" — occupations for which companies search for applicants for months without being able to fill the position.",
+    am_sec1_title: "Health & Care",
+    am_sec1_desc: "Nursing, elderly care, and physiotherapy are the most affected. Waiting times of several months are not uncommon.",
+    am_sec2_title: "Trades & Construction",
+    am_sec2_desc: "HVAC technicians, roofers, and installers are massively lacking — directly slowing Germany's energy transition.",
+    am_sec3_title: "Education",
+    am_sec3_desc: "Teachers and educators in daycare centers are urgently needed. Many daycares and schools cannot fill positions.",
+    am_severity_critical: "CRITICAL",
+    am_chart1_title: "Shortage index by sector",
+    am_chart1_desc: "Relative severity of the skills shortage (index 0–100, 2024/2025 estimate)",
+
+    am_s2_title: "The Training Market — The Matching Problem",
+    am_s2_subtitle: "Many apprenticeship spots remain vacant — while thousands find no entry",
+    am_s2_p1: "The core problem: there is a matching problem. Companies can't find apprentices, while hundreds of thousands of young people have no access to dual vocational training.",
+    am_s2_li1: "1.2 million apprentices in the dual system",
+    am_s2_li2: "2.9 million young adults (20–34) without a vocational qualification",
+    am_s2_li3: "Companies report unfilled apprenticeship positions — applicants fail due to hurdles and lack of guidance",
+    am_chart2_title: "Apprentices vs. without qualification",
+    am_chart2_desc: "Millions of young adults (20–34) in Germany",
+    am_chart3_title: "Foreign apprentices — Trend",
+    am_chart3_desc: "Share of foreign apprentices of total (%)",
+    am_s2_p2: "Reliance on foreign apprentices has doubled over ten years.",
+
+    am_s3_title: "Regional Differences",
+    am_s3_subtitle: "Not all regions are equally affected",
+    am_s3_p1: "The skills shortage affects Germany unevenly. While some regions remain relatively well positioned, others struggle with extreme staff shortages.",
+    am_reg1_title: "Hotspots: Southern Germany",
+    am_reg1_desc: "Bavaria & Baden-Württemberg — strong economy, but the toughest competition for talent.",
+    am_reg2_title: "Big cities: relatively better off",
+    am_reg2_desc: "Berlin & Hamburg — slightly better supplied than rural regions thanks to urban appeal.",
+    am_reg3_title: "Rural regions: double burden",
+    am_reg3_desc: "Youth outmigration and an aging population further intensify the shortage.",
+    am_reg4_title: "Consequence: Energy transition under pressure",
+    am_reg4_desc: "Lack of tradespeople delays heat pump installations and solar projects — direct economic damage.",
+    am_chart4_title: "Skills shortage by region",
+    am_chart4_desc: "Index of open positions per 1,000 employees (2024 estimate)",
+
+    am_s4_title: "How is Germany planning to solve this?",
+    am_s4_subtitle: "Five key strategies against the skills shortage",
+    am_s4_p1: "Policy and business are relying on a broad set of measures to stabilize the labor market long-term.",
+    am_strat1_title: "Skilled worker immigration",
+    am_strat1_desc: "New laws such as the \"Opportunity Card\" aim to attract qualified workers from non-EU countries to Germany.",
+    am_strat2_title: "Activating internal potential",
+    am_strat2_desc: "Integrating semi-skilled and unskilled workers into the labor market through requalification.",
+    am_strat3_title: "Improving working conditions",
+    am_strat3_desc: "More flexibility and targeted outreach to women and older workers.",
+    am_strat5_title: "Support for SMEs",
+    am_strat5_desc: "Small and medium-sized enterprises receive help with employer branding.",
+    am_chart5_title: "Investment priorities of the skills strategy",
+    am_chart5_desc: "Planned fund distribution across the five strategy areas (%)",
+    am_source_note: "Source: Summary based on the German labor market report 2024/2025 (BA, IW Cologne, Destatis). Figures are estimates for illustrative purposes."
+  }
+};
+</script>
+
+<script>
 /* ── TOC ── */
 const tocLinks = document.querySelectorAll('aside.toc a');
 const sections = document.querySelectorAll('.report-section');
@@ -689,12 +1211,12 @@ Chart.defaults.borderColor='rgba(74,222,128,.12)';
 Chart.defaults.font.family="'DM Sans',sans-serif";
 
 /* ── لوحة الألوان: درجات خضراء فقط ── */
-const green1='#16a34a';   // أخضر أساسي (bright)
-const green2='#16a34a';   // أخضر داكن
-const green3='#16a34a';   // أخضر فاتح
-const green4='#16a34a';   // أخضر داكن جداً
-const green5='#16a34a';   // أخضر متوسط
-const green6='#16a34a';   // أخضر فاتح جداً
+const green1='#1f7a3d'; // إلخ لجميع المتغيرات
+const green2='#16a34a';
+const green3='#16a34a';
+const green4='#16a34a';
+const green5='#16a34a';
+const green6='#16a34a';
 const greenPalette=[green1,green2,green3,green4,green5,green6];
 
 new Chart(document.getElementById('chartEngpass'),{type:'bar',data:{labels:['Gesundheit & Pflege','Handwerk & Bau','Bildung','Logistik','Gastronomie'],datasets:[{label:'Engpass-Index',data:[95,88,82,74,65,58],backgroundColor:[green1,green4],borderRadius:8,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` Index: ${c.raw}/100`}}},scales:{x:{max:100,grid:{color:'rgba(74,222,128,.08)'},ticks:{callback:v=>v+'%'}},y:{grid:{display:false}}}}});
@@ -710,7 +1232,7 @@ new Chart(document.getElementById('chartStrategie'),{type:'doughnut',data:{label
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script>
 /* ════════════════════════════════════════════════════
-   3E Consulting — Navbar JS (from index.html)
+   3E Consulting — Navbar JS
    ════════════════════════════════════════════════════ */
 function mn2Switch(btn, panel) {
   document.querySelectorAll('.mn2-who-btn').forEach(b => b.classList.remove('mn2-who-active'));
@@ -752,7 +1274,68 @@ function mnMobileSwitch(btn, panel) {
   overlay       .addEventListener('click', closeMobileNavFn);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNavFn(); });
 })();
-/* ═══════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════════════
+   نظام تعدد اللغات (i18n) — يعمل الآن مباشرة بدون ملف خارجي
+   ════════════════════════════════════════════════════ */
+const translations = window.__I18N__ || {};
+
+function applyTranslations(lang) {
+  const dict = translations[lang];
+  if (!dict) return;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  const html = document.getElementById('htmlRoot');
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+  const labelMap = { de: 'DE', ar: 'AR', fr: 'FR', en: 'EN' };
+  document.getElementById('langBtnLabel').textContent = labelMap[lang] || lang.toUpperCase();
+
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.querySelectorAll('.mn-lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang-mobile') === lang);
+  });
+
+  document.title = dict.am_page_title || document.title;
+  localStorage.setItem('site_lang', lang);
+}
+
+function setLanguage(lang) {
+  applyTranslations(lang);
+  document.getElementById('langDropdown').classList.remove('open');
+}
+
+(function () {
+  const langToggle = document.getElementById('langToggle');
+  const langDropdown = document.getElementById('langDropdown');
+  if (langToggle && langDropdown) {
+    langToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langDropdown.classList.toggle('open');
+    });
+    document.addEventListener('click', () => langDropdown.classList.remove('open'));
+    langDropdown.addEventListener('click', e => e.stopPropagation());
+  }
+
+  const saved = localStorage.getItem('site_lang') || 'de';
+  applyTranslations(saved);
+})();
+Chart.defaults.color='#4a4a44';
+Chart.defaults.borderColor='rgba(31,122,61,.12)';
+
+
+
 </script>
 </body>
 </html>
