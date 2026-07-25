@@ -7,23 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3E Consulting — Engage · Expand · Excel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --navy: #0f2017;
-      --accent: #d97706;
-      --accent-hover: #b45309;
-      --bright: #4ade80;
-      --white: #fff;
-      --muted: #86a38e;
-      --border: rgba(74, 222, 128, .18);
-      --glass: rgba(255, 255, 255, .04);
-      --font-display: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
-    }
-
+   :root {
+  --navy: #f5f0e2;
+  --navy-dark: #eee6d2;
+  --blue: #1f7a3d;
+  --accent: #e07a1f;
+  --accent-hover: #c2650f;
+  --bright: #1f7a3d;
+  --gold: #e07a1f;
+  --white: #23241f;
+  --muted: #4a4a44;
+  --border: rgba(31,122,61,.22);
+  --glass: rgba(31,122,61,.05);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-arabic: 'Cairo', 'Tajawal', sans-serif;
+}
     html { scroll-behavior: smooth; }
 
     body {
@@ -33,45 +36,17 @@
       padding-top: 72px;
     }
 
-    /* ─── HEADER NAV ─── */
-    
-
-    
-    
-
-    
-    
-    
-
-    /* ─── MENÜ ─── */
-    
-
-    
-    
-
-    
-    @keyframes menuIn {
-      from { opacity: 0; transform: translateY(-8px); }
-      to   { opacity: 1; transform: translateY(0); }
+    body.lang-ar {
+      font-family: var(--font-arabic);
     }
-
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-
-    
-    
-    
-    
-    
-    
+    body.lang-ar .page-hero h1,
+    body.lang-ar .content-section h2,
+    body.lang-ar .content-section h3,
+    body.lang-ar .kosten-box h4,
+    body.lang-ar .navbar-brand-3e span,
+    body.lang-ar .mn-brand span {
+      font-family: var(--font-arabic);
+    }
 
     /* ─── PAGE HERO ─── */
     .page-hero {
@@ -301,134 +276,133 @@
     .email-note strong { color: var(--bright); }
 
     /* ─── HERO CHECKS & STATS ─── */
-.hero-checks {
-  list-style: none;
-  padding: 0;
-  margin: 1.25rem 0 1.75rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: .5rem .75rem;
-}
-.hero-checks li {
-  font-size: .88rem;
-  color: var(--muted);
-  padding-left: 1.4rem;
-  position: relative;
-  line-height: 1.5;
-}
-.hero-checks li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--bright);
-  font-weight: 700;
-}
+    .hero-checks {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0 1.75rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .5rem .75rem;
+    }
+    .hero-checks li {
+      font-size: .88rem;
+      color: var(--muted);
+      padding-left: 1.4rem;
+      position: relative;
+      line-height: 1.5;
+    }
+    .hero-checks li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--bright);
+      font-weight: 700;
+    }
 
-.stats-row {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  padding-top: 1.5rem;
-  margin-top: .5rem;
-  border-top: 1px solid var(--border);
-}
-.stat-item .stat-num {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1;
-}
-.stat-item .stat-num span { color: var(--accent); }
-.stat-item .stat-label {
-  font-size: .75rem;
-  color: var(--muted);
-  margin-top: .3rem;
-}
+    .stats-row {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding-top: 1.5rem;
+      margin-top: .5rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item .stat-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-item .stat-num span { color: var(--accent); }
+    .stat-item .stat-label {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: .3rem;
+    }
 
-/* ─── CHECK LIST (in sections) ─── */
-.check-list {
-  list-style: none;
-  padding: 0;
-  margin: .75rem 0 1rem;
-}
-.check-list li {
-  padding: .4rem 0 .4rem 1.5rem;
-  position: relative;
-  color: var(--muted);
-  font-size: .88rem;
-  line-height: 1.55;
-}
-.check-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--bright);
-  font-weight: 700;
-}
+    /* ─── CHECK LIST (in sections) ─── */
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: .75rem 0 1rem;
+    }
+    .check-list li {
+      padding: .4rem 0 .4rem 1.5rem;
+      position: relative;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.55;
+    }
+    .check-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--bright);
+      font-weight: 700;
+    }
 
-/* ─── KOSTEN BOX ─── */
-.kosten-box {
-  background: rgba(217, 119, 6, .08);
-  border: 1px solid rgba(217, 119, 6, .35);
-  border-radius: 14px;
-  padding: 1.5rem 1.75rem;
-  margin: 1rem 0;
-}
-.kosten-box h4 {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  color: var(--accent);
-  margin-bottom: .75rem;
-}
-.kosten-box p {
-  margin-bottom: .5rem;
-  font-size: .9rem;
-}
+    /* ─── KOSTEN BOX ─── */
+    .kosten-box {
+      background: rgba(217, 119, 6, .08);
+      border: 1px solid rgba(217, 119, 6, .35);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin: 1rem 0;
+    }
+    .kosten-box h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: .75rem;
+    }
+    .kosten-box p {
+      margin-bottom: .5rem;
+      font-size: .9rem;
+    }
 
-/* ─── FAQ ─── */
-.faq-list { margin-top: .5rem; }
-.faq-item {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin-bottom: .6rem;
-  overflow: hidden;
-}
-.faq-item summary {
-  padding: .85rem 1.1rem;
-  font-size: .9rem;
-  font-weight: 500;
-  color: var(--white);
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background .15s;
-}
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary::after {
-  content: '+';
-  color: var(--accent);
-  font-size: 1.2rem;
-  font-weight: 300;
-}
-.faq-item[open] summary::after { content: '−'; }
-.faq-item summary:hover { background: var(--glass); }
-.faq-item p {
-  padding: 0 1.1rem 1rem;
-  font-size: .85rem;
-  margin: 0;
-  line-height: 1.65;
-}
+    /* ─── FAQ ─── */
+    .faq-list { margin-top: .5rem; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: .6rem;
+      overflow: hidden;
+    }
+    .faq-item summary {
+      padding: .85rem 1.1rem;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--white);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background .15s;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      color: var(--accent);
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item summary:hover { background: var(--glass); }
+    .faq-item p {
+      padding: 0 1.1rem 1rem;
+      font-size: .85rem;
+      margin: 0;
+      line-height: 1.65;
+    }
 
-@media (max-width: 768px) {
-  .hero-checks { grid-template-columns: 1fr; }
-  .stats-row { gap: 1.25rem; }
-}
+    @media (max-width: 768px) {
+      .hero-checks { grid-template-columns: 1fr; }
+      .stats-row { gap: 1.25rem; }
+    }
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      
       .content-layout { grid-template-columns: 1fr; }
       aside.toc {
         position: static;
@@ -446,41 +420,28 @@
       }
       .step-line { grid-template-columns: 1fr; gap: .25rem; }
     }
-  
+
 /* ══════════════════════════════════════════════════════════
    📱 MOBILE RESPONSIVE FIX — 3E Consulting Reports
    ══════════════════════════════════════════════════════════ */
 
-/* ── Tablet (≤900px) ── */
 @media (max-width: 900px) {
   .kpi-row { grid-template-columns: repeat(2,1fr) !important; }
   .visa-grid, .charts-2col, .stats-grid, .grid-2, .two-col { grid-template-columns: 1fr !important; }
 }
 
-/* ── Mobile (≤768px) ── */
 @media (max-width: 768px) {
   body { padding-top: 72px !important; }
 
-  /* Nav */
-  
-  
-  
-  .nav-brand img, 
-  
-  
-
-  /* Hero / page header */
   .page-hero { padding: 2.2rem 5vw 1.5rem !important; }
   .page-hero h1 { font-size: clamp(1.6rem,7vw,2.2rem) !important; word-break: break-word; }
   .page-hero p { font-size: .92rem !important; }
 
-  /* KPI cards */
   .kpi-row { grid-template-columns: 1fr 1fr !important; gap: .6rem !important; padding: 0 4vw !important; }
   .kpi-card { padding: .9rem 1rem !important; }
   .kpi-card .kpi-num { font-size: 1.35rem !important; }
   .kpi-card .kpi-label { font-size: .7rem !important; }
 
-  /* Layout: sidebar becomes horizontal scroll chips */
   .content-layout { grid-template-columns: 1fr !important; padding: 0 4vw 3rem !important; gap: 1.25rem !important; }
   aside.toc {
     position: static !important;
@@ -497,47 +458,40 @@
     border-left: 1px solid var(--border) !important;
   }
 
-  /* Report sections */
   .report-section { padding: 1.25rem 1.1rem !important; border-radius: 12px !important; }
   .report-section h2 { font-size: 1.2rem !important; }
   .report-section .subtitle { font-size: .82rem !important; }
   .report-section p, .report-section ul, .report-section li { font-size: .9rem !important; }
 
-  /* Visa / info cards */
   .visa-grid { grid-template-columns: 1fr !important; gap: .75rem !important; }
   .visa-card { padding: 1rem !important; }
   .visa-card h3 { font-size: .92rem !important; }
   .visa-card p { font-size: .82rem !important; }
 
-  /* Tables: horizontal scroll wrapper */
   .rights-table, table { font-size: .78rem !important; }
   .rights-table th, .rights-table td,
   table th, table td { padding: .55rem .6rem !important; white-space: nowrap; }
 
-  /* Steps */
   .step-item { padding: .85rem 1rem !important; gap: .75rem !important; }
   .step-num { font-size: 1.15rem !important; min-width: 1.6rem !important; }
   .step-item h4 { font-size: .88rem !important; }
   .step-item p { font-size: .8rem !important; }
 
-  /* Charts */
   .charts-2col { grid-template-columns: 1fr !important; gap: .75rem !important; }
   .chart-box { padding: 1rem !important; }
   .chart-box h3 { font-size: .85rem !important; }
   .chart-box .chart-desc { font-size: .75rem !important; }
   .chart-wrap, .chart-wrap.tall { max-height: 240px !important; }
 
-  /* Tip / source */
   .tip-box { padding: .85rem 1rem !important; font-size: .82rem !important; }
   .source-note { font-size: .7rem !important; }
+
+  .lang-dropdown { min-width: 150px !important; }
+  .lang-btn span.lang-btn-text { display: none; }
 }
 
-/* ── Small mobile (≤480px) ── */
 @media (max-width: 480px) {
-  
-  
   .nav-brand img, a.nav-brand img { height: 26px !important; width: 26px !important; border-radius: 6px !important; }
-  
 
   .page-hero h1 { font-size: 1.5rem !important; line-height: 1.25 !important; }
   .page-hero p { font-size: .85rem !important; }
@@ -551,19 +505,16 @@
 
   .visa-card h3, .step-item h4 { font-size: .85rem !important; }
 
-  /* Wrap tables with horizontal scroll */
   .table-wrap, .rights-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
 }
 
-/* Generic table scroll fallback if no wrapper exists */
 .report-section table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
-  
+
   /* ══════════════════════════════════════════════
      3E CONSULTING — NAVBAR CSS (from index.html)
      ══════════════════════════════════════════════ */
 
-  /* ── Navbar wrapper ── */
   .navbar-3e {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -574,7 +525,6 @@
     border-bottom: 1px solid var(--border);
   }
 
-  /* ── Brand ── */
   .navbar-brand-3e {
     display: flex; align-items: center; gap: 9px; text-decoration: none;
   }
@@ -587,14 +537,12 @@
     color: #fff; letter-spacing: .06em; white-space: nowrap;
   }
 
-  /* ── Desktop nav links ── */
   .nav-link-3e {
     font-size: .875rem; color: var(--muted) !important;
     text-decoration: none; transition: color .2s; padding: .3rem .6rem;
   }
   .nav-link-3e:hover { color: #ffffff !important; }
 
-  /* ── MENÜ button ── */
   .btn-menu {
     background: var(--accent); color: #ffffff !important;
     padding: .55rem 1.3rem; border-radius: 8px;
@@ -604,7 +552,6 @@
   }
   .btn-menu:hover { background: var(--accent-hover); transform: translateY(-1px); }
 
-  /* ── Desktop dropdown panel ── */
   .nav-dropdown-panel {
     position: absolute; top: calc(100% + .6rem); right: 0;
     min-width: 340px; max-width: 420px;
@@ -617,7 +564,6 @@
   }
   .nav-dropdown-panel.open { display: block; }
 
-  /* ── Hamburger ── */
   .hamburger-btn {
     background: transparent; border: 1px solid var(--border);
     border-radius: 8px; color: #ffffff;
@@ -629,7 +575,6 @@
     background: rgba(217,119,6,.1); border-color: rgba(217,119,6,.4);
   }
 
-  /* ── Mobile overlay ── */
   .mobile-nav-overlay {
     position: fixed; inset: 0;
     background: rgba(0,0,0,.55); z-index: 1055;
@@ -638,7 +583,6 @@
   }
   .mobile-nav-overlay.open { opacity: 1; pointer-events: all; }
 
-  /* ── Mobile drawer ── */
   .mobile-nav {
     position: fixed; top: 0; left: 0; bottom: 0;
     width: min(320px, 88vw);
@@ -726,7 +670,6 @@
   }
   .mn-cta-secondary:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
 
-  /* ── Desktop dropdown interior (V2) ── */
   .mn2-who { padding: .75rem .85rem .6rem; border-bottom: 1px solid var(--border); }
   .mn2-who-label { font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .55rem; }
   .mn2-who-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
@@ -770,7 +713,6 @@
   .mn2-chatbot-btn strong { font-size: .85rem; color: #fff; font-weight: 600; }
   .mn2-chatbot-btn span { font-size: .72rem; color: var(--muted); margin-top: .1rem; }
 
-  /* ── Mobile WHO buttons ── */
   .mn-who-btn {
     display: flex; align-items: center; justify-content: center; gap: .5rem;
     padding: .65rem .8rem; border-radius: 9px;
@@ -782,12 +724,268 @@
   .mn-who-btn.mn-who-active { border-color: var(--accent); background: rgba(217,119,6,.12); color: #fff; }
   .mn-who-btn i { font-size: .85rem; color: var(--accent); }
 
-  /* ── Responsive ── */
   @media (max-width: 991px) {
     .hamburger-btn     { display: inline-flex !important; }
     .nav-desktop-links { display: none !important; }
   }
   /* ═══════════════════════════════════════════════════════ */
+
+  .brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+
+  .logo-img-main {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ══════════════════════════════════════════════
+     🌐 LANGUAGE SWITCHER
+     ══════════════════════════════════════════════ */
+  .lang-switcher {
+    position: relative;
+  }
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    color: #fff;
+    padding: .55rem .9rem;
+    border-radius: 8px;
+    font-size: .85rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all .2s;
+  }
+  .lang-btn:hover {
+    border-color: rgba(217,119,6,.4);
+    background: rgba(217,119,6,.08);
+  }
+  .lang-btn i.fa-globe { color: var(--accent); font-size: .9rem; }
+  .lang-btn .lang-code { letter-spacing: .04em; font-weight: 600; }
+  .lang-chevron { font-size: .6rem; opacity: .6; transition: transform .2s; }
+  .lang-switcher.open .lang-chevron { transform: rotate(180deg); }
+
+  .lang-dropdown {
+    position: absolute;
+    top: calc(100% + .6rem);
+    right: 0;
+    min-width: 190px;
+    background: rgba(15,32,23,.97);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: .45rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    z-index: 1100;
+    display: none;
+  }
+  .lang-dropdown.open { display: block; }
+
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    padding: .6rem .75rem;
+    border-radius: 8px;
+    font-size: .85rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-body);
+    transition: all .15s;
+  }
+  .lang-option:hover { background: rgba(217,119,6,.08); color: #fff; }
+  .lang-option.lang-active {
+    background: rgba(217,119,6,.14);
+    color: #fff;
+  }
+  .lang-option .lang-flag { font-size: 1.05rem; }
+  .lang-option .lang-check {
+    margin-left: auto;
+    color: var(--bright);
+    font-size: .75rem;
+    opacity: 0;
+  }
+  .lang-option.lang-active .lang-check { opacity: 1; }
+
+  @media (max-width: 480px) {
+    .lang-btn { padding: .5rem .65rem; }
+    .lang-btn .lang-label-full { display: none; }
+  }
+
+  /* ══════════════════════════════════════════════
+     🌍 RTL SUPPORT (Arabic)
+     ══════════════════════════════════════════════ */
+  html[dir="rtl"] body { text-align: right; }
+
+  html[dir="rtl"] .hero-checks li,
+  html[dir="rtl"] .check-list li {
+    padding-left: 0;
+    padding-right: 1.4rem;
+  }
+  html[dir="rtl"] .hero-checks li::before,
+  html[dir="rtl"] .check-list li::before {
+    left: auto;
+    right: 0;
+  }
+
+  html[dir="rtl"] .content-section ul,
+  html[dir="rtl"] .content-section ol {
+    padding-left: 0;
+    padding-right: 1.25rem;
+  }
+
+  html[dir="rtl"] aside.toc a {
+    border-left: none;
+    border-right: 2px solid transparent;
+  }
+  html[dir="rtl"] aside.toc a:hover,
+  html[dir="rtl"] aside.toc a.active {
+    border-left-color: transparent;
+    border-right-color: var(--accent);
+  }
+
+  html[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+  html[dir="rtl"] .lang-option { text-align: right; }
+  html[dir="rtl"] .lang-option .lang-check { margin-left: 0; margin-right: auto; }
+
+  html[dir="rtl"] .nav-dropdown-panel { right: auto; left: 0; }
+
+  html[dir="rtl"] .mn-link-arrow,
+  html[dir="rtl"] .mn2-chatbot-btn > i:last-child {
+    margin-left: 0;
+    margin-right: auto;
+    transform: scaleX(-1);
+  }
+
+  html[dir="rtl"] .step-label { text-align: right; }
+
+  html[dir="rtl"] .mobile-nav {
+    left: auto;
+    right: 0;
+    border-right: none;
+    border-left: 1px solid rgba(74,222,128,.14);
+    transform: translateX(100%);
+  }
+  html[dir="rtl"] .mobile-nav.open { transform: translateX(0); }
+
+  html[dir="rtl"] .email-note strong,
+  html[dir="rtl"] .content-section strong { unicode-bidi: isolate; }
+
+  html[dir="rtl"] .btn-primary i,
+  html[dir="rtl"] .btn-secondary i {
+    transform: scaleX(-1);
+  }
+
+  @media (max-width: 768px) {
+    html[dir="rtl"] aside.toc a {
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+  }
+  @media(max-width:991px){ .logo-img-main{ max-width:190px; height:34px; } }
+@media(max-width:576px){ .logo-img-main{ max-width:165px; height:32px; } }
+@media(max-width:400px){ .logo-img-main{ max-width:135px; height:29px; } }
+
+
+
+
+
+
+
+  .lang-toggle-btn:hover { border-color: rgba(224,122,31,.4); background:rgba(224,122,31,.08); }
+.lang-dropdown { background: rgba(250,247,238,.98); box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+.lang-option:hover { background: rgba(224,122,31,.1); color: var(--white); }
+.lang-option.active { color: var(--white); background: rgba(224,122,31,.15); }
+.bewerber-section:target { border-color: rgba(224,122,31,.5); box-shadow: 0 0 0 1px rgba(224,122,31,.2), 0 8px 32px rgba(0,0,0,.3); }
+.pricing-card.featured { border-color: rgba(224,122,31,.5); background: rgba(224,122,31,.06); }
+.script-box { background: rgba(224,122,31,.06); border: 1px solid rgba(224,122,31,.25); }
+.bh-icon { background: rgba(224,122,31,.15); }
+.bh-tip { background: rgba(224,122,31,.08); border: 1px solid rgba(224,122,31,.25); }
+.bh-step-num { background: rgba(224,122,31,.2); }
+.bh-factor-icon { background: rgba(224,122,31,.12); }
+
+.duration-badge { background: rgba(31,122,61,.1); }
+.bh-q { background: rgba(31,122,61,.05); }
+.bh-quote { background: rgba(31,122,61,.05); border: 1px solid rgba(31,122,61,.2); }
+.bh-quote > i { color: rgba(31,122,61,.3); }
+.vex-tab:hover { border-color: rgba(224,122,31,.4); color: var(--white); background: rgba(224,122,31,.08); }
+.vex-tab.vex-tab-active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+.nav-dropdown-panel { background: rgba(250,247,238,.98); box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+.mn2-who-btn:hover { border-color: rgba(224,122,31,.4); color: var(--white); background: rgba(224,122,31,.08); }
+.mn2-who-btn.mn2-who-active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+.mn2-link:hover { background: rgba(224,122,31,.08); color: var(--white); }
+.mn2-chatbot-btn { background: rgba(224,122,31,.08); border: 1px solid rgba(224,122,31,.25); }
+.mn2-chatbot-btn:hover { background: rgba(224,122,31,.15); border-color: rgba(224,122,31,.4); }
+.mn2-chatbot-btn strong { color: var(--white); }
+.mobile-nav {
+  background: linear-gradient(160deg, #faf7ee 0%, #f0e9d6 100%);
+  border-right: 1px solid rgba(31,122,61,.16);
+}
+.mn-header { border-bottom: 1px solid rgba(31,122,61,.12); }
+.mn-brand span { color: var(--white); }
+.mn-close { background: rgba(31,122,61,.06); border: 1px solid rgba(31,122,61,.14); }
+.mn-close:hover { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
+.mn-body::-webkit-scrollbar-thumb { background: rgba(31,122,61,.25); }
+.mn-link { color: rgba(35,36,31,.85); }
+.mn-link .mn-icon { background: rgba(31,122,61,.06); border: 1px solid rgba(31,122,61,.12); }
+.mn-link:hover { background: rgba(224,122,31,.08); color: #000; }
+.mn-link:hover .mn-icon { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
+.mn-divider { background: rgba(31,122,61,.08); }
+.mn-footer { border-top: 1px solid rgba(31,122,61,.12); }
+.mn-cta-secondary {
+  background: rgba(31,122,61,.08);
+  border: 1px solid rgba(31,122,61,.2);
+  color: rgba(35,36,31,.85) !important;
+}
+.mn-cta-secondary:hover { background: rgba(31,122,61,.14); border-color: rgba(31,122,61,.35); }
+.mn-who-btn { background: rgba(31,122,61,.05); }
+.mn-who-btn:hover { border-color: rgba(224,122,31,.4); color: var(--white); }
+.mn-who-btn.mn-who-active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+.hamburger-btn:hover { background: rgba(224,122,31,.1); border-color: rgba(224,122,31,.4); }
+
+
+/* بعد */
+.nav-link-3e { color: #fffffd !important; }
+.nav-link-3e:hover { color: #ffae00ab !important; }
+/* قبل */
+.lang-toggle-btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: var(--glass); border: 1px solid var(--border);
+  color: var(--white); padding: .5rem .9rem; border-radius: 8px;
+  font-size: .85rem; font-weight: 500; cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.lang-toggle-btn:hover { border-color: rgba(224,122,31,.4); background: rgba(224,122,31,.08); }
+
+/* بعد */
+.lang-toggle-btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: rgba(255, 255, 255, 0.911); border: 1px solid var(--border);
+  color: var(--white); padding: .5rem .9rem; border-radius: 8px;
+  font-size: .85rem; font-weight: 500; cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.lang-toggle-btn:hover { background: rgba(233, 228, 222, 0.856); border-color: rgba(224,122,31,.4); }
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.911); border: 1px solid var(--border);
+  color: var(--white);
+}
+.lang-btn:hover { background: rgba(233, 228, 222, 0.856); border-color: rgba(224,122,31,.4); }
+.lang-dropdown { background: rgba(250,247,238,.98); box-shadow: 0 20px 50px rgba(0,0,0,.12); }
+.lang-option:hover { background: rgba(224,122,31,.08); color: var(--white); }
+.lang-option.lang-active { background: rgba(224,122,31,.14); color: var(--white); }
+
+
 
   </style>
 </head>
@@ -796,67 +994,90 @@
 <!-- ═══════════════ NAVBAR (from index.html) ═══════════════ -->
 <header class="navbar-3e">
   <div class="d-flex align-items-center justify-content-between w-100">
-    <a href="index.html" class="navbar-brand-3e">
-      <img src="logo_3e.jpg" alt="3E Consulting">
-      <span>3E Consulting</span>
+    <a href="index.html" class="brand">
+      <img src="Logo-cropped.png" alt="3E Consulting" class="logo-img-main">
     </a>
     <ul class="nav-desktop-links d-flex list-unstyled mb-0 gap-3 mx-auto">
-      <li><a href="index.html#services"  class="nav-link-3e">Leistungen</a></li>
-      <li><a href="index.html#process"   class="nav-link-3e">Ablauf</a></li>
-      <li><a href="index.html#about"     class="nav-link-3e">Über uns</a></li>
-      <li><a href="index.html#kontakt"   class="nav-link-3e">Kontakt</a></li>
+      <li><a href="index.html#services" class="nav-link-3e" data-i18n="nav_leistungen">Leistungen</a></li>
+      <li><a href="index.html#process" class="nav-link-3e" data-i18n="nav_ablauf">Ablauf</a></li>
+      <li><a href="index.html#about" class="nav-link-3e" data-i18n="nav_ueber">Über uns</a></li>
+      <li><a href="index.html#kontakt" class="nav-link-3e" data-i18n="nav_kontakt">Kontakt</a></li>
     </ul>
     <div class="d-flex align-items-center gap-3">
+
+      <!-- 🌐 LANGUAGE SWITCHER -->
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" id="langBtn" aria-label="Sprache wechseln" aria-haspopup="true" aria-expanded="false">
+          <i class="fa-solid fa-globe"></i>
+          <span class="lang-code" id="langBtnCode">DE</span>
+          <i class="fa-solid fa-chevron-down lang-chevron"></i>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option" data-lang="de" type="button">
+            <span class="lang-flag">🇩🇪</span> Deutsch <i class="fa-solid fa-check lang-check"></i>
+          </button>
+          <button class="lang-option" data-lang="en" type="button">
+            <span class="lang-flag">🇬🇧</span> English <i class="fa-solid fa-check lang-check"></i>
+          </button>
+          <button class="lang-option" data-lang="fr" type="button">
+            <span class="lang-flag">🇫🇷</span> Français <i class="fa-solid fa-check lang-check"></i>
+          </button>
+          <button class="lang-option" data-lang="ar" type="button">
+            <span class="lang-flag">🇸🇦</span> العربية <i class="fa-solid fa-check lang-check"></i>
+          </button>
+        </div>
+      </div>
+
       <div class="position-relative d-none d-lg-block">
-        <button class="btn-menu" id="menuToggle">MENÜ ▾</button>
+        <button class="btn-menu" id="menuToggle"><span data-i18n="nav_menu">MENÜ</span> ▾</button>
         <div class="nav-dropdown-panel" id="menuDropdown">
           <div class="mn2-who">
-            <p class="mn2-who-label">Sie sind</p>
+            <p class="mn2-who-label" data-i18n="nav_sie_sind">Sie sind</p>
             <div class="mn2-who-btns">
               <button class="mn2-who-btn mn2-who-active" onclick="mn2Switch(this,'bewerber')">
-                <i class="fa-solid fa-user-tie"></i> Bewerber
+                <i class="fa-solid fa-user-tie"></i> <span data-i18n="role_bewerber">Bewerber</span>
               </button>
               <button class="mn2-who-btn" onclick="mn2Switch(this,'unternehmen')">
-                <i class="fa-solid fa-building"></i> Unternehmen
+                <i class="fa-solid fa-building"></i> <span data-i18n="role_unternehmen">Unternehmen</span>
               </button>
             </div>
           </div>
           <!-- BEWERBER PANEL -->
           <div class="mn2-panel" id="mn2-bewerber">
             <div class="mn2-group">
-              <div class="mn2-group-label">Jetzt starten</div>
-              <a href="Bewerbung.html"                               class="mn2-link"><i class="fa-solid fa-file-pen"></i> Bewerbung einreichen</a>
-              <a href="vermitlung.html"                              class="mn2-link"><i class="fa-solid fa-list-check"></i> Voraussetzungen prüfen</a>
-              <a href="service-bewerber.html#dokumentenorganisation" class="mn2-link"><i class="fa-solid fa-folder-open"></i> Dokumentenorganisation</a>
-              <a href="service-bewerber.html#profil-video"           class="mn2-link"><i class="fa-solid fa-video"></i> Profil-Video erstellen</a>
+              <div class="mn2-group-label"><span data-i18n="menu_start_group">Jetzt starten</span></div>
+              <a href="Bewerbung.html" class="mn2-link"><i class="fa-solid fa-file-pen"></i> <span data-i18n="menu_bewerbung">Bewerbung einreichen</span></a>
+              <a href="vermitlung.html" class="mn2-link"><i class="fa-solid fa-list-check"></i> <span data-i18n="menu_voraussetzungen">Voraussetzungen prüfen</span></a>
+              <a href="service-bewerber.html#dokumentenorganisation" class="mn2-link"><i class="fa-solid fa-folder-open"></i> <span data-i18n="menu_dokumente">Dokumentenorganisation</span></a>
+              <a href="service-bewerber.html#profil-video" class="mn2-link"><i class="fa-solid fa-video"></i> <span data-i18n="menu_video">Profil-Video erstellen</span></a>
             </div>
             <div class="mn2-divider"></div>
             <div class="mn2-group">
-              <div class="mn2-group-label"><i class="fa-solid fa-book-open"></i> Gut vorbereitet sein</div>
-              <a href="arbeitsmarkt.html"         class="mn2-link"><i class="fa-solid fa-chart-line"></i> Arbeitsmarkt Deutschland</a>
-              <a href="arbeitundsozialrecht.html" class="mn2-link"><i class="fa-solid fa-scale-balanced"></i> Arbeits- und Sozialrecht</a>
-              <a href="aufenthaltsrecht.html"     class="mn2-link"><i class="fa-solid fa-passport"></i> Aufenthaltsrecht &amp; Visum</a>
-              <a href="alltag-deutschland.html"   class="mn2-link"><i class="fa-solid fa-sun"></i> Alltag in Deutschland</a>
+              <div class="mn2-group-label"><i class="fa-solid fa-book-open"></i> <span data-i18n="menu_prep_group">Gut vorbereitet sein</span></div>
+              <a href="arbeitsmarkt.html" class="mn2-link"><i class="fa-solid fa-chart-line"></i> <span data-i18n="menu_arbeitsmarkt">Arbeitsmarkt Deutschland</span></a>
+              <a href="arbeitundsozialrecht.html" class="mn2-link"><i class="fa-solid fa-scale-balanced"></i> <span data-i18n="menu_recht">Arbeits- und Sozialrecht</span></a>
+              <a href="aufenthaltsrecht.html" class="mn2-link"><i class="fa-solid fa-passport"></i> <span data-i18n="menu_aufenthalt">Aufenthaltsrecht &amp; Visum</span></a>
+              <a href="alltag-deutschland.html" class="mn2-link"><i class="fa-solid fa-sun"></i> <span data-i18n="menu_alltag">Alltag in Deutschland</span></a>
             </div>
             <div class="mn2-divider"></div>
             <a href="Chatbot.html" class="mn2-chatbot-btn">
               <i class="fa-solid fa-robot"></i>
-              <div><strong>Chatbot-3e</strong><span>Stellen Sie jede Frage</span></div>
+              <div><strong data-i18n="menu_chatbot_title">Chatbot-3e</strong><span data-i18n="menu_chatbot_desc">Stellen Sie jede Frage</span></div>
               <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
             </a>
           </div>
           <!-- UNTERNEHMEN PANEL -->
           <div class="mn2-panel" id="mn2-unternehmen" style="display:none">
             <div class="mn2-group">
-              <div class="mn2-group-label"><i class="fa-solid fa-building"></i> Für Unternehmen</div>
-              <a href="service-unternehmen.html#vermittlung"         class="mn2-link"><i class="fa-solid fa-users-viewfinder"></i> Fachkräfte finden</a>
-              <a href="service-unternehmen.html#beschwerdeverfahren" class="mn2-link"><i class="fa-solid fa-headset"></i> Support &amp; Beschwerden</a>
-              <a href="login_company.php"                            class="mn2-link"><i class="fa-solid fa-right-to-bracket"></i> Unternehmens-Login</a>
+              <div class="mn2-group-label"><i class="fa-solid fa-building"></i> <span data-i18n="menu_unternehmen_group">Für Unternehmen</span></div>
+              <a href="service-unternehmen.html#vermittlung" class="mn2-link"><i class="fa-solid fa-users-viewfinder"></i> <span data-i18n="menu_fachkraefte">Fachkräfte finden</span></a>
+              <a href="service-unternehmen.html#beschwerdeverfahren" class="mn2-link"><i class="fa-solid fa-headset"></i> <span data-i18n="menu_support">Support &amp; Beschwerden</span></a>
+              <a href="login_company.php" class="mn2-link"><i class="fa-solid fa-right-to-bracket"></i> <span data-i18n="menu_login">Unternehmens-Login</span></a>
             </div>
             <div class="mn2-divider"></div>
             <a href="index.html#kontakt" class="mn2-chatbot-btn" onclick="document.getElementById('menuDropdown').classList.remove('open')">
               <i class="fa-solid fa-envelope"></i>
-              <div><strong>Kontakt aufnehmen</strong><span>Wir antworten in 24h</span></div>
+              <div><strong data-i18n="menu_kontakt_title">Kontakt aufnehmen</strong><span data-i18n="menu_kontakt_desc">Wir antworten in 24h</span></div>
               <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
             </a>
           </div>
@@ -885,94 +1106,89 @@
   </div>
   <div class="mn-body">
     <div style="padding:.8rem 1rem .6rem;">
-      <p class="mn-section-label" style="padding:0 0 .5rem;">Sie sind</p>
+      <p class="mn-section-label" style="padding:0 0 .5rem;" data-i18n="nav_sie_sind">Sie sind</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
         <button class="mn-who-btn mn-who-active" onclick="mnMobileSwitch(this,'mob-bewerber')" id="mob-btn-bewerber">
-          <i class="fa-solid fa-user-tie"></i> Bewerber
+          <i class="fa-solid fa-user-tie"></i> <span data-i18n="role_bewerber">Bewerber</span>
         </button>
         <button class="mn-who-btn" onclick="mnMobileSwitch(this,'mob-unternehmen')" id="mob-btn-unternehmen">
-          <i class="fa-solid fa-building"></i> Unternehmen
+          <i class="fa-solid fa-building"></i> <span data-i18n="role_unternehmen">Unternehmen</span>
         </button>
       </div>
     </div>
     <div class="mn-divider"></div>
     <!-- BEWERBER PANEL -->
     <div id="mob-bewerber">
-      <div class="mn-section-label" style="padding-top:.7rem;">🚀 Jetzt starten</div>
-      <a href="index.html"    class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span>Startseite<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="index.html#services" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span>Leistungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="index.html#process"  class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline"></i></span>Ablauf<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="Bewerbung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span>Bewerbung<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="vermitlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span>Voraussetzungen<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open"></i></span>Dokumentenorganisation<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem;" data-i18n="mobile_start_group">🚀 Jetzt starten</div>
+      <a href="index.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span><span data-i18n="mobile_startseite">Startseite</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="index.html#services" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span><span data-i18n="nav_leistungen">Leistungen</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="index.html#process" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline"></i></span><span data-i18n="nav_ablauf">Ablauf</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="Bewerbung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span><span data-i18n="menu_bewerbung">Bewerbung</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="vermitlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span><span data-i18n="menu_voraussetzungen">Voraussetzungen</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open"></i></span><span data-i18n="menu_dokumente">Dokumentenorganisation</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
-      <div class="mn-section-label" style="padding-top:.7rem;">📚 Gut vorbereitet sein</div>
-      <a href="arbeitsmarkt.html"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span>Arbeitsmarkt<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="arbeitundsozialrecht.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span>Arbeits- und Sozialrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="aufenthaltsrecht.html"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-passport"></i></span>Aufenthaltsrecht<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="alltag-deutschland.html"   class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span>Alltag in Deutschland<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem;" data-i18n="mobile_prep_group">📚 Gut vorbereitet sein</div>
+      <a href="arbeitsmarkt.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span><span data-i18n="menu_arbeitsmarkt">Arbeitsmarkt</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="arbeitundsozialrecht.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-scale-balanced"></i></span><span data-i18n="menu_recht">Arbeits- und Sozialrecht</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="aufenthaltsrecht.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-passport"></i></span><span data-i18n="menu_aufenthalt">Aufenthaltsrecht</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="alltag-deutschland.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span><span data-i18n="menu_alltag">Alltag in Deutschland</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
       <a href="Chatbot.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;">
         <span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);"><i class="fa-solid fa-robot" style="color:var(--accent)"></i></span>
-        <span style="color:var(--white)">Chatbot-3e</span>
+        <span style="color:var(--white)" data-i18n="menu_chatbot_title">Chatbot-3e</span>
         <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
       </a>
     </div>
     <!-- UNTERNEHMEN PANEL -->
     <div id="mob-unternehmen" style="display:none">
-      <div class="mn-section-label" style="padding-top:.7rem;">🏢 Für Unternehmen</div>
-      <a href="index.html#about"                             class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users"></i></span>Über uns<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="service-unternehmen.html#vermittlung"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder"></i></span>Fachkräfte finden<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset"></i></span>Support &amp; Beschwerden<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
-      <a href="login_company.php"                            class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket"></i></span>Unternehmens-Login<i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem;" data-i18n="mobile_unternehmen_group">🏢 Für Unternehmen</div>
+      <a href="index.html#about" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users"></i></span><span data-i18n="nav_ueber">Über uns</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-unternehmen.html#vermittlung" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder"></i></span><span data-i18n="menu_fachkraefte">Fachkräfte finden</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset"></i></span><span data-i18n="menu_support">Support &amp; Beschwerden</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="login_company.php" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket"></i></span><span data-i18n="menu_login">Unternehmens-Login</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
       <div class="mn-divider"></div>
       <a href="index.html#kontakt" class="mn-link" onclick="closeMobileNav()" style="background:rgba(217,119,6,.08);border-radius:10px;margin:.4rem .8rem;">
         <span class="mn-icon" style="background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);"><i class="fa-solid fa-envelope" style="color:var(--accent)"></i></span>
-        <span style="color:var(--white)">Kontakt aufnehmen</span>
+        <span style="color:var(--white)" data-i18n="menu_kontakt_title">Kontakt aufnehmen</span>
         <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
       </a>
     </div>
   </div>
   <div class="mn-footer">
-    <a href="registraion.html" class="mn-cta-primary"    onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> Als Bewerber starten</a>
-    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building"></i> Für Unternehmen</a>
+    <a href="06_onboarding_bewerber.php" class="mn-cta-primary" onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="mobile_cta_primary">Als Bewerber starten</span></a>
+    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building"></i> <span data-i18n="mobile_cta_secondary">Für Unternehmen</span></a>
   </div>
 </nav>
 
 
-<!-- HEADER -->
-
-
 <!-- PAGE HERO -->
 <header class="page-hero">
-  <div class="section-tag">Service · Unternehmen</div>
-  <h1>Leistungen für <em>Unternehmen</em></h1>
-  <p>
+  <div class="section-tag" data-i18n="hero_tag">Service · Unternehmen</div>
+  <h1 data-i18n-html="hero_title_html">Leistungen für <em>Unternehmen</em></h1>
+  <p data-i18n="hero_desc">
     Finden Sie qualifizierte Fachkräfte und Auszubildende aus dem Ausland —
     verifiziert, dokumentiert und direkt über unsere Plattform erreichbar.
   </p>
 
   <ul class="hero-checks">
-    <li>Verifizierte Bewerberprofile</li>
-    <li>Bewerber aus verschiedenen Fachbereichen</li>
-    <li>Persönliche Betreuung für Unternehmen</li>
-    <li>Sichere und transparente Vermittlung</li>
+    <li data-i18n="hero_check1">Verifizierte Bewerberprofile</li>
+    <li data-i18n="hero_check2">Bewerber aus verschiedenen Fachbereichen</li>
+    <li data-i18n="hero_check3">Persönliche Betreuung für Unternehmen</li>
+    <li data-i18n="hero_check4">Sichere und transparente Vermittlung</li>
   </ul>
-
-
 </header>
 
 <!-- CONTENT -->
 <div class="content-layout">
 
  <aside class="toc">
-  <div class="toc-title">Inhaltsverzeichnis</div>
-  <a href="#vermittlung">Vermittlung</a>
-  <a href="#warum-3e">Warum 3E Consulting?</a>
-  <a href="#verifizierte-bewerber">Verifizierte Bewerber</a>
-  <a href="#kosten">Kosten</a>
-  <a href="#faq">FAQ</a>
-  <a href="#beschwerdeverfahren">Beschwerdeverfahren</a>
+  <div class="toc-title" data-i18n="toc_title">Inhaltsverzeichnis</div>
+  <a href="#vermittlung" data-i18n="toc_vermittlung">Vermittlung</a>
+  <a href="#warum-3e" data-i18n="toc_warum">Warum 3E Consulting?</a>
+  <a href="#verifizierte-bewerber" data-i18n="toc_verifiziert">Verifizierte Bewerber</a>
+  <a href="#kosten" data-i18n="toc_kosten">Kosten</a>
+  <a href="#faq" data-i18n="toc_faq">FAQ</a>
+  <a href="#beschwerdeverfahren" data-i18n="toc_beschwerde">Beschwerdeverfahren</a>
 </aside>
 
  <main>
@@ -980,78 +1196,78 @@
   <!-- 01 Vermittlung -->
   <section id="vermittlung" class="content-section">
     <div class="section-num">01</div>
-    <h2>Vermittlung von Fachkräften und Auszubildenden</h2>
-    <p class="subtitle">Qualifizierte Kandidaten — direkt für Ihr Unternehmen</p>
+    <h2 data-i18n="s1_title">Vermittlung von Fachkräften und Auszubildenden</h2>
+    <p class="subtitle" data-i18n="s1_subtitle">Qualifizierte Kandidaten — direkt für Ihr Unternehmen</p>
 
-    <p>
+    <p data-i18n="s1_p1">
       3E Consulting verbindet deutsche Unternehmen mit motivierten Bewerbern aus dem Ausland.
       Alle Kandidaten auf unserer Plattform werden von uns geprüft und verifiziert,
       bevor sie für Unternehmen sichtbar werden.
     </p>
 
-    <h3>So funktioniert es</h3>
+    <h3 data-i18n="s1_h3">So funktioniert es</h3>
     <ul>
-      <li><strong>Registrierung</strong> — Ihr Unternehmen erstellt ein Konto auf unserer Plattform</li>
-      <li><strong>Freischaltung</strong> — Nach Prüfung Ihrer Unterlagen wird Ihr Zugang freigeschaltet</li>
-      <li><strong>Kandidaten durchsuchen</strong> — Sehen Sie verifizierte Bewerber in Ihrem Fachbereich (z. B. IT, Medizin)</li>
-      <li><strong>Profile einsehen</strong> — Lebenslauf, Zertifikate, Profil-Video und weitere Dokumente auf einen Blick</li>
-      <li><strong>Direkter Kontakt</strong> — Nehmen Sie Kontakt mit passenden Kandidaten auf</li>
+      <li data-i18n-html="s1_li1"><strong>Registrierung</strong> — Ihr Unternehmen erstellt ein Konto auf unserer Plattform</li>
+      <li data-i18n-html="s1_li2"><strong>Freischaltung</strong> — Nach Prüfung Ihrer Unterlagen wird Ihr Zugang freigeschaltet</li>
+      <li data-i18n-html="s1_li3"><strong>Kandidaten durchsuchen</strong> — Sehen Sie verifizierte Bewerber in Ihrem Fachbereich (z. B. IT, Medizin)</li>
+      <li data-i18n-html="s1_li4"><strong>Profile einsehen</strong> — Lebenslauf, Zertifikate, Profil-Video und weitere Dokumente auf einen Blick</li>
+      <li data-i18n-html="s1_li5"><strong>Direkter Kontakt</strong> — Nehmen Sie Kontakt mit passenden Kandidaten auf</li>
     </ul>
 
     <div class="cta-row">
-      <a href="register_company.php" class="btn-primary">Unternehmen registrieren →</a>
-      <a href="login_company.php" class="btn-secondary">Bereits registriert? Einloggen</a>
+      <a href="register_company.php" class="btn-primary" data-i18n="s1_btn1">Unternehmen registrieren →</a>
+      <a href="login_company.php" class="btn-secondary" data-i18n="s1_btn2">Bereits registriert? Einloggen</a>
     </div>
   </section>
 
   <!-- 02 Warum 3E Consulting -->
   <section id="warum-3e" class="content-section">
     <div class="section-num">02</div>
-    <h2>Warum Unternehmen 3E Consulting wählen</h2>
-    <p class="subtitle">Ihr verlässlicher Partner für internationale Fachkräfte</p>
+    <h2 data-i18n="s2_title">Warum Unternehmen 3E Consulting wählen</h2>
+    <p class="subtitle" data-i18n="s2_subtitle">Ihr verlässlicher Partner für internationale Fachkräfte</p>
 
-    <p>
+    <p data-i18n="s2_p1">
       Wir verstehen die Herausforderungen deutscher Unternehmen bei der Suche nach
       qualifizierten Auszubildenden und Fachkräften. Deshalb bieten wir eine Plattform,
       die Qualität, Transparenz und persönliche Betreuung vereint.
     </p>
 
     <ul class="check-list">
-      <li><strong>Geprüfte Bewerber</strong> — Jeder Kandidat wird vor der Freischaltung von uns verifiziert</li>
-      <li><strong>Direkter Kontakt</strong> — Keine Vermittlungsagentur dazwischen, Sie kommunizieren direkt</li>
-      <li><strong>Profil-Videos verfügbar</strong> — Lernen Sie Bewerber persönlich kennen, bevor Sie Kontakt aufnehmen</li>
-      <li><strong>Dokumente vorab kontrolliert</strong> — Lebenslauf, Zertifikate und Zeugnisse sind geprüft</li>
-      <li><strong>Persönlicher Ansprechpartner</strong> — Unser Team steht Ihnen bei Fragen jederzeit zur Verfügung</li>
+      <li data-i18n-html="s2_li1"><strong>Geprüfte Bewerber</strong> — Jeder Kandidat wird vor der Freischaltung von uns verifiziert</li>
+      <li data-i18n-html="s2_li2"><strong>Direkter Kontakt</strong> — Keine Vermittlungsagentur dazwischen, Sie kommunizieren direkt</li>
+      <li data-i18n-html="s2_li3"><strong>Profil-Videos verfügbar</strong> — Lernen Sie Bewerber persönlich kennen, bevor Sie Kontakt aufnehmen</li>
+      <li data-i18n-html="s2_li4"><strong>Dokumente vorab kontrolliert</strong> — Lebenslauf, Zertifikate und Zeugnisse sind geprüft</li>
+      <li data-i18n-html="s2_li5"><strong>Persönlicher Ansprechpartner</strong> — Unser Team steht Ihnen bei Fragen jederzeit zur Verfügung</li>
     </ul>
   </section>
 
   <!-- 03 Verifizierte Bewerber -->
   <section id="verifizierte-bewerber" class="content-section">
     <div class="section-num">03</div>
-    <h2>Verifizierte Bewerber</h2>
-    <p class="subtitle">Qualität und Vertrauen — garantiert</p>
+    <h2 data-i18n="s3_title">Verifizierte Bewerber</h2>
+    <p class="subtitle" data-i18n="s3_subtitle">Qualität und Vertrauen — garantiert</p>
 
-    <p>
+    <p data-i18n-html="s3_p1">
       <strong>Alle Bewerber werden vor der Freischaltung überprüft.</strong>
       Erst wenn unsere Prüfung abgeschlossen ist, wird ein Profil für Unternehmen sichtbar.
       So stellen wir sicher, dass Sie nur mit seriösen und vorbereiteten Kandidaten in Kontakt treten.
     </p>
 
-    <h3>Wir kontrollieren:</h3>
+    <h3 data-i18n="s3_h3">Wir kontrollieren:</h3>
     <ul class="check-list">
-      <li><strong>Identität</strong> — Persönliche Daten und Ausweisdokumente</li>
-      <li><strong>Lebenslauf</strong> — Vollständigkeit, Struktur und Plausibilität</li>
-      <li><strong>Zertifikate</strong> — Sprachzertifikate, Diplome und Berufsabschlüsse</li>
-      <li><strong>Sprachkenntnisse</strong> — Nachweis des erforderlichen Deutschniveaus</li>
-      <li><strong>Profil-Video</strong> — Professioneller Auftritt und Kommunikationsfähigkeit</li>
+      <li data-i18n-html="s3_li1"><strong>Identität</strong> — Persönliche Daten und Ausweisdokumente</li>
+      <li data-i18n-html="s3_li2"><strong>Lebenslauf</strong> — Vollständigkeit, Struktur und Plausibilität</li>
+      <li data-i18n-html="s3_li3"><strong>Zertifikate</strong> — Sprachzertifikate, Diplome und Berufsabschlüsse</li>
+      <li data-i18n-html="s3_li4"><strong>Sprachkenntnisse</strong> — Nachweis des erforderlichen Deutschniveaus</li>
+      <li data-i18n-html="s3_li5"><strong>Profil-Video</strong> — Professioneller Auftritt und Kommunikationsfähigkeit</li>
     </ul>
 
     <div class="info-box">
-      <p class="info-box-title">Ihr Vorteil als Unternehmen</p>
+      <p class="info-box-title" data-i18n="s3_infoTitle">Ihr Vorteil als Unternehmen</p>
       <ul>
-        <li>Keine Zeitverschwendung mit unvollständigen oder unseriösen Bewerbungen</li>
-        <li>Alle relevanten Dokumente liegen vor — auf einen Blick im Dashboard</li>
-        <li>Nur Kandidaten, die aktiv eine Ausbildung oder Stelle in Deutschland suchen</li>
+        <li data-i18n="s3_infoLi1">Keine Zeitverschwendung mit unvollständigen oder unseriösen Bewerbungen</li>
+        <li data-i18n="s3_infoLi2">Alle relevanten Dokumente liegen vor — auf einen Blick im Dashboard</li>
+        <li data-i18n="s3_infoLi3">Nur Kandidaten, die aktiv eine Ausbildung oder Stelle in Deutschland suchen</li>
       </ul>
     </div>
   </section>
@@ -1059,68 +1275,66 @@
   <!-- 04 Kosten -->
   <section id="kosten" class="content-section">
     <div class="section-num">04</div>
-    <h2>Kosten</h2>
-    <p class="subtitle">Transparent und fair — Sie zahlen nur bei Erfolg</p>
+    <h2 data-i18n="s4_title">Kosten</h2>
+    <p class="subtitle" data-i18n="s4_subtitle">Transparent und fair — Sie zahlen nur bei Erfolg</p>
 
     <div class="kosten-box">
-      <h4>Die Registrierung ist kostenlos.</h4>
-      <p>
+      <h4 data-i18n="s4_boxTitle">Die Registrierung ist kostenlos.</h4>
+      <p data-i18n="s4_boxP1">
         Sie können sich unverbindlich registrieren, Ihr Unternehmensprofil anlegen und
         verifizierte Bewerber in Ihrem Fachbereich einsehen — ohne Vorabkosten.
       </p>
-      <p>
+      <p data-i18n-html="s4_boxP2">
         Eine <strong>Vermittlungsgebühr</strong> fällt erst an, wenn ein Bewerber
         <strong>erfolgreich eingestellt</strong> wird und den Arbeits- bzw. Ausbildungsvertrag unterschreibt.
       </p>
-      <p style="margin-bottom:0;">
+      <p style="margin-bottom:0;" data-i18n="s4_boxP3">
         So sehen Sie zuerst den Wert unserer Plattform — und zahlen nur bei einem erfolgreichen Ergebnis.
       </p>
     </div>
 
-    <h3>Was ist in der kostenlosen Registrierung enthalten?</h3>
+    <h3 data-i18n="s4_h3">Was ist in der kostenlosen Registrierung enthalten?</h3>
     <ul class="check-list">
-      <li>Zugang zum Unternehmens-Dashboard</li>
-      <li>Durchsuchen aller verifizierten Bewerber in Ihrem Fachbereich</li>
-      <li>Einsicht in Lebenslauf, Zertifikate und Profil-Video</li>
-      <li>Persönliche Betreuung durch unser Team</li>
+      <li data-i18n="s4_li1">Zugang zum Unternehmens-Dashboard</li>
+      <li data-i18n="s4_li2">Durchsuchen aller verifizierten Bewerber in Ihrem Fachbereich</li>
+      <li data-i18n="s4_li3">Einsicht in Lebenslauf, Zertifikate und Profil-Video</li>
+      <li data-i18n="s4_li4">Persönliche Betreuung durch unser Team</li>
     </ul>
 
-    <p>
+    <p data-i18n="s4_p1">
       Für Details zur Vermittlungsgebühr kontaktieren Sie uns gerne direkt —
       wir erstellen Ihnen ein individuelles Angebot.
     </p>
-    <a href="index.html#kontakt" class="btn-primary">Angebot anfragen →</a>
+    <a href="index.html#kontakt" class="btn-primary" data-i18n="s4_btn">Angebot anfragen →</a>
   </section>
 
   <!-- 05 FAQ -->
   <section id="faq" class="content-section">
     <div class="section-num">05</div>
-    <h2>Häufig gestellte Fragen</h2>
-    <p class="subtitle">Antworten auf die wichtigsten Fragen von Unternehmen</p>
+    <h2 data-i18n="s5_title">Häufig gestellte Fragen</h2>
+    <p class="subtitle" data-i18n="s5_subtitle">Antworten auf die wichtigsten Fragen von Unternehmen</p>
 
     <div class="faq-list">
 
-      
-
       <details class="faq-item">
-        <summary>Sind die Bewerber verifiziert?</summary>
-        <p>
+        <summary data-i18n="faq1_q">Sind die Bewerber verifiziert?</summary>
+        <p data-i18n="faq1_a">
           Ja. Jeder Bewerber durchläuft unseren Prüfprozess, bevor sein Profil freigeschaltet wird.
           Wir kontrollieren Identität, Lebenslauf, Zertifikate und Sprachkenntnisse.
         </p>
       </details>
 
       <details class="faq-item">
-        <summary>Wie kann ich Kontakt aufnehmen?</summary>
-        <p>
+        <summary data-i18n="faq2_q">Wie kann ich Kontakt aufnehmen?</summary>
+        <p data-i18n="faq2_a">
           Nach der Registrierung und Freischaltung Ihres Unternehmenskontos können Sie Bewerberprofile
           im Dashboard einsehen und direkt Kontakt aufnehmen. Unser Team unterstützt Sie bei Bedarf.
         </p>
       </details>
 
       <details class="faq-item">
-        <summary>Was kostet die Nutzung?</summary>
-        <p>
+        <summary data-i18n="faq3_q">Was kostet die Nutzung?</summary>
+        <p data-i18n="faq3_a">
           Die Registrierung und das Durchsuchen von Bewerberprofilen ist kostenlos.
           Eine Vermittlungsgebühr fällt erst an, wenn ein Bewerber erfolgreich eingestellt wird.
           Kontaktieren Sie uns für ein individuelles Angebot.
@@ -1128,16 +1342,16 @@
       </details>
 
       <details class="faq-item">
-        <summary>Wie lange dauert die Freischaltung meines Kontos?</summary>
-        <p>
+        <summary data-i18n="faq4_q">Wie lange dauert die Freischaltung meines Kontos?</summary>
+        <p data-i18n="faq4_a">
           Nach Einreichung Ihrer Unternehmensunterlagen prüfen wir Ihre Angaben innerhalb von
           2–3 Werktagen und schalten Ihr Konto frei.
         </p>
       </details>
 
       <details class="faq-item">
-        <summary>In welchen Fachbereichen gibt es Bewerber?</summary>
-        <p>
+        <summary data-i18n="faq5_q">In welchen Fachbereichen gibt es Bewerber?</summary>
+        <p data-i18n="faq5_a">
           Aktuell vermitteln wir Bewerber in den Bereichen IT, Medizin, Handwerk und weiteren Branchen.
           Die Auswahl wird laufend erweitert.
         </p>
@@ -1149,100 +1363,61 @@
   <!-- 06 Beschwerdeverfahren -->
   <section id="beschwerdeverfahren" class="content-section">
     <div class="section-num">06</div>
-    <h2>Beschwerdeverfahren</h2>
-    <p class="subtitle">Transparenz und faire Behandlung für alle Partner</p>
+    <h2 data-i18n="s6_title">Beschwerdeverfahren</h2>
+    <p class="subtitle" data-i18n="s6_subtitle">Transparenz und faire Behandlung für alle Partner</p>
 
-    <p>
+    <p data-i18n="s6_p1">
       Wir legen großen Wert auf eine faire und transparente Zusammenarbeit mit unseren
       Partnerunternehmen. Sollten Sie Unstimmigkeiten oder Probleme feststellen,
       steht Ihnen unser Beschwerdeverfahren offen.
     </p>
 
-    <h3>Wann können Sie eine Beschwerde einreichen?</h3>
+    <h3 data-i18n="s6_h3a">Wann können Sie eine Beschwerde einreichen?</h3>
     <ul>
-      <li>Probleme bei der Vermittlung oder Kommunikation mit einem Kandidaten</li>
-      <li>Unvollständige oder fehlerhafte Bewerberunterlagen trotz Verifizierung</li>
-      <li>Verstöße gegen unsere Nutzungsbedingungen durch Bewerber</li>
-      <li>Technische Probleme mit der Plattform, die Ihre Arbeit beeinträchtigen</li>
-      <li>Allgemeine Unzufriedenheit mit unserem Service</li>
+      <li data-i18n="s6_li1">Probleme bei der Vermittlung oder Kommunikation mit einem Kandidaten</li>
+      <li data-i18n="s6_li2">Unvollständige oder fehlerhafte Bewerberunterlagen trotz Verifizierung</li>
+      <li data-i18n="s6_li3">Verstöße gegen unsere Nutzungsbedingungen durch Bewerber</li>
+      <li data-i18n="s6_li4">Technische Probleme mit der Plattform, die Ihre Arbeit beeinträchtigen</li>
+      <li data-i18n="s6_li5">Allgemeine Unzufriedenheit mit unserem Service</li>
     </ul>
 
-    <h3>Ablauf des Beschwerdeverfahrens</h3>
+    <h3 data-i18n="s6_h3b">Ablauf des Beschwerdeverfahrens</h3>
     <div class="steps-block">
       <div class="step-line">
-        <span class="step-label">Schritt 1</span>
-        <span class="step-text">Beschwerde einreichen — per E-Mail oder über das Kontaktformular mit Firmenname und Beschreibung des Problems.</span>
+        <span class="step-label" data-i18n="step1_label">Schritt 1</span>
+        <span class="step-text" data-i18n="step1_text">Beschwerde einreichen — per E-Mail oder über das Kontaktformular mit Firmenname und Beschreibung des Problems.</span>
       </div>
       <div class="step-line">
-        <span class="step-label">Schritt 2</span>
-        <span class="step-text">Bestätigung — Eingangsbestätigung mit Referenznummer innerhalb von <strong style="color:var(--white)">2 Werktagen</strong>.</span>
+        <span class="step-label" data-i18n="step2_label">Schritt 2</span>
+        <span class="step-text" data-i18n-html="step2_text_html">Bestätigung — Eingangsbestätigung mit Referenznummer innerhalb von <strong style="color:var(--white)">2 Werktagen</strong>.</span>
       </div>
       <div class="step-line">
-        <span class="step-label">Schritt 3</span>
-        <span class="step-text">Prüfung — Unser Team untersucht den Fall und kontaktiert alle beteiligten Parteien.</span>
+        <span class="step-label" data-i18n="step3_label">Schritt 3</span>
+        <span class="step-text" data-i18n="step3_text">Prüfung — Unser Team untersucht den Fall und kontaktiert alle beteiligten Parteien.</span>
       </div>
       <div class="step-line">
-        <span class="step-label">Schritt 4</span>
-        <span class="step-text">Lösung — Schriftliche Antwort innerhalb von <strong style="color:var(--white)">10 Werktagen</strong>.</span>
+        <span class="step-label" data-i18n="step4_label">Schritt 4</span>
+        <span class="step-text" data-i18n-html="step4_text_html">Lösung — Schriftliche Antwort innerhalb von <strong style="color:var(--white)">10 Werktagen</strong>.</span>
       </div>
     </div>
 
-    <h3>Beschwerde einreichen</h3>
+    <h3 data-i18n="s6_h3c">Beschwerde einreichen</h3>
     <ul>
-      <li>Firmenname und Ansprechpartner</li>
-      <li>Referenznummer des Bewerbers (falls vorhanden)</li>
-      <li>Detaillierte Beschreibung des Problems</li>
-      <li>Gewünschte Lösung</li>
+      <li data-i18n="s6_li6">Firmenname und Ansprechpartner</li>
+      <li data-i18n="s6_li7">Referenznummer des Bewerbers (falls vorhanden)</li>
+      <li data-i18n="s6_li8">Detaillierte Beschreibung des Problems</li>
+      <li data-i18n="s6_li9">Gewünschte Lösung</li>
     </ul>
 
-    <a href="index.html#kontakt" class="btn-primary">Beschwerde einreichen →</a>
-    <p class="email-note">
-      Oder direkt per E-Mail: <strong>kontakt@azubi-3e.de</strong>
+    <a href="index.html#kontakt" class="btn-primary" data-i18n="s6_btn">Beschwerde einreichen →</a>
+    <p class="email-note" data-i18n-html="s6_email_note_html">
+      Oder direkt per E-Mail: <strong>info@3econsulting.net</strong>
     </p>
   </section>
 
 </main>
 </div>
 
-<script>
-const menuToggle = document.getElementById('menuToggle');
-const menuDropdown = document.getElementById('menuDropdown');
-
-menuToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const open = !menuDropdown.hidden;
-  menuDropdown.hidden = open;
-  menuToggle.setAttribute('aria-expanded', String(!open));
-});
-
-document.querySelectorAll('.menu-toggle').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const sub = btn.nextElementSibling;
-    sub.hidden = !sub.hidden;
-    btn.classList.toggle('open', !sub.hidden);
-  });
-});
-
-document.addEventListener('click', () => {
-  menuDropdown.hidden = true;
-  menuToggle.setAttribute('aria-expanded', 'false');
-  document.querySelectorAll('
-
-if (location.hash) {
-  setActiveToc(location.hash.slice(1));
-}
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) setActiveToc(entry.target.id);
-  });
-}, { rootMargin: '-40% 0px' });
-
-sections.forEach(s => observer.observe(s));
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script>
 /* ════════════════════════════════════════════════════
    3E Consulting — Navbar JS (from index.html)
@@ -1287,7 +1462,445 @@ function mnMobileSwitch(btn, panel) {
   overlay       .addEventListener('click', closeMobileNavFn);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNavFn(); });
 })();
-/* ═══════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════════════
+   TOC scrollspy
+   ════════════════════════════════════════════════════ */
+(function () {
+  const tocLinks = document.querySelectorAll('aside.toc a');
+  const sections = document.querySelectorAll('.content-section[id]');
+  if (!tocLinks.length || !sections.length) return;
+
+  function setActiveToc(id) {
+    tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  }
+
+  if (location.hash) setActiveToc(location.hash.slice(1));
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActiveToc(entry.target.id);
+    });
+  }, { rootMargin: '-40% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+})();
+
+/* ════════════════════════════════════════════════════
+   🌐 LANGUAGE SYSTEM (DE / EN / FR / AR)
+   ════════════════════════════════════════════════════ */
+const translations = {
+  de: {
+    nav_leistungen: "Leistungen", nav_ablauf: "Ablauf", nav_ueber: "Über uns", nav_kontakt: "Kontakt",
+    nav_menu: "MENÜ", role_bewerber: "Bewerber", role_unternehmen: "Unternehmen", nav_sie_sind: "Sie sind",
+    menu_start_group: "Jetzt starten", menu_bewerbung: "Bewerbung einreichen", menu_voraussetzungen: "Voraussetzungen prüfen",
+    menu_dokumente: "Dokumentenorganisation", menu_video: "Profil-Video erstellen", menu_prep_group: "Gut vorbereitet sein",
+    menu_arbeitsmarkt: "Arbeitsmarkt Deutschland", menu_recht: "Arbeits- und Sozialrecht", menu_aufenthalt: "Aufenthaltsrecht & Visum",
+    menu_alltag: "Alltag in Deutschland", menu_chatbot_title: "Chatbot-3e", menu_chatbot_desc: "Stellen Sie jede Frage",
+    menu_unternehmen_group: "Für Unternehmen", menu_fachkraefte: "Fachkräfte finden", menu_support: "Support & Beschwerden",
+    menu_login: "Unternehmens-Login", menu_kontakt_title: "Kontakt aufnehmen", menu_kontakt_desc: "Wir antworten in 24h",
+    mobile_startseite: "Startseite", mobile_start_group: "🚀 Jetzt starten", mobile_prep_group: "📚 Gut vorbereitet sein",
+    mobile_unternehmen_group: "🏢 Für Unternehmen", mobile_cta_primary: "Als Bewerber starten", mobile_cta_secondary: "Für Unternehmen",
+    hero_tag: "Service · Unternehmen",
+    hero_title_html: "Leistungen für <em>Unternehmen</em>",
+    hero_desc: "Finden Sie qualifizierte Fachkräfte und Auszubildende aus dem Ausland — verifiziert, dokumentiert und direkt über unsere Plattform erreichbar.",
+    hero_check1: "Verifizierte Bewerberprofile", hero_check2: "Bewerber aus verschiedenen Fachbereichen",
+    hero_check3: "Persönliche Betreuung für Unternehmen", hero_check4: "Sichere und transparente Vermittlung",
+    toc_title: "Inhaltsverzeichnis", toc_vermittlung: "Vermittlung", toc_warum: "Warum 3E Consulting?",
+    toc_verifiziert: "Verifizierte Bewerber", toc_kosten: "Kosten", toc_faq: "FAQ", toc_beschwerde: "Beschwerdeverfahren",
+    s1_title: "Vermittlung von Fachkräften und Auszubildenden", s1_subtitle: "Qualifizierte Kandidaten — direkt für Ihr Unternehmen",
+    s1_p1: "3E Consulting verbindet deutsche Unternehmen mit motivierten Bewerbern aus dem Ausland. Alle Kandidaten auf unserer Plattform werden von uns geprüft und verifiziert, bevor sie für Unternehmen sichtbar werden.",
+    s1_h3: "So funktioniert es",
+    s1_li1: "<strong>Registrierung</strong> — Ihr Unternehmen erstellt ein Konto auf unserer Plattform",
+    s1_li2: "<strong>Freischaltung</strong> — Nach Prüfung Ihrer Unterlagen wird Ihr Zugang freigeschaltet",
+    s1_li3: "<strong>Kandidaten durchsuchen</strong> — Sehen Sie verifizierte Bewerber in Ihrem Fachbereich (z. B. IT, Medizin)",
+    s1_li4: "<strong>Profile einsehen</strong> — Lebenslauf, Zertifikate, Profil-Video und weitere Dokumente auf einen Blick",
+    s1_li5: "<strong>Direkter Kontakt</strong> — Nehmen Sie Kontakt mit passenden Kandidaten auf",
+    s1_btn1: "Unternehmen registrieren →", s1_btn2: "Bereits registriert? Einloggen",
+    s2_title: "Warum Unternehmen 3E Consulting wählen", s2_subtitle: "Ihr verlässlicher Partner für internationale Fachkräfte",
+    s2_p1: "Wir verstehen die Herausforderungen deutscher Unternehmen bei der Suche nach qualifizierten Auszubildenden und Fachkräften. Deshalb bieten wir eine Plattform, die Qualität, Transparenz und persönliche Betreuung vereint.",
+    s2_li1: "<strong>Geprüfte Bewerber</strong> — Jeder Kandidat wird vor der Freischaltung von uns verifiziert",
+    s2_li2: "<strong>Direkter Kontakt</strong> — Keine Vermittlungsagentur dazwischen, Sie kommunizieren direkt",
+    s2_li3: "<strong>Profil-Videos verfügbar</strong> — Lernen Sie Bewerber persönlich kennen, bevor Sie Kontakt aufnehmen",
+    s2_li4: "<strong>Dokumente vorab kontrolliert</strong> — Lebenslauf, Zertifikate und Zeugnisse sind geprüft",
+    s2_li5: "<strong>Persönlicher Ansprechpartner</strong> — Unser Team steht Ihnen bei Fragen jederzeit zur Verfügung",
+    s3_title: "Verifizierte Bewerber", s3_subtitle: "Qualität und Vertrauen — garantiert",
+    s3_p1: "<strong>Alle Bewerber werden vor der Freischaltung überprüft.</strong> Erst wenn unsere Prüfung abgeschlossen ist, wird ein Profil für Unternehmen sichtbar. So stellen wir sicher, dass Sie nur mit seriösen und vorbereiteten Kandidaten in Kontakt treten.",
+    s3_h3: "Wir kontrollieren:",
+    s3_li1: "<strong>Identität</strong> — Persönliche Daten und Ausweisdokumente",
+    s3_li2: "<strong>Lebenslauf</strong> — Vollständigkeit, Struktur und Plausibilität",
+    s3_li3: "<strong>Zertifikate</strong> — Sprachzertifikate, Diplome und Berufsabschlüsse",
+    s3_li4: "<strong>Sprachkenntnisse</strong> — Nachweis des erforderlichen Deutschniveaus",
+    s3_li5: "<strong>Profil-Video</strong> — Professioneller Auftritt und Kommunikationsfähigkeit",
+    s3_infoTitle: "Ihr Vorteil als Unternehmen",
+    s3_infoLi1: "Keine Zeitverschwendung mit unvollständigen oder unseriösen Bewerbungen",
+    s3_infoLi2: "Alle relevanten Dokumente liegen vor — auf einen Blick im Dashboard",
+    s3_infoLi3: "Nur Kandidaten, die aktiv eine Ausbildung oder Stelle in Deutschland suchen",
+    s4_title: "Kosten", s4_subtitle: "Transparent und fair — Sie zahlen nur bei Erfolg",
+    s4_boxTitle: "Die Registrierung ist kostenlos.",
+    s4_boxP1: "Sie können sich unverbindlich registrieren, Ihr Unternehmensprofil anlegen und verifizierte Bewerber in Ihrem Fachbereich einsehen — ohne Vorabkosten.",
+    s4_boxP2: "Eine <strong>Vermittlungsgebühr</strong> fällt erst an, wenn ein Bewerber <strong>erfolgreich eingestellt</strong> wird und den Arbeits- bzw. Ausbildungsvertrag unterschreibt.",
+    s4_boxP3: "So sehen Sie zuerst den Wert unserer Plattform — und zahlen nur bei einem erfolgreichen Ergebnis.",
+    s4_h3: "Was ist in der kostenlosen Registrierung enthalten?",
+    s4_li1: "Zugang zum Unternehmens-Dashboard", s4_li2: "Durchsuchen aller verifizierten Bewerber in Ihrem Fachbereich",
+    s4_li3: "Einsicht in Lebenslauf, Zertifikate und Profil-Video", s4_li4: "Persönliche Betreuung durch unser Team",
+    s4_p1: "Für Details zur Vermittlungsgebühr kontaktieren Sie uns gerne direkt — wir erstellen Ihnen ein individuelles Angebot.",
+    s4_btn: "Angebot anfragen →",
+    s5_title: "Häufig gestellte Fragen", s5_subtitle: "Antworten auf die wichtigsten Fragen von Unternehmen",
+    faq1_q: "Sind die Bewerber verifiziert?",
+    faq1_a: "Ja. Jeder Bewerber durchläuft unseren Prüfprozess, bevor sein Profil freigeschaltet wird. Wir kontrollieren Identität, Lebenslauf, Zertifikate und Sprachkenntnisse.",
+    faq2_q: "Wie kann ich Kontakt aufnehmen?",
+    faq2_a: "Nach der Registrierung und Freischaltung Ihres Unternehmenskontos können Sie Bewerberprofile im Dashboard einsehen und direkt Kontakt aufnehmen. Unser Team unterstützt Sie bei Bedarf.",
+    faq3_q: "Was kostet die Nutzung?",
+    faq3_a: "Die Registrierung und das Durchsuchen von Bewerberprofilen ist kostenlos. Eine Vermittlungsgebühr fällt erst an, wenn ein Bewerber erfolgreich eingestellt wird. Kontaktieren Sie uns für ein individuelles Angebot.",
+    faq4_q: "Wie lange dauert die Freischaltung meines Kontos?",
+    faq4_a: "Nach Einreichung Ihrer Unternehmensunterlagen prüfen wir Ihre Angaben innerhalb von 2–3 Werktagen und schalten Ihr Konto frei.",
+    faq5_q: "In welchen Fachbereichen gibt es Bewerber?",
+    faq5_a: "Aktuell vermitteln wir Bewerber in den Bereichen IT, Medizin, Handwerk und weiteren Branchen. Die Auswahl wird laufend erweitert.",
+    s6_title: "Beschwerdeverfahren", s6_subtitle: "Transparenz und faire Behandlung für alle Partner",
+    s6_p1: "Wir legen großen Wert auf eine faire und transparente Zusammenarbeit mit unseren Partnerunternehmen. Sollten Sie Unstimmigkeiten oder Probleme feststellen, steht Ihnen unser Beschwerdeverfahren offen.",
+    s6_h3a: "Wann können Sie eine Beschwerde einreichen?",
+    s6_li1: "Probleme bei der Vermittlung oder Kommunikation mit einem Kandidaten",
+    s6_li2: "Unvollständige oder fehlerhafte Bewerberunterlagen trotz Verifizierung",
+    s6_li3: "Verstöße gegen unsere Nutzungsbedingungen durch Bewerber",
+    s6_li4: "Technische Probleme mit der Plattform, die Ihre Arbeit beeinträchtigen",
+    s6_li5: "Allgemeine Unzufriedenheit mit unserem Service",
+    s6_h3b: "Ablauf des Beschwerdeverfahrens",
+    step1_label: "Schritt 1", step1_text: "Beschwerde einreichen — per E-Mail oder über das Kontaktformular mit Firmenname und Beschreibung des Problems.",
+    step2_label: "Schritt 2", step2_text_html: 'Bestätigung — Eingangsbestätigung mit Referenznummer innerhalb von <strong style="color:var(--white)">2 Werktagen</strong>.',
+    step3_label: "Schritt 3", step3_text: "Prüfung — Unser Team untersucht den Fall und kontaktiert alle beteiligten Parteien.",
+    step4_label: "Schritt 4", step4_text_html: 'Lösung — Schriftliche Antwort innerhalb von <strong style="color:var(--white)">10 Werktagen</strong>.',
+    s6_h3c: "Beschwerde einreichen",
+    s6_li6: "Firmenname und Ansprechpartner", s6_li7: "Referenznummer des Bewerbers (falls vorhanden)",
+    s6_li8: "Detaillierte Beschreibung des Problems", s6_li9: "Gewünschte Lösung",
+    s6_btn: "Beschwerde einreichen →",
+    s6_email_note_html: "Oder direkt per E-Mail: <strong>info@3econsulting.net</strong>"
+  },
+  en: {
+    nav_leistungen: "Services", nav_ablauf: "Process", nav_ueber: "About Us", nav_kontakt: "Contact",
+    nav_menu: "MENU", role_bewerber: "Applicant", role_unternehmen: "Company", nav_sie_sind: "You are a",
+    menu_start_group: "Get Started", menu_bewerbung: "Submit Application", menu_voraussetzungen: "Check Requirements",
+    menu_dokumente: "Document Organization", menu_video: "Create Profile Video", menu_prep_group: "Be Well Prepared",
+    menu_arbeitsmarkt: "German Labor Market", menu_recht: "Labor & Social Law", menu_aufenthalt: "Residence Law & Visa",
+    menu_alltag: "Daily Life in Germany", menu_chatbot_title: "Chatbot-3e", menu_chatbot_desc: "Ask any question",
+    menu_unternehmen_group: "For Companies", menu_fachkraefte: "Find Skilled Workers", menu_support: "Support & Complaints",
+    menu_login: "Company Login", menu_kontakt_title: "Get in Touch", menu_kontakt_desc: "We reply within 24h",
+    mobile_startseite: "Home", mobile_start_group: "🚀 Get Started", mobile_prep_group: "📚 Be Well Prepared",
+    mobile_unternehmen_group: "🏢 For Companies", mobile_cta_primary: "Start as Applicant", mobile_cta_secondary: "For Companies",
+    hero_tag: "Service · Companies",
+    hero_title_html: "Services for <em>Companies</em>",
+    hero_desc: "Find qualified skilled workers and trainees from abroad — verified, documented, and reachable directly through our platform.",
+    hero_check1: "Verified applicant profiles", hero_check2: "Applicants from various fields",
+    hero_check3: "Personal support for companies", hero_check4: "Secure and transparent placement",
+    toc_title: "Table of Contents", toc_vermittlung: "Placement", toc_warum: "Why 3E Consulting?",
+    toc_verifiziert: "Verified Applicants", toc_kosten: "Costs", toc_faq: "FAQ", toc_beschwerde: "Complaint Procedure",
+    s1_title: "Placement of Skilled Workers and Trainees", s1_subtitle: "Qualified candidates — directly for your company",
+    s1_p1: "3E Consulting connects German companies with motivated applicants from abroad. All candidates on our platform are checked and verified by us before becoming visible to companies.",
+    s1_h3: "How it works",
+    s1_li1: "<strong>Registration</strong> — Your company creates an account on our platform",
+    s1_li2: "<strong>Activation</strong> — After reviewing your documents, your access is activated",
+    s1_li3: "<strong>Browse Candidates</strong> — View verified applicants in your field (e.g. IT, healthcare)",
+    s1_li4: "<strong>View Profiles</strong> — CV, certificates, profile video and other documents at a glance",
+    s1_li5: "<strong>Direct Contact</strong> — Get in touch with suitable candidates",
+    s1_btn1: "Register Company →", s1_btn2: "Already registered? Log in",
+    s2_title: "Why Companies Choose 3E Consulting", s2_subtitle: "Your reliable partner for international talent",
+    s2_p1: "We understand the challenges German companies face when searching for qualified trainees and skilled workers. That's why we offer a platform that combines quality, transparency and personal support.",
+    s2_li1: "<strong>Verified Applicants</strong> — Every candidate is verified by us before activation",
+    s2_li2: "<strong>Direct Contact</strong> — No agency in between, you communicate directly",
+    s2_li3: "<strong>Profile Videos Available</strong> — Get to know applicants personally before making contact",
+    s2_li4: "<strong>Documents Pre-Checked</strong> — CV, certificates and references are reviewed",
+    s2_li5: "<strong>Personal Contact Person</strong> — Our team is available for any questions at any time",
+    s3_title: "Verified Applicants", s3_subtitle: "Quality and Trust — Guaranteed",
+    s3_p1: "<strong>All applicants are checked before activation.</strong> A profile only becomes visible to companies once our review is complete. This ensures you only get in touch with serious, well-prepared candidates.",
+    s3_h3: "We check:",
+    s3_li1: "<strong>Identity</strong> — Personal data and identification documents",
+    s3_li2: "<strong>CV</strong> — Completeness, structure and plausibility",
+    s3_li3: "<strong>Certificates</strong> — Language certificates, diplomas and professional qualifications",
+    s3_li4: "<strong>Language Skills</strong> — Proof of the required German level",
+    s3_li5: "<strong>Profile Video</strong> — Professional appearance and communication skills",
+    s3_infoTitle: "Your Advantage as a Company",
+    s3_infoLi1: "No time wasted on incomplete or unserious applications",
+    s3_infoLi2: "All relevant documents are available — at a glance in the dashboard",
+    s3_infoLi3: "Only candidates actively looking for training or a job in Germany",
+    s4_title: "Costs", s4_subtitle: "Transparent and Fair — You Only Pay on Success",
+    s4_boxTitle: "Registration is free.",
+    s4_boxP1: "You can register free of obligation, create your company profile and view verified applicants in your field — without any upfront costs.",
+    s4_boxP2: "A <strong>placement fee</strong> only applies once a candidate is <strong>successfully hired</strong> and signs the employment or training contract.",
+    s4_boxP3: "This way you see the value of our platform first — and only pay for a successful outcome.",
+    s4_h3: "What's Included in the Free Registration?",
+    s4_li1: "Access to the company dashboard", s4_li2: "Browse all verified applicants in your field",
+    s4_li3: "View CV, certificates and profile video", s4_li4: "Personal support from our team",
+    s4_p1: "For details on the placement fee, feel free to contact us directly — we'll create an individual offer for you.",
+    s4_btn: "Request an Offer →",
+    s5_title: "Frequently Asked Questions", s5_subtitle: "Answers to the most important questions from companies",
+    faq1_q: "Are the applicants verified?",
+    faq1_a: "Yes. Every applicant goes through our review process before their profile is activated. We check identity, CV, certificates and language skills.",
+    faq2_q: "How can I get in touch?",
+    faq2_a: "After registering and activating your company account, you can view applicant profiles in the dashboard and contact them directly. Our team supports you if needed.",
+    faq3_q: "What does it cost to use?",
+    faq3_a: "Registration and browsing applicant profiles is free. A placement fee only applies once an applicant is successfully hired. Contact us for an individual offer.",
+    faq4_q: "How long does it take to activate my account?",
+    faq4_a: "After submitting your company documents, we review your information within 2–3 business days and activate your account.",
+    faq5_q: "In which fields are there applicants?",
+    faq5_a: "We currently place applicants in the fields of IT, healthcare, skilled trades and other industries. The selection is continuously expanding.",
+    s6_title: "Complaint Procedure", s6_subtitle: "Transparency and Fair Treatment for All Partners",
+    s6_p1: "We place great value on fair and transparent cooperation with our partner companies. Should you notice any discrepancies or problems, our complaint procedure is available to you.",
+    s6_h3a: "When Can You File a Complaint?",
+    s6_li1: "Problems with placement or communication with a candidate",
+    s6_li2: "Incomplete or incorrect applicant documents despite verification",
+    s6_li3: "Violations of our terms of use by applicants",
+    s6_li4: "Technical problems with the platform that affect your work",
+    s6_li5: "General dissatisfaction with our service",
+    s6_h3b: "Complaint Procedure Process",
+    step1_label: "Step 1", step1_text: "Submit complaint — by email or via the contact form with company name and description of the problem.",
+    step2_label: "Step 2", step2_text_html: 'Confirmation — receipt confirmation with reference number within <strong style="color:var(--white)">2 business days</strong>.',
+    step3_label: "Step 3", step3_text: "Review — Our team investigates the case and contacts all parties involved.",
+    step4_label: "Step 4", step4_text_html: 'Resolution — Written response within <strong style="color:var(--white)">10 business days</strong>.',
+    s6_h3c: "Filing a Complaint",
+    s6_li6: "Company name and contact person", s6_li7: "Applicant reference number (if available)",
+    s6_li8: "Detailed description of the problem", s6_li9: "Desired resolution",
+    s6_btn: "File a Complaint →",
+    s6_email_note_html: "Or directly by email: <strong>kontakt@azubi-3e.de</strong>"
+  },
+  fr: {
+    nav_leistungen: "Prestations", nav_ablauf: "Déroulement", nav_ueber: "À propos", nav_kontakt: "Contact",
+    nav_menu: "MENU", role_bewerber: "Candidat", role_unternehmen: "Entreprise", nav_sie_sind: "Vous êtes",
+    menu_start_group: "Commencer", menu_bewerbung: "Soumettre une candidature", menu_voraussetzungen: "Vérifier les conditions",
+    menu_dokumente: "Organisation des documents", menu_video: "Créer une vidéo de profil", menu_prep_group: "Bien se préparer",
+    menu_arbeitsmarkt: "Marché du travail allemand", menu_recht: "Droit du travail et social", menu_aufenthalt: "Droit de séjour et visa",
+    menu_alltag: "La vie quotidienne en Allemagne", menu_chatbot_title: "Chatbot-3e", menu_chatbot_desc: "Posez toute question",
+    menu_unternehmen_group: "Pour les entreprises", menu_fachkraefte: "Trouver des talents", menu_support: "Support et réclamations",
+    menu_login: "Connexion entreprise", menu_kontakt_title: "Nous contacter", menu_kontakt_desc: "Nous répondons sous 24h",
+    mobile_startseite: "Accueil", mobile_start_group: "🚀 Commencer", mobile_prep_group: "📚 Bien se préparer",
+    mobile_unternehmen_group: "🏢 Pour les entreprises", mobile_cta_primary: "Commencer en tant que candidat", mobile_cta_secondary: "Pour les entreprises",
+    hero_tag: "Service · Entreprises",
+    hero_title_html: "Prestations pour les <em>entreprises</em>",
+    hero_desc: "Trouvez des travailleurs qualifiés et des apprentis venus de l'étranger — vérifiés, documentés et joignables directement via notre plateforme.",
+    hero_check1: "Profils de candidats vérifiés", hero_check2: "Candidats de différents domaines",
+    hero_check3: "Accompagnement personnalisé pour les entreprises", hero_check4: "Placement sûr et transparent",
+    toc_title: "Sommaire", toc_vermittlung: "Placement", toc_warum: "Pourquoi 3E Consulting ?",
+    toc_verifiziert: "Candidats vérifiés", toc_kosten: "Coûts", toc_faq: "FAQ", toc_beschwerde: "Procédure de réclamation",
+    s1_title: "Placement de travailleurs qualifiés et d'apprentis", s1_subtitle: "Des candidats qualifiés — directement pour votre entreprise",
+    s1_p1: "3E Consulting met en relation les entreprises allemandes avec des candidats motivés venus de l'étranger. Tous les candidats de notre plateforme sont vérifiés par nos soins avant d'être visibles pour les entreprises.",
+    s1_h3: "Comment ça marche",
+    s1_li1: "<strong>Inscription</strong> — Votre entreprise crée un compte sur notre plateforme",
+    s1_li2: "<strong>Activation</strong> — Après vérification de vos documents, votre accès est activé",
+    s1_li3: "<strong>Parcourir les candidats</strong> — Consultez les candidats vérifiés dans votre domaine (ex. IT, santé)",
+    s1_li4: "<strong>Consulter les profils</strong> — CV, certificats, vidéo de profil et autres documents en un coup d'œil",
+    s1_li5: "<strong>Contact direct</strong> — Prenez contact avec les candidats qui vous conviennent",
+    s1_btn1: "Inscrire l'entreprise →", s1_btn2: "Déjà inscrit ? Connectez-vous",
+    s2_title: "Pourquoi les entreprises choisissent 3E Consulting", s2_subtitle: "Votre partenaire fiable pour les talents internationaux",
+    s2_p1: "Nous comprenons les défis auxquels sont confrontées les entreprises allemandes dans la recherche d'apprentis et de travailleurs qualifiés. C'est pourquoi nous proposons une plateforme alliant qualité, transparence et accompagnement personnalisé.",
+    s2_li1: "<strong>Candidats vérifiés</strong> — Chaque candidat est vérifié par nos soins avant activation",
+    s2_li2: "<strong>Contact direct</strong> — Aucune agence intermédiaire, vous communiquez directement",
+    s2_li3: "<strong>Vidéos de profil disponibles</strong> — Apprenez à connaître les candidats avant de les contacter",
+    s2_li4: "<strong>Documents pré-vérifiés</strong> — CV, certificats et attestations sont contrôlés",
+    s2_li5: "<strong>Interlocuteur personnel</strong> — Notre équipe est à votre disposition pour toute question",
+    s3_title: "Candidats vérifiés", s3_subtitle: "Qualité et confiance — garanties",
+    s3_p1: "<strong>Tous les candidats sont vérifiés avant activation.</strong> Un profil n'est visible pour les entreprises qu'une fois notre vérification terminée. Cela garantit que vous n'entrez en contact qu'avec des candidats sérieux et bien préparés.",
+    s3_h3: "Nous vérifions :",
+    s3_li1: "<strong>Identité</strong> — Données personnelles et pièces d'identité",
+    s3_li2: "<strong>CV</strong> — Exhaustivité, structure et cohérence",
+    s3_li3: "<strong>Certificats</strong> — Certificats de langue, diplômes et qualifications professionnelles",
+    s3_li4: "<strong>Compétences linguistiques</strong> — Preuve du niveau d'allemand requis",
+    s3_li5: "<strong>Vidéo de profil</strong> — Présentation professionnelle et aptitude à communiquer",
+    s3_infoTitle: "Votre avantage en tant qu'entreprise",
+    s3_infoLi1: "Aucune perte de temps avec des candidatures incomplètes ou peu sérieuses",
+    s3_infoLi2: "Tous les documents pertinents sont disponibles — en un coup d'œil dans le tableau de bord",
+    s3_infoLi3: "Uniquement des candidats recherchant activement une formation ou un emploi en Allemagne",
+    s4_title: "Coûts", s4_subtitle: "Transparent et équitable — vous ne payez qu'en cas de succès",
+    s4_boxTitle: "L'inscription est gratuite.",
+    s4_boxP1: "Vous pouvez vous inscrire sans engagement, créer le profil de votre entreprise et consulter les candidats vérifiés dans votre domaine — sans frais initiaux.",
+    s4_boxP2: "Des <strong>frais de placement</strong> ne s'appliquent que lorsqu'un candidat est <strong>embauché avec succès</strong> et signe le contrat de travail ou de formation.",
+    s4_boxP3: "Ainsi, vous découvrez d'abord la valeur de notre plateforme — et ne payez qu'en cas de résultat réussi.",
+    s4_h3: "Que comprend l'inscription gratuite ?",
+    s4_li1: "Accès au tableau de bord de l'entreprise", s4_li2: "Parcourir tous les candidats vérifiés dans votre domaine",
+    s4_li3: "Consulter le CV, les certificats et la vidéo de profil", s4_li4: "Accompagnement personnalisé par notre équipe",
+    s4_p1: "Pour plus de détails sur les frais de placement, n'hésitez pas à nous contacter directement — nous vous établirons une offre personnalisée.",
+    s4_btn: "Demander une offre →",
+    s5_title: "Questions fréquentes", s5_subtitle: "Réponses aux questions les plus importantes des entreprises",
+    faq1_q: "Les candidats sont-ils vérifiés ?",
+    faq1_a: "Oui. Chaque candidat passe par notre processus de vérification avant l'activation de son profil. Nous contrôlons l'identité, le CV, les certificats et les compétences linguistiques.",
+    faq2_q: "Comment puis-je entrer en contact ?",
+    faq2_a: "Après l'inscription et l'activation de votre compte entreprise, vous pouvez consulter les profils des candidats dans le tableau de bord et les contacter directement. Notre équipe vous accompagne si besoin.",
+    faq3_q: "Quel est le coût d'utilisation ?",
+    faq3_a: "L'inscription et la consultation des profils de candidats sont gratuites. Des frais de placement ne s'appliquent que lorsqu'un candidat est embauché avec succès. Contactez-nous pour une offre personnalisée.",
+    faq4_q: "Combien de temps faut-il pour activer mon compte ?",
+    faq4_a: "Après soumission des documents de votre entreprise, nous vérifions vos informations sous 2 à 3 jours ouvrés et activons votre compte.",
+    faq5_q: "Dans quels domaines y a-t-il des candidats ?",
+    faq5_a: "Nous plaçons actuellement des candidats dans les domaines de l'informatique, de la santé, de l'artisanat et d'autres secteurs. La sélection s'élargit en continu.",
+    s6_title: "Procédure de réclamation", s6_subtitle: "Transparence et traitement équitable pour tous les partenaires",
+    s6_p1: "Nous accordons une grande importance à une collaboration équitable et transparente avec nos entreprises partenaires. Si vous constatez des divergences ou des problèmes, notre procédure de réclamation est à votre disposition.",
+    s6_h3a: "Quand pouvez-vous déposer une réclamation ?",
+    s6_li1: "Problèmes de placement ou de communication avec un candidat",
+    s6_li2: "Documents de candidature incomplets ou erronés malgré la vérification",
+    s6_li3: "Violations de nos conditions d'utilisation par les candidats",
+    s6_li4: "Problèmes techniques avec la plateforme affectant votre travail",
+    s6_li5: "Insatisfaction générale concernant notre service",
+    s6_h3b: "Déroulement de la procédure de réclamation",
+    step1_label: "Étape 1", step1_text: "Déposer une réclamation — par e-mail ou via le formulaire de contact avec le nom de l'entreprise et la description du problème.",
+    step2_label: "Étape 2", step2_text_html: 'Confirmation — accusé de réception avec numéro de référence sous <strong style="color:var(--white)">2 jours ouvrés</strong>.',
+    step3_label: "Étape 3", step3_text: "Examen — Notre équipe examine le cas et contacte toutes les parties concernées.",
+    step4_label: "Étape 4", step4_text_html: 'Résolution — Réponse écrite sous <strong style="color:var(--white)">10 jours ouvrés</strong>.',
+    s6_h3c: "Déposer une réclamation",
+    s6_li6: "Nom de l'entreprise et interlocuteur", s6_li7: "Numéro de référence du candidat (le cas échéant)",
+    s6_li8: "Description détaillée du problème", s6_li9: "Solution souhaitée",
+    s6_btn: "Déposer une réclamation →",
+    s6_email_note_html: "Ou directement par e-mail : <strong>kontakt@azubi-3e.de</strong>"
+  },
+  ar: {
+    nav_leistungen: "الخدمات", nav_ablauf: "الخطوات", nav_ueber: "من نحن", nav_kontakt: "اتصل بنا",
+    nav_menu: "القائمة", role_bewerber: "متقدم", role_unternehmen: "شركة", nav_sie_sind: "أنت",
+    menu_start_group: "ابدأ الآن", menu_bewerbung: "تقديم طلب", menu_voraussetzungen: "التحقق من الشروط",
+    menu_dokumente: "تنظيم المستندات", menu_video: "إنشاء فيديو تعريفي", menu_prep_group: "كن مستعدًا جيدًا",
+    menu_arbeitsmarkt: "سوق العمل الألماني", menu_recht: "قانون العمل والضمان الاجتماعي", menu_aufenthalt: "قانون الإقامة والتأشيرة",
+    menu_alltag: "الحياة اليومية في ألمانيا", menu_chatbot_title: "روبوت الدردشة-3e", menu_chatbot_desc: "اطرح أي سؤال",
+    menu_unternehmen_group: "للشركات", menu_fachkraefte: "البحث عن الكفاءات", menu_support: "الدعم والشكاوى",
+    menu_login: "تسجيل دخول الشركة", menu_kontakt_title: "تواصل معنا", menu_kontakt_desc: "نرد خلال 24 ساعة",
+    mobile_startseite: "الرئيسية", mobile_start_group: "🚀 ابدأ الآن", mobile_prep_group: "📚 كن مستعدًا جيدًا",
+    mobile_unternehmen_group: "🏢 للشركات", mobile_cta_primary: "ابدأ كمتقدم", mobile_cta_secondary: "للشركات",
+    hero_tag: "الخدمات · الشركات",
+    hero_title_html: "خدمات <em>للشركات</em>",
+    hero_desc: "اعثر على كفاءات ومتدربين مؤهلين من الخارج — تم التحقق منهم وتوثيقهم، ويمكن التواصل معهم مباشرة عبر منصتنا.",
+    hero_check1: "ملفات متقدمين موثّقة", hero_check2: "متقدمون من تخصصات متنوعة",
+    hero_check3: "دعم شخصي للشركات", hero_check4: "توظيف آمن وشفاف",
+    toc_title: "جدول المحتويات", toc_vermittlung: "التوظيف", toc_warum: "لماذا 3E Consulting؟",
+    toc_verifiziert: "متقدمون موثّقون", toc_kosten: "التكاليف", toc_faq: "الأسئلة الشائعة", toc_beschwerde: "إجراءات الشكاوى",
+    s1_title: "توظيف الكفاءات والمتدربين", s1_subtitle: "مرشحون مؤهلون — مباشرة لشركتك",
+    s1_p1: "تربط 3E Consulting الشركات الألمانية بمتقدمين متحمسين من الخارج. يتم فحص جميع المرشحين على منصتنا والتحقق منهم قبل أن يصبحوا مرئيين للشركات.",
+    s1_h3: "كيف يعمل الأمر",
+    s1_li1: "<strong>التسجيل</strong> — تنشئ شركتك حسابًا على منصتنا",
+    s1_li2: "<strong>التفعيل</strong> — بعد مراجعة مستنداتك، يتم تفعيل وصولك",
+    s1_li3: "<strong>تصفح المرشحين</strong> — شاهد المتقدمين الموثّقين في مجالك (مثل تكنولوجيا المعلومات، الطب)",
+    s1_li4: "<strong>عرض الملفات الشخصية</strong> — السيرة الذاتية، الشهادات، الفيديو التعريفي ومستندات أخرى بلمحة واحدة",
+    s1_li5: "<strong>تواصل مباشر</strong> — تواصل مع المرشحين المناسبين",
+    s1_btn1: "تسجيل الشركة ←", s1_btn2: "مسجل بالفعل؟ تسجيل الدخول",
+    s2_title: "لماذا تختار الشركات 3E Consulting", s2_subtitle: "شريكك الموثوق للكفاءات الدولية",
+    s2_p1: "نتفهم التحديات التي تواجهها الشركات الألمانية في البحث عن متدربين وكفاءات مؤهلة. لذلك نقدم منصة تجمع بين الجودة والشفافية والدعم الشخصي.",
+    s2_li1: "<strong>متقدمون مفحوصون</strong> — يتم التحقق من كل مرشح قبل التفعيل",
+    s2_li2: "<strong>تواصل مباشر</strong> — لا وسيط بينكما، تتواصل مباشرة",
+    s2_li3: "<strong>فيديوهات تعريفية متاحة</strong> — تعرف على المتقدمين شخصيًا قبل التواصل",
+    s2_li4: "<strong>مستندات مُدقّقة مسبقًا</strong> — تم فحص السيرة الذاتية والشهادات والمراجع",
+    s2_li5: "<strong>جهة اتصال شخصية</strong> — فريقنا متاح دائمًا للإجابة عن أسئلتك",
+    s3_title: "متقدمون موثّقون", s3_subtitle: "الجودة والثقة — مضمونة",
+    s3_p1: "<strong>يتم فحص جميع المتقدمين قبل التفعيل.</strong> لا يصبح الملف الشخصي مرئيًا للشركات إلا بعد اكتمال مراجعتنا. وهذا يضمن تواصلك فقط مع مرشحين جادين ومستعدين جيدًا.",
+    s3_h3: "نتحقق من:",
+    s3_li1: "<strong>الهوية</strong> — البيانات الشخصية ووثائق الهوية",
+    s3_li2: "<strong>السيرة الذاتية</strong> — الاكتمال والهيكلية والمصداقية",
+    s3_li3: "<strong>الشهادات</strong> — شهادات اللغة والدبلومات والمؤهلات المهنية",
+    s3_li4: "<strong>مهارات اللغة</strong> — إثبات مستوى اللغة الألمانية المطلوب",
+    s3_li5: "<strong>الفيديو التعريفي</strong> — الحضور المهني ومهارات التواصل",
+    s3_infoTitle: "ميزتك كشركة",
+    s3_infoLi1: "لا وقت يضيع مع طلبات غير مكتملة أو غير جادة",
+    s3_infoLi2: "جميع المستندات ذات الصلة متوفرة — بلمحة واحدة في لوحة التحكم",
+    s3_infoLi3: "فقط مرشحون يبحثون فعليًا عن تدريب أو وظيفة في ألمانيا",
+    s4_title: "التكاليف", s4_subtitle: "شفاف وعادل — تدفع فقط عند النجاح",
+    s4_boxTitle: "التسجيل مجاني.",
+    s4_boxP1: "يمكنك التسجيل دون التزام، وإنشاء ملف شركتك، والاطلاع على المتقدمين الموثّقين في مجالك — دون أي تكاليف مسبقة.",
+    s4_boxP2: "تُستحق <strong>رسوم التوظيف</strong> فقط عند <strong>توظيف المرشح بنجاح</strong> وتوقيعه عقد العمل أو التدريب.",
+    s4_boxP3: "بهذه الطريقة ترى قيمة منصتنا أولًا — وتدفع فقط عند تحقيق نتيجة ناجحة.",
+    s4_h3: "ماذا يشمل التسجيل المجاني؟",
+    s4_li1: "الوصول إلى لوحة تحكم الشركة", s4_li2: "تصفح جميع المتقدمين الموثّقين في مجالك",
+    s4_li3: "الاطلاع على السيرة الذاتية والشهادات والفيديو التعريفي", s4_li4: "دعم شخصي من فريقنا",
+    s4_p1: "لمزيد من التفاصيل حول رسوم التوظيف، يسعدنا تواصلك معنا مباشرة — سنقدم لك عرضًا مخصصًا.",
+    s4_btn: "طلب عرض ←",
+    s5_title: "الأسئلة الشائعة", s5_subtitle: "إجابات على أهم أسئلة الشركات",
+    faq1_q: "هل تم التحقق من المتقدمين؟",
+    faq1_a: "نعم. يمر كل متقدم بعملية المراجعة لدينا قبل تفعيل ملفه الشخصي. نتحقق من الهوية والسيرة الذاتية والشهادات ومهارات اللغة.",
+    faq2_q: "كيف يمكنني التواصل؟",
+    faq2_a: "بعد التسجيل وتفعيل حساب شركتك، يمكنك الاطلاع على ملفات المتقدمين في لوحة التحكم والتواصل معهم مباشرة. فريقنا يدعمك عند الحاجة.",
+    faq3_q: "ما هي تكلفة الاستخدام؟",
+    faq3_a: "التسجيل وتصفح ملفات المتقدمين مجاني. تُستحق رسوم التوظيف فقط عند توظيف المتقدم بنجاح. تواصل معنا للحصول على عرض مخصص.",
+    faq4_q: "كم يستغرق تفعيل حسابي؟",
+    faq4_a: "بعد تقديم مستندات شركتك، نراجع بياناتك خلال 2-3 أيام عمل ونقوم بتفعيل حسابك.",
+    faq5_q: "في أي المجالات يوجد متقدمون؟",
+    faq5_a: "نقوم حاليًا بتوظيف متقدمين في مجالات تكنولوجيا المعلومات والطب والحرف اليدوية وقطاعات أخرى. ويتم توسيع الاختيارات باستمرار.",
+    s6_title: "إجراءات الشكاوى", s6_subtitle: "الشفافية والمعاملة العادلة لجميع الشركاء",
+    s6_p1: "نولي أهمية كبيرة للتعاون العادل والشفاف مع شركاتنا الشريكة. في حال لاحظت أي تناقضات أو مشاكل، فإن إجراءات الشكاوى لدينا متاحة لك.",
+    s6_h3a: "متى يمكنك تقديم شكوى؟",
+    s6_li1: "مشاكل في التوظيف أو التواصل مع مرشح",
+    s6_li2: "مستندات متقدم غير مكتملة أو خاطئة رغم التحقق",
+    s6_li3: "مخالفات شروط الاستخدام من قبل المتقدمين",
+    s6_li4: "مشاكل تقنية في المنصة تؤثر على عملك",
+    s6_li5: "عدم رضا عام عن خدمتنا",
+    s6_h3b: "مراحل إجراءات الشكوى",
+    step1_label: "الخطوة 1", step1_text: "تقديم الشكوى — عبر البريد الإلكتروني أو نموذج التواصل مع اسم الشركة ووصف المشكلة.",
+    step2_label: "الخطوة 2", step2_text_html: 'التأكيد — إشعار استلام برقم مرجعي خلال <strong style="color:var(--white)">يومي عمل</strong>.',
+    step3_label: "الخطوة 3", step3_text: "المراجعة — يقوم فريقنا بفحص الحالة والتواصل مع جميع الأطراف المعنية.",
+    step4_label: "الخطوة 4", step4_text_html: 'الحل — رد كتابي خلال <strong style="color:var(--white)">10 أيام عمل</strong>.',
+    s6_h3c: "تقديم شكوى",
+    s6_li6: "اسم الشركة وجهة الاتصال", s6_li7: "الرقم المرجعي للمتقدم (إن وجد)",
+    s6_li8: "وصف تفصيلي للمشكلة", s6_li9: "الحل المطلوب",
+    s6_btn: "تقديم شكوى ←",
+    s6_email_note_html: "أو مباشرة عبر البريد الإلكتروني: <strong>kontakt@azubi-3e.de</strong>"
+  }
+};
+
+const langNames = { de: "DE", en: "EN", fr: "FR", ar: "AR" };
+
+function applyLanguage(lang) {
+  if (!translations[lang]) lang = 'de';
+  const dict = translations[lang];
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  document.documentElement.setAttribute('lang', lang);
+  document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  document.body.classList.toggle('lang-ar', lang === 'ar');
+
+  const langBtnCode = document.getElementById('langBtnCode');
+  if (langBtnCode) langBtnCode.textContent = langNames[lang] || 'DE';
+
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.classList.toggle('lang-active', btn.getAttribute('data-lang') === lang);
+  });
+
+  try { localStorage.setItem('site_lang', lang); } catch (e) {}
+}
+
+(function initLangSwitcher() {
+  const langSwitcher  = document.getElementById('langSwitcher');
+  const langBtn       = document.getElementById('langBtn');
+  const langDropdown  = document.getElementById('langDropdown');
+  if (!langSwitcher || !langBtn || !langDropdown) return;
+
+  langBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = langDropdown.classList.toggle('open');
+    langSwitcher.classList.toggle('open', isOpen);
+    langBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  langDropdown.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', (e) => {
+      e.stopPropagation();
+      applyLanguage(opt.getAttribute('data-lang'));
+      langDropdown.classList.remove('open');
+      langSwitcher.classList.remove('open');
+      langBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('click', () => {
+    langDropdown.classList.remove('open');
+    langSwitcher.classList.remove('open');
+    langBtn.setAttribute('aria-expanded', 'false');
+  });
+
+  let savedLang = 'de';
+  try { savedLang = localStorage.getItem('site_lang') || 'de'; } catch (e) {}
+  applyLanguage(savedLang);
+})();
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
