@@ -1,326 +1,450 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" dir="ltr" id="htmlRoot">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vermittlung & Ausbildung — 3E Consulting</title>
+  <title data-i18n="page_title">Vermittlung &amp; Ausbildung — 3E Consulting</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --navy: #0f2017;
-      --accent: #d97706;
-      --accent-hover: #b45309;
-      --bright: #4ade80;
-      --white: #fff;
-      --muted: #86a38e;
-      --border: rgba(74, 222, 128, .18);
-      --glass: rgba(255, 255, 255, .04);
+      --navy: #f5f0e2;
+      --navy-dark: #eee6d2;
+      --blue: #1f7a3d;
+      --accent: #e07a1f;
+      --accent-hover: #c2650f;
+      --bright: #1f7a3d;
+      --gold: #e07a1f;
+      --white: #23241f;
+      --light: #23241f;
+      --muted: #4a4a44;
+      --border: rgba(31,122,61,.22);
+      --glass: rgba(31,122,61,.05);
       --font-display: 'Syne', sans-serif;
       --font-body: 'DM Sans', sans-serif;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--navy); color: var(--white); padding-top: 72px; overflow-x: hidden; max-width: 100vw; }
+    img, video, iframe { max-width: 100%; }
 
-    body {
-      font-family: var(--font-body);
-      background: var(--navy);
-      color: var(--white);
-      padding-top: 72px;
-    }
-
-    /* ── NAV ── */
-    nav.site-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 5vw;
-      background: rgba(15, 32, 23, .92);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: .875rem; color: var(--muted); text-decoration: none; transition: color .2s; }
-    .nav-links a:hover { color: var(--white); }
-    .nav-menu { position: relative; }
-    .nav-menu-btn {
-      background: var(--accent); color: var(--white);
-      padding: .55rem 1.3rem; border-radius: 8px;
-      font-size: .85rem; font-weight: 500; border: none; cursor: pointer;
+    /* ── LANG SWITCHER ── */
+    .lang-switch { position: relative; display: inline-block; }
+    .lang-btn {
       display: inline-flex; align-items: center; gap: .4rem;
-      transition: background .2s, transform .15s;
+      background: rgba(255,255,255,.911); border: 1px solid var(--border);
+      color: var(--white); padding: .5rem .9rem; border-radius: 8px;
+      font-size: .82rem; font-weight: 600; cursor: pointer;
+      font-family: var(--font-body); transition: all .2s;
     }
-    .nav-menu-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
-    .nav-dropdown {
-      position: absolute; top: calc(100% + .6rem); right: 0;
-      min-width: 300px; max-height: 75vh; overflow-y: auto;
-      background: rgba(15, 32, 23, .97);
-      border: 1px solid var(--border); border-radius: 12px; padding: 1rem;
-      backdrop-filter: blur(20px); box-shadow: 0 20px 50px rgba(0,0,0,.4); z-index: 200;
+    .lang-btn:hover { background: rgba(233,228,222,.856); border-color: rgba(224,122,31,.4); }
+    .lang-dropdown {
+      position: absolute; top: calc(100% + .5rem); right: 0;
+      background: rgba(250,247,238,.98); border: 1px solid var(--border);
+      border-radius: 10px; padding: .4rem; min-width: 170px;
+      display: none; z-index: 3000; backdrop-filter: blur(20px);
+      box-shadow: 0 15px 40px rgba(0,0,0,.12);
     }
-    .menu-level-1, .menu-level-2, .menu-level-3 { list-style: none; margin: 0; padding: 0; }
-    .menu-toggle {
-      width: 100%; text-align: left; background: none; border: none;
-      color: var(--white); font-family: var(--font-body);
-      font-size: .88rem; font-weight: 500; padding: .65rem .75rem; border-radius: 8px;
-      cursor: pointer; display: flex; align-items: center; justify-content: space-between;
-      transition: background .15s;
+    .lang-dropdown.open { display: block; }
+    .lang-option {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem .7rem; border-radius: 7px; cursor: pointer;
+      font-size: .85rem; color: var(--muted); transition: all .15s;
+      background: none; border: none; width: 100%; text-align: left;
+      font-family: var(--font-body);
     }
-    .menu-toggle:hover, .menu-toggle.open { background: var(--glass); }
-    .menu-toggle::after { content: '▾'; font-size: .7rem; color: var(--muted); transition: transform .2s; }
-    .menu-toggle.open::after { transform: rotate(180deg); }
-    .menu-level-1 > li > a {
-      display: block; padding: .65rem .75rem; font-size: .88rem;
-      color: var(--muted); text-decoration: none; border-radius: 8px; transition: all .15s;
+    .lang-option:hover { background: rgba(224,122,31,.08); color: var(--white); }
+    .lang-option.active { color: var(--accent); font-weight: 700; background: rgba(224,122,31,.08); }
+    .lang-flag { font-size: 1rem; }
+    .mn-lang-block { padding: .8rem 1rem; border-bottom: 1px solid var(--border); }
+    .mn-lang-label { font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .55rem; }
+    .mn-lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+    .mn-lang-btn {
+      display: flex; align-items: center; justify-content: center; gap: .4rem;
+      padding: .55rem .6rem; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--glass); color: var(--muted); font-size: .78rem; font-weight: 500;
+      cursor: pointer; transition: all .18s; font-family: var(--font-body);
     }
-    .menu-level-1 > li > a:hover { color: var(--white); background: var(--glass); }
-    .menu-level-1 > li > a.active { color: var(--bright); background: rgba(74,222,128,.08); }
-    .menu-level-2 { padding-left: .5rem; }
-    .menu-level-3 { padding-left: 1rem; }
-    .menu-level-2 .menu-toggle, .menu-level-3 a { font-size: .82rem; color: var(--muted); padding: .5rem .75rem; }
-    .menu-level-3 a { display: block; text-decoration: none; border-radius: 6px; transition: all .15s; }
-    .menu-level-3 a:hover { color: var(--white); background: var(--glass); }
-    .menu-level-1 > li { border-bottom: 1px solid var(--border); }
-    .menu-level-1 > li:last-child { border-bottom: none; }
+    .mn-lang-btn:hover { border-color: rgba(255,250,244,.4); color: #fff; }
+    .mn-lang-btn.active { border-color: var(--accent); background: rgba(224,122,31,.12); color: #fff; }
 
     /* ── HERO ── */
-    .page-hero {
-      padding: 3.5rem 5vw 2.5rem;
-      max-width: 1100px; margin: 0 auto;
-    }
-    .section-tag {
-      font-size: .75rem; font-weight: 500; color: var(--accent);
-      letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem;
-    }
-    .page-hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
-    }
+    .page-hero { padding: 5.5rem 1rem 1.5rem; max-width: 100%; margin: 0 auto; box-sizing: border-box; width: 100%; overflow-x: hidden; }
+    .section-tag { font-size: .72rem; font-weight: 600; color: var(--accent); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .6rem; display: block; }
+    .page-hero h1 { font-family: var(--font-display); font-size: clamp(1.7rem, 6vw, 3rem); font-weight: 800; line-height: 1.1; margin-bottom: .85rem; }
     .page-hero h1 em { font-style: normal; color: var(--accent); }
-    .page-hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 680px; }
+    .page-hero p { color: var(--muted); font-size: .95rem; line-height: 1.7; max-width: 700px; }
 
     /* ── TRACK TABS ── */
-    .tracks-nav {
-      max-width: 1100px; margin: 0 auto;
-      padding: 0 5vw 2rem;
-      display: flex; gap: .75rem; flex-wrap: wrap;
-    }
+    .tracks-nav { max-width: 100%; margin: 0 auto; padding: 0 1rem 1.5rem; display: flex; gap: .6rem; flex-wrap: wrap; }
     .track-btn {
       display: inline-flex; align-items: center; gap: .5rem;
-      padding: .65rem 1.25rem; border-radius: 50px;
-      font-size: .875rem; font-weight: 500; cursor: pointer;
+      padding: .6rem 1.15rem; border-radius: 50px;
+      font-size: .85rem; font-weight: 500; cursor: pointer;
       border: 1px solid var(--border); background: var(--glass);
       color: var(--muted); transition: all .2s; text-decoration: none;
     }
-    .track-btn:hover { color: var(--white); border-color: rgba(74,222,128,.4); }
-    .track-btn.active {
-      background: var(--accent); border-color: var(--accent);
-      color: var(--white);
-    }
+    .track-btn:hover { color: var(--white); border-color: rgba(224,122,31,.4); }
+    .track-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
     /* ── CONTENT ── */
-    .content-wrap {
-      max-width: 1100px; margin: 0 auto;
-      padding: 0 5vw 6rem;
-      display: flex; flex-direction: column; gap: 2.5rem;
-    }
+    .content-wrap { max-width: 100%; margin: 0 auto; padding: 0 1rem 4rem; display: flex; flex-direction: column; gap: 1.75rem; }
 
     /* ── TRACK BLOCK ── */
-    .track-block {
-      border: 1px solid var(--border); border-radius: 20px;
-      overflow: hidden;
-    }
+    .track-block { background: var(--glass); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
     .track-header {
-      display: flex; align-items: center; gap: 1.25rem;
-      padding: 2rem 2.5rem;
-      background: linear-gradient(135deg, rgba(217,119,6,.08) 0%, rgba(255,255,255,.02) 100%);
+      display: flex; align-items: center; gap: 1.1rem;
+      padding: 1.5rem 1.25rem;
+      background: linear-gradient(135deg, rgba(224,122,31,.08) 0%, rgba(31,122,61,.03) 100%);
       border-bottom: 1px solid var(--border);
     }
     .track-icon-wrap {
-      width: 56px; height: 56px; border-radius: 14px; flex-shrink: 0;
-      background: rgba(217,119,6,.15);
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      background: rgba(224,122,31,.14);
+      border: 1px solid rgba(224,122,31,.3);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; color: var(--accent);
+      font-size: 1.4rem; color: var(--accent);
     }
-    .track-header-text h2 {
-      font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; margin-bottom: .25rem;
-    }
-    .track-header-text p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+    .track-header-text h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; margin-bottom: .25rem; color: var(--white); }
+    .track-header-text p { color: var(--muted); font-size: .85rem; line-height: 1.6; }
 
-    .track-body { padding: 2rem 2.5rem; }
+    .track-body { padding: 1.5rem 1.25rem; }
+    .track-intro { color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; font-size: .92rem; }
 
-    .track-intro {
-      color: var(--muted); line-height: 1.75; margin-bottom: 1.75rem;
-      font-size: .97rem;
-    }
-
-    /* Doc list */
-    .doc-list {
-      list-style: none; padding: 0;
-      display: flex; flex-direction: column; gap: .6rem;
-      margin-bottom: 1.75rem;
-    }
-    .doc-list li {
-      display: flex; align-items: flex-start; gap: .85rem;
-      background: rgba(255,255,255,.03); border: 1px solid var(--border);
-      border-radius: 10px; padding: .85rem 1rem;
-    }
-    .doc-num {
-      font-family: var(--font-display); font-size: .78rem; font-weight: 800;
-      color: var(--accent); min-width: 26px; padding-top: .05rem;
-    }
-    .doc-text { flex: 1; }
-    .doc-text strong { display: block; color: rgb(219, 134, 7); font-size: .9rem; margin-bottom: .2rem; }
-    .doc-text span { color: var(--muted); font-size: .83rem; line-height: 1.5; }
-
-    /* Sub-items inside doc (like Leumundszeugnisse) */
-    .doc-sub {
-      list-style: none; padding: 0;
-      margin-top: .5rem;
-      display: flex; flex-direction: column; gap: .35rem;
-    }
-    .doc-sub li {
-      display: flex; align-items: flex-start; gap: .5rem;
-      color: var(--muted); font-size: .82rem; line-height: 1.5;
-    }
-    .doc-sub li::before { content: '›'; color: var(--accent); flex-shrink: 0; margin-top: .05rem; }
-
-    /* Steps / process */
+    /* Section title */
     .process-title {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      font-family: var(--font-display); font-size: .95rem; font-weight: 700;
       color: var(--white); margin-bottom: 1rem;
       display: flex; align-items: center; gap: .5rem;
     }
     .process-title i { color: var(--accent); }
 
-    .process-steps {
-      display: flex; flex-direction: column; gap: 0;
-      margin-bottom: 1.5rem;
+    /* Doc list */
+    .doc-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.5rem; }
+    .doc-list li {
+      display: flex; align-items: flex-start; gap: .85rem;
+      background: rgba(255,255,255,.5); border: 1px solid var(--border);
+      border-radius: 10px; padding: .85rem 1rem;
     }
-    .process-step {
-      display: flex; gap: 1rem; align-items: flex-start;
-      padding: .85rem 0;
-      border-bottom: 1px solid rgba(74,222,128,.08);
-    }
+    .doc-num { font-family: var(--font-display); font-size: .78rem; font-weight: 800; color: var(--accent); min-width: 26px; padding-top: .05rem; }
+    .doc-text { flex: 1; }
+    .doc-text strong { display: block; color: var(--white); font-size: .9rem; margin-bottom: .2rem; font-weight: 700; }
+    .doc-text span { color: var(--muted); font-size: .83rem; line-height: 1.5; }
+
+    .doc-sub { list-style: none; padding: 0; margin-top: .5rem; display: flex; flex-direction: column; gap: .35rem; }
+    .doc-sub li { display: flex; align-items: flex-start; gap: .5rem; color: var(--muted); font-size: .82rem; line-height: 1.5; background: none; border: none; padding: 0; }
+    .doc-sub li::before { content: '›'; color: var(--accent); flex-shrink: 0; margin-top: .05rem; }
+
+    /* Steps / process */
+    .process-steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 1.25rem; }
+    .process-step { display: flex; gap: 1rem; align-items: flex-start; padding: .85rem 0; border-bottom: 1px solid var(--border); }
     .process-step:last-child { border-bottom: none; }
     .step-dot {
       width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-      background: rgba(217,119,6,.12); border: 1px solid rgba(217,119,6,.3);
+      background: rgba(224,122,31,.12); border: 1px solid rgba(224,122,31,.3);
       display: flex; align-items: center; justify-content: center;
-      font-size: .7rem; font-weight: 800; color: var(--accent);
-      margin-top: .1rem;
+      font-size: .7rem; font-weight: 800; color: var(--accent); margin-top: .1rem;
     }
     .process-step p { color: var(--muted); font-size: .88rem; line-height: 1.6; }
-    .process-step p strong { color: var(--white); font-weight: 500; }
+    .process-step p strong { color: var(--white); font-weight: 700; }
 
     /* Note box */
     .note-box {
-      background: rgba(74,222,128,.04); border: 1px solid rgba(74,222,128,.15);
-      border-radius: 10px; padding: 1rem 1.25rem;
+      background: rgba(31,122,61,.05); border: 1px solid rgba(31,122,61,.2);
+      border-radius: 10px; padding: 1rem 1.15rem;
       color: var(--muted); font-size: .87rem; line-height: 1.65;
-      display: flex; gap: .75rem; align-items: flex-start;
-      margin-top: 1.25rem;
+      display: flex; gap: .75rem; align-items: flex-start; margin-top: 1.1rem;
     }
-    .note-box i { color: var(--bright); font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
+    .note-box i { color: var(--blue); font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
 
     /* CTA */
-    .track-cta {
-      display: flex; gap: .75rem; flex-wrap: wrap;
-      padding: 1.5rem 2.5rem 2rem;
-      border-top: 1px solid var(--border);
-      background: rgba(255,255,255,.02);
-    }
+    .track-cta { display: flex; gap: .7rem; flex-wrap: wrap; padding: 1.25rem 1.25rem 1.5rem; border-top: 1px solid var(--border); background: rgba(255,255,255,.03); }
     .btn-primary {
       display: inline-flex; align-items: center; gap: .5rem;
-      background: var(--accent); color: var(--white);
-      padding: .7rem 1.4rem; border-radius: 10px;
-      font-size: .88rem; font-weight: 500; text-decoration: none;
-      transition: all .2s; border: none; cursor: pointer;
+      background: var(--accent); color: #fff; padding: .7rem 1.4rem; border-radius: 10px;
+      font-size: .87rem; font-weight: 600; text-decoration: none;
+      transition: all .2s; border: none; cursor: pointer; font-family: var(--font-body);
     }
     .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: .5rem;
-      background: transparent; color: var(--muted);
-      padding: .7rem 1.4rem; border-radius: 10px;
-      font-size: .88rem; font-weight: 500; text-decoration: none;
-      transition: all .2s; border: 1px solid var(--border);
+      background: transparent; color: var(--muted); padding: .7rem 1.4rem; border-radius: 10px;
+      font-size: .87rem; font-weight: 500; text-decoration: none;
+      transition: all .2s; border: 1px solid var(--border); font-family: var(--font-body);
     }
-    .btn-secondary:hover { color: var(--white); border-color: rgba(74,222,128,.35); }
+    .btn-secondary:hover { color: var(--white); border-color: rgba(224,122,31,.35); }
 
-    /* ── MOBILE ── */
-    @media (max-width: 768px) {
-      body { padding-top: 64px !important; }
-      nav.site-nav { padding: .7rem 1rem !important; }
-      .nav-links { display: none !important; }
-      .nav-menu-btn { padding: .45rem .9rem !important; font-size: .78rem !important; }
-      .nav-dropdown { right: 0 !important; left: auto !important; width: calc(100vw - 2rem) !important; max-width: 320px !important; }
-      .page-hero { padding: 2rem 4vw 1.5rem !important; }
-      .page-hero h1 { font-size: clamp(1.6rem,7vw,2.2rem) !important; }
-      .page-hero p { font-size: .92rem !important; }
-      .tracks-nav { padding: 0 4vw 1.5rem !important; }
-      .content-wrap { padding: 0 4vw 4rem !important; gap: 2rem !important; }
-      .track-header { padding: 1.25rem 1.25rem !important; gap: 1rem !important; }
-      .track-header-text h2 { font-size: 1.25rem !important; }
-      .track-body { padding: 1.25rem 1.25rem !important; }
-      .track-cta { padding: 1.25rem 1.25rem 1.5rem !important; }
+    /* ── DESKTOP ── */
+    @media (min-width: 769px) {
+      .page-hero { padding: 3.5rem 5vw 2rem; }
+      .tracks-nav { max-width: 1100px; padding: 0 5vw 2rem; }
+      .content-wrap { max-width: 1100px; padding: 0 5vw 6rem; gap: 2.5rem; }
+      .track-header { padding: 2rem 2.5rem; gap: 1.25rem; }
+      .track-icon-wrap { width: 56px; height: 56px; font-size: 1.6rem; }
+      .track-header-text h2 { font-size: 1.5rem; }
+      .track-body { padding: 2rem 2.5rem; }
+      .track-cta { padding: 1.5rem 2.5rem 2rem; }
     }
-    @media (max-width: 480px) {
-      .track-icon-wrap { width: 44px !important; height: 44px !important; font-size: 1.25rem !important; }
-      .track-header-text h2 { font-size: 1.1rem !important; }
-      .doc-list li { padding: .75rem .85rem !important; }
+
+    /* ══════════════════════════════════════════════
+       3E CONSULTING — NAVBAR CSS
+       ══════════════════════════════════════════════ */
+    .navbar-3e {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1050;
+      padding: .75rem 4vw; background: rgba(15,32,23,.92);
+      backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+      box-sizing: border-box; width: 100%;
     }
+    .logo-img-main { height: 28px; width: auto; object-fit: contain; display: block; }
+    .logo-img-sm { height: 28px; width: auto; object-fit: contain; display: block; }
+    .nav-link-3e { font-size: .875rem; color: #fffffd !important; text-decoration: none; transition: color .2s; padding: .3rem .6rem; }
+    .nav-link-3e:hover { color: #ffae00ab !important; }
+    .btn-menu {
+      background: var(--accent); color: #fff !important; padding: .55rem 1.3rem; border-radius: 8px;
+      font-size: .85rem; font-weight: 500; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: .4rem; transition: background .2s, transform .15s;
+    }
+    .btn-menu:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .nav-dropdown-panel {
+      position: absolute; top: calc(100% + .6rem); right: 0;
+      min-width: 340px; max-width: 420px; max-height: 75vh; overflow-y: auto;
+      background: rgba(250,247,238,.98); box-shadow: 0 20px 50px rgba(0,0,0,.12);
+      border: 1px solid var(--border); border-radius: 12px; padding: 1rem;
+      backdrop-filter: blur(20px); z-index: 2000; display: none;
+    }
+    .nav-dropdown-panel.open { display: block; }
+    .hamburger-btn {
+      background: transparent; border: 1px solid var(--border); border-radius: 8px; color: #fff;
+      padding: .45rem .75rem; font-size: 1.1rem; cursor: pointer; display: none; align-items: center;
+      transition: background .2s, border-color .2s;
+    }
+    .hamburger-btn:hover { background: rgba(224,122,31,.1); border-color: rgba(224,122,31,.4); }
+    .mobile-nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 1055; opacity: 0; pointer-events: none; transition: opacity .3s ease; backdrop-filter: blur(4px); }
+    .mobile-nav-overlay.open { opacity: 1; pointer-events: all; }
+    .mobile-nav {
+      position: fixed; top: 0; left: 0; bottom: 0; width: min(320px, 88vw);
+      background: linear-gradient(160deg, #faf7ee 0%, #f0e9d6 100%);
+      border-right: 1px solid rgba(31,122,61,.14); z-index: 1060;
+      display: flex; flex-direction: column; transform: translateX(-100%);
+      transition: transform .32s cubic-bezier(.4,0,.2,1); overflow: hidden;
+    }
+    .mobile-nav.open { transform: translateX(0); }
+    .mn-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.1rem .85rem; border-bottom: 1px solid rgba(31,122,61,.1); flex-shrink: 0; }
+    .mn-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+    .mn-close {
+      background: rgba(31,122,61,.06); border: 1px solid rgba(31,122,61,.14); border-radius: 8px; color: var(--muted);
+      width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; cursor: pointer; transition: background .15s, color .15s; flex-shrink: 0;
+    }
+    .mn-close:hover { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
+    .mn-body { flex: 1; padding: .6rem 0 .5rem; overflow-y: auto; overflow-x: hidden; }
+    .mn-body::-webkit-scrollbar { width: 3px; }
+    .mn-body::-webkit-scrollbar-track { background: transparent; }
+    .mn-body::-webkit-scrollbar-thumb { background: rgba(31,122,61,.2); border-radius: 2px; }
+    .mn-section-label { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: .9rem 1.2rem .35rem; opacity: .7; }
+    .mn-link { display: flex; align-items: center; gap: .75rem; padding: .68rem 1.2rem; font-size: .88rem; font-weight: 500; color: rgba(35,36,31,.85); text-decoration: none; transition: background .15s, color .15s; }
+    .mn-link .mn-icon { width: 30px; height: 30px; border-radius: 8px; background: rgba(31,122,61,.06); border: 1px solid rgba(31,122,61,.12); display: flex; align-items: center; justify-content: center; font-size: .75rem; color: var(--muted); flex-shrink: 0; transition: background .15s, color .15s, border-color .15s; }
+    .mn-link:hover { background: rgba(224,122,31,.07); color: var(--white); }
+    .mn-link:hover .mn-icon { background: rgba(224,122,31,.15); color: var(--accent); border-color: rgba(224,122,31,.3); }
+    .mn-link-arrow { margin-left: auto; font-size: .65rem; color: var(--muted); opacity: .5; }
+    .mn-divider { height: 1px; background: rgba(31,122,61,.08); margin: .55rem 1.2rem; }
+    .mn-footer { padding: .85rem 1rem 1.1rem; border-top: 1px solid rgba(31,122,61,.1); display: flex; flex-direction: column; gap: .55rem; flex-shrink: 0; }
+    .mn-cta-primary { display: flex; align-items: center; justify-content: center; gap: .5rem; padding: .82rem 1rem; border-radius: 10px; background: var(--accent); color: #fff !important; font-size: .88rem; font-weight: 600; text-decoration: none; transition: background .2s, transform .15s; font-family: var(--font-display); letter-spacing: .02em; white-space: nowrap; }
+    .mn-cta-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .mn-cta-secondary { display: flex; align-items: center; justify-content: center; gap: .5rem; padding: .78rem 1rem; border-radius: 10px; background: rgba(31,122,61,.08); border: 1px solid rgba(31,122,61,.2); color: rgba(35,36,31,.85) !important; font-size: .88rem; font-weight: 500; text-decoration: none; transition: background .2s, border-color .2s; white-space: nowrap; }
+    .mn-cta-secondary:hover { background: rgba(31,122,61,.14); border-color: rgba(31,122,61,.35); }
+    .mn2-who { padding: .75rem .85rem .6rem; border-bottom: 1px solid var(--border); }
+    .mn2-who-label { font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .55rem; }
+    .mn2-who-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+    .mn2-who-btn { display: flex; align-items: center; justify-content: center; gap: .45rem; padding: .6rem .8rem; border-radius: 9px; border: 1px solid var(--border); background: var(--glass); color: var(--muted); font-size: .8rem; font-weight: 500; cursor: pointer; transition: all .18s; font-family: var(--font-body); }
+    .mn2-who-btn:hover { border-color: rgba(224,122,31,.4); color: var(--white); background: rgba(224,122,31,.08); }
+    .mn2-who-btn.mn2-who-active { border-color: var(--muted); background: rgba(224,122,31,.12); color: var(--white); }
+    .mn2-who-btn i { font-size: .85rem; color: var(--muted); }
+    .mn2-panel { padding: .5rem 0; color: var(--muted); }
+    .mn2-group { padding: .4rem .6rem; }
+    .mn2-group-label { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: .5rem .6rem .4rem; opacity: .8; display: flex; align-items: center; gap: .4rem; }
+    .mn2-group-label i { font-size: .75rem; }
+    .mn2-link { display: flex; align-items: center; gap: .6rem; padding: .55rem .75rem; border-radius: 8px; text-decoration: none; font-size: .83rem; color: var(--muted); transition: all .15s; }
+    .mn2-link:hover { background: rgba(224,122,31,.07); color: var(--white); }
+    .mn2-link i { font-size: .8rem; color: var(--accent); opacity: .7; width: 14px; text-align: center; }
+    .mn2-divider { height: 1px; background: var(--border); margin: .4rem .75rem; }
+    .mn2-chatbot-btn { display: flex; align-items: center; gap: .75rem; padding: .75rem .85rem; margin: .4rem .6rem .5rem; border-radius: 10px; background: rgba(224,122,31,.08); border: 1px solid rgba(224,122,31,.25); text-decoration: none; transition: all .2s; }
+    .mn2-chatbot-btn:hover { background: rgba(224,122,31,.15); border-color: rgba(224,122,31,.4); }
+    .mn2-chatbot-btn > i:first-child { font-size: 1.1rem; color: var(--accent); flex-shrink: 0; }
+    .mn2-chatbot-btn div { display: flex; flex-direction: column; }
+    .mn2-chatbot-btn strong { font-size: .85rem; color: var(--white); font-weight: 600; }
+    .mn2-chatbot-btn span { font-size: .72rem; color: var(--muted); margin-top: .1rem; }
+    .mn-who-btn { display: flex; align-items: center; justify-content: center; gap: .5rem; padding: .65rem .8rem; border-radius: 9px; border: 1px solid var(--border); background: rgba(255,255,255,.04); color: var(--muted); font-size: .82rem; font-weight: 500; cursor: pointer; font-family: var(--font-body); transition: all .18s; width: 100%; }
+    .mn-who-btn:hover { border-color: rgba(224,122,31,.4); color: var(--white); }
+    .mn-who-btn.mn-who-active { border-color: var(--accent); background: rgba(224,122,31,.12); color: var(--white); }
+    .mn-who-btn i { font-size: .85rem; color: var(--accent); }
+    @media (max-width: 991px) { .hamburger-btn { display: inline-flex !important; } .nav-desktop-links { display: none !important; } }
+    .nav-dropdown-panel { right: 0 !important; left: auto !important; }
+    .brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+    @media (max-width: 991px) { .logo-img-main { max-width: 190px; height: 34px; } }
+    @media (max-width: 576px) { .logo-img-main { max-width: 165px; height: 32px; } }
+    @media (max-width: 400px) { .logo-img-main { max-width: 135px; height: 29px; } }
+
+    @media (max-width: 768px) { body { padding-top: 68px !important; } }
   </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
-<nav class="site-nav">
-  <a href="index.html" class="nav-brand" style="display:flex;align-items:center;gap:9px;text-decoration:none;">
-    <img src="logo_3e.jpg" alt="3E" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0">
-    <span style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:.06em;white-space:nowrap;">3<span style="color:#4ade80">E</span><span style="color:#fb923c"> Consulting</span></span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html#services">Leistungen</a></li>
-    <li><a href="index.html#process">Ablauf</a></li>
-    <li><a href="index.html#about">Über uns</a></li>
-    <li><a href="index.html#kontakt">Kontakt</a></li>
-  </ul>
-  <div class="nav-menu">
-    <button type="button" class="nav-menu-btn" id="menuToggle" aria-expanded="false">MENÜ ▾</button>
-    <div class="nav-dropdown" id="menuDropdown" hidden>
-      <ul class="menu-level-1">
-        <li class="has-sub">
-          <button type="button" class="menu-toggle">Service</button>
-          <ul class="menu-level-2" hidden>
-            <li class="has-sub">
-              <button type="button" class="menu-toggle">Bewerber</button>
-              <ul class="menu-level-3" hidden>
-                <li><a href="service-bewerber.html#dokumentenorganisation">Dokumentenorganisation</a></li>
-                <li><a href="service-bewerber.html#bewerbungsprozess">Bewerbungsprozess</a></li>
-                <li><a href="service-bewerber.html#profil-video">Profil-Video Anleitung</a></li>
-                <li><a href="service-bewerber.html#erste-schritte">Erste Schritte in Deutschland</a></li>
-              </ul>
-            </li>
-            <li class="has-sub">
-              <button type="button" class="menu-toggle">Unternehmen</button>
-              <ul class="menu-level-3" hidden>
-                <li><a href="service-unternehmen.html#vermittlung">Vermittlung von Fachkräften</a></li>
-                <li><a href="service-unternehmen.html#beschwerdeverfahren">Beschwerdeverfahren</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li><a href="Bewerbung.html">Bewerbung</a></li>
-        <li><a href="vermittlung.html" class="active">Vermittlung &amp; Ausbildung</a></li>
-        <li><a href="arbeitsmarkt.html">Arbeitsmarkt</a></li>
-        <li><a href="arbeitundsozialrecht.html">Arbeits- und Sozialrecht</a></li>
-        <li><a href="aufenthaltsrecht.html">Aufenthaltsrecht</a></li>
-        <li><a href="alltag-deutschland.html">Alltag in Deutschland</a></li>
-      </ul>
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<header class="navbar-3e">
+  <div class="d-flex align-items-center justify-content-between w-100">
+    <a href="index.html" class="brand">
+      <img src="Logo-cropped.png" alt="3E Consulting" class="logo-img-main">
+    </a>
+    <ul class="nav-desktop-links d-flex list-unstyled mb-0 gap-3 mx-auto">
+      <li><a href="index.html#services" class="nav-link-3e" data-i18n="nav_services">Leistungen</a></li>
+      <li><a href="index.html#process" class="nav-link-3e" data-i18n="nav_process">Ablauf</a></li>
+      <li><a href="index.html#about" class="nav-link-3e" data-i18n="nav_about">Über uns</a></li>
+      <li><a href="index.html#kontakt" class="nav-link-3e" data-i18n="nav_contact">Kontakt</a></li>
+    </ul>
+    <div class="d-flex align-items-center gap-3">
+      <!-- LANGUAGE SWITCHER (DESKTOP) -->
+      <div class="lang-switch d-none d-lg-block">
+        <button class="lang-btn" id="langToggle"><i class="bi bi-globe2"></i> <span id="langBtnLabel">DE</span> <i class="bi bi-caret-down-fill" style="font-size:.6rem"></i></button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option" data-lang="de" onclick="setLanguage('de')"><span class="lang-flag">🇩🇪</span> Deutsch</button>
+          <button class="lang-option" data-lang="ar" onclick="setLanguage('ar')"><span class="lang-flag">🇸🇦</span> العربية</button>
+          <button class="lang-option" data-lang="fr" onclick="setLanguage('fr')"><span class="lang-flag">🇫🇷</span> Français</button>
+          <button class="lang-option" data-lang="en" onclick="setLanguage('en')"><span class="lang-flag">🇬🇧</span> English</button>
+        </div>
+      </div>
+      <div class="position-relative d-none d-lg-block">
+        <button class="btn-menu" id="menuToggle" data-i18n="menu_btn">MENÜ ▾</button>
+        <div class="nav-dropdown-panel" id="menuDropdown">
+          <div class="mn2-who">
+            <p class="mn2-who-label" data-i18n="you_are">Sie sind</p>
+            <div class="mn2-who-btns">
+              <button class="mn2-who-btn mn2-who-active" onclick="mn2Switch(this,'bewerber')">
+                <i class="fa-solid fa-user-tie"></i> <span data-i18n="applicant">Bewerber</span>
+              </button>
+              <button class="mn2-who-btn" onclick="mn2Switch(this,'unternehmen')">
+                <i class="fa-solid fa-building"></i> <span data-i18n="company">Unternehmen</span>
+              </button>
+            </div>
+          </div>
+          <div class="mn2-panel" id="mn2-bewerber">
+            <div class="mn2-group">
+              <div class="mn2-group-label" data-i18n="start_now">Jetzt starten</div>
+              <a href="Bewerbung.html" class="mn2-link"><i class="fa-solid fa-file-pen"></i> <span data-i18n="submit_application">Bewerbung einreichen</span></a>
+              <a href="vermittlung.html" class="mn2-link"><i class="fa-solid fa-list-check"></i> <span data-i18n="check_requirements">Voraussetzungen prüfen</span></a>
+              <a href="service-bewerber.html#dokumentenorganisation" class="mn2-link"><i class="fa-solid fa-folder-open"></i> <span data-i18n="doc_organization">Dokumentenorganisation</span></a>
+              <a href="service-bewerber.html#profil-video" class="mn2-link"><i class="fa-solid fa-video"></i> <span data-i18n="create_profile_video">Profil-Video erstellen</span></a>
+            </div>
+            <div class="mn2-divider"></div>
+            <div class="mn2-group">
+              <div class="mn2-group-label"><i class="fa-solid fa-book-open"></i> <span data-i18n="well_prepared">Gut vorbereitet sein</span></div>
+              <a href="arbeitsmarkt.html" class="mn2-link"><i class="fa-solid fa-chart-line"></i> <span data-i18n="job_market">Arbeitsmarkt Deutschland</span></a>
+              <a href="alltag-deutschland.html" class="mn2-link"><i class="fa-solid fa-sun"></i> <span data-i18n="daily_life">Alltag in Deutschland</span></a>
+            </div>
+            <div class="mn2-divider"></div>
+            <a href="Chatbot.html" class="mn2-chatbot-btn">
+              <i class="fa-solid fa-robot"></i>
+              <div><strong data-i18n="chatbot_title">Chatbot-3e</strong><span data-i18n="chatbot_desc">Stellen Sie jede Frage</span></div>
+              <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
+            </a>
+          </div>
+          <div class="mn2-panel" id="mn2-unternehmen" style="display:none">
+            <div class="mn2-group">
+              <div class="mn2-group-label"><i class="fa-solid fa-building"></i> <span data-i18n="for_companies">Für Unternehmen</span></div>
+              <a href="service-unternehmen.html#vermittlung" class="mn2-link"><i class="fa-solid fa-users-viewfinder"></i> <span data-i18n="find_talent">Fachkräfte finden</span></a>
+              <a href="service-unternehmen.html#beschwerdeverfahren" class="mn2-link"><i class="fa-solid fa-headset"></i> <span data-i18n="support_complaints">Support &amp; Beschwerden</span></a>
+              <a href="login_company.php" class="mn2-link"><i class="fa-solid fa-right-to-bracket"></i> <span data-i18n="company_login">Unternehmens-Login</span></a>
+            </div>
+            <div class="mn2-divider"></div>
+            <a href="index.html#kontakt" class="mn2-chatbot-btn" onclick="document.getElementById('menuDropdown').classList.remove('open')">
+              <i class="fa-solid fa-envelope"></i>
+              <div><strong data-i18n="get_in_touch">Kontakt aufnehmen</strong><span data-i18n="reply_24h">Wir antworten in 24h</span></div>
+              <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <button class="hamburger-btn d-lg-none" id="hamburgerBtn" aria-label="Menü öffnen">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </div>
+  </div>
+</header>
+
+<!-- ═══ MOBILE NAV OVERLAY ═══ -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+<!-- ═══ MOBILE NAV DRAWER ═══ -->
+<nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
+  <div class="mn-header">
+    <a href="index.html" class="mn-brand">
+      <img src="Logo-cropped.png" alt="3E Consulting" class="logo-img-sm">
+    </a>
+    <button class="mn-close" id="mobileNavClose" aria-label="Menü schließen">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div class="mn-body">
+    <div class="mn-lang-block">
+      <p class="mn-lang-label" data-i18n="language">Sprache</p>
+      <div class="mn-lang-grid">
+        <button class="mn-lang-btn" data-lang-mobile="de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+        <button class="mn-lang-btn" data-lang-mobile="ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+        <button class="mn-lang-btn" data-lang-mobile="fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+        <button class="mn-lang-btn" data-lang-mobile="en" onclick="setLanguage('en')">🇬🇧 English</button>
+      </div>
+    </div>
+    <div style="padding:.8rem 1rem .6rem;">
+      <p class="mn-section-label" style="padding:0 0 .5rem;" data-i18n="you_are">Sie sind</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
+        <button class="mn-who-btn mn-who-active" onclick="mnMobileSwitch(this,'mob-bewerber')" id="mob-btn-bewerber">
+          <i class="fa-solid fa-user-tie"></i> <span data-i18n="applicant">Bewerber</span>
+        </button>
+        <button class="mn-who-btn" onclick="mnMobileSwitch(this,'mob-unternehmen')" id="mob-btn-unternehmen">
+          <i class="fa-solid fa-building"></i> <span data-i18n="company">Unternehmen</span>
+        </button>
+      </div>
+    </div>
+    <div class="mn-divider"></div>
+    <div id="mob-bewerber">
+      <div class="mn-section-label" style="padding-top:.7rem;" data-i18n="start_now">Jetzt starten</div>
+      <a href="index.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house"></i></span><span data-i18n="home">Startseite</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="index.html#services" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group"></i></span><span data-i18n="nav_services">Leistungen</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="index.html#process" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline"></i></span><span data-i18n="nav_process">Ablauf</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="Bewerbung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen"></i></span><span data-i18n="application">Bewerbung</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="vermittlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check"></i></span><span data-i18n="requirements">Voraussetzungen</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open"></i></span><span data-i18n="doc_organization">Dokumentenorganisation</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-divider"></div>
+      <div class="mn-section-label" style="padding-top:.7rem;" data-i18n="well_prepared">Gut vorbereitet sein</div>
+      <a href="arbeitsmarkt.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line"></i></span><span data-i18n="job_market_short">Arbeitsmarkt</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="alltag-deutschland.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun"></i></span><span data-i18n="daily_life">Alltag in Deutschland</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-divider"></div>
+      <a href="Chatbot.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(224,122,31,.08);border-radius:10px;margin:.4rem .8rem;">
+        <span class="mn-icon" style="background:rgba(224,122,31,.15);border-color:rgba(224,122,31,.3);"><i class="fa-solid fa-robot" style="color:var(--accent)"></i></span>
+        <span style="color:var(--white)" data-i18n="chatbot_title">Chatbot-3e</span>
+        <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+      </a>
+    </div>
+    <div id="mob-unternehmen" style="display:none">
+      <div class="mn-section-label" style="padding-top:.7rem;">🏢 <span data-i18n="for_companies">Für Unternehmen</span></div>
+      <a href="index.html#about" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users"></i></span><span data-i18n="nav_about">Über uns</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-unternehmen.html#vermittlung" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder"></i></span><span data-i18n="find_talent">Fachkräfte finden</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset"></i></span><span data-i18n="support_complaints">Support &amp; Beschwerden</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <a href="login_company.php" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket"></i></span><span data-i18n="company_login">Unternehmens-Login</span><i class="fa-solid fa-chevron-right mn-link-arrow"></i></a>
+      <div class="mn-divider"></div>
+      <a href="index.html#kontakt" class="mn-link" onclick="closeMobileNav()" style="background:rgba(224,122,31,.08);border-radius:10px;margin:.4rem .8rem;">
+        <span class="mn-icon" style="background:rgba(224,122,31,.15);border-color:rgba(224,122,31,.3);"><i class="fa-solid fa-envelope" style="color:var(--accent)"></i></span>
+        <span style="color:var(--white)" data-i18n="get_in_touch">Kontakt aufnehmen</span>
+        <i class="fa-solid fa-chevron-right mn-link-arrow"></i>
+      </a>
+    </div>
+  </div>
+  <div class="mn-footer">
+    <a href="06_onboarding_bewerber.php" class="mn-cta-primary" onclick="closeMobileNav()"><i class="fa-solid fa-arrow-right"></i> <span data-i18n="start_as_applicant">Als Bewerber starten</span></a>
+    <a href="login_company.php" class="mn-cta-secondary" onclick="closeMobileNav()"><i class="fa-solid fa-building"></i> <span data-i18n="for_companies">Für Unternehmen</span></a>
   </div>
 </nav>
 
@@ -358,47 +482,12 @@
 
       <div class="process-title"><i class="bi bi-file-earmark-text-fill"></i> Benötigte Dokumente</div>
       <ul class="doc-list">
-        <li>
-          <span class="doc-num">01</span>
-          <div class="doc-text">
-            <strong>Gültiger Reisepass</strong>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">02</span>
-          <div class="doc-text">
-            <strong>Akademischer Abschluss</strong>
-            <span>Diplôme de Docteur en Médecine</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">03</span>
-          <div class="doc-text">
-            <strong>Fächer- und Notenübersicht (Transcript)</strong>
-            <span>Detaillierte Übersicht des gesamten Studiums</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">04</span>
-          <div class="doc-text">
-            <strong>Sprachnachweis</strong>
-            <span>Mindestens B2-Zertifikat — Goethe-Institut, ÖSD oder telc</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">05</span>
-          <div class="doc-text">
-            <strong>Nachweise über Berufserfahrung</strong>
-            <span>Belege über das Internat / Praxisjahr</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">06</span>
-          <div class="doc-text">
-            <strong>Aktueller Lebenslauf auf Deutsch</strong>
-            <span>Vollständig und lückenlos</span>
-          </div>
-        </li>
+        <li><span class="doc-num">01</span><div class="doc-text"><strong>Gültiger Reisepass</strong></div></li>
+        <li><span class="doc-num">02</span><div class="doc-text"><strong>Akademischer Abschluss</strong><span>Diplôme de Docteur en Médecine</span></div></li>
+        <li><span class="doc-num">03</span><div class="doc-text"><strong>Fächer- und Notenübersicht (Transcript)</strong><span>Detaillierte Übersicht des gesamten Studiums</span></div></li>
+        <li><span class="doc-num">04</span><div class="doc-text"><strong>Sprachnachweis</strong><span>Mindestens B2-Zertifikat — Goethe-Institut, ÖSD oder telc</span></div></li>
+        <li><span class="doc-num">05</span><div class="doc-text"><strong>Nachweise über Berufserfahrung</strong><span>Belege über das Internat / Praxisjahr</span></div></li>
+        <li><span class="doc-num">06</span><div class="doc-text"><strong>Aktueller Lebenslauf auf Deutsch</strong><span>Vollständig und lückenlos</span></div></li>
         <li>
           <span class="doc-num">07</span>
           <div class="doc-text">
@@ -413,26 +502,11 @@
 
       <div class="process-title" style="margin-top:1.5rem"><i class="bi bi-arrow-right-circle-fill"></i> Wichtige Schritte im Prozess</div>
       <div class="process-steps">
-        <div class="process-step">
-          <div class="step-dot">1</div>
-          <p><strong>Beglaubigung durch das algerische Hochschulministerium</strong> — für akademische Unterlagen wie Diplom und Notenübersicht.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-dot">2</div>
-          <p><strong>Vorbeglaubigung durch das algerische Außenministerium</strong> — für behördliche Unterlagen wie Geburtsurkunde und Führungszeugnis.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-dot">3</div>
-          <p><strong>Legalisierung bei der deutschen Botschaft</strong> — alle vollständigen Unterlagen werden dort eingereicht.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-dot">4</div>
-          <p><strong>Fachgerechte Übersetzung in Deutschland</strong> — nach der Legalisierung werden die Dokumente professionell übersetzt.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-dot">5</div>
-          <p><strong>Einreichung beim Landesprüfungsamt / der Ärztekammer</strong> — die Unterlagen werden zur Prüfung der Anerkennungsfähigkeit vorgelegt. Im Regelfall erhalten Sie anschließend einen <em style="color:var(--white)">Defizitbescheid</em>.</p>
-        </div>
+        <div class="process-step"><div class="step-dot">1</div><p><strong>Beglaubigung durch das algerische Hochschulministerium</strong> — für akademische Unterlagen wie Diplom und Notenübersicht.</p></div>
+        <div class="process-step"><div class="step-dot">2</div><p><strong>Vorbeglaubigung durch das algerische Außenministerium</strong> — für behördliche Unterlagen wie Geburtsurkunde und Führungszeugnis.</p></div>
+        <div class="process-step"><div class="step-dot">3</div><p><strong>Legalisierung bei der deutschen Botschaft</strong> — alle vollständigen Unterlagen werden dort eingereicht.</p></div>
+        <div class="process-step"><div class="step-dot">4</div><p><strong>Fachgerechte Übersetzung in Deutschland</strong> — nach der Legalisierung werden die Dokumente professionell übersetzt.</p></div>
+        <div class="process-step"><div class="step-dot">5</div><p><strong>Einreichung beim Landesprüfungsamt / der Ärztekammer</strong> — die Unterlagen werden zur Prüfung der Anerkennungsfähigkeit vorgelegt. Im Regelfall erhalten Sie anschließend einen <em style="color:var(--white)">Defizitbescheid</em>.</p></div>
       </div>
 
       <div class="note-box">
@@ -464,47 +538,12 @@
 
       <div class="process-title"><i class="bi bi-file-earmark-text-fill"></i> Benötigte Dokumente</div>
       <ul class="doc-list">
-        <li>
-          <span class="doc-num">01</span>
-          <div class="doc-text">
-            <strong>Gültiger Reisepass</strong>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">02</span>
-          <div class="doc-text">
-            <strong>Schulzeugnisse</strong>
-            <span>Abschlusszeugnisse offiziell übersetzt und beglaubigt, damit sie in Deutschland anerkannt werden.</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">03</span>
-          <div class="doc-text">
-            <strong>Sprachzertifikat</strong>
-            <span>Nachweise über Deutschkenntnisse auf B1/B2-Niveau — z. B. telc oder Goethe-Zertifikat.</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">04</span>
-          <div class="doc-text">
-            <strong>Ärztliches Attest</strong>
-            <span>Bescheinigung, dass Sie körperlich und geistig für den Pflegeberuf geeignet sind.</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">05</span>
-          <div class="doc-text">
-            <strong>Polizeiliches Führungszeugnis</strong>
-            <span>Offizielles Dokument, das Ihre persönliche Zuverlässigkeit und Straffreiheit belegt.</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">06</span>
-          <div class="doc-text">
-            <strong>Impfnachweise</strong>
-            <span>Dokumentation Ihres Impfstatus — insbesondere Nachweis über die Hepatitis-B-Impfung.</span>
-          </div>
-        </li>
+        <li><span class="doc-num">01</span><div class="doc-text"><strong>Gültiger Reisepass</strong></div></li>
+        <li><span class="doc-num">02</span><div class="doc-text"><strong>Schulzeugnisse</strong><span>Abschlusszeugnisse offiziell übersetzt und beglaubigt, damit sie in Deutschland anerkannt werden.</span></div></li>
+        <li><span class="doc-num">03</span><div class="doc-text"><strong>Sprachzertifikat</strong><span>Nachweise über Deutschkenntnisse auf B1/B2-Niveau — z. B. telc oder Goethe-Zertifikat.</span></div></li>
+        <li><span class="doc-num">04</span><div class="doc-text"><strong>Ärztliches Attest</strong><span>Bescheinigung, dass Sie körperlich und geistig für den Pflegeberuf geeignet sind.</span></div></li>
+        <li><span class="doc-num">05</span><div class="doc-text"><strong>Polizeiliches Führungszeugnis</strong><span>Offizielles Dokument, das Ihre persönliche Zuverlässigkeit und Straffreiheit belegt.</span></div></li>
+        <li><span class="doc-num">06</span><div class="doc-text"><strong>Impfnachweise</strong><span>Dokumentation Ihres Impfstatus — insbesondere Nachweis über die Hepatitis-B-Impfung.</span></div></li>
       </ul>
 
       <div class="note-box">
@@ -536,34 +575,10 @@
 
       <div class="process-title"><i class="bi bi-file-earmark-text-fill"></i> Benötigte Dokumente</div>
       <ul class="doc-list">
-        <li>
-          <span class="doc-num">01</span>
-          <div class="doc-text">
-            <strong>Schulzeugnisse</strong>
-            <span>Kopien der letzten Schulabschlusszeugnisse — idealerweise ins Deutsche übersetzt und beglaubigt.</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">02</span>
-          <div class="doc-text">
-            <strong>Sprachzertifikat</strong>
-            <span>Nachweis über das aktuelle Sprachniveau (B1 oder B2), um die Kommunikationsfähigkeit im Arbeitsalltag zu belegen.</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">03</span>
-          <div class="doc-text">
-            <strong>Arbeitszeugnisse / Praktikumsbescheinigungen</strong>
-            <span>Nachweise über vorherige berufliche Tätigkeiten oder absolvierte Praktika — zeigen, dass bereits erste Erfahrungen gesammelt wurden.</span>
-          </div>
-        </li>
-        <li>
-          <span class="doc-num">04</span>
-          <div class="doc-text">
-            <strong>Gesundheitszeugnis <span style="color:var(--accent);font-weight:400;font-size:.8rem">(nur Gastronomie)</span></strong>
-            <span>Für den Bereich Gastronomie ist eine Belehrung nach dem Infektionsschutzgesetz zwingend erforderlich — häufig als „Gesundheitszeugnis" oder „Rote Karte" bezeichnet.</span>
-          </div>
-        </li>
+        <li><span class="doc-num">01</span><div class="doc-text"><strong>Schulzeugnisse</strong><span>Kopien der letzten Schulabschlusszeugnisse — idealerweise ins Deutsche übersetzt und beglaubigt.</span></div></li>
+        <li><span class="doc-num">02</span><div class="doc-text"><strong>Sprachzertifikat</strong><span>Nachweis über das aktuelle Sprachniveau (B1 oder B2), um die Kommunikationsfähigkeit im Arbeitsalltag zu belegen.</span></div></li>
+        <li><span class="doc-num">03</span><div class="doc-text"><strong>Arbeitszeugnisse / Praktikumsbescheinigungen</strong><span>Nachweise über vorherige berufliche Tätigkeiten oder absolvierte Praktika — zeigen, dass bereits erste Erfahrungen gesammelt wurden.</span></div></li>
+        <li><span class="doc-num">04</span><div class="doc-text"><strong>Gesundheitszeugnis <span style="color:var(--accent);font-weight:400;font-size:.8rem">(nur Gastronomie)</span></strong><span>Für den Bereich Gastronomie ist eine Belehrung nach dem Infektionsschutzgesetz zwingend erforderlich — häufig als „Gesundheitszeugnis" oder „Rote Karte" bezeichnet.</span></div></li>
       </ul>
 
       <div class="note-box">
@@ -580,61 +595,106 @@
 
 </div>
 
+<footer style="padding:2.5rem 5vw;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;background:rgba(15,32,23,.92);">
+  <a href="index.html">
+    <img src="Logo-cropped.png" alt="3E Consulting" class="logo-img-sm">
+  </a>
+  <div style="font-size:15px;color:#ece3cd;" data-i18n="footer_copyright">© 2026 3E Consulting. Alle Rechte vorbehalten.</div>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="impressum.php" style="color:#ece3cd;font-size:15px;text-decoration:none;" data-i18n="footer_imprint">Impressum</a>
+    <a href="impressum.php#tab-datenschutz" style="font-size:15px;color:#ece3cd;text-decoration:none;" data-i18n="footer_privacy">Datenschutz</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="i18n-data.js"></script>
+
 <script>
-/* NAV */
-const menuToggle = document.getElementById('menuToggle');
-const menuDropdown = document.getElementById('menuDropdown');
-
-function positionDropdown() {
-  if (window.innerWidth <= 768) {
-    const rect = menuToggle.getBoundingClientRect();
-    menuDropdown.style.cssText = `position:fixed;top:${rect.bottom+8}px;right:1rem;left:1rem;width:auto;max-width:100%;min-width:0`;
-  } else {
-    menuDropdown.style.cssText = 'position:;top:;right:0;left:;width:;max-width:;min-width:';
-  }
-}
-
-menuToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const open = !menuDropdown.hidden;
-  menuDropdown.hidden = open;
-  menuToggle.setAttribute('aria-expanded', String(!open));
-  if (!open) positionDropdown();
-});
-
-document.querySelectorAll('.menu-toggle').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const sub = btn.nextElementSibling;
-    sub.hidden = !sub.hidden;
-    btn.classList.toggle('open', !sub.hidden);
-  });
-});
-
-document.addEventListener('click', () => {
-  menuDropdown.hidden = true;
-  menuToggle.setAttribute('aria-expanded', 'false');
-  document.querySelectorAll('.menu-level-2, .menu-level-3').forEach(u => u.hidden = true);
-  document.querySelectorAll('.menu-toggle').forEach(b => b.classList.remove('open'));
-});
-
-menuDropdown.addEventListener('click', e => e.stopPropagation());
-
 /* TRACK TABS highlight on scroll */
 const trackBtns = document.querySelectorAll('.track-btn');
 const trackBlocks = document.querySelectorAll('.track-block');
-
 function setActiveTab(id) {
-  trackBtns.forEach(b => {
-    b.classList.toggle('active', b.getAttribute('href') === '#' + id);
-  });
+  trackBtns.forEach(b => b.classList.toggle('active', b.getAttribute('href') === '#' + id));
 }
-
-const obs = new IntersectionObserver(entries => {
+const trackObs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) setActiveTab(e.target.id); });
 }, { rootMargin: '-35% 0px' });
+trackBlocks.forEach(b => trackObs.observe(b));
 
-trackBlocks.forEach(b => obs.observe(b));
+/* MENÜ (Desktop) */
+function mn2Switch(btn, panel) {
+  document.querySelectorAll('.mn2-who-btn').forEach(b => b.classList.remove('mn2-who-active'));
+  btn.classList.add('mn2-who-active');
+  document.querySelectorAll('.mn2-panel').forEach(p => p.style.display = 'none');
+  document.getElementById('mn2-' + panel).style.display = 'block';
+}
+(function () {
+  const menuToggleBtn = document.getElementById('menuToggle');
+  const menuDropdown = document.getElementById('menuDropdown');
+  if (!menuToggleBtn || !menuDropdown) return;
+  menuToggleBtn.addEventListener('click', (e) => { e.stopPropagation(); menuDropdown.classList.toggle('open'); });
+  document.addEventListener('click', () => menuDropdown.classList.remove('open'));
+  menuDropdown.addEventListener('click', e => e.stopPropagation());
+})();
+
+/* Mobile Nav */
+function mnMobileSwitch(btn, panel) {
+  document.querySelectorAll('.mn-who-btn').forEach(b => b.classList.remove('mn-who-active'));
+  btn.classList.add('mn-who-active');
+  document.getElementById('mob-bewerber').style.display = 'none';
+  document.getElementById('mob-unternehmen').style.display = 'none';
+  document.getElementById(panel).style.display = 'block';
+}
+(function () {
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileNavClose = document.getElementById('mobileNavClose');
+  const overlay = document.getElementById('mobileNavOverlay');
+  if (!hamburgerBtn || !mobileNav) return;
+  function openMobileNav() { mobileNav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMobileNavFn() { mobileNav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  window.closeMobileNav = closeMobileNavFn;
+  hamburgerBtn.addEventListener('click', openMobileNav);
+  mobileNavClose.addEventListener('click', closeMobileNavFn);
+  overlay.addEventListener('click', closeMobileNavFn);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNavFn(); });
+})();
+
+/* i18n (uses shared i18n-data.js as on other pages) */
+const translations = window.__I18N__ || {};
+function applyTranslations(lang) {
+  const dict = translations[lang];
+  if (!dict) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  const html = document.getElementById('htmlRoot');
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  const labelMap = { de: 'DE', ar: 'AR', fr: 'FR', en: 'EN' };
+  const label = document.getElementById('langBtnLabel');
+  if (label) label.textContent = labelMap[lang] || lang.toUpperCase();
+  document.querySelectorAll('.lang-option').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
+  document.querySelectorAll('.mn-lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang-mobile') === lang));
+  localStorage.setItem('site_lang', lang);
+}
+function setLanguage(lang) {
+  applyTranslations(lang);
+  const dd = document.getElementById('langDropdown');
+  if (dd) dd.classList.remove('open');
+}
+(function () {
+  const langToggle = document.getElementById('langToggle');
+  const langDropdown = document.getElementById('langDropdown');
+  if (langToggle && langDropdown) {
+    langToggle.addEventListener('click', (e) => { e.stopPropagation(); langDropdown.classList.toggle('open'); });
+    document.addEventListener('click', () => langDropdown.classList.remove('open'));
+    langDropdown.addEventListener('click', e => e.stopPropagation());
+  }
+  const saved = localStorage.getItem('site_lang') || 'de';
+  applyTranslations(saved);
+})();
 </script>
 
 </body>
