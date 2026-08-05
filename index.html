@@ -41,7 +41,10 @@
 <meta name="twitter:description" content="Wir begleiten Fachkräfte aus Algerien auf ihrem Weg nach Deutschland – von der Bewerbung über Visum und Sprachkurse bis zur erfolgreichen Vermittlung bei deutschen Unternehmen.">
 <meta name="twitter:image" content="https://3econsulting.net/Logo-cropped.png">
 <meta name="twitter:image:alt" content="3E Consulting Logo – Engage, Expand, Excel">
-
+<link rel="manifest" href="./manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="3E Consulting">
 <!-- ═══════════════ STRUCTURED DATA (JSON-LD) ═══════════════ -->
 <!-- TODO: replace the placeholder street/city/postal code and opening hours below with your real business details -->
 <script type="application/ld+json">
@@ -1969,5 +1972,16 @@ document.querySelectorAll('.svc-card, .pstep, .about-item, .b-row, .fb-main-card
   el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity .5s ease, transform .5s ease'; observer.observe(el);
 });
 </script>
+  <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then((reg) => console.log('SW registered:', reg.scope))
+      .catch((err) => console.error('SW registration failed:', err));
+  });
+}
+</script>
+</body>
+</html>
 </body>
 </html>
