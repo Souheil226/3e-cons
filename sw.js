@@ -1,13 +1,12 @@
-const CACHE_NAME = '3e-consulting-v1';
-const OFFLINE_URL = '/index.html';
+const CACHE_NAME = '3e-consulting-v2';
+const OFFLINE_URL = './index.html';
 
 const PRECACHE_ASSETS = [
-  '/index.html',
-  '/Logo-cropped.png',
-  '/manifest.json'
+  './index.html',
+  './Logo-cropped.png',
+  './manifest.json'
 ];
 
-// تثبيت الـ Service Worker وتخزين الملفات الأساسية
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_ASSETS))
@@ -15,7 +14,6 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-// تفعيل وحذف الكاش القديم
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
@@ -27,11 +25,8 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// استراتيجية: Network First مع fallback للكاش (مناسبة لموقع فيه محتوى ديناميكي PHP)
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
-
-  // لا نتدخل فطلبات API/PHP الديناميكية (تسجيل الدخول، الفورمات...)
   if (event.request.url.includes('.php')) return;
 
   event.respondWith(
