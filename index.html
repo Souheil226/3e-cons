@@ -127,9 +127,9 @@
   --muted: #4a4a44;
   --border: rgba(31,122,61,.22);
   --glass: rgba(31,122,61,.05);
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-ar: 'Cairo', sans-serif;
+--font-display: 'Arial', sans-serif;
+--font-body: 'Arial', sans-serif;
+--font-ar: 'Arial', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -945,6 +945,7 @@ html[dir="rtl"] .card-btn-company:hover { transform: translateX(-3px); }
   align-self: stretch;
 }
 
+
 /* ═══════════════ CONTACT ═══════════════ */
 .contact-section { padding: 8rem 5vw; background: var(--navy); position: relative; overflow: hidden; }
 .contact-section::before { content: ''; position: absolute; top: -200px; right: -150px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(224,122,31,.08) 0%, transparent 70%); pointer-events: none; }
@@ -1110,6 +1111,19 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 @media(max-width:991px){ .logo-img-main{ max-width:190px; height:34px; } }
 @media(max-width:576px){ .logo-img-main{ max-width:165px; height:32px; } }
 @media(max-width:400px){ .logo-img-main{ max-width:135px; height:29px; } }
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--blue);
+  font-size: 0.8em;        /* تصغير حجم الخط ديال هاد الكلمة فقط */
+  white-space: nowrap;      /* منع القطع فالنص لسطرين */
+  word-break: normal;       /* تجاوز القاعدة العامة لي كتقطع الكلمة */
+  display: inline-block;
+  line-height: 1.15;
+}
+@media (max-width: 575px) {
+  .hero h1 em { font-size: 0.99em; }
+}
 </style>
 </head>
 <body>
@@ -1119,19 +1133,18 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 
 <!-- ═══════════════ NAVBAR ═══════════════ -->
 <header class="navbar-3e">
-  <div class="d-flex align-items-center justify-content-between w-100 gap-2 gap-sm-3">
-
-    <!-- ✅ LOGO IMAGE — الهيدر -->
+  <div class="d-flex align-items-center justify-content-between w-100">
      <a href="index.html" class="brand">
-    
-    <img src="Logo-cropped.png" alt="3E Consulting Logo" class="logo-img-main" decoding="async">
+    <img src="Logo-cropped.png" alt="3E Consulting" class="logo-img-main">
   </a>
 
     <nav aria-label="Hauptnavigation" style="display:contents">
       <ul class="nav-desktop-links d-flex list-unstyled mb-0 gap-3 mx-auto">
         <li><a href="#services"  class="nav-link-3e" data-i18n="nav.services">Leistungen</a></li>
-        <li><a href="#process"   class="nav-link-3e" data-i18n="nav.process">Ablauf</a></li>
-        <li><a href="#kontakt"   class="nav-link-3e" data-i18n="nav.contact">Kontakt</a></li>
+    <li><a href="Uber-uns.html"   class="nav-link-3e" data-i18n="nav-liAblaufata-i18n">Über uns</a></li>
+        <li><a href="Kontakt.html"   class="nav-link-3e" data-i18n="nav.contact">Kontakt</a></li>
+        
+        
       </ul>
     </nav>
     <div class="d-flex align-items-center gap-2 gap-sm-3 flex-shrink-0">
@@ -1154,30 +1167,24 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
       <div class="position-relative d-none d-lg-block">
         <button class="btn-menu" id="menuToggle" aria-haspopup="true" aria-expanded="false" aria-controls="menuDropdown"><span data-i18n="nav.menu">MENÜ</span> ▾</button>
         <div class="nav-dropdown-panel" id="menuDropdown">
-          <div class="mn2-who">
-            <p class="mn2-who-label" data-i18n="nav.youAre">Sie sind</p>
-            <div class="mn2-who-btns">
-              <button class="mn2-who-btn mn2-who-active" aria-pressed="true" onclick="mn2Switch(this,'bewerber')">
-                <i class="fa-solid fa-user-tie" aria-hidden="true"></i> <span data-i18n="nav.applicant">Bewerber</span>
-              </button>
-              <button class="mn2-who-btn" aria-pressed="false" onclick="mn2Switch(this,'unternehmen')">
-                <i class="fa-solid fa-building" aria-hidden="true"></i> <span data-i18n="nav.company">Unternehmen</span>
-              </button>
-            </div>
-          </div>
+
           <div class="mn2-panel" id="mn2-bewerber">
             <div class="mn2-group">
-              <div class="mn2-group-label" data-i18n="nav.startNow">Jetzt starten</div>
+              <div class="mn2-group-label" data-i18n="nav.startNow" style="color: #e07a1f;">Für Bewerber</div>
               <a href="Bewerbung.html" class="mn2-link"><i class="fa-solid fa-file-pen" aria-hidden="true"></i> <span data-i18n="nav.submitApplication">Bewerbung einreichen</span></a>
               <a href="vermitlung.html" class="mn2-link"><i class="fa-solid fa-list-check" aria-hidden="true"></i> <span data-i18n="nav.checkRequirements">Voraussetzungen prüfen</span></a>
               <a href="service-bewerber.html#dokumentenorganisation" class="mn2-link"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> <span data-i18n="nav.docOrganization">Dokumentenorganisation</span></a>
               <a href="service-bewerber.html#profil-video" class="mn2-link"><i class="fa-solid fa-video" aria-hidden="true"></i> <span data-i18n="nav.profileVideo">Profil-Video erstellen</span></a>
+              <a href="alltag-deutschland.html" class="mn2-link"><i class="fa-solid fa-sun" aria-hidden="true"></i> <span data-i18n="nav.dailyLife"> Deutschland</span></a>
             </div>
             <div class="mn2-divider"></div>
             <div class="mn2-group">
-              <div class="mn2-group-label"><i class="fa-solid fa-book-open" aria-hidden="true"></i> <span data-i18n="nav.beWellPrepared">Gut vorbereitet sein</span></div>
-              <a href="arbeitsmarkt.html" class="mn2-link"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> <span data-i18n="nav.labourMarket">Arbeitsmarkt Deutschland</span></a>
-              <a href="alltag-deutschland.html" class="mn2-link"><i class="fa-solid fa-sun" aria-hidden="true"></i> <span data-i18n="nav.dailyLife">Alltag in Deutschland</span></a>
+              <div class="mn2-group-label" style="color: #e07a1f;"> <span data-i18n="nav.beWellPrepared">Für Unternehmen</span></div>
+              
+              <a href="service-unternehmen.html#vermittlung" class="mn2-link"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i> <span data-i18n="nav.findTalent">Fachkräfte finden</span></a>
+              <a href="service-unternehmen.html#beschwerdeverfahren" class="mn2-link"><i class="fa-solid fa-headset" aria-hidden="true"></i> <span data-i18n="nav.supportComplaints">Support &amp; Beschwerden</span></a>
+              <a href="login_company.php" class="mn2-link"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> <span data-i18n="nav.companyLogin">Unternehmens-Login</span></a>
+
             </div>
             <div class="mn2-divider"></div>
             <a href="Chatbot.html" class="mn2-chatbot-btn">
@@ -1188,13 +1195,10 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
           </div>
           <div class="mn2-panel" id="mn2-unternehmen" style="display:none">
             <div class="mn2-group">
-              <div class="mn2-group-label"><i class="fa-solid fa-building" aria-hidden="true"></i> <span data-i18n="nav.forCompanies">Für Unternehmen</span></div>
-              <a href="service-unternehmen.html#vermittlung" class="mn2-link"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i> <span data-i18n="nav.findTalent">Fachkräfte finden</span></a>
-              <a href="service-unternehmen.html#beschwerdeverfahren" class="mn2-link"><i class="fa-solid fa-headset" aria-hidden="true"></i> <span data-i18n="nav.supportComplaints">Support &amp; Beschwerden</span></a>
-              <a href="login_company.php" class="mn2-link"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> <span data-i18n="nav.companyLogin">Unternehmens-Login</span></a>
+
             </div>
             <div class="mn2-divider"></div>
-            <a href="#kontakt" class="mn2-chatbot-btn" onclick="document.getElementById('menuDropdown').classList.remove('open')">
+            <a href="Kontakt.html" class="mn2-chatbot-btn" onclick="document.getElementById('menuDropdown').classList.remove('open')">
               <i class="fa-solid fa-envelope" aria-hidden="true"></i>
               <div><strong data-i18n="nav.getInTouch">Kontakt aufnehmen</strong><span data-i18n="nav.replyIn24h">Wir antworten in 24h</span></div>
               <i class="fa-solid fa-arrow-right" style="margin-left:auto;font-size:.7rem;opacity:.5" aria-hidden="true"></i>
@@ -1213,8 +1217,9 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
   <div class="mn-header">
-
-   
+    <a href="index.html" class="mn-brand">
+      <img src="Logo-cropped.png" alt="3E Consulting" style="height:34px;width:auto;object-fit:contain;">
+    </a>
 
     <button class="mn-close" id="mobileNavClose" aria-label="Menü schließen">
       <i class="fa-solid fa-xmark" aria-hidden="true"></i>
@@ -1225,41 +1230,32 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
     
     <div class="mn-divider"></div>
 
-    <div style="padding:.8rem 1rem .6rem;">
-      <p class="mn-section-label" style="padding:0 0 .5rem;" data-i18n="nav.youAre">Sie sind</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
-        <button class="mn-who-btn mn-who-active" aria-pressed="true" onclick="mnMobileSwitch(this,'mob-bewerber')" id="mob-btn-bewerber">
-          <i class="fa-solid fa-user-tie" aria-hidden="true"></i> <span data-i18n="nav.applicant">Bewerber</span>
-        </button>
-        <button class="mn-who-btn" aria-pressed="false" onclick="mnMobileSwitch(this,'mob-unternehmen')" id="mob-btn-unternehmen">
-          <i class="fa-solid fa-building" aria-hidden="true"></i> <span data-i18n="nav.company">Unternehmen</span>
-        </button>
-      </div>
-    </div>
     <div class="mn-divider"></div>
     <div id="mob-bewerber">
-      <div class="mn-section-label" style="padding-top:.7rem;">🚀 <span data-i18n="nav.startNow">Jetzt starten</span></div>
+      <div class="mn-section-label" style="padding-top:.7rem; color: #e07a1f;><span data-i18n="nav.startNow">Für Bewerber</span></div>
       <a href="#home"         class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-house" aria-hidden="true"></i></span><span data-i18n="nav.home">Startseite</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
       <a href="#services"     class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span><span data-i18n="nav.services">Leistungen</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
-      <a href="#process"      class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline" aria-hidden="true"></i></span><span data-i18n="nav.process">Ablauf</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="Uber-uns.html"      class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-timeline" aria-hidden="true"></i></span><span data-i18n="nav.process">Über uns</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
       <a href="Bewerbung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-file-pen" aria-hidden="true"></i></span><span data-i18n="nav.application">Bewerbung</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
       <a href="vermitlung.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-list-check" aria-hidden="true"></i></span><span data-i18n="nav.requirements">Voraussetzungen</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
       <a href="service-bewerber.html#dokumentenorganisation" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-folder-open" aria-hidden="true"></i></span><span data-i18n="nav.docOrganization">Dokumentenorganisation</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="alltag-deutschland.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></span><span data-i18n="nav.dailyLife">Deutschland</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
       <div class="mn-divider"></div>
-      <div class="mn-section-label" style="padding-top:.7rem;">📚 <span data-i18n="nav.beWellPrepared">Gut vorbereitet sein</span></div>
-      <a href="arbeitsmarkt.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span><span data-i18n="nav.labourMarketShort">Arbeitsmarkt</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
-      <a href="alltag-deutschland.html" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-sun" aria-hidden="true"></i></span><span data-i18n="nav.dailyLife">Alltag in Deutschland</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <div class="mn-section-label" style="padding-top:.7rem;color: #e07a1f;"><span data-i18n="nav.beWellPrepared">Für Unternehmen</span></div>
+        <a href="service-unternehmen.html#vermittlung" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i></span><span data-i18n="nav.findTalent">Fachkräfte finden</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></span><span data-i18n="nav.supportComplaints">Support &amp; Beschwerden</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="login_company.php" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i></span><span data-i18n="nav.companyLogin">Unternehmens-Login</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+  
+
+
       <div class="mn-divider"></div>
       <a href="Chatbot.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(224,122,31,.1);border-radius:10px;margin:.4rem .8rem;"><span class="mn-icon" style="background:rgba(224,122,31,.18);border-color:rgba(224,122,31,.32);"><i class="fa-solid fa-robot" style="color:var(--accent-hover)" aria-hidden="true"></i></span><span style="color:var(--white)">Chatbot-3e</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
     </div>
     <div id="mob-unternehmen" style="display:none">
-      <div class="mn-section-label" style="padding-top:.7rem;">🏢 <span data-i18n="nav.forCompanies">Für Unternehmen</span></div>
+  
       <a href="#about"        class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users" aria-hidden="true"></i></span><span data-i18n="nav.about">Über uns</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
-      <a href="service-unternehmen.html#vermittlung" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i></span><span data-i18n="nav.findTalent">Fachkräfte finden</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
-      <a href="service-unternehmen.html#beschwerdeverfahren" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></span><span data-i18n="nav.supportComplaints">Support &amp; Beschwerden</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
-      <a href="login_company.php" class="mn-link" onclick="closeMobileNav()"><span class="mn-icon"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i></span><span data-i18n="nav.companyLogin">Unternehmens-Login</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
       <div class="mn-divider"></div>
-      <a href="#kontakt" class="mn-link" onclick="closeMobileNav()" style="background:rgba(224,122,31,.1);border-radius:10px;margin:.4rem .8rem;"><span class="mn-icon" style="background:rgba(224,122,31,.18);border-color:rgba(224,122,31,.32);"><i class="fa-solid fa-envelope" style="color:var(--accent-hover)" aria-hidden="true"></i></span><span style="color:var(--white)" data-i18n="nav.getInTouch">Kontakt aufnehmen</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
+      <a href="Kontakt.html" class="mn-link" onclick="closeMobileNav()" style="background:rgba(224,122,31,.1);border-radius:10px;margin:.4rem .8rem;"><span class="mn-icon" style="background:rgba(224,122,31,.18);border-color:rgba(224,122,31,.32);"><i class="fa-solid fa-envelope" style="color:var(--accent-hover)" aria-hidden="true"></i></span><span style="color:var(--white)" data-i18n="nav.getInTouch">Kontakt aufnehmen</span><i class="fa-solid fa-chevron-right mn-link-arrow" aria-hidden="true"></i></a>
     </div>
   </div>
   <div class="mn-footer">
@@ -1372,7 +1368,7 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
 </section>
 
 
-<!-- ═══════════════ PROCESS ═══════════════ -->
+<!-- ═══════════════ PROCESS ═══════════════ 
 <section id="process" class="process-section">
   <div style="max-width:1200px; margin:0 auto">
     <div class="row align-items-end mb-5 g-3">
@@ -1388,6 +1384,7 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
     </div>
   </div>
 </section>
+-->
 
 
 <!-- ═══════════════ SERVICES ═══════════════ -->
@@ -1424,9 +1421,7 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
         <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-coins" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a2.title">Zahlung nur bei Vertragsabschluss</h4><p data-i18n="bridge.a2.desc">Zero-Risk-Modell — erst nach Unterzeichnung zahlen.</p></div></div>
         <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-video" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a3.title">Video-Profil statt Papierstapel</h4><p data-i18n="bridge.a3.desc">30–90 Sek. — Persönlichkeit und Kompetenz direkt zeigen.</p></div></div>
         <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a4.title">Transparenter Zugang</h4><p data-i18n="bridge.a4.desc">Klarer Weg ohne unlautere Vermittler.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a5.title">Umfassende Begleitung</h4><p data-i18n="bridge.a5.desc">Qualifikationsanerkennung und Visa — Schritt für Schritt.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a6.title">Sprachkurse & Training</h4><p data-i18n="bridge.a6.desc">Zertifizierte Kurse und interkulturelle Trainings.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-passport" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a7.title">Visum & Behörden</h4><p data-i18n="bridge.a7.desc">Vollständige Begleitung durch alle Visaprozesse.</p></div></div>
+         <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a6.title">Sprachkurse & Training</h4><p data-i18n="bridge.a6.desc">Zertifizierte Kurse und interkulturelle Trainings.</p></div></div>
         <div class="b-row"><div class="b-row-icon b-row-icon-green"><i class="fa-solid fa-comments" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.a8.title">Dreisprachiger Support</h4><p data-i18n="bridge.a8.desc">Deutsch, Französisch und Arabisch — immer erreichbar.</p></div></div>
       </div>
       <div class="col-2 bridge-center-col d-none d-xl-flex">
@@ -1437,12 +1432,10 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
         <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-award" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b1.title">Geprüfte B1/B2-Fachkräfte</h4><p data-i18n="bridge.b1.desc">Anerkanntes Deutschzertifikat — sofort einsatzbereit.</p></div></div>
         <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-file-video" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b2.title">Kandidaten per Video kennenlernen</h4><p data-i18n="bridge.b2.desc">30–90 Sek. sichten — vor dem ersten Kontakt.</p></div></div>
         <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b3.title">Zahlung nur bei Einstellung</h4><p data-i18n="bridge.b3.desc">Kein Kostenrisiko — nur bei erfolgreichem Abschluss.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b4.title">Exklusiver Talentpool</h4><p data-i18n="bridge.b4.desc">Vorqualifizierte algerische Fachkräfte — exklusiv.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b5.title">Prozess-Effizienz §81a</h4><p data-i18n="bridge.b5.desc">Beschleunigtes Fachkräfteverfahren inklusive.</p></div></div>
+<div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b5.title">Prozess-Effizienz §81a</h4><p data-i18n="bridge.b5.desc">Beschleunigtes Fachkräfteverfahren inklusive.</p></div></div>
         <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b6.title">Integrationsrisiko minimiert</h4><p data-i18n="bridge.b6.desc">Onboarding-Pakete für nachhaltige Eingliederung.</p></div></div>
         <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-filter" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b7.title">Vorgefilterter Bewerberpool</h4><p data-i18n="bridge.b7.desc">Jede Bewerbung persönlich geprüft — nur Passende.</p></div></div>
-        <div class="b-row"><div class="b-row-icon b-row-icon-amber"><i class="fa-solid fa-headset" aria-hidden="true"></i></div><div class="b-row-text"><h4 data-i18n="bridge.b8.title">Betreuung nach Einstellung</h4><p data-i18n="bridge.b8.desc">Wir bleiben ansprechbar — für Integration und Fragen.</p></div></div>
-      </div>
+         </div>
     </div>
     <div class="row g-3 mt-4">
       <div class="col-12 col-md-6"><div class="bb-card bb-green"><div class="bb-icon bb-icon-green"><i class="fa-solid fa-rocket" aria-hidden="true"></i></div><div class="bb-text"><h3 data-i18n="bridge.cta1.title">Bereit für Ihren Weg nach Deutschland?</h3><p data-i18n="bridge.cta1.desc">Kostenlos registrieren und Video-Profil erstellen — in Minuten.</p></div><a href="registraion.html" class="bb-btn bb-btn-green" data-i18n="bridge.cta1.btn">Jetzt starten →</a></div></div>
@@ -1451,7 +1444,7 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
   </div>
 </section>
 
-<!-- ═══════════════ CONTACT ═══════════════ -->
+<!-- ═══════════════ CONTACT ═══════════════ 
 <section id="kontakt" class="contact-section">
   <div class="contact-wrap">
     <div class="contact-info-side">
@@ -1506,6 +1499,7 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
     </div>
   </div>
 </section>
+-->
 
 </main>
 
@@ -1533,12 +1527,12 @@ footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); background: r
    ════════════════════════════════════════════════════════════════ */
 const I18N = {
   de: {
-    "nav.services":"Leistungen","nav.process":"Ablauf","nav.about":"Über uns","nav.contact":"Kontakt",
+    "nav.services":"Leistungen","nav.process":"uber uns","nav.about":"Über uns","nav.contact":"Kontakt",
     "nav.menu":"MENÜ","nav.youAre":"Sie sind","nav.applicant":"Bewerber","nav.company":"Unternehmen",
-    "nav.startNow":"Jetzt starten","nav.submitApplication":"Bewerbung einreichen","nav.checkRequirements":"Voraussetzungen prüfen",
+    "nav.startNow":"Für Bewerber","nav.submitApplication":"Bewerbung einreichen","nav.checkRequirements":"Voraussetzungen prüfen",
     "nav.docOrganization":"Dokumentenorganisation","nav.profileVideo":"Profil-Video erstellen",
-    "nav.beWellPrepared":"Gut vorbereitet sein","nav.labourMarket":"Arbeitsmarkt Deutschland","nav.labourMarketShort":"Arbeitsmarkt",
-    "nav.dailyLife":"Alltag in Deutschland","nav.askAnyQuestion":"Stellen Sie jede Frage",
+    "nav.beWellPrepared":"Für Unternehmen","nav.labourMarket":"Arbeitsmarkt Deutschland","nav.labourMarketShort":"Arbeitsmarkt",
+    "nav.dailyLife":" Deutschland","nav.askAnyQuestion":"Stellen Sie jede Frage",
     "nav.forCompanies":"Für Unternehmen","nav.findTalent":"Fachkräfte finden","nav.supportComplaints":"Support & Beschwerden",
     "nav.companyLogin":"Unternehmens-Login","nav.getInTouch":"Kontakt aufnehmen","nav.replyIn24h":"Wir antworten in 24h",
     "nav.language":"Sprache","nav.home":"Startseite","nav.application":"Bewerbung","nav.requirements":"Voraussetzungen",
@@ -1580,18 +1574,14 @@ const I18N = {
     "bridge.a2.title":"Zahlung nur bei Vertragsabschluss","bridge.a2.desc":"Zero-Risk-Modell — erst nach Unterzeichnung zahlen.",
     "bridge.a3.title":"Video-Profil statt Papierstapel","bridge.a3.desc":"30–90 Sek. — Persönlichkeit und Kompetenz direkt zeigen.",
     "bridge.a4.title":"Transparenter Zugang","bridge.a4.desc":"Klarer Weg ohne unlautere Vermittler.",
-    "bridge.a5.title":"Umfassende Begleitung","bridge.a5.desc":"Qualifikationsanerkennung und Visa — Schritt für Schritt.",
-    "bridge.a6.title":"Sprachkurse & Training","bridge.a6.desc":"Zertifizierte Kurse und interkulturelle Trainings.",
-    "bridge.a7.title":"Visum & Behörden","bridge.a7.desc":"Vollständige Begleitung durch alle Visaprozesse.",
-    "bridge.a8.title":"Viersprachiger Support","bridge.a8.desc":"Deutsch, Französisch ,English und Arabisch — immer erreichbar.",
+   "bridge.a6.title":"Sprachkurse & Training","bridge.a6.desc":"Zertifizierte Kurse und interkulturelle Trainings.",
+   "bridge.a8.title":"Viersprachiger Support","bridge.a8.desc":"Deutsch, Französisch ,English und Arabisch — immer erreichbar.",
     "bridge.b1.title":"Geprüfte B1/B2-Fachkräfte","bridge.b1.desc":"Anerkanntes Deutschzertifikat — sofort einsatzbereit.",
     "bridge.b2.title":"Kandidaten per Video kennenlernen","bridge.b2.desc":"30–90 Sek. sichten — vor dem ersten Kontakt.",
     "bridge.b3.title":"Zahlung nur bei Einstellung","bridge.b3.desc":"Kein Kostenrisiko — nur bei erfolgreichem Abschluss.",
-    "bridge.b4.title":"Exklusiver Talentpool","bridge.b4.desc":"Vorqualifizierte algerische Fachkräfte — exklusiv.",
-    "bridge.b5.title":"Prozess-Effizienz §81a","bridge.b5.desc":"Beschleunigtes Fachkräfteverfahren inklusive.",
+  "bridge.b5.title":"Prozess-Effizienz §81a","bridge.b5.desc":"Beschleunigtes Fachkräfteverfahren inklusive.",
     "bridge.b6.title":"Integrationsrisiko minimiert","bridge.b6.desc":"Onboarding-Pakete für nachhaltige Eingliederung.",
     "bridge.b7.title":"Vorgefilterter Bewerberpool","bridge.b7.desc":"Jede Bewerbung persönlich geprüft — nur Passende.",
-    "bridge.b8.title":"Betreuung nach Einstellung","bridge.b8.desc":"Wir bleiben ansprechbar — für Integration und Fragen.",
     "bridge.cta1.title":"Bereit für Ihren Weg nach Deutschland?","bridge.cta1.desc":"Kostenlos registrieren und Video-Profil erstellen — in Minuten.","bridge.cta1.btn":"Jetzt starten →",
     "bridge.cta2.title":"Fachkräftemangel lösen?","bridge.cta2.desc":"Zugang zu geprüften, motivierten Kandidaten — ohne Vorabkosten.","bridge.cta2.btn":"Kandidaten sehen →",
     "contact.tag":"Kontakt","contact.title":"Lassen Sie uns sprechen",
@@ -1615,8 +1605,8 @@ const I18N = {
     "nav.companyLogin":"Connexion entreprise","nav.getInTouch":"Nous contacter","nav.replyIn24h":"Réponse sous 24h",
     "nav.language":"Langue","nav.home":"Accueil","nav.application":"Candidature","nav.requirements":"Conditions requises",
     "nav.startAsApplicant":"Commencer en tant que candidat",
-    "hero.eyebrow":"VOTRE PARTENAIRE D'INTÉGRATION FULL-SERVICE POUR L'ALLEMAGNE",
-    "hero.title":"De l'<em>Algérie</em><br>à votre employeur<br>allemand",
+
+    "hero.title":"VOTRE PARTENAIRE<em> D'INTÉGRATION</em><br> FULL-SERVICE POUR<br>L'ALLEMAGNE",
     "hero.sub":"Nous vous accompagnons à chaque étape — de la préparation des documents à la recherche de logement, jusqu'à votre arrivée réussie en Allemagne.",
     "hero.imApplicant":"Je suis candidat","hero.imCompany":"Je suis une entreprise",
     "fb.tag":"Notre spécialisation","fb.title":"Secteurs dans lesquels<br>nous plaçons",
@@ -1687,8 +1677,8 @@ const I18N = {
     "nav.companyLogin":"Company login","nav.getInTouch":"Get in touch","nav.replyIn24h":"We reply within 24h",
     "nav.language":"Language","nav.home":"Home","nav.application":"Application","nav.requirements":"Requirements",
     "nav.startAsApplicant":"Start as an applicant",
-    "hero.eyebrow":"YOUR FULL-SERVICE INTEGRATION PARTNER FOR GERMANY",
-    "hero.title":"From <em>Algeria</em><br>to your German<br>employer",
+
+    "hero.title":"YOUR FULL-SERVICE <em>INTEGRATION PARTNER</em><br>For<br>Germany",
     "hero.sub":"We support you every step of the way — from document preparation to finding accommodation, all the way to your successful arrival in Germany.",
     "hero.imApplicant":"I'm an applicant","hero.imCompany":"I'm a company",
     "fb.tag":"Our specialization","fb.title":"Industries where<br>we place candidates",
@@ -1759,8 +1749,8 @@ const I18N = {
     "nav.companyLogin":"تسجيل دخول الشركات","nav.getInTouch":"تواصل معنا","nav.replyIn24h":"نرد خلال 24 ساعة",
     "nav.language":"اللغة","nav.home":"الرئيسية","nav.application":"الطلب","nav.requirements":"الشروط المطلوبة",
     "nav.startAsApplicant":"ابدأ كمتقدم",
-    "hero.eyebrow":"شريككم الشامل للاندماج في ألمانيا",
-    "hero.title":"من <em>الجزائر</em><br>إلى صاحب العمل<br>الألماني",
+
+    "hero.title":"شريككم  <em>الشامل للاندماج </em><br>في <br>المانيا",
     "hero.sub":"نرافقك في كل خطوة — من تحضير الوثائق إلى البحث عن سكن، وصولًا إلى وصولك بنجاح إلى ألمانيا.",
     "hero.imApplicant":"أنا متقدم","hero.imCompany":"أنا شركة",
     "fb.tag":"مجال تخصصنا","fb.title":"القطاعات التي<br>نوظف فيها",
