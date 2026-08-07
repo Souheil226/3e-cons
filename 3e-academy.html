@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3E — Engage · Expand · Excel · École de langue allemande</title>
+<meta name="description" content="3E Academy — Deutsch lernen in Constantine. Eine Brücke zwischen deutscher Präzision und algerischer Wärme.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<style>
+:root{
+ --ink:#13110F; --ink-soft:#5C5347; --paper:#EFE4CE; --sand:#E5D6BB; --card:#fff;
+ --green:#0E4A2F; --green2:#15663F; --green-deep:#08291A;
+ --terra:#C2410C; --amber:#E08A2B; --gold:#D9A441;
+ --line:rgba(19,17,15,.12); --line2:rgba(19,17,15,.07);
+ --shadow:0 18px 50px rgba(14,74,47,.12); --r:20px; --maxw:1140px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body[dir=rtl]{font-family:'Cairo','Inter',sans-serif}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;line-height:1.08;letter-spacing:-.5px;font-weight:900}
+body[dir=rtl] h1,body[dir=rtl] h2,body[dir=rtl] h3,body[dir=rtl] h4{font-family:'Cairo',sans-serif;letter-spacing:0}
+a{color:inherit}.accent{font-style:italic;background:linear-gradient(100deg,#C2410C 0%,#E08A2B 25%,#F4CE8E 50%,#E08A2B 75%,#C2410C 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer 4.5s linear infinite}
+body[dir=rtl] .accent{font-style:normal}
+img{max-width:100%}
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:3px;text-transform:uppercase;color:var(--terra)}
+body[dir=rtl] .eyebrow{letter-spacing:0;font-family:'Cairo',sans-serif}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grid-bg{background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:34px 34px}
+
+.site-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;padding-left:max(24px,calc((100vw - var(--maxw))/2 + 24px));padding-right:max(24px,calc((100vw - var(--maxw))/2 + 24px));background:rgba(251,246,236,.82);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:.3s}
+.site-header.scrolled{padding-top:9px;padding-bottom:9px;border-bottom:1px solid var(--line);box-shadow:0 6px 24px rgba(19,17,15,.06)}
+.logo-wrap{cursor:pointer;display:flex;align-items:center}
+.nav-links{display:flex;gap:30px}
+.nav-link{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none;color:var(--ink);opacity:.82;position:relative;padding:4px 0;transition:.2s}
+.nav-link:after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--terra);transition:.25s}
+body[dir=rtl] .nav-link:after{left:auto;right:0}
+.nav-link:hover{opacity:1}.nav-link:hover:after{width:100%}
+
+/* ===== Language switcher (dropdown) ===== */
+.lang-dd{position:relative}
+.lang-switch{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;background:var(--green);color:#fff;border:none;padding:9px 16px;border-radius:100px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.lang-switch:hover{background:var(--green2);transform:translateY(-1px)}
+.lang-switch .lg-flag{font-size:15px;line-height:1}
+.lang-switch .lg-caret{font-size:11px;transition:transform .22s ease;opacity:.85}
+.lang-switch[aria-expanded="true"] .lg-caret{transform:rotate(180deg)}
+.lang-menu{position:absolute;top:calc(100% + 10px);right:0;min-width:190px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 40px rgba(19,17,15,.16);padding:8px;opacity:0;visibility:hidden;transform:translateY(-6px) scale(.98);transform-origin:top right;transition:opacity .18s ease,transform .18s ease,visibility .18s;z-index:80}
+body[dir=rtl] .lang-menu{right:auto;left:0;transform-origin:top left}
+.lang-menu.open{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.lang-opt{display:flex;align-items:center;gap:10px;width:100%;border:none;background:none;text-align:left;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;color:var(--ink);padding:10px 12px;border-radius:10px;cursor:pointer;transition:.15s}
+body[dir=rtl] .lang-opt{text-align:right}
+.lang-opt:hover{background:var(--paper)}
+.lang-opt.active{background:rgba(14,74,47,.09);color:var(--green)}
+.lang-opt .lg-flag{font-size:17px}
+.lang-opt .lg-name{flex:1}
+.lang-opt .lg-check{font-size:14px;color:var(--green);opacity:0}
+.lang-opt.active .lg-check{opacity:1}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;padding:110px 0 94px;background:#06231A;perspective:900px}
+.hero-room{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-room:before{content:"";position:absolute;left:68%;top:46%;width:760px;height:760px;transform:translate(-50%,-50%);background:radial-gradient(circle, rgba(46,212,122,.24), rgba(46,212,122,0) 68%);filter:blur(14px);pointer-events:none}
+.hero-room:after{content:"";position:absolute;inset:0;background:radial-gradient(80% 74% at 50% 42%,transparent,rgba(3,18,12,.8))}
+.hero-logo3d{
+  position:absolute;left:68%;top:46%;width:min(660px,88%);
+  transform:translate(-50%,-50%);
+  opacity:.96;
+  mix-blend-mode:screen;
+  -webkit-mask-image:radial-gradient(ellipse 58% 58% at center, #000 50%, transparent 100%);
+  mask-image:radial-gradient(ellipse 58% 58% at center, #000 50%, transparent 100%);
+  filter:drop-shadow(0 0 55px rgba(46,212,122,.42)) drop-shadow(0 0 130px rgba(46,212,122,.2)) saturate(1.08) contrast(1.04);
+  transition:transform .25s ease-out;
+  will-change:transform;
+}
+.hero-grid-floor{position:absolute;left:-30%;right:-30%;bottom:-12%;height:58%;background-image:repeating-linear-gradient(90deg,rgba(46,212,122,.16) 0 2px,transparent 2px 70px),repeating-linear-gradient(0deg,rgba(46,212,122,.12) 0 2px,transparent 2px 70px);transform:rotateX(73deg);transform-origin:bottom center;-webkit-mask-image:linear-gradient(transparent,#000 42%);mask-image:linear-gradient(transparent,#000 42%);animation:floorflow 5.5s linear infinite;transition:transform .25s ease-out}
+@keyframes floorflow{from{background-position:0 0,0 0}to{background-position:0 0,0 70px}}
+.hero-content{position:relative;z-index:2;max-width:720px;margin:0;padding:0 24px 0 max(24px,4vw)}
+body[dir=rtl] .hero-content{padding:0 max(24px,4vw) 0 24px;margin-left:auto;text-align:right}
+.hero h1{font-size:clamp(40px,7vw,76px);max-width:14ch;color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.4)}
+.hero .accent{color:#F2A65A}
+.hero-sub{font-size:clamp(16px,2vw,19px);color:rgba(255,255,255,.86);max-width:54ch;margin:22px 0 0}
+body[dir=rtl] .hero-sub{margin-left:auto}
+.hero-banner{display:inline-flex;align-items:center;gap:20px;margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 22px;box-shadow:0 6px 20px rgba(19,17,15,.08)}
+.hero-banner-item{display:flex;flex-direction:column}
+body[dir=rtl] .hero-banner-item{align-items:flex-end}
+.hero-banner-label{font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft)}
+body[dir=rtl] .hero-banner-label{letter-spacing:0;font-family:'Cairo'}
+.hero-banner-value{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:var(--green)}
+body[dir=rtl] .hero-banner-value{font-family:'Cairo'}
+.hero-banner-sep{width:1px;height:34px;background:var(--line)}
+.hero-cta{display:inline-block;margin-top:28px;background:var(--terra);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;text-decoration:none;padding:16px 30px;border-radius:100px;box-shadow:0 12px 30px rgba(194,65,12,.32);transition:.2s}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(194,65,12,.42);background:#a8360a}
+.hero-cta.secondary{background:var(--green);box-shadow:0 12px 30px rgba(14,74,47,.32);margin-left:12px}
+body[dir=rtl] .hero-cta.secondary{margin-left:0;margin-right:12px}
+.hero-cta.secondary:hover{background:var(--green2);box-shadow:0 16px 38px rgba(14,74,47,.42)}
+.hero-stats{display:flex;gap:44px;margin-top:50px;flex-wrap:wrap}
+body[dir=rtl] .hero-stats{justify-content:flex-end}
+.stat-item{position:relative;padding-left:18px}
+.stat-item:before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:3px;background:linear-gradient(var(--green),var(--terra))}
+body[dir=rtl] .stat-item{padding-left:0;padding-right:18px;text-align:right}body[dir=rtl] .stat-item:before{left:auto;right:0}
+.stat-num{font-family:'Fraunces',serif;font-weight:900;font-size:32px;color:#fff}
+body[dir=rtl] .stat-num{font-family:'Cairo',sans-serif}
+.stat-label{font-family:'Space Grotesk',sans-serif;font-size:13px;color:rgba(255,255,255,.78)}
+body[dir=rtl] .stat-label{font-family:'Cairo',sans-serif}
+
+section{padding:84px 0}
+.section-head{text-align:center;max-width:680px;margin:0 auto 40px}
+.section-head h2{font-size:clamp(30px,4.4vw,46px);margin:12px 0 14px}
+.section-head .lead{color:var(--ink-soft);font-size:17px}
+
+/* FLOATING DJAMAL BUDDY */
+.buddy{position:fixed;left:18px;bottom:18px;z-index:60;display:flex;align-items:flex-end;gap:10px;pointer-events:none}
+body[dir=rtl] .buddy{left:auto;right:18px;flex-direction:row-reverse}
+.buddy-av{width:78px;height:78px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 10px 26px rgba(14,74,47,.4);animation:bob 4.2s ease-in-out infinite;background:var(--green)}
+.buddy-bubble{background:#fff;border:1px solid var(--line);border-radius:16px;border-bottom-left-radius:4px;padding:9px 14px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;color:var(--ink);box-shadow:0 8px 22px rgba(19,17,15,.14);max-width:180px;opacity:0;transform:translateY(6px);transition:.4s;margin-bottom:10px}
+body[dir=rtl] .buddy-bubble{border-bottom-left-radius:16px;border-bottom-right-radius:4px;font-family:'Cairo'}
+.buddy-bubble.show{opacity:1;transform:none}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media(max-width:560px){.buddy-av{width:60px;height:60px}.buddy-bubble{max-width:140px;font-size:12px}}
+
+/* ABOUT duotone */
+.about-photo{position:relative;border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:#efe7d6}
+.about-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.about-photo .ptag{position:absolute;left:14px;bottom:14px;z-index:2;font-family:'Space Grotesk';font-size:12px;font-weight:700;color:#fff;background:rgba(8,41,26,.7);backdrop-filter:blur(4px);padding:7px 13px;border-radius:100px}
+body[dir=rtl] .about-photo .ptag{left:auto;right:14px}
+.about-photo .frame{position:absolute;inset:12px;border:1.5px solid rgba(255,255,255,.45);border-radius:16px;z-index:1}
+.about-tag{display:inline-block;font-family:'Space Grotesk';font-weight:600;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--terra);margin-bottom:14px}
+.about-text h3{font-size:clamp(28px,4vw,42px);margin-bottom:18px}
+.about-text p{color:var(--ink-soft);font-size:16.5px;margin-bottom:16px;max-width:54ch}
+
+.method-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;transition:box-shadow .25s,border-color .25s;animation:cardfloat 6s ease-in-out infinite}
+.method-card:hover{box-shadow:var(--shadow);border-color:rgba(194,65,12,.3)}
+.methods-grid .method-card:nth-child(2){animation-delay:-1.5s}.methods-grid .method-card:nth-child(3){animation-delay:-3s}.methods-grid .method-card:nth-child(4){animation-delay:-4.4s}
+.method-icon{width:54px;height:54px;display:flex;align-items:center;justify-content:center;font-size:26px;border-radius:14px;background:linear-gradient(150deg,rgba(14,74,47,.1),rgba(224,138,43,.16));margin-bottom:16px}
+.method-card h4{font-size:20px;margin-bottom:8px}.method-card p{color:var(--ink-soft);font-size:14.5px}
+
+.courses{background:var(--sand)}
+.course{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:box-shadow .25s;animation:cardfloat 6.6s ease-in-out infinite}
+.course:hover{box-shadow:var(--shadow)}
+.course-grid .course:nth-child(2){animation-delay:-1.6s}.course-grid .course:nth-child(3){animation-delay:-3.3s}.course-grid .course:nth-child(4){animation-delay:-4.8s}
+@keyframes cardfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.course-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.course-lvl{font-family:'Fraunces',serif;font-weight:900;font-size:26px;color:var(--green)}
+body[dir=rtl] .course-lvl{font-family:'Cairo',sans-serif}
+.course-tag{font-family:'Space Grotesk';font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:5px 11px;border-radius:100px;background:rgba(14,74,47,.12);color:var(--green)}
+body[dir=rtl] .course-tag{letter-spacing:0;font-family:'Cairo'}
+.course-tag.extensive{background:rgba(224,138,43,.18);color:#9a5a12}
+.crow{display:flex;justify-content:space-between;font-size:14px;padding:7px 0}
+.crow-label{color:var(--ink-soft)}.crow-val{font-family:'Space Grotesk';font-weight:700}
+body[dir=rtl] .crow-val{font-family:'Cairo'}
+
+.online-band{background:linear-gradient(120deg,var(--green-deep),var(--green));color:#fff;border-radius:28px;padding:44px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.online-band:before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 85% 20%,rgba(217,164,65,.25),transparent 55%);pointer-events:none}
+.online-band h3{color:#fff;font-size:clamp(24px,3.4vw,34px);margin-bottom:12px}
+.online-band p{color:rgba(255,255,255,.82);font-size:15.5px;max-width:56ch;margin-bottom:22px}
+.online-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--green-deep);font-family:'Space Grotesk';font-weight:700;font-size:15px;text-decoration:none;padding:14px 26px;border-radius:100px;transition:.2s}
+.online-cta:hover{background:#fff;transform:translateY(-2px)}
+
+.contact-visual{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:0;box-shadow:var(--shadow);overflow:hidden}
+.contact-vlabel{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--terra);margin:0 0 14px}
+body[dir=rtl] .contact-vlabel{letter-spacing:0;font-family:'Cairo'}
+.video-box{position:relative;width:100%;max-width:420px;margin:0 auto;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);background:#000}
+.video-box video{width:100%;display:block}
+.contact-chips{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chip{display:flex;gap:12px;align-items:flex-start;padding:14px 15px;border-radius:15px;background:var(--paper);border:1px solid var(--line2);transition:border-color .2s,background .2s}
+.chip:hover{border-color:rgba(194,65,12,.28);background:#fff}
+.chip.chip-wide{grid-column:1 / -1}
+.chip-icon{width:38px;height:38px;flex:none;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--green);border-radius:11px;background:linear-gradient(150deg,rgba(14,74,47,.13),rgba(224,138,43,.17))}
+.chip-body{min-width:0}
+.chip-label{font-family:'Space Grotesk';font-weight:700;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--terra);margin-bottom:3px}
+body[dir=rtl] .chip-label{letter-spacing:0;font-family:'Cairo'}
+.chip-value{font-size:14px;line-height:1.5;color:var(--ink);overflow-wrap:anywhere}
+.chip-value a{color:var(--green);text-decoration:none;font-weight:600;overflow-wrap:anywhere}
+@media(max-width:575.98px){.contact-chips{grid-template-columns:1fr}}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:34px;box-shadow:var(--shadow)}
+.form-badge{display:inline-block;font-family:'Space Grotesk';font-weight:700;font-size:12.5px;color:var(--green);background:rgba(14,74,47,.1);padding:7px 14px;border-radius:100px;margin-bottom:14px}
+.form-card h3{font-size:26px;margin-bottom:6px}
+.form-sub{color:var(--ink-soft);font-size:14px;margin-bottom:22px}
+.form-row{margin-bottom:16px;display:flex;flex-direction:column}
+.form-row label{font-family:'Space Grotesk';font-weight:600;font-size:13px;margin-bottom:6px}
+.form-row input,.form-row select{font-family:inherit;font-size:15px;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;transition:.2s}
+.form-row input:focus,.form-row select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 4px rgba(14,74,47,.1)}
+.form-submit{width:100%;margin-top:8px;background:var(--terra);color:#fff;font-family:'Space Grotesk';font-weight:700;font-size:16px;border:none;padding:16px;border-radius:100px;cursor:pointer;transition:.2s}
+.form-submit:hover{background:#a8360a;transform:translateY(-2px);box-shadow:0 12px 28px rgba(194,65,12,.35)}
+
+.map-section{padding:0}.map-wrap{position:relative;height:420px}
+.map-wrap iframe{width:100%;height:100%;border:0;filter:grayscale(.3) contrast(1.05)}
+.map-pin{position:absolute;bottom:16px;right:16px;background:var(--terra);color:#fff;padding:10px 16px;border-radius:100px;font-family:'Space Grotesk';font-size:13px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+body[dir=rtl] .map-pin{right:auto;left:16px}
+
+.site-footer{background:var(--green-deep);color:rgba(255,255,255,.8);padding:56px 0 26px}
+.logo-name{font-family:'Fraunces',serif;font-weight:900;font-size:24px;color:#fff;display:block}
+.logo-sub{font-family:'Space Grotesk';font-size:12px;letter-spacing:2px;color:var(--gold)}
+.footer-tagline{margin:14px 0 18px;font-size:14px;max-width:36ch}
+.social-row{display:flex;gap:10px}
+.social-link{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,255,255,.1);text-decoration:none;font-size:18px;transition:.2s}
+.social-link:hover{background:var(--gold);transform:translateY(-2px)}
+.footer-h{font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:14px}
+body[dir=rtl] .footer-h{letter-spacing:0;font-family:'Cairo'}
+.footer-list{list-style:none}.footer-list li{margin-bottom:9px}
+.footer-list a{text-decoration:none;font-size:14px;opacity:.8}.footer-list a:hover{opacity:1;color:var(--gold)}
+.footer-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px 32px}
+.footer-brand{display:flex;flex-direction:column}
+.footer-bottom{text-align:center;margin-top:40px;padding-top:22px;padding-left:24px;padding-right:24px;border-top:1px solid rgba(255,255,255,.12);font-size:12.5px;color:rgba(255,255,255,.6)}
+@media(max-width:767.98px){.footer-inner{grid-template-columns:1fr;gap:30px}}
+@media(min-width:768px) and (max-width:991.98px){.footer-inner{grid-template-columns:1fr 1fr;gap:32px 28px}.footer-brand{grid-column:1 / -1}}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.buddy-av,.method-card,.course,.accent{animation:none}.hero-particle{display:none}}
+@media(max-width:860px){.hero-logo3d{left:50%;width:min(520px,90%)}.hero-room:before{left:50%}}
+@media(max-width:560px){section{padding:60px 0}.hero{padding:64px 0 56px}.hero-stats{gap:26px}}
+
+/* RTL: mirror the decorative glow to the opposite side of the text */
+@media(min-width:861px){
+  body[dir=rtl] .hero-logo3d,body[dir=rtl] .hero-room:before{left:32%}
+  body[dir=rtl] .hero-content{max-width:640px}
+}
+
+/* ===== Bootstrap-based responsive nav (mobile toggler + dropdown panel) ===== */
+.navbar-toggler{border:1.5px solid var(--line);border-radius:10px;background:#fff;padding:7px 11px;font-size:19px;line-height:1;color:var(--green);box-shadow:none}
+.navbar-toggler:focus{box-shadow:0 0 0 3px rgba(14,74,47,.15)}
+@media(min-width:992px){
+  .nav-links.collapse{display:flex!important;position:static;background:none;padding:0;box-shadow:none;border:0}
+}
+@media(max-width:991.98px){
+  .navbar-toggler{margin-left:auto}
+  body[dir=rtl] .navbar-toggler{margin-left:0;margin-right:auto}
+  .lang-switch{margin-left:12px}
+  body[dir=rtl] .lang-switch{margin-left:0;margin-right:12px}
+  .nav-links.collapse:not(.show){display:none}
+  .nav-links.collapse.show{
+    display:flex;flex-direction:column;gap:4px;
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(251,246,236,.98);backdrop-filter:blur(14px);
+    padding:10px 24px 18px;border-bottom:1px solid var(--line);
+    box-shadow:0 14px 28px rgba(19,17,15,.1);
+  }
+  .nav-links.collapse.show .nav-link{padding:12px 4px;font-size:16px;border-bottom:1px solid var(--line2)}
+  .nav-links.collapse.show .nav-link:last-child{border-bottom:0}
+}
+@media(max-width:400px){.hero-banner{flex-direction:column;align-items:flex-start;gap:10px}.hero-banner-sep{display:none}
+  body[dir=rtl] .hero-banner{align-items:flex-end}}
+#scrollbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#2ED47A,#E08A2B,#D9A441);z-index:200;transition:width .12s ease-out}
+.hero-particle{position:absolute;border-radius:50%;pointer-events:none;opacity:0;animation-name:floatp;animation-timing-function:linear;animation-iteration-count:infinite}
+@keyframes floatp{0%{transform:translateY(24px) translateX(0);opacity:0}12%{opacity:.78}88%{opacity:.55}100%{transform:translateY(-130px) translateX(var(--dx,10px));opacity:0}}
+@keyframes shimmer{to{background-position:220% center}}
+
+.logo-img-main {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+.brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+header .logo-img-main{ max-height:44px; max-width:220px; }
+.site-footer .logo-img-main{ max-height:34px; max-width:170px; }
+@media(max-width:991px){ header .logo-img-main{ max-width:190px; max-height:38px; } }
+@media(max-width:576px){ header .logo-img-main{ max-width:165px; max-height:34px; } .site-footer .logo-img-main{ max-width:150px; max-height:30px; } }
+@media(max-width:400px){ header .logo-img-main{ max-width:135px; max-height:30px; } .site-footer .logo-img-main{ max-width:130px; max-height:27px; } }
+</style>
+</head>
+<body>
+<div id="scrollbar"></div>
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <a href="#" class="brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+    <img src="Logo-Academy.png" alt="3E Academy" class="logo-img-main" decoding="async" onerror="this.style.display='none'">
+  </a>
+  <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Menü umschalten">
+    <i class="bi bi-list" id="navTogglerIcon"></i>
+  </button>
+  <nav class="nav-links collapse" id="navMain">
+    <a href="#about" class="nav-link" data-i18n="navAbout">À propos</a>
+    <a href="#methods" class="nav-link" data-i18n="navMethods">Méthodes</a>
+    <a href="#courses" class="nav-link" data-i18n="navCourses">Cours</a>
+    <a href="deutschaktiv.html" class="nav-link" data-i18n="navDeutschAktiv">Deutsch Aktiv</a>
+    <a href="#contact" class="nav-link" data-i18n="navContact">Contact</a>
+  </nav>
+  <div class="lang-dd" id="langDd">
+    <button class="lang-switch" id="langBtn" aria-haspopup="true" aria-expanded="false">
+      <span class="lg-flag" id="langBtnFlag">🇫🇷</span>
+      <span id="langBtnLabel">FR</span>
+      <span class="lg-caret"><i class="bi bi-chevron-down"></i></span>
+    </button>
+    <div class="lang-menu" id="langMenu" role="menu"></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-room" aria-hidden="true"><img class="hero-logo3d" src="backround.jpeg" alt="" onerror="this.style.display='none'"><div class="hero-grid-floor"></div></div>
+  <div class="hero-content">
+    <h1 data-i18n="heroTitle">Apprenez l'<span class="accent">allemand</span><br>à Constantine</h1>
+    <p class="hero-sub" data-i18n="heroSub">École de langue avec Djamal A. C. — un professeur qui connaît les deux mondes : mentalité allemande de l'employeur et âme algérienne de l'apprenant.</p>
+   
+
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">A1–C1</div><div class="stat-label" data-i18n="statLevels">Tous les niveaux</div></div>
+      <div class="stat-item"><div class="stat-num">9–22h</div><div class="stat-label" data-i18n="statHours">Heures d'ouverture</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label" data-i18n="statNative">Natif allemand</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about"><div class="wrap"><div class="about-grid row g-4 g-lg-5 align-items-center">
+  <div class="about-photo reveal col-12 col-md-5"><img src="Djamal.jpeg" alt="Djamal A. C." onerror="this.onerror=null;this.src='jamal_portrait.jpg';this.onerror=function(){this.style.display='none'}"><span class="frame"></span><span class="ptag" id="aboutPhotoTag">Djamal · Constantine</span></div>
+  <div class="about-text reveal col-12 col-md-7">
+    <span class="about-tag" data-i18n="aboutTag">Votre professeur</span>
+    <h3 data-i18n="aboutTitle">Un pont entre deux mondes</h3>
+    <p data-i18n="aboutP1">Ingénieur né en Allemagne aux racines algériennes. Je connais la mentalité allemande de l'employeur et l'âme algérienne de l'apprenant. C'est de la formation interculturelle au plus haut niveau.</p>
+    <p data-i18n="aboutP2">Mes méthodes d'enseignement sont aussi diverses que mon parcours : précis comme un ingénieur, orienté service comme dans l'hôtellerie, et adaptable comme un chef de projet.</p>
+  </div>
+</div></div></section>
+
+<!-- METHODS -->
+<section id="methods"><div class="wrap">
+  <div class="section-head reveal"><div class="eyebrow" data-i18n="methodsEyebrow">Notre approche</div><h2 data-i18n="methodsTitle">Quatre piliers pour la maîtrise</h2><p class="lead" data-i18n="methodsLead">Une pédagogie moderne, centrée sur l'apprenant et orientée vers les résultats.</p></div>
+  <div class="methods-grid row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+    <div class="method-card reveal"><div class="method-icon"><i class="bi bi-chat-dots-fill"></i></div><h4 data-i18n="m1Title">Interaction communicative</h4><p data-i18n="m1Desc">Café linguistique, discussions et présentations — l'allemand vécu, pas seulement étudié.</p></div>
+    <div class="method-card reveal"><div class="method-icon"><i class="bi bi-mask"></i></div><h4 data-i18n="m2Title">Formats innovants</h4><p data-i18n="m2Desc">Jeux de rôle pour les dialogues du quotidien et promotion de l'autonomie de l'apprenant.</p></div>
+    <div class="method-card reveal"><div class="method-icon"><i class="bi bi-journal-bookmark-fill"></i></div><h4 data-i18n="m3Title">Compétence médiatique</h4><p data-i18n="m3Desc">Utilisation systématique de la littérature et des médias numériques pour des contextes authentiques.</p></div>
+    <div class="method-card reveal"><div class="method-icon"><i class="bi bi-gear-fill"></i></div><h4 data-i18n="m4Title">Grammaire intégrée</h4><p data-i18n="m4Desc">Grammaire, vocabulaire et phonétique enseignés ensemble dans chaque unité.</p></div>
+  </div>
+</div></section>
+
+<!-- COURSES -->
+<section class="courses" id="courses"><div class="wrap">
+  <div class="section-head reveal"><div class="eyebrow" data-i18n="coursesEyebrow">Programmes</div><h2 data-i18n="coursesTitle">Du débutant au C1</h2><p class="lead" data-i18n="coursesLead">Tous les niveaux du Cadre européen commun de référence — y compris la préparation aux examens telc, Goethe et ÖSD.</p></div>
+  <div class="course-grid row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+    <div class="course reveal"><div class="course-top"><div class="course-lvl">A1/A2</div><div class="course-tag" data-i18n="tagIntensive">intensive</div></div><div class="crow"><span class="crow-label" data-i18n="cTotalH">Total</span><span class="crow-val">90 h</span></div><div class="crow"><span class="crow-label" data-i18n="cPerWeek">Par semaine</span><span class="crow-val">12 h (3 × 4h)</span></div><div class="crow"><span class="crow-label" data-i18n="cDuration">Durée</span><span class="crow-val" data-i18n="c8w">~ 8 semaines</span></div></div>
+    <div class="course reveal"><div class="course-top"><div class="course-lvl">A1.1 / A2.1</div><div class="course-tag extensive" data-i18n="tagExtensive">extensive</div></div><div class="crow"><span class="crow-label" data-i18n="cTotalH">Total</span><span class="crow-val">45 h</span></div><div class="crow"><span class="crow-label" data-i18n="cPerWeek">Par semaine</span><span class="crow-val">6 h (2 × 3h)</span></div><div class="crow"><span class="crow-label" data-i18n="cDuration">Durée</span><span class="crow-val" data-i18n="c8w">~ 8 semaines</span></div></div>
+    <div class="course reveal"><div class="course-top"><div class="course-lvl">B1/B2</div><div class="course-tag" data-i18n="tagIntensive">intensive</div></div><div class="crow"><span class="crow-label" data-i18n="cTotalH">Total</span><span class="crow-val">135 h</span></div><div class="crow"><span class="crow-label" data-i18n="cPerWeek">Par semaine</span><span class="crow-val">12 h (3 × 4h)</span></div><div class="crow"><span class="crow-label" data-i18n="cDuration">Durée</span><span class="crow-val" data-i18n="c11w">~ 11 semaines</span></div></div>
+    <div class="course reveal"><div class="course-top"><div class="course-lvl">B1.1 / B2.1</div><div class="course-tag extensive" data-i18n="tagExtensive">extensive</div></div><div class="crow"><span class="crow-label" data-i18n="cTotalH">Total</span><span class="crow-val">67,5 h</span></div><div class="crow"><span class="crow-label" data-i18n="cPerWeek">Par semaine</span><span class="crow-val">6 h (2 × 3h)</span></div><div class="crow"><span class="crow-label" data-i18n="cDuration">Durée</span><span class="crow-val" data-i18n="c11w">~ 11 semaines</span></div></div>
+  </div>
+
+ 
+</div></section>
+
+<!-- CONTACT -->
+<section id="contact"><div class="wrap">
+  <div class="section-head reveal"><div class="eyebrow" data-i18n="contactEyebrow">Inscription</div><h2 data-i18n="contactTitle">Faites le premier pas</h2><p class="lead" data-i18n="contactLead">Remplissez le formulaire — nous vous contactons sous 24 heures.</p></div>
+  <div class="contact-grid row g-4 g-lg-5 align-items-start">
+    <div class="contact-visual-col reveal col-12 col-lg-7">
+      <div class="contact-visual">
+        <div style="padding:20px 20px 0">
+          <div class="contact-vlabel" data-i18n="cVideoLabel">Comment nous trouver</div>
+        </div>
+        <div class="video-box"><video controls preload="metadata" playsinline><source src="document_5442909447452141872.mp4" type="video/mp4">Votre navigateur ne peut pas lire cette vidéo.</video></div>
+       <div style="padding:20px">
+        <div class="contact-chips">
+          <div class="chip chip-wide"><div class="chip-icon"><i class="bi bi-geo-alt-fill"></i></div><div class="chip-body"><div class="chip-label" data-i18n="cAddr">Adresse</div><div class="chip-value">Bd de L' Aln UV07 A.M, 25001 Constantine, Ali Mendjeli · <span data-i18n="cAddrAnchor">face à 2nice school</span></div></div></div>
+          <div class="chip"><div class="chip-icon"><i class="bi bi-whatsapp"></i></div><div class="chip-body"><div class="chip-label" data-i18n="cPhone">Téléphone / WhatsApp</div><div class="chip-value"><a href="tel:+213799456834">+213 799 45 68 34</a></div></div></div>
+          <div class="chip"><div class="chip-icon"><i class="bi bi-clock-fill"></i></div><div class="chip-body"><div class="chip-label" data-i18n="cHours">Horaires</div><div class="chip-value">9:00 – 22:00</div></div></div>
+          <div class="chip chip-wide"><div class="chip-icon"><i class="bi bi-instagram"></i></div><div class="chip-body"><div class="chip-label" data-i18n="cInsta">Instagram</div><div class="chip-value"><a href="https://instagram.com/3e__engage_expand_excel" target="_blank" rel="noopener">@3E__Engage_Expand_Excel</a></div></div></div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <form class="form-card reveal col-12 col-lg-5" id="regForm" onsubmit="return sendToWhatsApp(event)">
+      <div class="form-badge"><i class="bi bi-lightning-charge-fill"></i> <span data-i18n="formBadge">Inscription ouverte</span></div>
+      <h3 data-i18n="formTitle">Formulaire d'inscription</h3>
+      <div class="form-sub" data-i18n="formSub">Envoi direct sur WhatsApp · Tous les champs obligatoires</div>
+      <div class="form-row"><label data-i18n="fName">Nom complet</label><input type="text" name="Name" required></div>
+      <div class="form-row"><label data-i18n="fEmail">Email</label><input type="email" name="Email" required></div>
+      <div class="form-row"><label data-i18n="fPhone">Téléphone / WhatsApp</label><input type="tel" name="Telefon" required></div>
+      <div class="form-row"><label data-i18n="fLevel">Niveau souhaité</label><select name="Niveau" required>
+        <option value="" data-i18n="fLevelChoose">— Choisir —</option>
+        <option value="A1.1">A1.1</option>
+        <option value="A1.2">A1.2</option>
+        <option value="A2.1">A2.1</option>
+        <option value="A2.2">A2.2</option>
+        <option value="B1.1">B1.1</option>
+        <option value="B1.2">B1.2</option>
+        <option value="B2">B2</option>
+        <option value="C1">C1</option>
+        <option value="?" data-i18n="fLevelTest">Je ne sais pas — me tester</option>
+      </select></div>
+      <button type="submit" class="form-submit"><i class="bi bi-whatsapp"></i> <span data-i18n="fSubmit">Envoyer sur WhatsApp</span></button>
+    </form>
+  </div>
+</div></section>
+
+<!-- MAP -->
+<section class="map-section"><div class="map-wrap">
+  <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=6.5871,36.2541,6.5951,36.2613&layer=mapnik&marker=36.25767,6.59108"></iframe>
+  <a class="map-pin" href="https://www.openstreetmap.org/?mlat=36.25767&mlon=6.59108#map=17/36.25767/6.59108" target="_blank" rel="noopener">📍 Route öffnen</a>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="site-footer"><div class="footer-inner">
+  <div class="footer-brand">
+    <a href="#" class="brand" style="margin-bottom:10px" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+      <img src="Logo-Academy.png" alt="3E Academy" class="logo-img-main">
+    </a>
+    <p class="footer-tagline" data-i18n="footerTag">Sprachschule für Deutsch mit Herz und Methode in Constantine.</p><div class="social-row"><a class="social-link" href="https://instagram.com/3e__engage_expand_excel" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a class="social-link" href="https://www.facebook.com/profile.php?id=61587208807779" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a><a class="social-link" href="https://www.tiktok.com/@3e_engage_expand_excel?_r=1&_t=ZS-98YfNif9mYH" target="_blank" rel="noopener" aria-label="TikTok"><i class="bi bi-tiktok"></i></a></div></div>
+  <div><div class="footer-h" data-i18n="footerH1">Navigation</div><ul class="footer-list"><li><a href="#about" data-i18n="navAbout">À propos</a></li><li><a href="#methods" data-i18n="navMethods">Méthodes</a></li><li><a href="#courses" data-i18n="navCourses">Cours</a></li><li><a href="deutschaktiv.html" data-i18n="navDeutschAktiv">Deutsch Aktiv</a></li><li><a href="#contact" data-i18n="navContact">Contact</a></li></ul></div>
+  <div><div class="footer-h" data-i18n="footerH2">Légal</div><ul class="footer-list"><li><a href="impressum.html" data-i18n="legalImp">Mentions légales</a></li><li><a href="datenschutz.html" data-i18n="legalPriv">Confidentialité</a></li></ul></div>
+</div><div class="footer-bottom">© 2026 3E · Djamal A. C. · Bd de L' Aln UV07 A.M, 25001 Constantine, Ali Mendjeli, Algerien</div></footer>
+
+<!-- DJAMAL BUDDY -->
+<div class="buddy" id="buddy" aria-hidden="true">
+  <img class="buddy-av" src="djamal_portrait.jpg" alt="Djamal" onerror="this.onerror=null;this.src='jamal_portrait.jpg';this.onerror=function(){this.style.display='none'}">
+  <div class="buddy-bubble" id="buddyBubble">Bonjour 👋</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+// ============================================================
+// MEHRSPRACHIGKEIT FR (Default) / DE / EN / AR
+// ============================================================
+const I18N = {
+  fr: {
+    navAbout: "À propos", navMethods: "Méthodes", navCourses: "Cours", navContact: "Contact", navDeutschAktiv: "Deutsch Aktiv",
+    heroTitle: 'Apprenez l\'<span class="accent">allemand</span><br>à Constantine',
+    heroSub: "École de langue avec Djamal A. C. — un professeur qui connaît les deux mondes : mentalité allemande de l'employeur et âme algérienne de l'apprenant.",
+    heroCta: "S'inscrire maintenant →",
+    bannerReg: "Inscription jusqu'au", bannerStart: "Début",
+    statLevels: "Tous les niveaux", statHours: "Heures d'ouverture", statLangs: "Langues", statNative: "Natif allemand",
+    aboutTag: "Votre professeur", aboutTitle: "Un pont entre deux mondes",
+    aboutP1: "Ingénieur né en Allemagne aux racines algériennes. Je connais la mentalité allemande de l'employeur et l'âme algérienne de l'apprenant. C'est de la formation interculturelle au plus haut niveau.",
+    aboutP2: "Mes méthodes d'enseignement sont aussi diverses que mon parcours : précis comme un ingénieur, orienté service comme dans l'hôtellerie, et adaptable comme un chef de projet.",
+    methodsEyebrow: "Notre approche", methodsTitle: "Quatre piliers pour la maîtrise",
+    methodsLead: "Une pédagogie moderne, centrée sur l'apprenant et orientée vers les résultats.",
+    m1Title: "Interaction communicative", m1Desc: "Café linguistique, discussions et présentations — l'allemand vécu, pas seulement étudié.",
+    m2Title: "Formats innovants", m2Desc: "Jeux de rôle pour les dialogues du quotidien et promotion de l'autonomie de l'apprenant.",
+    m3Title: "Compétence médiatique", m3Desc: "Utilisation systématique de la littérature et des médias numériques pour des contextes authentiques.",
+    m4Title: "Grammaire intégrée", m4Desc: "Grammaire, vocabulaire et phonétique enseignés ensemble dans chaque unité.",
+    coursesEyebrow: "Programmes", coursesTitle: "Du débutant au C1",
+    coursesLead: "Tous les niveaux du Cadre européen commun de référence — y compris la préparation aux examens telc, Goethe et ÖSD.",
+    onlineEyebrow: "Gratuit · En ligne", onlineTitle: "Deutsch Aktiv — entraîne-toi gratuitement en ligne",
+    onlineDesc: "Playlists vidéo, jeux de grammaire et listes de vocabulaire pour chaque niveau de A1 à B2 — accessibles à tout moment, en complément de ton cours chez 3E.",
+    onlineCta: "S'entraîner maintenant",
+    contactLead: "Remplissez le formulaire — votre demande part directement sur WhatsApp.",
+    cVideoLabel: "Comment nous trouver",
+    cAddr: "Adresse", cAddrAnchor: "face à 2nice school", cEmail: "Email", cPhone: "Téléphone / WhatsApp", cHours: "Horaires", cInsta: "Instagram",
+    tagIntensive: "intensif", tagExtensive: "extensif",
+    cTotalH: "Total", cPerWeek: "Par semaine", cDuration: "Durée",
+    c8w: "~ 8 semaines", c11w: "~ 11 semaines",
+    formBadge: "Inscription ouverte",
+    formTitle: "Formulaire d'inscription", formSub: "Envoi direct sur WhatsApp · Tous les champs obligatoires",
+    fName: "Nom complet", fEmail: "Email", fPhone: "Téléphone / WhatsApp", fLevel: "Niveau souhaité",
+    fSubmit: "Envoyer sur WhatsApp",
+    footerTag: "École de langue allemande avec cœur et méthode à Constantine.",
+    footerH1: "Navigation", footerH2: "Légal",
+    legalImp: "Mentions légales", legalPriv: "Confidentialité"
+  },
+  de: {
+    navAbout: "Über uns", navMethods: "Methoden", navCourses: "Kurse", navContact: "Kontakt", navDeutschAktiv: "Deutsch Aktiv",
+    heroTitle: '<span class="accent">Deutsch</span> lernen<br>in Constantine',
+    heroSub: "Sprachschule mit Djamal A. C. — einem Lehrer, der beide Welten kennt: deutsche Arbeitgeber-Mentalität und algerische Lerner-Seele.",
+    heroCta: "Jetzt anmelden →",
+   
+    statLevels: "Alle Niveaus", statHours: "Öffnungszeiten", statLangs: "Sprachen", statNative: "Muttersprachler",
+    aboutTag: "Dein Lehrer", aboutTitle: "Eine Brücke zwischen zwei Welten",
+    aboutP1: "Ingenieur in Deutschland geboren, mit algerischen Wurzeln. Ich kenne die deutsche Arbeitgeber-Mentalität und die algerische Lerner-Seele. Das ist interkulturelle Bildung auf höchstem Niveau.",
+    aboutP2: "Meine Lehrmethoden sind so vielfältig wie mein Werdegang: präzise wie ein Ingenieur, serviceorientiert wie im Gastgewerbe und anpassungsfähig wie ein Projektmanager.",
+    methodsEyebrow: "Unser Ansatz", methodsTitle: "Vier Säulen zur Meisterschaft",
+    methodsLead: "Moderne, lernerzentrierte Pädagogik mit klarem Ergebnis-Fokus.",
+    m1Title: "Kommunikative Interaktion", m1Desc: "Sprachcafé, Diskussionen und Präsentationen — gelebtes Deutsch, nicht nur gelerntes.",
+    m2Title: "Innovative Formate", m2Desc: "Rollenspiele für Alltagsdialoge und Förderung der Lerner-Autonomie.",
+    m3Title: "Medienkompetenz", m3Desc: "Systematische Nutzung von Literatur und digitalen Medien für authentische Kontexte.",
+    m4Title: "Integrative Grammatik", m4Desc: "Grammatik, Vokabular und Phonetik werden in jeder Einheit zusammen vermittelt.",
+    coursesEyebrow: "Programme", coursesTitle: "Vom Anfänger bis C1",
+    coursesLead: "Alle Niveaus des Gemeinsamen Europäischen Referenzrahmens — inklusive telc-, Goethe- und ÖSD-Prüfungsvorbereitung.",
+    onlineEyebrow: "Kostenlos · Online", onlineTitle: "Deutsch Aktiv — kostenlos online üben",
+    onlineDesc: "Video-Playlists, Grammatikspiele und Vokabellisten für jedes Niveau von A1 bis B2 — jederzeit zugänglich, als Ergänzung zu deinem Kurs bei 3E.",
+    onlineCta: "Jetzt üben",
+    contactEyebrow: "Anmeldung", contactTitle: "Mach den ersten Schritt",
+    contactLead: "Fülle das Formular aus — deine Anfrage geht direkt an WhatsApp.",
+    cVideoLabel: "So findest du uns",
+    cAddr: "Adresse", cAddrAnchor: "gegenüber 2nice school", cEmail: "E-Mail", cPhone: "Telefon / WhatsApp", cHours: "Öffnungszeiten", cInsta: "Instagram",
+    tagIntensive: "intensiv", tagExtensive: "extensiv",
+    cTotalH: "Gesamt", cPerWeek: "Pro Woche", cDuration: "Dauer",
+    c8w: "~ 8 Wochen", c11w: "~ 11 Wochen",
+    formBadge: "Anmeldung offen",
+    formTitle: "Anmeldeformular", formSub: "Direkt per WhatsApp senden · Alle Felder Pflicht",
+    fName: "Vollständiger Name", fEmail: "E-Mail", fPhone: "Telefon / WhatsApp", fLevel: "Gewünschtes Niveau",
+    fLevelChoose: "— Auswählen —",  fLevelTest: "Ich weiß nicht — mich testen",
+    fSubmit: "Per WhatsApp senden",
+    footerTag: "Sprachschule für Deutsch mit Herz und Methode in Constantine.",
+    footerH1: "Navigation", footerH2: "Rechtliches",
+    legalImp: "Impressum", legalPriv: "Datenschutz"
+  },
+  en: {
+    navAbout: "About", navMethods: "Methods", navCourses: "Courses", navContact: "Contact", navDeutschAktiv: "Deutsch Aktiv",
+    heroTitle: 'Learn <span class="accent">German</span><br>in Constantine',
+    heroSub: "Language school with Djamal A. C. — a teacher who knows both worlds: German employer mentality and Algerian learner soul.",
+    heroCta: "Sign up now →",
+
+    statLevels: "All levels", statHours: "Opening hours", statLangs: "Languages", statNative: "Native German",
+    aboutTag: "Your teacher", aboutTitle: "A bridge between two worlds",
+    aboutP1: "Engineer born in Germany with Algerian roots. I know the German employer mentality and the Algerian learner soul. This is intercultural training at the highest level.",
+    aboutP2: "My teaching methods are as diverse as my resume: precise like an engineer, service-oriented like in hospitality, and adaptable like a project manager.",
+    methodsEyebrow: "Our approach", methodsTitle: "Four pillars to mastery",
+    methodsLead: "Modern, learner-centered pedagogy with a clear focus on results.",
+    m1Title: "Communicative interaction", m1Desc: "Language café, discussions and presentations — German lived, not just studied.",
+    m2Title: "Innovative formats", m2Desc: "Role-playing for everyday dialogues and promoting learner autonomy.",
+    m3Title: "Media literacy", m3Desc: "Systematic use of literature and digital media for authentic contexts.",
+    m4Title: "Integrative grammar", m4Desc: "Grammar, vocabulary and phonetics taught together in every unit.",
+    coursesEyebrow: "Programs", coursesTitle: "From beginner to C1",
+    coursesLead: "All levels of the Common European Framework — including telc, Goethe and ÖSD exam preparation.",
+    onlineEyebrow: "Free · Online", onlineTitle: "Deutsch Aktiv — practice for free online",
+    onlineDesc: "Video playlists, grammar games and vocabulary lists for every level from A1 to B2 — accessible any time, as a complement to your course at 3E.",
+    onlineCta: "Practice now",
+    contactEyebrow: "Sign-up", contactTitle: "Take the first step",
+    contactLead: "Fill out the form — your request goes straight to WhatsApp.",
+    cVideoLabel: "How to find us",
+    cAddr: "Address", cAddrAnchor: "across from 2nice school", cEmail: "Email", cPhone: "Phone / WhatsApp", cHours: "Opening hours", cInsta: "Instagram",
+    tagIntensive: "intensive", tagExtensive: "extensive",
+    cTotalH: "Total", cPerWeek: "Per week", cDuration: "Duration",
+    c8w: "~ 8 weeks", c11w: "~ 11 weeks",
+    formBadge: "Registration open",
+    formTitle: "Registration form", formSub: "Sent directly via WhatsApp · All fields required",
+    fName: "Full name", fEmail: "Email", fPhone: "Phone / WhatsApp", fLevel: "Desired level",
+    fLevelChoose: "— Choose —", fLevelPro: "Healthcare / Medicine", fLevelTest: "I don't know — test me",
+    fSubmit: "Send via WhatsApp",
+    footerTag: "German language school with heart and method in Constantine.",
+    footerH1: "Navigation", footerH2: "Legal",
+    legalImp: "Legal notice", legalPriv: "Privacy"
+  },
+  ar: {
+    navAbout: "من نحن", navMethods: "الأساليب", navCourses: "الدورات", navContact: "اتصل بنا", navDeutschAktiv: "دويتش أكتيف",
+    heroTitle: 'تعلم <span class="accent">الألمانية</span><br>في قسنطينة',
+    heroSub: "مدرسة لغات مع جمال أ.ج. — معلم يعرف العالمَين: العقلية الألمانية لصاحب العمل والروح الجزائرية للمتعلم.",
+    heroCta: "← سجل الآن",
+ 
+    statLevels: "جميع المستويات", statHours: "ساعات الفتح", statLangs: "اللغات", statNative: "ناطق ألماني أصلي",
+    aboutTag: "معلمك", aboutTitle: "جسر بين عالمَين",
+    aboutP1: "مهندس وُلد في ألمانيا بجذور جزائرية. أعرف العقلية الألمانية لصاحب العمل والروح الجزائرية للمتعلم. هذا تدريب بين الثقافات على أعلى مستوى.",
+    aboutP2: "أساليب تدريسي متنوعة كسيرتي الذاتية: دقيق كمهندس، موجَّه للخدمة كقطاع الضيافة، ومرن كمدير مشروع.",
+    methodsEyebrow: "نهجنا", methodsTitle: "أربعة أعمدة للإتقان",
+    methodsLead: "تربية حديثة محورها المتعلم ومركزة على النتائج.",
+    m1Title: "تفاعل تواصلي", m1Desc: "مقهى لغوي، نقاشات وعروض — ألمانية معاشة لا فقط مدروسة.",
+    m2Title: "صيغ مبتكرة", m2Desc: "لعب أدوار للحوارات اليومية وتعزيز استقلالية المتعلم.",
+    m3Title: "كفاءة إعلامية", m3Desc: "استخدام منهجي للأدب والوسائط الرقمية لسياقات أصيلة.",
+    m4Title: "نحو متكامل", m4Desc: "النحو والمفردات والصوتيات تُدرَّس معاً في كل وحدة.",
+    coursesEyebrow: "البرامج", coursesTitle: "من المبتدئ إلى C1",
+    coursesLead: "كل مستويات الإطار الأوروبي المرجعي — مع تحضير امتحانات telc و ÖSD و Goethe.",
+    onlineEyebrow: "مجاني · عبر الإنترنت", onlineTitle: "دويتش أكتيف — تدرّب مجاناً أونلاين",
+    onlineDesc: "قوائم فيديو، ألعاب نحوية وقوائم مفردات لكل مستوى من A1 إلى B2 — متاحة في أي وقت، كإضافة لدورتك في 3E.",
+    onlineCta: "تدرّب الآن",
+    contactEyebrow: "التسجيل", contactTitle: "خذ الخطوة الأولى",
+    contactLead: "املأ النموذج — يُرسل طلبك مباشرة عبر واتساب.",
+    cVideoLabel: "كيف تصل إلينا",
+    cAddr: "العنوان", cAddrAnchor: "مقابل 2nice school", cEmail: "البريد الإلكتروني", cPhone: "هاتف / واتساب", cHours: "ساعات الفتح", cInsta: "إنستغرام",
+    tagIntensive: "مكثف", tagExtensive: "موسع",
+    cTotalH: "المجموع", cPerWeek: "في الأسبوع", cDuration: "المدة",
+    c8w: "~ 8 أسابيع", c11w: "~ 11 أسبوع",
+    formBadge: "التسجيل مفتوح",
+    formTitle: "نموذج التسجيل", formSub: "يُرسل مباشرة عبر واتساب · كل الحقول إلزامية",
+    fName: "الاسم الكامل", fEmail: "البريد الإلكتروني", fPhone: "هاتف / واتساب", fLevel: "المستوى المرغوب",
+    fLevelChoose: "— اختر —", fLevelPro: "تمريض / طب", fLevelTest: "لا أعرف — اختبرني",
+    fSubmit: "إرسال عبر واتساب",
+    footerTag: "مدرسة اللغة الألمانية بقلب ومنهج في قسنطينة.",
+    footerH1: "التنقل", footerH2: "قانوني",
+    legalImp: "الإشعار القانوني", legalPriv: "الخصوصية"
+  }
+};
+const LANGS = ["fr", "de", "ar", "en"];
+const FLAGS = { fr: "🇫🇷", de: "🇩🇪", ar: "🇩🇿", en: "🇬🇧" };
+const NAMES = { fr: "Français", de: "Deutsch", ar: "العربية", en: "English" };
+let currentLang = localStorage.getItem('3e_lang') || 'fr';
+
+function applyLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    const txt = I18N[lang][key];
+    if (txt !== undefined) el.innerHTML = txt;
+  });
+  document.getElementById('langBtnFlag').textContent = FLAGS[lang];
+  document.getElementById('langBtnLabel').textContent = lang.toUpperCase();
+  localStorage.setItem('3e_lang', lang);
+  buildLangMenu();
+}
+
+function buildLangMenu() {
+  const menu = document.getElementById('langMenu');
+  menu.innerHTML = LANGS.map(l => `
+    <button type="button" class="lang-opt${l===currentLang?' active':''}" role="menuitemradio" aria-checked="${l===currentLang}" data-lang="${l}">
+      <span class="lg-flag">${FLAGS[l]}</span>
+      <span class="lg-name">${NAMES[l]}</span>
+      <i class="bi bi-check-lg lg-check"></i>
+    </button>
+  `).join('');
+  menu.querySelectorAll('.lang-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyLang(btn.dataset.lang);
+      closeLangMenu();
+    });
+  });
+}
+
+const langDd = document.getElementById('langDd');
+const langBtn = document.getElementById('langBtn');
+const langMenu = document.getElementById('langMenu');
+function openLangMenu(){ langMenu.classList.add('open'); langBtn.setAttribute('aria-expanded','true'); }
+function closeLangMenu(){ langMenu.classList.remove('open'); langBtn.setAttribute('aria-expanded','false'); }
+langBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  langMenu.classList.contains('open') ? closeLangMenu() : openLangMenu();
+});
+document.addEventListener('click', (e) => { if (!langDd.contains(e.target)) closeLangMenu(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLangMenu(); });
+
+const SCHOOL_WHATSAPP = "213799456834"; // format international sans "+" ni "0"
+function sendToWhatsApp(e) {
+  e.preventDefault();
+  const form = e.target;
+  const name = form.Name.value.trim();
+  const email = form.Email.value.trim();
+  const phone = form.Telefon.value.trim();
+  const levelSelect = form.Niveau;
+  const level = levelSelect.options[levelSelect.selectedIndex].text;
+  const lines = [
+    "Nouvelle inscription — 3E Academy",
+    "Nom : " + name,
+    "Email : " + email,
+    "Téléphone : " + phone,
+    "Niveau souhaité : " + level
+  ];
+  const text = encodeURIComponent(lines.join("\n"));
+  window.open("https://wa.me/" + SCHOOL_WHATSAPP + "?text=" + text, "_blank", "noopener");
+  return false;
+}
+// Init
+applyLang(currentLang);
+</script>
+
+<script>
+/* ===== Mobile nav: icon swap + auto-close on link click ===== */
+(function(){
+  var navMain=document.getElementById('navMain'), icon=document.getElementById('navTogglerIcon');
+  if(!navMain)return;
+  navMain.addEventListener('show.bs.collapse',function(){ if(icon){icon.className='bi bi-x-lg';} });
+  navMain.addEventListener('hide.bs.collapse',function(){ if(icon){icon.className='bi bi-list';} });
+  navMain.querySelectorAll('.nav-link').forEach(function(a){
+    a.addEventListener('click',function(){
+      if(navMain.classList.contains('show') && window.bootstrap){
+        bootstrap.Collapse.getOrCreateInstance(navMain).hide();
+      }
+    });
+  });
+})();
+/* ===== Buddy greetings (4 Sprachen) ===== */
+
+/* ===== Scroll reveal + sticky header ===== */
+(function(){
+  var h=document.getElementById('siteHeader');
+  if(h)window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12});
+  els.forEach(function(e){io.observe(e);});
+})();
+/* ===== Hero 3D-Raum Parallax ===== */
+(function(){var hero=document.querySelector(".hero"),lg=document.querySelector(".hero-logo3d"),fl=document.querySelector(".hero-grid-floor");
+if(!hero||!lg)return;
+if(window.matchMedia&&window.matchMedia("(pointer:fine)").matches){
+ hero.addEventListener("pointermove",function(e){var r=hero.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-0.5,y=(e.clientY-r.top)/r.height-0.5;
+  lg.style.transform="translate(calc(-50% + "+(x*34)+"px), calc(-50% + "+(y*20)+"px)) scale(1.03)";
+  if(fl)fl.style.transform="rotateX(73deg) translateX("+(x*-34)+"px)";});
+ hero.addEventListener("pointerleave",function(){lg.style.transform="translate(-50%,-50%)";if(fl)fl.style.transform="rotateX(73deg)";});}
+})();
+/* ===== Wow: Partikel, Karten-Tilt, Scroll-Balken ===== */
+(function(){var room=document.querySelector('.hero-room');if(!room)return;var cols=['#2ED47A','#E08A2B','#D9A441','#7FE3AC'];for(var i=0;i<20;i++){var p=document.createElement('span');p.className='hero-particle';var sz=2+Math.random()*5;p.style.width=sz+'px';p.style.height=sz+'px';p.style.left=(Math.random()*100)+'%';p.style.top=(45+Math.random()*55)+'%';p.style.background=cols[i%cols.length];p.style.setProperty('--dx',(Math.random()*60-30)+'px');p.style.animationDuration=(6+Math.random()*7)+'s';p.style.animationDelay=(-Math.random()*12)+'s';room.appendChild(p);}})();
+(function(){if(!(window.matchMedia&&window.matchMedia('(pointer:fine)').matches))return;document.querySelectorAll('.method-card,.course').forEach(function(c){c.addEventListener('pointerenter',function(){c.style.animation='none';c.style.transition='transform .12s ease-out,box-shadow .25s';});c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-0.5,y=(e.clientY-r.top)/r.height-0.5;c.style.transform='perspective(720px) rotateY('+(x*8).toFixed(2)+'deg) rotateX('+(-y*8).toFixed(2)+'deg) translateY(-5px)';});c.addEventListener('pointerleave',function(){c.style.transform='';c.style.transition='transform .35s ease';c.style.animation='';});});})();
+(function(){var b=document.getElementById('scrollbar');if(!b)return;function u(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;b.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',u,{passive:true});u();})();
+</script>
+
+</body>
+</html>
