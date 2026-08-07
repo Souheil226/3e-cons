@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutsch Aktiv — Deine Reise zur deutschen Sprache | 3E Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<style>
+  :root{
+    /* ===== 3E Academy palette ===== */
+    --bg:#EFE4CE;
+    --surface:#FFFFFF;
+    --surface-2:#E5D6BB;
+    --ink:#13110F;
+    --ink-soft:#5C5347;
+    --line:rgba(19,17,15,.12);
+    --green:#0E4A2F;
+    --green-2:#15663F;
+    --green-deep:#08291A;
+    --green-soft:rgba(14,74,47,.12);
+    --terra:#C2410C;
+    --gold:#D9A441;
+    /* level accents mapped to academy accent colors */
+    --a1:#D9A441;   --a1-soft:rgba(217,164,65,.16);
+    --a2:#C2410C;   --a2-soft:rgba(194,65,12,.13);
+    --b1:#15663F;   --b1-soft:rgba(21,102,63,.13);
+    --b2:#0E4A2F;   --b2-soft:rgba(14,74,47,.13);
+    --radius:18px;
+    --shadow:0 18px 50px -18px rgba(14,74,47,.28);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.7;
+    background-image:
+      radial-gradient(circle at 10% 8%, rgba(14,74,47,0.05), transparent 40%),
+      radial-gradient(circle at 90% 12%, rgba(194,65,12,0.06), transparent 35%);
+  }
+  h1,h2{font-family:'Fraunces',Georgia,serif;font-weight:900;letter-spacing:-.5px;}
+  .mono{font-family:'Space Grotesk',sans-serif;}
+
+  /* ===== Header ===== */
+  .site-header{
+    position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:14px 6vw;background:rgba(251,246,236,.86);backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;transition:.3s;
+  }
+  .site-header.scrolled{padding-top:9px;padding-bottom:9px;border-bottom:1px solid var(--line);box-shadow:0 6px 24px rgba(19,17,15,.06)}
+  .brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);}
+  .logo-img-main{max-height:40px;max-width:200px;width:auto;height:auto;object-fit:contain;display:block;}
+  .brand-fallback{font-family:'Fraunces',serif;font-weight:900;font-size:1.05rem;color:var(--ink);display:flex;align-items:center;gap:9px;}
+  .brand-fallback .mark{width:34px;height:34px;border-radius:9px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:.85rem;}
+
+  nav.levels-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  nav.levels-nav a{
+    text-decoration:none;color:var(--ink);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13.5px;
+    padding:8px 15px;border-radius:999px;border:1px solid var(--line);background:var(--surface);transition:.2s;
+  }
+  nav.levels-nav a:hover{background:var(--green);color:#fff;border-color:var(--green);}
+  nav.levels-nav a.home-link{background:var(--terra);color:#fff;border-color:var(--terra);}
+  nav.levels-nav a.home-link:hover{background:#a8360a;border-color:#a8360a;}
+
+  .navbar-toggler{display:none;border:1.5px solid var(--line);border-radius:10px;background:#fff;padding:7px 11px;font-size:19px;line-height:1;color:var(--green);cursor:pointer;}
+
+  /* ===== Hero ===== */
+  .hero{padding:64px 6vw 40px;max-width:1100px;margin:0 auto;text-align:center;}
+  .eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.75rem;letter-spacing:3px;color:var(--terra);font-weight:700;text-transform:uppercase;}
+  .hero h1{font-size:clamp(2rem,4.5vw,3.1rem);margin:14px 0 16px;color:var(--ink);}
+  .hero p.sub{max-width:640px;margin:0 auto;color:var(--ink-soft);font-size:1.05rem;}
+  .hero-back{display:inline-flex;align-items:center;gap:8px;margin-top:22px;text-decoration:none;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--green);border-bottom:2px solid transparent;transition:.2s;}
+  .hero-back:hover{border-color:var(--green);}
+
+  /* ===== Journey path ===== */
+  .journey{max-width:980px;margin:56px auto 10px;padding:0 6vw;position:relative;}
+  .journey-track{display:flex;align-items:flex-start;justify-content:space-between;position:relative;gap:8px;}
+  .journey-track::before{
+    content:"";position:absolute;top:26px;left:6%;right:6%;height:2px;
+    background-image:linear-gradient(to right, var(--ink-soft) 0 8px, transparent 8px 16px);
+    background-size:16px 2px;opacity:.4;
+  }
+  .stop{position:relative;flex:1;text-align:center;text-decoration:none;color:var(--ink);}
+  .stop .dot{
+    width:52px;height:52px;border-radius:50%;background:var(--surface);border:2px solid var(--stop-color, var(--green));
+    display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-family:'Space Grotesk',sans-serif;
+    font-weight:800;color:var(--stop-color, var(--green));position:relative;z-index:2;transition:.2s;
+  }
+  .stop:hover .dot{background:var(--stop-color, var(--green));color:#fff;transform:translateY(-3px);}
+  .stop small{display:block;font-size:.72rem;color:var(--ink-soft);}
+  .stop .plane{position:absolute;top:-22px;left:50%;transform:translateX(-50%) rotate(90deg);font-size:1rem;opacity:.55;}
+  .stop:last-child .dot{border-width:3px;}
+
+  /* ===== Level section (Akkordeon) ===== */
+  section.level{max-width:1100px;margin:22px auto;padding:0 6vw;scroll-margin-top:90px;}
+  .level-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .25s;}
+  .level-card.open{box-shadow:0 24px 60px -18px rgba(14,74,47,.32);}
+  .level-head{
+    display:flex;align-items:center;gap:22px;padding:26px 32px;background:var(--stop-soft, var(--green-soft));
+    border-bottom:1px dashed transparent;cursor:pointer;user-select:none;transition:.2s;
+  }
+  .level-head:hover{filter:brightness(.98);}
+  .level-card.open .level-head{border-bottom-color:var(--line);}
+  .stamp{
+    width:76px;height:76px;border-radius:50%;border:3px double var(--stop-color, var(--green));
+    display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--stop-color, var(--green));
+    transform:rotate(-6deg);background:rgba(255,255,255,.55);flex-shrink:0;
+  }
+  .stamp .code{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.25rem;line-height:1;}
+  .stamp .tick{font-size:.55rem;letter-spacing:1px;margin-top:2px;font-family:'Space Grotesk',sans-serif;}
+  .level-head-text{flex:1;min-width:0;}
+  .level-head h2{margin:0 0 6px;font-size:1.3rem;}
+  .level-head p{margin:0;color:var(--ink-soft);font-size:.92rem;max-width:600px;}
+  .chevron-btn{
+    flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--surface);border:1.5px solid var(--line);
+    display:flex;align-items:center;justify-content:center;color:var(--stop-color, var(--green));font-size:1rem;
+    transition:transform .3s ease, background .2s;
+  }
+  .level-card.open .chevron-btn{transform:rotate(180deg);background:var(--stop-color, var(--green));color:#fff;border-color:transparent;}
+  .level-body{display:none;padding:32px;}
+  .level-card.open .level-body{display:block;animation:levelFade .35s ease;}
+  @keyframes levelFade{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+
+  .block-title{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.02rem;margin:0 0 16px;font-family:'Space Grotesk',sans-serif;}
+  .block-title .tag{
+    font-family:'Space Grotesk',sans-serif;font-size:.68rem;padding:3px 9px;border-radius:999px;
+    background:var(--stop-soft, var(--green-soft));color:var(--stop-color, var(--green));font-weight:700;
+  }
+
+  .can-do{list-style:none;margin:0 0 32px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;}
+  .can-do li{padding-left:22px;position:relative;font-size:.94rem;color:var(--ink);}
+  .can-do li::before{content:"◆";position:absolute;left:0;top:2px;font-size:.6rem;color:var(--stop-color, var(--green));}
+  .note-box{margin-top:-10px;margin-bottom:32px;background:var(--surface-2);border-left:3px solid var(--gold);border-radius:8px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);}
+
+  .video-wrap{border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:#000;margin-bottom:14px;}
+  .video-wrap iframe{width:100%;height:100%;border:0;display:block;}
+  .video-links{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 34px;}
+  .video-links a{
+    text-decoration:none;font-size:.86rem;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);
+    padding:8px 14px;border-radius:999px;display:flex;align-items:center;gap:6px;transition:.2s;
+  }
+  .video-links a:hover{border-color:var(--stop-color, var(--green));color:var(--stop-color, var(--green));}
+
+  /* ===== Quiz / Spiele (Auswahlfragen) ===== */
+  .quiz-topics{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .quiz-topic-btn{
+    font-family:'Space Grotesk',sans-serif;font-size:.74rem;font-weight:700;padding:8px 15px;
+    border-radius:999px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;
+    color:var(--ink-soft);transition:.15s;
+  }
+  .quiz-topic-btn:hover{border-color:var(--stop-color,var(--green));color:var(--ink);}
+  .quiz-topic-btn.active{color:#fff;border-color:var(--stop-color,var(--green));background:var(--stop-color,var(--green));}
+
+  .quiz{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);padding:24px;margin:0 0 34px;}
+  .quiz-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-family:'Space Grotesk',sans-serif;font-size:.72rem;color:var(--ink-soft);letter-spacing:.5px;}
+  .quiz-bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:20px;}
+  .quiz-bar-fill{height:100%;transition:width .3s;}
+  .quiz-question{font-size:1.08rem;font-weight:700;margin-bottom:18px;}
+  .quiz-question .hint{display:block;font-weight:400;font-size:.85rem;color:var(--ink-soft);margin-top:4px;}
+  .quiz-options{display:grid;gap:10px;}
+  .quiz-opt{
+    text-align:left;padding:12px 16px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);
+    cursor:pointer;font-family:inherit;font-size:.95rem;color:var(--ink);transition:.15s;
+  }
+  .quiz-opt:hover:not(:disabled){border-color:var(--stop-color,var(--green));}
+  .quiz-opt.correct{background:#DDEFE1;border-color:#3E8E5B;color:#1F5C36;font-weight:700;}
+  .quiz-opt.wrong{background:#F6DCDC;border-color:#C24B4B;color:#8B2E2E;}
+  .quiz-opt:disabled{cursor:default;opacity:.85;}
+  .quiz-feedback{margin-top:14px;font-size:.88rem;min-height:20px;color:var(--ink-soft);}
+  .quiz-next{
+    margin-top:16px;display:none;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.78rem;
+    padding:10px 20px;border-radius:999px;border:none;color:#fff;cursor:pointer;
+  }
+  .quiz-result{text-align:center;padding:14px 0 6px;}
+  .quiz-result .score{font-family:'Space Grotesk',sans-serif;font-size:2.4rem;font-weight:800;}
+  .quiz-result p{color:var(--ink-soft);margin:8px 0 16px;}
+  .quiz-result button{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.78rem;padding:10px 22px;
+    border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;
+  }
+
+  /* ===== Schreibtest (Arabisch → Deutsch) ===== */
+  .write-prompt{font-family:'Space Grotesk',sans-serif;font-size:.72rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
+  .write-ar{font-family:'Fraunces',Georgia,serif;font-size:1.7rem;font-weight:900;color:var(--ink);direction:rtl;margin-bottom:18px;}
+  .write-input{
+    width:100%;font-family:inherit;font-size:1.05rem;padding:13px 16px;border:1.5px solid var(--line);
+    border-radius:10px;margin-bottom:12px;background:var(--surface);color:var(--ink);
+  }
+  .write-input:focus{outline:none;border-color:var(--stop-color,var(--green));box-shadow:0 0 0 3px rgba(14,74,47,.12);}
+  .write-input.correct{border-color:#3E8E5B;background:#DDEFE1;}
+  .write-input.wrong{border-color:#C24B4B;background:#F6DCDC;}
+  .write-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .write-row .write-input{flex:1;min-width:180px;}
+  .write-check{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.85rem;padding:0 22px;border-radius:10px;
+    border:none;color:#fff;cursor:pointer;flex-shrink:0;
+  }
+  .write-check:disabled{opacity:.6;cursor:default;}
+  .write-hint{font-size:.76rem;color:var(--ink-soft);margin-top:2px;}
+
+  .pdf-card{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    border:1.5px dashed var(--line);border-radius:12px;padding:18px 20px;
+    background:repeating-linear-gradient(135deg, var(--surface-2) 0 12px, var(--surface) 12px 24px);
+  }
+  .pdf-card .info{display:flex;align-items:center;gap:12px;}
+  .pdf-card .icon{
+    width:44px;height:44px;border-radius:10px;background:var(--surface);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:.7rem;color:var(--ink-soft);
+  }
+  .pdf-card .title{font-weight:700;font-size:.94rem;margin-bottom:2px;}
+  .pdf-card .status{font-size:.8rem;color:var(--ink-soft);}
+  .btn-soon{
+    font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;color:var(--ink-soft);
+    background:var(--surface);border:1px solid var(--line);padding:9px 16px;border-radius:999px;white-space:nowrap;
+  }
+
+  /* ===== Footer ===== */
+  .site-footer{background:var(--green-deep);color:rgba(255,255,255,.8);padding:52px 6vw 26px;margin-top:40px;}
+  .footer-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px 32px;}
+  .footer-brand{display:flex;flex-direction:column;}
+  .footer-brand .brand{margin-bottom:10px;}
+  .footer-tagline{margin:14px 0 18px;font-size:14px;max-width:36ch;}
+  .social-row{display:flex;gap:10px;}
+  .social-link{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,255,255,.1);text-decoration:none;font-size:18px;color:#fff;transition:.2s;}
+  .social-link:hover{background:var(--gold);transform:translateY(-2px);}
+  .footer-h{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:14px;}
+  .footer-list{list-style:none;margin:0;padding:0;}
+  .footer-list li{margin-bottom:9px;}
+  .footer-list a{text-decoration:none;font-size:14px;opacity:.8;color:#fff;}
+  .footer-list a:hover{opacity:1;color:var(--gold);}
+  .footer-bottom{text-align:center;margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:12.5px;color:rgba(255,255,255,.6);}
+  @media(max-width:767.98px){.footer-inner{grid-template-columns:1fr;gap:30px;}}
+  @media(min-width:768px) and (max-width:991.98px){.footer-inner{grid-template-columns:1fr 1fr;gap:32px 28px;}.footer-brand{grid-column:1 / -1;}}
+
+  /* ===== Kulturecke — Postkarten-Karussell ===== */
+  .kultur-postcard{
+    position:relative;max-width:460px;margin:0 0 34px;
+    background:var(--surface);border:1.5px dashed var(--stop-color, var(--green));
+    border-radius:14px;padding:22px 24px 16px;transform:rotate(-.8deg);
+    box-shadow:0 14px 30px -18px rgba(19,17,15,.25);
+  }
+  .kp-stamp{
+    position:absolute;top:-14px;right:20px;width:42px;height:42px;border-radius:50%;
+    background:var(--stop-color, var(--green));color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:1.05rem;transform:rotate(9deg);box-shadow:0 6px 14px -6px rgba(19,17,15,.4);
+  }
+  .kp-eyebrow{
+    font-family:'Space Grotesk',sans-serif;font-size:.66rem;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--stop-color, var(--green));font-weight:700;margin-bottom:14px;
+  }
+  .kp-slide{min-height:88px;}
+  .kp-slide .kp-icon{font-size:1.5rem;display:block;margin-bottom:6px;}
+  .kp-slide h4{margin:0 0 5px;font-family:'Space Grotesk',sans-serif;font-size:.98rem;color:var(--ink);}
+  .kp-slide p{margin:0;font-size:.88rem;color:var(--ink-soft);line-height:1.55;}
+  .kp-nav{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);}
+  .kp-nav button{
+    display:flex;align-items:center;gap:5px;height:32px;padding:0 13px;border-radius:999px;border:none;
+    background:var(--stop-color, var(--green));color:#fff;cursor:pointer;transition:.15s;
+    font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;
+  }
+  .kp-nav button:hover{filter:brightness(1.12);transform:translateY(-1px);}
+  .kp-nav button:active{transform:translateY(0);}
+  @keyframes kpPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+  .kp-nav button.pulse{animation:kpPulse 1s ease-in-out 3;}
+  .kp-dots{display:flex;gap:7px;}
+  .kp-dots span{width:8px;height:8px;border-radius:50%;background:var(--line);transition:.2s;display:block;cursor:pointer;}
+  .kp-dots span:hover{background:var(--stop-color, var(--green));opacity:.6;}
+  .kp-dots span.active{background:var(--stop-color, var(--green));width:18px;border-radius:4px;}
+
+  a:focus-visible, button:focus-visible, .level-head:focus-visible{
+    outline:2.5px solid var(--terra); outline-offset:3px; border-radius:6px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+
+  .progress-rail{position:fixed;top:0;left:0;width:100%;height:3px;z-index:60;background:transparent;}
+  .progress-fill{height:100%;width:0%;background:linear-gradient(to right, var(--gold), var(--terra), var(--green));transition:width .1s linear;}
+
+  /* ===== Wort des Tages ===== */
+  .wdt{max-width:720px;margin:0 auto 8px;padding:0 6vw;}
+  .wdt-card{
+    position:relative;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    background:var(--surface);border:1.5px dashed var(--green);border-radius:16px;
+    padding:18px 24px;box-shadow:0 14px 34px -20px rgba(14,74,47,.35);
+  }
+  .wdt-stamp{
+    flex-shrink:0;width:56px;height:56px;border-radius:50%;border:2.5px double var(--green);
+    display:flex;align-items:center;justify-content:center;background:rgba(14,74,47,.06);
+    color:var(--green);font-size:1.4rem;transform:rotate(-8deg);
+  }
+  .wdt-main{flex:1;min-width:200px;}
+  .wdt-eyebrow{
+    font-family:'Space Grotesk',sans-serif;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;
+    color:var(--terra);font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  }
+  .wdt-date{color:var(--ink-soft);font-weight:600;letter-spacing:0;text-transform:none;}
+  .wdt-word-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .wdt-word{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:1.5rem;color:var(--ink);}
+  .wdt-pos{font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:700;color:var(--green);background:var(--green-soft);padding:3px 9px;border-radius:999px;}
+  .wdt-ar{font-size:.98rem;color:var(--ink-soft);margin-top:3px;direction:rtl;}
+  .wdt-example{font-size:.86rem;color:var(--ink-soft);margin-top:7px;padding-top:7px;border-top:1px dashed var(--line);font-style:italic;}
+  .wdt-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .wdt-play{
+    display:flex;align-items:center;gap:7px;height:42px;padding:0 18px;border-radius:999px;border:none;
+    background:var(--green);color:#fff;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.82rem;
+    transition:.15s;
+  }
+  .wdt-play:hover{background:var(--green-2);transform:translateY(-1px);}
+  .wdt-play:active{transform:translateY(0);}
+  .wdt-play.speaking{background:var(--terra);}
+  .wdt-play i{font-size:1rem;}
+  .wdt-shuffle{
+    width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);
+    color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.15s;
+  }
+  .wdt-shuffle:hover{border-color:var(--green);color:var(--green);transform:rotate(45deg);}
+  .wdt-note{font-size:.72rem;color:var(--ink-soft);text-align:center;margin-top:8px;opacity:.75;}
+  @media(max-width:600px){
+    .wdt-card{flex-direction:column;align-items:stretch;text-align:center;padding:20px;}
+    .wdt-word-row{justify-content:center;}
+    .wdt-actions{justify-content:center;}
+    .wdt-stamp{margin:0 auto;}
+  }
+
+  .back-to-top{
+    position:fixed;right:22px;bottom:22px;z-index:55;width:46px;height:46px;border-radius:50%;
+    background:var(--green);color:#fff;border:none;display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;cursor:pointer;box-shadow:0 10px 24px -8px rgba(14,74,47,.5);
+    opacity:0;pointer-events:none;transform:translateY(10px);transition:.25s;
+  }
+  .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+  .back-to-top:hover{background:var(--green-2);}
+
+  /* ===== Wortschatz (Vokabeln + Audio) ===== */
+  .vocab-grid{list-style:none;margin:0 0 34px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .vocab-item{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);transition:.15s;
+  }
+  .vocab-item:hover{border-color:var(--stop-color,var(--green));}
+  .vocab-de{min-width:0;}
+  .vocab-word-line{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .vocab-article{font-family:'Space Grotesk',sans-serif;font-size:.66rem;font-weight:800;padding:2px 7px;border-radius:5px;color:#fff;letter-spacing:.3px;flex-shrink:0;}
+  .vocab-article.der{background:#2563EB;}
+  .vocab-article.die{background:#DC2626;}
+  .vocab-article.das{background:#16A34A;}
+  .vocab-article.pos{background:var(--ink-soft);}
+  .vocab-word{font-weight:700;font-size:.94rem;color:var(--ink);}
+  .vocab-ar{font-size:.92rem;color:var(--ink-soft);direction:rtl;text-align:right;flex-shrink:0;}
+  .vocab-speak{
+    width:34px;height:34px;border-radius:50%;border:none;flex-shrink:0;
+    background:var(--stop-soft, var(--green-soft));color:var(--stop-color, var(--green));
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s;font-size:.9rem;
+  }
+  .vocab-speak:hover{background:var(--stop-color, var(--green));color:#fff;transform:scale(1.06);}
+  .vocab-speak.speaking{background:var(--terra);color:#fff;}
+
+  @media(max-width:860px){
+    .site-header{flex-wrap:wrap;}
+    .navbar-toggler{display:inline-flex;align-items:center;justify-content:center;order:2;margin-left:auto;}
+    nav.levels-nav{
+      order:4;width:100%;display:none;flex-direction:column;gap:4px;
+      background:rgba(251,246,236,.98);backdrop-filter:blur(14px);padding:12px 0 6px;border-top:1px solid var(--line);margin-top:12px;
+    }
+    nav.levels-nav.show{display:flex;}
+    nav.levels-nav a{text-align:center;padding:11px;}
+  }
+  @media(max-width:720px){
+    .journey-track{flex-wrap:wrap;row-gap:28px;}
+    .journey-track::before{display:none;}
+    .can-do{grid-template-columns:1fr;}
+    .level-head{flex-direction:column;text-align:center;}
+    .chevron-btn{margin:4px auto 0;}
+    .pdf-card{flex-direction:column;align-items:flex-start;}
+    .vocab-grid{grid-template-columns:1fr;}
+    .vocab-item{flex-wrap:wrap;}
+    .write-row{flex-direction:column;}
+    .write-check{padding:13px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-rail" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+
+<header class="site-header" id="siteHeader">
+  <a href="academy.html" class="brand" aria-label="3E Academy — zur Startseite">
+    <img src="Logo-Academy.png" alt="3E Academy" class="logo-img-main" decoding="async" onerror="this.parentElement.innerHTML='<span class=\'brand-fallback\'><span class=\'mark\'>3E</span> 3E Academy</span>'">
+  </a>
+  <button class="navbar-toggler" id="navToggler" aria-label="Menü umschalten" aria-expanded="false">
+    <i class="bi bi-list" id="navTogglerIcon"></i>
+  </button>
+  <nav class="levels-nav" id="navMain">
+    <a href="academy.html" class="home-link"><i class="bi bi-arrow-left"></i> 3E Academy</a>
+    <a href="#a1">A1</a>
+    <a href="#a2">A2</a>
+    <a href="#b1">B1</a>
+    <a href="#b2">B2</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">DEUTSCH LERNEN · A1 → B2</div>
+  <h1>Deine Reise zur deutschen Sprache</h1>
+  <p class="sub">Vier Etappen trennen dich von einem Deutschniveau, das dich für Arbeit und Ausbildung in Deutschland qualifiziert. Klicke auf ein Level, um Playlist, Wortschatz, Spiele und Schreibtest zu öffnen — nur ein Level ist gleichzeitig geöffnet.</p>
+  <a class="hero-back" href="academy.html"><i class="bi bi-mortarboard-fill"></i> Zurück zu 3E Academy &amp; Kursanmeldung</a>
+</section>
+
+<div class="wdt">
+  <div class="wdt-card" id="wortDesTages">
+    <div class="wdt-stamp"><i class="bi bi-postage-fill"></i></div>
+    <div class="wdt-main">
+      <div class="wdt-eyebrow"><span>Wort des Tages</span><span class="wdt-date" id="wdtDate"></span></div>
+      <div class="wdt-word-row">
+        <span class="wdt-word" id="wdtWord">—</span>
+        <span class="wdt-pos" id="wdtPos"></span>
+      </div>
+      <div class="wdt-ar" id="wdtAr" lang="ar"></div>
+      <div class="wdt-example" id="wdtExample"></div>
+    </div>
+    <div class="wdt-actions">
+      <button class="wdt-play" id="wdtPlay" aria-label="Wort anhören"><i class="bi bi-volume-up-fill"></i> Anhören</button>
+      <button class="wdt-shuffle" id="wdtShuffle" aria-label="Anderes Wort anzeigen" title="Anderes Wort"><i class="bi bi-shuffle"></i></button>
+    </div>
+  </div>
+  <p class="wdt-note">Jeden Tag ein neues Wort — schau einfach wieder vorbei. Kein Konto nötig.</p>
+</div>
+
+<div class="journey">
+  <div class="journey-track">
+    <a class="stop" href="#a1" style="--stop-color:var(--a1)">
+      <div class="dot mono">A1</div>
+      <strong>Anfänger</strong><br><small>Erste Schritte</small>
+    </a>
+    <a class="stop" href="#a2" style="--stop-color:var(--a2)">
+      <div class="dot mono">A2</div>
+      <strong>Grundlegend</strong><br><small>Alltagssituationen</small>
+    </a>
+    <a class="stop" href="#b1" style="--stop-color:var(--b1)">
+      <div class="dot mono">B1</div>
+      <strong>Mittelstufe</strong><br><small>Meist gefordertes Niveau</small>
+    </a>
+    <a class="stop" href="#b2" style="--stop-color:var(--b2)">
+      <span class="plane">✈</span>
+      <div class="dot mono">B2</div>
+      <strong>Obere Mittelstufe</strong><br><small>Mehr Chancen</small>
+    </a>
+  </div>
+</div>
+
+<!-- ======================= A1 ======================= -->
+<section class="level" id="a1" style="--stop-color:var(--a1); --stop-soft:var(--a1-soft)">
+  <div class="level-card">
+    <div class="level-head" tabindex="0" role="button" aria-expanded="false" aria-controls="body-a1">
+      <div class="stamp"><span class="code">A1</span><span class="tick">BEGINNER</span></div>
+      <div class="level-head-text">
+        <h2>Level 1 — Anfänger</h2>
+        <p>Alphabet, Aussprache und die ersten Sätze auf Deutsch.</p>
+      </div>
+      <div class="chevron-btn"><i class="bi bi-chevron-down"></i></div>
+    </div>
+    <div class="level-body" id="body-a1">
+
+      <p class="block-title"><span class="tag">CAN DO</span> Was du danach kannst</p>
+      <ul class="can-do">
+        <li>Dich selbst vorstellen: Name, Herkunft, Wohnort</li>
+        <li>Einfache Fragen stellen und beantworten (Arbeit, Familie, Besitz)</li>
+        <li>Vertraute Wörter und Sätze im Alltag verstehen</li>
+        <li>Kurze Sätze und ein persönliches Steckbrief schreiben</li>
+      </ul>
+
+      <p class="block-title"><span class="tag">WORTSCHATZ</span> Wichtige Wörter — mit Audio 🔊</p>
+      <div class="quiz-topics" id="vocab-topics-a1"></div>
+      <div class="vocab-grid" id="vocab-a1"></div>
+
+      <p class="block-title"><span class="tag">SCHREIBTEST</span> Übersetze vom Arabischen ins Deutsche ✍️</p>
+      <div class="quiz-topics" id="write-topics-a1"></div>
+      <div class="quiz" id="write-a1" data-color="var(--a1)"></div>
+
+      <div class="kultur-postcard" data-kultur="a1">
+        <div class="kp-stamp"><i class="bi bi-flag-fill"></i></div>
+        <div class="kp-eyebrow">Kulturtipp · Postkarte aus Deutschland</div>
+        <div class="kp-slide"></div>
+        <div class="kp-nav">
+          <button class="kp-prev" aria-label="Zurück"><i class="bi bi-chevron-left"></i> Zurück</button>
+          <div class="kp-dots"></div>
+          <button class="kp-next" aria-label="Weiter">Weiter <i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <p class="block-title"><span class="tag">VIDEO</span> Playlist A1 — Easy German</p>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLk1fjOl39-50kWobutO8NVFzbw9PHtbbg" title="A1 Easy German Playlist" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="video-links">
+        <a href="https://youtube.com/playlist?list=PLF9mJC4RrjIhS4MMm0x72-qWEn1LRvPuW" target="_blank" rel="noopener">▶ Komplette A1-Playlist — Learn German</a>
+        <a href="https://youtube.com/playlist?list=PLF9mJC4RrjIhOcVccRocapDsamn-JIceo" target="_blank" rel="noopener">▶ Grammatik A1-A2</a>
+        <a href="https://youtube.com/playlist?list=PLF9mJC4RrjIjbHP8isGS3q1SzQyNihhjh" target="_blank" rel="noopener">▶ Grundwortschatz</a>
+      </div>
+
+      <p class="block-title"><span class="tag">SPIELE</span> Wähle ein Thema — deckt den ganzen A1-Stoff ab</p>
+      <div class="quiz-topics" id="topics-a1"></div>
+      <div class="quiz" id="quiz-a1" data-color="var(--a1)"></div>
+
+      <p class="block-title"><span class="tag">PDF</span> Level-Dokument</p>
+      <div class="pdf-card">
+        <div class="info">
+          <div class="icon">PDF</div>
+          <div><div class="title">Verben + Vokabeln + Übungen A1</div><div class="status">In Vorbereitung — folgt bald</div></div>
+        </div>
+        <!-- Sobald fertig: href="#" durch den Link zur Datei ersetzen -->
+        <span class="btn-soon">Bald verfügbar</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================= A2 ======================= -->
+<section class="level" id="a2" style="--stop-color:var(--a2); --stop-soft:var(--a2-soft)">
+  <div class="level-card">
+    <div class="level-head" tabindex="0" role="button" aria-expanded="false" aria-controls="body-a2">
+      <div class="stamp"><span class="code">A2</span><span class="tick">ELEMENTARY</span></div>
+      <div class="level-head-text">
+        <h2>Level 2 — Grundlegend</h2>
+        <p>Der Übergang zu echten, kurzen Gesprächen im Alltag.</p>
+      </div>
+      <div class="chevron-btn"><i class="bi bi-chevron-down"></i></div>
+    </div>
+    <div class="level-body" id="body-a2">
+
+      <p class="block-title"><span class="tag">CAN DO</span> Was du danach kannst</p>
+      <ul class="can-do">
+        <li>Einfache Alltagsaufgaben erledigen (Einkaufen, Verkehr, Wohnen)</li>
+        <li>Deine Umgebung und deine Bedürfnisse in einfachen Sätzen beschreiben</li>
+        <li>Anzeigen, Schilder und kurze, gängige Texte verstehen</li>
+        <li>Über deinen Alltag und die nahe Vergangenheit sprechen</li>
+      </ul>
+
+      <p class="block-title"><span class="tag">WORTSCHATZ</span> Wichtige Wörter — mit Audio 🔊</p>
+      <div class="quiz-topics" id="vocab-topics-a2"></div>
+      <div class="vocab-grid" id="vocab-a2"></div>
+
+      <p class="block-title"><span class="tag">SCHREIBTEST</span> Übersetze vom Arabischen ins Deutsche ✍️</p>
+      <div class="quiz-topics" id="write-topics-a2"></div>
+      <div class="quiz" id="write-a2" data-color="var(--a2)"></div>
+
+      <div class="kultur-postcard" data-kultur="a2">
+        <div class="kp-stamp"><i class="bi bi-flag-fill"></i></div>
+        <div class="kp-eyebrow">Kulturtipp · Postkarte aus Deutschland</div>
+        <div class="kp-slide"></div>
+        <div class="kp-nav">
+          <button class="kp-prev" aria-label="Zurück"><i class="bi bi-chevron-left"></i> Zurück</button>
+          <div class="kp-dots"></div>
+          <button class="kp-next" aria-label="Weiter">Weiter <i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <p class="block-title"><span class="tag">VIDEO</span> Playlist A2</p>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLF9mJC4RrjIhv0_YjWvC0pmM1EZlVylBt" title="A2 Playlist" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="video-links">
+        <a href="https://www.youtube.com/c/EasyGerman/playlists" target="_blank" rel="noopener">▶ Easy German — Playlist A2</a>
+        <a href="https://youtube.com/playlist?list=PLF9mJC4RrjIjbHP8isGS3q1SzQyNihhjh" target="_blank" rel="noopener">▶ Zusätzlicher Wortschatz</a>
+      </div>
+
+      <p class="block-title"><span class="tag">SPIELE</span> Wähle ein Thema — deckt den ganzen A2-Stoff ab</p>
+      <div class="quiz-topics" id="topics-a2"></div>
+      <div class="quiz" id="quiz-a2" data-color="var(--a2)"></div>
+
+      <p class="block-title"><span class="tag">PDF</span> Level-Dokument</p>
+      <div class="pdf-card">
+        <div class="info">
+          <div class="icon">PDF</div>
+          <div><div class="title">Verben + Vokabeln + Übungen A2</div><div class="status">In Vorbereitung — folgt bald</div></div>
+        </div>
+        <span class="btn-soon">Bald verfügbar</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================= B1 ======================= -->
+<section class="level" id="b1" style="--stop-color:var(--b1); --stop-soft:var(--b1-soft)">
+  <div class="level-card">
+    <div class="level-head" tabindex="0" role="button" aria-expanded="false" aria-controls="body-b1">
+      <div class="stamp"><span class="code">B1</span><span class="tick">INTERMEDIATE</span></div>
+      <div class="level-head-text">
+        <h2>Level 3 — Mittelstufe</h2>
+        <p>Das meist geforderte Niveau für Ausbildung oder Arbeit in Deutschland.</p>
+      </div>
+      <div class="chevron-btn"><i class="bi bi-chevron-down"></i></div>
+    </div>
+    <div class="level-body" id="body-b1">
+
+      <p class="block-title"><span class="tag">CAN DO</span> Was du danach kannst</p>
+      <ul class="can-do">
+        <li>Die meisten Situationen auf Reisen oder bei der Arbeit in Deutschland meistern</li>
+        <li>Deine Meinung, Pläne und Entscheidungen begründen</li>
+        <li>Zusammenhängende, einfache Texte zu vertrauten Themen schreiben</li>
+        <li>Die Hauptaussagen klarer Texte und Nachrichten verstehen</li>
+      </ul>
+      <div class="note-box">🎯 Deutsche Unternehmen verlangen für Bewerbungen oder Ausbildungsplätze oft ein zertifiziertes B1-Zeugnis (z. B. Goethe-Institut oder telc).</div>
+
+      <p class="block-title"><span class="tag">WORTSCHATZ</span> Wichtige Wörter — mit Audio 🔊</p>
+      <div class="quiz-topics" id="vocab-topics-b1"></div>
+      <div class="vocab-grid" id="vocab-b1"></div>
+
+      <p class="block-title"><span class="tag">SCHREIBTEST</span> Übersetze vom Arabischen ins Deutsche ✍️</p>
+      <div class="quiz-topics" id="write-topics-b1"></div>
+      <div class="quiz" id="write-b1" data-color="var(--b1)"></div>
+
+      <div class="kultur-postcard" data-kultur="b1">
+        <div class="kp-stamp"><i class="bi bi-briefcase-fill"></i></div>
+        <div class="kp-eyebrow">Kulturtipp · Postkarte aus Deutschland</div>
+        <div class="kp-slide"></div>
+        <div class="kp-nav">
+          <button class="kp-prev" aria-label="Zurück"><i class="bi bi-chevron-left"></i> Zurück</button>
+          <div class="kp-dots"></div>
+          <button class="kp-next" aria-label="Weiter">Weiter <i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <p class="block-title"><span class="tag">VIDEO</span> Playlist B1</p>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLF9mJC4RrjIhhEGuI2x4_WWaIyn9q7MzV" title="B1 Playlist" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="video-links">
+        <a href="https://www.youtube.com/c/EasyGerman/playlists" target="_blank" rel="noopener">▶ Easy German — Playlist B1</a>
+      </div>
+
+      <p class="block-title"><span class="tag">SPIELE</span> Wähle ein Thema — deckt den ganzen B1-Stoff ab</p>
+      <div class="quiz-topics" id="topics-b1"></div>
+      <div class="quiz" id="quiz-b1" data-color="var(--b1)"></div>
+
+      <p class="block-title"><span class="tag">PDF</span> Level-Dokument</p>
+      <div class="pdf-card">
+        <div class="info">
+          <div class="icon">PDF</div>
+          <div><div class="title">Verben + Vokabeln + Übungen B1</div><div class="status">In Vorbereitung — folgt bald</div></div>
+        </div>
+        <span class="btn-soon">Bald verfügbar</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================= B2 ======================= -->
+<section class="level" id="b2" style="--stop-color:var(--b2); --stop-soft:var(--b2-soft)">
+  <div class="level-card">
+    <div class="level-head" tabindex="0" role="button" aria-expanded="false" aria-controls="body-b2">
+      <div class="stamp"><span class="code">B2</span><span class="tick">UPPER-INT.</span></div>
+      <div class="level-head-text">
+        <h2>Level 4 — Obere Mittelstufe</h2>
+        <p>Spezialisierte Berufe (Pflege, Technik, Management) und entspannter Austausch mit Muttersprachlern.</p>
+      </div>
+      <div class="chevron-btn"><i class="bi bi-chevron-down"></i></div>
+    </div>
+    <div class="level-body" id="body-b2">
+
+      <p class="block-title"><span class="tag">CAN DO</span> Was du danach kannst</p>
+      <ul class="can-do">
+        <li>Komplexe Texte und Fachdiskussionen in deinem Berufsfeld verstehen</li>
+        <li>Dich fließend und spontan mit Muttersprachlern verständigen</li>
+        <li>Klare, ausführliche Texte zu verschiedenen Themen verfassen</li>
+        <li>Deinen Standpunkt in einer Fachdiskussion mit Argumenten vertreten</li>
+      </ul>
+
+      <p class="block-title"><span class="tag">WORTSCHATZ</span> Wichtige Wörter — mit Audio 🔊</p>
+      <div class="quiz-topics" id="vocab-topics-b2"></div>
+      <div class="vocab-grid" id="vocab-b2"></div>
+
+      <p class="block-title"><span class="tag">SCHREIBTEST</span> Übersetze vom Arabischen ins Deutsche ✍️</p>
+      <div class="quiz-topics" id="write-topics-b2"></div>
+      <div class="quiz" id="write-b2" data-color="var(--b2)"></div>
+
+      <div class="kultur-postcard" data-kultur="b2">
+        <div class="kp-stamp"><i class="bi bi-briefcase-fill"></i></div>
+        <div class="kp-eyebrow">Kulturtipp · Postkarte aus Deutschland</div>
+        <div class="kp-slide"></div>
+        <div class="kp-nav">
+          <button class="kp-prev" aria-label="Zurück"><i class="bi bi-chevron-left"></i> Zurück</button>
+          <div class="kp-dots"></div>
+          <button class="kp-next" aria-label="Weiter">Weiter <i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <p class="block-title"><span class="tag">VIDEO</span> Playlist B2</p>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLF9mJC4RrjIirvi-7FRT0hPbdfwcmFDH1" title="B2 Playlist" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="video-links">
+        <a href="https://youtube.com/playlist?list=PLk1fjOl39-51lvdiuQYsLW-0aGIdNNknA" target="_blank" rel="noopener">▶ Zusätzliche B2-Playlist</a>
+        <a href="https://www.youtube.com/c/EasyGerman/playlists" target="_blank" rel="noopener">▶ Easy German — Fortgeschrittenes Niveau</a>
+      </div>
+
+      <p class="block-title"><span class="tag">SPIELE</span> Wähle ein Thema — deckt den ganzen B2-Stoff ab</p>
+      <div class="quiz-topics" id="topics-b2"></div>
+      <div class="quiz" id="quiz-b2" data-color="var(--b2)"></div>
+
+      <p class="block-title"><span class="tag">PDF</span> Level-Dokument</p>
+      <div class="pdf-card">
+        <div class="info">
+          <div class="icon">PDF</div>
+          <div><div class="title">Verben + Vokabeln + Übungen B2</div><div class="status">In Vorbereitung — folgt bald</div></div>
+        </div>
+        <span class="btn-soon">Bald verfügbar</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<button class="back-to-top" id="backToTop" aria-label="Nach oben scrollen"><i class="bi bi-arrow-up"></i></button>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="academy.html" class="brand" aria-label="3E Academy">
+        <img src="Logo-Academy.png" alt="3E Academy" class="logo-img-main" onerror="this.parentElement.innerHTML='<span class=\'brand-fallback\'><span class=\'mark\'>3E</span> 3E Academy</span>'">
+      </a>
+      <p class="footer-tagline">Sprachschule für Deutsch mit Herz und Methode in Constantine. Inhalte auf dieser Seite dienen ausschließlich Lernzwecken — für ein offizielles Zertifikat empfiehlt sich eine anerkannte Prüfung (Goethe-Institut / telc).</p>
+      <div class="social-row">
+        <a class="social-link" href="https://instagram.com/3e__engage_expand_excel" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a class="social-link" href="https://www.facebook.com/profile.php?id=61587208807779" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a class="social-link" href="https://www.tiktok.com/@3e_engage_expand_excel?_r=1&_t=ZS-98YfNif9mYH" target="_blank" rel="noopener" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-h">Niveaus</div>
+      <ul class="footer-list">
+        <li><a href="#a1">A1 — Anfänger</a></li>
+        <li><a href="#a2">A2 — Grundlegend</a></li>
+        <li><a href="#b1">B1 — Mittelstufe</a></li>
+        <li><a href="#b2">B2 — Obere Mittelstufe</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-h">3E Academy</div>
+      <ul class="footer-list">
+        <li><a href="academy.html#about">Über uns</a></li>
+        <li><a href="academy.html#courses">Kurse &amp; Anmeldung</a></li>
+        <li><a href="academy.html#contact">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 3E Academy · Djamal A. C. · Bd de L' Aln UV07 A.M, 25001 Constantine, Ali Mendjeli, Algerien</div>
+</footer>
+
+<script>
+/* ===== Mobile nav toggle ===== */
+(function(){
+  var toggler=document.getElementById('navToggler'), icon=document.getElementById('navTogglerIcon'), nav=document.getElementById('navMain');
+  if(!toggler||!nav)return;
+  toggler.addEventListener('click',function(){
+    var open=nav.classList.toggle('show');
+    toggler.setAttribute('aria-expanded', open?'true':'false');
+    icon.className = open ? 'bi bi-x-lg' : 'bi bi-list';
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      if(nav.classList.contains('show')){
+        nav.classList.remove('show');
+        toggler.setAttribute('aria-expanded','false');
+        icon.className='bi bi-list';
+      }
+    });
+  });
+})();
+/* ===== Sticky header shadow on scroll ===== */
+(function(){
+  var h=document.getElementById('siteHeader');
+  if(h)window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+})();
+
+/* ============ AKKORDEON: nur ein Level gleichzeitig offen ============ */
+const LEVEL_KEYS = ['a1','a2','b1','b2'];
+function setLevelOpen(key, open){
+  const section = document.getElementById(key);
+  if(!section) return;
+  const card = section.querySelector('.level-card');
+  const head = section.querySelector('.level-head');
+  card.classList.toggle('open', open);
+  if(head) head.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+function openLevelOnly(key){
+  LEVEL_KEYS.forEach(k => setLevelOpen(k, k === key));
+}
+function toggleLevel(key){
+  const section = document.getElementById(key);
+  const isOpen = section.querySelector('.level-card').classList.contains('open');
+  if(isOpen){ setLevelOpen(key, false); } else { openLevelOnly(key); }
+}
+function initAccordion(){
+  LEVEL_KEYS.forEach(key=>{
+    const head = document.querySelector('#' + key + ' .level-head');
+    if(!head) return;
+    head.addEventListener('click', ()=> toggleLevel(key));
+    head.addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleLevel(key); }
+    });
+  });
+  // Beim Laden: Level aus der URL (#a2 usw.) automatisch öffnen, sonst A1 als Standard.
+  const hashKey = location.hash.replace('#','');
+  if(LEVEL_KEYS.includes(hashKey)){
+    openLevelOnly(hashKey);
+    setTimeout(()=> document.getElementById(hashKey).scrollIntoView({behavior:'smooth', block:'start'}), 60);
+  } else {
+    openLevelOnly('a1');
+  }
+  window.addEventListener('hashchange', ()=>{
+    const k = location.hash.replace('#','');
+    if(LEVEL_KEYS.includes(k)) openLevelOnly(k);
+  });
+}
+
+/* ============ QUIZ ENGINE (Auswahlfragen) ============ */
+function mountQuiz(containerId, questions, accent){
+  const root = document.getElementById(containerId);
+  if(!root) return;
+  let i = 0, score = 0;
+
+  function renderQuestion(){
+    const q = questions[i];
+    root.innerHTML = `
+      <div class="quiz-top"><span>FRAGE ${i+1}/${questions.length}</span><span>PUNKTE: ${score}</span></div>
+      <div class="quiz-bar"><div class="quiz-bar-fill" style="width:${(i/questions.length)*100}%;background:${accent}"></div></div>
+      <div class="quiz-question">${q.q}${q.hint ? `<span class="hint">${q.hint}</span>` : ''}</div>
+      <div class="quiz-options">
+        ${q.opts.map((o,idx)=>`<button class="quiz-opt" data-idx="${idx}">${o}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback"></div>
+      <button class="quiz-next" style="background:${accent}">Weiter →</button>
+    `;
+    const optButtons = root.querySelectorAll('.quiz-opt');
+    const feedback = root.querySelector('.quiz-feedback');
+    const nextBtn = root.querySelector('.quiz-next');
+
+    optButtons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const chosen = +btn.dataset.idx;
+        optButtons.forEach(b=>b.disabled = true);
+        if(chosen === q.correct){
+          btn.classList.add('correct');
+          score++;
+          feedback.textContent = '✓ Richtig! ' + (q.tip || '');
+        } else {
+          btn.classList.add('wrong');
+          optButtons[q.correct].classList.add('correct');
+          feedback.textContent = '✗ Richtige Antwort: „' + q.opts[q.correct] + '“ — ' + (q.tip || '');
+        }
+        nextBtn.style.display = 'inline-block';
+      });
+    });
+
+    nextBtn.addEventListener('click', ()=>{
+      i++;
+      if(i < questions.length) renderQuestion();
+      else renderResult();
+    });
+  }
+
+  function renderResult(){
+    const pct = score/questions.length;
+    const msg = pct === 1 ? 'Perfekt! 🎉' : pct >= 0.6 ? 'Gut gemacht! 👍' : 'Weiter üben — du schaffst das! 💪';
+    root.innerHTML = `
+      <div class="quiz-result">
+        <div class="score" style="color:${accent}">${score}/${questions.length}</div>
+        <p>${msg}</p>
+        <button id="retry-${containerId}">Nochmal versuchen</button>
+      </div>
+    `;
+    document.getElementById('retry-'+containerId).addEventListener('click', ()=>{ i=0; score=0; renderQuestion(); });
+  }
+
+  renderQuestion();
+}
+
+/* ============ SCHREIBTEST-ENGINE (Arabisch → Deutsch, Texteingabe) ============ */
+function normalizeDE(s){
+  return (s || '')
+    .toLowerCase()
+    .trim()
+    .replace(/^(der|die|das)\s+/,'')
+    .replace(/ß/g,'ss')
+    .replace(/\s+/g,' ');
+}
+function mountWriteTest(containerId, words, accent){
+  const root = document.getElementById(containerId);
+  if(!root) return;
+  let i = 0, score = 0;
+
+  function renderQuestion(){
+    const w = words[i];
+    root.innerHTML = `
+      <div class="quiz-top"><span>WORT ${i+1}/${words.length}</span><span>PUNKTE: ${score}</span></div>
+      <div class="quiz-bar"><div class="quiz-bar-fill" style="width:${(i/words.length)*100}%;background:${accent}"></div></div>
+      <div class="write-prompt">Übersetze ins Deutsche</div>
+      <div class="write-ar" lang="ar">${w.ar}</div>
+      <div class="write-row">
+        <input type="text" class="write-input" placeholder="Auf Deutsch schreiben…" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <button class="write-check" style="background:${accent}">Prüfen</button>
+      </div>
+      <div class="write-hint">Tipp: Der Artikel (der/die/das) ist optional — die Hauptsache ist das richtige Wort.</div>
+      <div class="quiz-feedback"></div>
+      <button class="quiz-next" style="background:${accent}">Weiter →</button>
+    `;
+    const input = root.querySelector('.write-input');
+    const checkBtn = root.querySelector('.write-check');
+    const feedback = root.querySelector('.quiz-feedback');
+    const nextBtn = root.querySelector('.quiz-next');
+    let answered = false;
+
+    function check(){
+      if(answered) return;
+      const val = input.value.trim();
+      if(!val) return;
+      answered = true;
+      const isCorrect = normalizeDE(val) === normalizeDE(w.de);
+      const full = w.article ? (w.article + ' ' + w.de) : w.de;
+      input.disabled = true;
+      checkBtn.disabled = true;
+      if(isCorrect){
+        input.classList.add('correct');
+        score++;
+        feedback.textContent = '✓ Richtig! ' + full;
+      } else {
+        input.classList.add('wrong');
+        feedback.textContent = '✗ Richtige Antwort: „' + full + '“';
+      }
+      nextBtn.style.display = 'inline-block';
+    }
+
+    checkBtn.addEventListener('click', check);
+    input.addEventListener('keydown', e=>{ if(e.key === 'Enter'){ e.preventDefault(); check(); } });
+
+    nextBtn.addEventListener('click', ()=>{
+      i++;
+      if(i < words.length) renderQuestion();
+      else renderResult();
+    });
+  }
+
+  function renderResult(){
+    const pct = score/words.length;
+    const msg = pct === 1 ? 'Perfekt! 🎉' : pct >= 0.6 ? 'Gut gemacht! 👍' : 'Weiter üben — du schaffst das! 💪';
+    root.innerHTML = `
+      <div class="quiz-result">
+        <div class="score" style="color:${accent}">${score}/${words.length}</div>
+        <p>${msg}</p>
+        <button id="retry-${containerId}">Nochmal versuchen</button>
+      </div>
+    `;
+    document.getElementById('retry-'+containerId).addEventListener('click', ()=>{ i=0; score=0; renderQuestion(); });
+  }
+
+  renderQuestion();
+}
+
+/* ============ A1 — vier Themen ============ */
+const A1_ARTIKEL = [
+  {q:'___ Haus', opts:['der','die','das'], correct:2, tip:'Haus ist neutral.'},
+  {q:'___ Tisch', opts:['der','die','das'], correct:0, tip:'Tisch ist maskulin.'},
+  {q:'___ Lampe', opts:['der','die','das'], correct:1, tip:'Lampe ist feminin.'},
+  {q:'___ Buch', opts:['der','die','das'], correct:2, tip:'Buch ist neutral.'},
+  {q:'___ Frau', opts:['der','die','das'], correct:1, tip:'Frau ist feminin.'},
+  {q:'___ Kind', opts:['der','die','das'], correct:2, tip:'Kind ist neutral.'},
+];
+const A1_VERBEN = [
+  {q:'Ich ___ 20 Jahre alt.', hint:'sein', opts:['bin','bist','ist'], correct:0, tip:'ich bin.'},
+  {q:'Du ___ ein Auto.', hint:'haben', opts:['habe','hast','hat'], correct:1, tip:'du hast.'},
+  {q:'Er ___ müde.', hint:'sein', opts:['bin','bist','ist'], correct:2, tip:'er/sie/es ist.'},
+  {q:'Wir ___ Zeit.', hint:'haben', opts:['haben','habt','hat'], correct:0, tip:'wir haben.'},
+  {q:'Ihr ___ nett.', hint:'sein', opts:['seid','sind','bist'], correct:0, tip:'ihr seid.'},
+  {q:'Sie (Plural) ___ Kinder.', hint:'haben', opts:['hat','habt','haben'], correct:2, tip:'sie haben.'},
+];
+const A1_ZAHLEN = [
+  {q:'Wie schreibt man „12“?', opts:['zwölf','zwanzig','zehn'], correct:0},
+  {q:'Wie schreibt man „20“?', opts:['zehn','zwanzig','zwei'], correct:1},
+  {q:'Wie schreibt man „7“?', opts:['sieben','sechs','sieb'], correct:0},
+  {q:'Wie schreibt man „30“?', opts:['dreizehn','dreißig','drei'], correct:1},
+  {q:'Wie schreibt man „100“?', opts:['zehn','tausend','hundert'], correct:2},
+  {q:'Wie schreibt man „45“?', opts:['fünfundvierzig','vierundfünfzig','fünfzig'], correct:0},
+];
+const A1_FRAGEN = [
+  {q:'___ heißt du?', opts:['Wie','Wo','Was'], correct:0, tip:'Wie heißt du? = Name.'},
+  {q:'___ wohnst du?', opts:['Wer','Wo','Wann'], correct:1, tip:'Wo = Ort.'},
+  {q:'___ kommst du?', opts:['Woher','Wie','Wer'], correct:0, tip:'Woher = Herkunft.'},
+  {q:'___ ist das?', hint:'(Person)', opts:['Was','Wer','Wo'], correct:1, tip:'Wer = für Personen.'},
+  {q:'___ machst du beruflich?', opts:['Was','Wann','Wer'], correct:0, tip:'Was = Beruf/Tätigkeit.'},
+  {q:'___ hast du Geburtstag?', opts:['Wo','Wie','Wann'], correct:2, tip:'Wann = Zeitpunkt.'},
+];
+
+/* ============ A2 — vier Themen ============ */
+const A2_DATIV_AKK = [
+  {q:'Ich sehe ___ Mann.', hint:'sehen + Akkusativ', opts:['der','den','dem'], correct:1, tip:'sehen → Akkusativ.'},
+  {q:'Ich helfe ___ Mann.', hint:'helfen + Dativ', opts:['der','den','dem'], correct:2, tip:'helfen → Dativ.'},
+  {q:'Ich gebe ___ Mann das Buch.', hint:'wem?', opts:['der','den','dem'], correct:2, tip:'Indirektes Objekt → Dativ.'},
+  {q:'Ich brauche ___ Stift.', hint:'brauchen + Akkusativ', opts:['der','den','dem'], correct:1, tip:'brauchen → Akkusativ.'},
+  {q:'Sie dankt ___ Lehrer.', hint:'danken + Dativ', opts:['der','den','dem'], correct:2, tip:'danken → Dativ.'},
+  {q:'Er fragt ___ Mann.', hint:'fragen + Akkusativ', opts:['der','den','dem'], correct:1, tip:'fragen → Akkusativ.'},
+];
+const A2_PERFEKT = [
+  {q:'Ich habe das Buch ___.', hint:'lesen', opts:['gelesen','lesen','gelest'], correct:0},
+  {q:'Er ist nach Berlin ___.', hint:'fahren', opts:['fahren','gefahrt','gefahren'], correct:2},
+  {q:'Wir haben Pizza ___.', hint:'essen', opts:['gegessen','gegesst','essen'], correct:0},
+  {q:'Sie hat einen Brief ___.', hint:'schreiben', opts:['geschreiben','geschrieben','schreibt'], correct:1},
+  {q:'Ich habe lange ___.', hint:'schlafen', opts:['geschlaft','geschlafen','schlafen'], correct:1},
+  {q:'Du hast das Fenster ___.', hint:'öffnen', opts:['geöffnet','öffnet','öffnen'], correct:0},
+];
+const A2_PRAEP = [
+  {q:'Das Buch liegt ___ dem Tisch.', hint:'oben drauf', opts:['auf','unter','in'], correct:0},
+  {q:'Ich wohne ___ Berlin.', opts:['auf','an','in'], correct:2},
+  {q:'Das Bild hängt ___ der Wand.', opts:['an','auf','unter'], correct:0},
+  {q:'Der Ball liegt ___ dem Stuhl.', hint:'darunter', opts:['neben','unter','an'], correct:1},
+  {q:'Die Lampe steht ___ dem Bett.', hint:'seitlich davon', opts:['neben','unter','auf'], correct:0},
+  {q:'Wir gehen ___ den Park.', opts:['in','auf','an'], correct:0},
+];
+const A2_MODAL = [
+  {q:'Ich ___ schwimmen.', hint:'Fähigkeit', opts:['kann','muss','darf'], correct:0},
+  {q:'Du ___ deine Hausaufgaben machen.', hint:'Pflicht', opts:['willst','musst','kannst'], correct:1},
+  {q:'Wir ___ heute ins Kino gehen.', hint:'Wunsch', opts:['wollen','müssen','dürfen'], correct:0},
+  {q:'Ihr ___ hier nicht rauchen.', hint:'Verbot', opts:['dürft','könnt','sollt'], correct:0},
+  {q:'Sie ___ sehr gut Klavier spielen.', hint:'Fähigkeit', opts:['muss','kann','soll'], correct:1},
+  {q:'___ ich dir helfen?', hint:'Angebot', opts:['Soll','Muss','Darf'], correct:0},
+];
+
+/* ============ B1 — vier Themen ============ */
+const B1_NEBENSAETZE = [
+  {q:'Ich lerne Deutsch, ___ ich in Deutschland arbeiten möchte.', opts:['weil','dass','wenn'], correct:0, tip:'weil = Grund.'},
+  {q:'Ich glaube, ___ Deutsch nicht so schwer ist.', opts:['weil','dass','obwohl'], correct:1, tip:'dass nach glauben/wissen.'},
+  {q:'___ es regnet, bleibe ich zu Hause.', opts:['Weil','Wenn','Dass'], correct:1, tip:'wenn = Bedingung.'},
+  {q:'Er ist müde, ___ er die ganze Nacht gearbeitet hat.', opts:['weil','wenn','obwohl'], correct:0},
+  {q:'___ es kalt ist, gehe ich spazieren.', opts:['Wenn','Weil','Obwohl'], correct:2, tip:'obwohl = Gegensatz.'},
+  {q:'Sie kommt zur Arbeit, ___ sie krank ist.', opts:['weil','obwohl','wenn'], correct:1},
+];
+const B1_PRAETERITUM = [
+  {q:'Ich ___ gestern zu Hause.', hint:'sein', opts:['war','bin','wäre'], correct:0},
+  {q:'Er ___ keine Zeit.', hint:'haben', opts:['hat','hatte','habe'], correct:1},
+  {q:'Wir ___ ins Kino.', hint:'gehen', opts:['gingen','gehten','gehen'], correct:0},
+  {q:'Sie ___ spät.', hint:'kommen', opts:['kam','kommte','komm'], correct:0},
+  {q:'Ich ___ einen Film.', hint:'sehen', opts:['sah','sehte','seh'], correct:0},
+  {q:'Er ___ viel.', hint:'essen', opts:['esste','aß','isst'], correct:1},
+];
+const B1_RELATIV = [
+  {q:'Der Mann, ___ dort steht, ist mein Chef.', opts:['der','den','dem'], correct:0, tip:'Nominativ maskulin.'},
+  {q:'Die Frau, ___ ich kenne, ist Lehrerin.', opts:['die','der','dem'], correct:0, tip:'Akkusativ feminin = die.'},
+  {q:'Das Kind, ___ ich helfe, ist klein.', opts:['das','dem','den'], correct:1, tip:'helfen + Dativ.'},
+  {q:'Der Film, ___ ich gesehen habe, war gut.', opts:['der','den','dem'], correct:1, tip:'Akkusativ maskulin = den.'},
+  {q:'Die Kinder, ___ spielen, sind laut.', opts:['die','der','denen'], correct:0, tip:'Plural Nominativ = die.'},
+  {q:'Das Buch, ___ auf dem Tisch liegt, ist neu.', opts:['das','der','dem'], correct:0},
+];
+const B1_PASSIV = [
+  {q:'Das Essen wird gerade ___.', hint:'kochen', opts:['gekocht','kochen','kochte'], correct:0},
+  {q:'Die Fenster werden ___.', hint:'putzen', opts:['putzen','geputzt','putzte'], correct:1},
+  {q:'Der Brief wird ___.', hint:'schreiben', opts:['geschrieben','schreiben','schrieb'], correct:0},
+  {q:'Das Auto wird ___.', hint:'reparieren', opts:['reparieren','repariert','reparierte'], correct:1},
+  {q:'Die Aufgabe wird ___.', hint:'lösen', opts:['gelöst','lösen','löste'], correct:0},
+  {q:'Das Zimmer wird ___.', hint:'aufräumen', opts:['aufräumen','aufgeräumt','räumt'], correct:1},
+];
+
+/* ============ B2 — vier Themen ============ */
+const B2_KONJ_PASSIV = [
+  {q:'Wenn ich Zeit ___, würde ich dich besuchen.', hint:'haben, Konj. II', opts:['habe','hätte','hatte'], correct:1},
+  {q:'Das Auto ___ von Max repariert.', hint:'Passiv Präsens', opts:['wird','ist','hat'], correct:0},
+  {q:'Wenn ich reich ___, würde ich ein Haus kaufen.', hint:'sein, Konj. II', opts:['bin','wäre','war'], correct:1},
+  {q:'Der Brief ___ gestern geschrieben.', hint:'Passiv Präteritum', opts:['wurde','wird','ist'], correct:0},
+  {q:'An deiner Stelle ___ ich das nicht machen.', opts:['werde','würde','wurde'], correct:1},
+  {q:'Die Aufgabe muss noch ___ werden.', hint:'Passiv + Modalverb', opts:['erledigt','erledigen','erledigte'], correct:0},
+];
+const B2_KONNEKTOREN = [
+  {q:'Es regnet. ___ gehe ich spazieren.', opts:['Deshalb','Trotzdem','Außerdem'], correct:1, tip:'Gegensatz = trotzdem.'},
+  {q:'Sie lernt viel. ___ hat sie gute Noten.', opts:['Deshalb','Jedoch','Trotzdem'], correct:0, tip:'Folge = deshalb.'},
+  {q:'Das Auto ist teuer. ___ ist es sehr gut.', opts:['Deshalb','Jedoch','Außerdem'], correct:1, tip:'Gegensatz = jedoch.'},
+  {q:'Ich habe keine Zeit. ___ kann ich nicht kommen.', opts:['Deshalb','Trotzdem','Jedoch'], correct:0},
+  {q:'Er ist reich. ___ ist er nicht glücklich.', opts:['Deshalb','Trotzdem','Außerdem'], correct:1},
+  {q:'Sie spricht Deutsch. ___ spricht sie Französisch.', hint:'Ergänzung', opts:['Außerdem','Jedoch','Deshalb'], correct:0},
+];
+const B2_NOMINALISIERUNG = [
+  {q:'das ___', hint:'lesen', opts:['Lesen','Lesung','Leser'], correct:0},
+  {q:'die ___', hint:'ankommen', opts:['Ankommung','Ankunft','Ankommen'], correct:1},
+  {q:'die ___', hint:'entscheiden', opts:['Entscheid','Entscheidung','Entscheiden'], correct:1},
+  {q:'die ___', hint:'sich bewerben', opts:['Bewerb','Bewerbung','Bewerben'], correct:1},
+  {q:'die ___', hint:'erklären', opts:['Erklärung','Erklären','Erklärer'], correct:0},
+  {q:'die ___', hint:'untersuchen', opts:['Untersuchen','Untersuch','Untersuchung'], correct:2},
+];
+const B2_INDIREKTE_REDE = [
+  {q:'Er sagt: „Ich bin müde.“ → Er sagt, er ___ müde.', opts:['sei','ist','wäre'], correct:0},
+  {q:'Sie sagt: „Ich habe Zeit.“ → Sie sagt, sie ___ Zeit.', opts:['hat','habe','hätte'], correct:1},
+  {q:'Er sagt: „Ich komme morgen.“ → Er sagt, er ___ morgen.', opts:['komme','kommt','käme'], correct:0},
+  {q:'Sie sagt: „Ich kann das machen.“ → Sie sagt, sie ___ das machen.', opts:['kann','könne','könnte'], correct:1},
+  {q:'Er sagt: „Ich war krank.“ → Er sagt, er ___ krank gewesen.', opts:['sei','war','ist'], correct:0},
+  {q:'Sie sagt: „Ich werde helfen.“ → Sie sagt, sie ___ helfen.', opts:['wird','werde','würde'], correct:1},
+];
+
+/* ============ Themen je Level (Spiele) ============ */
+const LEVELS = {
+  a1: { color:'var(--a1)', topics:[
+    {label:'Artikel', questions:A1_ARTIKEL},
+    {label:'sein & haben', questions:A1_VERBEN},
+    {label:'Zahlen', questions:A1_ZAHLEN},
+    {label:'W-Fragen', questions:A1_FRAGEN},
+  ]},
+  a2: { color:'var(--a2)', topics:[
+    {label:'Dativ/Akkusativ', questions:A2_DATIV_AKK},
+    {label:'Perfekt', questions:A2_PERFEKT},
+    {label:'Präpositionen', questions:A2_PRAEP},
+    {label:'Modalverben', questions:A2_MODAL},
+  ]},
+  b1: { color:'var(--b1)', topics:[
+    {label:'Nebensätze', questions:B1_NEBENSAETZE},
+    {label:'Präteritum', questions:B1_PRAETERITUM},
+    {label:'Relativsätze', questions:B1_RELATIV},
+    {label:'Passiv', questions:B1_PASSIV},
+  ]},
+  b2: { color:'var(--b2)', topics:[
+    {label:'Konjunktiv II & Passiv', questions:B2_KONJ_PASSIV},
+    {label:'Konnektoren', questions:B2_KONNEKTOREN},
+    {label:'Nominalisierung', questions:B2_NOMINALISIERUNG},
+    {label:'Indirekte Rede', questions:B2_INDIREKTE_REDE},
+  ]},
+};
+
+/* ============ Kulturecke — Postkarten-Karussell ============ */
+const KULTUR = {
+  a1: [
+    {icon:'⏱️', title:'Pünktlichkeit', text:'„14 Uhr" bedeutet wirklich 14:00 Uhr — nicht später. Zu spät kommen gilt als respektlos, auch bei privaten Treffen.'},
+    {icon:'🤝', title:'Begrüßung', text:'Ein fester Händedruck mit Blickkontakt ist Standard — auch beim ersten Kennenlernen.'},
+    {icon:'💬', title:'Persönliche Fragen', text:'Fragen zu Gehalt oder Alter sind beim ersten Treffen unüblich und gelten als zu direkt.'},
+  ],
+  a2: [
+    {icon:'🗣️', title:'„Sie" statt „du"', text:'Fremde, Verkäufer und Behördenmitarbeiter werden mit „Sie" angesprochen — auch wenn sie jung wirken.'},
+    {icon:'📞', title:'Telefonieren', text:'Man meldet sich am Telefon mit vollem Namen: „Ahmed Benali, guten Tag."'},
+    {icon:'🎯', title:'Direktheit', text:'Deutsche sagen oft direkt, was sie meinen — das ist meist nicht unfreundlich, sondern normal.'},
+  ],
+  b1: [
+    {icon:'🗣️', title:'„Sie" vs. „du" im Berufsleben', text:'Am Arbeitsplatz wird fast immer mit „Sie" begonnen — auch bei jüngeren Kollegen. Erst wenn der Chef oder ältere Kollegen das „du" anbieten, wechselt man.'},
+    {icon:'⏱️', title:'Pünktlichkeit als Wert', text:'5 Minuten vor dem Termin da zu sein gilt als pünktlich. Verspätung ohne vorherige Nachricht beschädigt das Vertrauen ernsthaft.'},
+    {icon:'✉️', title:'E-Mail-Etikette', text:'Formeller Aufbau: „Sehr geehrte Frau/Herr X", klarer Betreff, Schluss mit „Mit freundlichen Grüßen" — Emojis sind in geschäftlichen E-Mails unüblich.'},
+  ],
+  b2: [
+    {icon:'📋', title:'Meeting-Kultur', text:'Die Agenda wird meist strikt eingehalten. Man lässt andere ausreden und bereitet seine Beiträge vorher vor.'},
+    {icon:'🗒️', title:'Feedback-Kultur', text:'Direkte, konstruktive Kritik ist normal und keine persönliche Angriff — sie wird meist sachlich vom Small Talk getrennt.'},
+    {icon:'🏢', title:'Hierarchie & Kommunikation', text:'Strukturen sind oft flach, aber Entscheidungen laufen trotzdem über den offiziellen Dienstweg — auch bei E-Mail-CC ist das zu beachten.'},
+  ],
+};
+
+function mountKultur(key){
+  const tips = KULTUR[key];
+  const root = document.querySelector('.kultur-postcard[data-kultur="'+key+'"]');
+  if(!root || !tips) return;
+  let idx = 0;
+  const slide = root.querySelector('.kp-slide');
+  const dots = root.querySelector('.kp-dots');
+  const prevBtn = root.querySelector('.kp-prev');
+  const nextBtn = root.querySelector('.kp-next');
+
+  function render(){
+    const t = tips[idx];
+    slide.innerHTML = `<span class="kp-icon">${t.icon}</span><h4>${t.title}</h4><p>${t.text}</p>`;
+    dots.innerHTML = tips.map((_, i) => `<span class="${i === idx ? 'active' : ''}" data-i="${i}"></span>`).join('');
+    dots.querySelectorAll('span').forEach(dot=>{
+      dot.addEventListener('click', ()=>{ stopAuto(); idx = +dot.dataset.i; render(); });
+    });
+  }
+
+  function goPrev(){ idx = (idx - 1 + tips.length) % tips.length; render(); }
+  function goNext(){ idx = (idx + 1) % tips.length; render(); }
+
+  let autoTimer = setInterval(goNext, 6000);
+  function stopAuto(){ clearInterval(autoTimer); nextBtn.classList.remove('pulse'); }
+
+  prevBtn.addEventListener('click', ()=>{ stopAuto(); goPrev(); });
+  nextBtn.addEventListener('click', ()=>{ stopAuto(); goNext(); });
+
+  render();
+  nextBtn.classList.add('pulse');
+  setTimeout(()=> nextBtn.classList.remove('pulse'), 3200);
+}
+
+/* ============ Wortschatz je Level (Vokabeln + Audio + Schreibtest) ============ */
+const VOCAB = {
+  a1: [
+    { label:'Familie & Personen', words:[
+      {de:'Vater', article:'der', ipa:'[ˈfaːtɐ]', ar:'الأب'},
+      {de:'Mutter', article:'die', ipa:'[ˈmʊtɐ]', ar:'الأم'},
+      {de:'Bruder', article:'der', ipa:'[ˈbʁuːdɐ]', ar:'الأخ'},
+      {de:'Schwester', article:'die', ipa:'[ˈʃvɛstɐ]', ar:'الأخت'},
+      {de:'Kind', article:'das', ipa:'[kɪnt]', ar:'الطفل'},
+      {de:'Freund', article:'der', ipa:'[fʁɔɪ̯nt]', ar:'الصديق'},
+    ]},
+    { label:'Zahlen & Zeit', words:[
+      {de:'Uhr', article:'die', ipa:'[uːɐ̯]', ar:'الساعة'},
+      {de:'heute', pos:'Adverb', ipa:'[ˈhɔɪ̯tə]', ar:'اليوم'},
+      {de:'morgen', pos:'Adverb', ipa:'[ˈmɔʁɡn̩]', ar:'غدًا'},
+      {de:'Woche', article:'die', ipa:'[ˈvɔxə]', ar:'الأسبوع'},
+      {de:'Monat', article:'der', ipa:'[ˈmoːnat]', ar:'الشهر'},
+      {de:'Jahr', article:'das', ipa:'[jaːɐ̯]', ar:'السنة'},
+    ]},
+    { label:'Essen & Trinken', words:[
+      {de:'Brot', article:'das', ipa:'[bʁoːt]', ar:'الخبز'},
+      {de:'Wasser', article:'das', ipa:'[ˈvasɐ]', ar:'الماء'},
+      {de:'Kaffee', article:'der', ipa:'[ˈkafe]', ar:'القهوة'},
+      {de:'Apfel', article:'der', ipa:'[ˈap͡fl̩]', ar:'التفاحة'},
+      {de:'Milch', article:'die', ipa:'[mɪlç]', ar:'الحليب'},
+      {de:'Obst', article:'das', ipa:'[oːpst]', ar:'الفاكهة'},
+    ]},
+    { label:'Zuhause', words:[
+      {de:'Haus', article:'das', ipa:'[haʊ̯s]', ar:'المنزل'},
+      {de:'Wohnung', article:'die', ipa:'[ˈvoːnʊŋ]', ar:'الشقة'},
+      {de:'Tisch', article:'der', ipa:'[tɪʃ]', ar:'الطاولة'},
+      {de:'Stuhl', article:'der', ipa:'[ʃtuːl]', ar:'الكرسي'},
+      {de:'Fenster', article:'das', ipa:'[ˈfɛnstɐ]', ar:'النافذة'},
+      {de:'Tür', article:'die', ipa:'[tyːɐ̯]', ar:'الباب'},
+    ]},
+  ],
+  a2: [
+    { label:'Einkaufen', words:[
+      {de:'Supermarkt', article:'der', ipa:'[ˈzuːpɐmaʁkt]', ar:'السوبر ماركت'},
+      {de:'Preis', article:'der', ipa:'[pʁaɪ̯s]', ar:'السعر'},
+      {de:'billig', pos:'Adjektiv', ipa:'[ˈbɪlɪç]', ar:'رخيص'},
+      {de:'teuer', pos:'Adjektiv', ipa:'[ˈtɔɪ̯ɐ]', ar:'غالي'},
+      {de:'Kasse', article:'die', ipa:'[ˈkasə]', ar:'الصندوق (المحاسبة)'},
+      {de:'Angebot', article:'das', ipa:'[ˈanɡəboːt]', ar:'العرض'},
+    ]},
+    { label:'Verkehr & Wege', words:[
+      {de:'Bus', article:'der', ipa:'[bʊs]', ar:'الحافلة'},
+      {de:'Bahnhof', article:'der', ipa:'[ˈbaːnhoːf]', ar:'محطة القطار'},
+      {de:'Straße', article:'die', ipa:'[ˈʃtʁaːsə]', ar:'الشارع'},
+      {de:'links', pos:'Adverb', ipa:'[lɪŋks]', ar:'يسار'},
+      {de:'rechts', pos:'Adverb', ipa:'[ʁɛçts]', ar:'يمين'},
+      {de:'geradeaus', pos:'Adverb', ipa:'[ɡəˌʁaːdəˈʔaʊ̯s]', ar:'إلى الأمام مباشرة'},
+    ]},
+    { label:'Wetter', words:[
+      {de:'Sonne', article:'die', ipa:'[ˈzɔnə]', ar:'الشمس'},
+      {de:'Regen', article:'der', ipa:'[ˈʁeːɡn̩]', ar:'المطر'},
+      {de:'kalt', pos:'Adjektiv', ipa:'[kalt]', ar:'بارد'},
+      {de:'warm', pos:'Adjektiv', ipa:'[vaʁm]', ar:'دافئ'},
+      {de:'Wind', article:'der', ipa:'[vɪnt]', ar:'الرياح'},
+      {de:'Schnee', article:'der', ipa:'[ʃneː]', ar:'الثلج'},
+    ]},
+    { label:'Freizeit', words:[
+      {de:'Hobby', article:'das', ipa:'[ˈhɔbi]', ar:'الهواية'},
+      {de:'schwimmen', pos:'Verb', ipa:'[ˈʃvɪmən]', ar:'يسبح'},
+      {de:'lesen', pos:'Verb', ipa:'[ˈleːzn̩]', ar:'يقرأ'},
+      {de:'Fußballspiel', article:'das', ipa:'[ˈfuːsbalˌʃpiːl]', ar:'مباراة كرة القدم'},
+      {de:'Musik', article:'die', ipa:'[muˈziːk]', ar:'الموسيقى'},
+      {de:'Ausflug', article:'der', ipa:'[ˈaʊ̯sfluːk]', ar:'الرحلة / النزهة'},
+    ]},
+  ],
+  b1: [
+    { label:'Arbeit & Beruf', words:[
+      {de:'Kollege', article:'der', ipa:'[kɔˈleːɡə]', ar:'الزميل'},
+      {de:'Besprechung', article:'die', ipa:'[bəˈʃpʁɛçʊŋ]', ar:'الاجتماع'},
+      {de:'Erfahrung', article:'die', ipa:'[ɛɐ̯ˈfaːʁʊŋ]', ar:'الخبرة'},
+      {de:'verantwortlich', pos:'Adjektiv', ipa:'[fɛɐ̯ˈʔantvɔʁtlɪç]', ar:'مسؤول'},
+      {de:'Kündigung', article:'die', ipa:'[ˈkʏndɪɡʊŋ]', ar:'الاستقالة / الفصل'},
+      {de:'Vertrag', article:'der', ipa:'[fɛɐ̯ˈtʁaːk]', ar:'العقد'},
+    ]},
+    { label:'Gefühle', words:[
+      {de:'glücklich', pos:'Adjektiv', ipa:'[ˈɡlʏklɪç]', ar:'سعيد'},
+      {de:'traurig', pos:'Adjektiv', ipa:'[ˈtʁaʊ̯ʁɪç]', ar:'حزين'},
+      {de:'nervös', pos:'Adjektiv', ipa:'[nɛɐ̯ˈvøːs]', ar:'متوتر'},
+      {de:'stolz', pos:'Adjektiv', ipa:'[ʃtɔlts]', ar:'فخور'},
+      {de:'enttäuscht', pos:'Adjektiv', ipa:'[ɛntˈtɔɪ̯ʃt]', ar:'محبط / خائب الأمل'},
+      {de:'Sorge', article:'die', ipa:'[ˈzɔʁɡə]', ar:'القلق / الهم'},
+    ]},
+    { label:'Wohnen & Alltag', words:[
+      {de:'umziehen', pos:'Verb', ipa:'[ˈʊmtsiːən]', ar:'الانتقال (تغيير السكن)'},
+      {de:'Nachbarn', pos:'Nomen (Pl.)', ipa:'[ˈnaːxbaːɐ̯n]', ar:'الجيران'},
+      {de:'Haushalt', article:'der', ipa:'[ˈhaʊ̯shalt]', ar:'المنزل / الأسرة المعيشية'},
+      {de:'erledigen', pos:'Verb', ipa:'[ɛɐ̯ˈleːdɪɡn̩]', ar:'إنجاز / إتمام'},
+      {de:'Verabredung', article:'die', ipa:'[fɛɐ̯ˈʔaːpʁeːdʊŋ]', ar:'موعد (مع شخص)'},
+      {de:'sich gewöhnen', pos:'Verb', ipa:'[ɡəˈvøːnən]', ar:'التعوّد'},
+    ]},
+    { label:'Behörden & Papiere', words:[
+      {de:'Amt', article:'das', ipa:'[amt]', ar:'الدائرة الحكومية'},
+      {de:'Bescheinigung', article:'die', ipa:'[bəˈʃaɪ̯nɪɡʊŋ]', ar:'الشهادة / الإفادة'},
+      {de:'Antrag', article:'der', ipa:'[ˈantʁaːk]', ar:'الطلب الرسمي'},
+      {de:'Frist', article:'die', ipa:'[fʁɪst]', ar:'الموعد النهائي'},
+      {de:'beantragen', pos:'Verb', ipa:'[bəˈʔantʁaːɡn̩]', ar:'التقدم بطلب'},
+      {de:'Genehmigung', article:'die', ipa:'[ɡəˈneːmɪɡʊŋ]', ar:'الموافقة / التصريح'},
+    ]},
+  ],
+  b2: [
+    { label:'Beruf & Karriere', words:[
+      {de:'Beförderung', article:'die', ipa:'[bəˈfœʁdəʁʊŋ]', ar:'الترقية'},
+      {de:'Fähigkeit', article:'die', ipa:'[ˈfɛːɪçkaɪ̯t]', ar:'القدرة / المهارة'},
+      {de:'Zusammenarbeit', article:'die', ipa:'[tsuˈzamənˌʔaʁbaɪ̯t]', ar:'التعاون'},
+      {de:'Herausforderung', article:'die', ipa:'[hɛˈʁaʊ̯sˌfɔʁdəʁʊŋ]', ar:'التحدي'},
+      {de:'kündigen', pos:'Verb', ipa:'[ˈkʏndɪɡn̩]', ar:'الاستقالة / إنهاء العقد'},
+      {de:'Karriere', article:'die', ipa:'[kaˈʁjɛːʁə]', ar:'المسار المهني'},
+    ]},
+    { label:'Meinung & Diskussion', words:[
+      {de:'Standpunkt', article:'der', ipa:'[ˈʃtantpʊŋkt]', ar:'وجهة النظر'},
+      {de:'behaupten', pos:'Verb', ipa:'[bəˈhaʊ̯ptn̩]', ar:'يدّعي / يؤكد'},
+      {de:'überzeugen', pos:'Verb', ipa:'[yːbɐˈtsɔɪ̯ɡn̩]', ar:'يقنع'},
+      {de:'widersprechen', pos:'Verb', ipa:'[ˈviːdɐʃpʁɛçn̩]', ar:'يعارض / يناقض'},
+      {de:'Kompromiss', article:'der', ipa:'[kɔmpʁoˈmɪs]', ar:'الحل الوسط'},
+      {de:'begründen', pos:'Verb', ipa:'[bəˈɡʁʏndn̩]', ar:'يبرر / يعلل'},
+    ]},
+    { label:'Gesundheit', words:[
+      {de:'Beschwerde', article:'die', ipa:'[bəˈʃveːɐ̯də]', ar:'الشكوى / الأعراض'},
+      {de:'Behandlung', article:'die', ipa:'[bəˈhandlʊŋ]', ar:'العلاج'},
+      {de:'sich erholen', pos:'Verb', ipa:'[ɛɐ̯ˈhoːlən]', ar:'يستريح / يتعافى'},
+      {de:'Versicherung', article:'die', ipa:'[fɛɐ̯ˈzɪçəʁʊŋ]', ar:'التأمين'},
+      {de:'Facharzt', article:'der', ipa:'[ˈfaxˌʔaʁtst]', ar:'الطبيب الأخصائي'},
+      {de:'vorbeugen', pos:'Verb', ipa:'[ˈfoːɐ̯bɔɪ̯ɡn̩]', ar:'يقي / يمنع وقائيًا'},
+    ]},
+    { label:'Medien & Technik', words:[
+      {de:'Quelle', article:'die', ipa:'[ˈkvɛlə]', ar:'المصدر'},
+      {de:'zuverlässig', pos:'Adjektiv', ipa:'[ˈtsuːfɛɐ̯ˌlɛsɪç]', ar:'موثوق'},
+      {de:'Meldung', article:'die', ipa:'[ˈmɛldʊŋ]', ar:'الخبر / الإشعار'},
+      {de:'veröffentlichen', pos:'Verb', ipa:'[fɛɐ̯ˈʔœfn̩tlɪçn̩]', ar:'ينشر'},
+      {de:'Auswirkung', article:'die', ipa:'[ˈaʊ̯svɪʁkʊŋ]', ar:'التأثير'},
+      {de:'recherchieren', pos:'Verb', ipa:'[ʁeʃɛɐ̯ˈʃiːʁən]', ar:'يبحث / يتقصى'},
+    ]},
+  ],
+};
+
+function mountVocab(key){
+  const conf = VOCAB[key];
+  const topicsRoot = document.getElementById('vocab-topics-'+key);
+  const gridRoot = document.getElementById('vocab-'+key);
+  if(!conf || !topicsRoot || !gridRoot) return;
+
+  function renderGrid(idx){
+    const topic = conf[idx];
+    gridRoot.innerHTML = topic.words.map(w=>{
+      const full = w.article ? (w.article+' '+w.de) : w.de;
+      const badge = w.article
+        ? `<span class="vocab-article ${w.article}">${w.article}</span>`
+        : `<span class="vocab-article pos">${w.pos || 'Wort'}</span>`;
+      return `
+        <div class="vocab-item">
+          <div class="vocab-de">
+            <div class="vocab-word-line">${badge}<span class="vocab-word">${w.de}</span></div>
+          </div>
+          <div class="vocab-ar" lang="ar">${w.ar}</div>
+          <button class="vocab-speak" data-text="${full.replace(/"/g,'&quot;')}" aria-label="Anhören: ${w.de}">
+            <i class="bi bi-volume-up-fill"></i>
+          </button>
+        </div>`;
+    }).join('');
+    gridRoot.querySelectorAll('.vocab-speak').forEach(btn=>{
+      btn.addEventListener('click', ()=> speakGerman(btn.dataset.text, btn));
+    });
+  }
+
+  function selectTopic(idx){
+    topicsRoot.querySelectorAll('button').forEach((b,i)=> b.classList.toggle('active', i===idx));
+    renderGrid(idx);
+  }
+
+  topicsRoot.innerHTML = conf.map((t,i)=>`<button class="quiz-topic-btn" data-i="${i}">${t.label}</button>`).join('');
+  topicsRoot.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=> selectTopic(+btn.dataset.i));
+  });
+  selectTopic(0);
+}
+
+/* ============ Schreibtest je Level: nutzt dieselben Wortschatz-Themen ============ */
+function initWriteTest(key){
+  const conf = VOCAB[key];
+  const topicsRoot = document.getElementById('write-topics-'+key);
+  const testId = 'write-'+key;
+  const accent = LEVELS[key].color;
+  if(!conf || !topicsRoot) return;
+
+  function selectTopic(idx){
+    topicsRoot.querySelectorAll('button').forEach((b,i)=> b.classList.toggle('active', i===idx));
+    mountWriteTest(testId, conf[idx].words, accent);
+  }
+
+  topicsRoot.innerHTML = conf.map((t,i)=>`<button class="quiz-topic-btn" data-i="${i}">${t.label}</button>`).join('');
+  topicsRoot.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=> selectTopic(+btn.dataset.i));
+  });
+  selectTopic(0);
+}
+
+function initLevel(key){
+  const conf = LEVELS[key];
+  const topicsRoot = document.getElementById('topics-'+key);
+  const quizId = 'quiz-'+key;
+
+  function selectTopic(idx){
+    topicsRoot.querySelectorAll('button').forEach((b,i)=>{
+      b.classList.toggle('active', i === idx);
+    });
+    mountQuiz(quizId, conf.topics[idx].questions, conf.color);
+  }
+
+  topicsRoot.innerHTML = conf.topics.map((t,i)=>`<button class="quiz-topic-btn" data-i="${i}">${t.label}</button>`).join('');
+  topicsRoot.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=> selectTopic(+btn.dataset.i));
+  });
+  selectTopic(0);
+}
+
+/* ============ Geteilte Sprachausgabe (Text-to-Speech) ============ */
+function speakGerman(text, btnEl){
+  if(!('speechSynthesis' in window)){
+    alert('Sprachausgabe wird von diesem Browser leider nicht unterstützt.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'de-DE';
+  utter.rate = 0.92;
+  const voices = window.speechSynthesis.getVoices();
+  const deVoice = voices.find(v => v.lang && v.lang.startsWith('de'));
+  if(deVoice) utter.voice = deVoice;
+  if(btnEl) btnEl.classList.add('speaking');
+  utter.onend = () => { if(btnEl) btnEl.classList.remove('speaking'); };
+  utter.onerror = () => { if(btnEl) btnEl.classList.remove('speaking'); };
+  window.speechSynthesis.speak(utter);
+}
+
+/* ============ Wort des Tages ============ */
+const WORT_DES_TAGES = [
+  {word:'die Ankunft', pos:'Nomen', ipa:'[ˈankʊnft]', ar:'الوصول', example:'Die Ankunft des Zuges ist um 9 Uhr.'},
+  {word:'anmelden', pos:'Verb', ipa:'[ˈanmɛldn̩]', ar:'التسجيل / إبلاغ الوصول', example:'Ich muss mich beim Bürgeramt anmelden.'},
+  {word:'die Ausbildung', pos:'Nomen', ipa:'[ˈaʊ̯sbɪldʊŋ]', ar:'التكوين المهني', example:'Er macht eine Ausbildung als Elektriker.'},
+  {word:'bewerben (sich)', pos:'Verb', ipa:'[bəˈvɛʁbn̩]', ar:'التقدم لوظيفة', example:'Ich habe mich um die Stelle beworben.'},
+  {word:'dringend', pos:'Adjektiv', ipa:'[ˈdʁɪŋənt]', ar:'عاجل', example:'Das ist eine dringende Angelegenheit.'},
+  {word:'der Termin', pos:'Nomen', ipa:'[tɛɐ̯ˈmiːn]', ar:'موعد', example:'Ich habe morgen einen Termin beim Arzt.'},
+  {word:'erledigen', pos:'Verb', ipa:'[ɛɐ̯ˈleːdɪɡn̩]', ar:'إنجاز / إتمام', example:'Ich muss noch ein paar Sachen erledigen.'},
+  {word:'freundlich', pos:'Adjektiv', ipa:'[ˈfʁɔɪ̯ntlɪç]', ar:'ودود', example:'Die Kollegen sind sehr freundlich.'},
+  {word:'die Geduld', pos:'Nomen', ipa:'[ɡəˈdʊlt]', ar:'الصبر', example:'Man braucht viel Geduld beim Deutschlernen.'},
+  {word:'gemütlich', pos:'Adjektiv', ipa:'[ɡəˈmyːtlɪç]', ar:'مريح / دافئ الأجواء', example:'Das Café ist klein, aber sehr gemütlich.'},
+  {word:'der Gehalt', pos:'Nomen', ipa:'[ɡəˈhalt]', ar:'الراتب', example:'Das Gehalt wird am Monatsende überwiesen.'},
+  {word:'die Miete', pos:'Nomen', ipa:'[ˈmiːtə]', ar:'الإيجار', example:'Die Miete für die Wohnung ist hoch.'},
+  {word:'nützlich', pos:'Adjektiv', ipa:'[ˈnʏtslɪç]', ar:'مفيد', example:'Dieses Wörterbuch ist sehr nützlich.'},
+  {word:'die Prüfung', pos:'Nomen', ipa:'[ˈpʁyːfʊŋ]', ar:'الاختبار', example:'Die Prüfung findet nächste Woche statt.'},
+  {word:'die Rechnung', pos:'Nomen', ipa:'[ˈʁɛçnʊŋ]', ar:'الفاتورة', example:'Kann ich die Rechnung bitte haben?'},
+  {word:'selbstverständlich', pos:'Adjektiv', ipa:'[ˌzɛlpstfɛɐ̯ˈʃtɛntlɪç]', ar:'بالطبع / بديهي', example:'Ich helfe dir, das ist doch selbstverständlich.'},
+  {word:'die Unterlagen', pos:'Nomen (Pl.)', ipa:'[ˈʊntɐˌlaːɡn̩]', ar:'الوثائق / المستندات', example:'Bitte bringen Sie alle Unterlagen mit.'},
+  {word:'verbindlich', pos:'Adjektiv', ipa:'[fɛɐ̯ˈbɪntlɪç]', ar:'مُلزم', example:'Die Anmeldung ist verbindlich.'},
+  {word:'die Vorstellung', pos:'Nomen', ipa:'[ˈfoːɐ̯ʃtɛlʊŋ]', ar:'التعريف بالنفس / الفكرة', example:'Das Vorstellungsgespräch war erfolgreich.'},
+  {word:'die Wohnung', pos:'Nomen', ipa:'[ˈvoːnʊŋ]', ar:'الشقة', example:'Wir suchen eine neue Wohnung.'},
+  {word:'zuverlässig', pos:'Adjektiv', ipa:'[ˈtsuːfɛɐ̯ˌlɛsɪç]', ar:'موثوق / يمكن الاعتماد عليه', example:'Sie ist eine sehr zuverlässige Mitarbeiterin.'},
+  {word:'der Alltag', pos:'Nomen', ipa:'[ˈalˌtaːk]', ar:'الحياة اليومية', example:'Mein Alltag beginnt um sechs Uhr morgens.'},
+  {word:'die Absprache', pos:'Nomen', ipa:'[ˈapˌʃpʁaːxə]', ar:'الاتفاق', example:'Wir treffen eine Absprache für nächste Woche.'},
+  {word:'der Fortschritt', pos:'Nomen', ipa:'[ˈfɔɐ̯tʃʁɪt]', ar:'التقدم', example:'Du machst große Fortschritte im Deutschen!'},
+  {word:'sich verabreden', pos:'Verb', ipa:'[fɛɐ̯ˈʔaːpʁeːdn̩]', ar:'تحديد موعد مع أحد', example:'Wir haben uns für Samstag verabredet.'},
+  {word:'die Herausforderung', pos:'Nomen', ipa:'[hɛˈʁaʊ̯sˌfɔʁdəʁʊŋ]', ar:'التحدي', example:'Eine neue Sprache zu lernen ist eine Herausforderung.'},
+  {word:'unterstützen', pos:'Verb', ipa:'[ˌʊntɐˈʃtʏtsn̩]', ar:'دعم / مساعدة', example:'Meine Familie unterstützt mich sehr.'},
+  {word:'die Gelegenheit', pos:'Nomen', ipa:'[ɡəˈleːɡn̩haɪ̯t]', ar:'الفرصة', example:'Das ist eine gute Gelegenheit für dich.'},
+  {word:'ausdrücken (sich)', pos:'Verb', ipa:'[ˈaʊ̯sˌdʁʏkn̩]', ar:'التعبير عن النفس', example:'Er kann sich klar und deutlich ausdrücken.'},
+  {word:'die Rücksicht', pos:'Nomen', ipa:'[ˈʁʏkzɪçt]', ar:'المراعاة / الاعتبار', example:'Bitte nimm Rücksicht auf deine Nachbarn.'},
+];
+
+function dayOfYear(d){
+  const start = new Date(d.getFullYear(), 0, 0);
+  const diff = d - start;
+  return Math.floor(diff / 86400000);
+}
+
+function mountWortDesTages(){
+  const wordEl = document.getElementById('wdtWord');
+  const posEl = document.getElementById('wdtPos');
+  const arEl = document.getElementById('wdtAr');
+  const exEl = document.getElementById('wdtExample');
+  const dateEl = document.getElementById('wdtDate');
+  const playBtn = document.getElementById('wdtPlay');
+  const shuffleBtn = document.getElementById('wdtShuffle');
+  if(!wordEl) return;
+
+  const todayIndex = dayOfYear(new Date()) % WORT_DES_TAGES.length;
+  let currentIndex = todayIndex;
+
+  const dateFmt = new Intl.DateTimeFormat('de-DE', {day:'2-digit', month:'long'});
+  dateEl.textContent = '· ' + dateFmt.format(new Date());
+
+  function render(idx){
+    const w = WORT_DES_TAGES[idx];
+    wordEl.textContent = w.word;
+    posEl.textContent = w.pos;
+    arEl.textContent = w.ar;
+    exEl.textContent = '„' + w.example + '"';
+  }
+
+  function speak(text){
+    speakGerman(text, playBtn);
+  }
+
+  playBtn.addEventListener('click', ()=>{
+    const cleanWord = WORT_DES_TAGES[currentIndex].word.replace(/\s*\(sich\)/, '');
+    speak(cleanWord);
+  });
+
+  shuffleBtn.addEventListener('click', ()=>{
+    let next;
+    do { next = Math.floor(Math.random() * WORT_DES_TAGES.length); } while(next === currentIndex && WORT_DES_TAGES.length > 1);
+    currentIndex = next;
+    render(currentIndex);
+  });
+
+  if('speechSynthesis' in window){
+    window.speechSynthesis.onvoiceschanged = () => {};
+  }
+
+  render(currentIndex);
+}
+
+/* ============ Lesefortschritt ============ */
+(function(){
+  const fill = document.getElementById('progressFill');
+  if(!fill) return;
+  function update(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const max = h.scrollHeight - h.clientHeight;
+    fill.style.width = max > 0 ? (scrolled / max * 100) + '%' : '0%';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+})();
+
+/* ============ Back to top ============ */
+(function(){
+  const btn = document.getElementById('backToTop');
+  if(!btn) return;
+  window.addEventListener('scroll', ()=>{
+    btn.classList.toggle('show', window.scrollY > 500);
+  }, {passive:true});
+  btn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+})();
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  ['a1','a2','b1','b2'].forEach(initLevel);
+  ['a1','a2','b1','b2'].forEach(mountVocab);
+  ['a1','a2','b1','b2'].forEach(initWriteTest);
+  ['a1','a2','b1','b2'].forEach(mountKultur);
+  mountWortDesTages();
+  initAccordion();
+});
+</script>
+
+</body>
+</html>
